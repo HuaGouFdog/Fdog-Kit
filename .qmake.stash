@@ -1,0 +1,21 @@
+QMAKE_CXX.INCDIRS = \
+    E:\\vs2015\\VC\\INCLUDE \
+    E:\\vs2015\\VC\\ATLMFC\\INCLUDE \
+    "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt" \
+    "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.6\\include\\um" \
+    "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared" \
+    "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um" \
+    "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt"
+QMAKE_CXX.LIBDIRS = \
+    E:\\vs2015\\VC\\LIB\\amd64 \
+    E:\\vs2015\\VC\\ATLMFC\\LIB\\amd64 \
+    "C:\\Program Files (x86)\\Windows Kits\\10\\lib\\10.0.22621.0\\ucrt\\x64" \
+    "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.6\\lib\\um\\x64" \
+    "C:\\Program Files (x86)\\Windows Kits\\10\\lib\\10.0.22621.0\\um\\x64"
+QMAKE_CXX.QT_COMPILER_STDCXX = 199711L
+QMAKE_CXX.QMAKE_MSC_VER = 1900
+QMAKE_CXX.QMAKE_MSC_FULL_VER = 190023026
+QMAKE_CXX.COMPILER_MACROS = \
+    QT_COMPILER_STDCXX \
+    QMAKE_MSC_VER \
+    QMAKE_MSC_FULL_VER

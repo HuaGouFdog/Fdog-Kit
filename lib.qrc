@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lib/icon-close.png</file>
+        <file>lib/icon-copy.png</file>
+        <file>lib/icon-minus.png</file>
+        <file>lib/icon-shell.png</file>
+        <file>lib/Icon_max2.png</file>
+        <file>lib/add2.png</file>
+        <file>lib/delete2.png</file>
+        <file>lib/update2.png</file>
+        <file>lib/connect.png</file>
+        <file>lib/history.png</file>
+        <file>lib/json.png</file>
+        <file>lib/xml.png</file>
+        <file>lib/json (1).png</file>
+        <file>lib/xml (1).png</file>
+        <file>lib/db.png</file>
+        <file>lib/Kafka.png</file>
+        <file>lib/powershell.png</file>
+        <file>lib/Redis.png</file>
+        <file>lib/Zookeeper.png</file>
+        <file>lib/soucuo.png</file>
+        <file>lib/icon14.png</file>
+        <file>lib/icon32.png</file>
+        <file>lib/icon48.png</file>
+        <file>lib/icon4.png</file>
+        <file>lib/icon5.png</file>
+        <file>lib/wicon_46.png</file>
+        <file>lib/node.png</file>
+        <file>lib/node2.png</file>
+    </qresource>
+</RCC>
