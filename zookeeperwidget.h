@@ -38,8 +38,22 @@ public:
 
     void addNode(QString &path);
     void deleteNode(QString &path);
-
+    void copyPath();
     void searchNode(QString name);
+
+    //使用递归实现对查找到的项的父子索引项遍历且设置为可见
+    void showParent(QTreeWidgetItem* pItem);
+    //对当前的节点进行遍历查找且对遍历的节点进行显示和隐藏的设置
+    void showSon(QTreeWidgetItem* pItem);
+    //对整个树形索引控件的一级索引项进行遍历，并调用上述的函数实现对每个一级索引项下的索引项进行递归遍历设置
+    void searchItem(QTreeWidgetItem* tableItem, const QString& strText);
+
+    void showItem(const QString& strText);
+
+    //展开/折叠所有节点
+    void expandAllItems(QTreeWidget* treeWidget, bool isexpand);
+
+    void expandItemAndChildren(QTreeWidgetItem* item, bool isexpand);
 
 private slots:
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
@@ -74,6 +88,14 @@ private slots:
 
     void rece_deleteNode(int code, QString message, QTreeWidgetItem *item);
 
+    void on_toolButton_copy_data_clicked();
+
+    void on_lineEdit_search_textChanged(const QString &arg1);
+
+    void on_toolButton_unfold_clicked();
+
+    void on_lineEdit_search_returnPressed();
+
 private:
     Ui::zookeeperwidget *ui;
     zhandle_t* zh; //zk连接句柄
@@ -91,6 +113,7 @@ private:
     zookeeperhandle * zookhandle;
 
     QThread * thread;
+    bool isUnfold;
 };
 
 #endif // ZOOKEEPERWIDGET_H

@@ -28,5 +28,7 @@
         <file>lib/wicon_46.png</file>
         <file>lib/node.png</file>
         <file>lib/node2.png</file>
+        <file>lib/copy.png</file>
+        <file>lib/daxiao.png</file>
     </qresource>
 </RCC>

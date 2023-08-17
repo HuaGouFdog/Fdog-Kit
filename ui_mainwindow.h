@@ -60,6 +60,8 @@ public:
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
     QWidget *page_2;
+    QVBoxLayout *verticalLayout_6;
+    QWidget *widget;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -484,6 +486,16 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
+        verticalLayout_6 = new QVBoxLayout(page_2);
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        widget = new QWidget(page_2);
+        widget->setObjectName(QStringLiteral("widget"));
+
+        verticalLayout_6->addWidget(widget);
+
         stackedWidget->addWidget(page_2);
 
         verticalLayout_2->addWidget(stackedWidget);

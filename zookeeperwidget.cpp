@@ -18,6 +18,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     //隐藏修改按钮
     zh = nullptr;
     ui->toolButton_saveData->hide();
+    isUnfold =false;
     init(cInfoStruct.host, cInfoStruct.port);
 }
 
@@ -103,7 +104,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
         //如果有子节点继续请求
         if (childrenList[i] > 0) {
             qDebug() << "getChildren children.data[i] = " << children_path;
-            //getChildren(children_path, item2);
+            getChildren(children_path, item2);
         }
     }
 }
@@ -147,6 +148,12 @@ void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path
     ui->lineEdit_pzxid->setText(QString::number(stat.pzxid));
 
     ui->textEdit_data->clear();
+    if (data.length() <= 0) {
+        ui->label_data_type->setText("数据类型：NULL");
+        ui->toolButton_copy_data->hide();
+        return;
+    }
+    ui->toolButton_copy_data->show();
     // 尝试解析 JSON 数据
     QJsonParseError error;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(data.toUtf8(), &error);
@@ -217,6 +224,90 @@ void zookeeperwidget::deleteNode(QString &path)
     QTreeWidgetItem * item = ui->treeWidget->currentItem();
     QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
     qDebug() << "delete";
+}
+
+void zookeeperwidget::copyPath()
+{
+    QTreeWidgetItem *item = ui->treeWidget->currentItem();
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(item->text(0));
+}
+
+void zookeeperwidget::showParent(QTreeWidgetItem *pItem)
+{
+    //判断当前节点是否存在
+    if (pItem != nullptr) {
+        QTreeWidgetItem* pTreeParentItem = pItem->parent(); //获取当前节点的父节点
+        //判断父节点是否存在
+        if (pTreeParentItem != nullptr) {
+            pTreeParentItem->setHidden(false);  //将该父级索引项设置为显示
+            showParent(pTreeParentItem);//直接传入处理过的节点
+            //避免传入该节点后递归后跳转到祖父节点
+        }
+    }
+}
+
+void zookeeperwidget::showSon(QTreeWidgetItem *pItem)
+{
+    int iChild = pItem->childCount();  //获取该子节点的数目
+    //遍历当前项的子节点并设置
+    for (int i = 0; i < iChild; ++i) {
+        pItem->child(i)->setHidden(false);
+        showSon(pItem->child(i));//对当前 子项进行递归
+    }
+}
+
+void zookeeperwidget::searchItem(QTreeWidgetItem *tableItem, const QString &strText)
+{
+    //防止野指针的问题
+    if (tableItem != nullptr) {
+        for (int i = 0; i < tableItem->childCount(); ++i) {
+            QTreeWidgetItem* pTreeItem = tableItem->child(i);
+            if (pTreeItem != nullptr) {
+                //如何索引项字段部分匹配于输入框字段则设置该项及其父子项显示且展开
+                if (pTreeItem->text(0).contains(strText)) {
+                    pTreeItem->setHidden(false);
+                    pTreeItem->setExpanded(true);
+                    showSon(pTreeItem);
+                    showParent(pTreeItem);
+                } else {
+                    pTreeItem->setHidden(true);//不匹配则隐藏
+                    searchItem(pTreeItem, strText);//递归遍历
+                }
+            }
+        }
+    }
+}
+
+void zookeeperwidget::showItem(const QString &strText)
+{
+    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i) {
+        if (ui->treeWidget->topLevelItem(i)->text(0).contains(strText)) {
+            ui->treeWidget->topLevelItem(i)->setHidden(false);
+        }else {
+            ui->treeWidget->topLevelItem(i)->setHidden(true);
+        }
+        searchItem(ui->treeWidget->topLevelItem(i), strText);
+    }
+}
+
+void zookeeperwidget::expandAllItems(QTreeWidget *treeWidget, bool isexpand)
+{
+    int topLevelItemCount = treeWidget->topLevelItemCount();
+    for (int i = 0; i < topLevelItemCount; ++i) {
+        QTreeWidgetItem* item = treeWidget->topLevelItem(i);
+        expandItemAndChildren(item, isexpand);
+    }
+}
+
+void zookeeperwidget::expandItemAndChildren(QTreeWidgetItem *item, bool isexpand)
+{
+    item->setExpanded(isexpand);
+    int childCount = item->childCount();
+    for (int i = 0; i < childCount; ++i) {
+        QTreeWidgetItem* childItem = item->child(i);
+        expandItemAndChildren(childItem, isexpand);
+    }
 }
 
 void zookeeperwidget::rece_deleteNode(int code, QString message, QTreeWidgetItem *item)
@@ -307,14 +398,11 @@ void zookeeperwidget::on_nodeAction()
     if (actionText == "添加") {
         addNode(node);
     } else if (actionText == "刷新") {
-        //getNodeInfo(node);
-        //getNodeData(node);
+        getNodeInfo(node);
     } else if (actionText == "删除") {
         deleteNode(node);
     } else if (actionText == "复制") {
-        QTreeWidgetItem *item = ui->treeWidget->currentItem();
-        QClipboard *clipboard = QApplication::clipboard();
-        clipboard->setText(item->text(0));
+        copyPath();
     }
 }
 
@@ -396,7 +484,6 @@ void zookeeperwidget::on_toolButton_refresh_clicked()
 {
     QString node = ui->treeWidget->currentItem()->text(0);
     getNodeInfo(node);
-    //getNodeData(node);
 }
 
 void zookeeperwidget::on_getAllChildren(QString path, const QVariant varValue, QTreeWidgetItem *item)
@@ -420,4 +507,38 @@ void zookeeperwidget::on_getAllChildren(QString path, const QVariant varValue, Q
 //            item2->setIcon(0, QIcon(":lib/node2.png"));
 //        }
     }
+}
+
+void zookeeperwidget::on_toolButton_copy_data_clicked()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->textEdit_data->toPlainText());
+}
+
+void zookeeperwidget::on_lineEdit_search_textChanged(const QString &arg1)
+{
+    showItem(arg1);
+    expandAllItems(ui->treeWidget, true);
+}
+
+void zookeeperwidget::on_toolButton_unfold_clicked()
+{
+    if (isUnfold) {
+        //全部折叠
+        isUnfold = false;
+        ui->toolButton_unfold->setText("全部展开");
+        expandAllItems(ui->treeWidget, isUnfold);
+    } else {
+        //全部展开
+        isUnfold = true;
+        ui->toolButton_unfold->setText("全部折叠");
+        expandAllItems(ui->treeWidget, isUnfold);
+    }
+}
+
+void zookeeperwidget::on_lineEdit_search_returnPressed()
+{
+    //回车也重新获取
+    showItem(ui->lineEdit_search->text());
+    expandAllItems(ui->treeWidget, true);
 }
