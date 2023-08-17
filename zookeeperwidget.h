@@ -26,7 +26,7 @@ public:
 
     void getChildren(QString path, QTreeWidgetItem *item);
 
-    void showNodeInfo(QString Data, Stat stat, QString path);
+    void showNodeInfo(QString Data, QVariant varValue, QString path);
 
     void getNodeInfo(QString &path);
 
@@ -36,15 +36,10 @@ public:
     void hideCreateWidget();//隐藏创建节点控件
     void showCreateWidget();//显示创建节点控件
 
-    //int32_t getNodeInfo(QString &path); //返回孩子数
-    //void getNodeData(QString &path);
     void addNode(QString &path);
     void deleteNode(QString &path);
 
     void searchNode(QString name);
-
-    //void getAllChildren(zhandle_t* zh, std::string path, QTreeWidgetItem * item, int x =0, int y = 0);
-    //void watcher(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx);
 
 private slots:
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
@@ -69,11 +64,15 @@ private slots:
 
     void on_getAllChildren(QString path, const QVariant varValue, QTreeWidgetItem *item);
 
-    void rece_init(bool connected, QString path, const QVariant varValue, QString data);
+    void rece_init(bool connected, int code, QString message, QString path, const QVariant varValue, QString data);
 
-    void rece_getChildren(QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
+    void rece_getChildren(int code, QString message, QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
 
-    void rece_getNodeInfo_2(QVariant varValue, QString data, QString path);
+    void rece_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path);
+
+    void rece_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item);
+
+    void rece_deleteNode(int code, QString message, QTreeWidgetItem *item);
 
 private:
     Ui::zookeeperwidget *ui;

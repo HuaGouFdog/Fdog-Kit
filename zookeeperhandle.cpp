@@ -56,7 +56,9 @@ void zookeeperhandle::getChildren(QString path, QTreeWidgetItem *item)
     }
 
     QVariant varValue = QVariant::fromValue(children);
-    emit send_getChildren(path, varValue, dataList, childrenList, item);
+    int code = 0;
+    QString message;
+    emit send_getChildren(code, message, path, varValue, dataList, childrenList, item);
     return;
 }
 
@@ -90,9 +92,10 @@ void zookeeperhandle::getChildren(QString path, QTreeWidgetItem *item)
 //    item = value;
 //}
 
-void zookeeperhandle::getNodeInfo(Stat &stat, QString &data, QString &path)
+int zookeeperhandle::getNodeInfo(Stat &stat, QString &data, QString &path)
 {
     // 获取节点的信息
+    int code = 0;
     char buffer[1024]  = {0}; //不写0 会乱码
     int buffer_len = sizeof(buffer);
     int rc = zoo_get(zh, path.toStdString().c_str(), 0, buffer, &buffer_len, &stat);
@@ -102,7 +105,7 @@ void zookeeperhandle::getNodeInfo(Stat &stat, QString &data, QString &path)
     } else if (rc == ZNONODE) {
         qDebug() << "Node does not exist";
     }
-    return;
+    return code;
 }
 
 void zookeeperhandle::getNodeInfo_2(QString path)
@@ -113,7 +116,49 @@ void zookeeperhandle::getNodeInfo_2(QString path)
     getNodeInfo(stat, data, path);
     QVariant varValue = QVariant::fromValue(stat);
     qDebug() << "返回数据2";
-    emit send_getNodeInfo_2(varValue, data, path);
+    int code = 0;
+    QString message;
+    emit send_getNodeInfo_2(code, message, varValue, data, path);
+    return;
+}
+
+void zookeeperhandle::createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item)
+{
+    int code = 0;
+    QString data;
+    QString message;
+    QVariant varValue;
+    int nodeDataLen = strlen(nodeData.toStdString().c_str());
+    // 创建节点
+    qDebug() << "node = " << nodePath;
+    int rc = zoo_create(zh, nodePath.toStdString().c_str(), nodeData.toStdString().c_str(), nodeDataLen, &ZOO_OPEN_ACL_UNSAFE, 0, NULL, 0);
+    if (rc != ZOK) {
+        code = -1;
+        emit send_createNode(code, message, nodePath, varValue, data, item);
+        qDebug() << "add " << nodePath << " fail rc = " << rc;
+        return;
+    }
+
+    Stat stat;
+    rc = getNodeInfo(stat, data, nodePath);
+    if (rc != ZOK) {
+        code = -2;
+        emit send_createNode(code, message, nodePath, varValue, data, item);
+    }
+    varValue = QVariant::fromValue(stat);
+    emit send_createNode(code, message, nodePath, varValue, data, item);
+    return;
+}
+
+void zookeeperhandle::deleteNode(QString path, QTreeWidgetItem *item)
+{
+    int code = 0;
+    QString message;
+    int ret = zoo_delete(zh, path.toStdString().c_str(), -1);
+    if (ret != ZOK) {
+        qDebug() << "Failed to delete node. Error";
+    }
+    emit send_deleteNode(code, message, item);
     return;
 }
 
@@ -155,7 +200,9 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
         Stat stat;
         QString Data;
         QVariant varValue = QVariant::fromValue(stat);
-        emit send_init(g_connected, rootPath, varValue, Data);
+        int code;
+        QString message;
+        emit send_init(g_connected, code, message, rootPath, varValue, Data);
         return;
     }
 
@@ -166,7 +213,9 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
     //返回给主界面
     qDebug() << "connect ZooKeeper 2";
     QVariant varValue = QVariant::fromValue(stat);
-    emit send_init(g_connected, rootPath, varValue, Data);
+    int code;
+    QString message;
+    emit send_init(g_connected, code, message, rootPath, varValue, Data);
     return;
 }
 

@@ -35,16 +35,20 @@ public:
 signals:
     //只是触发
     //void sendAllChildren(QString path, const QVariant varValue, QTreeWidgetItem *item);
-    void send_getChildren(QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
-    void send_init(bool connected, QString path, const QVariant varValue, QString data);
-    void send_getNodeInfo_2(QVariant varValue, QString data, QString path);
+    void send_getChildren(int code, QString message, QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
+    void send_init(bool connected,int code, QString message, QString path, const QVariant varValue, QString data);
+    void send_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path);
+    void send_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item);
+    void send_deleteNode(int code, QString message, QTreeWidgetItem *item);
 
 public slots:
     void init(QString rootPath, QString host, QString port);
     //void getAllChildren();
     void getChildren(QString path, QTreeWidgetItem *item);
-    void getNodeInfo(Stat &stat, QString &data, QString &path);
+    int getNodeInfo(Stat &stat, QString &data, QString &path);
     void getNodeInfo_2(QString path);
+    void createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item);
+    void deleteNode(QString path, QTreeWidgetItem *item);
 private:
     QString host;
     QString port;
