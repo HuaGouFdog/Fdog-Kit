@@ -1,9 +1,10 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
 #include "zookeeperwidget.h"
 #include "createconnect.h"
+#include "sshwidget.h"
 #include <QGraphicsDropShadowEffect>
 #include <QVector>
 namespace Ui {
@@ -56,6 +57,7 @@ private:
 
     createconnect *ccwidget =nullptr; //创建连接窗口
     QVector<zookeeperwidget*> zkWidgetList;
+    QVector<sshwidget*> sshWidgetList;
 };
 
 #endif // MAINWINDOW_H

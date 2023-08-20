@@ -261,6 +261,7 @@ Makefile: FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgets.prl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Gui.prl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Test.prl \
+		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Network.prl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Core.prl
 	$(QMAKE) -o Makefile FdogShell.pro -spec win32-msvc
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_pre.prf:
@@ -449,6 +450,7 @@ FdogShell.pro:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgets.prl:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Gui.prl:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Test.prl:
+..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Network.prl:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile FdogShell.pro -spec win32-msvc

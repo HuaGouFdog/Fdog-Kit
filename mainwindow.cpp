@@ -1,3 +1,4 @@
+﻿#pragma execution_character_set("utf-8")
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QGraphicsDropShadowEffect>
@@ -176,11 +177,13 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     QSize iconSize(14, 14); // 设置图标的大小
 
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
-
+        sshwidget * sshWidget = new sshwidget(cInfoStruct);
+        sshWidgetList.push_back(sshWidget);
+        ui->tabWidget->addTab(sshWidget, QIcon(":lib/Zookeeper.png").pixmap(iconSize), cInfoStruct.name);
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
         zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
         zkWidgetList.push_back(zkWidget);
-        ui->tabWidget->addTab(zkWidget, QIcon(":lib/Zookeeper.png").pixmap(iconSize), cInfoStruct.name);
+        ui->tabWidget->addTab(zkWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
     } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
     } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {

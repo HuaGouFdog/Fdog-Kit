@@ -28,24 +28,35 @@ SOURCES += \
         mainwindow.cpp \
     zookeeperwidget.cpp \
     createconnect.cpp \
-    zookeeperhandle.cpp
+    zookeeperhandle.cpp \
+    sshwidget.cpp \
+    sshhandle.cpp
 
 HEADERS += \
         mainwindow.h \
     zookeeperwidget.h \
     createconnect.h \
-    zookeeperhandle.h
+    zookeeperhandle.h \
+    sshwidget.h \
+    sshhandle.h
 
 FORMS += \
         mainwindow.ui \
     zookeeperwidget.ui \
-    createconnect.ui
+    createconnect.ui \
+    sshwidget.ui
 
 RESOURCES += \
     lib.qrc
 
+QT += network
 
 win32: LIBS += -L$$PWD/../zookeeper/lib/ -lzookeeper
 
 INCLUDEPATH += $$PWD/../zookeeper/include
 DEPENDPATH += $$PWD/../zookeeper/include
+
+win32: LIBS += -L$$PWD/../libssh2.11.0/lib/ -llibssh2
+
+INCLUDEPATH += $$PWD/../libssh2.11.0/include
+DEPENDPATH += $$PWD/../libssh2.11.0/include

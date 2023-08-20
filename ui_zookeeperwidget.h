@@ -115,15 +115,6 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QToolButton *toolButton_createData;
     QToolButton *toolButton_saveData;
-    QWidget *verticalWidget_1_2_6_r;
-    QVBoxLayout *verticalLayout_8;
-    QWidget *horizontalWidget_1_2_6_1_r;
-    QHBoxLayout *horizontalLayout_11;
-    QLabel *label_command;
-    QWidget *verticalWidget_1_2_6_2_r;
-    QVBoxLayout *verticalLayout_6;
-    QTextEdit *textEdit_command;
-    QSpacerItem *verticalSpacer_3;
 
     void setupUi(QWidget *zookeeperwidget)
     {
@@ -428,13 +419,13 @@ public:
         splitter->addWidget(verticalWidget_1_l);
         verticalWidget_1_r = new QWidget(splitter);
         verticalWidget_1_r->setObjectName(QStringLiteral("verticalWidget_1_r"));
-        verticalWidget_1_r->setMaximumSize(QSize(370, 99999));
+        verticalWidget_1_r->setMaximumSize(QSize(320, 99999));
         verticalWidget_1_r->setFont(font2);
         verticalWidget_1_r->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67, 77, 88);"));
         verticalLayout = new QVBoxLayout(verticalWidget_1_r);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 9, 0, 3);
+        verticalLayout->setContentsMargins(0, 9, 0, 19);
         gridWidget_1_1_r = new QWidget(verticalWidget_1_r);
         gridWidget_1_1_r->setObjectName(QStringLiteral("gridWidget_1_1_r"));
         gridWidget_1_1_r->setMinimumSize(QSize(0, 260));
@@ -623,7 +614,7 @@ public:
         verticalLayout_7 = new QVBoxLayout(widget_1_2_r);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(9, 0, 9, 0);
+        verticalLayout_7->setContentsMargins(9, 5, 9, 0);
         horizontalWidget_1_2_1_r = new QWidget(widget_1_2_r);
         horizontalWidget_1_2_1_r->setObjectName(QStringLiteral("horizontalWidget_1_2_1_r"));
         horizontalWidget_1_2_1_r->setMinimumSize(QSize(0, 25));
@@ -743,6 +734,7 @@ public:
         verticalWidget_1_2_5_2_r = new QWidget(verticalWidget_1_2_5_r);
         verticalWidget_1_2_5_2_r->setObjectName(QStringLiteral("verticalWidget_1_2_5_2_r"));
         verticalWidget_1_2_5_2_r->setFont(font5);
+        verticalWidget_1_2_5_2_r->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(verticalWidget_1_2_5_2_r);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -753,7 +745,7 @@ public:
         sizePolicy.setVerticalStretch(10);
         sizePolicy.setHeightForWidth(textEdit_data->sizePolicy().hasHeightForWidth());
         textEdit_data->setSizePolicy(sizePolicy);
-        textEdit_data->setMinimumSize(QSize(0, 160));
+        textEdit_data->setMinimumSize(QSize(0, 0));
         textEdit_data->setFont(font3);
         textEdit_data->setStyleSheet(QLatin1String("border-radius: 10px;\n"
 "border: 2px solid rgba(255, 255, 255, 100);"));
@@ -765,6 +757,7 @@ public:
 
         horizontalWidget_1_2_5_1r = new QWidget(verticalWidget_1_2_5_r);
         horizontalWidget_1_2_5_1r->setObjectName(QStringLiteral("horizontalWidget_1_2_5_1r"));
+        horizontalWidget_1_2_5_1r->setMaximumSize(QSize(16777215, 25));
         horizontalWidget_1_2_5_1r->setStyleSheet(QStringLiteral(""));
         horizontalLayout_4 = new QHBoxLayout(horizontalWidget_1_2_5_1r);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
@@ -867,64 +860,8 @@ public:
 
         verticalLayout_7->addWidget(verticalWidget_1_2_5_r);
 
-        verticalWidget_1_2_6_r = new QWidget(widget_1_2_r);
-        verticalWidget_1_2_6_r->setObjectName(QStringLiteral("verticalWidget_1_2_6_r"));
-        verticalLayout_8 = new QVBoxLayout(verticalWidget_1_2_6_r);
-        verticalLayout_8->setSpacing(0);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
-        horizontalWidget_1_2_6_1_r = new QWidget(verticalWidget_1_2_6_r);
-        horizontalWidget_1_2_6_1_r->setObjectName(QStringLiteral("horizontalWidget_1_2_6_1_r"));
-        horizontalWidget_1_2_6_1_r->setMinimumSize(QSize(0, 30));
-        horizontalWidget_1_2_6_1_r->setMaximumSize(QSize(16777215, 30));
-        horizontalLayout_11 = new QHBoxLayout(horizontalWidget_1_2_6_1_r);
-        horizontalLayout_11->setSpacing(0);
-        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
-        label_command = new QLabel(horizontalWidget_1_2_6_1_r);
-        label_command->setObjectName(QStringLiteral("label_command"));
-        label_command->setMaximumSize(QSize(16777215, 30));
-        label_command->setFont(font3);
-
-        horizontalLayout_11->addWidget(label_command);
-
-
-        verticalLayout_8->addWidget(horizontalWidget_1_2_6_1_r);
-
-        verticalWidget_1_2_6_2_r = new QWidget(verticalWidget_1_2_6_r);
-        verticalWidget_1_2_6_2_r->setObjectName(QStringLiteral("verticalWidget_1_2_6_2_r"));
-        verticalLayout_6 = new QVBoxLayout(verticalWidget_1_2_6_2_r);
-        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        textEdit_command = new QTextEdit(verticalWidget_1_2_6_2_r);
-        textEdit_command->setObjectName(QStringLiteral("textEdit_command"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(textEdit_command->sizePolicy().hasHeightForWidth());
-        textEdit_command->setSizePolicy(sizePolicy1);
-        textEdit_command->setMinimumSize(QSize(0, 30));
-        QFont font7;
-        font7.setFamily(QStringLiteral("OPPOSans"));
-        font7.setPointSize(10);
-        font7.setStyleStrategy(QFont::PreferAntialias);
-        textEdit_command->setFont(font7);
-        textEdit_command->setStyleSheet(QStringLiteral(""));
-
-        verticalLayout_6->addWidget(textEdit_command);
-
-
-        verticalLayout_8->addWidget(verticalWidget_1_2_6_2_r);
-
-
-        verticalLayout_7->addWidget(verticalWidget_1_2_6_r);
-
 
         verticalLayout->addWidget(widget_1_2_r);
-
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_3);
 
         splitter->addWidget(verticalWidget_1_r);
 
@@ -994,12 +931,6 @@ public:
         toolButton_copy_data->setText(QString());
         toolButton_createData->setText(QApplication::translate("zookeeperwidget", "\345\210\233\345\273\272", nullptr));
         toolButton_saveData->setText(QApplication::translate("zookeeperwidget", "\344\277\256\346\224\271", nullptr));
-        label_command->setText(QApplication::translate("zookeeperwidget", "command:", nullptr));
-        textEdit_command->setHtml(QApplication::translate("zookeeperwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'OPPOSans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Cascadia Mono';\">432432432</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

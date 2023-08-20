@@ -33,9 +33,15 @@ signals:
     void newClose();
 
 private slots:
-    void on_pushButton_connect_clicked();
+    void on_pushButton_zk_connect_clicked();
 
-    void on_pushButton_close_clicked();
+    void on_pushButton_zk_close_clicked();
+
+    void on_pushButton_ssh_connect_clicked();
+
+    void on_pushButton_ssh_close_clicked();
+
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::createconnect *ui;
