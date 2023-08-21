@@ -30,7 +30,8 @@ SOURCES += \
     createconnect.cpp \
     zookeeperhandle.cpp \
     sshwidget.cpp \
-    sshhandle.cpp
+    sshhandle.cpp \
+    datahandle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     createconnect.h \
     zookeeperhandle.h \
     sshwidget.h \
-    sshhandle.h
+    sshhandle.h \
+    datahandle.h
 
 FORMS += \
         mainwindow.ui \

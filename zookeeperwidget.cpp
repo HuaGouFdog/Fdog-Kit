@@ -19,6 +19,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     zh = nullptr;
     ui->toolButton_saveData->hide();
     isUnfold =false;
+    ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     init(cInfoStruct.host, cInfoStruct.port);
 }
 
@@ -30,7 +31,7 @@ zookeeperwidget::~zookeeperwidget()
 void zookeeperwidget::init(QString host, QString port)
 {
     QString rootPath = "/";
-
+    //ui->label_status->setText("程序会查找所有节点，根据节点数量，通常1分钟左右就搜索完毕");
     thread = new QThread();
     zookhandle = new zookeeperhandle();
 
@@ -84,7 +85,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
 {
     String_vector children = varValue.value<String_vector>();
     for (int i = 0; i < children.count; ++i) {
-           qDebug() << "children.data[i] = " << children.data[i];
+           //qDebug() << "children.data[i] = " << children.data[i];
         QTreeWidgetItem *item2 = new QTreeWidgetItem(item);
         QString children_path;
         if (path != "/") {
@@ -103,7 +104,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
 
         //如果有子节点继续请求
         if (childrenList[i] > 0) {
-            qDebug() << "getChildren children.data[i] = " << children_path;
+            //qDebug() << "getChildren children.data[i] = " << children_path;
             getChildren(children_path, item2);
         }
     }
@@ -189,7 +190,6 @@ void zookeeperwidget::hideCreateWidget()
     ui->horizontalWidget_1_2_1_r->hide();
     ui->horizontalWidget_1_2_2_r->hide();
     ui->horizontalWidget_1_2_3_r->hide();
-    ui->verticalWidget_1_2_6_r->hide();
     ui->toolButton_createData->hide();
     ui->toolButton_saveData->hide();
 }
@@ -199,7 +199,6 @@ void zookeeperwidget::showCreateWidget()
     ui->horizontalWidget_1_2_1_r->show();
     ui->horizontalWidget_1_2_2_r->show();
     ui->horizontalWidget_1_2_3_r->show();
-    ui->verticalWidget_1_2_6_r->show();
     ui->toolButton_createData->show();
     ui->toolButton_saveData->hide();
 }
@@ -474,7 +473,7 @@ void zookeeperwidget::on_toolButton_add_clicked()
     addNode(node);
 }
 
-void zookeeperwidget::on_toolButton__delete_clicked()
+void zookeeperwidget::on_toolButton_delete_clicked()
 {
     QString node = ui->treeWidget->currentItem()->text(0);
     deleteNode(node);

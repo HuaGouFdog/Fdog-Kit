@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
@@ -112,6 +113,7 @@ public:
     QTextEdit *textEdit;
     QWidget *widget_4;
     QPushButton *pushButton;
+    QLineEdit *lineEdit;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
     QSplitter *splitter_4;
@@ -634,10 +636,18 @@ public:
         sizePolicy.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy);
         textEdit->setMaximumSize(QSize(16777215, 5555555));
-        textEdit->setFont(font);
-        textEdit->setStyleSheet(QStringLiteral("background-color: rgb(0, 41, 69);"));
+        QFont font2;
+        font2.setFamily(QStringLiteral("Arial"));
+        font2.setPointSize(10);
+        font2.setBold(false);
+        font2.setItalic(false);
+        font2.setWeight(50);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        textEdit->setFont(font2);
+        textEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
+"font: 10pt \"Arial\";"));
         textEdit->setReadOnly(false);
-        textEdit->setTextInteractionFlags(Qt::TextEditorInteraction);
+        textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         verticalLayout_8->addWidget(textEdit);
 
@@ -648,6 +658,9 @@ public:
         pushButton = new QPushButton(widget_4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(60, 180, 75, 23));
+        lineEdit = new QLineEdit(widget_4);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(40, 240, 201, 171));
         splitter_3->addWidget(widget_4);
 
         horizontalLayout_19->addWidget(splitter_3);
@@ -761,8 +774,8 @@ public:
         textEdit->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Arial'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;\"><br /></p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         groupBox_2->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244\347\274\226\350\276\221\345\231\250", nullptr));

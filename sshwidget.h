@@ -4,14 +4,20 @@
 #include <QWidget>
 #include "createconnect.h"
 #include "sshhandle.h"
+#include "datahandle.h"
 #include <QKeyEvent>
 #include <QObject>
 #include <QThread>
 
 class KeyFilter : public QObject
 {
+    Q_OBJECT
 public:
     KeyFilter(QObject *parent = nullptr) : QObject(parent) {}
+
+signals:
+    void send_enter_sign();
+
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override
@@ -24,6 +30,8 @@ protected:
             }
             if (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
                 qDebug() << "回车";
+                emit send_enter_sign();
+                return true;
             }
         }
 
@@ -53,6 +61,8 @@ private slots:
     //接收命令
     void rece_channel_read(QString data);
 
+    void rece_enter_sign();
+
     void on_pushButton_clicked();
 
 private:
@@ -63,6 +73,7 @@ private:
     sshhandle * m_sshhandle;
     QThread * thread2;
     sshhandle * m_sshhandle2;
+    KeyFilter *keyFilter;
 };
 
 #endif // SSHWIDGET_H

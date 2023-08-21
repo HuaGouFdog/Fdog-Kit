@@ -72,7 +72,7 @@ private slots:
 
     void on_toolButton_add_clicked();
 
-    void on_toolButton__delete_clicked();
+    void on_toolButton_delete_clicked();
 
     void on_toolButton_refresh_clicked();
 

@@ -2,6 +2,7 @@
 #pragma comment(lib, "ws2_32.lib")
 #include "sshhandle.h"
 #include <QObject>
+#include <QTextCodec>
 sshhandle::sshhandle(QObject *parent) : QObject(parent)
 {
 

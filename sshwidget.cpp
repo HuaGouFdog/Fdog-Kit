@@ -363,7 +363,9 @@ https://blog.51cto.com/xiaohaiwa/5379626
 
 */
 
-    KeyFilter *keyFilter = new KeyFilter(this);
+    keyFilter = new KeyFilter(this);
+    connect(keyFilter,SIGNAL(send_enter_sign()),this,
+                            SLOT(rece_enter_sign()));
     ui->textEdit->installEventFilter(keyFilter);
 
     QTextCursor cursor=ui->textEdit->textCursor();
@@ -397,10 +399,13 @@ void sshwidget::on_textEdit_cursorPositionChanged()
     //记录当前光标位置
     int rowCount = ui->textEdit->document()->lineCount(); //获取行数
 
-    QTextCursor cursor = ui->textEdit->textCursor();
-    int lineNumber1 = cursor.blockNumber() + 1;
-    int columnNumber1 = cursor.columnNumber();
+//    QTextCursor cursor = ui->textEdit->textCursor();
+//    int lineNumber1 = cursor.blockNumber() + 1;
+//    int columnNumber1 = cursor.columnNumber();
 
+//    QTextCursor cursor2=ui->textEdit->textCursor();
+//    cursor2.movePosition(QTextCursor::End);
+//    ui->textEdit->setTextCursor(cursor2);
     //行
 //    if (lineNumber1 != rowCount) {
 //        qDebug() << "行数不是最后";
@@ -505,9 +510,71 @@ void sshwidget::rece_init()
 
 void sshwidget::rece_channel_read(QString data)
 {
-    qDebug() << "我收到数据啦" << data;
-    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
+    qDebug().noquote() << "我收到数据啦" << data;
+    //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
+    //ui->lineEdit->setText(data);
+
+    // 创建 QTextDocument
+    QTextDocument* document = new QTextDocument();
+    ui->textEdit->setDocument(document);
+
+    // 创建 QTextCursor
+    QTextCursor cursor(document);
+
+    // 创建 QTextCharFormat
+    QTextCharFormat format;
+
+    // 设置格式
+    QFont font;
+    font.setFamily("Lucida Console");
+    font.setPointSize(12);
+    //format.setFontWeight(QFont::Bold);
+    //format.setForeground(Qt::red);
+    format.setFont(font);
+
+
+    // 将格式应用于文本的一部分
+    cursor.insertText(data, format);
+
     //处理数据
+}
+
+void sshwidget::rece_enter_sign()
+{
+    // 获取整个文本内容
+    //QString text = ui->textEdit->toPlainText();
+
+    // 按换行符拆分文本内容为行列表
+    //QStringList lines = text.split("\n");
+
+    // 获取最后一行数据
+//    QString lastLine;
+//    if (!lines.isEmpty()) {
+//        lastLine = lines.last();
+//    }
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::End);
+    cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+    QString lastLine = cursor.selectedText();
+    // 打印最后一行数据
+    QString a = "\u001B]0;root@localhost:~\u0007[root@localhost ~]# ";
+    qDebug() << "a: " << a.length();
+    qDebug() << "Last Line: " << lastLine;
+    QString b = lastLine.mid(a.length());
+    qDebug() << "Last Line2: " << b;
+    datahandle ac;
+    ac.processData(lastLine);
+    //删除命令
+
+
+    // 使用 QTextCursor 定位到最后一行
+
+    // 删除最后一行
+    cursor.removeSelectedText();
+    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + a);
+
+    //获取信息
+    sendCommandData(b + "\n");
 }
 
 void sshwidget::on_pushButton_clicked()
