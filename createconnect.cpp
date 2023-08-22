@@ -40,7 +40,7 @@ void createconnect::on_pushButton_zk_connect_clicked()
     connnectInfoStruct cInfo;
     cInfo.connectType = this->connectType;
     cInfo.name = ui->lineEdit_zk_name->text();
-    cInfo.host = ui->lineEdit_ssh_host->text();
+    cInfo.host = ui->lineEdit_zk_host->text();
     cInfo.port = ui->lineEdit_zk_port->text();
     emit newCreate(cInfo);
     this->close();

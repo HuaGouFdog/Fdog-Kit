@@ -649,6 +649,7 @@ public:
         textEdit->setFont(font3);
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
 "font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
+"border: none;\n"
 ""));
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);

@@ -521,16 +521,37 @@ void sshwidget::rece_init()
 
 void sshwidget::rece_channel_read(QString data)
 {
-    qDebug().noquote() << "我收到数据啦" << data;
+    qDebug() << "我收到数据啦" << data;
     qDebug().noquote() << "也收到数据啦" << commond;
-
     datahandle ac;
     data = ac.processData(data);
+    //data可能包含空行，只取最后一行的数据
+    int index = data.lastIndexOf("\n");
+    if (index != -1) {
+        commond2 = data.mid(index + 1);
+    } else {
+        commond2 = data;
+    }
+    int type = 0;
+    QString data2 = "";
+    if (commond != "" && data.startsWith(commond) && data.length() > commond.length()) {
+        //说明命令后面带了数据，提取需要的数据
+
+        data2 = data.mid(commond.length());
+        data = commond;
+        qDebug().noquote() << "2我收到数据啦" << data2;
+        type = 1;
+    }
+
 
     if (data == commond) {
-        qDebug().noquote() << "3我收到数据啦" << commond;
+        qDebug().noquote() << "3我收到数据啦" << data;
+        qDebug().noquote() << "3也收到数据啦" << commond;
         ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "\r\n");
-        return;
+        if (type == 0) {
+            return;
+        }
+
     }
     //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
     //ui->lineEdit->setText(data);
@@ -548,12 +569,18 @@ void sshwidget::rece_channel_read(QString data)
     //qDebug() << "原数据 = " << ui->textEdit->toPlainText();
     //QTextCursor cursor2 = ui->textEdit->textCursor();  // 获取 QTextEdit 中的光标
     //cursor2.insertText(data, format);
-    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
+    if (type != 0) {
+        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data2);
+    } else {
+        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
+    }
+
     //处理数据
 }
 
 void sshwidget::rece_enter_sign()
 {
+    qDebug() << "命令行前缀为" << commond2;
     // 获取整个文本内容
     //QString text = ui->textEdit->toPlainText();
 
@@ -572,12 +599,12 @@ void sshwidget::rece_enter_sign()
     // 打印最后一行数据
     //QString a = "\u001B]0;root@localhost:~\u0007[root@localhost ~]# ";
     //qDebug() << "a: " << a.length();
-    //qDebug() << "Last Line: " << lastLine;
+    qDebug() << "Last Line: " << lastLine;
     //从最后一行数据中获取命令
-    int index1 = lastLine.indexOf("# ");
-    QString a = lastLine.mid(0,index1+2);
-    int index2 = lastLine.indexOf("# ");
-    QString b = lastLine.mid(index2+2);
+    //int index1 = lastLine.indexOf(commond2);
+    QString a = lastLine.mid(0,commond2.length());
+    //int index2 = lastLine.indexOf(commond2 + " ");
+    QString b = lastLine.mid(commond2.length());
     qDebug() << "Last Line a: " << a;
     qDebug() << "Last Line b: " << b;
     qDebug() << "Last Line a + b: " << a + b;

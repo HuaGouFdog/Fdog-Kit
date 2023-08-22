@@ -75,6 +75,7 @@ private:
     sshhandle * m_sshhandle2;
     KeyFilter *keyFilter;
     QString commond; //记录最后一次
+    QString commond2;
 };
 
 #endif // SSHWIDGET_H

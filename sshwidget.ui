@@ -1330,6 +1330,7 @@ QToolButton:hover {
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(0, 41, 69);
 font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
+border: none;
 </string>
                  </property>
                  <property name="readOnly">
