@@ -136,8 +136,8 @@ public:
         splitter_1->setOrientation(Qt::Horizontal);
         widget = new QWidget(splitter_1);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(180, 0));
-        widget->setMaximumSize(QSize(180, 16777215));
+        widget->setMinimumSize(QSize(175, 0));
+        widget->setMaximumSize(QSize(175, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -157,7 +157,11 @@ public:
         horizontalLayout_22->setContentsMargins(0, 0, 0, 0);
         label_25 = new QLabel(widget_server_info);
         label_25->setObjectName(QStringLiteral("label_25"));
-        label_25->setFont(font);
+        QFont font1;
+        font1.setFamily(QStringLiteral("OPPOSans B"));
+        font1.setPointSize(9);
+        font1.setStyleStrategy(QFont::PreferAntialias);
+        label_25->setFont(font1);
 
         horizontalLayout_22->addWidget(label_25);
 
@@ -174,13 +178,13 @@ public:
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(widget_ip_info);
         label->setObjectName(QStringLiteral("label"));
-        label->setFont(font);
+        label->setFont(font1);
 
         horizontalLayout_4->addWidget(label);
 
         toolButton = new QToolButton(widget_ip_info);
         toolButton->setObjectName(QStringLiteral("toolButton"));
-        toolButton->setFont(font);
+        toolButton->setFont(font1);
         toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -207,17 +211,17 @@ public:
         widget_run_info->setObjectName(QStringLiteral("widget_run_info"));
         widget_run_info->setMinimumSize(QSize(0, 20));
         widget_run_info->setMaximumSize(QSize(16777215, 20));
-        QFont font1;
-        font1.setFamily(QStringLiteral("OPPOSans B"));
-        font1.setPointSize(10);
-        widget_run_info->setFont(font1);
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans B"));
+        font2.setPointSize(10);
+        widget_run_info->setFont(font2);
         horizontalLayout_17 = new QHBoxLayout(widget_run_info);
         horizontalLayout_17->setSpacing(6);
         horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
         horizontalLayout_17->setContentsMargins(0, 0, 0, 0);
         label_2 = new QLabel(widget_run_info);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setFont(font);
+        label_2->setFont(font1);
 
         horizontalLayout_17->addWidget(label_2);
 
@@ -233,19 +237,19 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         label_11 = new QLabel(verticalWidget);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font);
+        label_11->setFont(font1);
 
         verticalLayout->addWidget(label_11);
 
         label_8 = new QLabel(verticalWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setFont(font);
+        label_8->setFont(font1);
 
         verticalLayout->addWidget(label_8);
 
         label_10 = new QLabel(verticalWidget);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setFont(font);
+        label_10->setFont(font1);
 
         verticalLayout->addWidget(label_10);
 
@@ -262,7 +266,7 @@ public:
         horizontalLayout_18->setContentsMargins(0, 0, 0, 0);
         label_4 = new QLabel(widget_25);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setFont(font);
+        label_4->setFont(font1);
 
         horizontalLayout_18->addWidget(label_4);
 
@@ -280,7 +284,7 @@ public:
         horizontalLayout_14->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(widget_cpu_info);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setFont(font);
+        label_3->setFont(font1);
 
         horizontalLayout_14->addWidget(label_3);
 
@@ -303,7 +307,7 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         label_6 = new QLabel(widget_6);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setFont(font);
+        label_6->setFont(font1);
         label_6->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
         horizontalLayout_2->addWidget(label_6);
@@ -321,7 +325,7 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         label_7 = new QLabel(widget_7);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setFont(font);
+        label_7->setFont(font1);
         label_7->setLayoutDirection(Qt::LeftToRight);
         label_7->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
         label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
@@ -347,7 +351,7 @@ public:
         horizontalLayout_16->setContentsMargins(0, 0, 0, 0);
         label_17 = new QLabel(widget_swap_info);
         label_17->setObjectName(QStringLiteral("label_17"));
-        label_17->setFont(font);
+        label_17->setFont(font1);
 
         horizontalLayout_16->addWidget(label_17);
 
@@ -370,7 +374,7 @@ public:
         horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
         label_18 = new QLabel(widget_19);
         label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setFont(font);
+        label_18->setFont(font1);
         label_18->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
         horizontalLayout_12->addWidget(label_18);
@@ -387,7 +391,7 @@ public:
         horizontalLayout_13->setContentsMargins(0, 0, 0, 0);
         label_19 = new QLabel(widget_20);
         label_19->setObjectName(QStringLiteral("label_19"));
-        label_19->setFont(font);
+        label_19->setFont(font1);
         label_19->setLayoutDirection(Qt::LeftToRight);
         label_19->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
         label_19->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
@@ -413,7 +417,7 @@ public:
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
         label_14 = new QLabel(widget_mem_info);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setFont(font);
+        label_14->setFont(font1);
 
         horizontalLayout_15->addWidget(label_14);
 
@@ -436,7 +440,7 @@ public:
         horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
         label_15 = new QLabel(widget_15);
         label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setFont(font);
+        label_15->setFont(font1);
         label_15->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
         horizontalLayout_9->addWidget(label_15);
@@ -453,7 +457,7 @@ public:
         horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
         label_16 = new QLabel(widget_16);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setFont(font);
+        label_16->setFont(font1);
         label_16->setLayoutDirection(Qt::LeftToRight);
         label_16->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
         label_16->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
@@ -514,7 +518,7 @@ public:
         tableWidget->setItem(3, 2, __qtablewidgetitem14);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setMaximumSize(QSize(16777215, 16777215));
-        tableWidget->setFont(font);
+        tableWidget->setFont(font1);
         tableWidget->setStyleSheet(QStringLiteral("QHeaderView::section{background-color:transparent;}"));
         tableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -548,49 +552,49 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         label_23 = new QLabel(widget_23);
         label_23->setObjectName(QStringLiteral("label_23"));
-        label_23->setFont(font);
+        label_23->setFont(font1);
 
         gridLayout->addWidget(label_23, 3, 0, 1, 1);
 
         label_20 = new QLabel(widget_23);
         label_20->setObjectName(QStringLiteral("label_20"));
-        label_20->setFont(font);
+        label_20->setFont(font1);
 
         gridLayout->addWidget(label_20, 0, 0, 1, 1);
 
         label_21 = new QLabel(widget_23);
         label_21->setObjectName(QStringLiteral("label_21"));
-        label_21->setFont(font);
+        label_21->setFont(font1);
 
         gridLayout->addWidget(label_21, 1, 0, 1, 1);
 
         label_22 = new QLabel(widget_23);
         label_22->setObjectName(QStringLiteral("label_22"));
-        label_22->setFont(font);
+        label_22->setFont(font1);
 
         gridLayout->addWidget(label_22, 2, 0, 1, 1);
 
         label_28 = new QLabel(widget_23);
         label_28->setObjectName(QStringLiteral("label_28"));
-        label_28->setFont(font);
+        label_28->setFont(font1);
 
         gridLayout->addWidget(label_28, 0, 1, 1, 1);
 
         label_29 = new QLabel(widget_23);
         label_29->setObjectName(QStringLiteral("label_29"));
-        label_29->setFont(font);
+        label_29->setFont(font1);
 
         gridLayout->addWidget(label_29, 1, 1, 1, 1);
 
         label_30 = new QLabel(widget_23);
         label_30->setObjectName(QStringLiteral("label_30"));
-        label_30->setFont(font);
+        label_30->setFont(font1);
 
         gridLayout->addWidget(label_30, 2, 1, 1, 1);
 
         label_31 = new QLabel(widget_23);
         label_31->setObjectName(QStringLiteral("label_31"));
-        label_31->setFont(font);
+        label_31->setFont(font1);
 
         gridLayout->addWidget(label_31, 3, 1, 1, 1);
 
@@ -636,16 +640,16 @@ public:
         sizePolicy.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy);
         textEdit->setMaximumSize(QSize(16777215, 5555555));
-        QFont font2;
-        font2.setFamily(QStringLiteral("Arial"));
-        font2.setPointSize(10);
-        font2.setBold(false);
-        font2.setItalic(false);
-        font2.setWeight(50);
-        font2.setStyleStrategy(QFont::PreferAntialias);
-        textEdit->setFont(font2);
+        QFont font3;
+        font3.setFamily(QStringLiteral("Cascadia Mono,OPPOSans B"));
+        font3.setPointSize(12);
+        font3.setBold(false);
+        font3.setItalic(false);
+        font3.setWeight(50);
+        textEdit->setFont(font3);
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
-"font: 10pt \"Arial\";"));
+"font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
+""));
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -774,8 +778,8 @@ public:
         textEdit->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cascadia Mono,OPPOSans R';\"><br /></p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         groupBox_2->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244\347\274\226\350\276\221\345\231\250", nullptr));

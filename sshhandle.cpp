@@ -139,10 +139,10 @@ void sshhandle::init_poll()
                 int bytesRead;
                 //int c = 0;
                 //while (c++ < 2) {
-                    qDebug() << "循环";
+                    //qDebug() << "循环";
                     bytesRead = libssh2_channel_read(channel, buffer, sizeof(buffer) - 1);
                     buffer[bytesRead] = '\0';
-                    qDebug() << buffer;
+                    //qDebug() << buffer;
                     //a = buffer;
                     //QTest::qSleep(100);
                     //通知ui
@@ -169,7 +169,7 @@ void sshhandle::init_poll()
 
 void sshhandle::channel_write(QString command)
 {
-    qDebug() << "数据写入";
+    qDebug() << "数据写入 = " << command;
     libssh2_channel_write(channel, command.toStdString().c_str(), strlen(command.toStdString().c_str()));
 }
 

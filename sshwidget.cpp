@@ -331,6 +331,17 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QString username = "root";
     QString password = "Linkdood@123456";
 
+    QTextCharFormat format;
+
+    // 设置格式
+    QFont font;
+    font.setFamily("Cascadia Mono,OPPOSans B");
+    font.setPointSize(10);
+    //format.setFontWeight(QFont::Bold);
+    //format.setForeground(Qt::red);
+    format.setFont(font);
+    ui->textEdit->setCurrentCharFormat(format);
+
     //初始化
     thread = new QThread();
     m_sshhandle = new sshhandle();
@@ -403,9 +414,9 @@ void sshwidget::on_textEdit_cursorPositionChanged()
 //    int lineNumber1 = cursor.blockNumber() + 1;
 //    int columnNumber1 = cursor.columnNumber();
 
-//    QTextCursor cursor2=ui->textEdit->textCursor();
-//    cursor2.movePosition(QTextCursor::End);
-//    ui->textEdit->setTextCursor(cursor2);
+    QTextCursor cursor2=ui->textEdit->textCursor();
+    cursor2.movePosition(QTextCursor::End);
+    ui->textEdit->setTextCursor(cursor2);
     //行
 //    if (lineNumber1 != rowCount) {
 //        qDebug() << "行数不是最后";
@@ -511,31 +522,33 @@ void sshwidget::rece_init()
 void sshwidget::rece_channel_read(QString data)
 {
     qDebug().noquote() << "我收到数据啦" << data;
+    qDebug().noquote() << "也收到数据啦" << commond;
+
+    datahandle ac;
+    data = ac.processData(data);
+
+    if (data == commond) {
+        qDebug().noquote() << "3我收到数据啦" << commond;
+        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "\r\n");
+        return;
+    }
     //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
     //ui->lineEdit->setText(data);
 
     // 创建 QTextDocument
-    QTextDocument* document = new QTextDocument();
-    ui->textEdit->setDocument(document);
+    //QTextDocument* document = new QTextDocument();
+    //ui->textEdit->setDocument(document);
 
     // 创建 QTextCursor
-    QTextCursor cursor(document);
+    //QTextCursor cursor(document);
 
     // 创建 QTextCharFormat
-    QTextCharFormat format;
-
-    // 设置格式
-    QFont font;
-    font.setFamily("Lucida Console");
-    font.setPointSize(12);
-    //format.setFontWeight(QFont::Bold);
-    //format.setForeground(Qt::red);
-    format.setFont(font);
-
 
     // 将格式应用于文本的一部分
-    cursor.insertText(data, format);
-
+    //qDebug() << "原数据 = " << ui->textEdit->toPlainText();
+    //QTextCursor cursor2 = ui->textEdit->textCursor();  // 获取 QTextEdit 中的光标
+    //cursor2.insertText(data, format);
+    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
     //处理数据
 }
 
@@ -557,23 +570,29 @@ void sshwidget::rece_enter_sign()
     cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
     QString lastLine = cursor.selectedText();
     // 打印最后一行数据
-    QString a = "\u001B]0;root@localhost:~\u0007[root@localhost ~]# ";
-    qDebug() << "a: " << a.length();
-    qDebug() << "Last Line: " << lastLine;
-    QString b = lastLine.mid(a.length());
-    qDebug() << "Last Line2: " << b;
-    datahandle ac;
-    ac.processData(lastLine);
+    //QString a = "\u001B]0;root@localhost:~\u0007[root@localhost ~]# ";
+    //qDebug() << "a: " << a.length();
+    //qDebug() << "Last Line: " << lastLine;
+    //从最后一行数据中获取命令
+    int index1 = lastLine.indexOf("# ");
+    QString a = lastLine.mid(0,index1+2);
+    int index2 = lastLine.indexOf("# ");
+    QString b = lastLine.mid(index2+2);
+    qDebug() << "Last Line a: " << a;
+    qDebug() << "Last Line b: " << b;
+    qDebug() << "Last Line a + b: " << a + b;
+    qDebug() << "ui->textEdit->toPlainText() = " << ui->textEdit->toPlainText();
+
     //删除命令
-
-
     // 使用 QTextCursor 定位到最后一行
 
     // 删除最后一行
-    cursor.removeSelectedText();
-    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + a);
-
+    //cursor.removeSelectedText();
+    //添加前缀
+    //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + a);
+    //qDebug() << "ui->textEdit->toPlainText() = " << ui->textEdit->toPlainText();
     //获取信息
+    commond = b + "\r\n";
     sendCommandData(b + "\n");
 }
 
