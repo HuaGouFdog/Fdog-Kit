@@ -63,6 +63,8 @@ private slots:
 
     void rece_enter_sign();
 
+    void rece_getServerInfo(ServerInfoStruct serverInfo);
+
     void on_pushButton_clicked();
 
 private:

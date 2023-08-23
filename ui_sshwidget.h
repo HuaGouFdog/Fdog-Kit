@@ -39,22 +39,24 @@ public:
     QVBoxLayout *verticalLayout_3;
     QWidget *widget_server_info;
     QHBoxLayout *horizontalLayout_22;
-    QLabel *label_25;
+    QLabel *label_serverTitle;
     QWidget *widget_ip_info;
     QHBoxLayout *horizontalLayout_4;
-    QLabel *label;
+    QLabel *label_ip;
     QToolButton *toolButton;
+    QWidget *widget_30;
+    QHBoxLayout *horizontalLayout_20;
+    QLabel *label_time;
     QWidget *widget_run_info;
     QHBoxLayout *horizontalLayout_17;
-    QLabel *label_2;
-    QWidget *verticalWidget;
-    QVBoxLayout *verticalLayout;
-    QLabel *label_11;
-    QLabel *label_8;
-    QLabel *label_10;
+    QLabel *label_runTime;
     QWidget *widget_25;
     QHBoxLayout *horizontalLayout_18;
-    QLabel *label_4;
+    QLabel *label_loginCount;
+    QWidget *verticalWidget;
+    QVBoxLayout *verticalLayout;
+    QLabel *label_architecture;
+    QLabel *label_systemType;
     QWidget *widget_cpu_info;
     QHBoxLayout *horizontalLayout_14;
     QLabel *label_3;
@@ -136,8 +138,8 @@ public:
         splitter_1->setOrientation(Qt::Horizontal);
         widget = new QWidget(splitter_1);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(175, 0));
-        widget->setMaximumSize(QSize(175, 16777215));
+        widget->setMinimumSize(QSize(165, 0));
+        widget->setMaximumSize(QSize(165, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -146,7 +148,7 @@ public:
         widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(9, -1, 9, -1);
+        verticalLayout_3->setContentsMargins(5, 0, 0, 9);
         widget_server_info = new QWidget(widget);
         widget_server_info->setObjectName(QStringLiteral("widget_server_info"));
         widget_server_info->setMinimumSize(QSize(0, 20));
@@ -155,15 +157,15 @@ public:
         horizontalLayout_22->setSpacing(0);
         horizontalLayout_22->setObjectName(QStringLiteral("horizontalLayout_22"));
         horizontalLayout_22->setContentsMargins(0, 0, 0, 0);
-        label_25 = new QLabel(widget_server_info);
-        label_25->setObjectName(QStringLiteral("label_25"));
+        label_serverTitle = new QLabel(widget_server_info);
+        label_serverTitle->setObjectName(QStringLiteral("label_serverTitle"));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         font1.setPointSize(9);
         font1.setStyleStrategy(QFont::PreferAntialias);
-        label_25->setFont(font1);
+        label_serverTitle->setFont(font1);
 
-        horizontalLayout_22->addWidget(label_25);
+        horizontalLayout_22->addWidget(label_serverTitle);
 
 
         verticalLayout_3->addWidget(widget_server_info);
@@ -176,11 +178,11 @@ public:
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget_ip_info);
-        label->setObjectName(QStringLiteral("label"));
-        label->setFont(font1);
+        label_ip = new QLabel(widget_ip_info);
+        label_ip->setObjectName(QStringLiteral("label_ip"));
+        label_ip->setFont(font1);
 
-        horizontalLayout_4->addWidget(label);
+        horizontalLayout_4->addWidget(label_ip);
 
         toolButton = new QToolButton(widget_ip_info);
         toolButton->setObjectName(QStringLiteral("toolButton"));
@@ -207,6 +209,23 @@ public:
 
         verticalLayout_3->addWidget(widget_ip_info);
 
+        widget_30 = new QWidget(widget);
+        widget_30->setObjectName(QStringLiteral("widget_30"));
+        widget_30->setMinimumSize(QSize(0, 20));
+        widget_30->setMaximumSize(QSize(16777215, 20));
+        horizontalLayout_20 = new QHBoxLayout(widget_30);
+        horizontalLayout_20->setSpacing(0);
+        horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
+        horizontalLayout_20->setContentsMargins(0, 0, 0, 0);
+        label_time = new QLabel(widget_30);
+        label_time->setObjectName(QStringLiteral("label_time"));
+        label_time->setFont(font1);
+
+        horizontalLayout_20->addWidget(label_time);
+
+
+        verticalLayout_3->addWidget(widget_30);
+
         widget_run_info = new QWidget(widget);
         widget_run_info->setObjectName(QStringLiteral("widget_run_info"));
         widget_run_info->setMinimumSize(QSize(0, 20));
@@ -219,42 +238,14 @@ public:
         horizontalLayout_17->setSpacing(6);
         horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
         horizontalLayout_17->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(widget_run_info);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setFont(font1);
+        label_runTime = new QLabel(widget_run_info);
+        label_runTime->setObjectName(QStringLiteral("label_runTime"));
+        label_runTime->setFont(font1);
 
-        horizontalLayout_17->addWidget(label_2);
+        horizontalLayout_17->addWidget(label_runTime);
 
 
         verticalLayout_3->addWidget(widget_run_info);
-
-        verticalWidget = new QWidget(widget);
-        verticalWidget->setObjectName(QStringLiteral("verticalWidget"));
-        verticalWidget->setMinimumSize(QSize(0, 60));
-        verticalWidget->setMaximumSize(QSize(16777215, 60));
-        verticalLayout = new QVBoxLayout(verticalWidget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_11 = new QLabel(verticalWidget);
-        label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font1);
-
-        verticalLayout->addWidget(label_11);
-
-        label_8 = new QLabel(verticalWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setFont(font1);
-
-        verticalLayout->addWidget(label_8);
-
-        label_10 = new QLabel(verticalWidget);
-        label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setFont(font1);
-
-        verticalLayout->addWidget(label_10);
-
-
-        verticalLayout_3->addWidget(verticalWidget);
 
         widget_25 = new QWidget(widget);
         widget_25->setObjectName(QStringLiteral("widget_25"));
@@ -264,14 +255,36 @@ public:
         horizontalLayout_18->setSpacing(0);
         horizontalLayout_18->setObjectName(QStringLiteral("horizontalLayout_18"));
         horizontalLayout_18->setContentsMargins(0, 0, 0, 0);
-        label_4 = new QLabel(widget_25);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setFont(font1);
+        label_loginCount = new QLabel(widget_25);
+        label_loginCount->setObjectName(QStringLiteral("label_loginCount"));
+        label_loginCount->setFont(font1);
 
-        horizontalLayout_18->addWidget(label_4);
+        horizontalLayout_18->addWidget(label_loginCount);
 
 
         verticalLayout_3->addWidget(widget_25);
+
+        verticalWidget = new QWidget(widget);
+        verticalWidget->setObjectName(QStringLiteral("verticalWidget"));
+        verticalWidget->setMinimumSize(QSize(0, 40));
+        verticalWidget->setMaximumSize(QSize(16777215, 40));
+        verticalLayout = new QVBoxLayout(verticalWidget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label_architecture = new QLabel(verticalWidget);
+        label_architecture->setObjectName(QStringLiteral("label_architecture"));
+        label_architecture->setFont(font1);
+
+        verticalLayout->addWidget(label_architecture);
+
+        label_systemType = new QLabel(verticalWidget);
+        label_systemType->setObjectName(QStringLiteral("label_systemType"));
+        label_systemType->setFont(font1);
+
+        verticalLayout->addWidget(label_systemType);
+
+
+        verticalLayout_3->addWidget(verticalWidget);
 
         widget_cpu_info = new QWidget(widget);
         widget_cpu_info->setObjectName(QStringLiteral("widget_cpu_info"));
@@ -475,8 +488,8 @@ public:
 
         widget_22 = new QWidget(widget);
         widget_22->setObjectName(QStringLiteral("widget_22"));
-        widget_22->setMinimumSize(QSize(0, 120));
-        widget_22->setMaximumSize(QSize(16777215, 120));
+        widget_22->setMinimumSize(QSize(0, 90));
+        widget_22->setMaximumSize(QSize(16777215, 90));
         verticalLayout_2 = new QVBoxLayout(widget_22);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -716,14 +729,14 @@ public:
     void retranslateUi(QWidget *sshwidget)
     {
         sshwidget->setWindowTitle(QApplication::translate("sshwidget", "Form", nullptr));
-        label_25->setText(QApplication::translate("sshwidget", "\346\234\215\345\212\241\345\231\250\344\277\241\346\201\257\357\274\232", nullptr));
-        label->setText(QApplication::translate("sshwidget", "IP\357\274\232172.16.8.154", nullptr));
+        label_serverTitle->setText(QApplication::translate("sshwidget", "\346\234\215\345\212\241\345\231\250\344\277\241\346\201\257\357\274\232", nullptr));
+        label_ip->setText(QApplication::translate("sshwidget", "IP\357\274\232", nullptr));
         toolButton->setText(QApplication::translate("sshwidget", "\345\244\215\345\210\266", nullptr));
-        label_2->setText(QApplication::translate("sshwidget", "\350\277\220\350\241\214\346\227\266\351\227\264 20\345\244\251", nullptr));
-        label_11->setText(QApplication::translate("sshwidget", "\347\241\254\344\273\266\346\236\266\346\236\204", nullptr));
-        label_8->setText(QApplication::translate("sshwidget", "\347\263\273\347\273\237\347\261\273\345\236\213", nullptr));
-        label_10->setText(QApplication::translate("sshwidget", "\346\223\215\344\275\234\347\263\273\347\273\237\345\220\215\347\247\260", nullptr));
-        label_4->setText(QApplication::translate("sshwidget", "\347\273\210\347\253\257\347\231\273\345\275\225\346\225\260", nullptr));
+        label_time->setText(QApplication::translate("sshwidget", "\347\263\273\347\273\237\346\227\266\351\227\264\357\274\232", nullptr));
+        label_runTime->setText(QApplication::translate("sshwidget", "\350\277\220\350\241\214\346\227\266\351\227\264\357\274\232", nullptr));
+        label_loginCount->setText(QApplication::translate("sshwidget", "\347\273\210\347\253\257\350\277\236\346\216\245\357\274\232", nullptr));
+        label_architecture->setText(QApplication::translate("sshwidget", "\347\241\254\344\273\266\346\236\266\346\236\204\357\274\232", nullptr));
+        label_systemType->setText(QApplication::translate("sshwidget", "\347\263\273\347\273\237\347\261\273\345\236\213\357\274\232", nullptr));
         label_3->setText(QApplication::translate("sshwidget", "CPU", nullptr));
         label_6->setText(QApplication::translate("sshwidget", " 29%", nullptr));
         label_7->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
@@ -780,7 +793,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cascadia Mono,OPPOSans R';\"><br /></p></body></html>", nullptr));
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         groupBox_2->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244\347\274\226\350\276\221\345\231\250", nullptr));

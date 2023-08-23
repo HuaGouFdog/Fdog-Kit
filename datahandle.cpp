@@ -19,6 +19,20 @@ QString datahandle::processData(QString data)
         data = data.replace(regExp.cap(0), "");
     }
 
+    QRegExp regExp0("\\x001B\\[\\?1034h");
+    if (regExp0.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp0.cap(1);
+        data = data.replace(regExp0.cap(0), "");
+    }
+
+    QRegExp regExp1("(\\x001B)\\]0;\\S+\\x0007");
+    if (regExp1.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp1.cap(1);
+        data = data.replace(regExp1.cap(0), "");
+    }
+
     QRegExp regExp2("(\\x001B)\\]0;\\S+\\x0007");
     if (regExp2.indexIn(data)>=0) {
         //替换

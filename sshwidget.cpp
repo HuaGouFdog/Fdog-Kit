@@ -11,297 +11,6 @@
 #include <QTextBlock>
 QString a = "";
 
-
-enum state
-{
-    INCOMPLETED,
-    COMPLETED,
-    TIMEOUT
-};
-
-ssize_t handle_read(LIBSSH2_CHANNEL *channel, char *buffer, size_t buf_size, enum state *state, int timeout)
-{
-    LIBSSH2_POLLFD fds;
-    fds.type = LIBSSH2_POLLFD_CHANNEL;
-    fds.fd.channel = channel;
-    fds.events = LIBSSH2_POLLFD_POLLIN | LIBSSH2_POLLFD_POLLOUT;
-
-    ssize_t read_size = 0;
-    while (timeout > 0)
-    {
-        int rc = (libssh2_poll(&fds, 1, 10));
-        if (rc < 1)
-        {
-            timeout -= 10;
-            QTest::qSleep(10);
-            continue;
-        }
-
-        if (fds.revents & LIBSSH2_POLLFD_POLLIN)
-        {
-            int n = libssh2_channel_read(channel, &buffer[read_size], buf_size - read_size);
-            if (n == LIBSSH2_ERROR_EAGAIN)
-            {
-                continue;
-            }
-            else if (n < 0)
-            {
-                *state = COMPLETED;
-                return read_size;
-            }
-            else
-            {
-                read_size += n;
-                if (libssh2_channel_eof(channel))
-                {
-                    *state = COMPLETED;
-                    return read_size;
-                }
-                char end = buffer[read_size - 2];
-                if (end == '$' || end == '#')
-                {
-                    *state = COMPLETED;
-                    return read_size;
-                }
-            }
-            if (read_size == buf_size)
-            {
-                *state = INCOMPLETED;
-                return read_size;
-            }
-        }
-        QTest::qSleep(10);
-        timeout -= 10;
-    }
-
-    *state = TIMEOUT;
-    return 0;
-}
-
-void handle_loop(LIBSSH2_CHANNEL *channel)
-{
-    char buffer[8192];
-    char cmd[64];
-    int len = 0;
-    ssize_t n;
-    while (1)
-    {
-        enum state state = INCOMPLETED;
-        do
-        {
-            n = handle_read(channel, buffer, sizeof(buffer) - 1, &state, 3000);
-            if (state == TIMEOUT)
-            {
-                if (len > 0)
-                {
-                    cmd[len - 1] = 0;
-                }
-                printf("exec cmd:`%s` timeout\n", cmd);
-                break;
-            }
-            buffer[n] = 0;
-            if (len > 0)
-            {
-                printf("%s", &buffer[len + 1]);
-                len = 0;
-            }
-            else
-            {
-                printf("%s", buffer);
-            }
-        } while (state == INCOMPLETED);
-
-        fgets(cmd, sizeof(cmd), stdin);
-        len = strlen(cmd);
-        libssh2_channel_write(channel, cmd, len);
-    }
-    libssh2_channel_close(channel);
-}
-
-// 建立 TCP 连接并返回套接字句柄
-//SOCKET createSocket(const char* host, int port)
-//{
-//    WSADATA wsaData;
-//    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-//        fprintf(stderr, "Failed to initialize Winsock\n");
-//        return INVALID_SOCKET;
-//    }
-
-//    struct addrinfo hints;
-//    struct addrinfo* result = NULL;
-//    struct addrinfo* ptr = NULL;
-
-//    ZeroMemory(&hints, sizeof(hints));
-//    hints.ai_family = AF_UNSPEC;
-//    hints.ai_socktype = SOCK_STREAM;
-//    hints.ai_protocol = IPPROTO_TCP;
-
-//    if (getaddrinfo(host, std::to_string(port).c_str(), &hints, &result) != 0) {
-//        fprintf(stderr, "Failed to get address info\n");
-//        WSACleanup();
-//        return INVALID_SOCKET;
-//    }
-
-//    SOCKET sockfd = INVALID_SOCKET;
-//    for (ptr = result; ptr != NULL; ptr = ptr->ai_next) {
-//        sockfd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
-//        if (sockfd == INVALID_SOCKET) {
-//            fprintf(stderr, "Failed to create socket\n");
-//            continue;
-//        }
-
-//        if (connect(sockfd, ptr->ai_addr, (int)ptr->ai_addrlen) == SOCKET_ERROR) {
-//            closesocket(sockfd);
-//            sockfd = INVALID_SOCKET;
-//            continue;
-//        }
-
-//        break;
-//    }
-
-//    freeaddrinfo(result);
-
-//    if (sockfd == INVALID_SOCKET) {
-//        fprintf(stderr, "Failed to connect\n");
-//        WSACleanup();
-//        return INVALID_SOCKET;
-//    }
-
-//    return sockfd;
-//}
-
-//void connectAndExecuteCommand(const QString& host, int port, const QString& username, const QString& password, const QString& command)
-//{
-//    int rc;
-
-//    // 创建套接字并建立连接
-//    SOCKET sockfd = createSocket("172.16.8.154", port);
-//    if (sockfd == INVALID_SOCKET) {
-//    }
-
-//    // 初始化 libssh2 库
-//    rc = libssh2_init(0);
-//    if (rc != 0) {
-//        qWarning() << "libssh2 initialization failed";
-//        return;
-//    }
-
-//    // 创建 SSH session
-//    LIBSSH2_SESSION *session = libssh2_session_init();
-//    if (!session) {
-//        qWarning() << "Failed to create SSH session";
-//        return;
-//    }
-
-//    // 设置会话选项
-//    libssh2_session_set_blocking(session, 1);
-//    libssh2_session_set_timeout(session, 10000);
-
-//    // 建立 SSH 连接
-//    rc = libssh2_session_handshake(session, sockfd);
-//    if (rc) {
-//        qWarning() << "SSH handshake failed";
-//        libssh2_session_free(session);
-//        return;
-//    }
-
-//    // 进行身份验证
-//    rc = libssh2_userauth_password(session, username.toUtf8().constData(), password.toUtf8().constData());
-//    if (rc) {
-//        qWarning() << "Authentication failed";
-//        libssh2_session_disconnect(session, "Authentication failed");
-//        libssh2_session_free(session);
-//        return;
-//    }
-
-
-
-
-//    // 执行命令
-//    LIBSSH2_CHANNEL *channel = libssh2_channel_open_session(session);
-//     //Channel *m_channel = new Channel(channel);
-//    // 请求分配伪终端
-//    const char* term = "";
-//    int ret = libssh2_channel_request_pty(channel, "xterm");
-//    if (ret != 0) {
-//        qDebug() << "出错" << ret;
-//        // 请求伪终端失败，处理错误
-//    }
-//    qDebug() << "没出错" << ret;
-//    libssh2_channel_shell(channel);
-
-//    QString command2 = "ls -l\n";
-//    libssh2_channel_write(channel, command.toStdString().c_str(), strlen(command.toStdString().c_str()));
-//    libssh2_channel_write(channel, command2.toStdString().c_str(), strlen(command2.toStdString().c_str()));
-
-//    LIBSSH2_POLLFD *fds = new LIBSSH2_POLLFD;
-//            fds->type = LIBSSH2_POLLFD_CHANNEL;
-//            fds->fd.channel = channel;
-//            fds->events = LIBSSH2_POLLFD_POLLIN | LIBSSH2_POLLFD_POLLOUT;
-
-//    while (1) {
-//        // 使用libssh2_poll函数等待事件
-//        int rc = libssh2_poll(fds, 1, 1000);
-//        if (rc > 0) {
-//            // 有事件发生，检查revents字段以确定具体事件类型
-//            if (fds->revents & LIBSSH2_POLLFD_POLLIN) {
-//                // 可读事件发生，可以读取数据
-//                // 使用libssh2_channel_read等函数读取数据
-//                char buffer[4096] = {0};
-//                int bytesRead;
-//                int c = 0;
-//                while (c++ < 2) {
-//                    qDebug() << "循环";
-//                    bytesRead = libssh2_channel_read(channel, buffer, sizeof(buffer) - 1);
-//                    buffer[bytesRead] = '\0';
-//                    qDebug() << buffer;
-//                    a = buffer;
-//                    QTest::qSleep(100);
-//                    // 处理输出数据
-//                    // 例如，将输出数据打印到控制台
-//                    //std::string aa = sprintf("%.*s", bytesRead, buffer);
-//                }
-//            }
-
-//            if (fds->revents & LIBSSH2_POLLFD_POLLOUT) {
-//                // 可写事件发生，可以写入数据
-//                // 使用libssh2_channel_write等函数写入数据
-
-//            }
-//        } else if (rc == 0) {
-//            // 超时，没有事件发生
-//        } else {
-//            // 发生错误，处理错误
-//            break;
-//        }
-//    }
-
-
-//    //handle_loop(channel);
-//    //const char* command = "ls -l";
-//    //const char * aa = command.toStdString().c_str();
-
-
-//    // 读取命令输出
-
-
-////    if (channel) {
-////        rc = libssh2_channel_exec(channel, command.toUtf8().constData());
-////        if (rc == 0) {
-////            // 读取命令输出
-////            char buffer[4096];
-////            int bytesRead;
-////            while ((bytesRead = libssh2_channel_read(channel, buffer, sizeof(buffer) - 1)) > 0) {
-////                buffer[bytesRead] = '\0';
-////                qDebug() << buffer;
-////                a = buffer;
-
-////            }
-////        }
-////        libssh2_channel_close(channel);
-////        libssh2_channel_free(channel);
-////    }
-
 //    // 关闭 SSH 连接
 //    libssh2_session_disconnect(session, "Normal shutdown");
 //    libssh2_session_free(session);
@@ -357,7 +66,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
                             SLOT(rece_channel_read(QString)));
     connect(m_sshhandle,SIGNAL(send_init()),this,
                             SLOT(rece_init()));
-
+    connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
+                            SLOT(rece_getServerInfo(ServerInfoStruct)));
     thread->start();
     thread2->start();
     int connrectType = 1;
@@ -621,6 +331,16 @@ void sshwidget::rece_enter_sign()
     //获取信息
     commond = b + "\r\n";
     sendCommandData(b + "\n");
+}
+
+void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
+{
+    ui->label_ip->setText(serverInfo.ip);
+    ui->label_time->setText(serverInfo.time);
+    ui->label_runTime->setText(serverInfo.runTime);
+    ui->label_loginCount->setText(serverInfo.loginCount);
+    ui->label_architecture->setText(serverInfo.architecture);
+    ui->label_systemType->setText(serverInfo.systemType);
 }
 
 void sshwidget::on_pushButton_clicked()

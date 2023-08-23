@@ -5,7 +5,7 @@
 #include <QTextCodec>
 sshhandle::sshhandle(QObject *parent) : QObject(parent)
 {
-
+    qRegisterMetaType<ServerInfoStruct>("ServerInfoStruct&");
 }
 
 SOCKET createSocket(const char* host, int port)
@@ -76,7 +76,7 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     }
 
     // 创建 SSH session
-    LIBSSH2_SESSION *session = libssh2_session_init();
+    session = libssh2_session_init();
     if (!session) {
         qWarning() << "Failed to create SSH session";
         return;
@@ -104,7 +104,6 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     }
 
     channel = libssh2_channel_open_session(session);
-
     // 请求分配伪终端
     const char* term = "xterm";
     int ret = libssh2_channel_request_pty(channel, term);
@@ -115,6 +114,7 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     libssh2_channel_shell(channel);
     emit send_init();
     qDebug() << "初始化完成";
+    getServerInfo();
     return;
 }
 
@@ -176,4 +176,59 @@ void sshhandle::channel_write(QString command)
 void sshhandle::channel_read(QString command)
 {
 
+}
+
+void sshhandle::getServerInfo()
+{
+    ServerInfoStruct serverInfo;
+    QString commond;
+    QString data;
+    //获取服务器IP
+    commond = "hostname -I";
+    QStringList dataList = commondExec(commond).split(" ");
+    serverInfo.ip = "IP：" + dataList[0];
+    //获取服务器运行时间
+    commond = "uptime";
+    QStringList dataList2 = commondExec(commond).split(",");
+    QStringList dataList3 = dataList2[0].split(" ");
+    serverInfo.time = "系统时间：" + dataList3[0];
+    qDebug() << "dataList3.length() = " << dataList3.length();
+    qDebug() << " 0 = " << dataList3[0];
+    qDebug() << " 1 = " << dataList3[1];
+    qDebug() << " 2 = " << dataList3[2];
+    serverInfo.time = "系统时间：" + dataList3[1];
+    if (dataList3.length()==5) {
+        serverInfo.runTime = "运行时间：" + dataList3[3] + "天";
+    } else {
+        serverInfo.runTime = "运行时间：" + dataList2[1];
+    }
+    //获取服务器信息
+    commond = "uname -p -i -o";
+    QStringList dataList5 = commondExec(commond).split(" ");
+    serverInfo.architecture = "系统架构：" + dataList5[0] + "/" + dataList5[1];
+    QStringList dataList6 = dataList5[2].split("\n");
+    serverInfo.systemType = "系统类型：" + dataList6[0];
+    //获取服务器登录人数
+    commond = "who | wc -l";
+    QStringList dataList7 = commondExec(commond).split("\n");
+    qDebug() << " 3 = " << dataList7[0];
+    serverInfo.loginCount = "终端连接：" + dataList7[0];
+    emit send_getServerInfo(serverInfo);
+    return;
+}
+
+QString sshhandle::commondExec(QString commond)
+{
+    channel2 = libssh2_channel_open_session(session);
+    int rc = libssh2_channel_exec(channel2, commond.toStdString().c_str());
+    if (rc != 0) {
+        qDebug() << "libssh2_channel_exec faild";
+        return "";
+    }
+
+    char buffer[1024] = {0};
+    int bytesRead = libssh2_channel_read(channel2, buffer, sizeof(buffer) - 1);
+    buffer[bytesRead] = '\0';
+    qDebug() << "getServerInfo = " << buffer;
+    return buffer;
 }
