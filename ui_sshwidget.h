@@ -18,10 +18,10 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
@@ -115,20 +115,35 @@ public:
     QTextEdit *textEdit;
     QWidget *widget_4;
     QPushButton *pushButton;
-    QLineEdit *lineEdit;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
     QSplitter *splitter_4;
     QWidget *widget_27;
+    QVBoxLayout *verticalLayout_9;
     QGroupBox *groupBox;
+    QVBoxLayout *verticalLayout_4;
+    QTabWidget *tabWidget;
+    QWidget *tab;
+    QWidget *tab_2;
+    QWidget *widget_8;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label;
+    QLabel *label_2;
+    QToolButton *toolButton_2;
+    QSpacerItem *horizontalSpacer;
     QWidget *widget_28;
+    QVBoxLayout *verticalLayout_10;
     QGroupBox *groupBox_2;
+    QVBoxLayout *verticalLayout_11;
+    QTextEdit *textEdit_2;
 
     void setupUi(QWidget *sshwidget)
     {
         if (sshwidget->objectName().isEmpty())
             sshwidget->setObjectName(QStringLiteral("sshwidget"));
         sshwidget->resize(1216, 612);
+        sshwidget->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"
+"color: rgb(255, 255, 255);"));
         verticalLayout_5 = new QVBoxLayout(sshwidget);
         verticalLayout_5->setSpacing(0);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
@@ -304,7 +319,7 @@ public:
         widget_5 = new QWidget(widget_cpu_info);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(125, 0));
-        widget_5->setMaximumSize(QSize(16777215, 16));
+        widget_5->setMaximumSize(QSize(16777215, 12));
         widget_5->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
         horizontalLayout = new QHBoxLayout(widget_5);
         horizontalLayout->setSpacing(0);
@@ -312,7 +327,7 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         widget_6 = new QWidget(widget_5);
         widget_6->setObjectName(QStringLiteral("widget_6"));
-        widget_6->setMaximumSize(QSize(74, 16777215));
+        widget_6->setMaximumSize(QSize(60, 12));
         widget_6->setStyleSheet(QStringLiteral("background-color: rgb(0, 255, 0);"));
         horizontalLayout_2 = new QHBoxLayout(widget_6);
         horizontalLayout_2->setSpacing(0);
@@ -320,6 +335,7 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         label_6 = new QLabel(widget_6);
         label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setMaximumSize(QSize(16777215, 16777215));
         label_6->setFont(font1);
         label_6->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
@@ -330,6 +346,7 @@ public:
 
         widget_7 = new QWidget(widget_5);
         widget_7->setObjectName(QStringLiteral("widget_7"));
+        widget_7->setMaximumSize(QSize(16777215, 12));
         widget_7->setFont(font);
         widget_7->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         horizontalLayout_3 = new QHBoxLayout(widget_7);
@@ -371,7 +388,7 @@ public:
         widget_18 = new QWidget(widget_swap_info);
         widget_18->setObjectName(QStringLiteral("widget_18"));
         widget_18->setMinimumSize(QSize(125, 0));
-        widget_18->setMaximumSize(QSize(16777215, 16));
+        widget_18->setMaximumSize(QSize(16777215, 12));
         widget_18->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
         horizontalLayout_11 = new QHBoxLayout(widget_18);
         horizontalLayout_11->setSpacing(0);
@@ -379,7 +396,7 @@ public:
         horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
         widget_19 = new QWidget(widget_18);
         widget_19->setObjectName(QStringLiteral("widget_19"));
-        widget_19->setMaximumSize(QSize(74, 16777215));
+        widget_19->setMaximumSize(QSize(74, 12));
         widget_19->setStyleSheet(QStringLiteral("background-color: rgb(253, 210, 174);"));
         horizontalLayout_12 = new QHBoxLayout(widget_19);
         horizontalLayout_12->setSpacing(0);
@@ -397,6 +414,7 @@ public:
 
         widget_20 = new QWidget(widget_18);
         widget_20->setObjectName(QStringLiteral("widget_20"));
+        widget_20->setMaximumSize(QSize(16777215, 12));
         widget_20->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         horizontalLayout_13 = new QHBoxLayout(widget_20);
         horizontalLayout_13->setSpacing(0);
@@ -437,7 +455,7 @@ public:
         widget_14 = new QWidget(widget_mem_info);
         widget_14->setObjectName(QStringLiteral("widget_14"));
         widget_14->setMinimumSize(QSize(125, 0));
-        widget_14->setMaximumSize(QSize(16777215, 16));
+        widget_14->setMaximumSize(QSize(16777215, 12));
         widget_14->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
         horizontalLayout_8 = new QHBoxLayout(widget_14);
         horizontalLayout_8->setSpacing(0);
@@ -445,7 +463,7 @@ public:
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
         widget_15 = new QWidget(widget_14);
         widget_15->setObjectName(QStringLiteral("widget_15"));
-        widget_15->setMaximumSize(QSize(74, 16777215));
+        widget_15->setMaximumSize(QSize(74, 12));
         widget_15->setStyleSheet(QStringLiteral("background-color: rgb(253, 210, 174);"));
         horizontalLayout_9 = new QHBoxLayout(widget_15);
         horizontalLayout_9->setSpacing(0);
@@ -463,6 +481,7 @@ public:
 
         widget_16 = new QWidget(widget_14);
         widget_16->setObjectName(QStringLiteral("widget_16"));
+        widget_16->setMaximumSize(QSize(16777215, 12));
         widget_16->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         horizontalLayout_10 = new QHBoxLayout(widget_16);
         horizontalLayout_10->setSpacing(0);
@@ -630,7 +649,8 @@ public:
         splitter_2->setOrientation(Qt::Vertical);
         widget_29 = new QWidget(splitter_2);
         widget_29->setObjectName(QStringLiteral("widget_29"));
-        widget_29->setStyleSheet(QStringLiteral("background-color: rgb(175, 255, 246);"));
+        widget_29->setMinimumSize(QSize(0, 414));
+        widget_29->setStyleSheet(QStringLiteral(""));
         horizontalLayout_19 = new QHBoxLayout(widget_29);
         horizontalLayout_19->setSpacing(0);
         horizontalLayout_19->setObjectName(QStringLiteral("horizontalLayout_19"));
@@ -672,13 +692,10 @@ public:
         splitter_3->addWidget(widget_2);
         widget_4 = new QWidget(splitter_3);
         widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setStyleSheet(QStringLiteral("background-color: rgb(208, 255, 171);"));
+        widget_4->setStyleSheet(QStringLiteral(""));
         pushButton = new QPushButton(widget_4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(60, 180, 75, 23));
-        lineEdit = new QLineEdit(widget_4);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(40, 240, 201, 171));
+        pushButton->setGeometry(QRect(90, 380, 75, 23));
         splitter_3->addWidget(widget_4);
 
         horizontalLayout_19->addWidget(splitter_3);
@@ -686,28 +703,160 @@ public:
         splitter_2->addWidget(widget_29);
         widget_3 = new QWidget(splitter_2);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setStyleSheet(QStringLiteral("background-color: rgb(234, 255, 128);"));
+        widget_3->setMinimumSize(QSize(0, 186));
+        widget_3->setStyleSheet(QStringLiteral(""));
         verticalLayout_7 = new QVBoxLayout(widget_3);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 9);
         splitter_4 = new QSplitter(widget_3);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);
         widget_27 = new QWidget(splitter_4);
         widget_27->setObjectName(QStringLiteral("widget_27"));
         widget_27->setMinimumSize(QSize(9, 11));
-        widget_27->setStyleSheet(QStringLiteral("background-color: rgb(171, 255, 243);"));
+        widget_27->setStyleSheet(QStringLiteral(""));
+        verticalLayout_9 = new QVBoxLayout(widget_27);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        verticalLayout_9->setContentsMargins(0, 0, 0, 0);
         groupBox = new QGroupBox(widget_27);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 0, 461, 331));
         groupBox->setFont(font);
+        verticalLayout_4 = new QVBoxLayout(groupBox);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(3, 3, 3, 3);
+        tabWidget = new QTabWidget(groupBox);
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tabWidget->setStyleSheet(QString::fromUtf8("\n"
+" QTabWidget::tab-bar {\n"
+"         left:0px;       \n"
+"}\n"
+"	\n"
+"\n"
+"\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
+"#tab_1.QWidget{\n"
+"	background-color: rgb(108, 117, 125, 65);\n"
+"}\n"
+" \n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255tab_2\347\232\204\346\240\267\345\274\217*/\n"
+"#tab_2.QWidget{\n"
+"	background-color: rgb(108, 117, 125, 65);\n"
+"}\n"
+" \n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
+"QTabBar::tab{\n"
+"    background-color: rgb(108, 117, 125, 65);\n"
+"	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
+"	font-size:10pt;\n"
+"	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
+"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234"
+                        "\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"\n"
+"	padding: 5px;\n"
+"	margin-right:0px;\n"
+"	margin-left: 0px;\n"
+"}\n"
+" \n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
+"QTabBar::tab:selected{\n"
+"	background-color: #0B0E11;\n"
+"}\n"
+" \n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
+"QTabBar::tab:hover:!selected {\n"
+"	background-color: rgb(100, 117, 125, 125);\n"
+"}\n"
+" \n"
+"/*\350\256\276\347\275\256TabWidget\347\232\204\350"
+                        "\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
+"QTabWidget::pane {\n"
+"    border: 2px solid rgb(108, 117, 125, 65);\n"
+"}\n"
+" \n"
+"\n"
+"QTabBar::close-button{ \n"
+"	/*border-image: url(:lib/Kafka.png);*/\n"
+"}\n"
+"QTabBar::close-button:hover{\n"
+"	/*border-image: url(:/Resources/image/close_hover.png);*/\n"
+"}\n"
+"\n"
+"\n"
+"/*\345\275\223\346\211\223\345\274\200\345\244\232\344\270\252tab\357\274\214\345\217\263\344\276\247\345\207\272\347\216\260\357\274\214\347\202\271\345\207\273\345\220\216\357\274\214\345\217\257\344\273\245\345\220\221\345\211\215\345\220\221\345\220\216\347\232\204\346\214\211\351\222\256\347\232\204\346\240\267\345\274\217*/\n"
+"QTabBar QToolButton {\n"
+"    border: none;\n"
+"	color: rgb(255, 206, 6);\n"
+"    background-color: #0b0e11;\n"
+"}\n"
+" \n"
+"QTabBar QToolButton:hover {\n"
+"	background-color: #161a1e; \n"
+"}"));
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QStringLiteral("tab_2"));
+        tabWidget->addTab(tab_2, QString());
+
+        verticalLayout_4->addWidget(tabWidget);
+
+
+        verticalLayout_9->addWidget(groupBox);
+
+        widget_8 = new QWidget(widget_27);
+        widget_8->setObjectName(QStringLiteral("widget_8"));
+        widget_8->setMinimumSize(QSize(0, 18));
+        horizontalLayout_5 = new QHBoxLayout(widget_8);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(9, 0, 9, 0);
+        label = new QLabel(widget_8);
+        label->setObjectName(QStringLiteral("label"));
+        label->setStyleSheet(QStringLiteral("background-color: rgb(55, 255, 138);"));
+
+        horizontalLayout_5->addWidget(label);
+
+        label_2 = new QLabel(widget_8);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setStyleSheet(QStringLiteral("background-color: rgb(55, 255, 138);"));
+
+        horizontalLayout_5->addWidget(label_2);
+
+        toolButton_2 = new QToolButton(widget_8);
+        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setMinimumSize(QSize(0, 0));
+
+        horizontalLayout_5->addWidget(toolButton_2);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer);
+
+
+        verticalLayout_9->addWidget(widget_8);
+
         splitter_4->addWidget(widget_27);
         widget_28 = new QWidget(splitter_4);
         widget_28->setObjectName(QStringLiteral("widget_28"));
-        widget_28->setStyleSheet(QStringLiteral("background-color: rgb(153, 194, 255);"));
+        widget_28->setStyleSheet(QStringLiteral(""));
+        verticalLayout_10 = new QVBoxLayout(widget_28);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_10->setContentsMargins(0, 0, 0, 0);
         groupBox_2 = new QGroupBox(widget_28);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 0, 461, 331));
         groupBox_2->setFont(font);
+        verticalLayout_11 = new QVBoxLayout(groupBox_2);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        verticalLayout_11->setContentsMargins(3, 3, 3, 3);
+        textEdit_2 = new QTextEdit(groupBox_2);
+        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
+
+        verticalLayout_11->addWidget(textEdit_2);
+
+
+        verticalLayout_10->addWidget(groupBox_2);
+
         splitter_4->addWidget(widget_28);
 
         verticalLayout_7->addWidget(splitter_4);
@@ -722,6 +871,9 @@ public:
 
 
         retranslateUi(sshwidget);
+
+        tabWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(sshwidget);
     } // setupUi
@@ -796,6 +948,11 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", "\351\273\230\350\256\244\345\210\206\347\261\273", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", "minic", nullptr));
+        label->setText(QApplication::translate("sshwidget", "midnidoo", nullptr));
+        label_2->setText(QApplication::translate("sshwidget", "midnidoo", nullptr));
+        toolButton_2->setText(QApplication::translate("sshwidget", "\347\274\226\350\276\221", nullptr));
         groupBox_2->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244\347\274\226\350\276\221\345\231\250", nullptr));
     } // retranslateUi
 

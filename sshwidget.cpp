@@ -24,11 +24,12 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui->setupUi(this);
     ui->splitter_1->setStretchFactor(0,1);
     ui->splitter_1->setStretchFactor(1,100);
-    ui->splitter_2->setStretchFactor(0,20);
+
+    ui->splitter_2->setStretchFactor(0,1);
     ui->splitter_2->setStretchFactor(1,2);
 
-    ui->splitter_3->setStretchFactor(0,20);
-    ui->splitter_3->setStretchFactor(1,0);
+    ui->splitter_3->setStretchFactor(0,100);
+    ui->splitter_3->setStretchFactor(1,1);
 
     ui->splitter_4->setStretchFactor(0,1);
     ui->splitter_4->setStretchFactor(1,1);

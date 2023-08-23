@@ -67,7 +67,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1002, 647);
+        MainWindow->resize(1153, 824);
         MainWindow->setMinimumSize(QSize(0, 500));
         QFont font;
         font.setFamily(QStringLiteral("Cascadia Mono"));

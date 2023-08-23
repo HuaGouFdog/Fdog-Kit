@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(67, 77, 88);
+color: rgb(255, 255, 255);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <property name="spacing">
     <number>0</number>
@@ -459,7 +463,7 @@ QToolButton:hover {
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>16</height>
+              <height>12</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -485,8 +489,8 @@ QToolButton:hover {
               <widget class="QWidget" name="widget_6" native="true">
                <property name="maximumSize">
                 <size>
-                 <width>74</width>
-                 <height>16777215</height>
+                 <width>60</width>
+                 <height>12</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -510,6 +514,12 @@ QToolButton:hover {
                 </property>
                 <item>
                  <widget class="QLabel" name="label_6">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -530,6 +540,12 @@ QToolButton:hover {
              </item>
              <item>
               <widget class="QWidget" name="widget_7" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>12</height>
+                </size>
+               </property>
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -643,7 +659,7 @@ QToolButton:hover {
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>16</height>
+              <height>12</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -670,7 +686,7 @@ QToolButton:hover {
                <property name="maximumSize">
                 <size>
                  <width>74</width>
-                 <height>16777215</height>
+                 <height>12</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -714,6 +730,12 @@ QToolButton:hover {
              </item>
              <item>
               <widget class="QWidget" name="widget_20" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>12</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                </property>
@@ -820,7 +842,7 @@ QToolButton:hover {
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>16</height>
+              <height>12</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -847,7 +869,7 @@ QToolButton:hover {
                <property name="maximumSize">
                 <size>
                  <width>74</width>
-                 <height>16777215</height>
+                 <height>12</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -891,6 +913,12 @@ QToolButton:hover {
              </item>
              <item>
               <widget class="QWidget" name="widget_16" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>12</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                </property>
@@ -1299,8 +1327,14 @@ QToolButton:hover {
           <enum>Qt::Vertical</enum>
          </property>
          <widget class="QWidget" name="widget_29" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>414</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(175, 255, 246);</string>
+           <string notr="true"/>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_19">
            <property name="spacing">
@@ -1391,13 +1425,13 @@ p, li { white-space: pre-wrap; }
              </widget>
              <widget class="QWidget" name="widget_4" native="true">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(208, 255, 171);</string>
+               <string notr="true"/>
               </property>
               <widget class="QPushButton" name="pushButton">
                <property name="geometry">
                 <rect>
-                 <x>60</x>
-                 <y>180</y>
+                 <x>90</x>
+                 <y>380</y>
                  <width>75</width>
                  <height>23</height>
                 </rect>
@@ -1406,26 +1440,34 @@ p, li { white-space: pre-wrap; }
                 <string>PushButton</string>
                </property>
               </widget>
-              <widget class="QLineEdit" name="lineEdit">
-               <property name="geometry">
-                <rect>
-                 <x>40</x>
-                 <y>240</y>
-                 <width>201</width>
-                 <height>171</height>
-                </rect>
-               </property>
-              </widget>
              </widget>
             </widget>
            </item>
           </layout>
          </widget>
          <widget class="QWidget" name="widget_3" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>186</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(234, 255, 128);</string>
+           <string notr="true"/>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>9</number>
+           </property>
            <item>
             <widget class="QSplitter" name="splitter_4">
              <property name="orientation">
@@ -1439,53 +1481,254 @@ p, li { white-space: pre-wrap; }
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(171, 255, 243);</string>
+               <string notr="true"/>
               </property>
-              <widget class="QGroupBox" name="groupBox">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>0</y>
-                 <width>461</width>
-                 <height>331</height>
-                </rect>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <property name="leftMargin">
+                <number>0</number>
                </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
+               <property name="topMargin">
+                <number>0</number>
                </property>
-               <property name="title">
-                <string>命令</string>
+               <property name="rightMargin">
+                <number>0</number>
                </property>
-              </widget>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QGroupBox" name="groupBox">
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="title">
+                  <string>命令</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <property name="leftMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>3</number>
+                  </property>
+                  <item>
+                   <widget class="QTabWidget" name="tabWidget">
+                    <property name="styleSheet">
+                     <string notr="true">
+ QTabWidget::tab-bar {
+         left:0px;       
+}
+	
+
+
+/*设置TabWidget中tab_1的样式*/
+#tab_1.QWidget{
+	background-color: rgb(108, 117, 125, 65);
+}
+ 
+/*设置TabWidget中tab_2的样式*/
+#tab_2.QWidget{
+	background-color: rgb(108, 117, 125, 65);
+}
+ 
+/*设置TabWidget中QTabBar的样式*/
+QTabBar::tab{
+    background-color: rgb(108, 117, 125, 65);
+	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
+	font-size:10pt;
+	color:#ced4da;    /*设置tab中的文本的颜色*/
+	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
+
+	padding: 5px;
+	margin-right:0px;
+	margin-left: 0px;
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+	background-color: #0B0E11;
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+	background-color: rgb(100, 117, 125, 125);
+}
+ 
+/*设置TabWidget的边框的样式*/
+QTabWidget::pane {
+    border: 2px solid rgb(108, 117, 125, 65);
+}
+ 
+
+QTabBar::close-button{ 
+	/*border-image: url(:lib/Kafka.png);*/
+}
+QTabBar::close-button:hover{
+	/*border-image: url(:/Resources/image/close_hover.png);*/
+}
+
+
+/*当打开多个tab，右侧出现，点击后，可以向前向后的按钮的样式*/
+QTabBar QToolButton {
+    border: none;
+	color: rgb(255, 206, 6);
+    background-color: #0b0e11;
+}
+ 
+QTabBar QToolButton:hover {
+	background-color: #161a1e; 
+}</string>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="tab">
+                     <attribute name="title">
+                      <string>默认分类</string>
+                     </attribute>
+                    </widget>
+                    <widget class="QWidget" name="tab_2">
+                     <attribute name="title">
+                      <string>minic</string>
+                     </attribute>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_8" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>18</height>
+                  </size>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="label">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(55, 255, 138);</string>
+                    </property>
+                    <property name="text">
+                     <string>midnidoo</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_2">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(55, 255, 138);</string>
+                    </property>
+                    <property name="text">
+                     <string>midnidoo</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>编辑</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
              </widget>
              <widget class="QWidget" name="widget_28" native="true">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(153, 194, 255);</string>
+               <string notr="true"/>
               </property>
-              <widget class="QGroupBox" name="groupBox_2">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>0</y>
-                 <width>461</width>
-                 <height>331</height>
-                </rect>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <property name="leftMargin">
+                <number>0</number>
                </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
+               <property name="topMargin">
+                <number>0</number>
                </property>
-               <property name="title">
-                <string>命令编辑器</string>
+               <property name="rightMargin">
+                <number>0</number>
                </property>
-              </widget>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QGroupBox" name="groupBox_2">
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="title">
+                  <string>命令编辑器</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <property name="leftMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>3</number>
+                  </property>
+                  <item>
+                   <widget class="QTextEdit" name="textEdit_2"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
