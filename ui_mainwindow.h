@@ -101,7 +101,7 @@ public:
         horizontalLayout->setSpacing(4);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(6, 1, 6, 2);
+        horizontalLayout->setContentsMargins(0, 1, 0, 2);
         label_icon = new QLabel(widget_title);
         label_icon->setObjectName(QStringLiteral("label_icon"));
         label_icon->setMinimumSize(QSize(20, 20));

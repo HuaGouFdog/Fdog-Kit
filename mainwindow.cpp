@@ -33,14 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     isPressedWidget = false;
     m_isMousePressed = false;
-    QObjectList child_object_list = ui->centralWidget->children();
-      for (auto child_object : child_object_list) {
-        if (child_object->isWidgetType()) { ((QWidget*)child_object)->setMouseTracking(true); }
-      }
-      ui->centralWidget->setMouseTracking(true);
-      setMouseTracking(true);
 
-    //setSupportStretch(true);
+    setSupportStretch(true);
 
     //创建菜单栏及相关菜单
     men = new QMenu();
@@ -90,7 +84,7 @@ void MainWindow::calculateCurrentStrechRect()
 
 WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos)
 {
-    qDebug() << "触发getCurrentStretchState ="<< cursorPos;
+    //qDebug() << "触发getCurrentStretchState ="<< cursorPos;
     WindowStretchRectState stretchState;
     if (m_leftTopRect.contains(cursorPos))
     {
@@ -128,7 +122,7 @@ WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos)
     {
         stretchState = NO_SELECT;
     }
-    qDebug() << "stretchState 值为" << stretchState;
+    //qDebug() << "stretchState 值为" << stretchState;
 
     return stretchState;
 
@@ -252,7 +246,7 @@ void MainWindow::setSupportStretch(bool isSupportStretch)
         // 这里对子控件也进行了设置，是因为如果不对子控件设置，当鼠标移动到子控件上时，不会发送mouseMoveEvent事件，也就获取不到当前鼠标位置，无法判断鼠标状态及显示样式了。
         QList<QWidget*> widgetList = this->findChildren<QWidget*>();
         for(int i = 0; i < widgetList.length(); i ++) {
-            //widgetList[i]->setMouseTracking(isSupportStretch);
+            widgetList[i]->setMouseTracking(isSupportStretch);
         // 这里加了非空判断，防止m_titleBar未创建;
 //        if (m_titleBar != NULL)
 //        {
@@ -281,9 +275,8 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         //return QObject::mouseMoveEvent(event);
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event)
-{
-    qDebug() << "鼠标移动到 " << event->x() << "," << event->y();
+void MainWindow::mouseMoveEvent(QMouseEvent *event) {   //qDebug() << ui->widget_body->parent();
+    //qDebug() << "鼠标移动到 " << event->x() << "," << event->y();
     if (isPressedWidget) {
         int dx = event->globalX() - last.x();
         int dy = event->globalY() - last.y();
