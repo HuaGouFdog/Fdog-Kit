@@ -69,6 +69,13 @@ public:
         if (createconnect->objectName().isEmpty())
             createconnect->setObjectName(QStringLiteral("createconnect"));
         createconnect->resize(352, 241);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(createconnect->sizePolicy().hasHeightForWidth());
+        createconnect->setSizePolicy(sizePolicy);
+        createconnect->setMinimumSize(QSize(352, 241));
+        createconnect->setMaximumSize(QSize(352, 241));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);

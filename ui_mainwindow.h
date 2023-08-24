@@ -74,6 +74,7 @@ public:
         font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         MainWindow->setFont(font);
+        MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/wicon_46.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -89,7 +90,7 @@ public:
         verticalLayout->setSpacing(0);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(5, 5, 5, 5);
+        verticalLayout->setContentsMargins(6, 6, 6, 6);
         widget_title = new QWidget(centralWidget);
         widget_title->setObjectName(QStringLiteral("widget_title"));
         widget_title->setMinimumSize(QSize(0, 22));

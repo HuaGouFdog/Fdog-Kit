@@ -34,6 +34,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui->splitter_4->setStretchFactor(0,1);
     ui->splitter_4->setStretchFactor(1,1);
 
+    setMouseTracking(true);
     ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "连接主机中...\n");
 
     QString host = "172.16.8.154";

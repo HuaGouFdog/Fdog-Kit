@@ -21,6 +21,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     isUnfold =false;
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     init(cInfoStruct.host, cInfoStruct.port);
+    setMouseTracking(true);
 }
 
 zookeeperwidget::~zookeeperwidget()
