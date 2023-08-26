@@ -62,13 +62,31 @@ public:
     QWidget *page_2;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget;
+    QWidget *page_3;
+    QVBoxLayout *verticalLayout_7;
+    QWidget *widget_2;
+    QWidget *widget_3;
+    QVBoxLayout *verticalLayout_8;
+    QLabel *label;
+    QLabel *label_3;
+    QWidget *widget_4;
+    QVBoxLayout *verticalLayout_9;
+    QLabel *label_4;
+    QSpacerItem *verticalSpacer;
+    QLabel *label_5;
+    QLabel *label_2;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLabel *label_8;
+    QLabel *label_9;
+    QLabel *label_10;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1153, 824);
-        MainWindow->setMinimumSize(QSize(0, 500));
+        MainWindow->resize(876, 598);
+        MainWindow->setMinimumSize(QSize(0, 0));
         QFont font;
         font.setFamily(QStringLiteral("Cascadia Mono"));
         font.setPointSize(10);
@@ -230,6 +248,7 @@ public:
         line = new QFrame(widget_line);
         line->setObjectName(QStringLiteral("line"));
         line->setMinimumSize(QSize(0, 2));
+        line->setMaximumSize(QSize(16777215, 2));
         line->setStyleSheet(QStringLiteral("background-color: rgb(108, 117, 125, 65);"));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
@@ -373,7 +392,7 @@ public:
         line_2 = new QFrame(widget_line_2);
         line_2->setObjectName(QStringLiteral("line_2"));
         line_2->setMinimumSize(QSize(0, 2));
-        line_2->setMaximumSize(QSize(16777215, 16777215));
+        line_2->setMaximumSize(QSize(16777215, 2));
         line_2->setStyleSheet(QStringLiteral("background-color: rgb(108, 117, 125, 65);"));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
@@ -401,12 +420,17 @@ public:
         page->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout_4 = new QVBoxLayout(page);
-        verticalLayout_4->setSpacing(0);
+        verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(page);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
+        tabWidget->setSizePolicy(sizePolicy);
         QFont font3;
         font3.setFamily(QStringLiteral("OPPOSans B"));
         font3.setPointSize(11);
@@ -417,7 +441,6 @@ public:
 "         left:0px;       \n"
 "}\n"
 "	\n"
-"\n"
 "\n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
 "#tab_1.QWidget{\n"
@@ -435,10 +458,10 @@ public:
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234"
-                        "\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
+                        "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"\n"
+"	/*width:120px;*/\n"
 "	padding: 2px;\n"
 "	margin-right:0px;\n"
 "	margin-left: 0px;\n"
@@ -454,10 +477,10 @@ public:
 "	background-color: rgb(100, 117, 125, 125);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350"
-                        "\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\347\232"
+                        "\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
-"    border: 2px solid rgb(108, 117, 125, 65);\n"
+"    border: 0px solid rgb(108, 117, 125, 65);\n"
 "}\n"
 " \n"
 "\n"
@@ -494,10 +517,117 @@ public:
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         widget = new QWidget(page_2);
         widget->setObjectName(QStringLiteral("widget"));
+        widget->setStyleSheet(QStringLiteral(""));
 
         verticalLayout_6->addWidget(widget);
 
         stackedWidget->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        verticalLayout_7 = new QVBoxLayout(page_3);
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        widget_2 = new QWidget(page_3);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_3 = new QWidget(widget_2);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setGeometry(QRect(150, 60, 581, 61));
+        verticalLayout_8 = new QVBoxLayout(widget_3);
+        verticalLayout_8->setSpacing(0);
+        verticalLayout_8->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(widget_3);
+        label->setObjectName(QStringLiteral("label"));
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(20);
+        font4.setStyleStrategy(QFont::PreferAntialias);
+        label->setFont(font4);
+
+        verticalLayout_8->addWidget(label);
+
+        label_3 = new QLabel(widget_3);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        QFont font5;
+        font5.setFamily(QStringLiteral("OPPOSans B"));
+        font5.setPointSize(12);
+        font5.setStyleStrategy(QFont::PreferAntialias);
+        label_3->setFont(font5);
+
+        verticalLayout_8->addWidget(label_3);
+
+        widget_4 = new QWidget(widget_2);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setGeometry(QRect(150, 150, 581, 281));
+        verticalLayout_9 = new QVBoxLayout(widget_4);
+        verticalLayout_9->setSpacing(6);
+        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        label_4 = new QLabel(widget_4);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setFont(font5);
+
+        verticalLayout_9->addWidget(label_4);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_9->addItem(verticalSpacer);
+
+        label_5 = new QLabel(widget_4);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setFont(font5);
+
+        verticalLayout_9->addWidget(label_5);
+
+        label_2 = new QLabel(widget_4);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setFont(font1);
+        label_2->setStyleSheet(QStringLiteral("color: rgb(45, 125, 227)"));
+
+        verticalLayout_9->addWidget(label_2);
+
+        label_6 = new QLabel(widget_4);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setFont(font1);
+        label_6->setStyleSheet(QStringLiteral("color: rgb(45, 125, 227)"));
+
+        verticalLayout_9->addWidget(label_6);
+
+        label_7 = new QLabel(widget_4);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setFont(font1);
+        label_7->setStyleSheet(QStringLiteral("color: rgb(45, 125, 227)"));
+
+        verticalLayout_9->addWidget(label_7);
+
+        label_8 = new QLabel(widget_4);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setFont(font1);
+        label_8->setStyleSheet(QStringLiteral("color: rgb(45, 125, 227)"));
+
+        verticalLayout_9->addWidget(label_8);
+
+        label_9 = new QLabel(widget_4);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setFont(font1);
+        label_9->setStyleSheet(QStringLiteral("color: rgb(45, 125, 227)"));
+
+        verticalLayout_9->addWidget(label_9);
+
+        label_10 = new QLabel(widget_4);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setFont(font1);
+        label_10->setStyleSheet(QStringLiteral("color: rgb(45, 125, 227)"));
+
+        verticalLayout_9->addWidget(label_10);
+
+
+        verticalLayout_7->addWidget(widget_2);
+
+        stackedWidget->addWidget(page_3);
 
         verticalLayout_2->addWidget(stackedWidget);
 
@@ -527,6 +657,16 @@ public:
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&H)", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "                   \350\256\251\344\270\200\345\210\207\346\233\264\347\256\200\345\215\225", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "\346\234\200\350\277\221", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "172.16.8.154", nullptr));
+        label_6->setText(QApplication::translate("MainWindow", "172.16.8.152", nullptr));
+        label_7->setText(QApplication::translate("MainWindow", "172.16.8.144", nullptr));
+        label_8->setText(QApplication::translate("MainWindow", "172.16.8.167", nullptr));
+        label_9->setText(QApplication::translate("MainWindow", "172.16.8.157", nullptr));
+        label_10->setText(QApplication::translate("MainWindow", "\346\233\264\345\244\232...", nullptr));
     } // retranslateUi
 
 };

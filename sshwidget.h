@@ -17,7 +17,7 @@ public:
 
 signals:
     void send_enter_sign();
-
+    void send_tab_sign(int type);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override
@@ -31,6 +31,10 @@ protected:
             if (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
                 qDebug() << "回车";
                 emit send_enter_sign();
+                return true;
+            } else if (keyEvent->key() == Qt::Key_Tab) {
+                qDebug() << "tab键";
+                emit send_tab_sign(1);
                 return true;
             }
         }
@@ -62,6 +66,8 @@ private slots:
     void rece_channel_read(QString data);
 
     void rece_enter_sign();
+
+    void rece_tab_sign(int type);
 
     void rece_getServerInfo(ServerInfoStruct serverInfo);
 

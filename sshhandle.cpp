@@ -111,6 +111,7 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
         qDebug() << "出错" << ret;
         // 请求伪终端失败，处理错误
     }
+    //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
     libssh2_channel_shell(channel);
     emit send_init();
     qDebug() << "初始化完成";
@@ -205,7 +206,7 @@ void sshhandle::getServerInfo()
     //获取服务器信息
     commond = "uname -p -i -o";
     QStringList dataList5 = commondExec(commond).split(" ");
-    serverInfo.architecture = "系统架构：" + dataList5[0] + "/" + dataList5[1];
+    serverInfo.architecture = "系统架构：" + dataList5[0];// + "/" + dataList5[1];
     QStringList dataList6 = dataList5[2].split("\n");
     serverInfo.systemType = "系统类型：" + dataList6[0];
     //获取服务器登录人数

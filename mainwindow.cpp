@@ -8,7 +8,9 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QDebug>
-
+#include <QPropertyAnimation>
+#include <QScreen>
+#include <QCoreApplication>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -348,6 +350,25 @@ void MainWindow::on_toolButton_close_clicked()
 void MainWindow::on_toolButton_min_clicked()
 {
     //最小化
+    // 获取任务栏的位置
+    QRect taskbarRect;
+    QScreen *screen = QGuiApplication::primaryScreen();
+    if (screen) {
+        QRect screenRect = screen->geometry();
+        QRect availableRect = screen->availableGeometry();
+        taskbarRect = QRect(screenRect.x(), availableRect.y() + availableRect.height(), screenRect.width(), screenRect.height() - availableRect.height());
+    }
+
+    QPropertyAnimation *minimumAnimation = new QPropertyAnimation(this, "geometry");
+
+    //minimumAnimation->setDuration(500); // 设置动画持续时间（以毫秒为单位）
+    //minimumAnimation->setStartValue(this->geometry()); // 设置动画起始位置为当前窗体的几何属性
+   // minimumAnimation->setEndValue(QRect(this->x(), this->y(), 0, 0)); // 设置动画结束位置为窗体的左上角，宽度和高度为0
+
+//    minimumAnimation->setDuration(500); // 设置动画持续时间（以毫秒为单位）
+//    minimumAnimation->setStartValue(this->geometry()); // 设置动画起始位置为当前窗体的几何属性
+//    minimumAnimation->setEndValue(taskbarRect); // 设置动画结束位置为任务栏的位置
+//    minimumAnimation->start();
     this->showMinimized();
 }
 
@@ -407,7 +428,7 @@ void MainWindow::on_newCreate()
 void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 {
     qDebug() << cInfoStruct.connectType;
-    QSize iconSize(14, 14); // 设置图标的大小
+    QSize iconSize(16, 16); // 设置图标的大小
 
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
         sshwidget * sshWidget = new sshwidget(cInfoStruct);

@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
@@ -115,6 +116,7 @@ public:
     QTextEdit *textEdit;
     QWidget *widget_4;
     QPushButton *pushButton;
+    QPlainTextEdit *plainTextEdit;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
     QSplitter *splitter_4;
@@ -683,6 +685,7 @@ public:
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
 "font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
 "border: none;\n"
+"padding:5px;\n"
 ""));
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
@@ -696,6 +699,14 @@ public:
         pushButton = new QPushButton(widget_4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(90, 380, 75, 23));
+        plainTextEdit = new QPlainTextEdit(widget_4);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit->setGeometry(QRect(20, 20, 251, 341));
+        plainTextEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
+"font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
+"border: none;\n"
+"padding:5px;\n"
+""));
         splitter_3->addWidget(widget_4);
 
         horizontalLayout_19->addWidget(splitter_3);
@@ -726,6 +737,7 @@ public:
         verticalLayout_4->setContentsMargins(3, 3, 3, 3);
         tabWidget = new QTabWidget(groupBox);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tabWidget->setFont(font);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
@@ -749,11 +761,11 @@ public:
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234"
+"	border-top-left-radius: 1px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234"
                         "\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-right-radius: 1px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "\n"
-"	padding: 5px;\n"
+"	padding: 2px;\n"
 "	margin-right:0px;\n"
 "	margin-left: 0px;\n"
 "}\n"
@@ -802,10 +814,7 @@ public:
 
         verticalLayout_4->addWidget(tabWidget);
 
-
-        verticalLayout_9->addWidget(groupBox);
-
-        widget_8 = new QWidget(widget_27);
+        widget_8 = new QWidget(groupBox);
         widget_8->setObjectName(QStringLiteral("widget_8"));
         widget_8->setMinimumSize(QSize(0, 18));
         horizontalLayout_5 = new QHBoxLayout(widget_8);
@@ -813,12 +822,14 @@ public:
         horizontalLayout_5->setContentsMargins(9, 0, 9, 0);
         label = new QLabel(widget_8);
         label->setObjectName(QStringLiteral("label"));
+        label->setFont(font);
         label->setStyleSheet(QStringLiteral("background-color: rgb(55, 255, 138);"));
 
         horizontalLayout_5->addWidget(label);
 
         label_2 = new QLabel(widget_8);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setFont(font);
         label_2->setStyleSheet(QStringLiteral("background-color: rgb(55, 255, 138);"));
 
         horizontalLayout_5->addWidget(label_2);
@@ -826,6 +837,7 @@ public:
         toolButton_2 = new QToolButton(widget_8);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setMinimumSize(QSize(0, 0));
+        toolButton_2->setFont(font);
 
         horizontalLayout_5->addWidget(toolButton_2);
 
@@ -834,7 +846,10 @@ public:
         horizontalLayout_5->addItem(horizontalSpacer);
 
 
-        verticalLayout_9->addWidget(widget_8);
+        verticalLayout_4->addWidget(widget_8);
+
+
+        verticalLayout_9->addWidget(groupBox);
 
         splitter_4->addWidget(widget_27);
         widget_28 = new QWidget(splitter_4);
@@ -851,6 +866,9 @@ public:
         verticalLayout_11->setContentsMargins(3, 3, 3, 3);
         textEdit_2 = new QTextEdit(groupBox_2);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
+        textEdit_2->setFont(font);
+        textEdit_2->setStyleSheet(QLatin1String("border-radius: 10px;\n"
+"border: 2px solid rgba(255, 255, 255, 0);"));
 
         verticalLayout_11->addWidget(textEdit_2);
 
@@ -950,8 +968,8 @@ public:
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", "\351\273\230\350\256\244\345\210\206\347\261\273", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", "minic", nullptr));
-        label->setText(QApplication::translate("sshwidget", "midnidoo", nullptr));
-        label_2->setText(QApplication::translate("sshwidget", "midnidoo", nullptr));
+        label->setText(QApplication::translate("sshwidget", "midni32131232", nullptr));
+        label_2->setText(QApplication::translate("sshwidget", "midni32131232", nullptr));
         toolButton_2->setText(QApplication::translate("sshwidget", "\347\274\226\350\276\221", nullptr));
         groupBox_2->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244\347\274\226\350\276\221\345\231\250", nullptr));
     } // retranslateUi

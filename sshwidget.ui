@@ -1404,6 +1404,7 @@ QToolButton:hover {
                   <string notr="true">background-color: rgb(0, 41, 69);
 font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 border: none;
+padding:5px;
 </string>
                  </property>
                  <property name="readOnly">
@@ -1438,6 +1439,23 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="text">
                 <string>PushButton</string>
+               </property>
+              </widget>
+              <widget class="QPlainTextEdit" name="plainTextEdit">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>20</y>
+                 <width>251</width>
+                 <height>341</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(0, 41, 69);
+font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
+border: none;
+padding:5px;
+</string>
                </property>
               </widget>
              </widget>
@@ -1523,6 +1541,13 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <item>
                    <widget class="QTabWidget" name="tabWidget">
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">
  QTabWidget::tab-bar {
@@ -1547,10 +1572,10 @@ QTabBar::tab{
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
-	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
-	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
+	border-top-left-radius: 1px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 1px;    /*设置tab的边框的圆角（右上圆角）*/
 
-	padding: 5px;
+	padding: 2px;
 	margin-right:0px;
 	margin-left: 0px;
 }
@@ -1605,75 +1630,96 @@ QTabBar QToolButton:hover {
                     </widget>
                    </widget>
                   </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QWidget" name="widget_8" native="true">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>18</height>
-                  </size>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
-                  <property name="leftMargin">
-                   <number>9</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>9</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
-                  </property>
                   <item>
-                   <widget class="QLabel" name="label">
-                    <property name="styleSheet">
-                     <string notr="true">background-color: rgb(55, 255, 138);</string>
-                    </property>
-                    <property name="text">
-                     <string>midnidoo</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_2">
-                    <property name="styleSheet">
-                     <string notr="true">background-color: rgb(55, 255, 138);</string>
-                    </property>
-                    <property name="text">
-                     <string>midnidoo</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="toolButton_2">
+                   <widget class="QWidget" name="widget_8" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>0</height>
+                      <height>18</height>
                      </size>
                     </property>
-                    <property name="text">
-                     <string>编辑</string>
-                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_5">
+                     <property name="leftMargin">
+                      <number>9</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>9</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="label">
+                       <property name="font">
+                        <font>
+                         <family>OPPOSans B</family>
+                         <pointsize>10</pointsize>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(55, 255, 138);</string>
+                       </property>
+                       <property name="text">
+                        <string>midni32131232</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_2">
+                       <property name="font">
+                        <font>
+                         <family>OPPOSans B</family>
+                         <pointsize>10</pointsize>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(55, 255, 138);</string>
+                       </property>
+                       <property name="text">
+                        <string>midni32131232</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButton_2">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>OPPOSans B</family>
+                         <pointsize>10</pointsize>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>编辑</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
                    </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -1723,7 +1769,19 @@ QTabBar QToolButton:hover {
                    <number>3</number>
                   </property>
                   <item>
-                   <widget class="QTextEdit" name="textEdit_2"/>
+                   <widget class="QTextEdit" name="textEdit_2">
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border-radius: 10px;
+border: 2px solid rgba(255, 255, 255, 0);</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>

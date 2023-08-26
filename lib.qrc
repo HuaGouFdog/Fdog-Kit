@@ -30,5 +30,6 @@
         <file>lib/node2.png</file>
         <file>lib/copy.png</file>
         <file>lib/daxiao.png</file>
+        <file>lib/fdog.png</file>
     </qresource>
 </RCC>

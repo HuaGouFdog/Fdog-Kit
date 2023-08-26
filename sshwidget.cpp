@@ -35,8 +35,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui->splitter_4->setStretchFactor(1,1);
 
     setMouseTracking(true);
-    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "连接主机中...\n");
-
+//    ui->textEdit->insertHtml("<span style=\" color:#ff0505;\"> 扎根  </span>");
+//    ui->textEdit->insertHtml("<span style=\" color:#3effc5;\"> 扎根  </span>");
+//    ui->textEdit->insertHtml("<span style=\" color:#ffffff;\"> 扎根  </span>");
+//    ui->textEdit->insertHtml("<span style=\" color:#3effc5;\"> 扎根  </span>");
     QString host = "172.16.8.154";
     QString port = 22;
     QString username = "root";
@@ -45,13 +47,13 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QTextCharFormat format;
 
     // 设置格式
-    QFont font;
-    font.setFamily("Cascadia Mono,OPPOSans B");
-    font.setPointSize(10);
-    //format.setFontWeight(QFont::Bold);
-    //format.setForeground(Qt::red);
-    format.setFont(font);
-    ui->textEdit->setCurrentCharFormat(format);
+//    QFont font;
+//    font.setFamily("Cascadia Mono,OPPOSans B");
+//    font.setPointSize(10);
+//    //format.setFontWeight(QFont::Bold);
+//    //format.setForeground(Qt::red);
+//    format.setFont(font);
+//    ui->textEdit->setCurrentCharFormat(format);
 
     //初始化
     thread = new QThread();
@@ -77,7 +79,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 
 
     QString command = "ls\n";
-
+    ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "连接主机中...\n");
     //connectAndExecuteCommand(host, port, username, password, command);
     //ui->textEdit->setPlainText(a);
 
@@ -89,6 +91,8 @@ https://blog.51cto.com/xiaohaiwa/5379626
     keyFilter = new KeyFilter(this);
     connect(keyFilter,SIGNAL(send_enter_sign()),this,
                             SLOT(rece_enter_sign()));
+    connect(keyFilter,SIGNAL(send_tab_sign(int)),this,
+                            SLOT(rece_tab_sign(int)));
     ui->textEdit->installEventFilter(keyFilter);
 
     QTextCursor cursor=ui->textEdit->textCursor();
@@ -109,11 +113,7 @@ sshwidget::~sshwidget()
 
 void sshwidget::sendCommandData(QString data)
 {
-    //libssh2_channel_write(m_sshhandle->channel, data.toStdString().c_str(), strlen(data.toStdString().c_str()));
-    qDebug() << "开始调用invokeMethod channel_write 1";
     libssh2_channel_write(m_sshhandle->channel, data.toStdString().c_str(), strlen(data.toStdString().c_str()));
-    //QMetaObject::invokeMethod(m_sshhandle,"channel_write",Qt::QueuedConnection, Q_ARG(QString, data));
-    qDebug() << "开始调用invokeMethod channel_write 2";
 }
 
 void sshwidget::on_textEdit_cursorPositionChanged()
@@ -224,6 +224,7 @@ void sshwidget::on_textEdit_cursorPositionChanged()
 void sshwidget::rece_init()
 {
     qDebug("开始调用init_poll");
+    //ui->textEdit->insertHtml("<span style=\" color:#ffffff;\"> 主机连接成功  </span>");
     ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "主机连接成功\n");
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
@@ -242,7 +243,7 @@ void sshwidget::rece_channel_read(QString data)
     if (index != -1) {
         commond2 = data.mid(index + 1);
     } else {
-        commond2 = data;
+        //commond2 = data;
     }
     int type = 0;
     QString data2 = "";
@@ -264,7 +265,18 @@ void sshwidget::rece_channel_read(QString data)
             return;
         }
 
+    } else if (commond.mid(commond.length()-1) == "\t" && data.startsWith(commond.mid(0,commond.length()-1))) {
+        qDebug() << "进入tab " << data.mid(commond.length()-1);
+        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data.mid(commond.length()-1));
+        return;
     }
+    if (type != 0) {
+        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data2);
+    } else {
+        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
+    }
+
+    //处理数据
     //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
     //ui->lineEdit->setText(data);
 
@@ -281,17 +293,11 @@ void sshwidget::rece_channel_read(QString data)
     //qDebug() << "原数据 = " << ui->textEdit->toPlainText();
     //QTextCursor cursor2 = ui->textEdit->textCursor();  // 获取 QTextEdit 中的光标
     //cursor2.insertText(data, format);
-    if (type != 0) {
-        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data2);
-    } else {
-        ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
-    }
-
-    //处理数据
 }
 
 void sshwidget::rece_enter_sign()
 {
+    //ui->textEdit->setTextColor(QColor("red"));
     qDebug() << "命令行前缀为" << commond2;
     // 获取整个文本内容
     //QString text = ui->textEdit->toPlainText();
@@ -333,6 +339,25 @@ void sshwidget::rece_enter_sign()
     //获取信息
     commond = b + "\r\n";
     sendCommandData(b + "\n");
+}
+
+void sshwidget::rece_tab_sign(int type)
+{
+    qDebug() << "命令行前缀为" << commond2;
+
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::End);
+    cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+    QString lastLine = cursor.selectedText();
+
+    qDebug() << "Last Line: " << lastLine;
+    QString a = lastLine.mid(0,commond2.length());
+    QString b = lastLine.mid(commond2.length());
+    qDebug() << "Last Line a: " << a;
+    qDebug() << "Last Line b: " << b;
+    qDebug() << "Last Line a + b: " << a + b;
+    commond = b + "\t\t";
+    sendCommandData(b + "\t\t");
 }
 
 void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
