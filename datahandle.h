@@ -9,7 +9,7 @@ class datahandle : public QObject
 public:
     explicit datahandle(QObject *parent = nullptr);
     QString processData(QString data);
-
+    int isDTab = 0;
 signals:
 
 public slots:

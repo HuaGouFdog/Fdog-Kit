@@ -235,16 +235,31 @@ void sshwidget::rece_init()
 void sshwidget::rece_channel_read(QString data)
 {
     qDebug() << "我收到数据啦" << data;
-    qDebug().noquote() << "也收到数据啦" << commond;
+    if (data[data.length()-1] == "\u0007") {
+        qDebug() << "发现t加1" << endl;
+        isDTab++;
+    }
+    qDebug() << "也收到数据啦" << commond;
     datahandle ac;
     data = ac.processData(data);
     //data可能包含空行，只取最后一行的数据
+    commond2 = "[root@localhost ~]# ";
     int index = data.lastIndexOf("\n");
     if (index != -1) {
-        commond2 = data.mid(index + 1);
+        //commond2 = data.mid(index + 1);
     } else {
         //commond2 = data;
     }
+    if (lastCommond == 1) {
+        int index = data.lastIndexOf("\n");
+        tabCommond = data.mid(index).mid(commond2.length() + 1);
+        qDebug() << "tabCommond = " << tabCommond;
+    }
+
+
+    qDebug() << "commond2 = " << commond2;
+    qDebug() << "222我收到数据啦" << data << " len = " << data.length();
+    qDebug() << "222也收到数据啦" << commond << " len = " <<commond.length();
     int type = 0;
     QString data2 = "";
     if (commond != "" && data.startsWith(commond) && data.length() > commond.length()) {
@@ -257,7 +272,7 @@ void sshwidget::rece_channel_read(QString data)
     }
 
 
-    if (data == commond) {
+    if (data == commond + "xxx") {
         qDebug().noquote() << "3我收到数据啦" << data;
         qDebug().noquote() << "3也收到数据啦" << commond;
         ui->textEdit->setPlainText(ui->textEdit->toPlainText() + "\r\n");
@@ -276,23 +291,6 @@ void sshwidget::rece_channel_read(QString data)
         ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
     }
 
-    //处理数据
-    //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + data);
-    //ui->lineEdit->setText(data);
-
-    // 创建 QTextDocument
-    //QTextDocument* document = new QTextDocument();
-    //ui->textEdit->setDocument(document);
-
-    // 创建 QTextCursor
-    //QTextCursor cursor(document);
-
-    // 创建 QTextCharFormat
-
-    // 将格式应用于文本的一部分
-    //qDebug() << "原数据 = " << ui->textEdit->toPlainText();
-    //QTextCursor cursor2 = ui->textEdit->textCursor();  // 获取 QTextEdit 中的光标
-    //cursor2.insertText(data, format);
 }
 
 void sshwidget::rece_enter_sign()
@@ -344,7 +342,6 @@ void sshwidget::rece_enter_sign()
 void sshwidget::rece_tab_sign(int type)
 {
     qDebug() << "命令行前缀为" << commond2;
-
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::End);
     cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
@@ -356,8 +353,35 @@ void sshwidget::rece_tab_sign(int type)
     qDebug() << "Last Line a: " << a;
     qDebug() << "Last Line b: " << b;
     qDebug() << "Last Line a + b: " << a + b;
-    commond = b + "\t\t";
-    sendCommandData(b + "\t\t");
+
+//    else if (commond != b && b.startsWith(commond) && b.length() > commond.length()) {
+//           //commond = commond + b + "\t";
+//           //只发送多余出来的部分
+//           b = b.mid(commond.length());
+//           qDebug() << "发出命令为" << b + "\t";
+//           sendCommandData(b + "\t");
+//       }
+
+    if (lastCommond == 1){
+        qDebug() << "tabCommond = " << tabCommond;
+        qDebug() << "Last Line b: " << b;
+        if (tabCommond != "" && tabCommond != b && b.startsWith(tabCommond) && b.length() > tabCommond.length()) {
+            b = b.mid(tabCommond.length());
+            qDebug() << "发出命令为1" << b + "\t";
+            sendCommandData(b + "\t");
+        } else {
+            //commond = commond + "\t";
+            qDebug() << "发出命令为2" << "\t";
+            sendCommandData("\t");
+        }
+    } else {
+        qDebug() << "发出命令为3" << b + "\t";
+        tabCommond = b;
+        sendCommandData(b + "\t");
+    }
+    commond = b;
+    qDebug() << "commond: " << commond;
+    lastCommond = 1;
 }
 
 void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)

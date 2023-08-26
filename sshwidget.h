@@ -84,6 +84,10 @@ private:
     KeyFilter *keyFilter;
     QString commond; //记录最后一次
     QString commond2;
+    QString commond3;
+    QString tabCommond;
+    int isDTab = 0;
+    int lastCommond = 0;
 };
 
 #endif // SSHWIDGET_H
