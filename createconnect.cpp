@@ -34,7 +34,13 @@ createconnect::~createconnect()
     delete ui;
 }
 
-void createconnect::on_pushButton_zk_connect_clicked()
+void createconnect::closeEvent(QCloseEvent *event)
+{
+    emit newClose();
+    this->close();
+}
+
+void createconnect::on_toolButton_zk_connect_clicked()
 {
     //创建选择的连接信息
     connnectInfoStruct cInfo;
@@ -46,13 +52,13 @@ void createconnect::on_pushButton_zk_connect_clicked()
     this->close();
 }
 
-void createconnect::on_pushButton_zk_close_clicked()
+void createconnect::on_toolButton_zk_close_clicked()
 {
     emit newClose();
     this->close();
 }
 
-void createconnect::on_pushButton_ssh_connect_clicked()
+void createconnect::on_toolButton_ssh_connect_clicked()
 {
     //创建选择的连接信息
     connnectInfoStruct cInfo;
@@ -64,13 +70,7 @@ void createconnect::on_pushButton_ssh_connect_clicked()
     this->close();
 }
 
-void createconnect::on_pushButton_ssh_close_clicked()
-{
-    emit newClose();
-    this->close();
-}
-
-void createconnect::closeEvent(QCloseEvent *event)
+void createconnect::on_toolButton_ssh_close_clicked()
 {
     emit newClose();
     this->close();

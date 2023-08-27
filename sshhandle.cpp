@@ -147,7 +147,7 @@ void sshhandle::init_poll()
                     //a = buffer;
                     //QTest::qSleep(100);
                     //通知ui
-                    emit send_channel_read(buffer);
+                    emit send_channel_read(ac.processData(buffer));
                     // 处理输出数据
                     // 例如，将输出数据打印到控制台
                     //std::string aa = sprintf("%.*s", bytesRead, buffer);

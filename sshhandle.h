@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QTest>
 #include <QTextBlock>
+#include "datahandle.h"
 #define SSH_PASSWORD 1
 #define SSH_SECRET_KEY 2
 struct ServerInfoStruct {
@@ -38,6 +39,7 @@ class sshhandle : public QObject
     Q_OBJECT
 public:
     explicit sshhandle(QObject *parent = nullptr);
+    datahandle ac;
     LIBSSH2_SESSION *session;
     LIBSSH2_CHANNEL *channel; //通道
     LIBSSH2_CHANNEL *channel2; //通道2

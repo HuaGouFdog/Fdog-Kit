@@ -3,11 +3,15 @@
 #pragma execution_character_set("utf-8")
 #include <QString>
 #include <QObject>
+
+
+
 class datahandle : public QObject
 {
     Q_OBJECT
 public:
     explicit datahandle(QObject *parent = nullptr);
+    QString processDataStatsAndColor(QString data);
     QString processData(QString data);
     int isDTab = 0;
 signals:

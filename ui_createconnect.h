@@ -19,8 +19,8 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -34,8 +34,8 @@ public:
     QWidget *page;
     QWidget *widget;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_ssh_connect;
-    QPushButton *pushButton_ssh_close;
+    QToolButton *toolButton_ssh_connect;
+    QToolButton *toolButton_ssh_close;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
     QLabel *label_ssh_name;
@@ -61,8 +61,8 @@ public:
     QLineEdit *lineEdit_zk_port;
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton_zk_connect;
-    QPushButton *pushButton_zk_close;
+    QToolButton *toolButton_zk_connect;
+    QToolButton *toolButton_zk_close;
 
     void setupUi(QWidget *createconnect)
     {
@@ -97,21 +97,53 @@ public:
         horizontalLayout_2 = new QHBoxLayout(widget);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(1, 1, 1, 1);
-        pushButton_ssh_connect = new QPushButton(widget);
-        pushButton_ssh_connect->setObjectName(QStringLiteral("pushButton_ssh_connect"));
+        toolButton_ssh_connect = new QToolButton(widget);
+        toolButton_ssh_connect->setObjectName(QStringLiteral("toolButton_ssh_connect"));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         font1.setPointSize(10);
         font1.setStyleStrategy(QFont::PreferAntialias);
-        pushButton_ssh_connect->setFont(font1);
+        toolButton_ssh_connect->setFont(font1);
+        toolButton_ssh_connect->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
 
-        horizontalLayout_2->addWidget(pushButton_ssh_connect);
+        horizontalLayout_2->addWidget(toolButton_ssh_connect);
 
-        pushButton_ssh_close = new QPushButton(widget);
-        pushButton_ssh_close->setObjectName(QStringLiteral("pushButton_ssh_close"));
-        pushButton_ssh_close->setFont(font1);
+        toolButton_ssh_close = new QToolButton(widget);
+        toolButton_ssh_close->setObjectName(QStringLiteral("toolButton_ssh_close"));
+        toolButton_ssh_close->setFont(font1);
+        toolButton_ssh_close->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
 
-        horizontalLayout_2->addWidget(pushButton_ssh_close);
+        horizontalLayout_2->addWidget(toolButton_ssh_close);
 
         gridLayoutWidget_2 = new QWidget(page);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
@@ -248,17 +280,49 @@ public:
         horizontalWidget->setGeometry(QRect(200, 190, 120, 40));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        pushButton_zk_connect = new QPushButton(horizontalWidget);
-        pushButton_zk_connect->setObjectName(QStringLiteral("pushButton_zk_connect"));
-        pushButton_zk_connect->setFont(font);
+        toolButton_zk_connect = new QToolButton(horizontalWidget);
+        toolButton_zk_connect->setObjectName(QStringLiteral("toolButton_zk_connect"));
+        toolButton_zk_connect->setFont(font);
+        toolButton_zk_connect->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
 
-        horizontalLayout->addWidget(pushButton_zk_connect);
+        horizontalLayout->addWidget(toolButton_zk_connect);
 
-        pushButton_zk_close = new QPushButton(horizontalWidget);
-        pushButton_zk_close->setObjectName(QStringLiteral("pushButton_zk_close"));
-        pushButton_zk_close->setFont(font);
+        toolButton_zk_close = new QToolButton(horizontalWidget);
+        toolButton_zk_close->setObjectName(QStringLiteral("toolButton_zk_close"));
+        toolButton_zk_close->setFont(font);
+        toolButton_zk_close->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
 
-        horizontalLayout->addWidget(pushButton_zk_close);
+        horizontalLayout->addWidget(toolButton_zk_close);
 
         stackedWidget->addWidget(page_2);
 
@@ -276,8 +340,8 @@ public:
     void retranslateUi(QWidget *createconnect)
     {
         createconnect->setWindowTitle(QApplication::translate("createconnect", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
-        pushButton_ssh_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
-        pushButton_ssh_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
+        toolButton_ssh_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
+        toolButton_ssh_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
         label_ssh_name->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260\357\274\232", nullptr));
         label_ssh_user->setText(QApplication::translate("createconnect", "\347\224\250\346\210\267\345\220\215\357\274\232", nullptr));
         label_ssh_func->setText(QApplication::translate("createconnect", "\346\226\271\346\263\225\357\274\232", nullptr));
@@ -298,8 +362,8 @@ public:
         label_zk_host->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272\357\274\232", nullptr));
         lineEdit_zk_name->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
         lineEdit_zk_port->setText(QApplication::translate("createconnect", "11100", nullptr));
-        pushButton_zk_connect->setText(QApplication::translate("createconnect", "\347\241\256\345\256\232", nullptr));
-        pushButton_zk_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
+        toolButton_zk_connect->setText(QApplication::translate("createconnect", "\347\241\256\345\256\232", nullptr));
+        toolButton_zk_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
     } // retranslateUi
 
 };

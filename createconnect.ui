@@ -75,13 +75,31 @@ color: rgb(255, 255, 255);</string>
          <number>1</number>
         </property>
         <item>
-         <widget class="QPushButton" name="pushButton_ssh_connect">
+         <widget class="QToolButton" name="toolButton_ssh_connect">
           <property name="font">
            <font>
             <family>OPPOSans B</family>
             <pointsize>10</pointsize>
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
           </property>
           <property name="text">
            <string>连接</string>
@@ -89,13 +107,31 @@ color: rgb(255, 255, 255);</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_ssh_close">
+         <widget class="QToolButton" name="toolButton_ssh_close">
           <property name="font">
            <font>
             <family>OPPOSans B</family>
             <pointsize>10</pointsize>
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
           </property>
           <property name="text">
            <string>取消</string>
@@ -411,12 +447,30 @@ color: rgb(255, 255, 255);</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton_zk_connect">
+         <widget class="QToolButton" name="toolButton_zk_connect">
           <property name="font">
            <font>
             <family>OPPOSans B</family>
             <pointsize>10</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
           </property>
           <property name="text">
            <string>确定</string>
@@ -424,12 +478,30 @@ color: rgb(255, 255, 255);</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_zk_close">
+         <widget class="QToolButton" name="toolButton_zk_close">
           <property name="font">
            <font>
             <family>OPPOSans B</family>
             <pointsize>10</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
           </property>
           <property name="text">
            <string>取消</string>
