@@ -29,7 +29,7 @@ datahandle::datahandle(QObject *parent) : QObject(parent)
 
 }
 
-QString datahandle::processDataStatsAndColor(QString data)
+QString datahandle::processDataStatsAndColor(QString & head, QString & commond, QString data)
 {
     //解析数据
     QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m");
@@ -37,74 +37,23 @@ QString datahandle::processDataStatsAndColor(QString data)
 
     while ((pos = regex.indexIn(data, pos)) != -1) {
         QString match = regex.cap(0); // 获取完整的匹配项
-        qDebug() << "Matched email:" << match;
-        qDebug() << "Matched email 1:" << regex.cap(1);
-        qDebug() << "Matched email 2:" << regex.cap(2);
-        qDebug() << "Matched email 3:" << regex.cap(3);
-        qDebug() << "Matched email 4:" << regex.cap(4);
-        qDebug() << "Matched email 5:" << regex.cap(5);
-        qDebug() << "Matched email 6:" << regex.cap(6);
-        qDebug() << "Matched email 7:" << regex.cap(7);
+//        qDebug() << "Matched email:" << match;
+//        qDebug() << "Matched email 1:" << regex.cap(1);
+//        qDebug() << "Matched email 2:" << regex.cap(2);
+//        qDebug() << "Matched email 3:" << regex.cap(3);
+//        qDebug() << "Matched email 4:" << regex.cap(4);
+//        qDebug() << "Matched email 5:" << regex.cap(5);
+//        qDebug() << "Matched email 6:" << regex.cap(6);
+//        qDebug() << "Matched email 7:" << regex.cap(7);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
         pos += regex.matchedLength();
     }
-
 
     //1. 解析属性
 
     //2. 解析前背景色
 
     //3. 解析字体颜色
-
-
-    return "";
-}
-
-QString datahandle::processData(QString data)
-{
-    processDataStatsAndColor(data);
-
-
-    qDebug() << "修改前数据：" << data;
-
-    QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
-    if (regExp.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp.cap(1);
-        data = data.replace(regExp.cap(0), "");
-    }
-
-    QRegExp regExp11("\\x0007");
-    if (regExp11.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp11.cap(1);
-            data = data.replace(regExp11.cap(0), "");
-
-    }
-
-    QRegExp regExp0("\\x001B\\[\\?1034h");
-    if (regExp0.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp0.cap(1);
-        data = data.replace(regExp0.cap(0), "");
-    }
-
-    QRegExp regExp1("(\\x001B)\\]0;\\S+\\x0007");
-    if (regExp1.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp1.cap(1);
-        data = data.replace(regExp1.cap(0), "");
-    }
-
-    QRegExp regExp2("(\\x001B)\\]0;\\S+\\x0007");
-    if (regExp2.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp.cap(1);
-        data = data.replace(regExp2.cap(0), "");
-    }
-
-    //\u001B[01;34mcore\u001B[0m
-    //\u001B[01;34mzx_test\u001B[0m
 
     QRegExp regExp3("(\\x001B)\\[0m");
     if (regExp3.indexIn(data)>=0) {
@@ -152,7 +101,62 @@ QString datahandle::processData(QString data)
 //        data = data.replace(regExp3.cap(0), regExp3.cap(2));
 //    }
 
-    qDebug() << "修改后数据：" << data;
+    return data;
+}
+
+QString datahandle::processData(QString data)
+{
+    QString commond;
+    QString head;
+    qDebug() << "head = " << head;
+    qDebug() << "commond = " << commond;
+    qDebug() << "processData修改前数据：" << data;
+
+    QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
+    if (regExp.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp.cap(1);
+        data = data.replace(regExp.cap(0), "");
+    }
+
+    QRegExp regExp1("(\\x001B)\\]0;\\S+\\x0007");
+    if (regExp1.indexIn(data)>=0) {
+        //替换
+        qDebug() << "修改后数据1：";
+        data = data.replace(regExp1.cap(0), "");
+    }
+
+//    QRegExp regExp2("(\\x001B)\\]0;\\S+\\x0007");
+//    if (regExp2.indexIn(data)>=0) {
+//        //替换
+//        /qDebug() << "修改后数据2：";
+//        data = data.replace(regExp2.cap(0), "");
+//    }
+
+    QRegExp regExp11("\\x0007");
+    if (regExp11.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp11.cap(1);
+            data = data.replace(regExp11.cap(0), "");
+
+    }
+
+    QRegExp regExp0("\\x001B\\[\\?1034h");
+    if (regExp0.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp0.cap(1);
+        data = data.replace(regExp0.cap(0), "");
+    }
+
+    //\u001B[01;34mcore\u001B[0m
+    //\u001B[01;34mzx_test\u001B[0m
+
+    //处理属性和颜色
+    data = processDataStatsAndColor(head, commond, data);
+
+
+
+    qDebug() << "processData修改后数据：" << data;
 
     return data;
 }

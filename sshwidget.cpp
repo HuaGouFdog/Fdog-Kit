@@ -17,6 +17,30 @@ QString a = "";
 //    libssh2_exit();
 //}
 
+void stringToHtmlFilter(QString &str)
+{
+//注意这几行代码的顺序不能乱，否则会造成多次替换
+str.replace("&","&amp;");
+str.replace(">","&gt;");
+str.replace("<","&lt;");
+str.replace("\"","&quot;");
+str.replace("\'","&#39;");
+str.replace(" ","&nbsp;");
+str.replace("\r\r\n","<br>");
+str.replace("\r\n","<br>");
+str.replace("\n","<br>");
+}
+
+void stringToHtml(QString &str, QColor crl)
+{
+ QByteArray array;
+ array.append(crl.red());
+ array.append(crl.green());
+ array.append(crl.blue());
+ QString strC(array.toHex());
+ str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
+ }
+
 sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::sshwidget)
@@ -77,12 +101,34 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     int connrectType = 1;
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 
-    ui->textEdit->append("<span style=\" color:#f90202;\">fds</span>");
-    ui->textEdit->append("<font color=\"#00FF00\">绿色字体</font> ");
-    ui->textEdit->append("<font color=\"#0000FF\">蓝色字体</font> ");
+    QString str(" < Hello Qt!>");
+    QColor  clrR(255,0,0);
+    stringToHtmlFilter(str);
+    stringToHtml(str,clrR);
+    ui->textEdit->insertHtml(str);
+
+//    ui->textEdit->insertPlainText("<span style=\" color:#f90202;\">fds</span>");
+//    ui->textEdit->insertPlainText("<font color=\"#00FF00\">绿色字体</font> ");
+//    ui->textEdit->insertPlainText("<font color=\"#0000FF\">蓝色字体</font> ");
+
+    QString str2(" < Hello Qt!>");
+    QColor clrR2(255,255,255);
+    stringToHtmlFilter(str2);
+    stringToHtml(str2,clrR2);
+    ui->textEdit->insertHtml(str2);
+
+    QString str3(" < Hello Qt!>\n");
+    QColor clrR3(155,155,155);
+    stringToHtmlFilter(str3);
+    stringToHtml(str3,clrR3);
+    ui->textEdit->insertHtml(str3);
 
     QString command = "ls\n";
-    ui->textEdit->append("连接主机中...\n");
+    QString cc = "连接主机中...\n";
+    stringToHtmlFilter(cc);
+    stringToHtml(cc,clrR);
+    ui->textEdit->insertHtml(cc);
+    //ui->textEdit->append("连接主机中...");
     //connectAndExecuteCommand(host, port, username, password, command);
     //ui->textEdit->setPlainText(a);
 
@@ -227,8 +273,11 @@ void sshwidget::on_textEdit_cursorPositionChanged()
 void sshwidget::rece_init()
 {
     qDebug("开始调用init_poll");
-    //ui->textEdit->insertHtml("<span style=\" color:#ffffff;\"> 主机连接成功  </span>");
-    ui->textEdit->append("主机连接成功\n");
+    QColor  clrR(255,0,0);
+    QString cc = "主机连接成功\n";
+    stringToHtmlFilter(cc);
+    stringToHtml(cc,clrR);
+    ui->textEdit->insertHtml(cc);
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
     //通知页面，连接成功，可以使用
@@ -237,15 +286,18 @@ void sshwidget::rece_init()
 
 void sshwidget::rece_channel_read(QString data)
 {
+    QColor  clrR(255,0,0);
+    stringToHtmlFilter(data);
+    stringToHtml(data,clrR);
     //这个接口应该是输出数据，不进行逻辑处理
     qDebug() << "我收到数据啦" << data;
     if (data[data.length()-1] == "\u0007") {
         qDebug() << "发现t加1" << endl;
         isDTab++;
     }
-    qDebug() << "也收到数据啦" << commond;
+    //qDebug() << "也收到数据啦" << commond;
     datahandle ac;
-    data = ac.processData(data);
+    //data = ac.processData(data);
     //data可能包含空行，只取最后一行的数据
     commond2 = "[root@localhost ~]# ";
     int index = data.lastIndexOf("\n");
@@ -279,14 +331,14 @@ void sshwidget::rece_channel_read(QString data)
 
         data2 = data.mid(commond.length());
         data = commond;
-        qDebug().noquote() << "2我收到数据啦" << data2;
+        qDebug() << "2我收到数据啦" << data2;
         type = 1;
     }
 
 
-    if (data == commond + "xxx") {
-        qDebug().noquote() << "3我收到数据啦" << data;
-        qDebug().noquote() << "3也收到数据啦" << commond;
+    if (data == commond) {
+        qDebug() << "3我收到数据啦" << data;
+        //qDebug() << "3也收到数据啦" << commond;
         //ui->textEdit->append("\r\n");
         if (type == 0) {
             return;
@@ -294,32 +346,20 @@ void sshwidget::rece_channel_read(QString data)
 
     } else if (commond.mid(commond.length()-1) == "\t" && data.startsWith(commond.mid(0,commond.length()-1))) {
         qDebug() << "进入tab " << data.mid(commond.length()-1);
-        ui->textEdit->append(data.mid(commond.length()-1));
+        ui->textEdit->insertHtml(data.mid(commond.length()-1));
         return;
     }
     if (type != 0) {
-        ui->textEdit->append(data2);
+        ui->textEdit->insertHtml(data2);
     } else {
-        ui->textEdit->append(data);
+        ui->textEdit->insertHtml(data);
     }
 
 }
 
 void sshwidget::rece_enter_sign()
 {
-    //ui->textEdit->setTextColor(QColor("red"));
     qDebug() << "命令行前缀为" << commond2;
-    // 获取整个文本内容
-    //QString text = ui->textEdit->toPlainText();
-
-    // 按换行符拆分文本内容为行列表
-    //QStringList lines = text.split("\n");
-
-    // 获取最后一行数据
-//    QString lastLine;
-//    if (!lines.isEmpty()) {
-//        lastLine = lines.last();
-//    }
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::End);
     cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
@@ -336,7 +376,7 @@ void sshwidget::rece_enter_sign()
     qDebug() << "Last Line a: " << a;
     qDebug() << "Last Line b: " << b;
     qDebug() << "Last Line a + b: " << a + b;
-    qDebug() << "ui->textEdit->toPlainText() = " << ui->textEdit->toPlainText();
+    //qDebug() << "ui->textEdit->toPlainText() = " << ui->textEdit->toPlainText();
 
     //删除命令
     // 使用 QTextCursor 定位到最后一行

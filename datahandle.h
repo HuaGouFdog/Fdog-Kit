@@ -11,7 +11,7 @@ class datahandle : public QObject
     Q_OBJECT
 public:
     explicit datahandle(QObject *parent = nullptr);
-    QString processDataStatsAndColor(QString data);
+    QString processDataStatsAndColor(QString & head, QString & commond, QString data);
     QString processData(QString data);
     int isDTab = 0;
 signals:
