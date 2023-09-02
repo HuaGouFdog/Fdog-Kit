@@ -107,10 +107,6 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     stringToHtml(str,clrR);
     ui->textEdit->insertHtml(str);
 
-//    ui->textEdit->insertPlainText("<span style=\" color:#f90202;\">fds</span>");
-//    ui->textEdit->insertPlainText("<font color=\"#00FF00\">绿色字体</font> ");
-//    ui->textEdit->insertPlainText("<font color=\"#0000FF\">蓝色字体</font> ");
-
     QString str2(" < Hello Qt!>");
     QColor clrR2(255,255,255);
     stringToHtmlFilter(str2);
@@ -286,9 +282,6 @@ void sshwidget::rece_init()
 
 void sshwidget::rece_channel_read(QString data)
 {
-    QColor  clrR(255,0,0);
-    stringToHtmlFilter(data);
-    stringToHtml(data,clrR);
     //这个接口应该是输出数据，不进行逻辑处理
     qDebug() << "我收到数据啦" << data;
     if (data[data.length()-1] == "\u0007") {
@@ -339,7 +332,11 @@ void sshwidget::rece_channel_read(QString data)
     if (data == commond) {
         qDebug() << "3我收到数据啦" << data;
         //qDebug() << "3也收到数据啦" << commond;
-        //ui->textEdit->append("\r\n");
+        QColor  clrR(255,0,0);
+        QString cc = "\r\n";
+        stringToHtmlFilter(cc);
+        stringToHtml(cc,clrR);
+        ui->textEdit->insertHtml(cc);
         if (type == 0) {
             return;
         }
@@ -349,9 +346,16 @@ void sshwidget::rece_channel_read(QString data)
         ui->textEdit->insertHtml(data.mid(commond.length()-1));
         return;
     }
+
     if (type != 0) {
+//        QColor  clrR(255,255,255);
+//        stringToHtmlFilter(data2);
+//        stringToHtml(data2,clrR);
         ui->textEdit->insertHtml(data2);
     } else {
+//        QColor  clrR(255,255,255);
+//        stringToHtmlFilter(data);
+//        stringToHtml(data,clrR);
         ui->textEdit->insertHtml(data);
     }
 
