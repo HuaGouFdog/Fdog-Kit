@@ -58,6 +58,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui->splitter_4->setStretchFactor(0,1);
     ui->splitter_4->setStretchFactor(1,1);
 
+    ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
+
     setMouseTracking(true);
 //    ui->textEdit->insertHtml("<span style=\" color:#ff0505;\"> 扎根  </span>");
 //    ui->textEdit->insertHtml("<span style=\" color:#3effc5;\"> 扎根  </span>");
@@ -101,26 +103,27 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     int connrectType = 1;
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 
-    QString str(" < Hello Qt!>");
-    QColor  clrR(255,0,0);
-    stringToHtmlFilter(str);
-    stringToHtml(str,clrR);
-    ui->textEdit->insertHtml(str);
+//    QString str(" < Hello Qt!>");
+//    QColor  clrR(255,255,255);
+//    stringToHtmlFilter(str);
+//    stringToHtml(str,clrR);
+//    ui->textEdit->insertHtml(str);
 
-    QString str2(" < Hello Qt!>");
-    QColor clrR2(255,255,255);
-    stringToHtmlFilter(str2);
-    stringToHtml(str2,clrR2);
-    ui->textEdit->insertHtml(str2);
+//    QString str2(" < Hello Qt!>");
+//    QColor clrR2(255,255,255);
+//    stringToHtmlFilter(str2);
+//    stringToHtml(str2,clrR2);
+//    ui->textEdit->insertHtml(str2);
 
-    QString str3(" < Hello Qt!>\n");
-    QColor clrR3(155,155,155);
-    stringToHtmlFilter(str3);
-    stringToHtml(str3,clrR3);
-    ui->textEdit->insertHtml(str3);
+//    QString str3(" < Hello Qt!>\n");
+//    QColor clrR3(155,155,155);
+//    stringToHtmlFilter(str3);
+//    stringToHtml(str3,clrR3);
+//    ui->textEdit->insertHtml(str3);
 
     QString command = "ls\n";
     QString cc = "连接主机中...\n";
+    QColor  clrR(255,255,255);
     stringToHtmlFilter(cc);
     stringToHtml(cc,clrR);
     ui->textEdit->insertHtml(cc);
@@ -268,8 +271,11 @@ void sshwidget::on_textEdit_cursorPositionChanged()
 
 void sshwidget::rece_init()
 {
+    // 设置焦点策略为强制获取焦点
+    ui->textEdit->setFocusPolicy(Qt::StrongFocus);
+    ui->textEdit->setFocus();
     qDebug("开始调用init_poll");
-    QColor  clrR(255,0,0);
+    QColor  clrR(255,255,255);
     QString cc = "主机连接成功\n";
     stringToHtmlFilter(cc);
     stringToHtml(cc,clrR);

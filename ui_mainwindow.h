@@ -85,7 +85,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(876, 598);
+        MainWindow->resize(1049, 687);
         MainWindow->setMinimumSize(QSize(0, 0));
         QFont font;
         font.setFamily(QStringLiteral("Cascadia Mono"));
@@ -569,6 +569,7 @@ public:
         label_4 = new QLabel(widget_4);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setFont(font5);
+        label_4->setStyleSheet(QStringLiteral("color: rgb(255, 00, 00);"));
 
         verticalLayout_9->addWidget(label_4);
 

@@ -1398,6 +1398,7 @@ QToolButton:hover {
                    <weight>50</weight>
                    <italic>false</italic>
                    <bold>false</bold>
+                   <stylestrategy>PreferAntialias</stylestrategy>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -1449,6 +1450,9 @@ p, li { white-space: pre-wrap; }
                  <width>251</width>
                  <height>341</height>
                 </rect>
+               </property>
+               <property name="mouseTracking">
+                <bool>false</bool>
                </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(0, 41, 69);
@@ -1661,7 +1665,8 @@ QTabBar QToolButton:hover {
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">background-color: rgb(55, 255, 138);</string>
+                        <string notr="true">background-color: rgb(135, 255, 173);
+color: rgb(0, 0, 0);</string>
                        </property>
                        <property name="text">
                         <string>midni32131232</string>
@@ -1678,7 +1683,8 @@ QTabBar QToolButton:hover {
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">background-color: rgb(55, 255, 138);</string>
+                        <string notr="true">background-color: rgb(55, 255, 138);
+color: rgb(0, 0, 0);</string>
                        </property>
                        <property name="text">
                         <string>midni32131232</string>

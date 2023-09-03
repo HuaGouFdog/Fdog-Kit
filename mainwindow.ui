@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>876</width>
-    <height>598</height>
+    <width>1049</width>
+    <height>687</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -937,6 +937,9 @@ QTabBar QToolButton:hover {
                    <pointsize>12</pointsize>
                    <stylestrategy>PreferAntialias</stylestrategy>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 00, 00);</string>
                  </property>
                  <property name="text">
                   <string>新建连接</string>

@@ -147,7 +147,7 @@ public:
 
         gridLayoutWidget_2 = new QWidget(page);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(20, 10, 281, 171));
+        gridLayoutWidget_2->setGeometry(QRect(10, 0, 311, 201));
         gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -178,6 +178,8 @@ public:
         lineEdit_ssh_name = new QLineEdit(gridLayoutWidget_2);
         lineEdit_ssh_name->setObjectName(QStringLiteral("lineEdit_ssh_name"));
         lineEdit_ssh_name->setFont(font1);
+        lineEdit_ssh_name->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout_2->addWidget(lineEdit_ssh_name, 0, 1, 1, 1);
 
@@ -190,12 +192,16 @@ public:
         lineEdit_ssh_host = new QLineEdit(gridLayoutWidget_2);
         lineEdit_ssh_host->setObjectName(QStringLiteral("lineEdit_ssh_host"));
         lineEdit_ssh_host->setFont(font1);
+        lineEdit_ssh_host->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout_2->addWidget(lineEdit_ssh_host, 1, 1, 1, 1);
 
         lineEdit_ssh_port = new QLineEdit(gridLayoutWidget_2);
         lineEdit_ssh_port->setObjectName(QStringLiteral("lineEdit_ssh_port"));
         lineEdit_ssh_port->setFont(font1);
+        lineEdit_ssh_port->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout_2->addWidget(lineEdit_ssh_port, 1, 3, 1, 1);
 
@@ -204,6 +210,8 @@ public:
         comboBox_ssh_func->addItem(QString());
         comboBox_ssh_func->setObjectName(QStringLiteral("comboBox_ssh_func"));
         comboBox_ssh_func->setFont(font1);
+        comboBox_ssh_func->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout_2->addWidget(comboBox_ssh_func, 2, 1, 1, 2);
 
@@ -216,12 +224,16 @@ public:
         lineEdit_ssh_user = new QLineEdit(gridLayoutWidget_2);
         lineEdit_ssh_user->setObjectName(QStringLiteral("lineEdit_ssh_user"));
         lineEdit_ssh_user->setFont(font1);
+        lineEdit_ssh_user->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout_2->addWidget(lineEdit_ssh_user, 3, 1, 1, 2);
 
         lineEdit_ssh_password = new QLineEdit(gridLayoutWidget_2);
         lineEdit_ssh_password->setObjectName(QStringLiteral("lineEdit_ssh_password"));
         lineEdit_ssh_password->setFont(font1);
+        lineEdit_ssh_password->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout_2->addWidget(lineEdit_ssh_password, 4, 1, 1, 2);
 
@@ -230,7 +242,7 @@ public:
         page_2->setObjectName(QStringLiteral("page_2"));
         gridLayoutWidget = new QWidget(page_2);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(50, 30, 221, 104));
+        gridLayoutWidget->setGeometry(QRect(20, 10, 281, 171));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -244,6 +256,8 @@ public:
         lineEdit_zk_host->setObjectName(QStringLiteral("lineEdit_zk_host"));
         lineEdit_zk_host->setMinimumSize(QSize(0, 30));
         lineEdit_zk_host->setFont(font);
+        lineEdit_zk_host->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout->addWidget(lineEdit_zk_host, 1, 1, 1, 1);
 
@@ -265,6 +279,8 @@ public:
         QFont font2;
         font2.setFamily(QStringLiteral("OPPOSans B"));
         lineEdit_zk_name->setFont(font2);
+        lineEdit_zk_name->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout->addWidget(lineEdit_zk_name, 0, 1, 1, 1);
 
@@ -272,6 +288,8 @@ public:
         lineEdit_zk_port->setObjectName(QStringLiteral("lineEdit_zk_port"));
         lineEdit_zk_port->setMinimumSize(QSize(0, 30));
         lineEdit_zk_port->setFont(font);
+        lineEdit_zk_port->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
+"border-radius: 5px;"));
 
         gridLayout->addWidget(lineEdit_zk_port, 2, 1, 1, 1);
 
@@ -331,7 +349,7 @@ public:
 
         retranslateUi(createconnect);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(createconnect);

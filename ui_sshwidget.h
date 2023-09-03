@@ -681,6 +681,7 @@ public:
         font3.setBold(false);
         font3.setItalic(false);
         font3.setWeight(50);
+        font3.setStyleStrategy(QFont::PreferAntialias);
         textEdit->setFont(font3);
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
 "font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
@@ -702,6 +703,7 @@ public:
         plainTextEdit = new QPlainTextEdit(widget_4);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
         plainTextEdit->setGeometry(QRect(20, 20, 251, 341));
+        plainTextEdit->setMouseTracking(false);
         plainTextEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
 "font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
 "border: none;\n"
@@ -823,14 +825,16 @@ public:
         label = new QLabel(widget_8);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
-        label->setStyleSheet(QStringLiteral("background-color: rgb(55, 255, 138);"));
+        label->setStyleSheet(QLatin1String("background-color: rgb(135, 255, 173);\n"
+"color: rgb(0, 0, 0);"));
 
         horizontalLayout_5->addWidget(label);
 
         label_2 = new QLabel(widget_8);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
-        label_2->setStyleSheet(QStringLiteral("background-color: rgb(55, 255, 138);"));
+        label_2->setStyleSheet(QLatin1String("background-color: rgb(55, 255, 138);\n"
+"color: rgb(0, 0, 0);"));
 
         horizontalLayout_5->addWidget(label_2);
 

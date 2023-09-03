@@ -7,8 +7,8 @@
 #include <QColor>
 
 QMap<int, QColor *> fontColorMap {
-    {30, new QColor(0,0,0)}, {31, new QColor(255,0,0)},{32, new QColor(0,255,0)}, {33, new QColor(255,255,0)},
-    {34, new QColor(0,0,255)}, {35, new QColor(153,255,0)},{36, new QColor(0,255,255)}, {37, new QColor(255,255,255)},
+    {30, new QColor(0,0,0)}, {31, new QColor(255, 0, 0)},{32, new QColor(56, 255, 33)}, {33, new QColor(255,255,0)},
+    {34, new QColor(20, 96, 210)}, {35, new QColor(153,255,0)},{36, new QColor(0,255,255)}, {37, new QColor(255,255,255)},
     {90, new QColor(102,102,102)}, {91, new QColor(255,0,0)},{92, new QColor(0,255,0)}, {93, new QColor(255,255,0)},
     {94, new QColor(0,0,255)}, {95, new QColor(255,0,0)},{96, new QColor(0,255,0)}, {97, new QColor(255,255,255)},
 };

@@ -49,7 +49,7 @@ color: rgb(255, 255, 255);</string>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QWidget" name="widget" native="true">
@@ -143,10 +143,10 @@ QToolButton:hover {
       <widget class="QWidget" name="gridLayoutWidget_2">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>10</y>
-         <width>281</width>
-         <height>171</height>
+         <x>10</x>
+         <y>0</y>
+         <width>311</width>
+         <height>201</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -215,6 +215,10 @@ QToolButton:hover {
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+          </property>
           <property name="text">
            <string>1111</string>
           </property>
@@ -243,6 +247,10 @@ QToolButton:hover {
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+          </property>
           <property name="text">
            <string>172.16.8.154</string>
           </property>
@@ -257,6 +265,10 @@ QToolButton:hover {
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+          </property>
           <property name="text">
            <string>22</string>
           </property>
@@ -270,6 +282,10 @@ QToolButton:hover {
             <pointsize>10</pointsize>
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
           </property>
           <item>
            <property name="text">
@@ -306,6 +322,10 @@ QToolButton:hover {
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+          </property>
           <property name="text">
            <string>root</string>
           </property>
@@ -320,6 +340,10 @@ QToolButton:hover {
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+          </property>
           <property name="text">
            <string>Linkdood@123456</string>
           </property>
@@ -332,10 +356,10 @@ QToolButton:hover {
       <widget class="QWidget" name="gridLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>30</y>
-         <width>221</width>
-         <height>104</height>
+         <x>20</x>
+         <y>10</y>
+         <width>281</width>
+         <height>171</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -365,6 +389,10 @@ QToolButton:hover {
             <family>OPPOSans B</family>
             <pointsize>10</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
           </property>
           <property name="text">
            <string>172.16.8.153</string>
@@ -410,6 +438,10 @@ QToolButton:hover {
             <family>OPPOSans B</family>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+          </property>
           <property name="text">
            <string>172.16.8.153</string>
           </property>
@@ -428,6 +460,10 @@ QToolButton:hover {
             <family>OPPOSans B</family>
             <pointsize>10</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
           </property>
           <property name="text">
            <string>11100</string>
