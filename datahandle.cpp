@@ -111,6 +111,19 @@ void datahandle::stringToHtmlFilter4(QString &str)
     } while (index != -1);
 }
 
+void datahandle::stringToHtmlFilter5(QString &str)
+{
+    QRegExp regex("\\\b\\x001B\\[K");
+    int pos = 0;
+
+    while ((pos = regex.indexIn(str, pos)) != -1) {
+        QString match = regex.cap(0); // 获取完整的匹配项
+        str.replace(regex.cap(0), "");
+        qDebug() << "Matched stringToHtmlFilter5:" << match;
+        pos += regex.matchedLength();
+    }
+}
+
 void datahandle::stringToHtml(QString &str, QColor *crl)
 {
     QByteArray array;
@@ -124,7 +137,8 @@ void datahandle::stringToHtml(QString &str, QColor *crl)
 
 QString datahandle::processDataStatsAndColor(QString & head, QString & commond, QString data)
 {
-    //解析数据
+    //解析数据\u001B[34;42mjenkins_home\u001B[0m
+    //       \u001B[01;32mconfig.json\u001B[0m
     QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
     int pos = 0;
 
@@ -275,6 +289,9 @@ QString datahandle::processData(QString data)
 
     //处理默认属性
     stringToHtmlFilter4(data);
+
+    //清除光标
+    stringToHtmlFilter5(data);
 
     qDebug() << "processData修改后数据：" << data;
 

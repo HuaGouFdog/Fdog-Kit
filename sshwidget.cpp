@@ -141,6 +141,8 @@ https://blog.51cto.com/xiaohaiwa/5379626
                             SLOT(rece_enter_sign()));
     connect(keyFilter,SIGNAL(send_tab_sign(int)),this,
                             SLOT(rece_tab_sign(int)));
+    connect(keyFilter,SIGNAL(send_backSpace_sign(int)),this,
+                            SLOT(send_backSpace_sign(int)));
     ui->textEdit->installEventFilter(keyFilter);
 
     QTextCursor cursor2=ui->textEdit->textCursor();
@@ -347,29 +349,36 @@ void sshwidget::rece_tab_sign(int type)
     qDebug() << "Last Line a + b: " << a + b;
 
     sendCommandData(b + "\t");
-//    if (lastCommond == 1){
-//        qDebug() << "tabCommond1 = " << tabCommond;
-//        qDebug() << "Last Line b: " << b;
-//        if (tabCommond != "" && tabCommond != b && b.startsWith(tabCommond) && b.length() > tabCommond.length()) {
-//            b = b.mid(tabCommond.length());
-//            qDebug() << "发出命令为1" << b + "\t";
-//            tabCommond = b;
-//            sendCommandData(b + "\t");
-//        } else {
-//            //commond = commond + "\t";
-//            qDebug() << "发出命令为2" << "\t";
-//            tabCommond = "";
-//            sendCommandData("\t");
-//        }
-//    } else {
-//        qDebug() << "发出命令为3" << b + "\t";
-//        tabCommond = b;
-//        qDebug() << "tabCommond为" << tabCommond;
-//        sendCommandData(b + "\t");
-//    }
+
     commond = b.replace(" ","&nbsp;");
-//    qDebug() << "commond: " << commond;
     lastCommond = 1;
+}
+
+void sshwidget::send_backSpace_sign(int type)
+{
+    qDebug() << "命令行前缀为" << commond2;
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::End);
+    // 将光标向前移动一个字符
+    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+    // 删除选中的字符
+    cursor.deletePreviousChar();
+
+    cursor.movePosition(QTextCursor::End);
+    cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+    QString lastLine = cursor.selectedText();
+
+    qDebug() << "Last Line: " << lastLine;
+    QString a = lastLine.mid(0,commond2.length());
+    QString b = lastLine.mid(commond2.length());
+    qDebug() << "Last Line a: " << a;
+    qDebug() << "Last Line b: " << b;
+    qDebug() << "Last Line a + b: " << a + b;
+
+    sendCommandData(b + "\b");
+
+    commond = b.replace(" ","&nbsp;");
+    lastCommond = 3;
 }
 
 void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)

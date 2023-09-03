@@ -18,6 +18,7 @@ public:
 signals:
     void send_enter_sign();
     void send_tab_sign(int type);
+    void send_backSpace_sign(int type);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override
@@ -35,6 +36,10 @@ protected:
             } else if (keyEvent->key() == Qt::Key_Tab) {
                 qDebug() << "tab键";
                 emit send_tab_sign(1);
+                return true;
+            } else if (keyEvent->key() == Qt::Key_Backspace) {
+                qDebug() << "Backspace键";
+                emit send_backSpace_sign(1);
                 return true;
             }
         }
@@ -68,6 +73,8 @@ private slots:
     void rece_enter_sign();
 
     void rece_tab_sign(int type);
+
+    void send_backSpace_sign(int type);
 
     void rece_getServerInfo(ServerInfoStruct serverInfo);
 
