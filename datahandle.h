@@ -16,7 +16,7 @@ public:
     void stringToHtmlFilter3(QString &str);
     void stringToHtmlFilter4(QString &str);
     void stringToHtmlFilter5(QString &str);
-    void stringToHtml(QString &str, QColor *crl);
+    void stringToHtml(QString &str, QColor *fontCrl = NULL, QColor *backCrl = NULL);
     QString processDataStatsAndColor(QString & head, QString & commond, QString data);
     QString processData(QString data);
 

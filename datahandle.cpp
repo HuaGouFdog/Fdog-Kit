@@ -15,12 +15,12 @@ QMap<int, QColor *> fontColorMap {
 /*
 new clrR(255,255,255)
 */
-//QMap<int, QColor*> backColorMap {
-//    {"40", new QColor(0,0,0)}, {"41", new QColor(255,0,0)},{"42", new QColor(0,255,0)}, {"43", new QColor(255,255,0)},
-//    {"44", new QColor(0,0,255)}, {"45", new QColor(153,255,0)},{"46", new QColor(0,255,255)}, {"47", new QColor(255,255,255)},
-//    {"100", new QColor(102,102,102)}, {"101", new QColor(255,0,0)},{"102", new QColor(0,255,0)}, {"103", new QColor(255,255,0)},
-//    {"104", new QColor(0,0,255)}, {"105", new QColor(255,0,0)},{"106", new QColor(0,255,0)}, {"107", new QColor(255,255,255)},
-//};
+QMap<int, QColor*> backColorMap {
+    {40, new QColor(0,0,0)}, {41, new QColor(255,0,0)},{42, new QColor(0,255,0)}, {43, new QColor(255,255,0)},
+    {44, new QColor(0,0,255)}, {45, new QColor(153,255,0)},{46, new QColor(0,255,255)}, {47, new QColor(255,255,255)},
+    {100, new QColor(102,102,102)}, {101, new QColor(255,0,0)},{102, new QColor(0,255,0)}, {103, new QColor(255,255,0)},
+    {104, new QColor(0,0,255)}, {105, new QColor(255,0,0)},{106, new QColor(0,255,0)}, {107, new QColor(255,255,255)},
+};
 
 QMap<QString, QString> StatsColorMap {
     {"0", "重置"}, {"01", "粗体"}, {"02", "细体"},{"03", "斜体"}, {"04", "下划线"},
@@ -124,14 +124,37 @@ void datahandle::stringToHtmlFilter5(QString &str)
     }
 }
 
-void datahandle::stringToHtml(QString &str, QColor *crl)
+void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
 {
-    QByteArray array;
-    array.append(crl->red());
-    array.append(crl->green());
-    array.append(crl->blue());
-    QString strC(array.toHex());
-    str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
+    if (fontCrl != NULL && backCrl != NULL) {
+        QByteArray array;
+        array.append(fontCrl->red());
+        array.append(fontCrl->green());
+        array.append(fontCrl->blue());
+        QString strC(array.toHex());
+
+        QByteArray array2;
+        array2.append(backCrl->red());
+        array2.append(backCrl->green());
+        array2.append(backCrl->blue());
+        QString strC2(array2.toHex());
+        qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
+        str = QString("<span style=\" color:#%1; background-color:#%2;\">%3</span>").arg(strC).arg(strC2).arg(str);
+    } else if (fontCrl != NULL) {
+        QByteArray array;
+        array.append(fontCrl->red());
+        array.append(fontCrl->green());
+        array.append(fontCrl->blue());
+        QString strC(array.toHex());
+        str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
+    } else if (backCrl != NULL) {
+        QByteArray array;
+        array.append(backCrl->red());
+        array.append(backCrl->green());
+        array.append(backCrl->blue());
+        QString strC(array.toHex());
+        str = QString("<span style=\" background-color:#%1;\">%2</span>").arg(strC).arg(str);
+    }
 }
 
 
@@ -147,35 +170,71 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //qDebug() << "Matched email:" << match;
         //qDebug() << "Matched email 1:" << regex.cap(1);
         //qDebug() << "Matched email 2:" << regex.cap(2);
-        //qDebug() << "Matched email 3:" << regex.cap(3);
-        //qDebug() << "Matched email 4:" << regex.cap(4);
+        qDebug() << "Matched email 3:" << regex.cap(3);
+        qDebug() << "Matched email 4:" << regex.cap(4);
         //qDebug() << "Matched email 5:" << regex.cap(5);
-        //qDebug() << "Matched email 6:" << regex.cap(6);
+        qDebug() << "Matched email 6:" << regex.cap(6);
         //qDebug() << "Matched email 7:" << regex.cap(7);
         //qDebug() << "Matched email 8:" << regex.cap(8);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
         //qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
-        if ((regex.cap(4).toInt() >= 30 && regex.cap(4).toInt() <= 37) || (regex.cap(4).toInt() >= 100 && regex.cap(4).toInt() <= 107)) {
-            //字体颜色
-            auto it = fontColorMap.find(regex.cap(4).toInt());
-            if (it != fontColorMap.end()) {
-                //设置颜色
-                QString cc = regex.cap(6) + regex.cap(8);
-                stringToHtmlFilter(cc);
-                stringToHtml(cc, *it);
-                //qDebug() << "processDataStatsAndColor修改后数据：" << cc;
-                //替换
-                data.replace(match, cc);
-            }
-//            auto it2 = StatsColorMap.find(regex.cap(7));
-//            if (it2 != StatsColorMap.end()) {
-//                //重置
-////                stringToHtmlFilter(regex.cap(6));
-////                stringToHtml(regex.cap(6), *it);
+
+        QColor *fontCrl = NULL;
+        QColor *backCrl = NULL;
+
+        auto it1 = fontColorMap.find(regex.cap(3).toInt());
+        if (it1 != fontColorMap.end()) {
+            fontCrl = *it1;
+            qDebug() << "找到字体颜色1";
+        }
+        auto it2 = fontColorMap.find(regex.cap(4).toInt());
+        if (it2 != fontColorMap.end()) {
+            fontCrl = *it2;
+            qDebug() << "找到字体颜色2";
+        }
+
+        auto it3 = backColorMap.find(regex.cap(3).toInt());
+        if (it3 != backColorMap.end()) {
+            backCrl = *it3;
+            qDebug() << "找到背景颜色3";
+        }
+        auto it4 = backColorMap.find(regex.cap(4).toInt());
+        if (it4 != backColorMap.end()) {
+            backCrl = *it4;
+            qDebug() << "找到背景颜色4";
+        }
+
+        //设置颜色
+        QString cc = regex.cap(6) + regex.cap(8);
+        stringToHtmlFilter(cc);
+        stringToHtml(cc, fontCrl, backCrl);
+        //替换
+        data.replace(match, cc);
+
+//        if ((regex.cap(4).toInt() >= 30 && regex.cap(4).toInt() <= 37) || (regex.cap(4).toInt() >= 90 && regex.cap(4).toInt() <= 97)) {
+//            //字体颜色
+//            auto it = fontColorMap.find(regex.cap(4).toInt());
+//            if (it != fontColorMap.end()) {
+//                //设置颜色
+//                QString cc = regex.cap(6) + regex.cap(8);
+//                stringToHtmlFilter(cc);
+//                stringToHtml(cc, *it);
+//                //替换
+//                data.replace(match, cc);
 //            }
-        }/* else if ((regex.cap(3) >= 30 && regex.cap(3) <= 37) || (regex.cap(3) >= 100 && regex.cap(3) <= 107)) {
-            //背景色
-        }*/
+//        }
+//        if ((regex.cap(5).toInt() >= 40 && regex.cap(5).toInt() <= 47) || (regex.cap(5).toInt() >= 100 && regex.cap(5).toInt() <= 107)) {
+//            //背景色
+//            auto it = backColorMap.find(regex.cap(4).toInt());
+//            if (it != backColorMap.end()) {
+//                //设置颜色
+//                QString cc = regex.cap(6) + regex.cap(8);
+//                stringToHtmlFilter(cc);
+//                stringToHtml(cc, *it);
+//                //替换
+//                data.replace(match, cc);
+//            }
+//        }
         pos += regex.matchedLength();
     }
 
