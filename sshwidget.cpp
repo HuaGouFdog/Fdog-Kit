@@ -170,103 +170,9 @@ void sshwidget::on_textEdit_cursorPositionChanged()
     //记录当前光标位置
     int rowCount = ui->textEdit->document()->lineCount(); //获取行数
 
-//    QTextCursor cursor = ui->textEdit->textCursor();
-//    int lineNumber1 = cursor.blockNumber() + 1;
-//    int columnNumber1 = cursor.columnNumber();
-
     QTextCursor cursor2=ui->textEdit->textCursor();
     cursor2.movePosition(QTextCursor::End);
     ui->textEdit->setTextCursor(cursor2);
-    //行
-//    if (lineNumber1 != rowCount) {
-//        qDebug() << "行数不是最后";
-//        QTextCursor cursor=ui->textEdit->textCursor();
-//                cursor.movePosition(QTextCursor::End);
-//                ui->textEdit->setTextCursor(cursor);
-
-//                lineNumber = cursor.blockNumber() + 1;
-//                columnNumber = cursor.columnNumber();
-//    }
-
-//    if (columnNumber1 < 20) {
-//        // 获取文档对象
-//        QTextDocument *document = ui->textEdit->document();
-
-//        // 获取指定行的文本块
-//        QTextBlock block = document->findBlockByLineNumber(lineNumber-1);  // 将行号转换为从 0 开始计数
-
-//        // 创建一个新的光标，并将其设置到指定行的指定列
-//        QTextCursor cursor(block);
-//        cursor.movePosition(QTextCursor::StartOfBlock);
-//        cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, 20);  // 将列号转换为从 0 开始计数
-
-//        // 设置文本编辑器的光标
-//        ui->textEdit->setTextCursor(cursor);
-//    }
-
-
-
-
-
-
-
-
-
-
-//    记录当前光标
-//            当光标移动时，获取最新的光标数据和文本行数
-//            如果光标数据不在文本行数范围，则使用旧数据
-
-    //int rowCount = ui->textEdit->document()->lineCount(); //获取行数
-    //判断移动后的光标是否在最后一行
-//    QTextCursor cursor = ui->textEdit->textCursor();
-//    lineNumber = cursor.blockNumber() + 1;
-//    columnNumber = cursor.columnNumber();
-//    qDebug() << "当前光标所在行数 = " << lineNumber << " 所在列数 = " << columnNumber;
-
-
-    //qDebug() << "当前光标所在行数 = " << lineNumber1 << " 所在列数 = " << columnNumber1;
-
-    //if (lineNumber1 != rowCount) {
-//        QTextCursor cursor2=ui->textEdit->textCursor();
-//        cursor2.movePosition(QTextCursor::End);
-//        ui->textEdit->setTextCursor(cursor2);
-    //}
-        //qDebug() << "光标不在最后一个行了";
-        //返回到刚才的位置
-
-        // 获取文档对象
-//        QTextDocument *document = ui->textEdit->document();
-
-//        // 获取指定行的文本块
-//        QTextBlock block = document->findBlockByLineNumber(lineNumber-1);  // 将行号转换为从 0 开始计数
-
-//        // 创建一个新的光标，并将其设置到指定行的指定列
-//        QTextCursor cursor(block);
-//        cursor.movePosition(QTextCursor::StartOfBlock);
-//        cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, columnNumber-1);  // 将列号转换为从 0 开始计数
-
-//        // 设置文本编辑器的光标
-//        ui->textEdit->setTextCursor(cursor);
-
-
-
-
-
-//        QTextCursor cursor2=ui->textEdit->textCursor();
-//                cursor2.movePosition(QTextCursor::End);
-//                ui->textEdit->setTextCursor(cursor2);
-    //}
-
-
-    //qDebug() << "光标移动";
-    //int rowCount = ui->textEdit->document()->lineCount(); //获取行数
-    //qDebug() << "行数 = " << rowCount;
-
-    //qDebug() << "当前光标所在行数 = " << lineNumber_ << " 所在列数 = " << columnNumber_;
-    //myEdit ->document()->setMaximumBlockCount(1000) //设置最大行数是1000
-
-
 }
 
 void sshwidget::rece_init()
@@ -294,11 +200,16 @@ void sshwidget::rece_channel_read(QString data)
         qDebug() << "发现t加1" << endl;
         isDTab++;
     }
-    //qDebug() << "也收到数据啦" << commond;
-    datahandle ac;
-    //data = ac.processData(data);
+    if (data == "") {
+        QTextCursor cursor = ui->textEdit->textCursor();
+        cursor.movePosition(QTextCursor::End);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+        QString lastLine = cursor.selectedText();
+        commond2 = lastLine;
+        return;
+    }
     //data可能包含空行，只取最后一行的数据
-    commond2 = "[root@localhost ~]# ";
+    //commond2 = "[root@localhost ~]# ";
     int index = data.lastIndexOf("\n");
     if (index != -1) {
         //commond2 = data.mid(index + 1);
@@ -332,10 +243,7 @@ void sshwidget::rece_channel_read(QString data)
         data = commond;
         qDebug() << "2我收到数据啦" << data2;
         type = 1;
-    }
-
-
-    if (data == commond) {
+    } else if (data == commond && commond != "" && lastCommond == 2) {
         qDebug() << "3我收到数据啦" << data;
         //qDebug() << "3也收到数据啦" << commond;
         QColor  clrR(255,0,0);
@@ -344,31 +252,52 @@ void sshwidget::rece_channel_read(QString data)
         stringToHtml(cc,clrR);
         ui->textEdit->insertHtml(cc);
         if (type == 0) {
+            QTextCursor cursor = ui->textEdit->textCursor();
+            cursor.movePosition(QTextCursor::End);
+            cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+            QString lastLine = cursor.selectedText();
+            commond2 = lastLine;
             return;
         }
 
+    } else if (data == commond && commond != "") {
+        qDebug() << "进入";
+        QTextCursor cursor = ui->textEdit->textCursor();
+        cursor.movePosition(QTextCursor::End);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+        QString lastLine = cursor.selectedText();
+        commond2 = lastLine;
+        return;
     } else if (commond.mid(commond.length()-1) == "\t" && data.startsWith(commond.mid(0,commond.length()-1))) {
         qDebug() << "进入tab " << data.mid(commond.length()-1);
         ui->textEdit->insertHtml(data.mid(commond.length()-1));
+        QTextCursor cursor = ui->textEdit->textCursor();
+        cursor.movePosition(QTextCursor::End);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+        QString lastLine = cursor.selectedText();
+        commond2 = lastLine;
         return;
     }
 
     if (type != 0) {
-//        QColor  clrR(255,255,255);
-//        stringToHtmlFilter(data2);
-//        stringToHtml(data2,clrR);
         ui->textEdit->insertHtml(data2);
     } else {
-//        QColor  clrR(255,255,255);
-//        stringToHtmlFilter(data);
-//        stringToHtml(data,clrR);
         ui->textEdit->insertHtml(data);
     }
-
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::End);
+    cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+    QString lastLine = cursor.selectedText();
+    // 打印最后一行数据
+    //QString a = "\u001B]0;root@localhost:~\u0007[root@localhost ~]# ";
+    //qDebug() << "a: " << a.length();
+    qDebug() << "Last Line: " << lastLine;
+    commond2 = lastLine;
 }
 
 void sshwidget::rece_enter_sign()
 {
+    lastCommond = 2;
     qDebug() << "命令行前缀为" << commond2;
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::End);
@@ -397,7 +326,8 @@ void sshwidget::rece_enter_sign()
     //ui->textEdit->setPlainText(ui->textEdit->toPlainText() + a);
     //qDebug() << "ui->textEdit->toPlainText() = " << ui->textEdit->toPlainText();
     //获取信息
-    commond = b + "\r\n";
+    commond = b;
+    commond.replace(" ","&nbsp;");
     sendCommandData(b + "\n");
 }
 
@@ -416,36 +346,29 @@ void sshwidget::rece_tab_sign(int type)
     qDebug() << "Last Line b: " << b;
     qDebug() << "Last Line a + b: " << a + b;
 
-//    else if (commond != b && b.startsWith(commond) && b.length() > commond.length()) {
-//           //commond = commond + b + "\t";
-//           //只发送多余出来的部分
-//           b = b.mid(commond.length());
-//           qDebug() << "发出命令为" << b + "\t";
-//           sendCommandData(b + "\t");
-//       }
-
-    if (lastCommond == 1){
-        qDebug() << "tabCommond1 = " << tabCommond;
-        qDebug() << "Last Line b: " << b;
-        if (tabCommond != "" && tabCommond != b && b.startsWith(tabCommond) && b.length() > tabCommond.length()) {
-            b = b.mid(tabCommond.length());
-            qDebug() << "发出命令为1" << b + "\t";
-            tabCommond = b;
-            sendCommandData(b + "\t");
-        } else {
-            //commond = commond + "\t";
-            qDebug() << "发出命令为2" << "\t";
-            tabCommond = "";
-            sendCommandData("\t");
-        }
-    } else {
-        qDebug() << "发出命令为3" << b + "\t";
-        tabCommond = b;
-        qDebug() << "tabCommond为" << tabCommond;
-        sendCommandData(b + "\t");
-    }
-    commond = b;
-    qDebug() << "commond: " << commond;
+    sendCommandData(b + "\t");
+//    if (lastCommond == 1){
+//        qDebug() << "tabCommond1 = " << tabCommond;
+//        qDebug() << "Last Line b: " << b;
+//        if (tabCommond != "" && tabCommond != b && b.startsWith(tabCommond) && b.length() > tabCommond.length()) {
+//            b = b.mid(tabCommond.length());
+//            qDebug() << "发出命令为1" << b + "\t";
+//            tabCommond = b;
+//            sendCommandData(b + "\t");
+//        } else {
+//            //commond = commond + "\t";
+//            qDebug() << "发出命令为2" << "\t";
+//            tabCommond = "";
+//            sendCommandData("\t");
+//        }
+//    } else {
+//        qDebug() << "发出命令为3" << b + "\t";
+//        tabCommond = b;
+//        qDebug() << "tabCommond为" << tabCommond;
+//        sendCommandData(b + "\t");
+//    }
+    commond = b.replace(" ","&nbsp;");
+//    qDebug() << "commond: " << commond;
     lastCommond = 1;
 }
 

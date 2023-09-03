@@ -61,21 +61,23 @@ void datahandle::stringToHtmlFilter3(QString &str)
 void datahandle::stringToHtmlFilter4(QString &str)
 {
     //处理默认
-    qDebug() << "默认处理 str = " << str << endl;
+    //qDebug() << "默认处理 str = " << str << endl;
     //先查找第一个<span>
     int index3 = 0;
     index3 = str.indexOf("<span", index3);
     if (index3 != -1) {
         for(int i = 0; i < index3; i++) {
-            qDebug() << "str[index] " << str[i] << endl;
+            //qDebug() << "str[index] " << str[i] << endl;
             if (str[i] == " ") {
                 str.replace(i, 1,"&nbsp;");
-                qDebug() << str[i] << "替换 " << i;
+                //qDebug() << str[i] << "替换 " << i;
                 index3 = index3 + 5;
             } else {
-                qDebug() << str[i] << "不替换 ";
+                //qDebug() << str[i] << "不替换 ";
             }
         }
+    } else {
+        str.replace(" ","&nbsp;");
     }
 
     int index = 0;
@@ -128,17 +130,17 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
 
     while ((pos = regex.indexIn(data, pos)) != -1) {
         QString match = regex.cap(0); // 获取完整的匹配项
-        qDebug() << "Matched email:" << match;
+        //qDebug() << "Matched email:" << match;
         //qDebug() << "Matched email 1:" << regex.cap(1);
         //qDebug() << "Matched email 2:" << regex.cap(2);
-        qDebug() << "Matched email 3:" << regex.cap(3);
-        qDebug() << "Matched email 4:" << regex.cap(4);
+        //qDebug() << "Matched email 3:" << regex.cap(3);
+        //qDebug() << "Matched email 4:" << regex.cap(4);
         //qDebug() << "Matched email 5:" << regex.cap(5);
-        qDebug() << "Matched email 6:" << regex.cap(6);
+        //qDebug() << "Matched email 6:" << regex.cap(6);
         //qDebug() << "Matched email 7:" << regex.cap(7);
-        qDebug() << "Matched email 8:" << regex.cap(8);
+        //qDebug() << "Matched email 8:" << regex.cap(8);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
-        qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
+        //qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
         if ((regex.cap(4).toInt() >= 30 && regex.cap(4).toInt() <= 37) || (regex.cap(4).toInt() >= 100 && regex.cap(4).toInt() <= 107)) {
             //字体颜色
             auto it = fontColorMap.find(regex.cap(4).toInt());
@@ -222,8 +224,8 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    qDebug() << "head = " << head;
-    qDebug() << "commond = " << commond;
+    //qDebug() << "head = " << head;
+    //qDebug() << "commond = " << commond;
     qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
@@ -274,7 +276,7 @@ QString datahandle::processData(QString data)
     //处理默认属性
     stringToHtmlFilter4(data);
 
-    //qDebug() << "processData修改后数据：" << data;
+    qDebug() << "processData修改后数据：" << data;
 
     return data;
 }
