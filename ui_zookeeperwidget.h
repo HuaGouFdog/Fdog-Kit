@@ -406,10 +406,71 @@ public:
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         treeWidget->setFont(font4);
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-        treeWidget->setStyleSheet(QLatin1String("QTreeWidget ::branch { \n"
-"background-color: rgb(0, 255, 0);\n"
-"};"));
+        treeWidget->setStyleSheet(QString::fromUtf8("QTreeWidget::item{\n"
+"	border-bottom:1px solid rgb(255, 255, 255,100);\n"
+"	height: 22px; /*\350\256\276\347\275\256\346\257\217\344\270\252\350\212\202\347\202\271\347\232\204\351\253\230\345\272\246*/\n"
+"}\n"
+"\n"
+"QTreeWidget::item:selected {\n"
+"    background-color: rgb(11, 14, 17);\n"
+"	border: none; /*\345\216\273\351\231\244\350\276\271\346\241\206*/\n"
+"	padding: -1;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical{\n"
+"    width: 9px;\n"
+"	\n"
+"	background-color: rgb(67, 77, 88);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 9px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-col"
+                        "or: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
+        treeWidget->setAllColumnsShowFocus(false);
+        treeWidget->setWordWrap(false);
         treeWidget->header()->setVisible(false);
+        treeWidget->header()->setCascadingSectionResizes(false);
+        treeWidget->header()->setHighlightSections(false);
+        treeWidget->header()->setMinimumSectionSize(25);
+        treeWidget->header()->setProperty("showSortIndicator", QVariant(false));
 
         verticalLayout_2->addWidget(treeWidget);
 

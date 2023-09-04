@@ -9,6 +9,7 @@
 #ifndef UI_SSHWIDGET_H
 #define UI_SSHWIDGET_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -65,7 +66,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *widget_6;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *label_6;
+    QLabel *label_cpuUseRate;
     QWidget *widget_7;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_7;
@@ -76,7 +77,7 @@ public:
     QHBoxLayout *horizontalLayout_11;
     QWidget *widget_19;
     QHBoxLayout *horizontalLayout_12;
-    QLabel *label_18;
+    QLabel *label_memUseRate;
     QWidget *widget_20;
     QHBoxLayout *horizontalLayout_13;
     QLabel *label_19;
@@ -87,7 +88,7 @@ public:
     QHBoxLayout *horizontalLayout_8;
     QWidget *widget_15;
     QHBoxLayout *horizontalLayout_9;
-    QLabel *label_15;
+    QLabel *label_swapUseRate;
     QWidget *widget_16;
     QHBoxLayout *horizontalLayout_10;
     QLabel *label_16;
@@ -126,6 +127,12 @@ public:
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
     QWidget *tab;
+    QToolButton *toolButton_3;
+    QToolButton *toolButton_4;
+    QToolButton *toolButton_5;
+    QToolButton *toolButton_6;
+    QToolButton *toolButton_7;
+    QToolButton *toolButton_8;
     QWidget *tab_2;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
@@ -146,6 +153,7 @@ public:
         sshwidget->resize(1216, 612);
         sshwidget->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"
 "color: rgb(255, 255, 255);"));
+        sshwidget->setLocale(QLocale(QLocale::English, QLocale::Kenya));
         verticalLayout_5 = new QVBoxLayout(sshwidget);
         verticalLayout_5->setSpacing(0);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
@@ -335,13 +343,13 @@ public:
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget_6);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setMaximumSize(QSize(16777215, 16777215));
-        label_6->setFont(font1);
-        label_6->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        label_cpuUseRate = new QLabel(widget_6);
+        label_cpuUseRate->setObjectName(QStringLiteral("label_cpuUseRate"));
+        label_cpuUseRate->setMaximumSize(QSize(16777215, 16777215));
+        label_cpuUseRate->setFont(font1);
+        label_cpuUseRate->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
-        horizontalLayout_2->addWidget(label_6);
+        horizontalLayout_2->addWidget(label_cpuUseRate);
 
 
         horizontalLayout->addWidget(widget_6);
@@ -404,12 +412,12 @@ public:
         horizontalLayout_12->setSpacing(0);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
         horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
-        label_18 = new QLabel(widget_19);
-        label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setFont(font1);
-        label_18->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        label_memUseRate = new QLabel(widget_19);
+        label_memUseRate->setObjectName(QStringLiteral("label_memUseRate"));
+        label_memUseRate->setFont(font1);
+        label_memUseRate->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
-        horizontalLayout_12->addWidget(label_18);
+        horizontalLayout_12->addWidget(label_memUseRate);
 
 
         horizontalLayout_11->addWidget(widget_19);
@@ -457,7 +465,7 @@ public:
         widget_14 = new QWidget(widget_mem_info);
         widget_14->setObjectName(QStringLiteral("widget_14"));
         widget_14->setMinimumSize(QSize(125, 0));
-        widget_14->setMaximumSize(QSize(16777215, 12));
+        widget_14->setMaximumSize(QSize(125, 12));
         widget_14->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
         horizontalLayout_8 = new QHBoxLayout(widget_14);
         horizontalLayout_8->setSpacing(0);
@@ -471,12 +479,12 @@ public:
         horizontalLayout_9->setSpacing(0);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
-        label_15 = new QLabel(widget_15);
-        label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setFont(font1);
-        label_15->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        label_swapUseRate = new QLabel(widget_15);
+        label_swapUseRate->setObjectName(QStringLiteral("label_swapUseRate"));
+        label_swapUseRate->setFont(font1);
+        label_swapUseRate->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
 
-        horizontalLayout_9->addWidget(label_15);
+        horizontalLayout_9->addWidget(label_swapUseRate);
 
 
         horizontalLayout_8->addWidget(widget_15);
@@ -683,11 +691,62 @@ public:
         font3.setWeight(50);
         font3.setStyleStrategy(QFont::PreferAntialias);
         textEdit->setFont(font3);
-        textEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
-"font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
-"border: none;\n"
-"padding:5px;\n"
-""));
+        textEdit->setStyleSheet(QString::fromUtf8("QTextEdit{\n"
+"	background-color: rgb(0, 41, 69);\n"
+"	font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
+"	border: none;\n"
+"	padding-top:0px;\n"
+"    padding-bottom:0px;\n"
+"	padding-left:0px;\n"
+"    padding-right:0px;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    width: 9px;\n"
+"	background-color: rgb(0, 41, 69);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 9px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	"
+                        "border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
+        textEdit->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -702,7 +761,7 @@ public:
         pushButton->setGeometry(QRect(90, 380, 75, 23));
         plainTextEdit = new QPlainTextEdit(widget_4);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(20, 20, 251, 341));
+        plainTextEdit->setGeometry(QRect(20, 20, 231, 81));
         plainTextEdit->setMouseTracking(false);
         plainTextEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
 "font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
@@ -720,7 +779,7 @@ public:
         widget_3->setStyleSheet(QStringLiteral(""));
         verticalLayout_7 = new QVBoxLayout(widget_3);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 0, 9);
+        verticalLayout_7->setContentsMargins(0, 0, 10, 9);
         splitter_4 = new QSplitter(widget_3);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);
@@ -734,6 +793,22 @@ public:
         groupBox = new QGroupBox(widget_27);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setFont(font);
+        groupBox->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
         verticalLayout_4 = new QVBoxLayout(groupBox);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(3, 3, 3, 3);
@@ -744,8 +819,6 @@ public:
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
 "}\n"
-"	\n"
-"\n"
 "\n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
 "#tab_1.QWidget{\n"
@@ -763,11 +836,11 @@ public:
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 1px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234"
-                        "\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-left-radius: 1px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247"
+                        "\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 1px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "\n"
-"	padding: 2px;\n"
+"	padding: 1px;\n"
 "	margin-right:0px;\n"
 "	margin-left: 0px;\n"
 "}\n"
@@ -782,8 +855,8 @@ public:
 "	background-color: rgb(100, 117, 125, 125);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350"
-                        "\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346"
+                        "\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
 "    border: 2px solid rgb(108, 117, 125, 65);\n"
 "}\n"
@@ -809,6 +882,30 @@ public:
 "}"));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
+        toolButton_3 = new QToolButton(tab);
+        toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
+        toolButton_3->setGeometry(QRect(10, 10, 41, 21));
+        toolButton_3->setFont(font);
+        toolButton_4 = new QToolButton(tab);
+        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
+        toolButton_4->setGeometry(QRect(70, 10, 41, 21));
+        toolButton_4->setFont(font);
+        toolButton_5 = new QToolButton(tab);
+        toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
+        toolButton_5->setGeometry(QRect(130, 10, 41, 21));
+        toolButton_5->setFont(font);
+        toolButton_6 = new QToolButton(tab);
+        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
+        toolButton_6->setGeometry(QRect(190, 10, 41, 21));
+        toolButton_6->setFont(font);
+        toolButton_7 = new QToolButton(tab);
+        toolButton_7->setObjectName(QStringLiteral("toolButton_7"));
+        toolButton_7->setGeometry(QRect(310, 10, 41, 21));
+        toolButton_7->setFont(font);
+        toolButton_8 = new QToolButton(tab);
+        toolButton_8->setObjectName(QStringLiteral("toolButton_8"));
+        toolButton_8->setGeometry(QRect(250, 10, 41, 21));
+        toolButton_8->setFont(font);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -825,16 +922,19 @@ public:
         label = new QLabel(widget_8);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
-        label->setStyleSheet(QLatin1String("background-color: rgb(135, 255, 173);\n"
-"color: rgb(0, 0, 0);"));
+        label->setStyleSheet(QLatin1String("background-color: rgb(80, 130, 120);\n"
+"color: rgb(255, 255, 255);"));
+        label->setLineWidth(1);
+        label->setMargin(3);
+        label->setIndent(0);
 
         horizontalLayout_5->addWidget(label);
 
         label_2 = new QLabel(widget_8);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
-        label_2->setStyleSheet(QLatin1String("background-color: rgb(55, 255, 138);\n"
-"color: rgb(0, 0, 0);"));
+        label_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_2->setMargin(2);
 
         horizontalLayout_5->addWidget(label_2);
 
@@ -842,6 +942,22 @@ public:
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setMinimumSize(QSize(0, 0));
         toolButton_2->setFont(font);
+        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
 
         horizontalLayout_5->addWidget(toolButton_2);
 
@@ -865,6 +981,7 @@ public:
         groupBox_2 = new QGroupBox(widget_28);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         groupBox_2->setFont(font);
+        groupBox_2->setStyleSheet(QStringLiteral(""));
         verticalLayout_11 = new QVBoxLayout(groupBox_2);
         verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
         verticalLayout_11->setContentsMargins(3, 3, 3, 3);
@@ -912,13 +1029,13 @@ public:
         label_architecture->setText(QApplication::translate("sshwidget", "\347\241\254\344\273\266\346\236\266\346\236\204\357\274\232", nullptr));
         label_systemType->setText(QApplication::translate("sshwidget", "\347\263\273\347\273\237\347\261\273\345\236\213\357\274\232", nullptr));
         label_3->setText(QApplication::translate("sshwidget", "CPU", nullptr));
-        label_6->setText(QApplication::translate("sshwidget", " 29%", nullptr));
+        label_cpuUseRate->setText(QApplication::translate("sshwidget", " 29%", nullptr));
         label_7->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
         label_17->setText(QApplication::translate("sshwidget", "\344\272\244\346\215\242", nullptr));
-        label_18->setText(QApplication::translate("sshwidget", " 29%", nullptr));
+        label_memUseRate->setText(QApplication::translate("sshwidget", " 29%", nullptr));
         label_19->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
         label_14->setText(QApplication::translate("sshwidget", "\345\206\205\345\255\230", nullptr));
-        label_15->setText(QApplication::translate("sshwidget", " 29%", nullptr));
+        label_swapUseRate->setText(QApplication::translate("sshwidget", " 29%", nullptr));
         label_16->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("sshwidget", "\345\206\205\345\255\230", nullptr));
@@ -970,10 +1087,16 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
+        toolButton_3->setText(QApplication::translate("sshwidget", "\350\277\230\345\216\237", nullptr));
+        toolButton_4->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
+        toolButton_5->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
+        toolButton_6->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
+        toolButton_7->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
+        toolButton_8->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", "\351\273\230\350\256\244\345\210\206\347\261\273", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", "minic", nullptr));
-        label->setText(QApplication::translate("sshwidget", "midni32131232", nullptr));
-        label_2->setText(QApplication::translate("sshwidget", "midni32131232", nullptr));
+        label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
+        label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c /data/linkdood/im/bin/databack/ -t s -p /data/backup/ -l a -e /java", nullptr));
         toolButton_2->setText(QApplication::translate("sshwidget", "\347\274\226\350\276\221", nullptr));
         groupBox_2->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244\347\274\226\350\276\221\345\231\250", nullptr));
     } // retranslateUi

@@ -17,7 +17,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStri
 INCPATH       = -I. -I..\zookeeper\include -I..\libssh2.11.0\include -I..\..\Qt5.12\5.10.0\msvc2015_64\include -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtANGLE -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore -Irelease -I. -I\include -I..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:CONSOLE "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:E:\ProjectB\zookeeper\lib E:\ProjectB\zookeeper\lib\zookeeper.lib /LIBPATH:E:\ProjectB\libssh2.11.0\lib E:\ProjectB\libssh2.11.0\lib\libssh2.lib /LIBPATH:E:\Qt5.12\5.10.0\msvc2015_64\lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgets.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Gui.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Test.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Network.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:E:\ProjectB\zookeeper\lib E:\ProjectB\zookeeper\lib\zookeeper.lib /LIBPATH:E:\ProjectB\libssh2.11.0\lib E:\ProjectB\libssh2.11.0\lib\libssh2.lib user32.lib /LIBPATH:E:\Qt5.12\5.10.0\msvc2015_64\lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgets.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Gui.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Test.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Network.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Core.lib 
 QMAKE         = E:\Qt5.12\5.10.0\msvc2015_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
@@ -201,6 +201,7 @@ release\qrc_lib.cpp: lib.qrc \
 		lib\delete2.png \
 		lib\icon-copy.png \
 		lib\node2.png \
+		lib\fdog.png \
 		lib\soucuo.png \
 		lib\xml.png \
 		lib\icon4.png \
@@ -1254,6 +1255,7 @@ release\moc_sshhandle.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObjec
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrawfont.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		datahandle.h \
 		sshhandle.h \
 		release\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -1291,6 +1293,25 @@ release\moc_datahandle.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QStri
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpair.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject_impl.h \
 		datahandle.h \
 		release\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -1812,13 +1833,44 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
 		ui_mainwindow.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QFrame \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QColor \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QMouseEvent \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenuBar \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenubar.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenubar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QPropertyAnimation \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QScreen \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qscreen.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QSize \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QSizeF \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTransform \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QCoreApplication
 
 release\zookeeperwidget.obj: zookeeperwidget.cpp zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -1962,6 +2014,47 @@ release\zookeeperwidget.obj: zookeeperwidget.cpp zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
 		ui_zookeeperwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDateTime \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QString \
@@ -1985,8 +2078,6 @@ release\zookeeperwidget.obj: zookeeperwidget.cpp zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest\qbenchmarkmetric.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\quuid.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest\qtestsystem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdeadlinetimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qelapsedtimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QWindow \
@@ -2010,7 +2101,6 @@ release\zookeeperwidget.obj: zookeeperwidget.cpp zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork\QNetworkReply \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QIODevice \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork\QNetworkRequest \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork\qnetworkrequest.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl \
@@ -2035,10 +2125,6 @@ release\zookeeperwidget.obj: zookeeperwidget.cpp zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest\qtestkeyboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest\qtestspontaneevent.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpointer.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest\qtestmouse.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest\qtesttouch.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector3d.h \
@@ -2150,7 +2236,61 @@ release\createconnect.obj: createconnect.cpp createconnect.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_createconnect.h
+		ui_createconnect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
 
 release\zookeeperhandle.obj: zookeeperhandle.cpp zookeeperhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
@@ -2567,7 +2707,60 @@ release\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QKeyEvent \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
-		ui_sshwidget.h
+		ui_sshwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGroupBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgroupbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtablewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtableview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
 
 release\sshhandle.obj: sshhandle.cpp sshhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
@@ -2763,7 +2956,10 @@ release\sshhandle.obj: sshhandle.cpp sshhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qglyphrun.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrawfont.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		datahandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTextCodec \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextcodec.h
 
 release\datahandle.obj: datahandle.cpp datahandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QString \
@@ -2798,31 +2994,32 @@ release\datahandle.obj: datahandle.cpp datahandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringbuilder.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRegExp \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregexp.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdebug.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qalgorithms.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhash.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiterator.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhashfunctions.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpair.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearraylist.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregexp.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringmatcher.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmap.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextstream.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiodevice.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreevent.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qscopedpointer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmetatype.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRegExp \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhash.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiodevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlocale.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariant.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qshareddata.h \
@@ -2831,7 +3028,14 @@ release\datahandle.obj: datahandle.cpp datahandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qset.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMap \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QColor \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgba64.h
 
 release\qrc_lib.obj: release\qrc_lib.cpp 
 

@@ -22,10 +22,7 @@ struct ServerInfoStruct {
     QString systemName;    //操作系统名称
     QString loginCount;    //当前登录数
     QString cpuUseRate;    //cpu使用率
-    QString cpuFree;
-    QString cpuUse;
     QString memUseRate;    //内存使用率
-    QString memFree;
     QString memUse;
     QString swapUseRate;   //交换使用率
     QString swapFree;

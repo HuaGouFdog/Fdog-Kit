@@ -161,7 +161,6 @@ void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
 QString datahandle::processDataStatsAndColor(QString & head, QString & commond, QString data)
 {
     //解析数据\u001B[34;42mjenkins_home\u001B[0m
-    //       \u001B[01;32mconfig.json\u001B[0m
     QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
     int pos = 0;
 
@@ -185,23 +184,23 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         auto it1 = fontColorMap.find(regex.cap(3).toInt());
         if (it1 != fontColorMap.end()) {
             fontCrl = *it1;
-            qDebug() << "找到字体颜色1";
+            //qDebug() << "找到字体颜色1";
         }
         auto it2 = fontColorMap.find(regex.cap(4).toInt());
         if (it2 != fontColorMap.end()) {
             fontCrl = *it2;
-            qDebug() << "找到字体颜色2";
+            //qDebug() << "找到字体颜色2";
         }
 
         auto it3 = backColorMap.find(regex.cap(3).toInt());
         if (it3 != backColorMap.end()) {
             backCrl = *it3;
-            qDebug() << "找到背景颜色3";
+            //qDebug() << "找到背景颜色3";
         }
         auto it4 = backColorMap.find(regex.cap(4).toInt());
         if (it4 != backColorMap.end()) {
             backCrl = *it4;
-            qDebug() << "找到背景颜色4";
+            //qDebug() << "找到背景颜色4";
         }
 
         //设置颜色
@@ -210,86 +209,8 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         stringToHtml(cc, fontCrl, backCrl);
         //替换
         data.replace(match, cc);
-
-//        if ((regex.cap(4).toInt() >= 30 && regex.cap(4).toInt() <= 37) || (regex.cap(4).toInt() >= 90 && regex.cap(4).toInt() <= 97)) {
-//            //字体颜色
-//            auto it = fontColorMap.find(regex.cap(4).toInt());
-//            if (it != fontColorMap.end()) {
-//                //设置颜色
-//                QString cc = regex.cap(6) + regex.cap(8);
-//                stringToHtmlFilter(cc);
-//                stringToHtml(cc, *it);
-//                //替换
-//                data.replace(match, cc);
-//            }
-//        }
-//        if ((regex.cap(5).toInt() >= 40 && regex.cap(5).toInt() <= 47) || (regex.cap(5).toInt() >= 100 && regex.cap(5).toInt() <= 107)) {
-//            //背景色
-//            auto it = backColorMap.find(regex.cap(4).toInt());
-//            if (it != backColorMap.end()) {
-//                //设置颜色
-//                QString cc = regex.cap(6) + regex.cap(8);
-//                stringToHtmlFilter(cc);
-//                stringToHtml(cc, *it);
-//                //替换
-//                data.replace(match, cc);
-//            }
-//        }
         pos += regex.matchedLength();
     }
-
-    //1. 解析属性
-
-    //2. 解析前背景色
-
-    //3. 解析字体颜色
-
-//    QRegExp regExp3("(\\x001B)\\[0m");
-//    if (regExp3.indexIn(data)>=0) {
-//        //替换
-//        //qDebug() << "regExp3.cap(0)：" << regExp3.cap(0);
-//        //qDebug() << "regExp3.cap(1)：" << regExp3.cap(1);
-//        //qDebug() << "regExp3.cap(2)：" << regExp3.cap(2);
-//        data = data.replace(regExp3.cap(0), "");
-//    }
-
-//    QRegExp regExp4("(\\x001B)\\[\\d{2};\\d{2}m");
-//    if (regExp4.indexIn(data)>=0) {
-//        //替换
-//        //qDebug() << "regExp4.cap(0)：" << regExp4.cap(0);
-//        //qDebug() << "regExp4.cap(1)：" << regExp4.cap(1);
-//        //qDebug() << "regExp4.cap(2)：" << regExp4.cap(2);
-//        data = data.replace(regExp4.cap(0), "");
-//    }
-//    //\u001B[01;34mcore\u001B[0m
-//    QRegExp regExp5("(\\x001B)\\[\\d{2};\\d{2}m");
-//    if (regExp5.indexIn(data)>=0) {
-//        //替换
-//        //qDebug() << "regExp5.cap(0)：" << regExp5.cap(0);
-//        //qDebug() << "regExp5.cap(1)：" << regExp5.cap(1);
-//        //qDebug() << "regExp5.cap(2)：" << regExp5.cap(2);
-//        data = data.replace(regExp5.cap(0), "");
-//    }
-
-//    QRegExp regExp6("(\\x001B)\\[\\d{2};\\d{2}m");
-//    if (regExp6.indexIn(data)>=0) {
-//        //替换
-//        //qDebug() << "regExp6.cap(0)：" << regExp6.cap(0);
-//        //qDebug() << "regExp6.cap(1)：" << regExp6.cap(1);
-//        //qDebug() << "regExp6.cap(2)：" << regExp6.cap(2);
-//        data = data.replace(regExp6.cap(0), "");
-//    }
-
-
-//    QRegExp regExp3("(\\x001B)\\[01;34m(\\S+)(\\x001B)\\[0m");
-//    if (regExp3.indexIn(data)>=0) {
-//        //替换
-//        qDebug() << "regExp3.cap(0)：" << regExp3.cap(0);
-//        qDebug() << "regExp3.cap(1)：" << regExp3.cap(1);
-//        qDebug() << "regExp3.cap(2)：" << regExp3.cap(2);
-//        data = data.replace(regExp3.cap(0), regExp3.cap(2));
-//    }
-
     return data;
 }
 

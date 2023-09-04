@@ -31,5 +31,6 @@
         <file>lib/copy.png</file>
         <file>lib/daxiao.png</file>
         <file>lib/fdog.png</file>
+        <file>lib/setting.png</file>
     </qresource>
 </RCC>

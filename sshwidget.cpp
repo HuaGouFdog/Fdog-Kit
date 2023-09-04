@@ -9,6 +9,9 @@
 #include <QDebug>
 #include <QTest>
 #include <QTextBlock>
+#include <QInputMethod>
+#include <windows.h>
+#include <QTimer>
 QString a = "";
 
 //    // 关闭 SSH 连接
@@ -59,6 +62,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui->splitter_4->setStretchFactor(1,1);
 
     ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
+    //表格自适应
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
     setMouseTracking(true);
 //    ui->textEdit->insertHtml("<span style=\" color:#ff0505;\"> 扎根  </span>");
@@ -85,12 +90,12 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     thread = new QThread();
     m_sshhandle = new sshhandle();
 
-    thread2 = new QThread();
+    //thread2 = new QThread();
     m_sshhandle2 = new sshhandle();
-    m_sshhandle2->channel = m_sshhandle->channel;
+    //m_sshhandle2->channel = m_sshhandle->channel;
     // 将对象移动到线程中
     m_sshhandle->moveToThread(thread);
-    m_sshhandle2->moveToThread(thread2);
+    //m_sshhandle2->moveToThread(thread2);
 
     connect(m_sshhandle,SIGNAL(send_channel_read(QString)),this,
                             SLOT(rece_channel_read(QString)));
@@ -99,10 +104,21 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
                             SLOT(rece_getServerInfo(ServerInfoStruct)));
     thread->start();
-    thread2->start();
+    //thread2->start();
     int connrectType = 1;
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 
+
+    //const int m_timer_interval__ = 1000;
+    //QTimer* monitor_timer__ = nullptr;
+    //QThread* monitor_thread__ = nullptr;
+
+    //monitor_thread__ = new QThread(this);
+    //monitor_timer__ = new QTimer();
+    //connect(monitor_timer__, SIGNAL(timeout()), m_sshhandle, SLOT(getServerInfo()));
+    //monitor_timer__->start(m_timer_interval__);
+    //monitor_timer__->moveToThread(monitor_thread__);
+    //monitor_thread__->start();
 //    QString str(" < Hello Qt!>");
 //    QColor  clrR(255,255,255);
 //    stringToHtmlFilter(str);
@@ -389,6 +405,9 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
     ui->label_loginCount->setText(serverInfo.loginCount);
     ui->label_architecture->setText(serverInfo.architecture);
     ui->label_systemType->setText(serverInfo.systemType);
+    ui->label_cpuUseRate->setText(serverInfo.cpuUseRate);
+    ui->label_memUseRate->setText(serverInfo.memUseRate);
+    ui->label_swapUseRate->setText(serverInfo.swapUseRate);
 }
 
 void sshwidget::on_pushButton_clicked()

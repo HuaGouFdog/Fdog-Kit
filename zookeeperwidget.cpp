@@ -9,6 +9,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include <QTest>
+#include <QStyleFactory>
 zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::zookeeperwidget)
@@ -20,6 +21,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     ui->toolButton_saveData->hide();
     isUnfold =false;
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //ui->treeWidget->setStyle((QStyleFactory::create("windows")));
     init(cInfoStruct.host, cInfoStruct.port);
     setMouseTracking(true);
 }

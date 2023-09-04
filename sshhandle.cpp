@@ -3,6 +3,8 @@
 #include "sshhandle.h"
 #include <QObject>
 #include <QTextCodec>
+#include <QThread>
+#include <QTimer>
 sshhandle::sshhandle(QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<ServerInfoStruct>("ServerInfoStruct&");
@@ -106,7 +108,12 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     channel = libssh2_channel_open_session(session);
     // 请求分配伪终端
     const char* term = "xterm";
-    int ret = libssh2_channel_request_pty(channel, term);
+    int ret = libssh2_channel_request_pty_size(channel, 1000, 200);
+    if (ret != 0) {
+        qDebug() << "出错" << ret;
+        // 请求伪终端失败，处理错误
+    }
+    ret = libssh2_channel_request_pty(channel, term);
     if (ret != 0) {
         qDebug() << "出错" << ret;
         // 请求伪终端失败，处理错误
@@ -115,6 +122,11 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     libssh2_channel_shell(channel);
     emit send_init();
     qDebug() << "初始化完成";
+
+//	connect(monitor_thread__, SIGNAL(started()), monitor_timer__, SLOT(start()));
+//	connect(monitor_thread__, SIGNAL(finished()), monitor_timer__, SLOT(stop()));
+
+
     getServerInfo();
     return;
 }
@@ -181,6 +193,7 @@ void sshhandle::channel_read(QString command)
 
 void sshhandle::getServerInfo()
 {
+    qDebug() << "getServerInfo";
     ServerInfoStruct serverInfo;
     QString commond;
     QString data;
@@ -214,6 +227,33 @@ void sshhandle::getServerInfo()
     QStringList dataList7 = commondExec(commond).split("\n");
     qDebug() << " 3 = " << dataList7[0];
     serverInfo.loginCount = "终端连接：" + dataList7[0];
+
+    commond = "top -n 1 -b | head -n 20";
+    QStringList dataList8 = commondExec(commond).split("\n");
+    QStringList dataList8_cpu = dataList8[2].split(" ");
+    QStringList dataList8_mem = dataList8[3].split(" ");
+    QStringList dataList8_swap = dataList8[4].split(" ");
+
+    qDebug() << " cpu = " << dataList8_cpu[1] + dataList8_cpu[3] << " dataList8_swap = " << dataList8_cpu;
+    qDebug() << " mem = " << dataList8_mem[4] + dataList8_mem[5]<< " dataList8_mem = " << dataList8_mem;
+    qDebug() << " swap = " << dataList8_swap[3] + dataList8_swap[5]<< " dataList8_swap = " << dataList8_swap;
+
+    double cpuUseRate_ = dataList8_cpu[1].toDouble() + dataList8_cpu[3].toDouble();
+    serverInfo.cpuUseRate = QString::number(int(cpuUseRate_)) + "%";
+
+    double memFree_ = dataList8_mem[8].toDouble() + dataList8_mem[14].toDouble();
+    double memUse_ =dataList8_mem[4].toDouble() - memFree_;
+    serverInfo.memUseRate = QString::number(int(memUse_/dataList8_mem[4].toDouble()*100)) + "%";
+
+    double swapFree_ = dataList8_swap[6].toDouble();
+    double swapUse_ = dataList8_swap[3].toDouble() - swapFree_;
+    serverInfo.swapUseRate = QString::number(int(swapUse_/dataList8_swap[3].toDouble()*100)) + "%";
+    qDebug() << memFree_  << " " << memUse_;
+    qDebug() << dataList8_mem[4].toDouble();
+    qDebug() << "cpuUseRate" << serverInfo.cpuUseRate;
+    qDebug() << "memUseRate" << serverInfo.memUseRate;
+    qDebug() << "swapUseRate" << serverInfo.swapUseRate;
+
     emit send_getServerInfo(serverInfo);
     return;
 }
@@ -223,7 +263,7 @@ QString sshhandle::commondExec(QString commond)
     channel2 = libssh2_channel_open_session(session);
     int rc = libssh2_channel_exec(channel2, commond.toStdString().c_str());
     if (rc != 0) {
-        qDebug() << "libssh2_channel_exec faild";
+        qDebug() << "libssh2_channel_exec faild commond =" << commond;
         return "";
     }
 

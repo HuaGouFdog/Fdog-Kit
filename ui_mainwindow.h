@@ -9,6 +9,7 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -85,7 +86,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1049, 687);
+        MainWindow->resize(1144, 707);
         MainWindow->setMinimumSize(QSize(0, 0));
         QFont font;
         font.setFamily(QStringLiteral("Cascadia Mono"));
@@ -100,6 +101,7 @@ public:
 "background-color: rgb(67, 77, 88);\n"
 "border-radius:6px;\n"
 "}"));
+        MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"

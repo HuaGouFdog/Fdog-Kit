@@ -62,3 +62,5 @@ win32: LIBS += -L$$PWD/../libssh2.11.0/lib/ -llibssh2
 
 INCLUDEPATH += $$PWD/../libssh2.11.0/include
 DEPENDPATH += $$PWD/../libssh2.11.0/include
+
+LIBS += -luser32

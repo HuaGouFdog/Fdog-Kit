@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1049</width>
-    <height>687</height>
+    <width>1144</width>
+    <height>707</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -38,6 +38,9 @@
 background-color: rgb(67, 77, 88);
 border-radius:6px;
 }</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="styleSheet">
