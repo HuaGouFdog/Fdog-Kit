@@ -1484,39 +1484,79 @@ p, li { white-space: pre-wrap; }
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <widget class="QPushButton" name="pushButton">
-               <property name="geometry">
-                <rect>
-                 <x>90</x>
-                 <y>380</y>
-                 <width>75</width>
-                 <height>23</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>PushButton</string>
-               </property>
-              </widget>
-              <widget class="QPlainTextEdit" name="plainTextEdit">
-               <property name="geometry">
-                <rect>
-                 <x>20</x>
-                 <y>20</y>
-                 <width>231</width>
-                 <height>81</height>
-                </rect>
-               </property>
-               <property name="mouseTracking">
-                <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 41, 69);
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QToolBox" name="toolBox">
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="currentIndex">
+                  <number>3</number>
+                 </property>
+                 <widget class="QWidget" name="page">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>274</width>
+                    <height>69</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>正则表达式</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_2">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>274</width>
+                    <height>69</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>正则表达式2</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_3">
+                  <attribute name="label">
+                   <string>正则表达式3</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_4">
+                  <attribute name="label">
+                   <string>正则表达式4</string>
+                  </attribute>
+                 </widget>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPlainTextEdit" name="plainTextEdit">
+                 <property name="mouseTracking">
+                  <bool>false</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(0, 41, 69);
 font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 border: none;
 padding:5px;
 </string>
-               </property>
-              </widget>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>PushButton</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
@@ -1720,7 +1760,7 @@ QTabBar QToolButton:hover {
                      <widget class="QToolButton" name="toolButton_4">
                       <property name="geometry">
                        <rect>
-                        <x>70</x>
+                        <x>50</x>
                         <y>10</y>
                         <width>41</width>
                         <height>21</height>
@@ -1740,7 +1780,7 @@ QTabBar QToolButton:hover {
                      <widget class="QToolButton" name="toolButton_5">
                       <property name="geometry">
                        <rect>
-                        <x>130</x>
+                        <x>90</x>
                         <y>10</y>
                         <width>41</width>
                         <height>21</height>
@@ -1760,7 +1800,7 @@ QTabBar QToolButton:hover {
                      <widget class="QToolButton" name="toolButton_6">
                       <property name="geometry">
                        <rect>
-                        <x>190</x>
+                        <x>130</x>
                         <y>10</y>
                         <width>41</width>
                         <height>21</height>
@@ -1780,9 +1820,9 @@ QTabBar QToolButton:hover {
                      <widget class="QToolButton" name="toolButton_7">
                       <property name="geometry">
                        <rect>
-                        <x>310</x>
+                        <x>200</x>
                         <y>10</y>
-                        <width>41</width>
+                        <width>61</width>
                         <height>21</height>
                        </rect>
                       </property>
@@ -1796,11 +1836,27 @@ QTabBar QToolButton:hover {
                       <property name="text">
                        <string>抓包</string>
                       </property>
+                      <property name="icon">
+                       <iconset resource="lib.qrc">
+                        <normaloff>:/lib/setting.png</normaloff>:/lib/setting.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>16</width>
+                        <height>16</height>
+                       </size>
+                      </property>
+                      <property name="popupMode">
+                       <enum>QToolButton::DelayedPopup</enum>
+                      </property>
+                      <property name="toolButtonStyle">
+                       <enum>Qt::ToolButtonTextBesideIcon</enum>
+                      </property>
                      </widget>
                      <widget class="QToolButton" name="toolButton_8">
                       <property name="geometry">
                        <rect>
-                        <x>250</x>
+                        <x>170</x>
                         <y>10</y>
                         <width>41</width>
                         <height>21</height>
@@ -2029,6 +2085,8 @@ border: 2px solid rgba(255, 255, 255, 0);</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="lib.qrc"/>
+ </resources>
  <connections/>
 </ui>

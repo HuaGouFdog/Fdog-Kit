@@ -26,6 +26,7 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QToolBox>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -116,8 +117,14 @@ public:
     QVBoxLayout *verticalLayout_8;
     QTextEdit *textEdit;
     QWidget *widget_4;
-    QPushButton *pushButton;
+    QVBoxLayout *verticalLayout_12;
+    QToolBox *toolBox;
+    QWidget *page;
+    QWidget *page_2;
+    QWidget *page_3;
+    QWidget *page_4;
     QPlainTextEdit *plainTextEdit;
+    QPushButton *pushButton;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
     QSplitter *splitter_4;
@@ -756,18 +763,44 @@ public:
         widget_4 = new QWidget(splitter_3);
         widget_4->setObjectName(QStringLiteral("widget_4"));
         widget_4->setStyleSheet(QStringLiteral(""));
-        pushButton = new QPushButton(widget_4);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(90, 380, 75, 23));
+        verticalLayout_12 = new QVBoxLayout(widget_4);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        toolBox = new QToolBox(widget_4);
+        toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setFont(font);
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        page->setGeometry(QRect(0, 0, 274, 69));
+        toolBox->addItem(page, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\217"));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        page_2->setGeometry(QRect(0, 0, 274, 69));
+        toolBox->addItem(page_2, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2172"));
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        toolBox->addItem(page_3, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2173"));
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        toolBox->addItem(page_4, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2174"));
+
+        verticalLayout_12->addWidget(toolBox);
+
         plainTextEdit = new QPlainTextEdit(widget_4);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(20, 20, 231, 81));
         plainTextEdit->setMouseTracking(false);
         plainTextEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
 "font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
 "border: none;\n"
 "padding:5px;\n"
 ""));
+
+        verticalLayout_12->addWidget(plainTextEdit);
+
+        pushButton = new QPushButton(widget_4);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        verticalLayout_12->addWidget(pushButton);
+
         splitter_3->addWidget(widget_4);
 
         horizontalLayout_19->addWidget(splitter_3);
@@ -888,23 +921,29 @@ public:
         toolButton_3->setFont(font);
         toolButton_4 = new QToolButton(tab);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
-        toolButton_4->setGeometry(QRect(70, 10, 41, 21));
+        toolButton_4->setGeometry(QRect(50, 10, 41, 21));
         toolButton_4->setFont(font);
         toolButton_5 = new QToolButton(tab);
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
-        toolButton_5->setGeometry(QRect(130, 10, 41, 21));
+        toolButton_5->setGeometry(QRect(90, 10, 41, 21));
         toolButton_5->setFont(font);
         toolButton_6 = new QToolButton(tab);
         toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
-        toolButton_6->setGeometry(QRect(190, 10, 41, 21));
+        toolButton_6->setGeometry(QRect(130, 10, 41, 21));
         toolButton_6->setFont(font);
         toolButton_7 = new QToolButton(tab);
         toolButton_7->setObjectName(QStringLiteral("toolButton_7"));
-        toolButton_7->setGeometry(QRect(310, 10, 41, 21));
+        toolButton_7->setGeometry(QRect(200, 10, 61, 21));
         toolButton_7->setFont(font);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/setting.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_7->setIcon(icon);
+        toolButton_7->setIconSize(QSize(16, 16));
+        toolButton_7->setPopupMode(QToolButton::DelayedPopup);
+        toolButton_7->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         toolButton_8 = new QToolButton(tab);
         toolButton_8->setObjectName(QStringLiteral("toolButton_8"));
-        toolButton_8->setGeometry(QRect(250, 10, 41, 21));
+        toolButton_8->setGeometry(QRect(170, 10, 41, 21));
         toolButton_8->setFont(font);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
@@ -1011,6 +1050,7 @@ public:
 
         retranslateUi(sshwidget);
 
+        toolBox->setCurrentIndex(3);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1085,6 +1125,10 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\217", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2172", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2173", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2174", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         toolButton_3->setText(QApplication::translate("sshwidget", "\350\277\230\345\216\237", nullptr));

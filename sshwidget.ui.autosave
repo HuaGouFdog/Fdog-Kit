@@ -1484,39 +1484,79 @@ p, li { white-space: pre-wrap; }
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <widget class="QPushButton" name="pushButton">
-               <property name="geometry">
-                <rect>
-                 <x>90</x>
-                 <y>380</y>
-                 <width>75</width>
-                 <height>23</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>PushButton</string>
-               </property>
-              </widget>
-              <widget class="QPlainTextEdit" name="plainTextEdit">
-               <property name="geometry">
-                <rect>
-                 <x>20</x>
-                 <y>20</y>
-                 <width>231</width>
-                 <height>81</height>
-                </rect>
-               </property>
-               <property name="mouseTracking">
-                <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 41, 69);
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QToolBox" name="toolBox">
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="currentIndex">
+                  <number>3</number>
+                 </property>
+                 <widget class="QWidget" name="page">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>274</width>
+                    <height>69</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>正则表达式</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_2">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>274</width>
+                    <height>69</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>正则表达式2</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_3">
+                  <attribute name="label">
+                   <string>正则表达式3</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_4">
+                  <attribute name="label">
+                   <string>正则表达式4</string>
+                  </attribute>
+                 </widget>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPlainTextEdit" name="plainTextEdit">
+                 <property name="mouseTracking">
+                  <bool>false</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(0, 41, 69);
 font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 border: none;
 padding:5px;
 </string>
-               </property>
-              </widget>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>PushButton</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
