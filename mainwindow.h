@@ -5,6 +5,7 @@
 #include "zookeeperwidget.h"
 #include "createconnect.h"
 #include "sshwidget.h"
+#include "toolswidget.h"
 #include <QGraphicsDropShadowEffect>
 #include <QVector>
 #include <QRect>
@@ -64,6 +65,8 @@ private slots:
 
     void on_newCreate();
 
+    void on_newTool();
+
     void on_newConnnect(connnectInfoStruct& cInfoStruct);
     void on_newClose();
 
@@ -88,17 +91,25 @@ private:
     bool showFlag = false; //窗口显示标志位 默认false 正常显示
     bool isPressedWidget;
 
-    QMenu * men;    //菜单栏
+    QMenu * men;    //新建菜单栏
     QAction * ssh;  //ssh连接
     QAction * zk;   //zk连接
     QAction * kafka; //kafka连接
     QAction * redis; //redis连接
     QAction * db;    //database连接
+
+    QMenu * men_tool;    //工具菜单栏
+    QAction * timestamp; //时间戳
+    QAction * scale;     //进制
+    QAction * url;       //url
+
+
     WindowStretchRectState m_stretchRectState;
     bool m_isMousePressed;
     QRect m_windowRectBeforeStretch;
     bool m_isSupportStretch;
     createconnect *ccwidget =nullptr; //创建连接窗口
+    toolswidget * tswidget = nullptr; //创建工具窗口
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;
 };

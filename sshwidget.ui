@@ -1329,6 +1329,9 @@ QToolButton:hover {
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+         <property name="handleWidth">
+          <number>0</number>
+         </property>
          <widget class="QWidget" name="widget_29" native="true">
           <property name="minimumSize">
            <size>
@@ -1359,6 +1362,9 @@ QToolButton:hover {
             <widget class="QSplitter" name="splitter_3">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="handleWidth">
+              <number>0</number>
              </property>
              <widget class="QWidget" name="widget_2" native="true">
               <property name="styleSheet">
@@ -1478,6 +1484,171 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QWidget" name="horizontalWidget" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_12">
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>上传</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_11">
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>查找</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_9">
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>历史</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_10">
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>工具集</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
              <widget class="QWidget" name="widget_4" native="true">
@@ -1485,70 +1656,6 @@ p, li { white-space: pre-wrap; }
                <string notr="true"/>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
-               <item>
-                <widget class="QToolBox" name="toolBox">
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="currentIndex">
-                  <number>3</number>
-                 </property>
-                 <widget class="QWidget" name="page">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>274</width>
-                    <height>69</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>正则表达式</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>274</width>
-                    <height>69</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>正则表达式2</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_3">
-                  <attribute name="label">
-                   <string>正则表达式3</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_4">
-                  <attribute name="label">
-                   <string>正则表达式4</string>
-                  </attribute>
-                 </widget>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPlainTextEdit" name="plainTextEdit">
-                 <property name="mouseTracking">
-                  <bool>false</bool>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(0, 41, 69);
-font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
-border: none;
-padding:5px;
-</string>
-                 </property>
-                </widget>
-               </item>
                <item>
                 <widget class="QPushButton" name="pushButton">
                  <property name="text">
@@ -1580,7 +1687,7 @@ padding:5px;
             <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>10</number>
+            <number>5</number>
            </property>
            <property name="bottomMargin">
             <number>9</number>
@@ -1589,6 +1696,9 @@ padding:5px;
             <widget class="QSplitter" name="splitter_4">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="handleWidth">
+              <number>5</number>
              </property>
              <widget class="QWidget" name="widget_27" native="true">
               <property name="minimumSize">

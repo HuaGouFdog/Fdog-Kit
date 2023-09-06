@@ -19,14 +19,12 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QToolBox>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -116,14 +114,15 @@ public:
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_8;
     QTextEdit *textEdit;
+    QWidget *horizontalWidget;
+    QHBoxLayout *horizontalLayout_6;
+    QSpacerItem *horizontalSpacer_2;
+    QToolButton *toolButton_12;
+    QToolButton *toolButton_11;
+    QToolButton *toolButton_9;
+    QToolButton *toolButton_10;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_12;
-    QToolBox *toolBox;
-    QWidget *page;
-    QWidget *page_2;
-    QWidget *page_3;
-    QWidget *page_4;
-    QPlainTextEdit *plainTextEdit;
     QPushButton *pushButton;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
@@ -664,6 +663,7 @@ public:
         splitter_2 = new QSplitter(widget_26);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Vertical);
+        splitter_2->setHandleWidth(0);
         widget_29 = new QWidget(splitter_2);
         widget_29->setObjectName(QStringLiteral("widget_29"));
         widget_29->setMinimumSize(QSize(0, 414));
@@ -675,6 +675,7 @@ public:
         splitter_3 = new QSplitter(widget_29);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
+        splitter_3->setHandleWidth(0);
         widget_2 = new QWidget(splitter_3);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setStyleSheet(QStringLiteral(""));
@@ -759,43 +760,113 @@ public:
 
         verticalLayout_8->addWidget(textEdit);
 
+        horizontalWidget = new QWidget(widget_2);
+        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
+        horizontalWidget->setMinimumSize(QSize(0, 30));
+        horizontalLayout_6 = new QHBoxLayout(horizontalWidget);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_2);
+
+        toolButton_12 = new QToolButton(horizontalWidget);
+        toolButton_12->setObjectName(QStringLiteral("toolButton_12"));
+        toolButton_12->setFont(font);
+        toolButton_12->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+
+        horizontalLayout_6->addWidget(toolButton_12);
+
+        toolButton_11 = new QToolButton(horizontalWidget);
+        toolButton_11->setObjectName(QStringLiteral("toolButton_11"));
+        toolButton_11->setFont(font);
+        toolButton_11->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+
+        horizontalLayout_6->addWidget(toolButton_11);
+
+        toolButton_9 = new QToolButton(horizontalWidget);
+        toolButton_9->setObjectName(QStringLiteral("toolButton_9"));
+        toolButton_9->setFont(font);
+        toolButton_9->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+
+        horizontalLayout_6->addWidget(toolButton_9);
+
+        toolButton_10 = new QToolButton(horizontalWidget);
+        toolButton_10->setObjectName(QStringLiteral("toolButton_10"));
+        toolButton_10->setFont(font);
+        toolButton_10->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+
+        horizontalLayout_6->addWidget(toolButton_10);
+
+
+        verticalLayout_8->addWidget(horizontalWidget);
+
         splitter_3->addWidget(widget_2);
         widget_4 = new QWidget(splitter_3);
         widget_4->setObjectName(QStringLiteral("widget_4"));
         widget_4->setStyleSheet(QStringLiteral(""));
         verticalLayout_12 = new QVBoxLayout(widget_4);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        toolBox = new QToolBox(widget_4);
-        toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setFont(font);
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 274, 69));
-        toolBox->addItem(page, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\217"));
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 274, 69));
-        toolBox->addItem(page_2, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2172"));
-        page_3 = new QWidget();
-        page_3->setObjectName(QStringLiteral("page_3"));
-        toolBox->addItem(page_3, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2173"));
-        page_4 = new QWidget();
-        page_4->setObjectName(QStringLiteral("page_4"));
-        toolBox->addItem(page_4, QString::fromUtf8("\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2174"));
-
-        verticalLayout_12->addWidget(toolBox);
-
-        plainTextEdit = new QPlainTextEdit(widget_4);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setMouseTracking(false);
-        plainTextEdit->setStyleSheet(QLatin1String("background-color: rgb(0, 41, 69);\n"
-"font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
-"border: none;\n"
-"padding:5px;\n"
-""));
-
-        verticalLayout_12->addWidget(plainTextEdit);
-
         pushButton = new QPushButton(widget_4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
@@ -812,10 +883,11 @@ public:
         widget_3->setStyleSheet(QStringLiteral(""));
         verticalLayout_7 = new QVBoxLayout(widget_3);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 10, 9);
+        verticalLayout_7->setContentsMargins(0, 0, 5, 9);
         splitter_4 = new QSplitter(widget_3);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);
+        splitter_4->setHandleWidth(5);
         widget_27 = new QWidget(splitter_4);
         widget_27->setObjectName(QStringLiteral("widget_27"));
         widget_27->setMinimumSize(QSize(9, 11));
@@ -1050,7 +1122,6 @@ public:
 
         retranslateUi(sshwidget);
 
-        toolBox->setCurrentIndex(3);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1125,10 +1196,10 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\217", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2172", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2173", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("sshwidget", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\2174", nullptr));
+        toolButton_12->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
+        toolButton_11->setText(QApplication::translate("sshwidget", "\346\237\245\346\211\276", nullptr));
+        toolButton_9->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
+        toolButton_10->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         toolButton_3->setText(QApplication::translate("sshwidget", "\350\277\230\345\216\237", nullptr));

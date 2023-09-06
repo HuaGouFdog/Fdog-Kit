@@ -61,6 +61,22 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(kafka, SIGNAL(triggered()), this, SLOT(on_newCreate()));
     connect(redis, SIGNAL(triggered()), this, SLOT(on_newCreate()));
     connect(db, SIGNAL(triggered()), this, SLOT(on_newCreate()));
+
+
+    men_tool = new QMenu();
+    men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
+                       "QMenu::item:selected {background-color: #0B0E11;}");
+    timestamp = new QAction(QIcon(":lib/powershell.png"), "时间戳转换");
+    men_tool->addAction(timestamp);
+    scale = new QAction(QIcon(":lib/powershell.png"), "进制转换");
+    men_tool->addAction(scale);
+    url = new QAction(QIcon(":lib/powershell.png"), "URL解码");
+    men_tool->addAction(url);
+    ui->toolButton_tool->setMenu(men_tool);
+    connect(timestamp, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(scale, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(url, SIGNAL(triggered()), this, SLOT(on_newTool()));
+
 }
 
 MainWindow::~MainWindow()
@@ -416,13 +432,41 @@ void MainWindow::on_newCreate()
         //创建连接窗口
         ccwidget = new createconnect(connectType);
         connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        connect(ccwidget,SIGNAL(newClose()),this,SLOT(on_newClose()));
         ccwidget->show();
     } else {
         //不创建
         ccwidget->setFocus();
     }
 
+}
+
+void MainWindow::on_newTool()
+{
+    if (ccwidget == nullptr) {
+        //获取发送者
+        QString actionText = qobject_cast<QAction*>(sender())->text();
+        int8_t connectType = 0;
+        if (actionText == "时间戳转换") {
+            //connectType =SSH_CONNECT_TYPE;
+        } else if (actionText == "进制转换") {
+            //connectType =ZK_CONNECT_TYPE;
+        } else if (actionText == "URL解码") {
+            //connectType =REDIS_CONNECT_TYPE;
+        }
+
+        //创建连接窗口
+        tswidget = new toolswidget();
+        //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+        QSize iconSize(16, 16); // 设置图标的大小
+        //sshWidgetList.push_back(tswidget);
+        ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), "工具");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        //sshWidgetList.push_back(tswidget);
+        tswidget->show();
+    } else {
+        //不创建
+        tswidget->setFocus();
+    }
 }
 
 void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
