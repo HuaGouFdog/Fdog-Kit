@@ -32,7 +32,8 @@ SOURCES += \
     sshwidget.cpp \
     sshhandle.cpp \
     datahandle.cpp \
-    toolswidget.cpp
+    toolswidget.cpp \
+    toolshandle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     sshwidget.h \
     sshhandle.h \
     datahandle.h \
-    toolswidget.h
+    toolswidget.h \
+    toolshandle.h
 
 FORMS += \
         mainwindow.ui \

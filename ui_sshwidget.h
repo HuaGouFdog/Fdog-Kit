@@ -19,6 +19,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
@@ -117,10 +118,12 @@ public:
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_2;
+    QLineEdit *lineEdit;
     QToolButton *toolButton_12;
     QToolButton *toolButton_11;
     QToolButton *toolButton_9;
     QToolButton *toolButton_10;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_12;
     QPushButton *pushButton;
@@ -763,12 +766,18 @@ public:
         horizontalWidget = new QWidget(widget_2);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
         horizontalWidget->setMinimumSize(QSize(0, 30));
+        horizontalWidget->setStyleSheet(QStringLiteral("background-color: rgb(0, 41, 69);"));
         horizontalLayout_6 = new QHBoxLayout(horizontalWidget);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_2);
+
+        lineEdit = new QLineEdit(horizontalWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+
+        horizontalLayout_6->addWidget(lineEdit);
 
         toolButton_12 = new QToolButton(horizontalWidget);
         toolButton_12->setObjectName(QStringLiteral("toolButton_12"));
@@ -857,6 +866,10 @@ public:
 "}"));
 
         horizontalLayout_6->addWidget(toolButton_10);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_3);
 
 
         verticalLayout_8->addWidget(horizontalWidget);
