@@ -25,6 +25,7 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
@@ -114,7 +115,9 @@ public:
     QSplitter *splitter_3;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_8;
+    QWidget *widget_10;
     QTextEdit *textEdit;
+    QTextEdit *textEdit_6;
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_2;
@@ -126,6 +129,14 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_12;
+    QTextEdit *textEdit_3;
+    QTextBrowser *textBrowser;
+    QVBoxLayout *verticalLayout_13;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QWidget *widget_9;
+    QTextEdit *textEdit_4;
+    QTextEdit *textEdit_5;
     QPushButton *pushButton;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
@@ -159,7 +170,7 @@ public:
     {
         if (sshwidget->objectName().isEmpty())
             sshwidget->setObjectName(QStringLiteral("sshwidget"));
-        sshwidget->resize(1216, 612);
+        sshwidget->resize(1391, 699);
         sshwidget->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"
 "color: rgb(255, 255, 255);"));
         sshwidget->setLocale(QLocale(QLocale::English, QLocale::Kenya));
@@ -683,11 +694,13 @@ public:
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setStyleSheet(QStringLiteral(""));
         verticalLayout_8 = new QVBoxLayout(widget_2);
-        verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
-        textEdit = new QTextEdit(widget_2);
+        widget_10 = new QWidget(widget_2);
+        widget_10->setObjectName(QStringLiteral("widget_10"));
+        textEdit = new QTextEdit(widget_10);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setEnabled(true);
+        textEdit->setGeometry(QRect(9, 10, 350, 300));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -759,9 +772,75 @@ public:
 "}"));
         textEdit->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         textEdit->setReadOnly(false);
-        textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        textEdit->setTextInteractionFlags(Qt::TextEditable|Qt::TextSelectableByKeyboard);
+        textEdit_6 = new QTextEdit(widget_10);
+        textEdit_6->setObjectName(QStringLiteral("textEdit_6"));
+        textEdit_6->setEnabled(true);
+        textEdit_6->setGeometry(QRect(370, 10, 350, 300));
+        sizePolicy.setHeightForWidth(textEdit_6->sizePolicy().hasHeightForWidth());
+        textEdit_6->setSizePolicy(sizePolicy);
+        textEdit_6->setMaximumSize(QSize(16777215, 5555555));
+        textEdit_6->setFont(font3);
+        textEdit_6->setStyleSheet(QString::fromUtf8("QTextEdit{\n"
+"	background-color: rgb(0, 41, 169, 0);\n"
+"	font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
+"	border: none;\n"
+"	padding-top:0px;\n"
+"    padding-bottom:0px;\n"
+"	padding-left:0px;\n"
+"    padding-right:0px;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    width: 9px;\n"
+"	background-color: rgb(0, 41, 69);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 9px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+""
+                        "	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
+        textEdit_6->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        textEdit_6->setReadOnly(true);
+        textEdit_6->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
-        verticalLayout_8->addWidget(textEdit);
+        verticalLayout_8->addWidget(widget_10);
 
         horizontalWidget = new QWidget(widget_2);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
@@ -770,7 +849,7 @@ public:
         horizontalLayout_6 = new QHBoxLayout(horizontalWidget);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_2);
 
@@ -874,12 +953,57 @@ public:
 
         verticalLayout_8->addWidget(horizontalWidget);
 
+        verticalLayout_8->setStretch(0, 5);
+        verticalLayout_8->setStretch(1, 1);
         splitter_3->addWidget(widget_2);
         widget_4 = new QWidget(splitter_3);
         widget_4->setObjectName(QStringLiteral("widget_4"));
         widget_4->setStyleSheet(QStringLiteral(""));
         verticalLayout_12 = new QVBoxLayout(widget_4);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        textEdit_3 = new QTextEdit(widget_4);
+        textEdit_3->setObjectName(QStringLiteral("textEdit_3"));
+        textEdit_3->setMaximumSize(QSize(16777215, 20));
+
+        verticalLayout_12->addWidget(textEdit_3);
+
+        textBrowser = new QTextBrowser(widget_4);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textBrowser->setMaximumSize(QSize(16777215, 20));
+
+        verticalLayout_12->addWidget(textBrowser);
+
+        verticalLayout_13 = new QVBoxLayout();
+        verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
+        pushButton_2 = new QPushButton(widget_4);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        verticalLayout_13->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(widget_4);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+
+        verticalLayout_13->addWidget(pushButton_3);
+
+
+        verticalLayout_12->addLayout(verticalLayout_13);
+
+        widget_9 = new QWidget(widget_4);
+        widget_9->setObjectName(QStringLiteral("widget_9"));
+        widget_9->setMinimumSize(QSize(0, 163));
+        widget_9->setStyleSheet(QStringLiteral("background-color: rgb(0, 170, 127);"));
+        textEdit_4 = new QTextEdit(widget_9);
+        textEdit_4->setObjectName(QStringLiteral("textEdit_4"));
+        textEdit_4->setGeometry(QRect(20, 10, 350, 141));
+        textEdit_4->setReadOnly(false);
+        textEdit_5 = new QTextEdit(widget_9);
+        textEdit_5->setObjectName(QStringLiteral("textEdit_5"));
+        textEdit_5->setGeometry(QRect(20, 10, 350, 121));
+        textEdit_5->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        textEdit_5->setReadOnly(true);
+
+        verticalLayout_12->addWidget(widget_9);
+
         pushButton = new QPushButton(widget_4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
@@ -1209,10 +1333,55 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+        textEdit_6->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         toolButton_12->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
         toolButton_11->setText(QApplication::translate("sshwidget", "\346\237\245\346\211\276", nullptr));
         toolButton_9->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
         toolButton_10->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
+        textEdit_3->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">p, li { white-space: pre-wrap; }</p>\n"
+"<p style=\" margin-top:0"
+                        "px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;dasdadfsdafddffs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
+                        "ent:0; text-indent:0px;\">p, li { white-space: pre-wrap; }</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;dasdadfsdafddffs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;</p>\n"
+"<p s"
+                        "tyle=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">p, li { white-space: pre-wrap; }</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;dasdadfsdafddffs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</p></body></html>", nullptr));
+        pushButton_2->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
+        pushButton_3->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
+        textEdit_4->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212"
+                        "\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344"
+                        "\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200"
+                        "\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234"
+                        "\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202</p></body></html>", nullptr));
+        textEdit_5->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212"
+                        "\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344"
+                        "\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200"
+                        "\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234"
+                        "\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202\350\277\231\346\230\257\344\270\200\346\256\265\345\217\257\351\200\211\344\270\255\344\275\206\346\227\240\351\234\200\347\247\273\345\212\250\345\205\211\346\240\207\347\232\204\346\226\207\346\234\254\343\200\202</p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         groupBox->setTitle(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
         toolButton_3->setText(QApplication::translate("sshwidget", "\350\277\230\345\216\237", nullptr));

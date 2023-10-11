@@ -108,11 +108,9 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     channel = libssh2_channel_open_session(session);
     // 请求分配伪终端
     const char* term = "xterm";
-    int ret = libssh2_channel_request_pty_size(channel, 1000, 200);
-    if (ret != 0) {
-        qDebug() << "出错" << ret;
+    int ret = libssh2_channel_request_pty_size(channel, 80, 24);
+        qDebug() << "libssh2_channel_request_pty_size = " << ret;
         // 请求伪终端失败，处理错误
-    }
     ret = libssh2_channel_request_pty(channel, term);
     if (ret != 0) {
         qDebug() << "出错" << ret;
@@ -157,7 +155,7 @@ void sshhandle::init_poll()
                     buffer[bytesRead] = '\0';
                     //qDebug() << buffer;
                     //a = buffer;
-                    //QTest::qSleep(100);
+                    QTest::qSleep(100);
                     //通知ui
                     emit send_channel_read(ac.processData(buffer));
                     // 处理输出数据

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>892</width>
-    <height>683</height>
+    <width>885</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,8 +28,8 @@ color: rgb(255, 255, 255);</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>872</width>
-        <height>663</height>
+        <width>865</width>
+        <height>764</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -42,16 +42,62 @@ color: rgb(255, 255, 255);</string>
            <stylestrategy>PreferAntialias</stylestrategy>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QScrollBar:vertical {
+    width: 9px;
+	background-color: rgb(0, 41, 69);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 9px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+         </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <property name="minimumSize">
@@ -71,322 +117,354 @@ color: rgb(255, 255, 255);</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="lineEdit_timestamp_in">
-               <property name="minimumSize">
-                <size>
-                 <width>170</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>170</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>时间戳</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="lineEdit_date_in">
-               <property name="minimumSize">
-                <size>
-                 <width>170</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>170</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="4">
-              <widget class="QLineEdit" name="lineEdit_date_out">
-               <property name="minimumSize">
-                <size>
-                 <width>170</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>170</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>现在：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="lineEdit_now">
-               <property name="minimumSize">
-                <size>
-                 <width>170</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>170</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="4">
-              <widget class="QLineEdit" name="lineEdit_timestamp_out">
-               <property name="minimumSize">
-                <size>
-                 <width>170</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>170</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="3">
-              <widget class="QToolButton" name="toolButton">
-               <property name="minimumSize">
-                <size>
-                 <width>60</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>转换</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QComboBox" name="comboBox_timestamp">
-               <property name="minimumSize">
-                <size>
-                 <width>70</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <item>
-                <property name="text">
-                 <string>秒(s)</string>
+            <widget class="QWidget" name="wsadsa11" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>90</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>90</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEdit_timestamp_in">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
                 </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>毫秒(ms)</string>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>16777215</height>
+                 </size>
                 </property>
-               </item>
-              </widget>
-             </item>
-             <item row="2" column="3">
-              <widget class="QToolButton" name="toolButton_2">
-               <property name="minimumSize">
-                <size>
-                 <width>60</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>转换</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_5">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>时间</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="6">
-              <spacer name="horizontalSpacer_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="2" column="5">
-              <widget class="QComboBox" name="comboBox_date">
-               <property name="minimumSize">
-                <size>
-                 <width>70</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <item>
-                <property name="text">
-                 <string>秒(s)</string>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
                 </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>毫秒(ms)</string>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
                 </property>
-               </item>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QToolButton" name="toolButton_7">
-               <property name="minimumSize">
-                <size>
-                 <width>60</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>停止</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+                <property name="text">
+                 <string>时间戳</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEdit_date_in">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <widget class="QLineEdit" name="lineEdit_date_out">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>现在：</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEdit_now">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLineEdit" name="lineEdit_timestamp_out">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QToolButton" name="toolButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>转换</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QComboBox" name="comboBox_timestamp">
+                <property name="minimumSize">
+                 <size>
+                  <width>70</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>秒(s)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>毫秒(ms)</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QToolButton" name="toolButton_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>转换</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>时间</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="6">
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="5">
+               <widget class="QComboBox" name="comboBox_date">
+                <property name="minimumSize">
+                 <size>
+                  <width>70</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>秒(s)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>毫秒(ms)</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QToolButton" name="toolButton_7">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>停止</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item>
             <spacer name="verticalSpacer">
@@ -408,143 +486,398 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
-           <string>2. 进制转换</string>
+           <string>2. 进制编码转换</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
-            <layout class="QGridLayout" name="gridLayout_2">
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="lineEdit_dec">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_7">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>十进制：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLineEdit" name="lineEdit_bin">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="lineEdit_hex">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_6">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>十六进制：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="2">
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_8">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>二进制：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_15">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>八进制：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="lineEdit_oct">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QWidget" name="frewrrwtwerw" native="true">
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEdit_dec">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>十进制：</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="lineEdit_bin">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEdit_hex">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>十六进制：</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>二进制：</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_15">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>八进制：</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="lineEdit_oct">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
+            <widget class="QWidget" name="horizontalWidget" native="true">
+             <property name="minimumSize">
               <size>
-               <width>20</width>
-               <height>40</height>
+               <width>0</width>
+               <height>30</height>
               </size>
              </property>
-            </spacer>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QToolButton" name="toolButton_8">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Ascii转Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>中文转Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_3">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Unicode转中文</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_9">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Unicode转Ascii</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_10">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>十六进制转Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_11">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>十六进制转中文</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="horizontalWidget_2" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLineEdit" name="lineEdit_3">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -553,8 +886,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -563,6 +896,24 @@ color: rgb(255, 255, 255);</string>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
             <widget class="QWidget" name="gridWidget_3" native="true">
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+             </property>
              <layout class="QGridLayout" name="gridLayout_3">
               <property name="leftMargin">
                <number>0</number>
@@ -755,8 +1106,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -776,8 +1127,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -797,8 +1148,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -818,8 +1169,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -831,8 +1182,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>837</width>
-            <height>376</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -841,9 +1192,33 @@ color: rgb(255, 255, 255);</string>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
             <widget class="QWidget" name="gridWidget_4" native="true">
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+             </property>
              <layout class="QGridLayout" name="gridLayout_4">
               <item row="1" column="0">
                <widget class="QLineEdit" name="lineEdit_11">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -861,6 +1236,12 @@ color: rgb(255, 255, 255);</string>
               </item>
               <item row="5" column="0">
                <widget class="QLineEdit" name="lineEdit_13">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -956,6 +1337,12 @@ color: rgb(255, 255, 255);</string>
               </item>
               <item row="3" column="0">
                <widget class="QLineEdit" name="lineEdit_12">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -998,8 +1385,8 @@ color: rgb(255, 255, 255);</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>854</width>
-            <height>366</height>
+            <width>847</width>
+            <height>467</height>
            </rect>
           </property>
           <attribute name="label">
@@ -1007,86 +1394,113 @@ color: rgb(255, 255, 255);</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QLabel" name="label_14">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>端口：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_14">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBox_4">
-               <item>
-                <property name="text">
-                 <string>一次</string>
+            <widget class="QWidget" name="fdsfdsfds" native="true">
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
                 </property>
-               </item>
-               <item>
                 <property name="text">
-                 <string>二次</string>
+                 <string>端口：</string>
                 </property>
-               </item>
-               <item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_14">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_4">
+                <item>
+                 <property name="text">
+                  <string>一次</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>二次</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>三次</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
                 <property name="text">
-                 <string>三次</string>
+                 <string>是否在终端输出原始数据</string>
                 </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="text">
-                <string>是否在终端输出原始数据</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_6">
-               <property name="text">
-                <string>开始抓包</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_6">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>开始抓包</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item>
             <widget class="QTextEdit" name="textEdit_7">

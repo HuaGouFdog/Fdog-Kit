@@ -40,6 +40,7 @@ public:
     QToolBox *toolBox;
     QWidget *page;
     QVBoxLayout *verticalLayout_5;
+    QWidget *wsadsa11;
     QGridLayout *gridLayout;
     QLineEdit *lineEdit_timestamp_in;
     QLabel *label_2;
@@ -58,6 +59,7 @@ public:
     QSpacerItem *verticalSpacer;
     QWidget *page_2;
     QVBoxLayout *verticalLayout_4;
+    QWidget *frewrrwtwerw;
     QGridLayout *gridLayout_2;
     QLineEdit *lineEdit_dec;
     QLabel *label_7;
@@ -68,7 +70,18 @@ public:
     QLabel *label_8;
     QLabel *label_15;
     QLineEdit *lineEdit_oct;
-    QSpacerItem *verticalSpacer_2;
+    QWidget *horizontalWidget;
+    QHBoxLayout *horizontalLayout_6;
+    QToolButton *toolButton_8;
+    QToolButton *toolButton_4;
+    QToolButton *toolButton_3;
+    QToolButton *toolButton_9;
+    QToolButton *toolButton_10;
+    QToolButton *toolButton_11;
+    QWidget *horizontalWidget_2;
+    QHBoxLayout *horizontalLayout_7;
+    QLineEdit *lineEdit_3;
+    QLineEdit *lineEdit_4;
     QWidget *page_5;
     QVBoxLayout *verticalLayout_3;
     QWidget *gridWidget_3;
@@ -77,7 +90,7 @@ public:
     QLabel *label_10;
     QLabel *label_9;
     QLineEdit *lineEdit_encode;
-    QWidget *horizontalWidget;
+    QWidget *horizontalWidget1;
     QHBoxLayout *horizontalLayout;
     QToolButton *toolButton_decode;
     QToolButton *toolButton_encode;
@@ -108,6 +121,7 @@ public:
     QToolButton *toolButton_5;
     QWidget *page_11;
     QVBoxLayout *verticalLayout_7;
+    QWidget *fdsfdsfds;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_14;
     QLineEdit *lineEdit_14;
@@ -121,7 +135,7 @@ public:
     {
         if (toolswidget->objectName().isEmpty())
             toolswidget->setObjectName(QStringLiteral("toolswidget"));
-        toolswidget->resize(892, 683);
+        toolswidget->resize(885, 784);
         toolswidget->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout_2 = new QVBoxLayout(toolswidget);
@@ -131,7 +145,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 872, 663));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 865, 764));
         verticalLayout = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         toolBox = new QToolBox(scrollAreaWidgetContents);
@@ -141,16 +155,81 @@ public:
         font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         toolBox->setFont(font);
+        toolBox->setStyleSheet(QString::fromUtf8("QScrollBar:vertical {\n"
+"    width: 9px;\n"
+"	background-color: rgb(0, 41, 69);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 9px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+""
+                        "    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 854, 366));
+        page->setGeometry(QRect(0, 0, 847, 467));
         page->setMinimumSize(QSize(0, 96));
         page->setMaximumSize(QSize(16777215, 16777215));
         verticalLayout_5 = new QVBoxLayout(page);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        gridLayout = new QGridLayout();
+        wsadsa11 = new QWidget(page);
+        wsadsa11->setObjectName(QStringLiteral("wsadsa11"));
+        wsadsa11->setMinimumSize(QSize(0, 90));
+        wsadsa11->setMaximumSize(QSize(16777215, 90));
+        wsadsa11->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+        gridLayout = new QGridLayout(wsadsa11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        lineEdit_timestamp_in = new QLineEdit(page);
+        lineEdit_timestamp_in = new QLineEdit(wsadsa11);
         lineEdit_timestamp_in->setObjectName(QStringLiteral("lineEdit_timestamp_in"));
         lineEdit_timestamp_in->setMinimumSize(QSize(170, 0));
         lineEdit_timestamp_in->setMaximumSize(QSize(170, 16777215));
@@ -158,13 +237,13 @@ public:
 
         gridLayout->addWidget(lineEdit_timestamp_in, 1, 1, 1, 1);
 
-        label_2 = new QLabel(page);
+        label_2 = new QLabel(wsadsa11);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
 
         gridLayout->addWidget(label_2, 1, 0, 1, 1);
 
-        lineEdit_date_in = new QLineEdit(page);
+        lineEdit_date_in = new QLineEdit(wsadsa11);
         lineEdit_date_in->setObjectName(QStringLiteral("lineEdit_date_in"));
         lineEdit_date_in->setMinimumSize(QSize(170, 0));
         lineEdit_date_in->setMaximumSize(QSize(170, 16777215));
@@ -172,7 +251,7 @@ public:
 
         gridLayout->addWidget(lineEdit_date_in, 2, 1, 1, 1);
 
-        lineEdit_date_out = new QLineEdit(page);
+        lineEdit_date_out = new QLineEdit(wsadsa11);
         lineEdit_date_out->setObjectName(QStringLiteral("lineEdit_date_out"));
         lineEdit_date_out->setMinimumSize(QSize(170, 0));
         lineEdit_date_out->setMaximumSize(QSize(170, 16777215));
@@ -180,13 +259,13 @@ public:
 
         gridLayout->addWidget(lineEdit_date_out, 1, 4, 1, 1);
 
-        label = new QLabel(page);
+        label = new QLabel(wsadsa11);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        lineEdit_now = new QLineEdit(page);
+        lineEdit_now = new QLineEdit(wsadsa11);
         lineEdit_now->setObjectName(QStringLiteral("lineEdit_now"));
         lineEdit_now->setMinimumSize(QSize(170, 0));
         lineEdit_now->setMaximumSize(QSize(170, 16777215));
@@ -194,7 +273,7 @@ public:
 
         gridLayout->addWidget(lineEdit_now, 0, 1, 1, 1);
 
-        lineEdit_timestamp_out = new QLineEdit(page);
+        lineEdit_timestamp_out = new QLineEdit(wsadsa11);
         lineEdit_timestamp_out->setObjectName(QStringLiteral("lineEdit_timestamp_out"));
         lineEdit_timestamp_out->setMinimumSize(QSize(170, 0));
         lineEdit_timestamp_out->setMaximumSize(QSize(170, 16777215));
@@ -202,7 +281,7 @@ public:
 
         gridLayout->addWidget(lineEdit_timestamp_out, 2, 4, 1, 1);
 
-        toolButton = new QToolButton(page);
+        toolButton = new QToolButton(wsadsa11);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         toolButton->setMinimumSize(QSize(60, 0));
         toolButton->setMaximumSize(QSize(60, 16777215));
@@ -210,7 +289,7 @@ public:
 
         gridLayout->addWidget(toolButton, 1, 3, 1, 1);
 
-        comboBox_timestamp = new QComboBox(page);
+        comboBox_timestamp = new QComboBox(wsadsa11);
         comboBox_timestamp->addItem(QString());
         comboBox_timestamp->addItem(QString());
         comboBox_timestamp->setObjectName(QStringLiteral("comboBox_timestamp"));
@@ -220,7 +299,7 @@ public:
 
         gridLayout->addWidget(comboBox_timestamp, 1, 2, 1, 1);
 
-        toolButton_2 = new QToolButton(page);
+        toolButton_2 = new QToolButton(wsadsa11);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setMinimumSize(QSize(60, 0));
         toolButton_2->setMaximumSize(QSize(60, 16777215));
@@ -228,7 +307,7 @@ public:
 
         gridLayout->addWidget(toolButton_2, 2, 3, 1, 1);
 
-        label_5 = new QLabel(page);
+        label_5 = new QLabel(wsadsa11);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setFont(font);
 
@@ -238,7 +317,7 @@ public:
 
         gridLayout->addItem(horizontalSpacer_3, 1, 6, 1, 1);
 
-        comboBox_date = new QComboBox(page);
+        comboBox_date = new QComboBox(wsadsa11);
         comboBox_date->addItem(QString());
         comboBox_date->addItem(QString());
         comboBox_date->setObjectName(QStringLiteral("comboBox_date"));
@@ -248,7 +327,7 @@ public:
 
         gridLayout->addWidget(comboBox_date, 2, 5, 1, 1);
 
-        toolButton_7 = new QToolButton(page);
+        toolButton_7 = new QToolButton(wsadsa11);
         toolButton_7->setObjectName(QStringLiteral("toolButton_7"));
         toolButton_7->setMinimumSize(QSize(60, 0));
         toolButton_7->setMaximumSize(QSize(60, 16777215));
@@ -257,7 +336,7 @@ public:
         gridLayout->addWidget(toolButton_7, 0, 3, 1, 1);
 
 
-        verticalLayout_5->addLayout(gridLayout);
+        verticalLayout_5->addWidget(wsadsa11);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -266,36 +345,39 @@ public:
         toolBox->addItem(page, QString::fromUtf8("1. \346\227\266\351\227\264\346\210\263\350\275\254\346\215\242"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 854, 366));
+        page_2->setGeometry(QRect(0, 0, 847, 467));
         verticalLayout_4 = new QVBoxLayout(page_2);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        gridLayout_2 = new QGridLayout();
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        frewrrwtwerw = new QWidget(page_2);
+        frewrrwtwerw->setObjectName(QStringLiteral("frewrrwtwerw"));
+        gridLayout_2 = new QGridLayout(frewrrwtwerw);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        lineEdit_dec = new QLineEdit(page_2);
+        lineEdit_dec = new QLineEdit(frewrrwtwerw);
         lineEdit_dec->setObjectName(QStringLiteral("lineEdit_dec"));
         lineEdit_dec->setFont(font);
 
         gridLayout_2->addWidget(lineEdit_dec, 2, 1, 1, 1);
 
-        label_7 = new QLabel(page_2);
+        label_7 = new QLabel(frewrrwtwerw);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setFont(font);
 
         gridLayout_2->addWidget(label_7, 2, 0, 1, 1);
 
-        lineEdit_bin = new QLineEdit(page_2);
+        lineEdit_bin = new QLineEdit(frewrrwtwerw);
         lineEdit_bin->setObjectName(QStringLiteral("lineEdit_bin"));
         lineEdit_bin->setFont(font);
 
         gridLayout_2->addWidget(lineEdit_bin, 4, 1, 1, 1);
 
-        lineEdit_hex = new QLineEdit(page_2);
+        lineEdit_hex = new QLineEdit(frewrrwtwerw);
         lineEdit_hex->setObjectName(QStringLiteral("lineEdit_hex"));
         lineEdit_hex->setFont(font);
 
         gridLayout_2->addWidget(lineEdit_hex, 0, 1, 1, 1);
 
-        label_6 = new QLabel(page_2);
+        label_6 = new QLabel(frewrrwtwerw);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setFont(font);
 
@@ -305,47 +387,165 @@ public:
 
         gridLayout_2->addItem(horizontalSpacer_4, 2, 2, 1, 1);
 
-        label_8 = new QLabel(page_2);
+        label_8 = new QLabel(frewrrwtwerw);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setFont(font);
 
         gridLayout_2->addWidget(label_8, 4, 0, 1, 1);
 
-        label_15 = new QLabel(page_2);
+        label_15 = new QLabel(frewrrwtwerw);
         label_15->setObjectName(QStringLiteral("label_15"));
         label_15->setFont(font);
 
         gridLayout_2->addWidget(label_15, 3, 0, 1, 1);
 
-        lineEdit_oct = new QLineEdit(page_2);
+        lineEdit_oct = new QLineEdit(frewrrwtwerw);
         lineEdit_oct->setObjectName(QStringLiteral("lineEdit_oct"));
         lineEdit_oct->setFont(font);
 
         gridLayout_2->addWidget(lineEdit_oct, 3, 1, 1, 1);
 
 
-        verticalLayout_4->addLayout(gridLayout_2);
+        verticalLayout_4->addWidget(frewrrwtwerw);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalWidget = new QWidget(page_2);
+        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
+        horizontalWidget->setMinimumSize(QSize(0, 30));
+        horizontalWidget->setMaximumSize(QSize(16777215, 30));
+        horizontalWidget->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+        horizontalLayout_6 = new QHBoxLayout(horizontalWidget);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        toolButton_8 = new QToolButton(horizontalWidget);
+        toolButton_8->setObjectName(QStringLiteral("toolButton_8"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(toolButton_8->sizePolicy().hasHeightForWidth());
+        toolButton_8->setSizePolicy(sizePolicy);
+        toolButton_8->setMinimumSize(QSize(0, 30));
+        toolButton_8->setMaximumSize(QSize(16777215, 30));
+        toolButton_8->setFont(font);
 
-        verticalLayout_4->addItem(verticalSpacer_2);
+        horizontalLayout_6->addWidget(toolButton_8);
 
-        toolBox->addItem(page_2, QString::fromUtf8("2. \350\277\233\345\210\266\350\275\254\346\215\242"));
+        toolButton_4 = new QToolButton(horizontalWidget);
+        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
+        sizePolicy.setHeightForWidth(toolButton_4->sizePolicy().hasHeightForWidth());
+        toolButton_4->setSizePolicy(sizePolicy);
+        toolButton_4->setMinimumSize(QSize(0, 30));
+        toolButton_4->setMaximumSize(QSize(16777215, 30));
+        toolButton_4->setFont(font);
+
+        horizontalLayout_6->addWidget(toolButton_4);
+
+        toolButton_3 = new QToolButton(horizontalWidget);
+        toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
+        sizePolicy.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
+        toolButton_3->setSizePolicy(sizePolicy);
+        toolButton_3->setMinimumSize(QSize(0, 30));
+        toolButton_3->setMaximumSize(QSize(16777215, 30));
+        toolButton_3->setFont(font);
+
+        horizontalLayout_6->addWidget(toolButton_3);
+
+        toolButton_9 = new QToolButton(horizontalWidget);
+        toolButton_9->setObjectName(QStringLiteral("toolButton_9"));
+        sizePolicy.setHeightForWidth(toolButton_9->sizePolicy().hasHeightForWidth());
+        toolButton_9->setSizePolicy(sizePolicy);
+        toolButton_9->setMinimumSize(QSize(0, 30));
+        toolButton_9->setMaximumSize(QSize(16777215, 30));
+        toolButton_9->setFont(font);
+
+        horizontalLayout_6->addWidget(toolButton_9);
+
+        toolButton_10 = new QToolButton(horizontalWidget);
+        toolButton_10->setObjectName(QStringLiteral("toolButton_10"));
+        sizePolicy.setHeightForWidth(toolButton_10->sizePolicy().hasHeightForWidth());
+        toolButton_10->setSizePolicy(sizePolicy);
+        toolButton_10->setMinimumSize(QSize(0, 30));
+        toolButton_10->setMaximumSize(QSize(16777215, 30));
+        toolButton_10->setFont(font);
+
+        horizontalLayout_6->addWidget(toolButton_10);
+
+        toolButton_11 = new QToolButton(horizontalWidget);
+        toolButton_11->setObjectName(QStringLiteral("toolButton_11"));
+        sizePolicy.setHeightForWidth(toolButton_11->sizePolicy().hasHeightForWidth());
+        toolButton_11->setSizePolicy(sizePolicy);
+        toolButton_11->setMinimumSize(QSize(0, 30));
+        toolButton_11->setMaximumSize(QSize(16777215, 30));
+        toolButton_11->setFont(font);
+
+        horizontalLayout_6->addWidget(toolButton_11);
+
+
+        verticalLayout_4->addWidget(horizontalWidget);
+
+        horizontalWidget_2 = new QWidget(page_2);
+        horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
+        horizontalLayout_7 = new QHBoxLayout(horizontalWidget_2);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        lineEdit_3 = new QLineEdit(horizontalWidget_2);
+        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        sizePolicy.setHeightForWidth(lineEdit_3->sizePolicy().hasHeightForWidth());
+        lineEdit_3->setSizePolicy(sizePolicy);
+
+        horizontalLayout_7->addWidget(lineEdit_3);
+
+        lineEdit_4 = new QLineEdit(horizontalWidget_2);
+        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        sizePolicy.setHeightForWidth(lineEdit_4->sizePolicy().hasHeightForWidth());
+        lineEdit_4->setSizePolicy(sizePolicy);
+
+        horizontalLayout_7->addWidget(lineEdit_4);
+
+
+        verticalLayout_4->addWidget(horizontalWidget_2);
+
+        toolBox->addItem(page_2, QString::fromUtf8("2. \350\277\233\345\210\266\347\274\226\347\240\201\350\275\254\346\215\242"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 854, 366));
+        page_5->setGeometry(QRect(0, 0, 847, 467));
         verticalLayout_3 = new QVBoxLayout(page_5);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         gridWidget_3 = new QWidget(page_5);
         gridWidget_3->setObjectName(QStringLiteral("gridWidget_3"));
+        gridWidget_3->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
         gridLayout_3 = new QGridLayout(gridWidget_3);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
         lineEdit_decode = new QLineEdit(gridWidget_3);
         lineEdit_decode->setObjectName(QStringLiteral("lineEdit_decode"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(lineEdit_decode->sizePolicy().hasHeightForWidth());
         lineEdit_decode->setSizePolicy(sizePolicy);
         lineEdit_decode->setMinimumSize(QSize(0, 100));
@@ -378,20 +578,20 @@ public:
 
         gridLayout_3->addWidget(lineEdit_encode, 1, 0, 1, 1);
 
-        horizontalWidget = new QWidget(gridWidget_3);
-        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
-        horizontalWidget->setMinimumSize(QSize(0, 20));
-        horizontalWidget->setMaximumSize(QSize(16777215, 20));
-        horizontalLayout = new QHBoxLayout(horizontalWidget);
+        horizontalWidget1 = new QWidget(gridWidget_3);
+        horizontalWidget1->setObjectName(QStringLiteral("horizontalWidget1"));
+        horizontalWidget1->setMinimumSize(QSize(0, 20));
+        horizontalWidget1->setMaximumSize(QSize(16777215, 20));
+        horizontalLayout = new QHBoxLayout(horizontalWidget1);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        toolButton_decode = new QToolButton(horizontalWidget);
+        toolButton_decode = new QToolButton(horizontalWidget1);
         toolButton_decode->setObjectName(QStringLiteral("toolButton_decode"));
         toolButton_decode->setFont(font);
 
         horizontalLayout->addWidget(toolButton_decode);
 
-        toolButton_encode = new QToolButton(horizontalWidget);
+        toolButton_encode = new QToolButton(horizontalWidget1);
         toolButton_encode->setObjectName(QStringLiteral("toolButton_encode"));
         toolButton_encode->setFont(font);
 
@@ -402,7 +602,7 @@ public:
         horizontalLayout->addItem(horizontalSpacer);
 
 
-        gridLayout_3->addWidget(horizontalWidget, 3, 0, 1, 1);
+        gridLayout_3->addWidget(horizontalWidget1, 3, 0, 1, 1);
 
 
         verticalLayout_3->addWidget(gridWidget_3);
@@ -410,7 +610,7 @@ public:
         toolBox->addItem(page_5, QString::fromUtf8("3. URL\347\274\226\347\240\201\350\275\254\346\215\242"));
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 854, 366));
+        page_6->setGeometry(QRect(0, 0, 847, 467));
         horizontalLayout_2 = new QHBoxLayout(page_6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         textEdit_json_source = new QTextEdit(page_6);
@@ -426,7 +626,7 @@ public:
         toolBox->addItem(page_6, QString::fromUtf8("4. JSON\346\240\274\345\274\217\345\214\226"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
-        page_7->setGeometry(QRect(0, 0, 854, 366));
+        page_7->setGeometry(QRect(0, 0, 847, 467));
         horizontalLayout_3 = new QHBoxLayout(page_7);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         textEdit_xml_source = new QTextEdit(page_7);
@@ -442,7 +642,7 @@ public:
         toolBox->addItem(page_7, QString::fromUtf8("5. XML\346\240\274\345\274\217\345\214\226"));
         page_8 = new QWidget();
         page_8->setObjectName(QStringLiteral("page_8"));
-        page_8->setGeometry(QRect(0, 0, 854, 366));
+        page_8->setGeometry(QRect(0, 0, 847, 467));
         horizontalLayout_4 = new QHBoxLayout(page_8);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         textEdit_5 = new QTextEdit(page_8);
@@ -458,19 +658,37 @@ public:
         toolBox->addItem(page_8, QString::fromUtf8("6. \346\226\207\346\234\254\345\257\271\346\257\224"));
         page_9 = new QWidget();
         page_9->setObjectName(QStringLiteral("page_9"));
-        page_9->setGeometry(QRect(0, 0, 854, 366));
+        page_9->setGeometry(QRect(0, 0, 847, 467));
         toolBox->addItem(page_9, QString::fromUtf8("7. \345\270\270\347\224\250\345\221\275\344\273\244\346\237\245\350\257\242"));
         page_10 = new QWidget();
         page_10->setObjectName(QStringLiteral("page_10"));
-        page_10->setGeometry(QRect(0, 0, 837, 376));
+        page_10->setGeometry(QRect(0, 0, 847, 467));
         verticalLayout_6 = new QVBoxLayout(page_10);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         gridWidget_4 = new QWidget(page_10);
         gridWidget_4->setObjectName(QStringLiteral("gridWidget_4"));
+        gridWidget_4->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
         gridLayout_4 = new QGridLayout(gridWidget_4);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         lineEdit_11 = new QLineEdit(gridWidget_4);
         lineEdit_11->setObjectName(QStringLiteral("lineEdit_11"));
+        sizePolicy.setHeightForWidth(lineEdit_11->sizePolicy().hasHeightForWidth());
+        lineEdit_11->setSizePolicy(sizePolicy);
         lineEdit_11->setMinimumSize(QSize(0, 100));
         lineEdit_11->setFont(font);
 
@@ -478,6 +696,8 @@ public:
 
         lineEdit_13 = new QLineEdit(gridWidget_4);
         lineEdit_13->setObjectName(QStringLiteral("lineEdit_13"));
+        sizePolicy.setHeightForWidth(lineEdit_13->sizePolicy().hasHeightForWidth());
+        lineEdit_13->setSizePolicy(sizePolicy);
         lineEdit_13->setMinimumSize(QSize(0, 100));
         lineEdit_13->setFont(font);
 
@@ -509,6 +729,8 @@ public:
 
         lineEdit_12 = new QLineEdit(gridWidget_4);
         lineEdit_12->setObjectName(QStringLiteral("lineEdit_12"));
+        sizePolicy.setHeightForWidth(lineEdit_12->sizePolicy().hasHeightForWidth());
+        lineEdit_12->setSizePolicy(sizePolicy);
         lineEdit_12->setMinimumSize(QSize(0, 50));
         lineEdit_12->setFont(font);
 
@@ -526,24 +748,42 @@ public:
         toolBox->addItem(page_10, QString::fromUtf8("8. \346\255\243\345\210\231\350\241\250\350\276\276\345\274\217\347\224\237\346\210\220"));
         page_11 = new QWidget();
         page_11->setObjectName(QStringLiteral("page_11"));
-        page_11->setGeometry(QRect(0, 0, 854, 366));
+        page_11->setGeometry(QRect(0, 0, 847, 467));
         verticalLayout_7 = new QVBoxLayout(page_11);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        horizontalLayout_5 = new QHBoxLayout();
+        fdsfdsfds = new QWidget(page_11);
+        fdsfdsfds->setObjectName(QStringLiteral("fdsfdsfds"));
+        fdsfdsfds->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+        horizontalLayout_5 = new QHBoxLayout(fdsfdsfds);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        label_14 = new QLabel(page_11);
+        label_14 = new QLabel(fdsfdsfds);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setFont(font);
 
         horizontalLayout_5->addWidget(label_14);
 
-        lineEdit_14 = new QLineEdit(page_11);
+        lineEdit_14 = new QLineEdit(fdsfdsfds);
         lineEdit_14->setObjectName(QStringLiteral("lineEdit_14"));
         lineEdit_14->setFont(font);
 
         horizontalLayout_5->addWidget(lineEdit_14);
 
-        comboBox_4 = new QComboBox(page_11);
+        comboBox_4 = new QComboBox(fdsfdsfds);
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
@@ -551,14 +791,15 @@ public:
 
         horizontalLayout_5->addWidget(comboBox_4);
 
-        checkBox = new QCheckBox(page_11);
+        checkBox = new QCheckBox(fdsfdsfds);
         checkBox->setObjectName(QStringLiteral("checkBox"));
         checkBox->setFont(font);
 
         horizontalLayout_5->addWidget(checkBox);
 
-        toolButton_6 = new QToolButton(page_11);
+        toolButton_6 = new QToolButton(fdsfdsfds);
         toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
+        toolButton_6->setFont(font);
 
         horizontalLayout_5->addWidget(toolButton_6);
 
@@ -567,7 +808,7 @@ public:
         horizontalLayout_5->addItem(horizontalSpacer_2);
 
 
-        verticalLayout_7->addLayout(horizontalLayout_5);
+        verticalLayout_7->addWidget(fdsfdsfds);
 
         textEdit_7 = new QTextEdit(page_11);
         textEdit_7->setObjectName(QStringLiteral("textEdit_7"));
@@ -586,7 +827,7 @@ public:
 
         retranslateUi(toolswidget);
 
-        toolBox->setCurrentIndex(2);
+        toolBox->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(toolswidget);
@@ -612,7 +853,13 @@ public:
         label_6->setText(QApplication::translate("toolswidget", "\345\215\201\345\205\255\350\277\233\345\210\266\357\274\232", nullptr));
         label_8->setText(QApplication::translate("toolswidget", "\344\272\214\350\277\233\345\210\266\357\274\232", nullptr));
         label_15->setText(QApplication::translate("toolswidget", "\345\205\253\350\277\233\345\210\266\357\274\232", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("toolswidget", "2. \350\277\233\345\210\266\350\275\254\346\215\242", nullptr));
+        toolButton_8->setText(QApplication::translate("toolswidget", "Ascii\350\275\254Unicode", nullptr));
+        toolButton_4->setText(QApplication::translate("toolswidget", "\344\270\255\346\226\207\350\275\254Unicode", nullptr));
+        toolButton_3->setText(QApplication::translate("toolswidget", "Unicode\350\275\254\344\270\255\346\226\207", nullptr));
+        toolButton_9->setText(QApplication::translate("toolswidget", "Unicode\350\275\254Ascii", nullptr));
+        toolButton_10->setText(QApplication::translate("toolswidget", "\345\215\201\345\205\255\350\277\233\345\210\266\350\275\254Unicode", nullptr));
+        toolButton_11->setText(QApplication::translate("toolswidget", "\345\215\201\345\205\255\350\277\233\345\210\266\350\275\254\344\270\255\346\226\207", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("toolswidget", "2. \350\277\233\345\210\266\347\274\226\347\240\201\350\275\254\346\215\242", nullptr));
         label_10->setText(QApplication::translate("toolswidget", "\347\274\226\347\240\201\347\273\223\346\236\234:", nullptr));
         label_9->setText(QApplication::translate("toolswidget", "URL:", nullptr));
         toolButton_decode->setText(QApplication::translate("toolswidget", "\350\247\243\347\240\201", nullptr));

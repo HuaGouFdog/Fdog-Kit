@@ -33,5 +33,10 @@
         <file>lib/fdog.png</file>
         <file>lib/setting.png</file>
         <file>lib/tool.png</file>
+        <file>lib/add3.png</file>
+        <file>lib/setiing2.png</file>
+        <file>lib/wicon_64.png</file>
+        <file>lib/tool2.png</file>
+        <file>lib/github.png</file>
     </qresource>
 </RCC>

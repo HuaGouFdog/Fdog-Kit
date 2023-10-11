@@ -77,6 +77,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(scale, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(url, SIGNAL(triggered()), this, SLOT(on_newTool()));
 
+
+    ui->widget_8->hide();
+    ui->widget_tool->hide();
+    ui->widget_line->hide();
+    ui->widget_line_2->hide();
 }
 
 MainWindow::~MainWindow()

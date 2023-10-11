@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1216</width>
-    <height>612</height>
+    <width>1391</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1370,48 +1370,45 @@ QToolButton:hover {
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_8">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8" stretch="5,1">
                <item>
-                <widget class="QTextEdit" name="textEdit">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>5555555</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Cascadia Mono,OPPOSans B</family>
-                   <pointsize>12</pointsize>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QTextEdit{
+                <widget class="QWidget" name="widget_10" native="true">
+                 <widget class="QTextEdit" name="textEdit">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="geometry">
+                   <rect>
+                    <x>9</x>
+                    <y>10</y>
+                    <width>350</width>
+                    <height>300</height>
+                   </rect>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>5555555</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Mono,OPPOSans B</family>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QTextEdit{
 	background-color: rgb(0, 41, 69);
 	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 	border: none;
@@ -1465,23 +1462,131 @@ QScrollBar::down-arrow:vertical {
 QScrollBar::up-arrow:vertical {
     border:none;
 }</string>
-                 </property>
-                 <property name="locale">
-                  <locale language="English" country="UnitedStates"/>
-                 </property>
-                 <property name="readOnly">
-                  <bool>false</bool>
-                 </property>
-                 <property name="html">
-                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                  </property>
+                  <property name="locale">
+                   <locale language="English" country="UnitedStates"/>
+                  </property>
+                  <property name="readOnly">
+                   <bool>false</bool>
+                  </property>
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                 </property>
+                  </property>
+                  <property name="textInteractionFlags">
+                   <set>Qt::TextEditable|Qt::TextSelectableByKeyboard</set>
+                  </property>
+                 </widget>
+                 <widget class="QTextEdit" name="textEdit_6">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="geometry">
+                   <rect>
+                    <x>370</x>
+                    <y>10</y>
+                    <width>350</width>
+                    <height>300</height>
+                   </rect>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>5555555</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Mono,OPPOSans B</family>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QTextEdit{
+	background-color: rgb(0, 41, 169, 0);
+	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
+	border: none;
+	padding-top:0px;
+    padding-bottom:0px;
+	padding-left:0px;
+    padding-right:0px;
+}
+
+QScrollBar:vertical {
+    width: 9px;
+	background-color: rgb(0, 41, 69);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 9px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+                  </property>
+                  <property name="locale">
+                   <locale language="English" country="UnitedStates"/>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="textInteractionFlags">
+                   <set>Qt::TextSelectableByMouse</set>
+                  </property>
+                 </widget>
                 </widget>
                </item>
                <item>
@@ -1512,6 +1617,9 @@ p, li { white-space: pre-wrap; }
                    <spacer name="horizontalSpacer_2">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -1678,6 +1786,119 @@ QToolButton:hover {
                <string notr="true"/>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QTextEdit" name="textEdit_3">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.0//EN&amp;quot; &amp;quot;http://www.w3.org/TR/REC-html40/strict.dtd&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta name=&amp;quot;qrichtext&amp;quot; content=&amp;quot;1&amp;quot; /&amp;gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;p, li { white-space: pre-wrap; }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style=&amp;quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;p style=&amp;quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&amp;quot;&amp;gt;dasdadfsdafddffs&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.0//EN&amp;quot; &amp;quot;http://www.w3.org/TR/REC-html40/strict.dtd&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta name=&amp;quot;qrichtext&amp;quot; content=&amp;quot;1&amp;quot; /&amp;gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;p, li { white-space: pre-wrap; }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style=&amp;quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;p style=&amp;quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&amp;quot;&amp;gt;dasdadfsdafddffs&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.0//EN&amp;quot; &amp;quot;http://www.w3.org/TR/REC-html40/strict.dtd&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta name=&amp;quot;qrichtext&amp;quot; content=&amp;quot;1&amp;quot; /&amp;gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;p, li { white-space: pre-wrap; }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style=&amp;quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&amp;quot;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;p style=&amp;quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&amp;quot;&amp;gt;dasdadfsdafddffs&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextBrowser" name="textBrowser">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_13">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="text">
+                    <string>PushButton</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_3">
+                   <property name="text">
+                    <string>PushButton</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_9" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>163</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(0, 170, 127);</string>
+                 </property>
+                 <widget class="QTextEdit" name="textEdit_4">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>10</y>
+                    <width>350</width>
+                    <height>141</height>
+                   </rect>
+                  </property>
+                  <property name="readOnly">
+                   <bool>false</bool>
+                  </property>
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                 <widget class="QTextEdit" name="textEdit_5">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>10</y>
+                    <width>350</width>
+                    <height>121</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。这是一段可选中但无需移动光标的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
                <item>
                 <widget class="QPushButton" name="pushButton">
                  <property name="text">

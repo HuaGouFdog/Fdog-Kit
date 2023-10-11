@@ -8,7 +8,7 @@
 #include <QKeyEvent>
 #include <QObject>
 #include <QThread>
-
+#include <QScrollBar>
 class KeyFilter : public QObject
 {
     Q_OBJECT
@@ -80,6 +80,17 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_textEdit_selectionChanged();
+
+    void on_textEdit_5_cursorPositionChanged();
+
+    void on_textEdit_6_cursorPositionChanged();
+
+    void scrollBarValueChanged(int value);
+    void scrollBarValueChanged2(int value);
+
+    void on_textEdit_textChanged();
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号
@@ -95,6 +106,10 @@ private:
     QString tabCommond;
     int isDTab = 0;
     int lastCommond = 0;
+    bool movePos; //是否可以移动光标
+
+    QScrollBar *scrollBar_textEdit = NULL;
+    QScrollBar *scrollBar_textEdit_s = NULL;
 };
 
 #endif // SSHWIDGET_H
