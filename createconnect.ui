@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>352</width>
-    <height>241</height>
+    <width>673</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>352</width>
-    <height>241</height>
+    <width>673</width>
+    <height>475</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>352</width>
-    <height>241</height>
+    <width>673</width>
+    <height>475</height>
    </size>
   </property>
   <property name="font">
@@ -42,49 +42,55 @@
     <normaloff>:/lib/wicon_46.png</normaloff>:/lib/wicon_46.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(67, 77, 88);
+   <string notr="true">background-color: rgb(30, 45, 54);
 color: rgb(255, 255, 255);</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QStackedWidget" name="stackedWidget">
-     <property name="currentIndex">
-      <number>1</number>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>530</y>
+     <width>331</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="page">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>190</y>
+       <width>120</width>
+       <height>40</height>
+      </rect>
      </property>
-     <widget class="QWidget" name="page">
-      <widget class="QWidget" name="widget" native="true">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>190</y>
-         <width>120</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="leftMargin">
-         <number>1</number>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>1</number>
+      </property>
+      <property name="topMargin">
+       <number>1</number>
+      </property>
+      <property name="rightMargin">
+       <number>1</number>
+      </property>
+      <property name="bottomMargin">
+       <number>1</number>
+      </property>
+      <item>
+       <widget class="QToolButton" name="toolButton_ssh_connect">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
         </property>
-        <property name="topMargin">
-         <number>1</number>
-        </property>
-        <property name="rightMargin">
-         <number>1</number>
-        </property>
-        <property name="bottomMargin">
-         <number>1</number>
-        </property>
-        <item>
-         <widget class="QToolButton" name="toolButton_ssh_connect">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QToolButton {
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
@@ -100,23 +106,23 @@ QToolButton:hover {
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
 }</string>
-          </property>
-          <property name="text">
-           <string>连接</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_ssh_close">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QToolButton {
+        </property>
+        <property name="text">
+         <string>连接</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_ssh_close">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
@@ -132,424 +138,1722 @@ QToolButton:hover {
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
 }</string>
-          </property>
-          <property name="text">
-           <string>取消</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="gridLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>0</y>
-         <width>311</width>
-         <height>201</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_ssh_name">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string>名称：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_ssh_user">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string>用户名：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_ssh_func">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string>方法：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="label_ssh_port">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string>端口：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_ssh_name">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>1111</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_ssh_host">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string>主机：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_ssh_host">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>172.16.8.154</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QLineEdit" name="lineEdit_ssh_port">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>22</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" colspan="2">
-         <widget class="QComboBox" name="comboBox_ssh_func">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>密码</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>公钥</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_ssh_password">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string>密码：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" colspan="2">
-         <widget class="QLineEdit" name="lineEdit_ssh_user">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>root</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1" colspan="2">
-         <widget class="QLineEdit" name="lineEdit_ssh_password">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-            <stylestrategy>PreferAntialias</stylestrategy>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>Linkdood@123456</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="page_2">
-      <widget class="QWidget" name="gridLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>10</y>
-         <width>281</width>
-         <height>171</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_zk_name">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>名称：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_zk_host">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>172.16.8.153</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_zk_port">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>端口：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_zk_host">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>主机：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_zk_name">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>172.16.8.153</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_zk_port">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
-border-radius: 5px;</string>
-          </property>
-          <property name="text">
-           <string>11100</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="horizontalWidget" native="true">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>190</y>
-         <width>120</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QToolButton" name="toolButton_zk_connect">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
-          </property>
-          <property name="text">
-           <string>确定</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_zk_close">
-          <property name="font">
-           <font>
-            <family>OPPOSans B</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
-          </property>
-          <property name="text">
-           <string>取消</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+        </property>
+        <property name="text">
+         <string>取消</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-   </item>
-  </layout>
+    <widget class="QWidget" name="gridLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>311</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_ssh_name">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="text">
+         <string>名称：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_ssh_user">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="text">
+         <string>用户名：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_ssh_func">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="text">
+         <string>方法：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_ssh_port">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="text">
+         <string>端口：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_ssh_name">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>1111</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_ssh_host">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="text">
+         <string>主机：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_ssh_host">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>172.16.8.154</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEdit_ssh_port">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>22</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QComboBox" name="comboBox_ssh_func">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>密码</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>公钥</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_ssh_password">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="text">
+         <string>密码：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_ssh_user">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>root</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_ssh_password">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>Linkdood@123456</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>281</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_zk_name">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>名称：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_zk_host">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>172.16.8.153</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_zk_port">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>端口：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_zk_host">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>主机：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_zk_name">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>172.16.8.153</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_zk_port">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgba(255, 255, 255, 150);
+border-radius: 5px;</string>
+        </property>
+        <property name="text">
+         <string>11100</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>190</y>
+       <width>120</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QToolButton" name="toolButton_zk_connect">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+        </property>
+        <property name="text">
+         <string>确定</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_zk_close">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+        </property>
+        <property name="text">
+         <string>取消</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>390</y>
+     <width>691</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(30, 45, 54);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
+     <number>3</number>
+    </property>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QToolButton" name="toolButton_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>OPPOSans B</family>
+        <pointsize>10</pointsize>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 214, 103);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 214, 103);
+}</string>
+      </property>
+      <property name="text">
+       <string>连接</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QToolButton" name="toolButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>OPPOSans B</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(7, 143, 255);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(7, 143, 255);
+}</string>
+      </property>
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QToolButton" name="toolButton_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>OPPOSans B</family>
+        <pointsize>10</pointsize>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+}</string>
+      </property>
+      <property name="text">
+       <string>取消</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>30</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalWidget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>681</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_6">
+    <property name="spacing">
+     <number>15</number>
+    </property>
+    <property name="leftMargin">
+     <number>15</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="verticalWidget_3" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>190</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>190</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>20</number>
+       </property>
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <property name="rightMargin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="verticalWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>180</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_zk_port_2">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>名称</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zk_port_2">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+            </property>
+            <property name="text">
+             <string>321312</string>
+            </property>
+            <property name="cursorPosition">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="verticalWidget_2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>180</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_zk_port_3">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>分组</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zk_port_3">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+            </property>
+            <property name="text">
+             <string>ddsadasdas</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="verticalWidget_5" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>180</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_zk_port_6">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>图标</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zk_port_9">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="cursorPosition">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="horizontalWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>35</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_zk_port_4">
+            <property name="minimumSize">
+             <size>
+              <width>90</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>标题颜色</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zk_port_4">
+            <property name="minimumSize">
+             <size>
+              <width>86</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>86</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+            </property>
+            <property name="text">
+             <string>#dsadas</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="verticalWidget_4" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+ QTabWidget::tab-bar {
+         left:0px;       
+}
+	
+
+/*设置TabWidget中tab_1的样式*/
+#tab_1.QWidget{
+	background-color: rgb(108, 117, 125, 0);
+}
+ 
+/*设置TabWidget中tab_2的样式*/
+#tab_2.QWidget{
+	background-color: rgb(108, 117, 125, 0);
+}
+ 
+/*设置TabWidget中QTabBar的样式*/
+QTabBar::tab{
+    background-color: rgb(108, 117, 125, 0);
+	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
+	font-size:10pt;
+	color:#ced4da;    /*设置tab中的文本的颜色*/
+	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
+	width:80px;
+	padding: 4px;
+	margin-right:0px;
+	margin-left: 0px;
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+	/*background-color: #0B0E11;*/
+	background-color: rgb(108, 117, 125, 0);
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+	/*background-color: rgb(100, 117, 125, 125);*/
+}
+ 
+/*设置TabWidget的边框的样式*/
+QTabWidget::pane {
+    border: 0px solid rgb(108, 117, 125, 65);
+}
+ 
+
+QTabBar::close-button{ 
+	/*border-image: url(:lib/Kafka.png);*/
+}
+QTabBar::close-button:hover{
+	/*border-image: url(:/Resources/image/close_hover.png);*/
+}
+
+
+/*当打开多个tab，右侧出现，点击后，可以向前向后的按钮的样式*/
+QTabBar QToolButton {
+    border: none;
+	color: rgb(255, 206, 6);
+    background-color: #0b0e11;
+}
+ 
+QTabBar QToolButton:hover {
+	background-color: #161a1e; 
+}</string>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>SSH</string>
+          </attribute>
+          <widget class="QLineEdit" name="lineEdit_zk_host_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>40</y>
+             <width>301</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+           </property>
+           <property name="text">
+            <string>172.16.8.153</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_zk_host_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>10</y>
+             <width>39</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>主机</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_zk_port_5">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>10</y>
+             <width>39</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>端口</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit_zk_port_5">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>40</y>
+             <width>81</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+           </property>
+           <property name="text">
+            <string>11100</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_zk_host_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>80</y>
+             <width>39</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>用户名</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit_zk_port_6">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>110</y>
+             <width>421</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+           </property>
+           <property name="text">
+            <string>root</string>
+           </property>
+          </widget>
+          <widget class="QTabWidget" name="tabWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>160</y>
+             <width>431</width>
+             <height>170</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+ QTabWidget::tab-bar {
+         left:0px;       
+}
+	
+
+/*设置TabWidget中tab_1的样式*/
+#tab.QWidget{
+	background-color: rgb(108, 117, 125, 0);
+}
+ 
+/*设置TabWidget中tab_2的样式*/
+#tab_2.QWidget{
+	background-color: rgb(108, 117, 125, 0);
+}
+ 
+/*设置TabWidget中QTabBar的样式*/
+QTabBar::tab{
+    background-color: rgb(108, 117, 125, 0);
+	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
+	font-size:10pt;
+	color:#ced4da;    /*设置tab中的文本的颜色*/
+	border-top-left-radius: 0px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 0px;    /*设置tab的边框的圆角（右上圆角）*/
+	width:60px;
+	padding: 5px;
+	margin-right:0px;
+	margin-left: 0px;
+}
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+	background-color: rgb(25, 25, 25, 155);
+	border-bottom: 0px solid rgb(255, 255, 255);
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+	/*background-color: rgb(100, 117, 125, 125);*/
+}
+ 
+/*设置TabWidget的边框的样式*/
+QTabWidget::pane {
+    border: 0px solid rgb(108, 117, 125, 65);
+}
+ 
+
+QTabBar::close-button{ 
+	/*border-image: url(:lib/Kafka.png);*/
+}
+QTabBar::close-button:hover{
+	/*border-image: url(:/Resources/image/close_hover.png);*/
+}
+
+
+/*当打开多个tab，右侧出现，点击后，可以向前向后的按钮的样式*/
+QTabBar QToolButton {
+    border: none;
+	color: rgb(255, 206, 6);
+    background-color: #0b0e11;
+}
+ 
+QTabBar QToolButton:hover {
+	background-color: #161a1e; 
+}</string>
+           </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="tab_5">
+            <attribute name="title">
+             <string>密码</string>
+            </attribute>
+            <widget class="QLineEdit" name="lineEdit_zk_port_7">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>421</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+             </property>
+             <property name="text">
+              <string>******</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_zk_host_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>10</y>
+               <width>39</width>
+               <height>30</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>密码</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="checkBox">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>80</y>
+               <width>71</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="text">
+              <string>记住密码</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QToolButton" name="toolButton_5">
+             <property name="geometry">
+              <rect>
+               <x>380</x>
+               <y>40</y>
+               <width>40</width>
+               <height>30</height>
+              </rect>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+background-color: rgba(25, 25, 25,0);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+background-color: rgba(25, 25, 25,0);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+             </property>
+             <property name="text">
+              <string>取消</string>
+             </property>
+             <property name="icon">
+              <iconset resource="lib.qrc">
+               <normaloff>:/lib/eye1.png</normaloff>:/lib/eye1.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>14</width>
+               <height>14</height>
+              </size>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="tab_6">
+            <attribute name="title">
+             <string>公钥</string>
+            </attribute>
+            <widget class="QLabel" name="label_zk_host_5">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>10</y>
+               <width>39</width>
+               <height>30</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>私钥</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="lineEdit_zk_port_8">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>331</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+             </property>
+             <property name="text">
+              <string>******</string>
+             </property>
+            </widget>
+            <widget class="QToolButton" name="toolButton_4">
+             <property name="geometry">
+              <rect>
+               <x>350</x>
+               <y>40</y>
+               <width>70</width>
+               <height>30</height>
+              </rect>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>70</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>70</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+}</string>
+             </property>
+             <property name="text">
+              <string>浏览...</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>80</y>
+               <width>71</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="text">
+              <string>记住私钥</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="tab_7">
+            <attribute name="title">
+             <string>键盘互交</string>
+            </attribute>
+           </widget>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>远程连接</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_3">
+          <attribute name="title">
+           <string>ZOOKEEPER</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources>
   <include location="lib.qrc"/>

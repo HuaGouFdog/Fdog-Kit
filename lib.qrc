@@ -38,5 +38,24 @@
         <file>lib/wicon_64.png</file>
         <file>lib/tool2.png</file>
         <file>lib/github.png</file>
+        <file>lib/zuijin.png</file>
+        <file>lib/bi.png</file>
+        <file>lib/font.png</file>
+        <file>lib/keyboard.png</file>
+        <file>lib/line-terminal.png</file>
+        <file>lib/theme.png</file>
+        <file>lib/zhuti.png</file>
+        <file>lib/sh.png</file>
+        <file>lib/icon-close3.png</file>
+        <file>lib/icon-minus3.png</file>
+        <file>lib/icon-close4.png</file>
+        <file>lib/icon-close5.png</file>
+        <file>lib/icon-close6.png</file>
+        <file>lib/icon-close7.png</file>
+        <file>lib/Icon_max3.png</file>
+        <file>lib/icon-close8.png</file>
+        <file>lib/Icon_max4.png</file>
+        <file>lib/eye1.png</file>
+        <file>lib/eye2.png</file>
     </qresource>
 </RCC>

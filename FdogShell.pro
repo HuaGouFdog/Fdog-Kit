@@ -33,7 +33,8 @@ SOURCES += \
     sshhandle.cpp \
     datahandle.cpp \
     toolswidget.cpp \
-    toolshandle.cpp
+    toolshandle.cpp \
+    settingwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,14 +45,16 @@ HEADERS += \
     sshhandle.h \
     datahandle.h \
     toolswidget.h \
-    toolshandle.h
+    toolshandle.h \
+    settingwidget.h
 
 FORMS += \
         mainwindow.ui \
     zookeeperwidget.ui \
     createconnect.ui \
     sshwidget.ui \
-    toolswidget.ui
+    toolswidget.ui \
+    settingwidget.ui
 
 RESOURCES += \
     lib.qrc
