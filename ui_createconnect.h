@@ -65,50 +65,54 @@ public:
     QHBoxLayout *horizontalLayout;
     QToolButton *toolButton_zk_connect;
     QToolButton *toolButton_zk_close;
-    QWidget *widget_2;
+    QWidget *widget_bottom;
     QHBoxLayout *horizontalLayout_3;
-    QSpacerItem *horizontalSpacer;
-    QToolButton *toolButton_2;
-    QToolButton *toolButton;
-    QToolButton *toolButton_3;
-    QSpacerItem *horizontalSpacer_3;
-    QWidget *horizontalWidget_2;
+    QSpacerItem *widget_bottom_horizontalSpacer_left;
+    QToolButton *widget_bottom_toolButton_connect;
+    QToolButton *widget_bottom_toolButton_save;
+    QToolButton *widget_bottom_toolButton_close;
+    QSpacerItem *widget_bottom_horizontalSpacer_right;
+    QWidget *widget_body;
     QHBoxLayout *horizontalLayout_6;
-    QWidget *verticalWidget_3;
+    QWidget *widget_body_left;
     QVBoxLayout *verticalLayout_3;
     QWidget *verticalWidget;
     QVBoxLayout *verticalLayout;
-    QLabel *label_zk_port_2;
-    QLineEdit *lineEdit_zk_port_2;
+    QLabel *label_name;
+    QLineEdit *lineEdit_name_data;
     QWidget *verticalWidget_2;
     QVBoxLayout *verticalLayout_2;
-    QLabel *label_zk_port_3;
-    QLineEdit *lineEdit_zk_port_3;
+    QLabel *label_group;
+    QLineEdit *lineEdit_group_data;
     QWidget *verticalWidget_5;
     QVBoxLayout *verticalLayout_5;
-    QLabel *label_zk_port_6;
-    QLineEdit *lineEdit_zk_port_9;
+    QLabel *label_icon;
+    QLineEdit *lineEdit_icon_data;
     QWidget *horizontalWidget1;
     QHBoxLayout *horizontalLayout_5;
-    QLabel *label_zk_port_4;
-    QLineEdit *lineEdit_zk_port_4;
+    QLabel *label_color;
+    QLineEdit *lineEdit_color_data;
     QSpacerItem *horizontalSpacer_2;
+    QWidget *horizontalWidget_3;
+    QVBoxLayout *verticalLayout_6;
+    QCheckBox *checkBox_3;
+    QLabel *label_zk_port_7;
     QSpacerItem *verticalSpacer;
-    QWidget *verticalWidget_4;
+    QWidget *widget_body_right;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QLineEdit *lineEdit_zk_host_2;
-    QLabel *label_zk_host_2;
+    QLineEdit *lineEdit_host_ssh_data;
+    QLabel *label_host_ssh;
     QLabel *label_zk_port_5;
     QLineEdit *lineEdit_zk_port_5;
-    QLabel *label_zk_host_3;
-    QLineEdit *lineEdit_zk_port_6;
+    QLabel *label_user_ssh;
+    QLineEdit *lineEdit_user_ssh_data;
     QTabWidget *tabWidget_2;
     QWidget *tab_5;
-    QLineEdit *lineEdit_zk_port_7;
-    QLabel *label_zk_host_4;
-    QCheckBox *checkBox;
+    QLineEdit *lineEdit_password_data;
+    QLabel *label_password;
+    QCheckBox *checkBox_remember_password;
     QToolButton *toolButton_5;
     QWidget *tab_6;
     QLabel *label_zk_host_5;
@@ -397,30 +401,30 @@ public:
         horizontalLayout->addWidget(toolButton_zk_close);
 
         stackedWidget->addWidget(page_2);
-        widget_2 = new QWidget(createconnect);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setGeometry(QRect(0, 390, 691, 81));
-        widget_2->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        widget_bottom = new QWidget(createconnect);
+        widget_bottom->setObjectName(QStringLiteral("widget_bottom"));
+        widget_bottom->setGeometry(QRect(0, 390, 691, 81));
+        widget_bottom->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
-        horizontalLayout_3 = new QHBoxLayout(widget_2);
+        horizontalLayout_3 = new QHBoxLayout(widget_bottom);
         horizontalLayout_3->setSpacing(10);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(9, 20, 9, 3);
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        widget_bottom_horizontalSpacer_left = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_3->addItem(horizontalSpacer);
+        horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_left);
 
-        toolButton_2 = new QToolButton(widget_2);
-        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        widget_bottom_toolButton_connect = new QToolButton(widget_bottom);
+        widget_bottom_toolButton_connect->setObjectName(QStringLiteral("widget_bottom_toolButton_connect"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(toolButton_2->sizePolicy().hasHeightForWidth());
-        toolButton_2->setSizePolicy(sizePolicy1);
-        toolButton_2->setMinimumSize(QSize(60, 30));
-        toolButton_2->setMaximumSize(QSize(60, 30));
-        toolButton_2->setFont(font1);
-        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_connect->sizePolicy().hasHeightForWidth());
+        widget_bottom_toolButton_connect->setSizePolicy(sizePolicy1);
+        widget_bottom_toolButton_connect->setMinimumSize(QSize(60, 30));
+        widget_bottom_toolButton_connect->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_connect->setFont(font1);
+        widget_bottom_toolButton_connect->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(0, 214, 103);\n"
 "	border-radius: 5px;\n"
@@ -436,22 +440,22 @@ public:
 "	background-color: rgb(0, 214, 103);\n"
 "}"));
 
-        horizontalLayout_3->addWidget(toolButton_2);
+        horizontalLayout_3->addWidget(widget_bottom_toolButton_connect);
 
-        toolButton = new QToolButton(widget_2);
-        toolButton->setObjectName(QStringLiteral("toolButton"));
-        sizePolicy1.setHeightForWidth(toolButton->sizePolicy().hasHeightForWidth());
-        toolButton->setSizePolicy(sizePolicy1);
-        toolButton->setMinimumSize(QSize(60, 30));
-        toolButton->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_save = new QToolButton(widget_bottom);
+        widget_bottom_toolButton_save->setObjectName(QStringLiteral("widget_bottom_toolButton_save"));
+        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_save->sizePolicy().hasHeightForWidth());
+        widget_bottom_toolButton_save->setSizePolicy(sizePolicy1);
+        widget_bottom_toolButton_save->setMinimumSize(QSize(60, 30));
+        widget_bottom_toolButton_save->setMaximumSize(QSize(60, 30));
         QFont font3;
         font3.setFamily(QStringLiteral("OPPOSans B"));
         font3.setPointSize(10);
         font3.setBold(false);
         font3.setWeight(50);
         font3.setStyleStrategy(QFont::PreferAntialias);
-        toolButton->setFont(font3);
-        toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
+        widget_bottom_toolButton_save->setFont(font3);
+        widget_bottom_toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(7, 143, 255);\n"
 "	border-radius: 5px;\n"
@@ -467,16 +471,16 @@ public:
 "	background-color: rgb(7, 143, 255);\n"
 "}"));
 
-        horizontalLayout_3->addWidget(toolButton);
+        horizontalLayout_3->addWidget(widget_bottom_toolButton_save);
 
-        toolButton_3 = new QToolButton(widget_2);
-        toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
-        sizePolicy1.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
-        toolButton_3->setSizePolicy(sizePolicy1);
-        toolButton_3->setMinimumSize(QSize(60, 30));
-        toolButton_3->setMaximumSize(QSize(60, 30));
-        toolButton_3->setFont(font1);
-        toolButton_3->setStyleSheet(QLatin1String("QToolButton {\n"
+        widget_bottom_toolButton_close = new QToolButton(widget_bottom);
+        widget_bottom_toolButton_close->setObjectName(QStringLiteral("widget_bottom_toolButton_close"));
+        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_close->sizePolicy().hasHeightForWidth());
+        widget_bottom_toolButton_close->setSizePolicy(sizePolicy1);
+        widget_bottom_toolButton_close->setMinimumSize(QSize(60, 30));
+        widget_bottom_toolButton_close->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_close->setFont(font1);
+        widget_bottom_toolButton_close->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "	border-radius: 5px;\n"
@@ -492,28 +496,28 @@ public:
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
 
-        horizontalLayout_3->addWidget(toolButton_3);
+        horizontalLayout_3->addWidget(widget_bottom_toolButton_close);
 
-        horizontalSpacer_3 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        widget_bottom_horizontalSpacer_right = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout_3->addItem(horizontalSpacer_3);
+        horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_right);
 
-        horizontalWidget_2 = new QWidget(createconnect);
-        horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
-        horizontalWidget_2->setGeometry(QRect(0, 0, 681, 391));
-        horizontalLayout_6 = new QHBoxLayout(horizontalWidget_2);
+        widget_body = new QWidget(createconnect);
+        widget_body->setObjectName(QStringLiteral("widget_body"));
+        widget_body->setGeometry(QRect(0, 0, 681, 410));
+        horizontalLayout_6 = new QHBoxLayout(widget_body);
         horizontalLayout_6->setSpacing(15);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(15, 20, 15, -1);
-        verticalWidget_3 = new QWidget(horizontalWidget_2);
-        verticalWidget_3->setObjectName(QStringLiteral("verticalWidget_3"));
-        verticalWidget_3->setMinimumSize(QSize(190, 0));
-        verticalWidget_3->setMaximumSize(QSize(190, 16777215));
-        verticalLayout_3 = new QVBoxLayout(verticalWidget_3);
+        horizontalLayout_6->setContentsMargins(15, 30, 15, -1);
+        widget_body_left = new QWidget(widget_body);
+        widget_body_left->setObjectName(QStringLiteral("widget_body_left"));
+        widget_body_left->setMinimumSize(QSize(190, 0));
+        widget_body_left->setMaximumSize(QSize(190, 16777215));
+        verticalLayout_3 = new QVBoxLayout(widget_body_left);
         verticalLayout_3->setSpacing(20);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(9, 3, 1, -1);
-        verticalWidget = new QWidget(verticalWidget_3);
+        verticalWidget = new QWidget(widget_body_left);
         verticalWidget->setObjectName(QStringLiteral("verticalWidget"));
         verticalWidget->setMinimumSize(QSize(180, 60));
         verticalWidget->setMaximumSize(QSize(180, 60));
@@ -522,32 +526,32 @@ public:
         verticalLayout->setSpacing(5);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_zk_port_2 = new QLabel(verticalWidget);
-        label_zk_port_2->setObjectName(QStringLiteral("label_zk_port_2"));
-        label_zk_port_2->setMinimumSize(QSize(0, 20));
-        label_zk_port_2->setMaximumSize(QSize(16777215, 20));
-        label_zk_port_2->setFont(font);
+        label_name = new QLabel(verticalWidget);
+        label_name->setObjectName(QStringLiteral("label_name"));
+        label_name->setMinimumSize(QSize(0, 20));
+        label_name->setMaximumSize(QSize(16777215, 20));
+        label_name->setFont(font);
 
-        verticalLayout->addWidget(label_zk_port_2);
+        verticalLayout->addWidget(label_name);
 
-        lineEdit_zk_port_2 = new QLineEdit(verticalWidget);
-        lineEdit_zk_port_2->setObjectName(QStringLiteral("lineEdit_zk_port_2"));
-        lineEdit_zk_port_2->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_port_2->setMaximumSize(QSize(16777215, 30));
-        lineEdit_zk_port_2->setFont(font);
-        lineEdit_zk_port_2->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_name_data = new QLineEdit(verticalWidget);
+        lineEdit_name_data->setObjectName(QStringLiteral("lineEdit_name_data"));
+        lineEdit_name_data->setMinimumSize(QSize(0, 30));
+        lineEdit_name_data->setMaximumSize(QSize(16777215, 30));
+        lineEdit_name_data->setFont(font);
+        lineEdit_name_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        lineEdit_zk_port_2->setCursorPosition(6);
+        lineEdit_name_data->setCursorPosition(6);
 
-        verticalLayout->addWidget(lineEdit_zk_port_2);
+        verticalLayout->addWidget(lineEdit_name_data);
 
 
         verticalLayout_3->addWidget(verticalWidget);
 
-        verticalWidget_2 = new QWidget(verticalWidget_3);
+        verticalWidget_2 = new QWidget(widget_body_left);
         verticalWidget_2->setObjectName(QStringLiteral("verticalWidget_2"));
         verticalWidget_2->setMinimumSize(QSize(180, 60));
         verticalWidget_2->setMaximumSize(QSize(180, 60));
@@ -556,31 +560,31 @@ public:
         verticalLayout_2->setSpacing(5);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_zk_port_3 = new QLabel(verticalWidget_2);
-        label_zk_port_3->setObjectName(QStringLiteral("label_zk_port_3"));
-        label_zk_port_3->setMinimumSize(QSize(0, 20));
-        label_zk_port_3->setMaximumSize(QSize(16777215, 20));
-        label_zk_port_3->setFont(font);
+        label_group = new QLabel(verticalWidget_2);
+        label_group->setObjectName(QStringLiteral("label_group"));
+        label_group->setMinimumSize(QSize(0, 20));
+        label_group->setMaximumSize(QSize(16777215, 20));
+        label_group->setFont(font);
 
-        verticalLayout_2->addWidget(label_zk_port_3);
+        verticalLayout_2->addWidget(label_group);
 
-        lineEdit_zk_port_3 = new QLineEdit(verticalWidget_2);
-        lineEdit_zk_port_3->setObjectName(QStringLiteral("lineEdit_zk_port_3"));
-        lineEdit_zk_port_3->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_port_3->setMaximumSize(QSize(16777215, 30));
-        lineEdit_zk_port_3->setFont(font);
-        lineEdit_zk_port_3->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_group_data = new QLineEdit(verticalWidget_2);
+        lineEdit_group_data->setObjectName(QStringLiteral("lineEdit_group_data"));
+        lineEdit_group_data->setMinimumSize(QSize(0, 30));
+        lineEdit_group_data->setMaximumSize(QSize(16777215, 30));
+        lineEdit_group_data->setFont(font);
+        lineEdit_group_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
 
-        verticalLayout_2->addWidget(lineEdit_zk_port_3);
+        verticalLayout_2->addWidget(lineEdit_group_data);
 
 
         verticalLayout_3->addWidget(verticalWidget_2);
 
-        verticalWidget_5 = new QWidget(verticalWidget_3);
+        verticalWidget_5 = new QWidget(widget_body_left);
         verticalWidget_5->setObjectName(QStringLiteral("verticalWidget_5"));
         verticalWidget_5->setMinimumSize(QSize(180, 60));
         verticalWidget_5->setMaximumSize(QSize(180, 60));
@@ -589,33 +593,33 @@ public:
         verticalLayout_5->setSpacing(5);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
-        label_zk_port_6 = new QLabel(verticalWidget_5);
-        label_zk_port_6->setObjectName(QStringLiteral("label_zk_port_6"));
-        label_zk_port_6->setMinimumSize(QSize(0, 20));
-        label_zk_port_6->setMaximumSize(QSize(16777215, 20));
-        label_zk_port_6->setFont(font);
+        label_icon = new QLabel(verticalWidget_5);
+        label_icon->setObjectName(QStringLiteral("label_icon"));
+        label_icon->setMinimumSize(QSize(0, 20));
+        label_icon->setMaximumSize(QSize(16777215, 20));
+        label_icon->setFont(font);
 
-        verticalLayout_5->addWidget(label_zk_port_6);
+        verticalLayout_5->addWidget(label_icon);
 
-        lineEdit_zk_port_9 = new QLineEdit(verticalWidget_5);
-        lineEdit_zk_port_9->setObjectName(QStringLiteral("lineEdit_zk_port_9"));
-        lineEdit_zk_port_9->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_port_9->setMaximumSize(QSize(16777215, 30));
-        lineEdit_zk_port_9->setFont(font);
-        lineEdit_zk_port_9->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_icon_data = new QLineEdit(verticalWidget_5);
+        lineEdit_icon_data->setObjectName(QStringLiteral("lineEdit_icon_data"));
+        lineEdit_icon_data->setMinimumSize(QSize(0, 30));
+        lineEdit_icon_data->setMaximumSize(QSize(16777215, 30));
+        lineEdit_icon_data->setFont(font);
+        lineEdit_icon_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;\n"
 ""));
-        lineEdit_zk_port_9->setCursorPosition(0);
+        lineEdit_icon_data->setCursorPosition(0);
 
-        verticalLayout_5->addWidget(lineEdit_zk_port_9);
+        verticalLayout_5->addWidget(lineEdit_icon_data);
 
 
         verticalLayout_3->addWidget(verticalWidget_5);
 
-        horizontalWidget1 = new QWidget(verticalWidget_3);
+        horizontalWidget1 = new QWidget(widget_body_left);
         horizontalWidget1->setObjectName(QStringLiteral("horizontalWidget1"));
         horizontalWidget1->setMinimumSize(QSize(200, 30));
         horizontalWidget1->setMaximumSize(QSize(200, 35));
@@ -623,27 +627,27 @@ public:
         horizontalLayout_5->setSpacing(5);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        label_zk_port_4 = new QLabel(horizontalWidget1);
-        label_zk_port_4->setObjectName(QStringLiteral("label_zk_port_4"));
-        label_zk_port_4->setMinimumSize(QSize(90, 0));
-        label_zk_port_4->setMaximumSize(QSize(90, 16777215));
-        label_zk_port_4->setFont(font);
+        label_color = new QLabel(horizontalWidget1);
+        label_color->setObjectName(QStringLiteral("label_color"));
+        label_color->setMinimumSize(QSize(90, 0));
+        label_color->setMaximumSize(QSize(90, 16777215));
+        label_color->setFont(font);
 
-        horizontalLayout_5->addWidget(label_zk_port_4);
+        horizontalLayout_5->addWidget(label_color);
 
-        lineEdit_zk_port_4 = new QLineEdit(horizontalWidget1);
-        lineEdit_zk_port_4->setObjectName(QStringLiteral("lineEdit_zk_port_4"));
-        lineEdit_zk_port_4->setMinimumSize(QSize(86, 30));
-        lineEdit_zk_port_4->setMaximumSize(QSize(86, 30));
-        lineEdit_zk_port_4->setFont(font);
-        lineEdit_zk_port_4->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_color_data = new QLineEdit(horizontalWidget1);
+        lineEdit_color_data->setObjectName(QStringLiteral("lineEdit_color_data"));
+        lineEdit_color_data->setMinimumSize(QSize(86, 30));
+        lineEdit_color_data->setMaximumSize(QSize(86, 30));
+        lineEdit_color_data->setFont(font);
+        lineEdit_color_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        lineEdit_zk_port_4->setAlignment(Qt::AlignCenter);
+        lineEdit_color_data->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_5->addWidget(lineEdit_zk_port_4);
+        horizontalLayout_5->addWidget(lineEdit_color_data);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -652,18 +656,50 @@ public:
 
         verticalLayout_3->addWidget(horizontalWidget1);
 
+        horizontalWidget_3 = new QWidget(widget_body_left);
+        horizontalWidget_3->setObjectName(QStringLiteral("horizontalWidget_3"));
+        horizontalWidget_3->setMinimumSize(QSize(200, 50));
+        horizontalWidget_3->setMaximumSize(QSize(200, 50));
+        verticalLayout_6 = new QVBoxLayout(horizontalWidget_3);
+        verticalLayout_6->setSpacing(5);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        checkBox_3 = new QCheckBox(horizontalWidget_3);
+        checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
+        checkBox_3->setFont(font1);
+        checkBox_3->setContextMenuPolicy(Qt::DefaultContextMenu);
+        checkBox_3->setChecked(true);
+        checkBox_3->setTristate(false);
+
+        verticalLayout_6->addWidget(checkBox_3);
+
+        label_zk_port_7 = new QLabel(horizontalWidget_3);
+        label_zk_port_7->setObjectName(QStringLiteral("label_zk_port_7"));
+        label_zk_port_7->setMinimumSize(QSize(100, 25));
+        label_zk_port_7->setMaximumSize(QSize(180, 16777215));
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(9);
+        label_zk_port_7->setFont(font4);
+        label_zk_port_7->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
+
+        verticalLayout_6->addWidget(label_zk_port_7);
+
+
+        verticalLayout_3->addWidget(horizontalWidget_3);
+
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer);
 
 
-        horizontalLayout_6->addWidget(verticalWidget_3);
+        horizontalLayout_6->addWidget(widget_body_left);
 
-        verticalWidget_4 = new QWidget(horizontalWidget_2);
-        verticalWidget_4->setObjectName(QStringLiteral("verticalWidget_4"));
-        verticalLayout_4 = new QVBoxLayout(verticalWidget_4);
+        widget_body_right = new QWidget(widget_body);
+        widget_body_right->setObjectName(QStringLiteral("widget_body_right"));
+        verticalLayout_4 = new QVBoxLayout(widget_body_right);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        tabWidget = new QTabWidget(verticalWidget_4);
+        tabWidget = new QTabWidget(widget_body_right);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setFont(font3);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
@@ -736,20 +772,20 @@ public:
 "}"));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
-        lineEdit_zk_host_2 = new QLineEdit(tab);
-        lineEdit_zk_host_2->setObjectName(QStringLiteral("lineEdit_zk_host_2"));
-        lineEdit_zk_host_2->setGeometry(QRect(0, 40, 301, 30));
-        lineEdit_zk_host_2->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_host_2->setFont(font);
-        lineEdit_zk_host_2->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_host_ssh_data = new QLineEdit(tab);
+        lineEdit_host_ssh_data->setObjectName(QStringLiteral("lineEdit_host_ssh_data"));
+        lineEdit_host_ssh_data->setGeometry(QRect(0, 40, 301, 30));
+        lineEdit_host_ssh_data->setMinimumSize(QSize(0, 30));
+        lineEdit_host_ssh_data->setFont(font);
+        lineEdit_host_ssh_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        label_zk_host_2 = new QLabel(tab);
-        label_zk_host_2->setObjectName(QStringLiteral("label_zk_host_2"));
-        label_zk_host_2->setGeometry(QRect(0, 10, 39, 30));
-        label_zk_host_2->setFont(font);
+        label_host_ssh = new QLabel(tab);
+        label_host_ssh->setObjectName(QStringLiteral("label_host_ssh"));
+        label_host_ssh->setGeometry(QRect(0, 10, 39, 30));
+        label_host_ssh->setFont(font);
         label_zk_port_5 = new QLabel(tab);
         label_zk_port_5->setObjectName(QStringLiteral("label_zk_port_5"));
         label_zk_port_5->setGeometry(QRect(340, 10, 39, 30));
@@ -764,16 +800,16 @@ public:
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        label_zk_host_3 = new QLabel(tab);
-        label_zk_host_3->setObjectName(QStringLiteral("label_zk_host_3"));
-        label_zk_host_3->setGeometry(QRect(0, 80, 39, 30));
-        label_zk_host_3->setFont(font);
-        lineEdit_zk_port_6 = new QLineEdit(tab);
-        lineEdit_zk_port_6->setObjectName(QStringLiteral("lineEdit_zk_port_6"));
-        lineEdit_zk_port_6->setGeometry(QRect(0, 110, 421, 31));
-        lineEdit_zk_port_6->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_port_6->setFont(font);
-        lineEdit_zk_port_6->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        label_user_ssh = new QLabel(tab);
+        label_user_ssh->setObjectName(QStringLiteral("label_user_ssh"));
+        label_user_ssh->setGeometry(QRect(0, 80, 39, 30));
+        label_user_ssh->setFont(font);
+        lineEdit_user_ssh_data = new QLineEdit(tab);
+        lineEdit_user_ssh_data->setObjectName(QStringLiteral("lineEdit_user_ssh_data"));
+        lineEdit_user_ssh_data->setGeometry(QRect(0, 110, 421, 31));
+        lineEdit_user_ssh_data->setMinimumSize(QSize(0, 30));
+        lineEdit_user_ssh_data->setFont(font);
+        lineEdit_user_ssh_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -850,25 +886,25 @@ public:
 "}"));
         tab_5 = new QWidget();
         tab_5->setObjectName(QStringLiteral("tab_5"));
-        lineEdit_zk_port_7 = new QLineEdit(tab_5);
-        lineEdit_zk_port_7->setObjectName(QStringLiteral("lineEdit_zk_port_7"));
-        lineEdit_zk_port_7->setGeometry(QRect(0, 40, 421, 31));
-        lineEdit_zk_port_7->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_port_7->setFont(font);
-        lineEdit_zk_port_7->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_password_data = new QLineEdit(tab_5);
+        lineEdit_password_data->setObjectName(QStringLiteral("lineEdit_password_data"));
+        lineEdit_password_data->setGeometry(QRect(0, 40, 421, 31));
+        lineEdit_password_data->setMinimumSize(QSize(0, 30));
+        lineEdit_password_data->setFont(font);
+        lineEdit_password_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        label_zk_host_4 = new QLabel(tab_5);
-        label_zk_host_4->setObjectName(QStringLiteral("label_zk_host_4"));
-        label_zk_host_4->setGeometry(QRect(0, 10, 39, 30));
-        label_zk_host_4->setFont(font);
-        checkBox = new QCheckBox(tab_5);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
-        checkBox->setGeometry(QRect(0, 80, 71, 16));
-        checkBox->setFont(font1);
-        checkBox->setChecked(true);
+        label_password = new QLabel(tab_5);
+        label_password->setObjectName(QStringLiteral("label_password"));
+        label_password->setGeometry(QRect(0, 10, 39, 30));
+        label_password->setFont(font);
+        checkBox_remember_password = new QCheckBox(tab_5);
+        checkBox_remember_password->setObjectName(QStringLiteral("checkBox_remember_password"));
+        checkBox_remember_password->setGeometry(QRect(0, 80, 71, 16));
+        checkBox_remember_password->setFont(font1);
+        checkBox_remember_password->setChecked(true);
         toolButton_5 = new QToolButton(tab_5);
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
         toolButton_5->setGeometry(QRect(380, 40, 40, 30));
@@ -961,7 +997,7 @@ public:
         verticalLayout_4->addWidget(tabWidget);
 
 
-        horizontalLayout_6->addWidget(verticalWidget_4);
+        horizontalLayout_6->addWidget(widget_body_right);
 
 
         retranslateUi(createconnect);
@@ -976,7 +1012,7 @@ public:
 
     void retranslateUi(QWidget *createconnect)
     {
-        createconnect->setWindowTitle(QApplication::translate("createconnect", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
+        createconnect->setWindowTitle(QApplication::translate("createconnect", "\346\226\260\345\273\272\347\273\210\347\253\257", nullptr));
         toolButton_ssh_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
         toolButton_ssh_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
         label_ssh_name->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260\357\274\232", nullptr));
@@ -1001,26 +1037,28 @@ public:
         lineEdit_zk_port->setText(QApplication::translate("createconnect", "11100", nullptr));
         toolButton_zk_connect->setText(QApplication::translate("createconnect", "\347\241\256\345\256\232", nullptr));
         toolButton_zk_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
-        toolButton_2->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
-        toolButton->setText(QApplication::translate("createconnect", "\344\277\235\345\255\230", nullptr));
-        toolButton_3->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
-        label_zk_port_2->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260", nullptr));
-        lineEdit_zk_port_2->setText(QApplication::translate("createconnect", "321312", nullptr));
-        label_zk_port_3->setText(QApplication::translate("createconnect", "\345\210\206\347\273\204", nullptr));
-        lineEdit_zk_port_3->setText(QApplication::translate("createconnect", "ddsadasdas", nullptr));
-        label_zk_port_6->setText(QApplication::translate("createconnect", "\345\233\276\346\240\207", nullptr));
-        lineEdit_zk_port_9->setText(QString());
-        label_zk_port_4->setText(QApplication::translate("createconnect", "\346\240\207\351\242\230\351\242\234\350\211\262", nullptr));
-        lineEdit_zk_port_4->setText(QApplication::translate("createconnect", "#dsadas", nullptr));
-        lineEdit_zk_host_2->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
-        label_zk_host_2->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272", nullptr));
+        widget_bottom_toolButton_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
+        widget_bottom_toolButton_save->setText(QApplication::translate("createconnect", "\344\277\235\345\255\230", nullptr));
+        widget_bottom_toolButton_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
+        label_name->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260", nullptr));
+        lineEdit_name_data->setText(QApplication::translate("createconnect", "321312", nullptr));
+        label_group->setText(QApplication::translate("createconnect", "\345\210\206\347\273\204", nullptr));
+        lineEdit_group_data->setText(QApplication::translate("createconnect", "ddsadasdas", nullptr));
+        label_icon->setText(QApplication::translate("createconnect", "\345\233\276\346\240\207", nullptr));
+        lineEdit_icon_data->setText(QString());
+        label_color->setText(QApplication::translate("createconnect", "\346\240\207\351\242\230\351\242\234\350\211\262", nullptr));
+        lineEdit_color_data->setText(QApplication::translate("createconnect", "#dsadas", nullptr));
+        checkBox_3->setText(QApplication::translate("createconnect", "\344\275\277\347\224\250\345\212\250\346\200\201\346\240\207\351\242\230", nullptr));
+        label_zk_port_7->setText(QApplication::translate("createconnect", "\347\246\201\347\224\250\345\220\216\357\274\214\346\240\207\351\242\230\346\240\217\345\260\206\344\270\272\"Fdog-kit\"", nullptr));
+        lineEdit_host_ssh_data->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
+        label_host_ssh->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272", nullptr));
         label_zk_port_5->setText(QApplication::translate("createconnect", "\347\253\257\345\217\243", nullptr));
         lineEdit_zk_port_5->setText(QApplication::translate("createconnect", "11100", nullptr));
-        label_zk_host_3->setText(QApplication::translate("createconnect", "\347\224\250\346\210\267\345\220\215", nullptr));
-        lineEdit_zk_port_6->setText(QApplication::translate("createconnect", "root", nullptr));
-        lineEdit_zk_port_7->setText(QApplication::translate("createconnect", "******", nullptr));
-        label_zk_host_4->setText(QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
-        checkBox->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\345\257\206\347\240\201", nullptr));
+        label_user_ssh->setText(QApplication::translate("createconnect", "\347\224\250\346\210\267\345\220\215", nullptr));
+        lineEdit_user_ssh_data->setText(QApplication::translate("createconnect", "root", nullptr));
+        lineEdit_password_data->setText(QApplication::translate("createconnect", "******", nullptr));
+        label_password->setText(QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
+        checkBox_remember_password->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\345\257\206\347\240\201", nullptr));
         toolButton_5->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
         label_zk_host_5->setText(QApplication::translate("createconnect", "\347\247\201\351\222\245", nullptr));

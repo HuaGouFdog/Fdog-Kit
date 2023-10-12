@@ -43,6 +43,10 @@ private slots:
 
     void on_toolButton_ssh_close_clicked();
 
+    void on_widget_bottom_toolButton_connect_clicked();
+
+    void on_widget_bottom_toolButton_close_clicked();
+
 private:
     Ui::createconnect *ui;
     int8_t connectType = 0;

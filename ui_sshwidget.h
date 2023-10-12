@@ -694,6 +694,7 @@ public:
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setStyleSheet(QStringLiteral(""));
         verticalLayout_8 = new QVBoxLayout(widget_2);
+        verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         widget_10 = new QWidget(widget_2);
         widget_10->setObjectName(QStringLiteral("widget_10"));
@@ -781,6 +782,7 @@ public:
         textEdit_6->setSizePolicy(sizePolicy);
         textEdit_6->setMaximumSize(QSize(16777215, 5555555));
         textEdit_6->setFont(font3);
+        textEdit_6->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit_6->setStyleSheet(QString::fromUtf8("QTextEdit{\n"
 "	background-color: rgb(0, 41, 169, 0);\n"
 "	font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
@@ -845,6 +847,7 @@ public:
         horizontalWidget = new QWidget(widget_2);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
         horizontalWidget->setMinimumSize(QSize(0, 30));
+        horizontalWidget->setMaximumSize(QSize(16777215, 30));
         horizontalWidget->setStyleSheet(QStringLiteral("background-color: rgb(0, 41, 69);"));
         horizontalLayout_6 = new QHBoxLayout(horizontalWidget);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));

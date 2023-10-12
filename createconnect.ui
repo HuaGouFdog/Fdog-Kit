@@ -35,7 +35,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>新建连接</string>
+   <string>新建终端</string>
   </property>
   <property name="windowIcon">
    <iconset resource="lib.qrc">
@@ -554,7 +554,7 @@ QToolButton:hover {
     </widget>
    </widget>
   </widget>
-  <widget class="QWidget" name="widget_2" native="true">
+  <widget class="QWidget" name="widget_bottom" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -584,7 +584,7 @@ color: rgb(255, 255, 255);</string>
      <number>3</number>
     </property>
     <item>
-     <spacer name="horizontalSpacer">
+     <spacer name="widget_bottom_horizontalSpacer_left">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -597,7 +597,7 @@ color: rgb(255, 255, 255);</string>
      </spacer>
     </item>
     <item>
-     <widget class="QToolButton" name="toolButton_2">
+     <widget class="QToolButton" name="widget_bottom_toolButton_connect">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -646,7 +646,7 @@ QToolButton:hover {
      </widget>
     </item>
     <item>
-     <widget class="QToolButton" name="toolButton">
+     <widget class="QToolButton" name="widget_bottom_toolButton_save">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -697,7 +697,7 @@ QToolButton:hover {
      </widget>
     </item>
     <item>
-     <widget class="QToolButton" name="toolButton_3">
+     <widget class="QToolButton" name="widget_bottom_toolButton_close">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -746,7 +746,7 @@ QToolButton:hover {
      </widget>
     </item>
     <item>
-     <spacer name="horizontalSpacer_3">
+     <spacer name="widget_bottom_horizontalSpacer_right">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -763,13 +763,13 @@ QToolButton:hover {
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="horizontalWidget_2" native="true">
+  <widget class="QWidget" name="widget_body" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>681</width>
-     <height>391</height>
+     <height>410</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -780,13 +780,13 @@ QToolButton:hover {
      <number>15</number>
     </property>
     <property name="topMargin">
-     <number>20</number>
+     <number>30</number>
     </property>
     <property name="rightMargin">
      <number>15</number>
     </property>
     <item>
-     <widget class="QWidget" name="verticalWidget_3" native="true">
+     <widget class="QWidget" name="widget_body_left" native="true">
       <property name="minimumSize">
        <size>
         <width>190</width>
@@ -846,7 +846,7 @@ QToolButton:hover {
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_zk_port_2">
+           <widget class="QLabel" name="label_name">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -871,7 +871,7 @@ QToolButton:hover {
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_zk_port_2">
+           <widget class="QLineEdit" name="lineEdit_name_data">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -942,7 +942,7 @@ padding-right:10px;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_zk_port_3">
+           <widget class="QLabel" name="label_group">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -967,7 +967,7 @@ padding-right:10px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_zk_port_3">
+           <widget class="QLineEdit" name="lineEdit_group_data">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1035,7 +1035,7 @@ padding-right:10px;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_zk_port_6">
+           <widget class="QLabel" name="label_icon">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1060,7 +1060,7 @@ padding-right:10px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_zk_port_9">
+           <widget class="QLineEdit" name="lineEdit_icon_data">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1129,7 +1129,7 @@ padding-right:10px;
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_zk_port_4">
+           <widget class="QLabel" name="label_color">
             <property name="minimumSize">
              <size>
               <width>90</width>
@@ -1154,7 +1154,7 @@ padding-right:10px;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_zk_port_4">
+           <widget class="QLineEdit" name="lineEdit_color_data">
             <property name="minimumSize">
              <size>
               <width>86</width>
@@ -1205,6 +1205,90 @@ padding-right:10px;</string>
         </widget>
        </item>
        <item>
+        <widget class="QWidget" name="horizontalWidget_3" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>50</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="checkBox_3">
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::DefaultContextMenu</enum>
+            </property>
+            <property name="text">
+             <string>使用动态标题</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="tristate">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_zk_port_7">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>180</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgba(223, 223, 223, 150);</string>
+            </property>
+            <property name="text">
+             <string>禁用后，标题栏将为&quot;Fdog-kit&quot;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -1221,7 +1305,7 @@ padding-right:10px;</string>
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="verticalWidget_4" native="true">
+     <widget class="QWidget" name="widget_body_right" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QTabWidget" name="tabWidget">
@@ -1309,7 +1393,7 @@ QTabBar QToolButton:hover {
           <attribute name="title">
            <string>SSH</string>
           </attribute>
-          <widget class="QLineEdit" name="lineEdit_zk_host_2">
+          <widget class="QLineEdit" name="lineEdit_host_ssh_data">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -1341,7 +1425,7 @@ padding-right:10px;</string>
             <string>172.16.8.153</string>
            </property>
           </widget>
-          <widget class="QLabel" name="label_zk_host_2">
+          <widget class="QLabel" name="label_host_ssh">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -1411,7 +1495,7 @@ padding-right:10px;</string>
             <string>11100</string>
            </property>
           </widget>
-          <widget class="QLabel" name="label_zk_host_3">
+          <widget class="QLabel" name="label_user_ssh">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -1430,7 +1514,7 @@ padding-right:10px;</string>
             <string>用户名</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_zk_port_6">
+          <widget class="QLineEdit" name="lineEdit_user_ssh_data">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -1551,7 +1635,7 @@ QTabBar QToolButton:hover {
             <attribute name="title">
              <string>密码</string>
             </attribute>
-            <widget class="QLineEdit" name="lineEdit_zk_port_7">
+            <widget class="QLineEdit" name="lineEdit_password_data">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -1583,7 +1667,7 @@ padding-right:10px;</string>
               <string>******</string>
              </property>
             </widget>
-            <widget class="QLabel" name="label_zk_host_4">
+            <widget class="QLabel" name="label_password">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -1602,7 +1686,7 @@ padding-right:10px;</string>
               <string>密码</string>
              </property>
             </widget>
-            <widget class="QCheckBox" name="checkBox">
+            <widget class="QCheckBox" name="checkBox_remember_password">
              <property name="geometry">
               <rect>
                <x>0</x>

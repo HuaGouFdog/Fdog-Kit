@@ -267,6 +267,9 @@ https://blog.51cto.com/xiaohaiwa/5379626
     connect(scrollBar_textEdit_s,SIGNAL(valueChanged(int)),this,
                                SLOT(scrollBarValueChanged(int)));
 
+    ui->widget->hide();
+    ui->widget_3->hide();
+    ui->widget_4->hide();
 }
 
 sshwidget::~sshwidget()

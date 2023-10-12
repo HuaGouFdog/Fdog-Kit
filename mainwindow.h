@@ -70,6 +70,8 @@ private slots:
     void on_newConnnect(connnectInfoStruct& cInfoStruct);
     void on_newClose();
 
+    void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
+
 private:
     Ui::MainWindow *ui;
 

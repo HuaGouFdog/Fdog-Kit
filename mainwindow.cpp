@@ -77,9 +77,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(scale, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(url, SIGNAL(triggered()), this, SLOT(on_newTool()));
 
-    //ui->widget_tool->hide();
+    ui->widget_tool->hide();
     ui->widget_line->hide();
     ui->widget_line_2->hide();
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 MainWindow::~MainWindow()
@@ -412,6 +413,9 @@ void MainWindow::on_toolButton_max_clicked()
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
     ui->tabWidget->removeTab(index);
+    if(ui->tabWidget->count() == 0) {
+        ui->stackedWidget->setCurrentIndex(2);
+    }
 }
 
 void MainWindow::on_newCreate()
@@ -494,6 +498,8 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     }
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->widget_line->show();
 
     //null
     ccwidget = nullptr;
@@ -504,4 +510,13 @@ void MainWindow::on_newClose()
     //null
     //delete(ccwidget);
     ccwidget = nullptr;
+}
+
+void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
+{
+    //新建终端
+    int8_t connectType = 0;
+    ccwidget = new createconnect(connectType);
+    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    ccwidget->show();
 }
