@@ -148,6 +148,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     thread->start();
     //thread2->start();
     int connrectType = 1;
+    //这里设置初始化方式
+    //密码
+    //密钥 Path name of the public key file. (e.g. /etc/ssh/hostkey.pub). If libssh2 is built against OpenSSL, this option can be set to NULL.
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 
     //const int m_timer_interval__ = 1000;
@@ -179,10 +182,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 //    ui->textEdit->insertHtml(str3);
 
     QString command = "ls\n";
-    QString cc = "连接主机中...\n";
-    QColor  clrR(255,255,255);
-    stringToHtmlFilter(cc);
-    stringToHtml(cc,clrR);
+    QString cc = "连接主机中...<br>";
+//    QColor  clrR(255,255,255);
+//    stringToHtmlFilter(cc);
+//    stringToHtml(cc,clrR);
     ui->textEdit->insertHtml(cc);
     QTextCursor cursor6 = ui->textEdit_6->textCursor();
     cursor6.movePosition(QTextCursor::End);
@@ -213,7 +216,7 @@ https://blog.51cto.com/xiaohaiwa/5379626
             lineNumber = cursor2.blockNumber() + 1;
             columnNumber = cursor2.columnNumber();
 
-    ui->textEdit_4->setFocus();
+    //ui->textEdit_4->setFocus();
     movePos = false;
 
     ui->textBrowser->setText("这是一段可选中但无需移动光标的文本。");
@@ -270,6 +273,7 @@ https://blog.51cto.com/xiaohaiwa/5379626
     ui->widget->hide();
     ui->widget_3->hide();
     ui->widget_4->hide();
+    ui->horizontalWidget->hide();
 }
 
 sshwidget::~sshwidget()
@@ -360,9 +364,9 @@ void sshwidget::rece_init()
     ui->textEdit->setFocus();
     qDebug("开始调用init_poll");
     QColor  clrR(255,255,255);
-    QString cc = "主机连接成功\n";
-    stringToHtmlFilter(cc);
-    stringToHtml(cc,clrR);
+    QString cc = "主机连接成功<br>";
+//    stringToHtmlFilter(cc);
+//    stringToHtml(cc,clrR);
     ui->textEdit->insertHtml(cc);
     QTextCursor cursor6 = ui->textEdit_6->textCursor();
     cursor6.movePosition(QTextCursor::End);
@@ -664,6 +668,7 @@ void sshwidget::on_textEdit_5_cursorPositionChanged()
 
 void sshwidget::on_textEdit_6_cursorPositionChanged()
 {
+    ui->textEdit->setFocusPolicy(Qt::NoFocus);
     ui->textEdit->setFocus();
 }
 
@@ -684,8 +689,27 @@ void sshwidget::scrollBarValueChanged2(int value)
 
 void sshwidget::on_textEdit_textChanged()
 {
-        if (scrollBar_textEdit && scrollBar_textEdit_s) {
-            qDebug() << "设置滑动条 ";
-            scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
-        }
+    if (scrollBar_textEdit && scrollBar_textEdit_s) {
+        qDebug() << "设置滑动条 ";
+        scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
+    }
+    //获取最后一行数据放在textEdit_6
+
+//    QTextCursor cursor5 = ui->textEdit_6->textCursor();
+//    cursor5.movePosition(QTextCursor::End);
+//    cursor5.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+
+//    QString lastLine = cursor5.selectedText();
+//    qDebug() << "1 Last line:" << lastLine;
+
+//    QTextCursor cursor = ui->textEdit->textCursor();
+//    cursor.movePosition(QTextCursor::End);
+//    cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+
+//    QString lastLine2 = cursor.selectedText();
+//    qDebug() << "2 Last line:" << lastLine2;
+//    QString data = lastLine2.mid(lastLine.length());
+//    qDebug() << "data:" << data;
+//    ui->textEdit_6->insertHtml(data);
+
 }

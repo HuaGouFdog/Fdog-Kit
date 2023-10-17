@@ -57,5 +57,8 @@
         <file>lib/Icon_max4.png</file>
         <file>lib/eye1.png</file>
         <file>lib/eye2.png</file>
+        <file>lib/zhankai.png</file>
+        <file>lib/icon_w.png</file>
+        <file>lib/icon_80.png</file>
     </qresource>
 </RCC>

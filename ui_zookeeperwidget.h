@@ -195,7 +195,7 @@ public:
         horizontalWidget_1_2_l->setObjectName(QStringLiteral("horizontalWidget_1_2_l"));
         horizontalWidget_1_2_l->setMinimumSize(QSize(0, 22));
         horizontalLayout = new QHBoxLayout(horizontalWidget_1_2_l);
-        horizontalLayout->setSpacing(0);
+        horizontalLayout->setSpacing(10);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label_node_auto = new QLabel(horizontalWidget_1_2_l);
@@ -218,19 +218,19 @@ public:
 
         horizontalLayout->addWidget(checkBox_node_auto);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
         toolButton_add = new QToolButton(horizontalWidget_1_2_l);
         toolButton_add->setObjectName(QStringLiteral("toolButton_add"));
-        toolButton_add->setMinimumSize(QSize(0, 22));
-        toolButton_add->setMaximumSize(QSize(55, 22));
+        toolButton_add->setMinimumSize(QSize(60, 30));
+        toolButton_add->setMaximumSize(QSize(60, 30));
         toolButton_add->setFont(font3);
         toolButton_add->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
 "}\n"
 "\n"
 "QToolButton::menu-indicator { \n"
@@ -240,8 +240,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
 "}"));
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -253,13 +252,13 @@ public:
 
         toolButton__delete = new QToolButton(horizontalWidget_1_2_l);
         toolButton__delete->setObjectName(QStringLiteral("toolButton__delete"));
-        toolButton__delete->setMinimumSize(QSize(0, 22));
-        toolButton__delete->setMaximumSize(QSize(55, 22));
+        toolButton__delete->setMinimumSize(QSize(60, 30));
+        toolButton__delete->setMaximumSize(QSize(60, 30));
         toolButton__delete->setFont(font3);
         toolButton__delete->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
 "}\n"
 "\n"
 "QToolButton::menu-indicator { \n"
@@ -269,8 +268,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
 "}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/delete2.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -282,13 +280,13 @@ public:
 
         toolButton_refresh = new QToolButton(horizontalWidget_1_2_l);
         toolButton_refresh->setObjectName(QStringLiteral("toolButton_refresh"));
-        toolButton_refresh->setMinimumSize(QSize(0, 22));
-        toolButton_refresh->setMaximumSize(QSize(55, 22));
+        toolButton_refresh->setMinimumSize(QSize(60, 30));
+        toolButton_refresh->setMaximumSize(QSize(60, 30));
         toolButton_refresh->setFont(font3);
         toolButton_refresh->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
 "}\n"
 "\n"
 "QToolButton::menu-indicator { \n"
@@ -298,8 +296,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
 "}"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/update2.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -311,13 +308,13 @@ public:
 
         toolButton_unfold = new QToolButton(horizontalWidget_1_2_l);
         toolButton_unfold->setObjectName(QStringLiteral("toolButton_unfold"));
-        toolButton_unfold->setMinimumSize(QSize(0, 22));
-        toolButton_unfold->setMaximumSize(QSize(80, 22));
+        toolButton_unfold->setMinimumSize(QSize(85, 30));
+        toolButton_unfold->setMaximumSize(QSize(85, 30));
         toolButton_unfold->setFont(font3);
         toolButton_unfold->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
 "}\n"
 "\n"
 "QToolButton::menu-indicator { \n"
@@ -327,8 +324,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
 "}"));
         toolButton_unfold->setIcon(icon2);
         toolButton_unfold->setIconSize(QSize(14, 14));
@@ -819,7 +815,7 @@ public:
 
         horizontalWidget_1_2_5_1r = new QWidget(verticalWidget_1_2_5_r);
         horizontalWidget_1_2_5_1r->setObjectName(QStringLiteral("horizontalWidget_1_2_5_1r"));
-        horizontalWidget_1_2_5_1r->setMaximumSize(QSize(16777215, 25));
+        horizontalWidget_1_2_5_1r->setMaximumSize(QSize(16777215, 40));
         horizontalWidget_1_2_5_1r->setStyleSheet(QStringLiteral(""));
         horizontalLayout_4 = new QHBoxLayout(horizontalWidget_1_2_5_1r);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
@@ -866,13 +862,13 @@ public:
 
         toolButton_createData = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_createData->setObjectName(QStringLiteral("toolButton_createData"));
-        toolButton_createData->setMinimumSize(QSize(0, 22));
-        toolButton_createData->setMaximumSize(QSize(55, 22));
+        toolButton_createData->setMinimumSize(QSize(60, 30));
+        toolButton_createData->setMaximumSize(QSize(60, 30));
         toolButton_createData->setFont(font3);
         toolButton_createData->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
 "}\n"
 "\n"
 "QToolButton::menu-indicator { \n"
@@ -882,8 +878,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
 "}"));
         toolButton_createData->setIconSize(QSize(14, 14));
         toolButton_createData->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -892,13 +887,13 @@ public:
 
         toolButton_saveData = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_saveData->setObjectName(QStringLiteral("toolButton_saveData"));
-        toolButton_saveData->setMinimumSize(QSize(0, 22));
-        toolButton_saveData->setMaximumSize(QSize(55, 22));
+        toolButton_saveData->setMinimumSize(QSize(60, 30));
+        toolButton_saveData->setMaximumSize(QSize(60, 30));
         toolButton_saveData->setFont(font3);
         toolButton_saveData->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
 "}\n"
 "\n"
 "QToolButton::menu-indicator { \n"
@@ -908,8 +903,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
+"	background-color: rgb(255, 95, 95);\n"
 "}"));
         toolButton_saveData->setIconSize(QSize(14, 14));
         toolButton_saveData->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);

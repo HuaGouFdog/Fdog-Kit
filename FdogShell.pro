@@ -34,7 +34,9 @@ SOURCES += \
     datahandle.cpp \
     toolswidget.cpp \
     toolshandle.cpp \
-    settingwidget.cpp
+    settingwidget.cpp \
+    secretkeywidget.cpp \
+    smalltoolwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +48,9 @@ HEADERS += \
     datahandle.h \
     toolswidget.h \
     toolshandle.h \
-    settingwidget.h
+    settingwidget.h \
+    secretkeywidget.h \
+    smalltoolwidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -54,7 +58,9 @@ FORMS += \
     createconnect.ui \
     sshwidget.ui \
     toolswidget.ui \
-    settingwidget.ui
+    settingwidget.ui \
+    secretkeywidget.ui \
+    smalltoolwidget.ui
 
 RESOURCES += \
     lib.qrc
@@ -72,3 +78,5 @@ INCLUDEPATH += $$PWD/../libssh2.11.0/include
 DEPENDPATH += $$PWD/../libssh2.11.0/include
 
 LIBS += -luser32
+
+DISTFILES +=

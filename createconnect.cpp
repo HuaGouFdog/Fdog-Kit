@@ -81,9 +81,12 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
     //创建选择的连接信息
     connnectInfoStruct cInfo;
     cInfo.connectType = 1;//this->connectType;
-    cInfo.name = ui->lineEdit_ssh_name->text();
-    cInfo.host = ui->lineEdit_ssh_host->text();
-    cInfo.port = ui->lineEdit_ssh_port->text();
+    cInfo.name = ui->widget_name_lineEdit_name_data->text();
+    cInfo.group = ui->widget_group_lineEdit_group_data->text();
+    cInfo.host = ui->lineEdit_host_ssh_data->text();
+    cInfo.port = ui->lineEdit_port_ssh_data->text();
+    cInfo.password = ui->tab_passowrd_lineEdit_password_data->text();
+    cInfo.isSavePassword = ui->tab_passowrd_checkBox_remember_password->isChecked();
     emit newCreate(cInfo);
     this->close();
 }
@@ -92,4 +95,20 @@ void createconnect::on_widget_bottom_toolButton_close_clicked()
 {
     emit newClose();
     this->close();
+}
+
+void createconnect::on_tab_passowrd_toolButton_show_clicked()
+{
+    if (isShowPassword) {
+       isShowPassword = false;
+       //隐藏密码
+       ui->tab_passowrd_toolButton_show->setIcon(QIcon(":lib/eye2.png"));
+       ui->tab_passowrd_lineEdit_password_data->setEchoMode(QLineEdit::Password);//设置密码隐藏
+    } else {
+       isShowPassword = true;
+       //显示密码
+       ui->tab_passowrd_toolButton_show->setIcon(QIcon(":lib/eye1.png"));
+       ui->tab_passowrd_lineEdit_password_data->setEchoMode(QLineEdit::Normal);//设置密码显示
+
+    }
 }

@@ -159,7 +159,7 @@ background-color: rgb(67, 77, 88);</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <property name="spacing">
-           <number>0</number>
+           <number>10</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -212,7 +212,7 @@ background-color: rgb(67, 77, 88);</string>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
+              <width>10</width>
               <height>20</height>
              </size>
             </property>
@@ -222,14 +222,14 @@ background-color: rgb(67, 77, 88);</string>
            <widget class="QToolButton" name="toolButton_add">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>22</height>
+              <width>60</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>55</width>
-              <height>22</height>
+              <width>60</width>
+              <height>30</height>
              </size>
             </property>
             <property name="font">
@@ -242,8 +242,8 @@ background-color: rgb(67, 77, 88);</string>
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
@@ -253,8 +253,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
 }</string>
             </property>
             <property name="text">
@@ -279,14 +278,14 @@ QToolButton:hover {
            <widget class="QToolButton" name="toolButton__delete">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>22</height>
+              <width>60</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>55</width>
-              <height>22</height>
+              <width>60</width>
+              <height>30</height>
              </size>
             </property>
             <property name="font">
@@ -299,8 +298,8 @@ QToolButton:hover {
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
@@ -310,8 +309,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
 }</string>
             </property>
             <property name="text">
@@ -336,14 +334,14 @@ QToolButton:hover {
            <widget class="QToolButton" name="toolButton_refresh">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>22</height>
+              <width>60</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>55</width>
-              <height>22</height>
+              <width>60</width>
+              <height>30</height>
              </size>
             </property>
             <property name="font">
@@ -356,8 +354,8 @@ QToolButton:hover {
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
@@ -367,8 +365,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
 }</string>
             </property>
             <property name="text">
@@ -393,14 +390,14 @@ QToolButton:hover {
            <widget class="QToolButton" name="toolButton_unfold">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>22</height>
+              <width>85</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>22</height>
+              <width>85</width>
+              <height>30</height>
              </size>
             </property>
             <property name="font">
@@ -413,8 +410,8 @@ QToolButton:hover {
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
@@ -424,8 +421,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
 }</string>
             </property>
             <property name="text">
@@ -1669,7 +1665,7 @@ p, li { white-space: pre-wrap; }
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
-                 <height>25</height>
+                 <height>40</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -1763,14 +1759,14 @@ QToolButton:hover {
                  <widget class="QToolButton" name="toolButton_createData">
                   <property name="minimumSize">
                    <size>
-                    <width>0</width>
-                    <height>22</height>
+                    <width>60</width>
+                    <height>30</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>55</width>
-                    <height>22</height>
+                    <width>60</width>
+                    <height>30</height>
                    </size>
                   </property>
                   <property name="font">
@@ -1783,8 +1779,8 @@ QToolButton:hover {
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
@@ -1794,8 +1790,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
 }</string>
                   </property>
                   <property name="text">
@@ -1816,14 +1811,14 @@ QToolButton:hover {
                  <widget class="QToolButton" name="toolButton_saveData">
                   <property name="minimumSize">
                    <size>
-                    <width>0</width>
-                    <height>22</height>
+                    <width>60</width>
+                    <height>30</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>55</width>
-                    <height>22</height>
+                    <width>60</width>
+                    <height>30</height>
                    </size>
                   </property>
                   <property name="font">
@@ -1836,8 +1831,8 @@ QToolButton:hover {
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
@@ -1847,8 +1842,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+	background-color: rgb(255, 95, 95);
 }</string>
                   </property>
                   <property name="text">

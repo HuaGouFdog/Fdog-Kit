@@ -139,6 +139,7 @@ void sshhandle::init_poll()
             fds->events = LIBSSH2_POLLFD_POLLIN | LIBSSH2_POLLFD_POLLOUT;
 
     while (1) {
+        qDebug() << "循环";
         // 使用libssh2_poll函数等待事件
         int rc = libssh2_poll(fds, 1, 1000);
         if (rc > 0) {
@@ -171,9 +172,12 @@ void sshhandle::init_poll()
             }
         } else if (rc == 0) {
             // 超时，没有事件发生
+            qDebug() << "循环";
+            QTest::qSleep(200);
         } else {
             // 发生错误，处理错误
             break;
+            QTest::qSleep(200);
         }
     }
 }

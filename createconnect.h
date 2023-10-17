@@ -12,8 +12,11 @@ struct connnectInfoStruct
 {
     int8_t connectType;
     QString name;
+    QString group;
     QString host;
     QString port;
+    QString password;
+    bool isSavePassword;
 };
 
 namespace Ui {
@@ -47,9 +50,12 @@ private slots:
 
     void on_widget_bottom_toolButton_close_clicked();
 
+    void on_tab_passowrd_toolButton_show_clicked();
+
 private:
     Ui::createconnect *ui;
     int8_t connectType = 0;
+    bool isShowPassword = false;  //是否显示密码
 };
 
 #endif // CREATECONNECT_H

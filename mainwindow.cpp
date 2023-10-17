@@ -11,6 +11,7 @@
 #include <QPropertyAnimation>
 #include <QScreen>
 #include <QCoreApplication>
+#include "smalltoolwidget.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setAttribute(Qt::WA_TranslucentBackground);
     //设置无边框
     setWindowFlag(Qt::FramelessWindowHint);
+    //setWindowFlags(windowFlags()|Qt::FramelessWindowHint);
     //设置内边距
     setContentsMargins(10, 10, 10, 10);
     //设置阴影效果
@@ -81,6 +83,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_line->hide();
     ui->widget_line_2->hide();
     ui->stackedWidget->setCurrentIndex(2);
+
+    ui->label_title->hide();
+    ui->label_icon->hide();
+    ui->widget_welcome_body_widget2_info_text->hide();
+
+    //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
+    //a->show();
+
+
 }
 
 MainWindow::~MainWindow()
@@ -519,4 +530,18 @@ void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
     ccwidget = new createconnect(connectType);
     connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
     ccwidget->show();
+}
+
+void MainWindow::on_widget_welcome_body_widget2_newCreate_newTool_clicked()
+{
+    //创建连接窗口
+    tswidget = new toolswidget();
+    //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    QSize iconSize(16, 16); // 设置图标的大小
+    //sshWidgetList.push_back(tswidget);
+    ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), "工具");
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    //sshWidgetList.push_back(tswidget);
+    tswidget->show();
+    ui->stackedWidget->setCurrentIndex(0);
 }

@@ -1412,13 +1412,14 @@ QToolButton:hover {
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QTextEdit{
-	background-color: rgb(0, 41, 69);
+	background-color: rgba(0, 41, 69, 0);
 	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 	border: none;
 	padding-top:0px;
     padding-bottom:0px;
 	padding-left:0px;
     padding-right:0px;
+border-radius: 5px;
 }
 
 QScrollBar:vertical {
@@ -1529,6 +1530,8 @@ p, li { white-space: pre-wrap; }
     padding-bottom:0px;
 	padding-left:0px;
     padding-right:0px;
+	border-radius: 5px;
+	color: rgba(255, 255, 255, 0);
 }
 
 QScrollBar:vertical {

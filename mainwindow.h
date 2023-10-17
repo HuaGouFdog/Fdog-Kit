@@ -72,6 +72,8 @@ private slots:
 
     void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
 
+    void on_widget_welcome_body_widget2_newCreate_newTool_clicked();
+
 private:
     Ui::MainWindow *ui;
 
