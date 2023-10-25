@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>273</width>
+    <width>289</width>
     <height>535</height>
    </rect>
   </property>
@@ -68,7 +68,7 @@
       <string notr="true">background-color: rgb(207, 188, 255);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page_21">
       <layout class="QVBoxLayout" name="verticalLayout_2">

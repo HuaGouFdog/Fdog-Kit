@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -39,12 +38,10 @@ public:
     QVBoxLayout *verticalLayout_9;
     QWidget *horizontalWidget_1_1_l;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *label_node;
-    QLineEdit *lineEdit_node;
     QWidget *horizontalWidget_1_2_l;
     QHBoxLayout *horizontalLayout;
-    QLabel *label_node_auto;
-    QCheckBox *checkBox_node_auto;
+    QLabel *label_node;
+    QLineEdit *lineEdit_node;
     QSpacerItem *horizontalSpacer;
     QToolButton *toolButton_add;
     QToolButton *toolButton__delete;
@@ -120,7 +117,7 @@ public:
     {
         if (zookeeperwidget->objectName().isEmpty())
             zookeeperwidget->setObjectName(QStringLiteral("zookeeperwidget"));
-        zookeeperwidget->resize(967, 641);
+        zookeeperwidget->resize(966, 561);
         zookeeperwidget->setMinimumSize(QSize(0, 0));
         zookeeperwidget->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
@@ -157,8 +154,8 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         verticalWidget_1_l = new QWidget(splitter);
         verticalWidget_1_l->setObjectName(QStringLiteral("verticalWidget_1_l"));
-        verticalWidget_1_l->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67, 77, 88);"));
+        verticalWidget_1_l->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+"color: rgb(255, 255, 255);"));
         verticalLayout_9 = new QVBoxLayout(verticalWidget_1_l);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         verticalLayout_9->setSizeConstraint(QLayout::SetDefaultConstraint);
@@ -171,23 +168,6 @@ public:
         horizontalLayout_2 = new QHBoxLayout(horizontalWidget_1_1_l);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_node = new QLabel(horizontalWidget_1_1_l);
-        label_node->setObjectName(QStringLiteral("label_node"));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(10);
-        font3.setStyleStrategy(QFont::PreferAntialias);
-        label_node->setFont(font3);
-
-        horizontalLayout_2->addWidget(label_node);
-
-        lineEdit_node = new QLineEdit(horizontalWidget_1_1_l);
-        lineEdit_node->setObjectName(QStringLiteral("lineEdit_node"));
-        lineEdit_node->setFont(font3);
-        lineEdit_node->setReadOnly(true);
-
-        horizontalLayout_2->addWidget(lineEdit_node);
-
 
         verticalLayout_9->addWidget(horizontalWidget_1_1_l);
 
@@ -198,25 +178,22 @@ public:
         horizontalLayout->setSpacing(10);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_node_auto = new QLabel(horizontalWidget_1_2_l);
-        label_node_auto->setObjectName(QStringLiteral("label_node_auto"));
-        QFont font4;
-        font4.setFamily(QStringLiteral("OPPOSans B"));
-        font4.setPointSize(10);
-        font4.setBold(false);
-        font4.setWeight(50);
-        font4.setStyleStrategy(QFont::PreferAntialias);
-        label_node_auto->setFont(font4);
+        label_node = new QLabel(horizontalWidget_1_2_l);
+        label_node->setObjectName(QStringLiteral("label_node"));
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(10);
+        font3.setStyleStrategy(QFont::PreferAntialias);
+        label_node->setFont(font3);
 
-        horizontalLayout->addWidget(label_node_auto);
+        horizontalLayout->addWidget(label_node);
 
-        checkBox_node_auto = new QCheckBox(horizontalWidget_1_2_l);
-        checkBox_node_auto->setObjectName(QStringLiteral("checkBox_node_auto"));
-        checkBox_node_auto->setStyleSheet(QStringLiteral(""));
-        checkBox_node_auto->setChecked(true);
-        checkBox_node_auto->setTristate(false);
+        lineEdit_node = new QLineEdit(horizontalWidget_1_2_l);
+        lineEdit_node->setObjectName(QStringLiteral("lineEdit_node"));
+        lineEdit_node->setFont(font3);
+        lineEdit_node->setReadOnly(true);
 
-        horizontalLayout->addWidget(checkBox_node_auto);
+        horizontalLayout->addWidget(lineEdit_node);
 
         horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -348,10 +325,10 @@ public:
         horizontalLayout_3->setContentsMargins(5, 0, 5, 0);
         lineEdit_search = new QLineEdit(horizontalWidget_1_3_l);
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
-        QFont font5;
-        font5.setFamily(QStringLiteral("OPPOSans B"));
-        font5.setPointSize(10);
-        lineEdit_search->setFont(font5);
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(10);
+        lineEdit_search->setFont(font4);
         lineEdit_search->setStyleSheet(QStringLiteral(""));
 
         horizontalLayout_3->addWidget(lineEdit_search);
@@ -400,7 +377,13 @@ public:
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        treeWidget->setFont(font4);
+        QFont font5;
+        font5.setFamily(QStringLiteral("OPPOSans B"));
+        font5.setPointSize(10);
+        font5.setBold(false);
+        font5.setWeight(50);
+        font5.setStyleStrategy(QFont::PreferAntialias);
+        treeWidget->setFont(font5);
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         treeWidget->setStyleSheet(QString::fromUtf8("QTreeWidget::item{\n"
 "	border-bottom:1px solid rgb(255, 255, 255,100);\n"
@@ -479,8 +462,8 @@ public:
         verticalWidget_1_r->setObjectName(QStringLiteral("verticalWidget_1_r"));
         verticalWidget_1_r->setMaximumSize(QSize(320, 99999));
         verticalWidget_1_r->setFont(font2);
-        verticalWidget_1_r->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67, 77, 88);"));
+        verticalWidget_1_r->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+"color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(verticalWidget_1_r);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 9, 0, 19);
@@ -791,7 +774,7 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         verticalWidget_1_2_5_2_r = new QWidget(verticalWidget_1_2_5_r);
         verticalWidget_1_2_5_2_r->setObjectName(QStringLiteral("verticalWidget_1_2_5_2_r"));
-        verticalWidget_1_2_5_2_r->setFont(font5);
+        verticalWidget_1_2_5_2_r->setFont(font4);
         verticalWidget_1_2_5_2_r->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(verticalWidget_1_2_5_2_r);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -933,9 +916,7 @@ public:
     {
         zookeeperwidget->setWindowTitle(QApplication::translate("zookeeperwidget", "Form", nullptr));
         label_node->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\357\274\232", nullptr));
-        lineEdit_node->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        label_node_auto->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\346\230\257\345\220\246\350\207\252\345\212\250\345\210\267\346\226\260\357\274\232", nullptr));
-        checkBox_node_auto->setText(QString());
+        lineEdit_node->setText(QApplication::translate("zookeeperwidget", "/", nullptr));
         toolButton_add->setText(QApplication::translate("zookeeperwidget", "\346\267\273\345\212\240", nullptr));
         toolButton__delete->setText(QApplication::translate("zookeeperwidget", "\345\210\240\351\231\244", nullptr));
         toolButton_refresh->setText(QApplication::translate("zookeeperwidget", "\345\210\267\346\226\260", nullptr));

@@ -11,6 +11,9 @@
 #include <QPropertyAnimation>
 #include <QScreen>
 #include <QCoreApplication>
+#include <QTimer>
+#include <QDateTime>
+#include <QClipboard>
 #include "smalltoolwidget.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,57 +44,70 @@ MainWindow::MainWindow(QWidget *parent) :
     setSupportStretch(true);
 
     //创建菜单栏及相关菜单
-    men = new QMenu();
-    men->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
-                       "QMenu::item:selected {background-color: #0B0E11;}");
-    ssh = new QAction(QIcon(":lib/powershell.png"), "ssh连接");
-    men->addAction(ssh);
-    zk = new QAction(QIcon(":lib/Zookeeper.png"), "zk连接");
-    men->addAction(zk);
-    kafka = new QAction(QIcon(":lib/Kafka.png"), "kafka连接");
-    men->addAction(kafka);
-    redis = new QAction(QIcon(":lib/Redis.png"), "redis连接");
-    men->addAction(redis);
-    db = new QAction(QIcon(":lib/db.png"), "database连接");
-    men->addAction(db);
-    //将选项添加到新建按钮下
-    ui->toolButton_newCreate->setMenu(men);
+//    men = new QMenu();
+//    men->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
+//                       "QMenu::item:selected {background-color: #0B0E11;}");
+//    ssh = new QAction(QIcon(":lib/powershell.png"), "ssh连接");
+//    men->addAction(ssh);
+//    zk = new QAction(QIcon(":lib/Zookeeper.png"), "zk连接");
+//    men->addAction(zk);
+//    kafka = new QAction(QIcon(":lib/Kafka.png"), "kafka连接");
+//    men->addAction(kafka);
+//    redis = new QAction(QIcon(":lib/Redis.png"), "redis连接");
+//    men->addAction(redis);
+//    db = new QAction(QIcon(":lib/db.png"), "database连接");
+//    men->addAction(db);
+//    //将选项添加到新建按钮下
+//    ui->toolButton_newCreate->setMenu(men);
 
     //添加信号
-    connect(ssh, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-    connect(zk, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-    connect(kafka, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-    connect(redis, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-    connect(db, SIGNAL(triggered()), this, SLOT(on_newCreate()));
+//    connect(ssh, SIGNAL(triggered()), this, SLOT(on_newCreate()));
+//    connect(zk, SIGNAL(triggered()), this, SLOT(on_newCreate()));
+//    connect(kafka, SIGNAL(triggered()), this, SLOT(on_newCreate()));
+//    connect(redis, SIGNAL(triggered()), this, SLOT(on_newCreate()));
+//    connect(db, SIGNAL(triggered()), this, SLOT(on_newCreate()));
 
 
     men_tool = new QMenu();
     men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
                        "QMenu::item:selected {background-color: #0B0E11;}");
-    timestamp = new QAction(QIcon(":lib/powershell.png"), "时间戳转换");
-    men_tool->addAction(timestamp);
-    scale = new QAction(QIcon(":lib/powershell.png"), "进制转换");
-    men_tool->addAction(scale);
-    url = new QAction(QIcon(":lib/powershell.png"), "URL解码");
-    men_tool->addAction(url);
-    ui->toolButton_tool->setMenu(men_tool);
-    connect(timestamp, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(scale, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(url, SIGNAL(triggered()), this, SLOT(on_newTool()));
 
-    ui->widget_tool->hide();
+    jsonFormat = new QAction(QIcon(":lib/powershell.png"), "JSON格式化");
+    men_tool->addAction(jsonFormat);
+    xmlFormat = new QAction(QIcon(":lib/powershell.png"), "XML格式化");
+    men_tool->addAction(xmlFormat);
+    textDiff = new QAction(QIcon(":lib/powershell.png"), "文本对比");
+    men_tool->addAction(textDiff);
+    toolAssemble = new QAction(QIcon(":lib/powershell.png"), "小工具集合");
+    men_tool->addAction(toolAssemble);
+    ui->toolButton_tool->setMenu(men_tool);
+
+    connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
+
     ui->widget_line->hide();
-    ui->widget_line_2->hide();
     ui->stackedWidget->setCurrentIndex(2);
 
-    ui->label_title->hide();
-    ui->label_icon->hide();
     ui->widget_welcome_body_widget2_info_text->hide();
 
     //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
     //a->show();
 
+    // 创建定时器
+    QTimer * timer = new QTimer();
 
+    // 设置定时器的间隔为1000毫秒（1秒）
+    timer->setInterval(1000);
+
+    // 连接定时器的timeout()信号到槽函数
+    connect(timer,SIGNAL(timeout()), this,
+                            SLOT(rece_showtimestamp()));
+    // 启动定时器
+    timer->start();
+
+    ui->widget_4->hide();
 }
 
 MainWindow::~MainWindow()
@@ -347,13 +363,13 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if(ui->widget_title->underMouse() && !showFlag) {
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(67, 77, 88);border-radius:0px;}");
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         this->showMaximized();
         showFlag = true;
     } else if (ui->widget_title->underMouse() && showFlag) {
         setContentsMargins(10, 10, 10, 10);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(67, 77, 88);border-radius:6px;}");
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
         this->showNormal();
         showFlag = false;
@@ -408,13 +424,13 @@ void MainWindow::on_toolButton_max_clicked()
     //最大化
     if (!showFlag) {
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(67, 77, 88);border-radius:0px;}");
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         this->showMaximized();
         showFlag = true;
     } else {
-        setContentsMargins(10, 10, 10, 10);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(67, 77, 88);border-radius:6px;}");
+        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
         this->showNormal();
         showFlag = false;
@@ -433,19 +449,19 @@ void MainWindow::on_newCreate()
 {
     if (ccwidget == nullptr) {
         //获取发送者
-        QString actionText = qobject_cast<QAction*>(sender())->text();
+        //QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
-        if (actionText == "ssh连接") {
-            connectType =SSH_CONNECT_TYPE;
-        } else if (actionText == "zk连接") {
-            connectType =ZK_CONNECT_TYPE;
-        } else if (actionText == "redis连接") {
-            connectType =REDIS_CONNECT_TYPE;
-        } else if (actionText == "kafka连接") {
-            connectType =KAFKA_CONNECT_TYPE;
-        } else if (actionText == "database连接") {
-            connectType =DB_CONNECT_TYPE;
-        }
+//        if (actionText == "ssh连接") {
+//            connectType =SSH_CONNECT_TYPE;
+//        } else if (actionText == "zk连接") {
+//            connectType =ZK_CONNECT_TYPE;
+//        } else if (actionText == "redis连接") {
+//            connectType =REDIS_CONNECT_TYPE;
+//        } else if (actionText == "kafka连接") {
+//            connectType =KAFKA_CONNECT_TYPE;
+//        } else if (actionText == "database连接") {
+//            connectType =DB_CONNECT_TYPE;
+//        }
 
         //创建连接窗口
         ccwidget = new createconnect(connectType);
@@ -462,14 +478,21 @@ void MainWindow::on_newTool()
 {
     if (ccwidget == nullptr) {
         //获取发送者
+        QString toolName;
         QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
-        if (actionText == "时间戳转换") {
+        if (actionText == "小工具集合") {
+            ui->widget_4->show();
+            return;
             //connectType =SSH_CONNECT_TYPE;
-        } else if (actionText == "进制转换") {
+        } else if (actionText == "JSON格式化") {
+            toolName = "JSON格式化";
             //connectType =ZK_CONNECT_TYPE;
-        } else if (actionText == "URL解码") {
+        } else if (actionText == "XML格式化") {
+            toolName = "XML格式化";
             //connectType =REDIS_CONNECT_TYPE;
+        } else if (actionText == "文本对比") {
+            toolName = "文本对比";
         }
 
         //创建连接窗口
@@ -477,7 +500,7 @@ void MainWindow::on_newTool()
         //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
         QSize iconSize(16, 16); // 设置图标的大小
         //sshWidgetList.push_back(tswidget);
-        ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), "工具");
+        ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), toolName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         //sshWidgetList.push_back(tswidget);
         tswidget->show();
@@ -485,6 +508,9 @@ void MainWindow::on_newTool()
         //不创建
         tswidget->setFocus();
     }
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->widget_line->show();
 }
 
 void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
@@ -496,6 +522,8 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
         sshwidget * sshWidget = new sshwidget(cInfoStruct);
         sshWidgetList.push_back(sshWidget);
         ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
+    } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
+
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
         zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
         zkWidgetList.push_back(zkWidget);
@@ -511,15 +539,12 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
     ui->widget_line->show();
-
-    //null
-    ccwidget = nullptr;
 }
 
 void MainWindow::on_newClose()
 {
-    //null
-    //delete(ccwidget);
+    qDebug() << "删除";
+    delete(ccwidget);
     ccwidget = nullptr;
 }
 
@@ -535,13 +560,210 @@ void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
 void MainWindow::on_widget_welcome_body_widget2_newCreate_newTool_clicked()
 {
     //创建连接窗口
-    tswidget = new toolswidget();
-    //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-    QSize iconSize(16, 16); // 设置图标的大小
-    //sshWidgetList.push_back(tswidget);
-    ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), "工具");
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-    //sshWidgetList.push_back(tswidget);
-    tswidget->show();
+//    tswidget = new toolswidget();
+//    //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+//    QSize iconSize(16, 16); // 设置图标的大小
+//    //sshWidgetList.push_back(tswidget);
+//    ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), "工具");
+//    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+//    //sshWidgetList.push_back(tswidget);
+//    tswidget->show();
     ui->stackedWidget->setCurrentIndex(0);
+    ui->widget_4->show();
+}
+
+void MainWindow::on_comboBox_tool_currentIndexChanged(int index)
+{
+    ui->stackedWidget_tool->setCurrentIndex(index);
+}
+
+void MainWindow::on_lineEdit_hex_textChanged(const QString &arg1)
+{
+    if (ui->lineEdit_hex->hasFocus()) {
+        bool ok;
+        qint64 decimalValue = arg1.toLongLong(&ok, 16);
+        if (ok) {
+            ui->lineEdit_dec->setText(QString::number(decimalValue));
+        }
+
+        qint64 binaryValue = arg1.toLongLong(&ok, 16);
+        if (ok) {
+            QString binaryString = QString::number(binaryValue, 2);
+            ui->lineEdit_bin->setText(binaryString);
+        }
+
+        qint64 octalValue = arg1.toLongLong(&ok, 16);
+        if (ok) {
+            QString octalString = QString::number(octalValue, 8);
+            ui->lineEdit_oct->setText(octalString);
+        }
+    }
+}
+
+void MainWindow::on_lineEdit_dec_textChanged(const QString &arg1)
+{
+    if (ui->lineEdit_dec->hasFocus()) {
+        qint64 decimalValue = arg1.toLongLong();
+        QString binaryString = QString::number(decimalValue, 2);
+        QString octalString = QString::number(decimalValue, 8);
+        QString hexadecimalString = QString::number(decimalValue, 16);
+        ui->lineEdit_hex->setText(hexadecimalString);
+        ui->lineEdit_oct->setText(octalString);
+        ui->lineEdit_bin->setText(binaryString);
+    }
+}
+
+void MainWindow::on_lineEdit_oct_textChanged(const QString &arg1)
+{
+    if (ui->lineEdit_oct->hasFocus()) {
+        bool ok;
+        qint64 decimalValue = arg1.toLongLong(&ok, 8);
+        if (ok) {
+            ui->lineEdit_dec->setText(QString::number(decimalValue));
+        }
+
+        qint64 binaryValue = arg1.toLongLong(&ok, 8);
+        if (ok) {
+            QString binaryString = QString::number(binaryValue, 2);
+            ui->lineEdit_bin->setText(binaryString);
+        }
+
+        qint64 heximalValue = arg1.toLongLong(&ok, 8);
+        if (ok) {
+            QString octalString = QString::number(heximalValue, 16);
+            ui->lineEdit_hex->setText(octalString);
+        }
+    }
+}
+
+void MainWindow::on_lineEdit_bin_textChanged(const QString &arg1)
+{
+    if (ui->lineEdit_bin->hasFocus()) {
+        bool ok;
+        qint64 binaryValue = arg1.toLongLong(&ok, 2);
+        if (ok) {
+            ui->lineEdit_dec->setText(QString::number(binaryValue));
+        }
+
+        qint64 heximalValue = arg1.toLongLong(&ok, 2);
+        if (ok) {
+            QString hexString = QString::number(heximalValue, 16);
+            ui->lineEdit_hex->setText(hexString);
+        }
+
+        qint64 octalValue = arg1.toLongLong(&ok, 2);
+        if (ok) {
+            QString octalString = QString::number(octalValue, 8);
+            ui->lineEdit_oct->setText(octalString);
+        }
+    }
+}
+
+void MainWindow::on_toolButton_decode_clicked()
+{
+    //解码
+    QString url = ui->lineEdit_encode_in->text();
+    QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+    ui->lineEdit_decode_out->setText(decodedUrl);
+}
+
+void MainWindow::on_toolButton_encode_clicked()
+{
+    //编码
+    QString url = ui->lineEdit_encode_in->text();
+    QString encodedUrl = QUrl::toPercentEncoding(url);
+    ui->lineEdit_decode_out->setText(encodedUrl);
+}
+
+void MainWindow::rece_showtimestamp()
+{
+    // 获取当前时间
+    QDateTime currentTime = QDateTime::currentDateTime();
+
+    // 将时间转换为时间戳（秒数）
+    qint64 timestamp = currentTime.toSecsSinceEpoch();
+
+    // 将时间戳转换为字符串
+    QString timestampStr = QString::number(timestamp);
+
+    // 在标签上显示时间戳
+    ui->lineEdit_now_timestamp->setText(timestampStr);
+}
+
+void MainWindow::on_toolButton_time2date_clicked()
+{
+    QString in = ui->lineEdit_time2date_in->text();
+    qint64 timestamp = in.toLongLong();
+    if (ui->comboBox_time2date->currentIndex() == 0) {
+        //秒
+        QDateTime dateTime = QDateTime::fromSecsSinceEpoch(timestamp);
+
+        // 将 QDateTime 对象格式化为日期字符串
+        QString dateString = dateTime.toString("yyyy-MM-dd hh:mm:ss");
+        ui->lineEdit_time2date_out->setText(dateString);
+    } else {
+        //毫秒
+        QDateTime dateTime = QDateTime::fromMSecsSinceEpoch(timestamp);
+        QString dateString = dateTime.toString("yyyy-MM-dd hh:mm:ss");
+        ui->lineEdit_time2date_out->setText(dateString);
+    }
+}
+
+void MainWindow::on_toolButton_date2time_clicked()
+{
+    QString in = ui->lineEdit_date2time_in->text();
+    if (ui->comboBox_date2time->currentIndex() == 0) {
+        //秒
+        QDateTime dateTime = QDateTime::fromString(in, "yyyy-MM-dd hh:mm:ss");
+        qint64 secondsTimestamp = dateTime.toSecsSinceEpoch();
+        ui->lineEdit_date2time_out->setText(QString::number(secondsTimestamp));
+    } else {
+        //毫秒
+        QDateTime dateTime = QDateTime::fromString(in, "yyyy-MM-dd hh:mm:ss");
+        qint64 millisecondsTimestamp = dateTime.toMSecsSinceEpoch();
+        ui->lineEdit_date2time_out->setText(QString::number(millisecondsTimestamp));
+    }
+}
+
+void MainWindow::on_toolButton_timestamp_copy_clicked()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->lineEdit_now_timestamp->text());
+}
+
+void MainWindow::on_toolButton_closetool_clicked()
+{
+    ui->widget_4->hide();
+}
+
+void MainWindow::on_toolButton_newCreate_clicked()
+{
+    if (ccwidget == nullptr) {
+        int8_t connectType = 0;
+        //创建连接窗口
+        ccwidget = new createconnect(connectType);
+        connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+        connect(ccwidget,SIGNAL(newClose()),this,SLOT(on_newClose()));
+        ccwidget->show();
+    } else {
+        //不创建
+        ccwidget->setFocus();
+    }
+}
+
+void MainWindow::on_toolButton_newCreate_2_clicked()
+{
+    //if (hcwidget == nullptr) {
+        int8_t connectType = 0;
+        //创建连接窗口
+        hcwidget = new historyconnectwidget(connectType);
+        //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+        ui->tabWidget->addTab(hcwidget, "快速连接");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        ui->stackedWidget->setCurrentIndex(0);
+        hcwidget->show();
+//    } else {
+//        //不创建
+//        hcwidget->setFocus();
+//    }
 }

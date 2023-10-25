@@ -171,8 +171,7 @@ public:
         if (sshwidget->objectName().isEmpty())
             sshwidget->setObjectName(QStringLiteral("sshwidget"));
         sshwidget->resize(1391, 699);
-        sshwidget->setStyleSheet(QLatin1String("background-color: rgb(67, 77, 88);\n"
-"color: rgb(255, 255, 255);"));
+        sshwidget->setStyleSheet(QStringLiteral("background-color: rgb(30, 45, 54);"));
         sshwidget->setLocale(QLocale(QLocale::English, QLocale::Kenya));
         verticalLayout_5 = new QVBoxLayout(sshwidget);
         verticalLayout_5->setSpacing(0);
@@ -193,7 +192,7 @@ public:
         widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(5, 0, 0, 9);
+        verticalLayout_3->setContentsMargins(5, 0, 0, 5);
         widget_server_info = new QWidget(widget);
         widget_server_info->setObjectName(QStringLiteral("widget_server_info"));
         widget_server_info->setMinimumSize(QSize(0, 20));
@@ -688,6 +687,7 @@ public:
         horizontalLayout_19->setContentsMargins(0, 0, 0, 0);
         splitter_3 = new QSplitter(widget_29);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
+        splitter_3->setLineWidth(0);
         splitter_3->setOrientation(Qt::Horizontal);
         splitter_3->setHandleWidth(0);
         widget_2 = new QWidget(splitter_3);
@@ -696,6 +696,7 @@ public:
         verticalLayout_8 = new QVBoxLayout(widget_2);
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(4, 0, 0, 0);
         widget_10 = new QWidget(widget_2);
         widget_10->setObjectName(QStringLiteral("widget_10"));
         textEdit = new QTextEdit(widget_10);
@@ -728,14 +729,14 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
-"    width: 9px;\n"
-"	background-color: rgb(0, 41, 69);\n"
+"    width: 10px;\n"
+"	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
 "    padding-bottom: 0px;\n"
 "}\n"
 "QScrollBar::handle:vertical {\n"
-"    width: 9px;\n"
+"    width: 10px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
@@ -752,8 +753,8 @@ public:
 "    background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
-"QScrollBa"
-                        "r::add-line:vertical {\n"
+"QSc"
+                        "rollBar::add-line:vertical {\n"
 "	border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: bottom;\n"
@@ -797,14 +798,14 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
-"    width: 9px;\n"
-"	background-color: rgb(0, 41, 69);\n"
+"    width: 10px;\n"
+"	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
 "    padding-bottom: 0px;\n"
 "}\n"
 "QScrollBar::handle:vertical {\n"
-"    width: 9px;\n"
+"    width: 10px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
@@ -818,8 +819,8 @@ public:
 "}\n"
 "QScrollBar::add-page:vertical \n"
 "{\n"
-"    background-color: rgba(255, 2"
-                        "55, 255, 0);\n"
+"    background-color: rgba("
+                        "255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
@@ -967,6 +968,7 @@ public:
         widget_4->setStyleSheet(QStringLiteral(""));
         verticalLayout_12 = new QVBoxLayout(widget_4);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        verticalLayout_12->setContentsMargins(-1, -1, -1, 0);
         textEdit_3 = new QTextEdit(widget_4);
         textEdit_3->setObjectName(QStringLiteral("textEdit_3"));
         textEdit_3->setMaximumSize(QSize(16777215, 20));
@@ -1026,7 +1028,7 @@ public:
         widget_3->setStyleSheet(QStringLiteral(""));
         verticalLayout_7 = new QVBoxLayout(widget_3);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 5, 9);
+        verticalLayout_7->setContentsMargins(0, 0, 5, 0);
         splitter_4 = new QSplitter(widget_3);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);

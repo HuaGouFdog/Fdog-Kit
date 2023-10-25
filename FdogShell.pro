@@ -36,7 +36,8 @@ SOURCES += \
     toolshandle.cpp \
     settingwidget.cpp \
     secretkeywidget.cpp \
-    smalltoolwidget.cpp
+    smalltoolwidget.cpp \
+    historyconnectwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -50,7 +51,8 @@ HEADERS += \
     toolshandle.h \
     settingwidget.h \
     secretkeywidget.h \
-    smalltoolwidget.h
+    smalltoolwidget.h \
+    historyconnectwidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -60,7 +62,8 @@ FORMS += \
     toolswidget.ui \
     settingwidget.ui \
     secretkeywidget.ui \
-    smalltoolwidget.ui
+    smalltoolwidget.ui \
+    historyconnectwidget.ui
 
 RESOURCES += \
     lib.qrc

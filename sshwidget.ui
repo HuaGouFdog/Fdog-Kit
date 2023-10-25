@@ -14,8 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(67, 77, 88);
-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: rgb(30, 45, 54);</string>
   </property>
   <property name="locale">
    <locale language="English" country="Kenya"/>
@@ -75,7 +74,7 @@ color: rgb(255, 255, 255);</string>
         <number>0</number>
        </property>
        <property name="bottomMargin">
-        <number>9</number>
+        <number>5</number>
        </property>
        <item>
         <widget class="QWidget" name="widget_server_info" native="true">
@@ -1360,6 +1359,9 @@ QToolButton:hover {
            </property>
            <item>
             <widget class="QSplitter" name="splitter_3">
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -1372,6 +1374,18 @@ QToolButton:hover {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8" stretch="5,1">
                <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>4</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
                 <number>0</number>
                </property>
                <item>
@@ -1423,14 +1437,14 @@ border-radius: 5px;
 }
 
 QScrollBar:vertical {
-    width: 9px;
-	background-color: rgb(0, 41, 69);
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
     padding-bottom: 0px;
 }
 QScrollBar::handle:vertical {
-    width: 9px;
+    width: 10px;
 	
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
@@ -1535,14 +1549,14 @@ p, li { white-space: pre-wrap; }
 }
 
 QScrollBar:vertical {
-    width: 9px;
-	background-color: rgb(0, 41, 69);
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
     padding-bottom: 0px;
 }
 QScrollBar::handle:vertical {
-    width: 9px;
+    width: 10px;
 	
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
@@ -1801,6 +1815,9 @@ QToolButton:hover {
                <string notr="true"/>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QTextEdit" name="textEdit_3">
                  <property name="maximumSize">
@@ -1948,7 +1965,7 @@ p, li { white-space: pre-wrap; }
             <number>5</number>
            </property>
            <property name="bottomMargin">
-            <number>9</number>
+            <number>0</number>
            </property>
            <item>
             <widget class="QSplitter" name="splitter_4">

@@ -4,10 +4,11 @@
 #include <QWidget>
 #include "createconnect.h"
 #define SSH_CONNECT_TYPE 1
-#define ZK_CONNECT_TYPE 2
-#define REDIS_CONNECT_TYPE 3
-#define KAFKA_CONNECT_TYPE 4
-#define DB_CONNECT_TYPE 5
+#define WINDOWS_CONNECT_TYPE 2
+#define ZK_CONNECT_TYPE 3
+#define REDIS_CONNECT_TYPE 4
+#define KAFKA_CONNECT_TYPE 5
+#define DB_CONNECT_TYPE 6
 struct connnectInfoStruct
 {
     int8_t connectType;
@@ -15,6 +16,7 @@ struct connnectInfoStruct
     QString group;
     QString host;
     QString port;
+    QString userName;
     QString password;
     bool isSavePassword;
 };
@@ -37,14 +39,6 @@ signals:
 
 private slots:
     void closeEvent(QCloseEvent *event);
-
-    void on_toolButton_zk_connect_clicked();
-
-    void on_toolButton_zk_close_clicked();
-
-    void on_toolButton_ssh_connect_clicked();
-
-    void on_toolButton_ssh_close_clicked();
 
     void on_widget_bottom_toolButton_connect_clicked();
 

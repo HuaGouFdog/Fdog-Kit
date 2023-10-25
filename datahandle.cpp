@@ -195,6 +195,7 @@ void datahandle::stringToHtmlFilter5(QString &str)
         qDebug() << "Matched stringToHtmlFilter5:" << match;
         pos += regex.matchedLength();
     }
+
 }
 
 /*
@@ -215,11 +216,152 @@ void datahandle::stringToHtmlFilter5(QString &str)
 
 void datahandle::stringToHtmlFilter6(QString &str)
 {
-    QRegExp regExp("\\x001B\\[(\\d+);(\\d+)H~");
+    QRegExp regExp1("\\x001B\\[\\?1049h");
     int pos = 0;
+    while ((pos = regExp1.indexIn(str, pos)) != -1) {
+        QString match = regExp1.cap(0); // 获取完整的匹配项
+        str.replace(regExp1.cap(0), "<br>~");
+        qDebug() << "保存当前终端的状态:" << match;
+        pos += regExp1.matchedLength();
+    }
+
+    QRegExp regExp2("\\x001B\\[\\?1h");
+    pos = 0;
+    while ((pos = regExp2.indexIn(str, pos)) != -1) {
+        QString match = regExp2.cap(0); // 获取完整的匹配项
+        str.replace(regExp2.cap(0), "<br>~");
+        qDebug() << "设置光标为可见状态:" << match;
+        pos += regExp2.matchedLength();
+    }
+
+    QRegExp regExp3("\\x001B=");
+    pos = 0;
+    while ((pos = regExp3.indexIn(str, pos)) != -1) {
+        QString match = regExp3.cap(0); // 获取完整的匹配项
+        str.replace(regExp3.cap(0), "<br>~");
+        qDebug() << "切换到应用程序键盘模式:" << match;
+        pos += regExp3.matchedLength();
+    }
+
+    QRegExp regExp4("\\x001B\\[1;24r");
+    pos = 0;
+    while ((pos = regExp4.indexIn(str, pos)) != -1) {
+        QString match = regExp4.cap(0); // 获取完整的匹配项
+        str.replace(regExp4.cap(0), "<br>~");
+        qDebug() << "设置终端的滚动区域为第1行到第24行:" << match;
+        pos += regExp4.matchedLength();
+    }
+
+    QRegExp regExp5("\\x001B\\[\\?12;25h");
+    pos = 0;
+    while ((pos = regExp5.indexIn(str, pos)) != -1) {
+        QString match = regExp5.cap(0); // 获取完整的匹配项
+        str.replace(regExp5.cap(0), "<br>~");
+        qDebug() << "启用光标闪烁:" << match;
+        pos += regExp5.matchedLength();
+    }
+
+    /*
+\u001B[?12l：禁用光标闪烁。
+\u001B[?25h：显示光标。
+\u001B[27m：重置终端的属性和颜色。
+\u001B[m：重置终端的属性和颜色。
+\u001B[H：将光标移动到终端的起始位置。
+
+    */
+    QRegExp regExp6("\\x001B\\[\\?12l");
+    pos = 0;
+    while ((pos = regExp6.indexIn(str, pos)) != -1) {
+        QString match = regExp6.cap(0); // 获取完整的匹配项
+        str.replace(regExp6.cap(0), "<br>~");
+        qDebug() << "禁用光标闪烁:" << match;
+        pos += regExp6.matchedLength();
+    }
+
+    QRegExp regExp7("\\x001B\\[\\?25h");
+    pos = 0;
+    while ((pos = regExp7.indexIn(str, pos)) != -1) {
+        QString match = regExp7.cap(0); // 获取完整的匹配项
+        str.replace(regExp7.cap(0), "<br>~");
+        qDebug() << "显示光标:" << match;
+        pos += regExp7.matchedLength();
+    }
+
+    QRegExp regExp8("\\x001B\\[27m");
+    pos = 0;
+    while ((pos = regExp8.indexIn(str, pos)) != -1) {
+        QString match = regExp8.cap(0); // 获取完整的匹配项
+        str.replace(regExp8.cap(0), "<br>~");
+        qDebug() << "显示光标:" << match;
+        pos += regExp8.matchedLength();
+    }
+
+    QRegExp regExp9("\\x001B\\[m");
+    pos = 0;
+    while ((pos = regExp9.indexIn(str, pos)) != -1) {
+        QString match = regExp9.cap(0); // 获取完整的匹配项
+        str.replace(regExp9.cap(0), "<br>~");
+        qDebug() << "重置终端的属性和颜色:" << match;
+        pos += regExp9.matchedLength();
+    }
+
+    QRegExp regExp10("\\x001B\\[h");
+    pos = 0;
+    while ((pos = regExp10.indexIn(str, pos)) != -1) {
+        QString match = regExp10.cap(0); // 获取完整的匹配项
+        str.replace(regExp10.cap(0), "<br>~");
+        qDebug() << "将光标移动到终端的起始位置:" << match;
+        pos += regExp10.matchedLength();
+    }
+
+    /*
+
+\u001B[2J：清空终端屏幕。
+\u001B[?25l：隐藏光标。
+\u001B[24;1H：将光标移动到第24行的起始位置。
+*/
+    QRegExp regExp11("\\x001B\\[2J");
+    pos = 0;
+    while ((pos = regExp11.indexIn(str, pos)) != -1) {
+        QString match = regExp11.cap(0); // 获取完整的匹配项
+        str.replace(regExp11.cap(0), "<br>~");
+        qDebug() << "清空终端屏幕:" << match;
+        pos += regExp11.matchedLength();
+    }
+
+    QRegExp regExp12("\\x001B\\[\\?25l");
+    pos = 0;
+    while ((pos = regExp12.indexIn(str, pos)) != -1) {
+        QString match = regExp12.cap(0); // 获取完整的匹配项
+        str.replace(regExp12.cap(0), "<br>~");
+        qDebug() << "隐藏光标:" << match;
+        pos += regExp12.matchedLength();
+    }
+
+    QRegExp regExp13("\\x001B\\[24;1H");
+    pos = 0;
+    while ((pos = regExp13.indexIn(str, pos)) != -1) {
+        QString match = regExp13.cap(0); // 获取完整的匹配项
+        str.replace(regExp13.cap(0), "<br>~");
+        qDebug() << "将光标移动到第24行的起始位置:" << match;
+        pos += regExp13.matchedLength();
+    }
+
+
+    QRegExp regExp14("\\x001B\\[H");
+    pos = 0;
+    while ((pos = regExp14.indexIn(str, pos)) != -1) {
+        QString match = regExp14.cap(0); // 获取完整的匹配项
+        str.replace(regExp14.cap(0), "<br>~");
+        qDebug() << "将光标移动到第24行的起始位置:" << match;
+        pos += regExp14.matchedLength();
+    }
+
+    QRegExp regExp("\\x001B\\[(\\d+);(\\d+)H");
+    pos = 0;
     while ((pos = regExp.indexIn(str, pos)) != -1) {
         QString match = regExp.cap(0); // 获取完整的匹配项
-        str.replace(regExp.cap(0), "<br>~");
+        str.replace(regExp.cap(0), "<br>");
         qDebug() << "Matched stringToHtmlFilter6:" << match;
         pos += regExp.matchedLength();
     }
@@ -373,7 +515,8 @@ QString datahandle::processData(QString data)
     stringToHtmlFilter4(data);
 
     //清除光标
-    stringToHtmlFilter5(data);
+    //stringToHtmlFilter5(data);
+
 
     stringToHtmlFilter6(data);
 

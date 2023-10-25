@@ -15,13 +15,11 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
@@ -32,39 +30,6 @@ QT_BEGIN_NAMESPACE
 class Ui_createconnect
 {
 public:
-    QStackedWidget *stackedWidget;
-    QWidget *page;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout_2;
-    QToolButton *toolButton_ssh_connect;
-    QToolButton *toolButton_ssh_close;
-    QWidget *gridLayoutWidget_2;
-    QGridLayout *gridLayout_2;
-    QLabel *label_ssh_name;
-    QLabel *label_ssh_user;
-    QLabel *label_ssh_func;
-    QLabel *label_ssh_port;
-    QLineEdit *lineEdit_ssh_name;
-    QLabel *label_ssh_host;
-    QLineEdit *lineEdit_ssh_host;
-    QLineEdit *lineEdit_ssh_port;
-    QComboBox *comboBox_ssh_func;
-    QLabel *label_ssh_password;
-    QLineEdit *lineEdit_ssh_user;
-    QLineEdit *lineEdit_ssh_password;
-    QWidget *page_2;
-    QWidget *gridLayoutWidget;
-    QGridLayout *gridLayout;
-    QLabel *label_zk_name;
-    QLineEdit *lineEdit_zk_host;
-    QLabel *label_zk_port;
-    QLabel *label_zk_host;
-    QLineEdit *lineEdit_zk_name;
-    QLineEdit *lineEdit_zk_port;
-    QWidget *horizontalWidget;
-    QHBoxLayout *horizontalLayout;
-    QToolButton *toolButton_zk_connect;
-    QToolButton *toolButton_zk_close;
     QWidget *widget_bottom;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *widget_bottom_horizontalSpacer_left;
@@ -134,16 +99,18 @@ public:
     QLineEdit *tab_passowrd_lineEdit_password_data_2;
     QLabel *label_user_ssh_2;
     QLabel *tab_passowrd_label_password_2;
-    QWidget *horizontalLayoutWidget;
+    QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout_4;
     QLabel *tab_passowrd_label_password_3;
     QComboBox *comboBox;
     QCheckBox *tab_passowrd_checkBox_remember_password_3;
     QLabel *widget_dynamic_title_label_3;
+    QLineEdit *lineEdit_port_ssh_data_4;
+    QLineEdit *lineEdit_port_ssh_data_5;
     QWidget *tab_3;
-    QLineEdit *lineEdit_port_ssh_data_2;
+    QLineEdit *lineEdit_port_zk_data;
     QLabel *label_port_ssh_2;
-    QLineEdit *lineEdit_host_ssh_data_2;
+    QLineEdit *lineEdit_host_zk_data;
     QLabel *label_host_ssh_2;
     QLabel *widget_dynamic_title_label_2;
     QWidget *tab_4;
@@ -152,7 +119,7 @@ public:
     {
         if (createconnect->objectName().isEmpty())
             createconnect->setObjectName(QStringLiteral("createconnect"));
-        createconnect->resize(673, 439);
+        createconnect->resize(680, 452);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -169,263 +136,6 @@ public:
         createconnect->setWindowIcon(icon);
         createconnect->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
-        stackedWidget = new QStackedWidget(createconnect);
-        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(320, 520, 331, 221));
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        widget = new QWidget(page);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(200, 190, 120, 40));
-        horizontalLayout_2 = new QHBoxLayout(widget);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(1, 1, 1, 1);
-        toolButton_ssh_connect = new QToolButton(widget);
-        toolButton_ssh_connect->setObjectName(QStringLiteral("toolButton_ssh_connect"));
-        QFont font1;
-        font1.setFamily(QStringLiteral("OPPOSans B"));
-        font1.setPointSize(10);
-        font1.setStyleStrategy(QFont::PreferAntialias);
-        toolButton_ssh_connect->setFont(font1);
-        toolButton_ssh_connect->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-
-        horizontalLayout_2->addWidget(toolButton_ssh_connect);
-
-        toolButton_ssh_close = new QToolButton(widget);
-        toolButton_ssh_close->setObjectName(QStringLiteral("toolButton_ssh_close"));
-        toolButton_ssh_close->setFont(font1);
-        toolButton_ssh_close->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-
-        horizontalLayout_2->addWidget(toolButton_ssh_close);
-
-        gridLayoutWidget_2 = new QWidget(page);
-        gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(10, 0, 311, 201));
-        gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_ssh_name = new QLabel(gridLayoutWidget_2);
-        label_ssh_name->setObjectName(QStringLiteral("label_ssh_name"));
-        label_ssh_name->setFont(font1);
-
-        gridLayout_2->addWidget(label_ssh_name, 0, 0, 1, 1);
-
-        label_ssh_user = new QLabel(gridLayoutWidget_2);
-        label_ssh_user->setObjectName(QStringLiteral("label_ssh_user"));
-        label_ssh_user->setFont(font1);
-
-        gridLayout_2->addWidget(label_ssh_user, 3, 0, 1, 1);
-
-        label_ssh_func = new QLabel(gridLayoutWidget_2);
-        label_ssh_func->setObjectName(QStringLiteral("label_ssh_func"));
-        label_ssh_func->setFont(font1);
-
-        gridLayout_2->addWidget(label_ssh_func, 2, 0, 1, 1);
-
-        label_ssh_port = new QLabel(gridLayoutWidget_2);
-        label_ssh_port->setObjectName(QStringLiteral("label_ssh_port"));
-        label_ssh_port->setFont(font1);
-
-        gridLayout_2->addWidget(label_ssh_port, 1, 2, 1, 1);
-
-        lineEdit_ssh_name = new QLineEdit(gridLayoutWidget_2);
-        lineEdit_ssh_name->setObjectName(QStringLiteral("lineEdit_ssh_name"));
-        lineEdit_ssh_name->setFont(font1);
-        lineEdit_ssh_name->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout_2->addWidget(lineEdit_ssh_name, 0, 1, 1, 1);
-
-        label_ssh_host = new QLabel(gridLayoutWidget_2);
-        label_ssh_host->setObjectName(QStringLiteral("label_ssh_host"));
-        label_ssh_host->setFont(font1);
-
-        gridLayout_2->addWidget(label_ssh_host, 1, 0, 1, 1);
-
-        lineEdit_ssh_host = new QLineEdit(gridLayoutWidget_2);
-        lineEdit_ssh_host->setObjectName(QStringLiteral("lineEdit_ssh_host"));
-        lineEdit_ssh_host->setFont(font1);
-        lineEdit_ssh_host->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout_2->addWidget(lineEdit_ssh_host, 1, 1, 1, 1);
-
-        lineEdit_ssh_port = new QLineEdit(gridLayoutWidget_2);
-        lineEdit_ssh_port->setObjectName(QStringLiteral("lineEdit_ssh_port"));
-        lineEdit_ssh_port->setFont(font1);
-        lineEdit_ssh_port->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout_2->addWidget(lineEdit_ssh_port, 1, 3, 1, 1);
-
-        comboBox_ssh_func = new QComboBox(gridLayoutWidget_2);
-        comboBox_ssh_func->addItem(QString());
-        comboBox_ssh_func->addItem(QString());
-        comboBox_ssh_func->setObjectName(QStringLiteral("comboBox_ssh_func"));
-        comboBox_ssh_func->setFont(font1);
-        comboBox_ssh_func->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout_2->addWidget(comboBox_ssh_func, 2, 1, 1, 2);
-
-        label_ssh_password = new QLabel(gridLayoutWidget_2);
-        label_ssh_password->setObjectName(QStringLiteral("label_ssh_password"));
-        label_ssh_password->setFont(font1);
-
-        gridLayout_2->addWidget(label_ssh_password, 4, 0, 1, 1);
-
-        lineEdit_ssh_user = new QLineEdit(gridLayoutWidget_2);
-        lineEdit_ssh_user->setObjectName(QStringLiteral("lineEdit_ssh_user"));
-        lineEdit_ssh_user->setFont(font1);
-        lineEdit_ssh_user->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout_2->addWidget(lineEdit_ssh_user, 3, 1, 1, 2);
-
-        lineEdit_ssh_password = new QLineEdit(gridLayoutWidget_2);
-        lineEdit_ssh_password->setObjectName(QStringLiteral("lineEdit_ssh_password"));
-        lineEdit_ssh_password->setFont(font1);
-        lineEdit_ssh_password->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout_2->addWidget(lineEdit_ssh_password, 4, 1, 1, 2);
-
-        stackedWidget->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        gridLayoutWidget = new QWidget(page_2);
-        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(20, 10, 281, 171));
-        gridLayout = new QGridLayout(gridLayoutWidget);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_zk_name = new QLabel(gridLayoutWidget);
-        label_zk_name->setObjectName(QStringLiteral("label_zk_name"));
-        label_zk_name->setFont(font);
-
-        gridLayout->addWidget(label_zk_name, 0, 0, 1, 1);
-
-        lineEdit_zk_host = new QLineEdit(gridLayoutWidget);
-        lineEdit_zk_host->setObjectName(QStringLiteral("lineEdit_zk_host"));
-        lineEdit_zk_host->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_host->setFont(font);
-        lineEdit_zk_host->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout->addWidget(lineEdit_zk_host, 1, 1, 1, 1);
-
-        label_zk_port = new QLabel(gridLayoutWidget);
-        label_zk_port->setObjectName(QStringLiteral("label_zk_port"));
-        label_zk_port->setFont(font);
-
-        gridLayout->addWidget(label_zk_port, 2, 0, 1, 1);
-
-        label_zk_host = new QLabel(gridLayoutWidget);
-        label_zk_host->setObjectName(QStringLiteral("label_zk_host"));
-        label_zk_host->setFont(font);
-
-        gridLayout->addWidget(label_zk_host, 1, 0, 1, 1);
-
-        lineEdit_zk_name = new QLineEdit(gridLayoutWidget);
-        lineEdit_zk_name->setObjectName(QStringLiteral("lineEdit_zk_name"));
-        lineEdit_zk_name->setMinimumSize(QSize(0, 30));
-        QFont font2;
-        font2.setFamily(QStringLiteral("OPPOSans B"));
-        lineEdit_zk_name->setFont(font2);
-        lineEdit_zk_name->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout->addWidget(lineEdit_zk_name, 0, 1, 1, 1);
-
-        lineEdit_zk_port = new QLineEdit(gridLayoutWidget);
-        lineEdit_zk_port->setObjectName(QStringLiteral("lineEdit_zk_port"));
-        lineEdit_zk_port->setMinimumSize(QSize(0, 30));
-        lineEdit_zk_port->setFont(font);
-        lineEdit_zk_port->setStyleSheet(QLatin1String("border: 1px solid rgba(255, 255, 255, 150);\n"
-"border-radius: 5px;"));
-
-        gridLayout->addWidget(lineEdit_zk_port, 2, 1, 1, 1);
-
-        horizontalWidget = new QWidget(page_2);
-        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
-        horizontalWidget->setGeometry(QRect(200, 190, 120, 40));
-        horizontalLayout = new QHBoxLayout(horizontalWidget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        toolButton_zk_connect = new QToolButton(horizontalWidget);
-        toolButton_zk_connect->setObjectName(QStringLiteral("toolButton_zk_connect"));
-        toolButton_zk_connect->setFont(font);
-        toolButton_zk_connect->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-
-        horizontalLayout->addWidget(toolButton_zk_connect);
-
-        toolButton_zk_close = new QToolButton(horizontalWidget);
-        toolButton_zk_close->setObjectName(QStringLiteral("toolButton_zk_close"));
-        toolButton_zk_close->setFont(font);
-        toolButton_zk_close->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-
-        horizontalLayout->addWidget(toolButton_zk_close);
-
-        stackedWidget->addWidget(page_2);
         widget_bottom = new QWidget(createconnect);
         widget_bottom->setObjectName(QStringLiteral("widget_bottom"));
         widget_bottom->setGeometry(QRect(0, 400, 701, 31));
@@ -448,6 +158,10 @@ public:
         widget_bottom_toolButton_connect->setSizePolicy(sizePolicy1);
         widget_bottom_toolButton_connect->setMinimumSize(QSize(60, 30));
         widget_bottom_toolButton_connect->setMaximumSize(QSize(60, 30));
+        QFont font1;
+        font1.setFamily(QStringLiteral("OPPOSans B"));
+        font1.setPointSize(10);
+        font1.setStyleStrategy(QFont::PreferAntialias);
         widget_bottom_toolButton_connect->setFont(font1);
         widget_bottom_toolButton_connect->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -473,13 +187,13 @@ public:
         widget_bottom_toolButton_save->setSizePolicy(sizePolicy1);
         widget_bottom_toolButton_save->setMinimumSize(QSize(60, 30));
         widget_bottom_toolButton_save->setMaximumSize(QSize(60, 30));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(10);
-        font3.setBold(false);
-        font3.setWeight(50);
-        font3.setStyleStrategy(QFont::PreferAntialias);
-        widget_bottom_toolButton_save->setFont(font3);
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans B"));
+        font2.setPointSize(10);
+        font2.setBold(false);
+        font2.setWeight(50);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        widget_bottom_toolButton_save->setFont(font2);
         widget_bottom_toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(7, 143, 255);\n"
@@ -712,10 +426,10 @@ public:
         widget_dynamic_title_label->setObjectName(QStringLiteral("widget_dynamic_title_label"));
         widget_dynamic_title_label->setMinimumSize(QSize(100, 25));
         widget_dynamic_title_label->setMaximumSize(QSize(180, 16777215));
-        QFont font4;
-        font4.setFamily(QStringLiteral("OPPOSans B"));
-        font4.setPointSize(9);
-        widget_dynamic_title_label->setFont(font4);
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(9);
+        widget_dynamic_title_label->setFont(font3);
         widget_dynamic_title_label->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
 
         verticalLayout_6->addWidget(widget_dynamic_title_label);
@@ -733,7 +447,7 @@ public:
         verticalLayout_4->setContentsMargins(-1, -1, -1, 0);
         tabWidget = new QTabWidget(widget_body_right);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setFont(font3);
+        tabWidget->setFont(font2);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
@@ -1170,19 +884,19 @@ public:
         tab_passowrd_label_password_2->setObjectName(QStringLiteral("tab_passowrd_label_password_2"));
         tab_passowrd_label_password_2->setGeometry(QRect(0, 150, 39, 30));
         tab_passowrd_label_password_2->setFont(font);
-        horizontalLayoutWidget = new QWidget(tab_2);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(0, 250, 181, 31));
-        horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalWidget = new QWidget(tab_2);
+        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
+        horizontalWidget->setGeometry(QRect(0, 250, 181, 31));
+        horizontalLayout_4 = new QHBoxLayout(horizontalWidget);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        tab_passowrd_label_password_3 = new QLabel(horizontalLayoutWidget);
+        tab_passowrd_label_password_3 = new QLabel(horizontalWidget);
         tab_passowrd_label_password_3->setObjectName(QStringLiteral("tab_passowrd_label_password_3"));
         tab_passowrd_label_password_3->setFont(font);
 
         horizontalLayout_4->addWidget(tab_passowrd_label_password_3);
 
-        comboBox = new QComboBox(horizontalLayoutWidget);
+        comboBox = new QComboBox(horizontalWidget);
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->addItem(QString());
@@ -1193,15 +907,39 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setMinimumSize(QSize(120, 26));
-        comboBox->setMaximumSize(QSize(120, 26));
+        comboBox->setMinimumSize(QSize(60, 28));
+        comboBox->setMaximumSize(QSize(120, 28));
         comboBox->setFont(font1);
+        comboBox->setStyleSheet(QLatin1String("\n"
+"\n"
+"QComboBox{ border:1px solid gray;  border-radius:3px;  padding: 5px; min-width:4em;}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"subcontrol-origin:padding; \n"
+"subcontrol-position:top right; \n"
+"width:20px; \n"
+"/*border-left-width:1px;*/\n"
+"border-left-color:darkgray;\n"
+"border-left-style:solid; \n"
+"border-top-right-radius:3px; \n"
+"border-bottom-right-radius:3px;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"border: 2px solid #4E6D8C;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"border-image: url(:/lib/up.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"\n"
+"}\n"
+""));
 
         horizontalLayout_4->addWidget(comboBox);
 
         tab_passowrd_checkBox_remember_password_3 = new QCheckBox(tab_2);
         tab_passowrd_checkBox_remember_password_3->setObjectName(QStringLiteral("tab_passowrd_checkBox_remember_password_3"));
-        tab_passowrd_checkBox_remember_password_3->setGeometry(QRect(200, 250, 49, 31));
+        tab_passowrd_checkBox_remember_password_3->setGeometry(QRect(360, 250, 49, 31));
         tab_passowrd_checkBox_remember_password_3->setFont(font1);
         tab_passowrd_checkBox_remember_password_3->setChecked(false);
         widget_dynamic_title_label_3 = new QLabel(tab_2);
@@ -1209,8 +947,28 @@ public:
         widget_dynamic_title_label_3->setGeometry(QRect(0, 290, 400, 25));
         widget_dynamic_title_label_3->setMinimumSize(QSize(100, 25));
         widget_dynamic_title_label_3->setMaximumSize(QSize(400, 16777215));
-        widget_dynamic_title_label_3->setFont(font4);
+        widget_dynamic_title_label_3->setFont(font3);
         widget_dynamic_title_label_3->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
+        lineEdit_port_ssh_data_4 = new QLineEdit(tab_2);
+        lineEdit_port_ssh_data_4->setObjectName(QStringLiteral("lineEdit_port_ssh_data_4"));
+        lineEdit_port_ssh_data_4->setGeometry(QRect(200, 250, 61, 30));
+        lineEdit_port_ssh_data_4->setMinimumSize(QSize(0, 30));
+        lineEdit_port_ssh_data_4->setFont(font);
+        lineEdit_port_ssh_data_4->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;"));
+        lineEdit_port_ssh_data_5 = new QLineEdit(tab_2);
+        lineEdit_port_ssh_data_5->setObjectName(QStringLiteral("lineEdit_port_ssh_data_5"));
+        lineEdit_port_ssh_data_5->setGeometry(QRect(270, 250, 61, 30));
+        lineEdit_port_ssh_data_5->setMinimumSize(QSize(0, 30));
+        lineEdit_port_ssh_data_5->setFont(font);
+        lineEdit_port_ssh_data_5->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;"));
         tabWidget->addTab(tab_2, QString());
         lineEdit_port_ssh_data_3->raise();
         label_port_ssh_3->raise();
@@ -1222,17 +980,19 @@ public:
         label_user_ssh_2->raise();
         tab_passowrd_label_password_2->raise();
         tab_passowrd_toolButton_show_2->raise();
-        horizontalLayoutWidget->raise();
+        horizontalWidget->raise();
         tab_passowrd_checkBox_remember_password_3->raise();
         widget_dynamic_title_label_3->raise();
+        lineEdit_port_ssh_data_4->raise();
+        lineEdit_port_ssh_data_5->raise();
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
-        lineEdit_port_ssh_data_2 = new QLineEdit(tab_3);
-        lineEdit_port_ssh_data_2->setObjectName(QStringLiteral("lineEdit_port_ssh_data_2"));
-        lineEdit_port_ssh_data_2->setGeometry(QRect(340, 40, 81, 30));
-        lineEdit_port_ssh_data_2->setMinimumSize(QSize(0, 30));
-        lineEdit_port_ssh_data_2->setFont(font);
-        lineEdit_port_ssh_data_2->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_port_zk_data = new QLineEdit(tab_3);
+        lineEdit_port_zk_data->setObjectName(QStringLiteral("lineEdit_port_zk_data"));
+        lineEdit_port_zk_data->setGeometry(QRect(340, 40, 81, 30));
+        lineEdit_port_zk_data->setMinimumSize(QSize(0, 30));
+        lineEdit_port_zk_data->setFont(font);
+        lineEdit_port_zk_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -1241,12 +1001,12 @@ public:
         label_port_ssh_2->setObjectName(QStringLiteral("label_port_ssh_2"));
         label_port_ssh_2->setGeometry(QRect(340, 10, 39, 30));
         label_port_ssh_2->setFont(font);
-        lineEdit_host_ssh_data_2 = new QLineEdit(tab_3);
-        lineEdit_host_ssh_data_2->setObjectName(QStringLiteral("lineEdit_host_ssh_data_2"));
-        lineEdit_host_ssh_data_2->setGeometry(QRect(0, 40, 301, 30));
-        lineEdit_host_ssh_data_2->setMinimumSize(QSize(0, 30));
-        lineEdit_host_ssh_data_2->setFont(font);
-        lineEdit_host_ssh_data_2->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_host_zk_data = new QLineEdit(tab_3);
+        lineEdit_host_zk_data->setObjectName(QStringLiteral("lineEdit_host_zk_data"));
+        lineEdit_host_zk_data->setGeometry(QRect(0, 40, 301, 30));
+        lineEdit_host_zk_data->setMinimumSize(QSize(0, 30));
+        lineEdit_host_zk_data->setFont(font);
+        lineEdit_host_zk_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -1260,7 +1020,7 @@ public:
         widget_dynamic_title_label_2->setGeometry(QRect(0, 90, 300, 25));
         widget_dynamic_title_label_2->setMinimumSize(QSize(100, 25));
         widget_dynamic_title_label_2->setMaximumSize(QSize(300, 16777215));
-        widget_dynamic_title_label_2->setFont(font4);
+        widget_dynamic_title_label_2->setFont(font3);
         widget_dynamic_title_label_2->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
         tabWidget->addTab(tab_3, QString());
         tab_4 = new QWidget();
@@ -1275,8 +1035,7 @@ public:
 
         retranslateUi(createconnect);
 
-        stackedWidget->setCurrentIndex(1);
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 
 
@@ -1286,30 +1045,6 @@ public:
     void retranslateUi(QWidget *createconnect)
     {
         createconnect->setWindowTitle(QApplication::translate("createconnect", "\346\226\260\345\273\272\347\273\210\347\253\257", nullptr));
-        toolButton_ssh_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
-        toolButton_ssh_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
-        label_ssh_name->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260\357\274\232", nullptr));
-        label_ssh_user->setText(QApplication::translate("createconnect", "\347\224\250\346\210\267\345\220\215\357\274\232", nullptr));
-        label_ssh_func->setText(QApplication::translate("createconnect", "\346\226\271\346\263\225\357\274\232", nullptr));
-        label_ssh_port->setText(QApplication::translate("createconnect", "\347\253\257\345\217\243\357\274\232", nullptr));
-        lineEdit_ssh_name->setText(QApplication::translate("createconnect", "1111", nullptr));
-        label_ssh_host->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272\357\274\232", nullptr));
-        lineEdit_ssh_host->setText(QApplication::translate("createconnect", "172.16.8.154", nullptr));
-        lineEdit_ssh_port->setText(QApplication::translate("createconnect", "22", nullptr));
-        comboBox_ssh_func->setItemText(0, QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
-        comboBox_ssh_func->setItemText(1, QApplication::translate("createconnect", "\345\205\254\351\222\245", nullptr));
-
-        label_ssh_password->setText(QApplication::translate("createconnect", "\345\257\206\347\240\201\357\274\232", nullptr));
-        lineEdit_ssh_user->setText(QApplication::translate("createconnect", "root", nullptr));
-        lineEdit_ssh_password->setText(QApplication::translate("createconnect", "Linkdood@123456", nullptr));
-        label_zk_name->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260\357\274\232", nullptr));
-        lineEdit_zk_host->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
-        label_zk_port->setText(QApplication::translate("createconnect", "\347\253\257\345\217\243\357\274\232", nullptr));
-        label_zk_host->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272\357\274\232", nullptr));
-        lineEdit_zk_name->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
-        lineEdit_zk_port->setText(QApplication::translate("createconnect", "11100", nullptr));
-        toolButton_zk_connect->setText(QApplication::translate("createconnect", "\347\241\256\345\256\232", nullptr));
-        toolButton_zk_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
         widget_bottom_toolButton_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
         widget_bottom_toolButton_save->setText(QApplication::translate("createconnect", "\344\277\235\345\255\230", nullptr));
         widget_bottom_toolButton_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
@@ -1377,12 +1112,16 @@ public:
 
         tab_passowrd_checkBox_remember_password_3->setText(QApplication::translate("createconnect", "\345\205\250\345\261\217", nullptr));
         widget_dynamic_title_label_3->setText(QApplication::translate("createconnect", "\345\260\206\351\200\232\350\277\207windows\350\277\234\347\250\213\346\241\214\351\235\242\350\277\236\346\216\245\357\274\214\347\241\256\350\256\244\345\257\271\346\226\271\347\224\265\350\204\221\345\205\201\350\256\270\350\277\234\347\250\213\345\215\217\345\212\251", nullptr));
+        lineEdit_port_ssh_data_4->setText(QApplication::translate("createconnect", "1024", nullptr));
+        lineEdit_port_ssh_data_4->setPlaceholderText(QApplication::translate("createconnect", "22", nullptr));
+        lineEdit_port_ssh_data_5->setText(QApplication::translate("createconnect", "1024", nullptr));
+        lineEdit_port_ssh_data_5->setPlaceholderText(QApplication::translate("createconnect", "22", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("createconnect", "   windows   ", nullptr));
-        lineEdit_port_ssh_data_2->setText(QApplication::translate("createconnect", "11100", nullptr));
-        lineEdit_port_ssh_data_2->setPlaceholderText(QApplication::translate("createconnect", "22", nullptr));
+        lineEdit_port_zk_data->setText(QApplication::translate("createconnect", "11100", nullptr));
+        lineEdit_port_zk_data->setPlaceholderText(QApplication::translate("createconnect", "22", nullptr));
         label_port_ssh_2->setText(QApplication::translate("createconnect", "\347\253\257\345\217\243", nullptr));
-        lineEdit_host_ssh_data_2->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
-        lineEdit_host_ssh_data_2->setPlaceholderText(QApplication::translate("createconnect", "127.0.0.1", nullptr));
+        lineEdit_host_zk_data->setText(QApplication::translate("createconnect", "172.16.8.153", nullptr));
+        lineEdit_host_zk_data->setPlaceholderText(QApplication::translate("createconnect", "127.0.0.1", nullptr));
         label_host_ssh_2->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272", nullptr));
         widget_dynamic_title_label_2->setText(QApplication::translate("createconnect", "\345\260\206\345\210\233\345\273\272\345\217\257\350\247\206\345\214\226zk\344\277\241\346\201\257\347\225\214\351\235\242\357\274\214\350\277\233\350\241\214\345\277\253\351\200\237\344\276\277\346\215\267\347\232\204\345\242\236\345\210\240\346\224\271\346\237\245", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("createconnect", "   zookeeper   ", nullptr));

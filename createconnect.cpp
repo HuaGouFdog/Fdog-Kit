@@ -11,22 +11,23 @@ createconnect::createconnect(int8_t connectType, QWidget *parent) :
     setWindowFlags(Qt::WindowCloseButtonHint);
     //选择显示的连接类型
     this->connectType = connectType;
-    if (connectType == SSH_CONNECT_TYPE) {
-        ui->stackedWidget->setCurrentIndex(connectType - 1);
-        setWindowTitle("新建ssh连接");
-    } else if (connectType == ZK_CONNECT_TYPE) {
-        ui->stackedWidget->setCurrentIndex(connectType - 1);
-        setWindowTitle("新建zookeeper连接");
-    } else if (connectType == REDIS_CONNECT_TYPE) {
-        ui->stackedWidget->setCurrentIndex(connectType - 1);
-        setWindowTitle("新建redis连接");
-    } else if (connectType == KAFKA_CONNECT_TYPE) {
-        ui->stackedWidget->setCurrentIndex(connectType - 1);
-        setWindowTitle("新建kafka连接");
-    } else if (connectType == DB_CONNECT_TYPE) {
-        ui->stackedWidget->setCurrentIndex(connectType - 1);
-        setWindowTitle("新建database连接");
-    }
+    setWindowTitle("新建终端");
+//    if (connectType == SSH_CONNECT_TYPE) {
+//        ui->stackedWidget->setCurrentIndex(connectType - 1);
+//        setWindowTitle("新建ssh连接");
+//    } else if (connectType == ZK_CONNECT_TYPE) {
+//        ui->stackedWidget->setCurrentIndex(connectType - 1);
+//        setWindowTitle("新建zookeeper连接");
+//    } else if (connectType == REDIS_CONNECT_TYPE) {
+//        ui->stackedWidget->setCurrentIndex(connectType - 1);
+//        setWindowTitle("新建redis连接");
+//    } else if (connectType == KAFKA_CONNECT_TYPE) {
+//        ui->stackedWidget->setCurrentIndex(connectType - 1);
+//        setWindowTitle("新建kafka连接");
+//    } else if (connectType == DB_CONNECT_TYPE) {
+//        ui->stackedWidget->setCurrentIndex(connectType - 1);
+//        setWindowTitle("新建database连接");
+//    }
 }
 
 createconnect::~createconnect()
@@ -40,53 +41,44 @@ void createconnect::closeEvent(QCloseEvent *event)
     this->close();
 }
 
-void createconnect::on_toolButton_zk_connect_clicked()
-{
-    //创建选择的连接信息
-    connnectInfoStruct cInfo;
-    cInfo.connectType = this->connectType;
-    cInfo.name = ui->lineEdit_zk_name->text();
-    cInfo.host = ui->lineEdit_zk_host->text();
-    cInfo.port = ui->lineEdit_zk_port->text();
-    emit newCreate(cInfo);
-    this->close();
-}
-
-void createconnect::on_toolButton_zk_close_clicked()
-{
-    emit newClose();
-    this->close();
-}
-
-void createconnect::on_toolButton_ssh_connect_clicked()
-{
-    //创建选择的连接信息
-    connnectInfoStruct cInfo;
-    cInfo.connectType = this->connectType;
-    cInfo.name = ui->lineEdit_ssh_name->text();
-    cInfo.host = ui->lineEdit_ssh_host->text();
-    cInfo.port = ui->lineEdit_ssh_port->text();
-    emit newCreate(cInfo);
-    this->close();
-}
-
-void createconnect::on_toolButton_ssh_close_clicked()
-{
-    emit newClose();
-    this->close();
-}
-
 void createconnect::on_widget_bottom_toolButton_connect_clicked()
 {
     //创建选择的连接信息
     connnectInfoStruct cInfo;
-    cInfo.connectType = 1;//this->connectType;
-    cInfo.name = ui->widget_name_lineEdit_name_data->text();
-    cInfo.group = ui->widget_group_lineEdit_group_data->text();
-    cInfo.host = ui->lineEdit_host_ssh_data->text();
-    cInfo.port = ui->lineEdit_port_ssh_data->text();
-    cInfo.password = ui->tab_passowrd_lineEdit_password_data->text();
-    cInfo.isSavePassword = ui->tab_passowrd_checkBox_remember_password->isChecked();
+
+    if (ui->tabWidget->currentIndex() == 0) {
+        cInfo.connectType = 1;//this->connectType;
+        cInfo.name = ui->widget_name_lineEdit_name_data->text();
+        if (ui->widget_name_lineEdit_name_data->text() == "") {
+            cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
+        }
+        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+        if (ui->widget_group_lineEdit_group_data->text() == "") {
+            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+        }
+        cInfo.host = ui->lineEdit_host_ssh_data->text();
+        cInfo.port = ui->lineEdit_port_ssh_data->text();
+
+        cInfo.userName = ui->lineEdit_user_ssh_data->text();
+        if (ui->lineEdit_user_ssh_data->text() == "") {
+            cInfo.userName = ui->lineEdit_user_ssh_data->placeholderText();
+        }
+        cInfo.password = ui->tab_passowrd_lineEdit_password_data->text();
+        cInfo.isSavePassword = ui->tab_passowrd_checkBox_remember_password->isChecked();
+    } else if (ui->tabWidget->currentIndex() == 2) {
+        cInfo.connectType = 3;//this->connectType;
+        cInfo.name = ui->widget_name_lineEdit_name_data->text();
+        if (ui->widget_name_lineEdit_name_data->text() == "") {
+            cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
+        }
+        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+        if (ui->widget_group_lineEdit_group_data->text() == "") {
+            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+        }
+        cInfo.host = ui->lineEdit_host_zk_data->text();
+        cInfo.port = ui->lineEdit_port_zk_data->text();
+    }
+
     emit newCreate(cInfo);
     this->close();
 }

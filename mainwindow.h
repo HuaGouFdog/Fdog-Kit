@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "zookeeperwidget.h"
 #include "createconnect.h"
+#include "historyconnectwidget.h"
 #include "sshwidget.h"
 #include "toolswidget.h"
 #include <QGraphicsDropShadowEffect>
@@ -74,6 +75,33 @@ private slots:
 
     void on_widget_welcome_body_widget2_newCreate_newTool_clicked();
 
+    void on_comboBox_tool_currentIndexChanged(int index);
+
+    void on_lineEdit_hex_textChanged(const QString &arg1);
+
+    void on_lineEdit_dec_textChanged(const QString &arg1);
+
+    void on_lineEdit_oct_textChanged(const QString &arg1);
+
+    void on_lineEdit_bin_textChanged(const QString &arg1);
+
+    void on_toolButton_decode_clicked();
+
+    void on_toolButton_encode_clicked();
+
+    void rece_showtimestamp();
+    void on_toolButton_time2date_clicked();
+
+    void on_toolButton_date2time_clicked();
+
+    void on_toolButton_timestamp_copy_clicked();
+
+    void on_toolButton_closetool_clicked();
+
+    void on_toolButton_newCreate_clicked();
+
+    void on_toolButton_newCreate_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -102,10 +130,12 @@ private:
     QAction * redis; //redis连接
     QAction * db;    //database连接
 
-    QMenu * men_tool;    //工具菜单栏
-    QAction * timestamp; //时间戳
-    QAction * scale;     //进制
-    QAction * url;       //url
+    QMenu * men_tool;       //工具菜单栏
+
+    QAction * jsonFormat;   //json格式化
+    QAction * xmlFormat;    //xml格式化
+    QAction * textDiff;     //url文本对比
+    QAction * toolAssemble; //小工具集合
 
 
     WindowStretchRectState m_stretchRectState;
@@ -113,9 +143,12 @@ private:
     QRect m_windowRectBeforeStretch;
     bool m_isSupportStretch;
     createconnect *ccwidget =nullptr; //创建连接窗口
+    historyconnectwidget * hcwidget = nullptr; //快速连接
     toolswidget * tswidget = nullptr; //创建工具窗口
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;
+
+    bool isShowTool = false; //是否显示工具栏
 };
 
 #endif // MAINWINDOW_H

@@ -108,7 +108,7 @@ public:
     {
         if (smalltoolwidget->objectName().isEmpty())
             smalltoolwidget->setObjectName(QStringLiteral("smalltoolwidget"));
-        smalltoolwidget->resize(273, 535);
+        smalltoolwidget->resize(289, 535);
         verticalLayout_6 = new QVBoxLayout(smalltoolwidget);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
@@ -836,7 +836,7 @@ public:
 
         retranslateUi(smalltoolwidget);
 
-        stackedWidget_2->setCurrentIndex(0);
+        stackedWidget_2->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(smalltoolwidget);
