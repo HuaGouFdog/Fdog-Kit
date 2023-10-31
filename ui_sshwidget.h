@@ -19,7 +19,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
@@ -118,14 +117,13 @@ public:
     QWidget *widget_10;
     QTextEdit *textEdit;
     QTextEdit *textEdit_6;
-    QWidget *horizontalWidget;
+    QWidget *widget_toolbar;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_2;
-    QLineEdit *lineEdit;
-    QToolButton *toolButton_12;
-    QToolButton *toolButton_11;
-    QToolButton *toolButton_9;
-    QToolButton *toolButton_10;
+    QToolButton *toolButton_upload;
+    QToolButton *toolButton_find;
+    QToolButton *toolButton_history;
+    QToolButton *toolButton_toolkit;
     QSpacerItem *horizontalSpacer_3;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_12;
@@ -848,27 +846,22 @@ public:
 
         verticalLayout_8->addWidget(widget_10);
 
-        horizontalWidget = new QWidget(widget_2);
-        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
-        horizontalWidget->setMinimumSize(QSize(0, 30));
-        horizontalWidget->setMaximumSize(QSize(16777215, 30));
-        horizontalWidget->setStyleSheet(QStringLiteral("background-color: rgb(0, 41, 69);"));
-        horizontalLayout_6 = new QHBoxLayout(horizontalWidget);
+        widget_toolbar = new QWidget(widget_2);
+        widget_toolbar->setObjectName(QStringLiteral("widget_toolbar"));
+        widget_toolbar->setMinimumSize(QSize(0, 30));
+        widget_toolbar->setMaximumSize(QSize(16777215, 30));
+        widget_toolbar->setStyleSheet(QStringLiteral("background-color: rgb(30, 45, 54);"));
+        horizontalLayout_6 = new QHBoxLayout(widget_toolbar);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_2);
 
-        lineEdit = new QLineEdit(horizontalWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-
-        horizontalLayout_6->addWidget(lineEdit);
-
-        toolButton_12 = new QToolButton(horizontalWidget);
-        toolButton_12->setObjectName(QStringLiteral("toolButton_12"));
-        toolButton_12->setFont(font);
-        toolButton_12->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_upload = new QToolButton(widget_toolbar);
+        toolButton_upload->setObjectName(QStringLiteral("toolButton_upload"));
+        toolButton_upload->setFont(font);
+        toolButton_upload->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -885,12 +878,12 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_12);
+        horizontalLayout_6->addWidget(toolButton_upload);
 
-        toolButton_11 = new QToolButton(horizontalWidget);
-        toolButton_11->setObjectName(QStringLiteral("toolButton_11"));
-        toolButton_11->setFont(font);
-        toolButton_11->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_find = new QToolButton(widget_toolbar);
+        toolButton_find->setObjectName(QStringLiteral("toolButton_find"));
+        toolButton_find->setFont(font);
+        toolButton_find->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -907,12 +900,12 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_11);
+        horizontalLayout_6->addWidget(toolButton_find);
 
-        toolButton_9 = new QToolButton(horizontalWidget);
-        toolButton_9->setObjectName(QStringLiteral("toolButton_9"));
-        toolButton_9->setFont(font);
-        toolButton_9->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_history = new QToolButton(widget_toolbar);
+        toolButton_history->setObjectName(QStringLiteral("toolButton_history"));
+        toolButton_history->setFont(font);
+        toolButton_history->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -929,12 +922,12 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_9);
+        horizontalLayout_6->addWidget(toolButton_history);
 
-        toolButton_10 = new QToolButton(horizontalWidget);
-        toolButton_10->setObjectName(QStringLiteral("toolButton_10"));
-        toolButton_10->setFont(font);
-        toolButton_10->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_toolkit = new QToolButton(widget_toolbar);
+        toolButton_toolkit->setObjectName(QStringLiteral("toolButton_toolkit"));
+        toolButton_toolkit->setFont(font);
+        toolButton_toolkit->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -951,14 +944,14 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_10);
+        horizontalLayout_6->addWidget(toolButton_toolkit);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_3);
 
 
-        verticalLayout_8->addWidget(horizontalWidget);
+        verticalLayout_8->addWidget(widget_toolbar);
 
         verticalLayout_8->setStretch(0, 5);
         verticalLayout_8->setStretch(1, 1);
@@ -1267,7 +1260,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(sshwidget);
@@ -1346,10 +1339,10 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        toolButton_12->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
-        toolButton_11->setText(QApplication::translate("sshwidget", "\346\237\245\346\211\276", nullptr));
-        toolButton_9->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
-        toolButton_10->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
+        toolButton_upload->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
+        toolButton_find->setText(QApplication::translate("sshwidget", "\346\237\245\346\211\276", nullptr));
+        toolButton_history->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
+        toolButton_toolkit->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
         textEdit_3->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

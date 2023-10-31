@@ -23,7 +23,7 @@ protected:
     void mousePressEvent(QMouseEvent *event) override
     {
         if (event->button() == Qt::LeftButton) {
-            qDebug() << "Mouse pressed inside QTextEdit!";
+            //qDebug() << "Mouse pressed inside QTextEdit!";
             emit send_mousePress_sign();
         }
 
@@ -59,9 +59,17 @@ protected:
                 qDebug() << "Up key pressed";
                 emit send_key_sign("\u001B[A");
                 return true;
-            } else if (keyEvent->key() == Qt::Key_Up) {
+            } else if (keyEvent->key() == Qt::Key_Down) {
                 qDebug() << "Down key pressed";
                 emit send_key_sign("\u001B[B");
+                return true;
+            } else if (keyEvent->key() == Qt::Key_Left) {
+                emit send_key_sign("\u001B[D");
+                qDebug() << "Left key pressed";
+                return true;
+            } else if (keyEvent->key() == Qt::Key_Right) {
+                emit send_key_sign("\u001B[C");
+                qDebug() << "Right key pressed";
                 return true;
             }
 
@@ -123,13 +131,20 @@ public:
 
     //发送命令
     void sendCommandData(QString data);
+    //发送上传命令
+    void sendUploadCommandData(QString local_file_path, QString remote_file_path);
 
+    void sendData(QString data);
+
+signals:
+    void send_toolButton_toolkit_sign();
 private slots:
     void on_textEdit_cursorPositionChanged();
 
     void rece_init();
     //接收命令
     void rece_channel_read(QString data);
+    void rece_channel_readS(QStringList data);
 
     void rece_key_sign(QString key);
 
@@ -151,6 +166,12 @@ private slots:
     void on_textEdit_textChanged();
 
     void rece_send_mousePress_sign();
+
+    void on_toolButton_toolkit_clicked();
+
+
+
+    void on_toolButton_upload_clicked();
 
 private:
     Ui::sshwidget *ui;
@@ -174,6 +195,7 @@ private:
     QScrollBar *scrollBar_textEdit_s = NULL;
     CustomTextEdit *textEdit_s;
 
+    QString lastCommondS; //上一条命令
     int a = 0;
 };
 

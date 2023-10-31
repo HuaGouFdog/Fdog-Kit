@@ -70,6 +70,7 @@ public:
     void stringToHtml(QString &str, QColor *fontCrl = NULL, QColor *backCrl = NULL);
     QString processDataStatsAndColor(QString & head, QString & commond, QString data);
     QString processData(QString data);
+    QStringList processDataS(QString data);
 
     int isDTab = 0;
 signals:

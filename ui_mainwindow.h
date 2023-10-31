@@ -62,6 +62,8 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *tab_2;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout_9;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
@@ -563,13 +565,13 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab{\n"
-"    background-color: rgb(108, 117, 125, 0);\n"
+"    background-color: rgba(108, 117, 125, 0);\n"
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 3px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
-                        "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	border-top-right-radius: 3px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206"
+                        "\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	/*width:120px;*/\n"
 "	padding: 4px;\n"
 "	margin-right:0px;\n"
@@ -579,13 +581,15 @@ public:
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:selected{\n"
 "	/*background-color: #0B0E11;*/\n"
-"    background-color: rgb(100, 117, 125, 255);\n"
+"    /*background-color: rgb(100, 117, 125, 255);*/\n"
+"	\n"
+"	background-color: rgb(15, 15, 15);\n"
 "    /*border-left: 2px solid rgb(255, 255, 255);*/\n"
 "    /*border-right: 2px solid rgb(255, 255, 255);*/\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204"
-                        "\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252"
+                        "\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
 "	background-color: rgb(100, 117, 125, 255);\n"
 "}\n"
@@ -608,11 +612,11 @@ public:
 "QTabBar QToolButton {\n"
 "    border: none;\n"
 "	color: rgb(255, 206, 6);\n"
-"    background-color: rgba(100, 117, 125, 0);\n"
+"    background-color: rgba(100, 117,"
+                        " 125, 0);\n"
 "}\n"
 " \n"
-"QTabBar QToolButton:hover"
-                        " {\n"
+"QTabBar QToolButton:hover {\n"
 "	background-color: rgba(100, 117, 125, 0);\n"
 "}"));
         tabWidget->setTabsClosable(true);
@@ -622,6 +626,14 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        horizontalLayoutWidget = new QWidget(tab_2);
+        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(240, 230, 160, 80));
+        horizontalLayout_9 = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
         tabWidget->addTab(tab_2, QString());
 
         verticalLayout_4->addWidget(tabWidget);
@@ -1577,11 +1589,11 @@ public:
         verticalLayout_12->setSpacing(6);
         verticalLayout_12->setContentsMargins(11, 11, 11, 11);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        verticalLayout_12->setContentsMargins(90, 0, 90, 0);
+        verticalLayout_12->setContentsMargins(110, 0, 90, 0);
         toolButton_closetool = new QToolButton(widget_7);
         toolButton_closetool->setObjectName(QStringLiteral("toolButton_closetool"));
         toolButton_closetool->setMinimumSize(QSize(0, 20));
-        toolButton_closetool->setMaximumSize(QSize(270, 20));
+        toolButton_closetool->setMaximumSize(QSize(50, 20));
         toolButton_closetool->setFont(font1);
         toolButton_closetool->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -2157,7 +2169,7 @@ public:
         lineEdit_reg->setText(QString());
         toolButton_begin_match->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\345\214\271\351\205\215", nullptr));
         label_match_result->setText(QApplication::translate("MainWindow", "\345\214\271\351\205\215\347\273\223\346\236\234\357\274\232", nullptr));
-        toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255\345\260\217\345\267\245\345\205\267", nullptr));
+        toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
         widget_welcome_body_widget2_info_widget_icon->setText(QString());
         widget_welcome_body_widget2_info_text->setText(QApplication::translate("MainWindow", "Fdog-kit", nullptr));
         widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\347\273\210\347\253\257", nullptr));

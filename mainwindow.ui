@@ -737,12 +737,12 @@ color: rgb(255, 255, 255);</string>
  
 /*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
-    background-color: rgb(108, 117, 125, 0);
+    background-color: rgba(108, 117, 125, 0);
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
-	border-top-left-radius: 3px;    /*设置tab的边框的圆角（左上圆角）*/
-	border-top-right-radius: 3px;    /*设置tab的边框的圆角（右上圆角）*/
+	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
 	padding: 4px;
 	margin-right:0px;
@@ -752,7 +752,9 @@ QTabBar::tab{
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
 QTabBar::tab:selected{
 	/*background-color: #0B0E11;*/
-    background-color: rgb(100, 117, 125, 255);
+    /*background-color: rgb(100, 117, 125, 255);*/
+	
+	background-color: rgb(15, 15, 15);
     /*border-left: 2px solid rgb(255, 255, 255);*/
     /*border-right: 2px solid rgb(255, 255, 255);*/
 }
@@ -805,6 +807,17 @@ QTabBar QToolButton:hover {
                  <attribute name="title">
                   <string>33333333333333333333</string>
                  </attribute>
+                 <widget class="QWidget" name="horizontalLayoutWidget">
+                  <property name="geometry">
+                   <rect>
+                    <x>240</x>
+                    <y>230</y>
+                    <width>160</width>
+                    <height>80</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_9"/>
+                 </widget>
                 </widget>
                </widget>
               </item>
@@ -2814,7 +2827,7 @@ padding-right:10px;</string>
                <widget class="QWidget" name="widget_7" native="true">
                 <layout class="QVBoxLayout" name="verticalLayout_12">
                  <property name="leftMargin">
-                  <number>90</number>
+                  <number>110</number>
                  </property>
                  <property name="topMargin">
                   <number>0</number>
@@ -2835,7 +2848,7 @@ padding-right:10px;</string>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>270</width>
+                     <width>50</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -2864,7 +2877,7 @@ QToolButton:hover {
 }</string>
                    </property>
                    <property name="text">
-                    <string>关闭小工具</string>
+                    <string>关闭</string>
                    </property>
                    <property name="iconSize">
                     <size>

@@ -104,28 +104,35 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
         libssh2_session_free(session);
         return;
     }
-
-    channel = libssh2_channel_open_session(session);
-    // 请求分配伪终端
-    const char* term = "xterm";
-    int ret = libssh2_channel_request_pty_size(channel, 80, 24);
-        qDebug() << "libssh2_channel_request_pty_size = " << ret;
-        // 请求伪终端失败，处理错误
-    ret = libssh2_channel_request_pty(channel, term);
-    if (ret != 0) {
-        qDebug() << "出错" << ret;
-        // 请求伪终端失败，处理错误
+    //初始化 SFTP 会话
+    sftp_session = NULL;
+    sftp_session = libssh2_sftp_init(session);
+    if (sftp_session == NULL) {
+        qDebug() << "初始化失败";
+        return;
     }
-    //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
-    libssh2_channel_shell(channel);
-    emit send_init();
+
+//    channel = libssh2_channel_open_session(session);
+//    // 请求分配伪终端
+//    const char* term = "xterm";
+//    int ret = libssh2_channel_request_pty_size(channel, 80, 24);
+//        qDebug() << "libssh2_channel_request_pty_size = " << ret;
+//        // 请求伪终端失败，处理错误
+//    ret = libssh2_channel_request_pty(channel, term);
+//    if (ret != 0) {
+//        qDebug() << "出错" << ret;
+//        // 请求伪终端失败，处理错误
+//    }
+//    //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
+//    libssh2_channel_shell(channel);
+//    emit send_init();
     qDebug() << "初始化完成";
 
 //	connect(monitor_thread__, SIGNAL(started()), monitor_timer__, SLOT(start()));
 //	connect(monitor_thread__, SIGNAL(finished()), monitor_timer__, SLOT(stop()));
 
 
-    getServerInfo();
+    //getServerInfo();
     return;
 }
 
@@ -159,7 +166,11 @@ void sshhandle::init_poll()
                     QTest::qSleep(100);
                     //通知ui
                     //processData只处理颜色，属性，类似退格等由sshwidget完成
-                    emit send_channel_read(ac.processData(buffer));
+                    //对内容进行分组处理
+                    //QStringList = ac.processDataS(buffer);
+                    QString a = ac.processData(buffer);
+                    emit send_channel_readS(ac.processDataS(a));
+                    //emit send_channel_read(ac.processData(buffer));
                     // 处理输出数据
                     // 例如，将输出数据打印到控制台
                     //std::string aa = sprintf("%.*s", bytesRead, buffer);

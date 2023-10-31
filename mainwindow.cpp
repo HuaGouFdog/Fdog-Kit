@@ -482,6 +482,7 @@ void MainWindow::on_newTool()
         QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
         if (actionText == "小工具集合") {
+            ui->stackedWidget->setCurrentIndex(0);
             ui->widget_4->show();
             return;
             //connectType =SSH_CONNECT_TYPE;
@@ -520,6 +521,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
         sshwidget * sshWidget = new sshwidget(cInfoStruct);
+        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
         sshWidgetList.push_back(sshWidget);
         ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
@@ -559,17 +561,15 @@ void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
 
 void MainWindow::on_widget_welcome_body_widget2_newCreate_newTool_clicked()
 {
-    //创建连接窗口
-//    tswidget = new toolswidget();
-//    //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-//    QSize iconSize(16, 16); // 设置图标的大小
-//    //sshWidgetList.push_back(tswidget);
-//    ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), "工具");
-//    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-//    //sshWidgetList.push_back(tswidget);
-//    tswidget->show();
     ui->stackedWidget->setCurrentIndex(0);
-    ui->widget_4->show();
+    //显示工具栏窗口
+    if (!isShowToolKit) {
+        ui->widget_4->show();
+        isShowToolKit = true;
+    } else {
+        ui->widget_4->hide();
+        isShowToolKit = false;
+    }
 }
 
 void MainWindow::on_comboBox_tool_currentIndexChanged(int index)
@@ -734,21 +734,26 @@ void MainWindow::on_toolButton_timestamp_copy_clicked()
 void MainWindow::on_toolButton_closetool_clicked()
 {
     ui->widget_4->hide();
+    isShowToolKit = false;
 }
 
 void MainWindow::on_toolButton_newCreate_clicked()
 {
-    if (ccwidget == nullptr) {
-        int8_t connectType = 0;
-        //创建连接窗口
-        ccwidget = new createconnect(connectType);
-        connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        connect(ccwidget,SIGNAL(newClose()),this,SLOT(on_newClose()));
-        ccwidget->show();
-    } else {
-        //不创建
-        ccwidget->setFocus();
-    }
+//    if (ccwidget == nullptr) {
+//        int8_t connectType = 0;
+//        //创建连接窗口
+//        ccwidget = new createconnect(connectType);
+//        connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+//        connect(ccwidget,SIGNAL(newClose()),this,SLOT(on_newClose()));
+//        ccwidget->show();
+//    } else {
+//        //不创建
+//        ccwidget->setFocus();
+//    }
+    int8_t connectType = 0;
+    ccwidget = new createconnect(connectType);
+    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    ccwidget->show();
 }
 
 void MainWindow::on_toolButton_newCreate_2_clicked()

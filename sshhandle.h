@@ -38,6 +38,7 @@ public:
     explicit sshhandle(QObject *parent = nullptr);
     datahandle ac;
     LIBSSH2_SESSION *session;
+    LIBSSH2_SFTP* sftp_session;
     LIBSSH2_CHANNEL *channel; //通道
     LIBSSH2_CHANNEL *channel2; //通道2
 signals:
@@ -45,6 +46,7 @@ signals:
     void send_init_poll();
     void send_channel_write(QString data);
     void send_channel_read(QString data);
+    void send_channel_readS(QStringList data);
     void send_getServerInfo(ServerInfoStruct serverInfo);
 public slots:
     //connectAndExecuteCommand(host, port, username, password, command);

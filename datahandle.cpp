@@ -413,10 +413,10 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //qDebug() << "Matched email:" << match;
         //qDebug() << "Matched email 1:" << regex.cap(1);
         //qDebug() << "Matched email 2:" << regex.cap(2);
-        qDebug() << "Matched email 3:" << regex.cap(3);
-        qDebug() << "Matched email 4:" << regex.cap(4);
+        //qDebug() << "Matched email 3:" << regex.cap(3);
+        //qDebug() << "Matched email 4:" << regex.cap(4);
         //qDebug() << "Matched email 5:" << regex.cap(5);
-        qDebug() << "Matched email 6:" << regex.cap(6);
+        //qDebug() << "Matched email 6:" << regex.cap(6);
         //qDebug() << "Matched email 7:" << regex.cap(7);
         //qDebug() << "Matched email 8:" << regex.cap(8);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
@@ -464,7 +464,7 @@ QString datahandle::processData(QString data)
     QString head;
     //qDebug() << "head = " << head;
     //qDebug() << "commond = " << commond;
-    qDebug() << "processData修改前数据：" << data;
+    //qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
@@ -520,7 +520,70 @@ QString datahandle::processData(QString data)
 
     stringToHtmlFilter6(data);
 
-    qDebug() << "processData修改后数据：" << data;
+    //qDebug() << "processData修改后数据：" << data;
 
     return data;
+}
+
+QStringList datahandle::processDataS(QString data)
+{
+    int sum = 0; //记录有多少连续的\b
+    QStringList dataS;
+    //对内容进行分组
+    while(1) {
+        //检测\b
+        if (data.contains("\b")) {
+            //光标左移动
+            int position = data.indexOf("\b");
+            if (position == 0) {
+                dataS.append(data.mid(0, 1));
+            } else {
+                qDebug() << "processDataS 进入 " << data.mid(0, position);
+                sum++;
+                //有几个\b，前面就删除字符
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 1));
+            }
+            data = data.mid(position + 1);
+            //qDebug() << "添加b";
+        } else if (data.contains("\u001B[K")) {
+            int position = data.indexOf("\u001B[K");
+            if (position == 0) {
+                dataS.append(data.mid(0, 3));
+            } else {
+                dataS.append(data.mid(0, position));
+                dataS.append(data.mid(position, 3));
+            }
+            data = data.mid(position + 3);
+            qDebug() << "添加k";
+        } else if (data.contains("\u001B[C")) {
+            int position = data.indexOf("\u001B[C");
+            if (position == 0) {
+                dataS.append(data.mid(0, 3));
+                qDebug() << "添加 里面1" << data << " 长度" << data.length();
+                qDebug() << "添加 里面2" << data.mid(0, 3);
+            } else {
+                dataS.append(data.mid(0, position));
+                dataS.append(data.mid(position, 3));
+            }
+            data = data.mid(position + 3);
+            qDebug() << "添加c";
+        } else {
+            QRegExp regExp("\\x001B\\[(\\d+)P");
+            int pos = 0;
+            while ((pos = regExp.indexIn(data, pos)) != -1) {
+                QString match = regExp.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                dataS.append(data.mid(0, match.length()));
+                data = data.mid(position + match.length());
+                break;
+            }
+            //qDebug() << "添加d";
+            dataS.append(data);
+            break;
+        }
+    }
+    qDebug() << "QStringList = " << dataS;
+
+   return dataS;
 }

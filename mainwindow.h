@@ -148,7 +148,7 @@ private:
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;
 
-    bool isShowTool = false; //是否显示工具栏
+    bool isShowToolKit = false; //是否显示工具栏
 };
 
 #endif // MAINWINDOW_H
