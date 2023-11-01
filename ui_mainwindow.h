@@ -62,8 +62,6 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *tab_2;
-    QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout_9;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
@@ -534,7 +532,7 @@ public:
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 5);
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(widget_3);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -626,14 +624,6 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
-        horizontalLayoutWidget = new QWidget(tab_2);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(240, 230, 160, 80));
-        horizontalLayout_9 = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
         tabWidget->addTab(tab_2, QString());
 
         verticalLayout_4->addWidget(tabWidget);
@@ -653,7 +643,7 @@ public:
         verticalLayout_21->setSpacing(6);
         verticalLayout_21->setContentsMargins(11, 11, 11, 11);
         verticalLayout_21->setObjectName(QStringLiteral("verticalLayout_21"));
-        verticalLayout_21->setContentsMargins(5, 0, 0, 10);
+        verticalLayout_21->setContentsMargins(2, 0, 0, 10);
         widget_6 = new QWidget(widget_4);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         horizontalLayout_10 = new QHBoxLayout(widget_6);
@@ -740,6 +730,7 @@ public:
         verticalLayout_22->setSpacing(6);
         verticalLayout_22->setContentsMargins(11, 11, 11, 11);
         verticalLayout_22->setObjectName(QStringLiteral("verticalLayout_22"));
+        verticalLayout_22->setContentsMargins(5, 5, 2, 0);
         textEdit = new QTextEdit(page_4);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setFont(font1);
@@ -758,7 +749,7 @@ public:
         verticalLayout_14->setSpacing(6);
         verticalLayout_14->setContentsMargins(11, 11, 11, 11);
         verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
-        verticalLayout_14->setContentsMargins(10, 0, 10, 0);
+        verticalLayout_14->setContentsMargins(5, 5, 2, 0);
         label_hex = new QLabel(page_21);
         label_hex->setObjectName(QStringLiteral("label_hex"));
         label_hex->setFont(font1);
@@ -858,7 +849,7 @@ public:
         verticalLayout_15->setSpacing(6);
         verticalLayout_15->setContentsMargins(11, 11, 11, 11);
         verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
-        verticalLayout_15->setContentsMargins(10, 0, 10, 0);
+        verticalLayout_15->setContentsMargins(5, 5, 2, 0);
         gridWidget = new QWidget(page_19);
         gridWidget->setObjectName(QStringLiteral("gridWidget"));
         gridWidget->setMaximumSize(QSize(16777215, 120));
@@ -1056,7 +1047,7 @@ public:
         verticalLayout_18->setSpacing(18);
         verticalLayout_18->setContentsMargins(11, 11, 11, 11);
         verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
-        verticalLayout_18->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_18->setContentsMargins(5, 5, 2, 0);
         gridWidget_timestamp = new QWidget(page_20);
         gridWidget_timestamp->setObjectName(QStringLiteral("gridWidget_timestamp"));
         gridLayout_2 = new QGridLayout(gridWidget_timestamp);
@@ -1360,7 +1351,7 @@ public:
         verticalLayout_19->setSpacing(6);
         verticalLayout_19->setContentsMargins(11, 11, 11, 11);
         verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
-        verticalLayout_19->setContentsMargins(10, 0, 10, 0);
+        verticalLayout_19->setContentsMargins(5, 5, 2, 0);
         label_url = new QLabel(page_22);
         label_url->setObjectName(QStringLiteral("label_url"));
         label_url->setMinimumSize(QSize(0, 20));
@@ -1473,7 +1464,7 @@ public:
         verticalLayout_20->setSpacing(6);
         verticalLayout_20->setContentsMargins(11, 11, 11, 11);
         verticalLayout_20->setObjectName(QStringLiteral("verticalLayout_20"));
-        verticalLayout_20->setContentsMargins(10, 0, 10, 0);
+        verticalLayout_20->setContentsMargins(5, 5, 2, 0);
         label_source_data = new QLabel(page_23);
         label_source_data->setObjectName(QStringLiteral("label_source_data"));
         label_source_data->setMinimumSize(QSize(0, 20));
@@ -2108,7 +2099,7 @@ public:
 
         stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(1);
-        stackedWidget_tool->setCurrentIndex(0);
+        stackedWidget_tool->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

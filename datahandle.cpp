@@ -464,7 +464,7 @@ QString datahandle::processData(QString data)
     QString head;
     //qDebug() << "head = " << head;
     //qDebug() << "commond = " << commond;
-    //qDebug() << "processData修改前数据：" << data;
+    qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
@@ -473,10 +473,18 @@ QString datahandle::processData(QString data)
         data = data.replace(regExp.cap(0), "");
     }
 
-    QRegExp regExp1("(\\x001B)\\]0;\\S+\\x0007");
+    //\u001B]0;root@localhost:~\u0007
+    //\u001B]0;root@localhost:~\u0007
+    QRegExp regExp1("(\\x001B)\\]0;(\\S+)\\x0007");
     if (regExp1.indexIn(data)>=0) {
         //替换
-        qDebug() << "修改后数据1：";
+        qDebug() << "获取工作目录标识" << regExp1.cap(2);
+        int colonIndex = regExp1.cap(2).indexOf(':');
+        if (colonIndex != -1) {
+            QString extractedData = regExp1.cap(2).mid(colonIndex + 1);
+            qDebug() << "获取工作目录：" << extractedData;
+            ssh_path = extractedData;
+        }
         data = data.replace(regExp1.cap(0), "");
     }
 
@@ -529,6 +537,7 @@ QStringList datahandle::processDataS(QString data)
 {
     int sum = 0; //记录有多少连续的\b
     QStringList dataS;
+    dataS.append(ssh_path);
     //对内容进行分组
     while(1) {
         //检测\b

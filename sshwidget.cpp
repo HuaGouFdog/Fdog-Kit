@@ -20,6 +20,9 @@
 #include <QScrollBar>
 #include<QTextCodec>
 #include <QElapsedTimer>
+#include <QDir>
+#include <QFileDialog>
+
 QString a = "";
 
 //    // 关闭 SSH 连接
@@ -57,17 +60,17 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui(new Ui::sshwidget)
 {
     ui->setupUi(this);
-    ui->splitter_1->setStretchFactor(0,1);
-    ui->splitter_1->setStretchFactor(1,100);
+    //ui->splitter_1->setStretchFactor(0,1);
+    //ui->splitter_1->setStretchFactor(1,100);
 
     ui->splitter_2->setStretchFactor(0,100);
     ui->splitter_2->setStretchFactor(1,2);
 
-    ui->splitter_3->setStretchFactor(0,100);
-    ui->splitter_3->setStretchFactor(1,1);
+    //ui->splitter_3->setStretchFactor(0,100);
+    //ui->splitter_3->setStretchFactor(1,1);
 
-    ui->splitter_4->setStretchFactor(0,1);
-    ui->splitter_4->setStretchFactor(1,1);
+    //ui->splitter_4->setStretchFactor(0,1);
+    //ui->splitter_4->setStretchFactor(1,1);
 
     ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
     //表格自适应
@@ -246,7 +249,7 @@ https://blog.51cto.com/xiaohaiwa/5379626
     //ui->textEdit_4->setFocus();
     movePos = false;
 
-    ui->textBrowser->setText("这是一段可选中但无需移动光标的文本。");
+    //ui->textBrowser->setText("这是一段可选中但无需移动光标的文本。");
 
     // 禁用编辑和光标显示
     //QTextCursor cursor = ui->textEdit->textCursor();
@@ -257,8 +260,8 @@ https://blog.51cto.com/xiaohaiwa/5379626
     //textEdit2->setPlainText("Example text");
     //textEdit2.show();
 
-    QPushButton * aa = new QPushButton("xxxxx", this);
-    ui->verticalLayout_13->addWidget(aa);
+    //QPushButton * aa = new QPushButton("xxxxx", this);
+    //ui->verticalLayout_13->addWidget(aa);
     //ui->verticalLayout_13->addWidget(textEdit2);
 
     ui->textEdit->setCursorWidth(8);
@@ -302,9 +305,9 @@ https://blog.51cto.com/xiaohaiwa/5379626
     connect(scrollBar_textEdit_s,SIGNAL(valueChanged(int)),this,
                                SLOT(scrollBarValueChanged(int)));
 
-    ui->widget->hide();
-    ui->widget_3->hide();
-    ui->widget_4->hide();
+    //ui->widget->hide();
+    //ui->widget_3->hide();
+    //ui->widget_4->hide();
     //ui->horizontalWidget->hide();
 }
 
@@ -315,7 +318,7 @@ sshwidget::~sshwidget()
 
 void sshwidget::sendCommandData(QString data)
 {
-    libssh2_channel_write(m_sshhandle->channel, data.toStdString().c_str(), strlen(data.toStdString().c_str()));
+    libssh2_channel_write(m_sshhandle->channel_ssh, data.toStdString().c_str(), strlen(data.toStdString().c_str()));
 }
 
 
@@ -341,17 +344,17 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
         qDebug() << "打开文件成功";
     }
 
-    LIBSSH2_SFTP_HANDLE *sftp_handle = NULL;
-    sftp_handle = libssh2_sftp_open(m_sshhandle->sftp_session, remote_file_path.toStdString().c_str(),
+    m_sshhandle->handle_sftp = NULL;
+    m_sshhandle->handle_sftp = libssh2_sftp_open(m_sshhandle->session_sftp, remote_file_path.toStdString().c_str(),
                                                             LIBSSH2_FXF_WRITE | LIBSSH2_FXF_CREAT | LIBSSH2_FXF_TRUNC,
                                                             LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR);
-        if (sftp_handle == NULL) {
+        if (m_sshhandle->handle_sftp == NULL) {
             qDebug() << "sftp_handle失败";
-            int error_code = libssh2_sftp_last_error(m_sshhandle->sftp_session);
+            int error_code = libssh2_sftp_last_error(m_sshhandle->session_sftp);
             qDebug() << "Failed to open file: " << error_code;
             // 处理远程文件创建失败的情况
             fclose(local_file);
-            libssh2_sftp_shutdown(m_sshhandle->sftp_session);
+            libssh2_sftp_shutdown(m_sshhandle->session_sftp);
 //            libssh2_session_disconnect(session, "Failed to create remote file");
 //            libssh2_session_free(session);
 //            libssh2_exit();
@@ -361,21 +364,8 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
         }
 
         // 读取本地文件内容并写入到远程文件
-        //char buffer[104096];
         char buffer[100000 * 2] = { 0 };
-        //size_t bytes_read;
         qDebug() << "准备" << 1;
-//        while ((bytes_read = fread(buffer, 1, sizeof(buffer), local_file)) > 0) {
-//            size_t bytes_written = libssh2_sftp_write(sftp_handle, buffer, bytes_read);
-//            if (bytes_written != bytes_read) {
-//                //qDebug() << "写入失败 bytes_written = " << bytes_written << " bytes_read = " << bytes_read;
-//                // 处理写入失败的情况
-//                fclose(local_file);
-//                libssh2_sftp_close(sftp_handle);
-//                libssh2_sftp_shutdown(m_sshhandle->sftp_session);
-//                return;
-//            }
-//        }
 
         /* 上传数据 */
         QElapsedTimer timer;
@@ -389,7 +379,7 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
                 //qDebug() << "循环读取1";
                 //发现个问题 这个函数最高只能写入30000字节数据 所以调太大是没用的 后来还发现如果缓冲区设成30000 上传速度也会变慢
                 // 必须高于30000的2倍数 所以 我设置成了2倍
-                int len = libssh2_sftp_write(sftp_handle, ptr, nread);
+                int len = libssh2_sftp_write(m_sshhandle->handle_sftp, ptr, nread);
                 //qDebug() << "循环读取2";
                 if(len < 0) {
                     break;
@@ -402,11 +392,11 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
             qDebug() << "Elapsed Time:" << elapsedTime << "ms";
         qDebug() <<"开始完成";
         // 关闭文件句柄和本地文件
-        libssh2_sftp_close(sftp_handle);
+        libssh2_sftp_close(m_sshhandle->handle_sftp);
         fclose(local_file);
 
         // 断开 SSH 连接和释放会话
-        libssh2_sftp_shutdown(m_sshhandle->sftp_session);
+        libssh2_sftp_shutdown(m_sshhandle->session_sftp);
 //        libssh2_session_disconnect(session, "Upload complete");
 //        libssh2_session_free(session);
 //        libssh2_exit();
@@ -750,7 +740,9 @@ void sshwidget::rece_channel_readS(QStringList data)
 
     int sum = 0;
     int sum2 = 0;
-    for(int i = 0; i < data.length(); i++) {
+    //第一条固定为工作路径
+    ssh_path = data[0];
+    for(int i = 1; i < data.length(); i++) {
         //qDebug() << "获取数据： " << data[i];
         if (data[i] == "\b" && lastCommondS == "\u001B[D") {
             data[i] = "\u001B[D";
@@ -949,7 +941,7 @@ void sshwidget::on_textEdit_selectionChanged()
 void sshwidget::on_textEdit_5_cursorPositionChanged()
 {
     //焦点变成4
-    ui->textEdit_4->setFocus();
+    //ui->textEdit_4->setFocus();
 
 }
 
@@ -978,8 +970,8 @@ void sshwidget::scrollBarValueChanged2(int value)
 {
     //qDebug() << "滑动条值改变为2：" << value;
     //qDebug() << "当前值：" << scrollBar_textEdit->value();
-    QScrollBar *scrollBar = ui->textEdit_6->verticalScrollBar();
-    scrollBar->setValue(value);
+    //QScrollBar *scrollBar = ui->textEdit_6->verticalScrollBar();
+    //scrollBar->setValue(value);
 }
 
 void sshwidget::on_textEdit_textChanged()
@@ -1005,6 +997,22 @@ void sshwidget::on_toolButton_toolkit_clicked()
 
 void sshwidget::on_toolButton_upload_clicked()
 {
+    QString curPath=QDir::currentPath();  //初始化目录
+    QString dlgTitle="选择多个文件";   //对话框标题
+    QString filter = "所有文件(*.*);;文本文件(*.txt);;图片文件(*.jpg *.gif)";   //文件过滤器
+    QStringList fileList = QFileDialog::getOpenFileNames(this,dlgTitle,curPath,filter);  //getOpenFileNames返回选择文件的带路径的完整文件名
+    for(int i=0;i<fileList.count();i++) {   //添加文件名到文本框
+        qDebug() << "选择路径：" << fileList.at(i);
+    }
     //获取当前服务器目录，然后上传
-    sendUploadCommandData("C:\\Users\\张旭\\Desktop\\fsdownload\\libched_ssl.so.1.1.0", "/data/linkdood/im/libched_ssl.so.1.1.0");
+    QString A = fileList.at(0);
+    QString fileName;
+    int colonIndex = A.lastIndexOf('/');
+    if (colonIndex != 1) {
+        qDebug() << "上传文件 文件名" << A.mid(colonIndex + 1);
+        fileName = A.mid(colonIndex + 1);
+    }
+
+    //sendUploadCommandData("C:\\Users\\张旭\\Desktop\\fsdownload\\apinfo.json", "/data/linkdood/im/apinfo.json");
+    sendUploadCommandData(A, ssh_path + "/" + fileName);
 }

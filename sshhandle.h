@@ -37,10 +37,15 @@ class sshhandle : public QObject
 public:
     explicit sshhandle(QObject *parent = nullptr);
     datahandle ac;
-    LIBSSH2_SESSION *session;
-    LIBSSH2_SFTP* sftp_session;
-    LIBSSH2_CHANNEL *channel; //通道
-    LIBSSH2_CHANNEL *channel2; //通道2
+    LIBSSH2_SESSION *session_ssh;  //ssh session
+    LIBSSH2_CHANNEL *channel_ssh;  //ssh channel
+
+    LIBSSH2_SESSION *session_exec; //exec session
+    LIBSSH2_CHANNEL *channel_exec; //exec channel
+
+    LIBSSH2_SESSION *       session_ssh_sftp;   //exec session
+    LIBSSH2_SFTP*           session_sftp;       //sftp
+    LIBSSH2_SFTP_HANDLE *   handle_sftp;        //sftp
 signals:
     void send_init();
     void send_init_poll();
@@ -50,6 +55,11 @@ signals:
     void send_getServerInfo(ServerInfoStruct serverInfo);
 public slots:
     //connectAndExecuteCommand(host, port, username, password, command);
+    void initSSH(int connrectType, QString host, QString port, QString username, QString password);
+    void initEXEC(int connrectType, QString host, QString port, QString username, QString password);
+    void initSFTP(int connrectType, QString host, QString port, QString username, QString password);
+
+
     void init(int connrectType, QString host, QString port, QString username, QString password);
     void init_poll();
     void channel_write(QString command);

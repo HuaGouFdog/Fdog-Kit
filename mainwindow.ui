@@ -701,7 +701,7 @@ color: rgb(255, 255, 255);</string>
                <number>0</number>
               </property>
               <property name="bottomMargin">
-               <number>5</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QTabWidget" name="tabWidget">
@@ -807,17 +807,6 @@ QTabBar QToolButton:hover {
                  <attribute name="title">
                   <string>33333333333333333333</string>
                  </attribute>
-                 <widget class="QWidget" name="horizontalLayoutWidget">
-                  <property name="geometry">
-                   <rect>
-                    <x>240</x>
-                    <y>230</y>
-                    <width>160</width>
-                    <height>80</height>
-                   </rect>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_9"/>
-                 </widget>
                 </widget>
                </widget>
               </item>
@@ -849,7 +838,7 @@ border-left:2px solid rgb(108, 117, 125, 65);
                <number>6</number>
               </property>
               <property name="leftMargin">
-               <number>5</number>
+               <number>2</number>
               </property>
               <property name="topMargin">
                <number>0</number>
@@ -1033,10 +1022,22 @@ border-image: url(:/lib/up.png);
 color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>5</number>
                 </property>
                 <widget class="QWidget" name="page_4">
                  <layout class="QVBoxLayout" name="verticalLayout_22">
+                  <property name="leftMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
                    <widget class="QTextEdit" name="textEdit">
                     <property name="font">
@@ -1063,13 +1064,13 @@ padding-right:10px;</string>
                    <number>6</number>
                   </property>
                   <property name="leftMargin">
-                   <number>10</number>
+                   <number>5</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
-                   <number>10</number>
+                   <number>2</number>
                   </property>
                   <property name="bottomMargin">
                    <number>0</number>
@@ -1316,13 +1317,13 @@ padding-right:10px;</string>
                 <widget class="QWidget" name="page_19">
                  <layout class="QVBoxLayout" name="verticalLayout_15">
                   <property name="leftMargin">
-                   <number>10</number>
+                   <number>5</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
-                   <number>10</number>
+                   <number>2</number>
                   </property>
                   <property name="bottomMargin">
                    <number>0</number>
@@ -1693,13 +1694,13 @@ padding-right:10px;</string>
                    <number>18</number>
                   </property>
                   <property name="leftMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
-                   <number>0</number>
+                   <number>2</number>
                   </property>
                   <property name="bottomMargin">
                    <number>0</number>
@@ -2327,13 +2328,13 @@ QToolButton:hover {
                 <widget class="QWidget" name="page_22">
                  <layout class="QVBoxLayout" name="verticalLayout_19">
                   <property name="leftMargin">
-                   <number>10</number>
+                   <number>5</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
-                   <number>10</number>
+                   <number>2</number>
                   </property>
                   <property name="bottomMargin">
                    <number>0</number>
@@ -2566,13 +2567,13 @@ QToolButton:hover {
                 <widget class="QWidget" name="page_23">
                  <layout class="QVBoxLayout" name="verticalLayout_20">
                   <property name="leftMargin">
-                   <number>10</number>
+                   <number>5</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
-                   <number>10</number>
+                   <number>2</number>
                   </property>
                   <property name="bottomMargin">
                    <number>0</number>

@@ -196,6 +196,7 @@ private:
     CustomTextEdit *textEdit_s;
 
     QString lastCommondS; //上一条命令
+    QString ssh_path; //当前工作目录
     int a = 0;
 };
 
