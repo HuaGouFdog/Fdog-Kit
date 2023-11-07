@@ -205,32 +205,13 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 //    stringToHtml(cc,clrR);
     ui->textEdit->insertHtml(cc);
 
-//    QTextCursor cursor6 = ui->textEdit_6->textCursor();
-//    cursor6.movePosition(QTextCursor::End);
-//    ui->textEdit_6->setTextCursor(cursor6);
-//    ui->textEdit_6->insertHtml(cc);
 
     QTextCursor cursor_s = textEdit_s->textCursor();
     cursor_s.movePosition(QTextCursor::End);
     textEdit_s->setTextCursor(cursor_s);
     textEdit_s->insertHtml(cc);
 
-    //ui->textEdit->append("连接主机中...");
-    //connectAndExecuteCommand(host, port, username, password, command);
-    //ui->textEdit->setPlainText(a);
-
-    /*
-https://blog.51cto.com/xiaohaiwa/5379626
-
-*/
-
     keyFilter = new KeyFilter(this);
-//    connect(keyFilter,SIGNAL(send_enter_sign()),this,
-//                            SLOT(rece_enter_sign()));
-//    connect(keyFilter,SIGNAL(send_tab_sign(int)),this,
-//                            SLOT(rece_tab_sign(int)));
-//    connect(keyFilter,SIGNAL(send_backSpace_sign(int)),this,
-//                            SLOT(rece_backSpace_sign(int)));
 
     connect(keyFilter,SIGNAL(send_key_sign(QString)),this,
                             SLOT(rece_key_sign(QString)));
@@ -249,39 +230,9 @@ https://blog.51cto.com/xiaohaiwa/5379626
     //ui->textEdit_4->setFocus();
     movePos = false;
 
-    //ui->textBrowser->setText("这是一段可选中但无需移动光标的文本。");
-
-    // 禁用编辑和光标显示
-    //QTextCursor cursor = ui->textEdit->textCursor();
-    //cursor.setKeepPositionOnInsert(false);
-    //cursor.set
-    //ui->textEdit->setTextCursor(cursor);
-
-    //textEdit2->setPlainText("Example text");
-    //textEdit2.show();
-
-    //QPushButton * aa = new QPushButton("xxxxx", this);
-    //ui->verticalLayout_13->addWidget(aa);
-    //ui->verticalLayout_13->addWidget(textEdit2);
-
     ui->textEdit->setCursorWidth(8);
 
 //    QTextCursor cursor = ui->textEdit->textCursor();
-//    int startPosition = 2;
-//    int endPosition = 7;
-
-//    cursor.setPosition(startPosition);
-//    cursor.setPosition(endPosition, QTextCursor::KeepAnchor);
-//    ui->textEdit->setTextCursor(cursor);
-
-//    QTextCursor cursor = ui->textEdit->textCursor();
-//    int startPosition = 2;
-//    int endPosition = 7;
-
-//    cursor.setPosition(startPosition);
-//    cursor.setPosition(endPosition, QTextCursor::KeepAnchor);
-//    ui->textEdit->setTextCursor(cursor);
-
     //ui->textEdit->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
     QStackedLayout * Layout = new QStackedLayout;
     Layout->setStackingMode(QStackedLayout::StackAll);
@@ -404,11 +355,31 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
 
 void sshwidget::sendData(QString data)
 {
+//    QTextCursor cursor = ui->textEdit->textCursor();
+//    cursor.movePosition(QTextCursor::End);
+//    ui->textEdit->setTextCursor(cursor);
     ui->textEdit->insertHtml(data);
+//    QTextCursor cursor_s = textEdit_s->textCursor();
+//    cursor_s.movePosition(QTextCursor::End);
+//    textEdit_s->setTextCursor(cursor_s);
+    textEdit_s->insertHtml(data);
+}
+
+void sshwidget::setData(QString data)
+{
+
+    ui->textEdit->setHtml("");
+    ui->textEdit->setHtml(data);
+
+    textEdit_s->setHtml("");
+    textEdit_s->setHtml(data);
+
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::End);
+    ui->textEdit->setTextCursor(cursor);
     QTextCursor cursor_s = textEdit_s->textCursor();
     cursor_s.movePosition(QTextCursor::End);
     textEdit_s->setTextCursor(cursor_s);
-    textEdit_s->insertHtml(data);
 }
 
 void sshwidget::on_textEdit_cursorPositionChanged()
@@ -740,9 +711,12 @@ void sshwidget::rece_channel_readS(QStringList data)
 
     int sum = 0;
     int sum2 = 0;
+    //qDebug() << "rece_channel_readS data len1 = " << data.length();
     //第一条固定为工作路径
     ssh_path = data[0];
-    for(int i = 1; i < data.length(); i++) {
+    data = data.mid(1);
+    //qDebug() << "rece_channel_readS data len2 = " << data.length();
+    for(int i = 0; i < data.length(); i++) {
         //qDebug() << "获取数据： " << data[i];
         if (data[i] == "\b" && lastCommondS == "\u001B[D") {
             data[i] = "\u001B[D";
@@ -796,6 +770,37 @@ void sshwidget::rece_channel_readS(QStringList data)
 //            cursor2.deletePreviousChar();
             sum = 0;
             continue;
+        } else if (data[i] == "\u001B[?1049h") {
+            qDebug()<< "开启副缓冲区";
+            //保存主缓存区位置
+            ZData = ui->textEdit->toHtml();
+            //切换到备缓冲区
+            //ui->textEdit_2->setHtml(mainText);
+            continue;
+        } else if (data[i] == "\u001B[?1049l") {
+            qDebug()<< "关闭副缓冲区";
+            //切换到主缓冲区
+            //ui->textEdit->setHtml(ZData);
+            setData(ZData);
+            continue;
+        }  else if (data[i] == "\u001B[?1h") {
+            //启用光标键应用程序模式
+            continue;
+        }  else if (data[i] == "\u001B=") {
+            //切换到应用程序键盘模式
+            continue;
+        }  else if (data[i] == "\u001B[?12l") {
+            //禁用光标闪烁
+            continue;
+        }  else if (data[i] == "\u001B[?25h") {
+            //显示光标
+            continue;
+        }  else if (data[i] == "\u001B[2J") {
+            //清空终端屏幕
+            continue;
+        }  else if (data[i] == "\u001B[?25l") {
+            //文本光标隐藏显示
+            continue;
         } else {
             QRegExp regExp("\\x001B\\[(\\d+)P");
             int pos = 0;
@@ -827,31 +832,12 @@ void sshwidget::rece_channel_readS(QStringList data)
                         qDebug() << "sum--";
                         continue;
                     } else {
-//                        if (data[i].length() != 0 && data[i].length() <= charsToEnd) {
-//                            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
-//                            cursor.deletePreviousChar();
-//                            qDebug() << "删除" <<data[i].length();
-//                            cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
-//                            cursor2.deletePreviousChar();
-//                        } else {
-//                            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, charsToEnd);
-//                            cursor.deletePreviousChar();
-//                            qDebug() << "删除" <<charsToEnd;
-//                            cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, charsToEnd);
-//                            cursor2.deletePreviousChar();
-//                        }
+
                     }
                     sum = 0;
                 }
                 sendData(data[i]);
-                //qDebug() << "发送数据" << data[i];
-                //QTextCursor cursor = ui->textEdit->textCursor();
-                //QTextCursor cursor2 = textEdit_s->textCursor();
-                //qDebug() << "向右移动" << data[i].length();
-                //cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, data[i].length());
-                //cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, data[i].length());
-               // ui->textEdit->setTextCursor(cursor);
-                //textEdit_s->setTextCursor(cursor2);
+
             }
         }
     }
@@ -872,7 +858,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
 void sshwidget::rece_key_sign(QString key)
 {
-    qDebug() << "rece_key_sign = " << key;
+    //qDebug() << "rece_key_sign = " << key;
     lastCommondS = key;
     if (key == "\r") {
         QTextCursor cursor = ui->textEdit->textCursor();
@@ -938,26 +924,13 @@ void sshwidget::on_textEdit_selectionChanged()
        //ui->textEdit->setTextCursor(cursor2);
 }
 
-void sshwidget::on_textEdit_5_cursorPositionChanged()
-{
-    //焦点变成4
-    //ui->textEdit_4->setFocus();
 
-}
-
-void sshwidget::on_textEdit_s_cursorPositionChanged()
-{
-    ui->textEdit->setFocusPolicy(Qt::NoFocus);
-    ui->textEdit->setFocus();
-    //qDebug() << "textEdit_s_cursorPositionChanged设置焦点";
-}
-
-void sshwidget::on_textEdit_6_cursorPositionChanged()
-{
-    ui->textEdit->setFocusPolicy(Qt::NoFocus);
-    ui->textEdit->setFocus();
-    qDebug() << "textEdit_6_cursorPositionChanged设置焦点";
-}
+//void sshwidget::on_textEdit_s_cursorPositionChanged()
+//{
+//    ui->textEdit->setFocusPolicy(Qt::NoFocus);
+//    ui->textEdit->setFocus();
+//    //qDebug() << "textEdit_s_cursorPositionChanged设置焦点";
+//}
 
 void sshwidget::scrollBarValueChanged(int value)
 {
@@ -1015,4 +988,9 @@ void sshwidget::on_toolButton_upload_clicked()
 
     //sendUploadCommandData("C:\\Users\\张旭\\Desktop\\fsdownload\\apinfo.json", "/data/linkdood/im/apinfo.json");
     sendUploadCommandData(A, ssh_path + "/" + fileName);
+}
+
+void sshwidget::on_toolButton_fullScreen_clicked()
+{
+    emit send_toolButton_fullScreen_sign();
 }

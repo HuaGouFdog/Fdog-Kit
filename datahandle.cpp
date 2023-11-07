@@ -214,6 +214,318 @@ void datahandle::stringToHtmlFilter5(QString &str)
 \u001B[24;1H：将光标移动到第24行的起始位置。
 */
 
+
+
+
+void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
+{
+    if (fontCrl != NULL && backCrl != NULL) {
+        QByteArray array;
+        array.append(fontCrl->red());
+        array.append(fontCrl->green());
+        array.append(fontCrl->blue());
+        QString strC(array.toHex());
+
+        QByteArray array2;
+        array2.append(backCrl->red());
+        array2.append(backCrl->green());
+        array2.append(backCrl->blue());
+        QString strC2(array2.toHex());
+        qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
+        str = QString("<span style=\" color:#%1; background-color:#%2;\">%3</span>").arg(strC).arg(strC2).arg(str);
+    } else if (fontCrl != NULL) {
+        QByteArray array;
+        array.append(fontCrl->red());
+        array.append(fontCrl->green());
+        array.append(fontCrl->blue());
+        QString strC(array.toHex());
+        str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
+    } else if (backCrl != NULL) {
+        QByteArray array;
+        array.append(backCrl->red());
+        array.append(backCrl->green());
+        array.append(backCrl->blue());
+        QString strC(array.toHex());
+        str = QString("<span style=\" background-color:#%1;\">%2</span>").arg(strC).arg(str);
+    }
+}
+
+
+QString datahandle::processDataStatsAndColor(QString & head, QString & commond, QString data)
+{
+    //解析数据\u001B[34;42mjenkins_home\u001B[0m
+    QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
+    int pos = 0;
+
+    while ((pos = regex.indexIn(data, pos)) != -1) {
+        QString match = regex.cap(0); // 获取完整的匹配项
+        //qDebug() << "Matched email:" << match;
+        //qDebug() << "Matched email 1:" << regex.cap(1);
+        //qDebug() << "Matched email 2:" << regex.cap(2);
+        //qDebug() << "Matched email 3:" << regex.cap(3);
+        //qDebug() << "Matched email 4:" << regex.cap(4);
+        //qDebug() << "Matched email 5:" << regex.cap(5);
+        //qDebug() << "Matched email 6:" << regex.cap(6);
+        //qDebug() << "Matched email 7:" << regex.cap(7);
+        //qDebug() << "Matched email 8:" << regex.cap(8);
+        //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
+        //qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
+
+        QColor *fontCrl = NULL;
+        QColor *backCrl = NULL;
+
+        auto it1 = fontColorMap.find(regex.cap(3).toInt());
+        if (it1 != fontColorMap.end()) {
+            fontCrl = *it1;
+            //qDebug() << "找到字体颜色1";
+        }
+        auto it2 = fontColorMap.find(regex.cap(4).toInt());
+        if (it2 != fontColorMap.end()) {
+            fontCrl = *it2;
+            //qDebug() << "找到字体颜色2";
+        }
+
+        auto it3 = backColorMap.find(regex.cap(3).toInt());
+        if (it3 != backColorMap.end()) {
+            backCrl = *it3;
+            //qDebug() << "找到背景颜色3";
+        }
+        auto it4 = backColorMap.find(regex.cap(4).toInt());
+        if (it4 != backColorMap.end()) {
+            backCrl = *it4;
+            //qDebug() << "找到背景颜色4";
+        }
+
+        //设置颜色
+        QString cc = regex.cap(6) + regex.cap(8);
+        stringToHtmlFilter(cc);
+        stringToHtml(cc, fontCrl, backCrl);
+        //替换
+        data.replace(match, cc);
+        pos += regex.matchedLength();
+    }
+    return data;
+}
+
+QString datahandle::processData(QString data)
+{
+    QString commond;
+    QString head;
+    //qDebug() << "head = " << head;
+    //qDebug() << "commond = " << commond;
+    qDebug() << "processData修改前数据：" << data;
+
+    QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
+    if (regExp.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp.cap(1);
+        data = data.replace(regExp.cap(0), "");
+    }
+
+    //\u001B]0;root@localhost:~\u0007
+    //\u001B]0;root@localhost:~\u0007
+    QRegExp regExp1("(\\x001B)\\]0;(\\S+)\\x0007");
+    if (regExp1.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "获取工作目录标识" << regExp1.cap(2);
+        int colonIndex = regExp1.cap(2).indexOf(':');
+        if (colonIndex != -1) {
+            QString extractedData = regExp1.cap(2).mid(colonIndex + 1);
+            //qDebug() << "获取工作目录：" << extractedData;
+            ssh_path = extractedData;
+        }
+        data = data.replace(regExp1.cap(0), "");
+    }
+
+//    QRegExp regExp2("(\\x001B)\\]0;\\S+\\x0007");
+//    if (regExp2.indexIn(data)>=0) {
+//        //替换
+//        /qDebug() << "修改后数据2：";
+//        data = data.replace(regExp2.cap(0), "");
+//    }
+
+    QRegExp regExp11("\\x0007");
+    if (regExp11.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp11.cap(1);
+            data = data.replace(regExp11.cap(0), "");
+
+    }
+
+    QRegExp regExp0("\\x001B\\[\\?1034h");
+    if (regExp0.indexIn(data)>=0) {
+        //替换
+        //qDebug() << "修改后数据：" << regExp0.cap(1);
+        data = data.replace(regExp0.cap(0), "");
+    }
+
+    //\u001B[01;34mcore\u001B[0m
+    //\u001B[01;34mzx_test\u001B[0m
+
+    //stringToHtmlFilter3(data);
+    //处理属性和颜色
+    data = processDataStatsAndColor(head, commond, data);
+
+    stringToHtmlFilter2(data);
+
+    //处理默认属性
+    stringToHtmlFilter4(data);
+
+    //清除光标
+    //stringToHtmlFilter5(data);
+
+
+    //stringToHtmlFilter6(data);
+
+    //qDebug() << "processData修改后数据：" << data;
+
+    return data;
+}
+
+QStringList datahandle::processDataS(QString data)
+{
+    int sum = 0; //记录有多少连续的\b
+    QStringList dataS;
+    //对内容进行分组
+    while(1) {
+        //检测\b
+        if (data.contains("\b")) {
+            //光标左移动
+            int position = data.indexOf("\b");
+            if (position == 0) {
+                dataS.append(data.mid(0, 1));
+            } else {
+                qDebug() << "processDataS 进入 " << data.mid(0, position);
+                sum++;
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 1));
+            }
+            data = data.mid(position + 1);
+            //qDebug() << "添加b";
+        } else if (data.contains("\u001B[K")) {
+            int position = data.indexOf("\u001B[K");
+            if (position == 0) {
+                dataS.append(data.mid(0, 3));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 3));
+            }
+            data = data.mid(position + 3);
+            qDebug() << "添加k";
+        } else if (data.contains("\u001B[C")) {
+            int position = data.indexOf("\u001B[C");
+            if (position == 0) {
+                dataS.append(data.mid(0, 3));
+                qDebug() << "添加 里面1" << data << " 长度" << data.length();
+                qDebug() << "添加 里面2" << data.mid(0, 3);
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 3));
+            }
+            data = data.mid(position + 3);
+            qDebug() << "添加c";
+        } else if (data.contains("\u001B[?1049h")) {
+            int position = data.indexOf("\u001B[?1049h");
+            if (position == 0) {
+                dataS.append(data.mid(0, 8));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 8));
+            }
+            data = data.mid(position + 8);
+            qDebug() << "添加\u001B[?1049h";
+        } else if (data.contains("\u001B[?1049l")) {
+            int position = data.indexOf("\u001B[?1049l");
+            if (position == 0) {
+                dataS.append(data.mid(0, 8));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 8));
+            }
+            data = data.mid(position + 8);
+            qDebug() << "添加\u001B[?1049l";
+        } else if (data.contains("\u001B[?1h")) {
+            int position = data.indexOf("\u001B[?1h");
+            if (position == 0) {
+                dataS.append(data.mid(0, 5));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 5));
+            }
+            data = data.mid(position + 5);
+            qDebug() << "添加\u001B[?1h";
+        } else if (data.contains("\u001B=")) {
+            int position = data.indexOf("\u001B=");
+            if (position == 0) {
+                dataS.append(data.mid(0, 2));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 2));
+            }
+            data = data.mid(position + 2);
+            qDebug() << "添加\u001B=";
+        } else if (data.contains("\u001B[?12l")) {
+            int position = data.indexOf("\u001B[?12l");
+            if (position == 0) {
+                dataS.append(data.mid(0, 6));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 6));
+            }
+            data = data.mid(position + 6);
+            qDebug() << "添加\u001B[?12l";
+        } else if (data.contains("\u001B[?25h")) {
+            int position = data.indexOf("\u001B[?25h");
+            if (position == 0) {
+                dataS.append(data.mid(0, 6));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 6));
+            }
+            data = data.mid(position + 6);
+            qDebug() << "添加\u001B[?25h";
+        } else if (data.contains("\u001B[2J")) {
+            int position = data.indexOf("\u001B[2J");
+            if (position == 0) {
+                dataS.append(data.mid(0, 4));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 4));
+            }
+            data = data.mid(position + 4);
+            qDebug() << "添加\u001B[2J";
+        } else if (data.contains("\u001B[?25l")) {
+            int position = data.indexOf("\u001B[?25l");
+            if (position == 0) {
+                dataS.append(data.mid(0, 6));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 6));
+            }
+            data = data.mid(position + 6);
+            qDebug() << "添加\u001B[?25l";
+        } else {
+            QRegExp regExp("\\x001B\\[(\\d+)P");
+            int pos = 0;
+            while ((pos = regExp.indexIn(data, pos)) != -1) {
+                QString match = regExp.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                dataS.append(data.mid(0, match.length()));
+                data = data.mid(position + match.length());
+                //可能需要递归
+                break;
+            }
+            //qDebug() << "添加d";
+            dataS.append(data);
+            break;
+        }
+    }
+    qDebug() << "QStringList = " << dataS;
+
+   return dataS;
+}
+
+
 void datahandle::stringToHtmlFilter6(QString &str)
 {
     QRegExp regExp1("\\x001B\\[\\?1049h");
@@ -221,7 +533,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp1.indexIn(str, pos)) != -1) {
         QString match = regExp1.cap(0); // 获取完整的匹配项
         str.replace(regExp1.cap(0), "<br>~");
-        qDebug() << "保存当前终端的状态:" << match;
+        qDebug() << "切换到副缓存区:" << match;
         pos += regExp1.matchedLength();
     }
 
@@ -365,234 +677,4 @@ void datahandle::stringToHtmlFilter6(QString &str)
         qDebug() << "Matched stringToHtmlFilter6:" << match;
         pos += regExp.matchedLength();
     }
-}
-
-
-void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
-{
-    if (fontCrl != NULL && backCrl != NULL) {
-        QByteArray array;
-        array.append(fontCrl->red());
-        array.append(fontCrl->green());
-        array.append(fontCrl->blue());
-        QString strC(array.toHex());
-
-        QByteArray array2;
-        array2.append(backCrl->red());
-        array2.append(backCrl->green());
-        array2.append(backCrl->blue());
-        QString strC2(array2.toHex());
-        qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
-        str = QString("<span style=\" color:#%1; background-color:#%2;\">%3</span>").arg(strC).arg(strC2).arg(str);
-    } else if (fontCrl != NULL) {
-        QByteArray array;
-        array.append(fontCrl->red());
-        array.append(fontCrl->green());
-        array.append(fontCrl->blue());
-        QString strC(array.toHex());
-        str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
-    } else if (backCrl != NULL) {
-        QByteArray array;
-        array.append(backCrl->red());
-        array.append(backCrl->green());
-        array.append(backCrl->blue());
-        QString strC(array.toHex());
-        str = QString("<span style=\" background-color:#%1;\">%2</span>").arg(strC).arg(str);
-    }
-}
-
-
-QString datahandle::processDataStatsAndColor(QString & head, QString & commond, QString data)
-{
-    //解析数据\u001B[34;42mjenkins_home\u001B[0m
-    QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
-    int pos = 0;
-
-    while ((pos = regex.indexIn(data, pos)) != -1) {
-        QString match = regex.cap(0); // 获取完整的匹配项
-        //qDebug() << "Matched email:" << match;
-        //qDebug() << "Matched email 1:" << regex.cap(1);
-        //qDebug() << "Matched email 2:" << regex.cap(2);
-        //qDebug() << "Matched email 3:" << regex.cap(3);
-        //qDebug() << "Matched email 4:" << regex.cap(4);
-        //qDebug() << "Matched email 5:" << regex.cap(5);
-        //qDebug() << "Matched email 6:" << regex.cap(6);
-        //qDebug() << "Matched email 7:" << regex.cap(7);
-        //qDebug() << "Matched email 8:" << regex.cap(8);
-        //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
-        //qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
-
-        QColor *fontCrl = NULL;
-        QColor *backCrl = NULL;
-
-        auto it1 = fontColorMap.find(regex.cap(3).toInt());
-        if (it1 != fontColorMap.end()) {
-            fontCrl = *it1;
-            //qDebug() << "找到字体颜色1";
-        }
-        auto it2 = fontColorMap.find(regex.cap(4).toInt());
-        if (it2 != fontColorMap.end()) {
-            fontCrl = *it2;
-            //qDebug() << "找到字体颜色2";
-        }
-
-        auto it3 = backColorMap.find(regex.cap(3).toInt());
-        if (it3 != backColorMap.end()) {
-            backCrl = *it3;
-            //qDebug() << "找到背景颜色3";
-        }
-        auto it4 = backColorMap.find(regex.cap(4).toInt());
-        if (it4 != backColorMap.end()) {
-            backCrl = *it4;
-            //qDebug() << "找到背景颜色4";
-        }
-
-        //设置颜色
-        QString cc = regex.cap(6) + regex.cap(8);
-        stringToHtmlFilter(cc);
-        stringToHtml(cc, fontCrl, backCrl);
-        //替换
-        data.replace(match, cc);
-        pos += regex.matchedLength();
-    }
-    return data;
-}
-
-QString datahandle::processData(QString data)
-{
-    QString commond;
-    QString head;
-    //qDebug() << "head = " << head;
-    //qDebug() << "commond = " << commond;
-    qDebug() << "processData修改前数据：" << data;
-
-    QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
-    if (regExp.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp.cap(1);
-        data = data.replace(regExp.cap(0), "");
-    }
-
-    //\u001B]0;root@localhost:~\u0007
-    //\u001B]0;root@localhost:~\u0007
-    QRegExp regExp1("(\\x001B)\\]0;(\\S+)\\x0007");
-    if (regExp1.indexIn(data)>=0) {
-        //替换
-        qDebug() << "获取工作目录标识" << regExp1.cap(2);
-        int colonIndex = regExp1.cap(2).indexOf(':');
-        if (colonIndex != -1) {
-            QString extractedData = regExp1.cap(2).mid(colonIndex + 1);
-            qDebug() << "获取工作目录：" << extractedData;
-            ssh_path = extractedData;
-        }
-        data = data.replace(regExp1.cap(0), "");
-    }
-
-//    QRegExp regExp2("(\\x001B)\\]0;\\S+\\x0007");
-//    if (regExp2.indexIn(data)>=0) {
-//        //替换
-//        /qDebug() << "修改后数据2：";
-//        data = data.replace(regExp2.cap(0), "");
-//    }
-
-    QRegExp regExp11("\\x0007");
-    if (regExp11.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp11.cap(1);
-            data = data.replace(regExp11.cap(0), "");
-
-    }
-
-    QRegExp regExp0("\\x001B\\[\\?1034h");
-    if (regExp0.indexIn(data)>=0) {
-        //替换
-        //qDebug() << "修改后数据：" << regExp0.cap(1);
-        data = data.replace(regExp0.cap(0), "");
-    }
-
-    //\u001B[01;34mcore\u001B[0m
-    //\u001B[01;34mzx_test\u001B[0m
-
-    //stringToHtmlFilter3(data);
-    //处理属性和颜色
-    data = processDataStatsAndColor(head, commond, data);
-
-    stringToHtmlFilter2(data);
-
-    //处理默认属性
-    stringToHtmlFilter4(data);
-
-    //清除光标
-    //stringToHtmlFilter5(data);
-
-
-    stringToHtmlFilter6(data);
-
-    //qDebug() << "processData修改后数据：" << data;
-
-    return data;
-}
-
-QStringList datahandle::processDataS(QString data)
-{
-    int sum = 0; //记录有多少连续的\b
-    QStringList dataS;
-    dataS.append(ssh_path);
-    //对内容进行分组
-    while(1) {
-        //检测\b
-        if (data.contains("\b")) {
-            //光标左移动
-            int position = data.indexOf("\b");
-            if (position == 0) {
-                dataS.append(data.mid(0, 1));
-            } else {
-                qDebug() << "processDataS 进入 " << data.mid(0, position);
-                sum++;
-                //有几个\b，前面就删除字符
-                dataS.append(processDataS(data.mid(0, position)));
-                dataS.append(data.mid(position, 1));
-            }
-            data = data.mid(position + 1);
-            //qDebug() << "添加b";
-        } else if (data.contains("\u001B[K")) {
-            int position = data.indexOf("\u001B[K");
-            if (position == 0) {
-                dataS.append(data.mid(0, 3));
-            } else {
-                dataS.append(data.mid(0, position));
-                dataS.append(data.mid(position, 3));
-            }
-            data = data.mid(position + 3);
-            qDebug() << "添加k";
-        } else if (data.contains("\u001B[C")) {
-            int position = data.indexOf("\u001B[C");
-            if (position == 0) {
-                dataS.append(data.mid(0, 3));
-                qDebug() << "添加 里面1" << data << " 长度" << data.length();
-                qDebug() << "添加 里面2" << data.mid(0, 3);
-            } else {
-                dataS.append(data.mid(0, position));
-                dataS.append(data.mid(position, 3));
-            }
-            data = data.mid(position + 3);
-            qDebug() << "添加c";
-        } else {
-            QRegExp regExp("\\x001B\\[(\\d+)P");
-            int pos = 0;
-            while ((pos = regExp.indexIn(data, pos)) != -1) {
-                QString match = regExp.cap(0); // 获取完整的匹配项
-                int position = data.indexOf(match);
-                dataS.append(data.mid(0, match.length()));
-                data = data.mid(position + match.length());
-                break;
-            }
-            //qDebug() << "添加d";
-            dataS.append(data);
-            break;
-        }
-    }
-    qDebug() << "QStringList = " << dataS;
-
-   return dataS;
 }

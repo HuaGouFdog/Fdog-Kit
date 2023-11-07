@@ -633,8 +633,8 @@ public:
 
         widget_4 = new QWidget(page);
         widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setMinimumSize(QSize(275, 0));
-        widget_4->setMaximumSize(QSize(275, 16777215));
+        widget_4->setMinimumSize(QSize(260, 0));
+        widget_4->setMaximumSize(QSize(260, 16777215));
         widget_4->setStyleSheet(QLatin1String("#widget_4 {\n"
 "border-left:2px solid rgb(108, 117, 125, 65); \n"
 "\n"
@@ -681,33 +681,37 @@ public:
         comboBox_tool->setMaximumSize(QSize(16777215, 26));
         comboBox_tool->setFont(font1);
         comboBox_tool->setLayoutDirection(Qt::LeftToRight);
-        comboBox_tool->setStyleSheet(QLatin1String("QComboBox{ \n"
-"border:0px solid gray;  \n"
-"border-radius:5px;  \n"
-"/*padding: 5px; */\n"
-"/*min-width:4em;*/\n"
+        comboBox_tool->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:1px solid #52DCFE;\n"
+"	border-radius:3px;\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
 "}\n"
 "\n"
 "QComboBox::drop-down{\n"
-"subcontrol-origin:padding; \n"
-"subcontrol-position:top right; \n"
-"width:20px; \n"
-"/*border-left-width:1px;*/\n"
-"border-left-color:darkgray;\n"
-"border-left-style:solid; \n"
-"border-top-right-radius:3px; \n"
-"border-bottom-right-radius:3px;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"border: 2px solid #4E6D8C;\n"
+"	background:transparent;\n"
 "}\n"
 "QComboBox::down-arrow{\n"
-"border-image: url(:/lib/up.png);\n"
+"	border-image: url(:/lib/up.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
-"\n"
 "}\n"
-""));
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #52DCFE;\n"
+"	color:#ffffff;\n"
+"	background-color:#000000;\n"
+"	selection-background-color:#52DCFE;\n"
+"}"));
         comboBox_tool->setInputMethodHints(Qt::ImhDate);
         comboBox_tool->setIconSize(QSize(16, 16));
 
@@ -1726,7 +1730,7 @@ public:
         widget_welcome_body_widget2_info_text->setMaximumSize(QSize(16777215, 45));
         QFont font5;
         font5.setFamily(QStringLiteral("OPPOSans B"));
-        font5.setPointSize(20);
+        font5.setPointSize(14);
         font5.setBold(false);
         font5.setItalic(false);
         font5.setWeight(50);
@@ -2097,9 +2101,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(1);
-        stackedWidget_tool->setCurrentIndex(5);
+        stackedWidget_tool->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2108,8 +2112,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
-        toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\347\273\210\347\253\257(&N)", nullptr));
-        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\345\277\253\351\200\237\350\277\236\346\216\245(&H)", nullptr));
+        toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245(&N)", nullptr));
+        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\345\216\206\345\217\262\350\277\236\346\216\245(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));
@@ -2162,7 +2166,7 @@ public:
         label_match_result->setText(QApplication::translate("MainWindow", "\345\214\271\351\205\215\347\273\223\346\236\234\357\274\232", nullptr));
         toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
         widget_welcome_body_widget2_info_widget_icon->setText(QString());
-        widget_welcome_body_widget2_info_text->setText(QApplication::translate("MainWindow", "Fdog-kit", nullptr));
+        widget_welcome_body_widget2_info_text->setText(QApplication::translate("MainWindow", "\346\254\242\350\277\216\344\275\277\347\224\250Fdog-kit", nullptr));
         widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\347\273\210\347\253\257", nullptr));
         widget_welcome_body_widget2_newCreate_newTool->setText(QApplication::translate("MainWindow", "\345\260\217\345\267\245\345\205\267\351\233\206\345\220\210", nullptr));
         widget_welcome_body_widget2_newCreate_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));

@@ -102,6 +102,8 @@ public:
     QLabel *label_30;
     QLabel *label_31;
     QSpacerItem *verticalSpacer;
+    QWidget *widget_4;
+    QHBoxLayout *horizontalLayout_21;
     QWidget *widget_26;
     QVBoxLayout *verticalLayout_6;
     QSplitter *splitter_2;
@@ -120,9 +122,9 @@ public:
     QToolButton *toolButton_history;
     QToolButton *toolButton_upload;
     QToolButton *toolButton_toolkit;
-    QToolButton *toolButton_toolkit_4;
-    QToolButton *toolButton_toolkit_3;
-    QToolButton *toolButton_toolkit_2;
+    QToolButton *toolButton_command;
+    QToolButton *toolButton_conectStats;
+    QToolButton *toolButton_fullScreen;
     QSpacerItem *horizontalSpacer_3;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_7;
@@ -138,6 +140,8 @@ public:
     QToolButton *toolButton_7;
     QWidget *tab_2;
     QWidget *tab_3;
+    QTextEdit *textEdit_2;
+    QLabel *label_4;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label;
@@ -644,6 +648,14 @@ public:
 
         verticalLayout_3->addItem(verticalSpacer);
 
+        widget_4 = new QWidget(widget);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setMinimumSize(QSize(0, 33));
+        horizontalLayout_21 = new QHBoxLayout(widget_4);
+        horizontalLayout_21->setObjectName(QStringLiteral("horizontalLayout_21"));
+
+        verticalLayout_3->addWidget(widget_4);
+
 
         horizontalLayout_19->addWidget(widget);
 
@@ -867,10 +879,10 @@ public:
 
         horizontalLayout_6->addWidget(toolButton_toolkit);
 
-        toolButton_toolkit_4 = new QToolButton(widget_toolbar_s);
-        toolButton_toolkit_4->setObjectName(QStringLiteral("toolButton_toolkit_4"));
-        toolButton_toolkit_4->setFont(font);
-        toolButton_toolkit_4->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_command = new QToolButton(widget_toolbar_s);
+        toolButton_command->setObjectName(QStringLiteral("toolButton_command"));
+        toolButton_command->setFont(font);
+        toolButton_command->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -887,12 +899,12 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_toolkit_4);
+        horizontalLayout_6->addWidget(toolButton_command);
 
-        toolButton_toolkit_3 = new QToolButton(widget_toolbar_s);
-        toolButton_toolkit_3->setObjectName(QStringLiteral("toolButton_toolkit_3"));
-        toolButton_toolkit_3->setFont(font);
-        toolButton_toolkit_3->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_conectStats = new QToolButton(widget_toolbar_s);
+        toolButton_conectStats->setObjectName(QStringLiteral("toolButton_conectStats"));
+        toolButton_conectStats->setFont(font);
+        toolButton_conectStats->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -909,12 +921,12 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_toolkit_3);
+        horizontalLayout_6->addWidget(toolButton_conectStats);
 
-        toolButton_toolkit_2 = new QToolButton(widget_toolbar_s);
-        toolButton_toolkit_2->setObjectName(QStringLiteral("toolButton_toolkit_2"));
-        toolButton_toolkit_2->setFont(font);
-        toolButton_toolkit_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_fullScreen = new QToolButton(widget_toolbar_s);
+        toolButton_fullScreen->setObjectName(QStringLiteral("toolButton_fullScreen"));
+        toolButton_fullScreen->setFont(font);
+        toolButton_fullScreen->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -931,7 +943,7 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(toolButton_toolkit_2);
+        horizontalLayout_6->addWidget(toolButton_fullScreen);
 
 
         horizontalLayout_7->addWidget(widget_toolbar_s);
@@ -1095,6 +1107,12 @@ public:
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
+        textEdit_2 = new QTextEdit(tab_3);
+        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
+        textEdit_2->setGeometry(QRect(10, 10, 561, 211));
+        label_4 = new QLabel(tab_3);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(670, 81, 161, 51));
         tabWidget->addTab(tab_3, QString());
 
         verticalLayout_7->addWidget(tabWidget);
@@ -1245,9 +1263,9 @@ public:
         toolButton_history->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
         toolButton_upload->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
         toolButton_toolkit->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
-        toolButton_toolkit_4->setText(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
-        toolButton_toolkit_3->setText(QApplication::translate("sshwidget", "\350\277\236\346\216\245\345\261\236\346\200\247", nullptr));
-        toolButton_toolkit_2->setText(QApplication::translate("sshwidget", "\345\205\250\345\261\217", nullptr));
+        toolButton_command->setText(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
+        toolButton_conectStats->setText(QApplication::translate("sshwidget", "\350\277\236\346\216\245\345\261\236\346\200\247", nullptr));
+        toolButton_fullScreen->setText(QApplication::translate("sshwidget", "\345\205\250\345\261\217", nullptr));
         toolButton_3->setText(QApplication::translate("sshwidget", "\350\277\230\345\216\237", nullptr));
         toolButton_4->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
         toolButton_6->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
@@ -1256,6 +1274,7 @@ public:
         toolButton_7->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", "\351\273\230\350\256\244\345\210\206\347\261\273", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", "minic", nullptr));
+        label_4->setText(QApplication::translate("sshwidget", "111111111111111", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "11111111111111111111111111", nullptr));
         label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
         label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));

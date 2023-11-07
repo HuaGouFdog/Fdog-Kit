@@ -81,7 +81,7 @@ public:
     QWidget *tab_secretkey;
     QLabel *label_zk_host_5;
     QLineEdit *lineEdit_zk_port_8;
-    QToolButton *toolButton_4;
+    QToolButton *toolButton_browse;
     QCheckBox *checkBox_2;
     QWidget *tab_keyboard;
     QToolButton *toolButton_6;
@@ -702,15 +702,15 @@ public:
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        toolButton_4 = new QToolButton(tab_secretkey);
-        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
-        toolButton_4->setGeometry(QRect(350, 40, 70, 30));
-        sizePolicy1.setHeightForWidth(toolButton_4->sizePolicy().hasHeightForWidth());
-        toolButton_4->setSizePolicy(sizePolicy1);
-        toolButton_4->setMinimumSize(QSize(70, 30));
-        toolButton_4->setMaximumSize(QSize(70, 30));
-        toolButton_4->setFont(font1);
-        toolButton_4->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_browse = new QToolButton(tab_secretkey);
+        toolButton_browse->setObjectName(QStringLiteral("toolButton_browse"));
+        toolButton_browse->setGeometry(QRect(350, 40, 70, 30));
+        sizePolicy1.setHeightForWidth(toolButton_browse->sizePolicy().hasHeightForWidth());
+        toolButton_browse->setSizePolicy(sizePolicy1);
+        toolButton_browse->setMinimumSize(QSize(70, 30));
+        toolButton_browse->setMaximumSize(QSize(70, 30));
+        toolButton_browse->setFont(font1);
+        toolButton_browse->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "	border-radius: 5px;\n"
@@ -1036,7 +1036,7 @@ public:
         retranslateUi(createconnect);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(0);
+        tabWidget_2->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(createconnect);
@@ -1077,7 +1077,7 @@ public:
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_passowrd), QApplication::translate("createconnect", "   \345\257\206\347\240\201   ", nullptr));
         label_zk_host_5->setText(QApplication::translate("createconnect", "\347\247\201\351\222\245", nullptr));
         lineEdit_zk_port_8->setText(QApplication::translate("createconnect", "******", nullptr));
-        toolButton_4->setText(QApplication::translate("createconnect", "\346\265\217\350\247\210...", nullptr));
+        toolButton_browse->setText(QApplication::translate("createconnect", "\346\265\217\350\247\210...", nullptr));
         checkBox_2->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\347\247\201\351\222\245", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_secretkey), QApplication::translate("createconnect", "   \345\205\254\351\222\245   ", nullptr));
         toolButton_6->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));

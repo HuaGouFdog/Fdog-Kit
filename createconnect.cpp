@@ -1,6 +1,7 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "createconnect.h"
 #include "ui_createconnect.h"
+#include "secretkeywidget.h"
 
 createconnect::createconnect(int8_t connectType, QWidget *parent) :
     QWidget(parent),
@@ -103,4 +104,10 @@ void createconnect::on_tab_passowrd_toolButton_show_clicked()
        ui->tab_passowrd_lineEdit_password_data->setEchoMode(QLineEdit::Normal);//设置密码显示
 
     }
+}
+
+void createconnect::on_toolButton_browse_clicked()
+{
+    skwidget = new secretkeywidget();
+    skwidget->show();
 }

@@ -61,5 +61,6 @@
         <file>lib/icon_w.png</file>
         <file>lib/icon_80.png</file>
         <file>lib/up.png</file>
+        <file>lib/start.png</file>
     </qresource>
 </RCC>

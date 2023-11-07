@@ -90,7 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(2);
 
-    ui->widget_welcome_body_widget2_info_text->hide();
+    //ui->widget_welcome_body_widget2_info_text->hide();
 
     //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
     //a->show();
@@ -427,12 +427,14 @@ void MainWindow::on_toolButton_max_clicked()
         ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         this->showMaximized();
+        isMaxShow = true;
         showFlag = true;
     } else {
         setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
         ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
         this->showNormal();
+        isMaxShow = false;
         showFlag = false;
     }
 }
@@ -476,11 +478,11 @@ void MainWindow::on_newCreate()
 
 void MainWindow::on_newTool()
 {
-    if (ccwidget == nullptr) {
         //获取发送者
         QString toolName;
         QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
+        qDebug() <<"工具：" << actionText;
         if (actionText == "小工具集合") {
             ui->stackedWidget->setCurrentIndex(0);
             ui->widget_4->show();
@@ -501,15 +503,11 @@ void MainWindow::on_newTool()
         //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
         QSize iconSize(16, 16); // 设置图标的大小
         //sshWidgetList.push_back(tswidget);
+        ui->stackedWidget->setCurrentIndex(0);
         ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), toolName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         //sshWidgetList.push_back(tswidget);
         tswidget->show();
-    } else {
-        //不创建
-        tswidget->setFocus();
-    }
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
     ui->widget_line->show();
 }
@@ -522,6 +520,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
         sshwidget * sshWidget = new sshwidget(cInfoStruct);
         connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
+        connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         sshWidgetList.push_back(sshWidget);
         ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
@@ -770,5 +769,48 @@ void MainWindow::on_toolButton_newCreate_2_clicked()
 //    } else {
 //        //不创建
 //        hcwidget->setFocus();
-//    }
+        //    }
+}
+
+void MainWindow::rece_toolButton_fullScreen_sign()
+{
+    qDebug() << "isFullScreen = " <<isFullScreen;
+    if (!isFullScreen) {
+        setContentsMargins(0, 0, 0, 0);
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        this->showNormal();
+        ui->toolButton_min->hide();
+        ui->toolButton_max->hide();
+        ui->toolButton_close->hide();
+        this->showFullScreen();
+        isFullScreen = true;
+    } else {
+        ui->toolButton_min->show();
+        ui->toolButton_max->show();
+        ui->toolButton_close->show();
+        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
+        ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
+        if (showFlag) {
+            ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+            setContentsMargins(0, 0, 0, 0);
+            ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+            this->showMaximized();
+        } else {
+            this->showNormal();
+        }
+
+        isFullScreen = false;
+    }
+
+}
+
+void MainWindow::on_toolButton_setting_clicked()
+{
+     stwidget = new settingwidget();
+     ui->tabWidget->addTab(stwidget, "设置");
+     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+     ui->stackedWidget->setCurrentIndex(0);
+     stwidget->show();
 }

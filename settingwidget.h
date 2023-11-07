@@ -1,4 +1,4 @@
-#ifndef SETTINGWIDGET_H
+﻿#ifndef SETTINGWIDGET_H
 #define SETTINGWIDGET_H
 
 #include <QWidget>
@@ -14,6 +14,9 @@ class settingwidget : public QWidget
 public:
     explicit settingwidget(QWidget *parent = 0);
     ~settingwidget();
+
+private slots:
+    void on_toolButton_clicked();
 
 private:
     Ui::settingwidget *ui;

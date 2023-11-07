@@ -1,6 +1,6 @@
-#ifndef SECRETKEYWIDGET_H
+﻿#ifndef SECRETKEYWIDGET_H
 #define SECRETKEYWIDGET_H
-
+#include "keywidget.h"
 #include <QWidget>
 
 namespace Ui {
@@ -15,8 +15,12 @@ public:
     explicit secretkeywidget(QWidget *parent = 0);
     ~secretkeywidget();
 
+private slots:
+    void on_toolButton_input_clicked();
+
 private:
     Ui::secretkeywidget *ui;
+    keywidget * kwidget;
 };
 
 #endif // SECRETKEYWIDGET_H

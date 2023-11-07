@@ -144,7 +144,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>新建连接(&amp;N)</string>
+          <string>新建终端(&amp;N)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -201,7 +201,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>历史连接(&amp;H)</string>
+          <string>快速连接(&amp;H)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -662,7 +662,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">
@@ -927,37 +927,33 @@ border-left:2px solid rgb(108, 117, 125, 65);
                     <enum>Qt::LeftToRight</enum>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #52DCFE;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
+                    <string notr="true">QComboBox{ 
+border:0px solid gray;  
+border-radius:5px;  
+/*padding: 5px; */
+/*min-width:4em;*/
 }
 
 QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
+subcontrol-origin:padding; 
+subcontrol-position:top right; 
+width:20px; 
+/*border-left-width:1px;*/
+border-left-color:darkgray;
+border-left-style:solid; 
+border-top-right-radius:3px; 
+border-bottom-right-radius:3px;
 }
 QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #52DCFE;
-	color:#ffffff;
-	background-color:#000000;
-	selection-background-color:#52DCFE;
-}</string>
+border: 2px solid #4E6D8C;
+}
+QComboBox::down-arrow{
+border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+
+}
+</string>
                    </property>
                    <property name="inputMethodHints">
                     <set>Qt::ImhDate</set>
@@ -3131,7 +3127,7 @@ color: rgb(255, 255, 255);</string>
                                <property name="font">
                                 <font>
                                  <family>OPPOSans B</family>
-                                 <pointsize>14</pointsize>
+                                 <pointsize>20</pointsize>
                                  <weight>50</weight>
                                  <italic>false</italic>
                                  <bold>false</bold>
@@ -3143,7 +3139,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(242, 245, 255);</string>
                                </property>
                                <property name="text">
-                                <string>欢迎使用Fdog-kit</string>
+                                <string>Fdog-kit</string>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>

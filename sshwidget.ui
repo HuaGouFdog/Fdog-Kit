@@ -1302,6 +1302,17 @@ QToolButton:hover {
         </property>
        </spacer>
       </item>
+      <item>
+       <widget class="QWidget" name="widget_4" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>33</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_21"/>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -1697,7 +1708,7 @@ QToolButton:hover {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QToolButton" name="toolButton_toolkit_4">
+                    <widget class="QToolButton" name="toolButton_command">
                      <property name="font">
                       <font>
                        <family>OPPOSans B</family>
@@ -1729,7 +1740,7 @@ QToolButton:hover {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QToolButton" name="toolButton_toolkit_3">
+                    <widget class="QToolButton" name="toolButton_conectStats">
                      <property name="font">
                       <font>
                        <family>OPPOSans B</family>
@@ -1761,7 +1772,7 @@ QToolButton:hover {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QToolButton" name="toolButton_toolkit_2">
+                    <widget class="QToolButton" name="toolButton_fullScreen">
                      <property name="font">
                       <font>
                        <family>OPPOSans B</family>
@@ -2064,6 +2075,29 @@ QToolButton:hover {
              <attribute name="title">
               <string>11111111111111111111111111</string>
              </attribute>
+             <widget class="QTextEdit" name="textEdit_2">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>561</width>
+                <height>211</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_4">
+              <property name="geometry">
+               <rect>
+                <x>670</x>
+                <y>81</y>
+                <width>161</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>111111111111111</string>
+              </property>
+             </widget>
             </widget>
            </widget>
           </item>

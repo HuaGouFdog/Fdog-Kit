@@ -1147,7 +1147,7 @@ QTabBar QToolButton:hover {
 }</string>
            </property>
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="tab_passowrd">
             <attribute name="title">
@@ -1356,7 +1356,7 @@ padding-right:10px;</string>
               <string>******</string>
              </property>
             </widget>
-            <widget class="QToolButton" name="toolButton_4">
+            <widget class="QToolButton" name="toolButton_browse">
              <property name="geometry">
               <rect>
                <x>350</x>

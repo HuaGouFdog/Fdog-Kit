@@ -241,95 +241,7 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     initSSH(connrectType, host, port, username, password);
     initEXEC(connrectType, host, port, username, password);
     initSFTP(connrectType, host, port, username, password);
-//    int rc;
-
-//    // 创建套接字并建立连接
-
-//    SOCKET sockfd = createSocket("172.16.8.154", 22);
-//    if (sockfd == INVALID_SOCKET) {
-//    }
-
-//    // 初始化 libssh2 库
-//    rc = libssh2_init(0);
-//    if (rc != 0) {
-//        qWarning() << "libssh2 initialization failed";
-//        return;
-//    }
-
-//    // 创建 SSH session
-//    session = libssh2_session_init();
-//    if (!session) {
-//        qWarning() << "Failed to create SSH session";
-//        return;
-//    }
-
-//    // 设置会话选项
-//    libssh2_session_set_blocking(session, 1);
-//    libssh2_session_set_timeout(session, 10000);
-
-//    // 建立 SSH 连接
-//    rc = libssh2_session_handshake(session, sockfd);
-//    if (rc) {
-//        qWarning() << "SSH handshake failed";
-//        libssh2_session_free(session);
-//        return;
-//    }
-
-//    // 进行身份验证
-//    rc = libssh2_userauth_password(session, username.toUtf8().constData(), password.toUtf8().constData());
-//    if (rc) {
-//        qWarning() << "Authentication failed";
-//        libssh2_session_disconnect(session, "Authentication failed");
-//        libssh2_session_free(session);
-//        return;
-//    }
-//    //初始化 SFTP 会话
-//    sftp_session = NULL;
-//    sftp_session = libssh2_sftp_init(session);
-//    if (sftp_session == NULL) {
-//        qDebug() << "初始化失败";
-//        return;
-//    }
-
-//    // 执行远程命令获取当前工作目录
-//        const char *remoteCommand = "pwd"; // 远程命令，这里使用了 "pwd" 命令来获取当前工作目录
-//        LIBSSH2_CHANNEL *channel;
-//        channel = libssh2_channel_open_session(session);
-//        libssh2_channel_exec(channel, remoteCommand);
-
-//        // 读取远程命令输出
-//        char buffer[4096];
-//        ssize_t bytesRead;
-//        bytesRead = libssh2_channel_read(channel, buffer, sizeof(buffer));
-
-//        if (bytesRead > 0) {
-//            // 处理远程命令输出
-//            buffer[bytesRead] = '\0'; // 将读取的数据末尾设置为 '\0'，以便将其作为字符串处理
-//            qDebug() << "远程工作目录 " << buffer;
-//            // 这里的 currentWorkingDirectory 就是当前工作目录的路径
-//        }
-
-
-
-//    channel = libssh2_channel_open_session(session);
-//    // 请求分配伪终端
-//    const char* term = "xterm";
-//    int ret = libssh2_channel_request_pty_size(channel, 80, 24);
-//        qDebug() << "libssh2_channel_request_pty_size = " << ret;
-//        // 请求伪终端失败，处理错误
-//    ret = libssh2_channel_request_pty(channel, term);
-//    if (ret != 0) {
-//        qDebug() << "出错" << ret;
-//        // 请求伪终端失败，处理错误
-//    }
-//    //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
-//    libssh2_channel_shell(channel);
-//    emit send_init();
     qDebug() << "全部初始化完成";
-
-//	connect(monitor_thread__, SIGNAL(started()), monitor_timer__, SLOT(start()));
-//	connect(monitor_thread__, SIGNAL(finished()), monitor_timer__, SLOT(stop()));
-
 
     //getServerInfo();
     return;
@@ -368,7 +280,11 @@ void sshhandle::init_poll()
                     //对内容进行分组处理
                     //QStringList = ac.processDataS(buffer);
                     QString a = ac.processData(buffer);
-                    emit send_channel_readS(ac.processDataS(a));
+                    QStringList dataList = ac.processDataS(a);
+                    //qDebug() << "添加工作路径" << ac.ssh_path;
+                    dataList.insert(0,ac.ssh_path);
+                    emit send_channel_readS(dataList);
+
                     //emit send_channel_read(ac.processData(buffer));
                     // 处理输出数据
                     // 例如，将输出数据打印到控制台

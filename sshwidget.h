@@ -56,25 +56,25 @@ protected:
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 
             if (keyEvent->key() == Qt::Key_Up) {
-                qDebug() << "Up key pressed";
+                //qDebug() << "Up key pressed";
                 emit send_key_sign("\u001B[A");
                 return true;
             } else if (keyEvent->key() == Qt::Key_Down) {
-                qDebug() << "Down key pressed";
+                //qDebug() << "Down key pressed";
                 emit send_key_sign("\u001B[B");
                 return true;
             } else if (keyEvent->key() == Qt::Key_Left) {
                 emit send_key_sign("\u001B[D");
-                qDebug() << "Left key pressed";
+                //qDebug() << "Left key pressed";
                 return true;
             } else if (keyEvent->key() == Qt::Key_Right) {
                 emit send_key_sign("\u001B[C");
-                qDebug() << "Right key pressed";
+                //qDebug() << "Right key pressed";
                 return true;
             }
 
             QString key = keyEvent->text();
-            qDebug() << "Pressed key:" << key;
+            //qDebug() << "Pressed key:" << key;
             emit send_key_sign(key);
             return true;
         }
@@ -136,8 +136,11 @@ public:
 
     void sendData(QString data);
 
+    void setData(QString data);
+
 signals:
     void send_toolButton_toolkit_sign();
+    void send_toolButton_fullScreen_sign();
 private slots:
     void on_textEdit_cursorPositionChanged();
 
@@ -154,11 +157,11 @@ private slots:
 
     void on_textEdit_selectionChanged();
 
-    void on_textEdit_5_cursorPositionChanged();
+    //void on_textEdit_5_cursorPositionChanged();
 
-    void on_textEdit_s_cursorPositionChanged();
+    //void on_textEdit_s_cursorPositionChanged();
 
-    void on_textEdit_6_cursorPositionChanged();
+    //void on_textEdit_6_cursorPositionChanged();
 
     void scrollBarValueChanged(int value);
     void scrollBarValueChanged2(int value);
@@ -172,6 +175,8 @@ private slots:
 
 
     void on_toolButton_upload_clicked();
+
+    void on_toolButton_fullScreen_clicked();
 
 private:
     Ui::sshwidget *ui;
@@ -197,6 +202,9 @@ private:
 
     QString lastCommondS; //上一条命令
     QString ssh_path; //当前工作目录
+    QString ZData;    //主缓存区数据
+    QString BData;    //备缓存区数据
+
     int a = 0;
 };
 

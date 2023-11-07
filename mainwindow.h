@@ -10,6 +10,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QVector>
 #include <QRect>
+#include "settingwidget.h"
 
 
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
@@ -102,6 +103,10 @@ private slots:
 
     void on_toolButton_newCreate_2_clicked();
 
+    void rece_toolButton_fullScreen_sign();
+
+    void on_toolButton_setting_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -145,10 +150,14 @@ private:
     createconnect *ccwidget =nullptr; //创建连接窗口
     historyconnectwidget * hcwidget = nullptr; //快速连接
     toolswidget * tswidget = nullptr; //创建工具窗口
+    settingwidget * stwidget = nullptr; //创建设置窗口
+
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;
 
     bool isShowToolKit = false; //是否显示工具栏
+    bool isFullScreen = false; //是否全屏
+    bool isMaxShow = false;    //是否最大化显示
 };
 
 #endif // MAINWINDOW_H

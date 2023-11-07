@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "createconnect.h"
+#include "secretkeywidget.h"
 #define SSH_CONNECT_TYPE 1
 #define WINDOWS_CONNECT_TYPE 2
 #define ZK_CONNECT_TYPE 3
@@ -46,10 +47,13 @@ private slots:
 
     void on_tab_passowrd_toolButton_show_clicked();
 
+    void on_toolButton_browse_clicked();
+
 private:
     Ui::createconnect *ui;
     int8_t connectType = 0;
     bool isShowPassword = false;  //是否显示密码
+    secretkeywidget * skwidget;  //密钥
 };
 
 #endif // CREATECONNECT_H

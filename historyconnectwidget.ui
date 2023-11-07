@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>937</width>
-    <height>587</height>
+    <width>866</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -169,7 +169,7 @@ QScrollBar::up-arrow:vertical {
          <bool>false</bool>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>false</bool>

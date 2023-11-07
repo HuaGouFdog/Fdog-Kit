@@ -39,7 +39,7 @@ public:
     {
         if (historyconnectwidget->objectName().isEmpty())
             historyconnectwidget->setObjectName(QStringLiteral("historyconnectwidget"));
-        historyconnectwidget->resize(937, 587);
+        historyconnectwidget->resize(866, 440);
         historyconnectwidget->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(historyconnectwidget);
@@ -328,7 +328,7 @@ public:
         tableWidget_history->setShowGrid(false);
         tableWidget_history->setGridStyle(Qt::NoPen);
         tableWidget_history->setSortingEnabled(false);
-        tableWidget_history->horizontalHeader()->setVisible(true);
+        tableWidget_history->horizontalHeader()->setVisible(false);
         tableWidget_history->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget_history->horizontalHeader()->setDefaultSectionSize(160);
         tableWidget_history->horizontalHeader()->setHighlightSections(false);
