@@ -10,7 +10,7 @@
 #include <QThread>
 #include <QScrollBar>
 #include <QTextEdit>
-
+#include <QClipboard>
 class CustomTextEdit : public QTextEdit {
     Q_OBJECT
 public:
@@ -18,6 +18,8 @@ public:
 
 signals:
     void send_mousePress_sign();
+    void send_paste_sgin();
+    void send_resize_sign();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override
@@ -25,10 +27,35 @@ protected:
         if (event->button() == Qt::LeftButton) {
             //qDebug() << "Mouse pressed inside QTextEdit!";
             emit send_mousePress_sign();
+        } else if (event->button() == Qt::RightButton) {
+            //如果有选中，则复制，无选中则粘贴
+            QString copyData = this->textCursor().selectedText();
+            if (copyData == "") {
+                //粘贴
+                emit send_paste_sgin();
+            } else {
+                //复制
+                qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
+                QClipboard *clipboard = QApplication::clipboard();
+                clipboard->setText(copyData);
+                QTextCursor cursor = this->textCursor();
+                cursor.clearSelection();
+                this->setTextCursor(cursor);
+                qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
+            }
+
+            emit send_mousePress_sign();
         }
 
         // 将事件传递给父类的实现
         QTextEdit::mousePressEvent(event);
+    }
+
+    void resizeEvent(QResizeEvent *event) override
+    {
+        QTextEdit::resizeEvent(event);
+        emit send_resize_sign();
+        QTextEdit::resizeEvent(event);
     }
 
 private:
@@ -133,6 +160,8 @@ public:
     void sendCommandData(QString data);
     //发送上传命令
     void sendUploadCommandData(QString local_file_path, QString remote_file_path);
+    //设置终端窗口大小
+    void setTerminalSize(int height, int width);
 
     void sendData(QString data);
 
@@ -170,9 +199,11 @@ private slots:
 
     void rece_send_mousePress_sign();
 
+    void rece_paste_sgin();
+
+    void rece_resize_sign();
+
     void on_toolButton_toolkit_clicked();
-
-
 
     void on_toolButton_upload_clicked();
 
@@ -204,6 +235,9 @@ private:
     QString ssh_path; //当前工作目录
     QString ZData;    //主缓存区数据
     QString BData;    //备缓存区数据
+
+    int lineCount = 80;    //当前终端行数
+    int columnCount = 24;  //当前终端列数
 
     int a = 0;
 };

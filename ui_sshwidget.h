@@ -688,7 +688,7 @@ public:
         textEdit = new QTextEdit(widget_10);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setEnabled(true);
-        textEdit->setGeometry(QRect(9, 10, 350, 300));
+        textEdit->setGeometry(QRect(9, 10, 921, 300));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -1110,6 +1110,7 @@ public:
         textEdit_2 = new QTextEdit(tab_3);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setGeometry(QRect(10, 10, 561, 211));
+        textEdit_2->setReadOnly(true);
         label_4 = new QLabel(tab_3);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(670, 81, 161, 51));
@@ -1274,6 +1275,11 @@ public:
         toolButton_7->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", "\351\273\230\350\256\244\345\210\206\347\261\273", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", "minic", nullptr));
+        textEdit_2->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">454545456</p></body></html>", nullptr));
         label_4->setText(QApplication::translate("sshwidget", "111111111111111", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "11111111111111111111111111", nullptr));
         label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));

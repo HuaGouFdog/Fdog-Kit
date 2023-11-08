@@ -474,7 +474,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>6</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="page">
          <property name="styleSheet">
@@ -2914,6 +2914,9 @@ QFontComboBox QAbstractItemView{
          </widget>
         </widget>
         <widget class="QWidget" name="page_6">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
          <widget class="QWidget" name="horizontalWidget_10" native="true">
           <property name="geometry">
            <rect>
@@ -2959,6 +2962,282 @@ QFontComboBox QAbstractItemView{
              </property>
              <property name="text">
               <string>终端</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="verticalWidget_14" native="true">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>60</y>
+            <width>601</width>
+            <height>70</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#verticalWidget_14{background-color: rgba(66, 66, 66, 100);
+border-radius: 5px;}</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_24">
+           <item>
+            <widget class="QWidget" name="horizontalWidget_23" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>40</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_26">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_59">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>鼠标右键</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_60">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                </property>
+                <property name="text">
+                 <string>设置鼠标右键行为</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_61">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>352</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_61">
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>行</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_4">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox{
+	color:#ffffff;
+	border:1px solid #52DCFE;
+	border-radius:3px;
+	background:transparent;
+}
+QSpinBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QSpinBox::drop-down{
+	background:transparent;
+}
+
+
+QSpinBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QSpinBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #52DCFE;
+	color:#ffffff;
+	background-color:#000000;
+	selection-background-color:#52DCFE;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_62">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>5</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_62">
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>列</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_5">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox{
+	color:#ffffff;
+	border:1px solid #52DCFE;
+	border-radius:3px;
+	background:transparent;
+}
+QSpinBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QSpinBox::drop-down{
+	background:transparent;
+}
+
+
+QSpinBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QSpinBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #52DCFE;
+	color:#ffffff;
+	background-color:#000000;
+	selection-background-color:#52DCFE;
+}</string>
              </property>
             </widget>
            </item>

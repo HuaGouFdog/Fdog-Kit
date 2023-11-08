@@ -109,14 +109,15 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
     channel_ssh = libssh2_channel_open_session(session_ssh);
     // 请求分配伪终端
     const char* term = "xterm";
-    int ret = libssh2_channel_request_pty_size(channel_ssh, 80, 24);
-        qDebug() << "libssh2_channel_request_pty_size = " << ret;
+    //int ret = libssh2_channel_request_pty_size(channel_ssh, 50, 24);
+        //qDebug() << "libssh2_channel_request_pty_size = " << ret;
         // 请求伪终端失败，处理错误
-    ret = libssh2_channel_request_pty(channel_ssh, term);
+    int ret = libssh2_channel_request_pty(channel_ssh, term);
     if (ret != 0) {
         qDebug() << "出错" << ret;
         // 请求伪终端失败，处理错误
     }
+    //ret = libssh2_channel_request_pty_size(channel_ssh, 200, 24);
     //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
     libssh2_channel_shell(channel_ssh);
     emit send_init();

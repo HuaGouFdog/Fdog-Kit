@@ -388,8 +388,19 @@ QStringList datahandle::processDataS(QString data)
     QStringList dataS;
     //对内容进行分组
     while(1) {
-        //检测\b
-        if (data.contains("\b")) {
+        if (data.contains("\r")) {
+            int position = data.indexOf("\r");
+            if (position == 0) {
+                dataS.append(data.mid(0, 1));
+            } else {
+                qDebug() << "processDataS 进入 " << data.mid(0, position);
+                sum++;
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 1));
+            }
+            data = data.mid(position + 1);
+            //qDebug() << "添加r";
+        } else if (data.contains("\b")) {
             //光标左移动
             int position = data.indexOf("\b");
             if (position == 0) {
@@ -504,7 +515,28 @@ QStringList datahandle::processDataS(QString data)
             }
             data = data.mid(position + 6);
             qDebug() << "添加\u001B[?25l";
+        } else if (data.contains("\u001B[?12;25h")) {
+            int position = data.indexOf("\u001B[?12;25h");
+            if (position == 0) {
+                dataS.append(data.mid(0, 9));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 9));
+            }
+            data = data.mid(position + 9);
+            qDebug() << "添加\u001B[?12;25h";
+        } else if (data.contains("\u001B[H")) {
+            int position = data.indexOf("\u001B[H");
+            if (position == 0) {
+                dataS.append(data.mid(0, 3));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 3));
+            }
+            data = data.mid(position + 3);
+            qDebug() << "添加\u001B[H";
         } else {
+            //参数不确定的需要在这里解析
             QRegExp regExp("\\x001B\\[(\\d+)P");
             int pos = 0;
             while ((pos = regExp.indexIn(data, pos)) != -1) {
@@ -513,9 +545,67 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(0, match.length()));
                 data = data.mid(position + match.length());
                 //可能需要递归
+                //qDebug() << "添加d";
                 break;
             }
-            //qDebug() << "添加d";
+
+            QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
+            pos = 0;
+            while ((pos = regExp2.indexIn(data, pos)) != -1) {
+                QString match = regExp2.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+
+                //dataS.append(data.mid(0, match.length()));
+                //data = data.mid(position + match.length());
+                qDebug() << "添加d" << match << " position = " << position;
+                data = data.mid(position + match.length());
+                //break;
+            }
+
+            QRegExp regExp3("\\x001B\\[(\\d+)*m");
+            pos = 0;
+            while ((pos = regExp3.indexIn(data, pos)) != -1) {
+                QString match = regExp3.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+
+                //dataS.append(data.mid(0, match.length()));
+                //data = data.mid(position + match.length());
+                qDebug() << "添加d" << match << " position = " << position;
+                data = data.mid(position + match.length());
+                //break;
+            }
+
+            QRegExp regExp4("\\x001B\\[(\\d+)*;(\\d+)*r");
+            pos = 0;
+            while ((pos = regExp4.indexIn(data, pos)) != -1) {
+                QString match = regExp4.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+
+                //dataS.append(data.mid(0, match.length()));
+                //data = data.mid(position + match.length());
+                qDebug() << "添加d" << match << " position = " << position;
+                data = data.mid(position + match.length());
+                //break;
+            }
+
             dataS.append(data);
             break;
         }
