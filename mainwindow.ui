@@ -201,7 +201,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>历史连接(&amp;H)</string>
+          <string>管理连接(&amp;H)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -662,7 +662,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">

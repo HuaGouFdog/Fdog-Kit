@@ -1,6 +1,7 @@
 ﻿#include "settingwidget.h"
 #include "ui_settingwidget.h"
 #include "utils.h"
+#include "colormatch.h"
 settingwidget::settingwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::settingwidget)
@@ -20,6 +21,23 @@ settingwidget::settingwidget(QWidget *parent) :
 
     ui->verticalLayout_14->addWidget(cb3);
     cb3->show();
+
+    colormatch * cm = new colormatch(this);
+    ui->verticalWidget_16->layout()->addWidget(cm);
+    cm->show();
+
+    colormatch * cm2 = new colormatch(this);
+    ui->verticalWidget_17->layout()->addWidget(cm2);
+    cm2->show();
+
+    colormatch * cm3 = new colormatch(this);
+    ui->verticalWidget_18->layout()->addWidget(cm3);
+    cm3->show();
+
+    colormatch * cm4 = new colormatch(this);
+    ui->verticalWidget_19->layout()->addWidget(cm4);
+    cm4->show();
+
 }
 
 settingwidget::~settingwidget()

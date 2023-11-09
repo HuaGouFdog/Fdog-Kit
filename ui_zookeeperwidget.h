@@ -387,7 +387,7 @@ public:
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         treeWidget->setStyleSheet(QString::fromUtf8("QTreeWidget::item{\n"
 "	border-bottom:1px solid rgb(255, 255, 255,100);\n"
-"	height: 22px; /*\350\256\276\347\275\256\346\257\217\344\270\252\350\212\202\347\202\271\347\232\204\351\253\230\345\272\246*/\n"
+"	height: 30px; /*\350\256\276\347\275\256\346\257\217\344\270\252\350\212\202\347\202\271\347\232\204\351\253\230\345\272\246*/\n"
 "	padding: -1;\n"
 "}\n"
 "\n"
@@ -444,13 +444,19 @@ public:
 "QScrollBar::up-arrow:vertical {\n"
 "    border:none;\n"
 "}"));
+        treeWidget->setLineWidth(1);
+        treeWidget->setMidLineWidth(0);
+        treeWidget->setAutoScrollMargin(20);
+        treeWidget->setIndentation(20);
         treeWidget->setAllColumnsShowFocus(false);
         treeWidget->setWordWrap(false);
         treeWidget->header()->setVisible(false);
         treeWidget->header()->setCascadingSectionResizes(false);
+        treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setHighlightSections(false);
-        treeWidget->header()->setMinimumSectionSize(25);
+        treeWidget->header()->setMinimumSectionSize(30);
         treeWidget->header()->setProperty("showSortIndicator", QVariant(false));
+        treeWidget->header()->setStretchLastSection(true);
 
         verticalLayout_2->addWidget(treeWidget);
 

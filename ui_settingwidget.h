@@ -1,4 +1,4 @@
-/********************************************************************************
+﻿/********************************************************************************
 ** Form generated from reading UI file 'settingwidget.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.10.0
@@ -168,9 +168,44 @@ public:
     QFontComboBox *fontComboBox_2;
     QSpacerItem *verticalSpacer_5;
     QWidget *page_4;
+    QVBoxLayout *verticalLayout_27;
     QWidget *horizontalWidget_8;
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_12;
+    QWidget *verticalWidget_15;
+    QHBoxLayout *horizontalLayout_25;
+    QWidget *horizontalWidget_24;
+    QHBoxLayout *horizontalLayout_20;
+    QWidget *gridWidget_2;
+    QGridLayout *gridLayout_2;
+    QLabel *label_color_matching;
+    QLabel *label_color_matching_2;
+    QLabel *label_color_matching_3;
+    QLabel *label_color_matching_5;
+    QLabel *label_color_matching_4;
+    QLabel *label_color_matching_6;
+    QLabel *label_color_matching_8;
+    QLabel *label_color_matching_7;
+    QLabel *label_color_matching_9;
+    QLabel *label_color_matching_10;
+    QLabel *label_color_matching_11;
+    QLabel *label_color_matching_14;
+    QLabel *label_color_matching_13;
+    QLabel *label_color_matching_12;
+    QLabel *label_color_matching_15;
+    QLabel *label_color_matching_16;
+    QLabel *label_65;
+    QLabel *label_66;
+    QSpacerItem *horizontalSpacer_64;
+    QWidget *verticalWidget_16;
+    QHBoxLayout *horizontalLayout_26;
+    QWidget *verticalWidget_17;
+    QHBoxLayout *horizontalLayout_27;
+    QWidget *verticalWidget_18;
+    QHBoxLayout *horizontalLayout_28;
+    QWidget *verticalWidget_19;
+    QHBoxLayout *horizontalLayout_29;
+    QSpacerItem *verticalSpacer_6;
     QWidget *page_5;
     QWidget *horizontalWidget_9;
     QHBoxLayout *horizontalLayout_10;
@@ -321,7 +356,7 @@ public:
     {
         if (settingwidget->objectName().isEmpty())
             settingwidget->setObjectName(QStringLiteral("settingwidget"));
-        settingwidget->resize(861, 614);
+        settingwidget->resize(934, 614);
         settingwidget->setStyleSheet(QStringLiteral("background-color: rgb(30, 45, 54);"));
         verticalLayout_2 = new QVBoxLayout(settingwidget);
         verticalLayout_2->setSpacing(0);
@@ -569,7 +604,7 @@ public:
 
         horizontalLayout_3->addWidget(horizontalWidget_2);
 
-        horizontalSpacer_2 = new QSpacerItem(358, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(431, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
@@ -616,7 +651,7 @@ public:
 
         horizontalLayout_4->addWidget(horizontalWidget_3);
 
-        horizontalSpacer_3 = new QSpacerItem(312, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(385, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_3);
 
@@ -701,7 +736,7 @@ public:
 
         horizontalLayout_5->addWidget(horizontalWidget_4);
 
-        horizontalSpacer_4 = new QSpacerItem(272, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_4 = new QSpacerItem(345, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_4);
 
@@ -805,7 +840,7 @@ public:
 
         horizontalLayout_6->addWidget(horizontalWidget_5);
 
-        horizontalSpacer = new QSpacerItem(345, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(418, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer);
 
@@ -1534,9 +1569,13 @@ public:
         stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
+        page_4->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        verticalLayout_27 = new QVBoxLayout(page_4);
+        verticalLayout_27->setSpacing(10);
+        verticalLayout_27->setObjectName(QStringLiteral("verticalLayout_27"));
+        verticalLayout_27->setContentsMargins(20, 10, 60, 10);
         horizontalWidget_8 = new QWidget(page_4);
         horizontalWidget_8->setObjectName(QStringLiteral("horizontalWidget_8"));
-        horizontalWidget_8->setGeometry(QRect(10, 20, 475, 40));
         horizontalWidget_8->setMinimumSize(QSize(0, 40));
         horizontalWidget_8->setMaximumSize(QSize(16777215, 40));
         horizontalLayout_9 = new QHBoxLayout(horizontalWidget_8);
@@ -1549,9 +1588,261 @@ public:
 
         horizontalLayout_9->addWidget(label_12);
 
+
+        verticalLayout_27->addWidget(horizontalWidget_8);
+
+        verticalWidget_15 = new QWidget(page_4);
+        verticalWidget_15->setObjectName(QStringLiteral("verticalWidget_15"));
+        verticalWidget_15->setMinimumSize(QSize(0, 70));
+        verticalWidget_15->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_15->setStyleSheet(QLatin1String("#verticalWidget_15{background-color: rgba(66, 66, 66, 100);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_25 = new QHBoxLayout(verticalWidget_15);
+        horizontalLayout_25->setSpacing(20);
+        horizontalLayout_25->setObjectName(QStringLiteral("horizontalLayout_25"));
+        horizontalLayout_25->setContentsMargins(9, 5, -1, 5);
+        horizontalWidget_24 = new QWidget(verticalWidget_15);
+        horizontalWidget_24->setObjectName(QStringLiteral("horizontalWidget_24"));
+        horizontalWidget_24->setMinimumSize(QSize(0, 0));
+        horizontalWidget_24->setMaximumSize(QSize(286, 50));
+        horizontalWidget_24->setStyleSheet(QLatin1String("background-color: rgb(0, 0, 0);\n"
+"border-radius:5px;"));
+        horizontalLayout_20 = new QHBoxLayout(horizontalWidget_24);
+        horizontalLayout_20->setSpacing(10);
+        horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
+        horizontalLayout_20->setContentsMargins(10, 0, 10, 0);
+        gridWidget_2 = new QWidget(horizontalWidget_24);
+        gridWidget_2->setObjectName(QStringLiteral("gridWidget_2"));
+        gridWidget_2->setMinimumSize(QSize(130, 0));
+        gridWidget_2->setMaximumSize(QSize(16777215, 40));
+        gridWidget_2->setStyleSheet(QLatin1String("QLabel{\n"
+"	border-radius:3px;\n"
+"}"));
+        gridLayout_2 = new QGridLayout(gridWidget_2);
+        gridLayout_2->setSpacing(2);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setContentsMargins(-1, 2, 1, 2);
+        label_color_matching = new QLabel(gridWidget_2);
+        label_color_matching->setObjectName(QStringLiteral("label_color_matching"));
+        label_color_matching->setMinimumSize(QSize(12, 12));
+        label_color_matching->setMaximumSize(QSize(12, 12));
+        label_color_matching->setStyleSheet(QStringLiteral("background-color: rgb(12, 12, 12);"));
+
+        gridLayout_2->addWidget(label_color_matching, 0, 0, 1, 1);
+
+        label_color_matching_2 = new QLabel(gridWidget_2);
+        label_color_matching_2->setObjectName(QStringLiteral("label_color_matching_2"));
+        label_color_matching_2->setMinimumSize(QSize(12, 12));
+        label_color_matching_2->setMaximumSize(QSize(12, 12));
+        label_color_matching_2->setStyleSheet(QStringLiteral("background-color: rgb(118, 118, 118);"));
+
+        gridLayout_2->addWidget(label_color_matching_2, 1, 0, 1, 1);
+
+        label_color_matching_3 = new QLabel(gridWidget_2);
+        label_color_matching_3->setObjectName(QStringLiteral("label_color_matching_3"));
+        label_color_matching_3->setMinimumSize(QSize(12, 12));
+        label_color_matching_3->setMaximumSize(QSize(12, 12));
+        label_color_matching_3->setStyleSheet(QStringLiteral("background-color: rgb(197, 15, 31);"));
+
+        gridLayout_2->addWidget(label_color_matching_3, 0, 1, 1, 1);
+
+        label_color_matching_5 = new QLabel(gridWidget_2);
+        label_color_matching_5->setObjectName(QStringLiteral("label_color_matching_5"));
+        label_color_matching_5->setMinimumSize(QSize(12, 12));
+        label_color_matching_5->setMaximumSize(QSize(12, 12));
+        label_color_matching_5->setStyleSheet(QStringLiteral("background-color: rgb(19, 161, 14);"));
+
+        gridLayout_2->addWidget(label_color_matching_5, 0, 2, 1, 1);
+
+        label_color_matching_4 = new QLabel(gridWidget_2);
+        label_color_matching_4->setObjectName(QStringLiteral("label_color_matching_4"));
+        label_color_matching_4->setMinimumSize(QSize(12, 12));
+        label_color_matching_4->setMaximumSize(QSize(12, 12));
+        label_color_matching_4->setStyleSheet(QStringLiteral("background-color: rgb(231, 72, 86);"));
+
+        gridLayout_2->addWidget(label_color_matching_4, 1, 1, 1, 1);
+
+        label_color_matching_6 = new QLabel(gridWidget_2);
+        label_color_matching_6->setObjectName(QStringLiteral("label_color_matching_6"));
+        label_color_matching_6->setMinimumSize(QSize(12, 12));
+        label_color_matching_6->setMaximumSize(QSize(12, 12));
+        label_color_matching_6->setStyleSheet(QStringLiteral("background-color: rgb(22, 198, 12);"));
+
+        gridLayout_2->addWidget(label_color_matching_6, 1, 2, 1, 1);
+
+        label_color_matching_8 = new QLabel(gridWidget_2);
+        label_color_matching_8->setObjectName(QStringLiteral("label_color_matching_8"));
+        label_color_matching_8->setMinimumSize(QSize(12, 12));
+        label_color_matching_8->setMaximumSize(QSize(12, 12));
+        label_color_matching_8->setStyleSheet(QStringLiteral("background-color: rgb(249, 241, 165);"));
+
+        gridLayout_2->addWidget(label_color_matching_8, 1, 3, 1, 1);
+
+        label_color_matching_7 = new QLabel(gridWidget_2);
+        label_color_matching_7->setObjectName(QStringLiteral("label_color_matching_7"));
+        label_color_matching_7->setMinimumSize(QSize(12, 12));
+        label_color_matching_7->setMaximumSize(QSize(12, 12));
+        label_color_matching_7->setStyleSheet(QStringLiteral("background-color: rgb(193, 156, 0);"));
+
+        gridLayout_2->addWidget(label_color_matching_7, 0, 3, 1, 1);
+
+        label_color_matching_9 = new QLabel(gridWidget_2);
+        label_color_matching_9->setObjectName(QStringLiteral("label_color_matching_9"));
+        label_color_matching_9->setMinimumSize(QSize(12, 12));
+        label_color_matching_9->setMaximumSize(QSize(12, 12));
+        label_color_matching_9->setStyleSheet(QStringLiteral("background-color: rgb(0, 55, 218);"));
+
+        gridLayout_2->addWidget(label_color_matching_9, 0, 4, 1, 1);
+
+        label_color_matching_10 = new QLabel(gridWidget_2);
+        label_color_matching_10->setObjectName(QStringLiteral("label_color_matching_10"));
+        label_color_matching_10->setMinimumSize(QSize(12, 12));
+        label_color_matching_10->setMaximumSize(QSize(12, 12));
+        label_color_matching_10->setStyleSheet(QStringLiteral("background-color: rgb(59, 120, 255);"));
+
+        gridLayout_2->addWidget(label_color_matching_10, 1, 4, 1, 1);
+
+        label_color_matching_11 = new QLabel(gridWidget_2);
+        label_color_matching_11->setObjectName(QStringLiteral("label_color_matching_11"));
+        label_color_matching_11->setMinimumSize(QSize(12, 12));
+        label_color_matching_11->setMaximumSize(QSize(12, 12));
+        label_color_matching_11->setStyleSheet(QStringLiteral("background-color: rgb(136, 23, 152);"));
+
+        gridLayout_2->addWidget(label_color_matching_11, 0, 5, 1, 1);
+
+        label_color_matching_14 = new QLabel(gridWidget_2);
+        label_color_matching_14->setObjectName(QStringLiteral("label_color_matching_14"));
+        label_color_matching_14->setMinimumSize(QSize(12, 12));
+        label_color_matching_14->setMaximumSize(QSize(12, 12));
+        label_color_matching_14->setStyleSheet(QStringLiteral("background-color: rgb(97, 214, 214);"));
+
+        gridLayout_2->addWidget(label_color_matching_14, 1, 6, 1, 1);
+
+        label_color_matching_13 = new QLabel(gridWidget_2);
+        label_color_matching_13->setObjectName(QStringLiteral("label_color_matching_13"));
+        label_color_matching_13->setMinimumSize(QSize(12, 12));
+        label_color_matching_13->setMaximumSize(QSize(12, 12));
+        label_color_matching_13->setStyleSheet(QStringLiteral("background-color: rgb(58, 150, 221);"));
+
+        gridLayout_2->addWidget(label_color_matching_13, 0, 6, 1, 1);
+
+        label_color_matching_12 = new QLabel(gridWidget_2);
+        label_color_matching_12->setObjectName(QStringLiteral("label_color_matching_12"));
+        label_color_matching_12->setMinimumSize(QSize(12, 12));
+        label_color_matching_12->setMaximumSize(QSize(12, 12));
+        label_color_matching_12->setStyleSheet(QStringLiteral("background-color: rgb(180, 0, 158);"));
+
+        gridLayout_2->addWidget(label_color_matching_12, 1, 5, 1, 1);
+
+        label_color_matching_15 = new QLabel(gridWidget_2);
+        label_color_matching_15->setObjectName(QStringLiteral("label_color_matching_15"));
+        label_color_matching_15->setMinimumSize(QSize(12, 12));
+        label_color_matching_15->setMaximumSize(QSize(12, 12));
+        label_color_matching_15->setStyleSheet(QStringLiteral("background-color: rgb(204, 204, 204);"));
+
+        gridLayout_2->addWidget(label_color_matching_15, 0, 7, 1, 1);
+
+        label_color_matching_16 = new QLabel(gridWidget_2);
+        label_color_matching_16->setObjectName(QStringLiteral("label_color_matching_16"));
+        label_color_matching_16->setMinimumSize(QSize(12, 12));
+        label_color_matching_16->setMaximumSize(QSize(12, 12));
+        label_color_matching_16->setStyleSheet(QStringLiteral("background-color: rgb(242, 242, 242);"));
+
+        gridLayout_2->addWidget(label_color_matching_16, 1, 7, 1, 1);
+
+
+        horizontalLayout_20->addWidget(gridWidget_2);
+
+        label_65 = new QLabel(horizontalWidget_24);
+        label_65->setObjectName(QStringLiteral("label_65"));
+        QFont font3;
+        font3.setFamily(QStringLiteral("Cascadia Code"));
+        font3.setPointSize(10);
+        font3.setBold(true);
+        font3.setWeight(75);
+        font3.setStyleStrategy(QFont::PreferAntialias);
+        label_65->setFont(font3);
+        label_65->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        horizontalLayout_20->addWidget(label_65);
+
+
+        horizontalLayout_25->addWidget(horizontalWidget_24);
+
+        label_66 = new QLabel(verticalWidget_15);
+        label_66->setObjectName(QStringLiteral("label_66"));
+        label_66->setFont(font);
+        label_66->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        horizontalLayout_25->addWidget(label_66);
+
+        horizontalSpacer_64 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_25->addItem(horizontalSpacer_64);
+
+
+        verticalLayout_27->addWidget(verticalWidget_15);
+
+        verticalWidget_16 = new QWidget(page_4);
+        verticalWidget_16->setObjectName(QStringLiteral("verticalWidget_16"));
+        verticalWidget_16->setMinimumSize(QSize(0, 70));
+        verticalWidget_16->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_16->setStyleSheet(QLatin1String("#verticalWidget_16{background-color: rgba(66, 66, 66, 100);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_26 = new QHBoxLayout(verticalWidget_16);
+        horizontalLayout_26->setSpacing(20);
+        horizontalLayout_26->setObjectName(QStringLiteral("horizontalLayout_26"));
+        horizontalLayout_26->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_27->addWidget(verticalWidget_16);
+
+        verticalWidget_17 = new QWidget(page_4);
+        verticalWidget_17->setObjectName(QStringLiteral("verticalWidget_17"));
+        verticalWidget_17->setMinimumSize(QSize(0, 70));
+        verticalWidget_17->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_17->setStyleSheet(QLatin1String("#verticalWidget_17{background-color: rgba(66, 66, 66, 100);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_27 = new QHBoxLayout(verticalWidget_17);
+        horizontalLayout_27->setSpacing(20);
+        horizontalLayout_27->setObjectName(QStringLiteral("horizontalLayout_27"));
+        horizontalLayout_27->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_27->addWidget(verticalWidget_17);
+
+        verticalWidget_18 = new QWidget(page_4);
+        verticalWidget_18->setObjectName(QStringLiteral("verticalWidget_18"));
+        verticalWidget_18->setMinimumSize(QSize(0, 70));
+        verticalWidget_18->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_18->setStyleSheet(QLatin1String("#verticalWidget_18{background-color: rgba(66, 66, 66, 100);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_28 = new QHBoxLayout(verticalWidget_18);
+        horizontalLayout_28->setSpacing(20);
+        horizontalLayout_28->setObjectName(QStringLiteral("horizontalLayout_28"));
+        horizontalLayout_28->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_27->addWidget(verticalWidget_18);
+
+        verticalWidget_19 = new QWidget(page_4);
+        verticalWidget_19->setObjectName(QStringLiteral("verticalWidget_19"));
+        verticalWidget_19->setMinimumSize(QSize(0, 70));
+        verticalWidget_19->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_19->setStyleSheet(QLatin1String("#verticalWidget_19{background-color: rgba(66, 66, 66, 100);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_29 = new QHBoxLayout(verticalWidget_19);
+        horizontalLayout_29->setSpacing(20);
+        horizontalLayout_29->setObjectName(QStringLiteral("horizontalLayout_29"));
+        horizontalLayout_29->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_27->addWidget(verticalWidget_19);
+
+        verticalSpacer_6 = new QSpacerItem(20, 141, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_27->addItem(verticalSpacer_6);
+
         stackedWidget->addWidget(page_4);
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
+        page_5->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         horizontalWidget_9 = new QWidget(page_5);
         horizontalWidget_9->setObjectName(QStringLiteral("horizontalWidget_9"));
         horizontalWidget_9->setGeometry(QRect(10, 10, 475, 40));
@@ -2755,7 +3046,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(settingwidget);
@@ -2824,6 +3115,24 @@ public:
         label_53->setText(QApplication::translate("settingwidget", "\344\270\255\346\226\207\345\255\227\344\275\223", nullptr));
         label_56->setText(QApplication::translate("settingwidget", "\345\273\272\350\256\256\351\200\211\346\213\251\344\270\255\350\213\261\346\226\207\347\255\211\345\256\275\345\255\227\344\275\223", nullptr));
         label_12->setText(QApplication::translate("settingwidget", "\351\205\215\350\211\262", nullptr));
+        label_color_matching->setText(QString());
+        label_color_matching_2->setText(QString());
+        label_color_matching_3->setText(QString());
+        label_color_matching_5->setText(QString());
+        label_color_matching_4->setText(QString());
+        label_color_matching_6->setText(QString());
+        label_color_matching_8->setText(QString());
+        label_color_matching_7->setText(QString());
+        label_color_matching_9->setText(QString());
+        label_color_matching_10->setText(QString());
+        label_color_matching_11->setText(QString());
+        label_color_matching_14->setText(QString());
+        label_color_matching_13->setText(QString());
+        label_color_matching_12->setText(QString());
+        label_color_matching_15->setText(QString());
+        label_color_matching_16->setText(QString());
+        label_65->setText(QApplication::translate("settingwidget", "Campbell", nullptr));
+        label_66->setText(QApplication::translate("settingwidget", "\351\273\230\350\256\244", nullptr));
         label_13->setText(QApplication::translate("settingwidget", "\344\270\273\351\242\230", nullptr));
         label_14->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257", nullptr));
         label_59->setText(QApplication::translate("settingwidget", "\351\274\240\346\240\207\345\217\263\351\224\256", nullptr));

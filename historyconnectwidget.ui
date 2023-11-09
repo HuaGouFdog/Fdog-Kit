@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>866</width>
-    <height>440</height>
+    <width>942</width>
+    <height>524</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,40 +17,92 @@
    <string notr="true">background-color: rgb(30, 45, 54);
 color: rgb(255, 255, 255);</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="2,8,2">
+   <item>
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>149</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="20">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,30,0,3">
+      <property name="spacing">
+       <number>6</number>
+      </property>
       <property name="leftMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="topMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="bottomMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>12</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>快速连接</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QTableWidget" name="tableWidget_history">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
           <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="font">
@@ -82,10 +134,14 @@ QHeaderView::section,QTableCornerButton:section{
     border-right-width:0px; 
     border-top-width:0px; 
     border-bottom-width:0px;
-	background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); 
+	/*background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); */
+	
+	background-color: rgb(47, 71, 85);
 }
 QTableWidget{
 	border:none;
+	
+	border-color: rgb(130, 201, 255);
 	background-color: rgb(30, 45, 54);
 	color: rgb(255, 255, 255);
 }
@@ -169,19 +225,19 @@ QScrollBar::up-arrow:vertical {
          <bool>false</bool>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>false</bool>
+         <bool>true</bool>
         </attribute>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>false</bool>
         </attribute>
         <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>160</number>
+         <number>120</number>
         </attribute>
         <attribute name="horizontalHeaderHighlightSections">
          <bool>false</bool>
         </attribute>
         <attribute name="horizontalHeaderMinimumSectionSize">
-         <number>100</number>
+         <number>20</number>
         </attribute>
         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
          <bool>false</bool>
@@ -196,557 +252,64 @@ QScrollBar::up-arrow:vertical {
          <number>30</number>
         </attribute>
         <attribute name="verticalHeaderMinimumSectionSize">
-         <number>25</number>
+         <number>20</number>
         </attribute>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>新建行</string>
-         </property>
-        </row>
         <column>
          <property name="text">
-          <string>名称</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
+          <string>新建列</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>主机</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
+          <string>新建列</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>用户</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
+          <string>新建列</string>
          </property>
         </column>
-        <column>
-         <property name="text">
-          <string>分组</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>备注</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>操作</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
-         </property>
-        </column>
-        <item row="0" column="0">
-         <property name="text">
-          <string>新建终端1</string>
-         </property>
-        </item>
-        <item row="0" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="0" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="0" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="0" column="4">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="1" column="0">
-         <property name="text">
-          <string>新建终端1</string>
-         </property>
-        </item>
-        <item row="1" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="1" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="1" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="1" column="4">
-         <property name="text">
-          <string>大苏打SDAS大苏打SDAS大苏打SDAS大苏打SDAS大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="2" column="0">
-         <property name="text">
-          <string>新建终端2</string>
-         </property>
-        </item>
-        <item row="2" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="2" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="2" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="2" column="4">
-         <property name="text">
-          <string>大苏打SDAS大苏打SDAS大苏打SDAS大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="3" column="0">
-         <property name="text">
-          <string>新建终端3</string>
-         </property>
-        </item>
-        <item row="3" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="3" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="3" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="3" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="4" column="0">
-         <property name="text">
-          <string>新建终端4</string>
-         </property>
-        </item>
-        <item row="4" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="4" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="4" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="4" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="5" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="5" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="5" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignLeading|AlignVCenter</set>
-         </property>
-        </item>
-        <item row="5" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="5" column="4">
-         <property name="text">
-          <string>大苏打SDAS大苏打SDAS大苏打SDAS大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="6" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="6" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="6" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="6" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="6" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="7" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="7" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="7" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="7" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="7" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="8" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="8" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="8" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="8" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="8" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="9" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="9" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="9" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="9" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="9" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="10" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="10" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="10" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="10" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="10" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="11" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="11" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="11" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="11" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="11" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
-        <item row="12" column="0">
-         <property name="text">
-          <string>新建终端5</string>
-         </property>
-        </item>
-        <item row="12" column="1">
-         <property name="text">
-          <string>172.16.8.159</string>
-         </property>
-        </item>
-        <item row="12" column="2">
-         <property name="text">
-          <string>root</string>
-         </property>
-        </item>
-        <item row="12" column="3">
-         <property name="text">
-          <string>默认</string>
-         </property>
-        </item>
-        <item row="12" column="4">
-         <property name="text">
-          <string>大苏打SDAS</string>
-         </property>
-        </item>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="horizontalWidget" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
       <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_clear">
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>OPPOSans B</family>
-          <pointsize>10</pointsize>
-          <stylestrategy>PreferAntialias</stylestrategy>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QToolButton {
+       <widget class="QWidget" name="widget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>395</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_clear_3">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
 	background-color: rgb(7, 143, 255);
 	border-radius: 5px;
@@ -761,14 +324,86 @@ QToolButton:hover {
 	color: rgb(255, 255, 255);
 	background-color: rgb(7, 143, 255);
 }</string>
-        </property>
-        <property name="text">
-         <string>清空</string>
-        </property>
+           </property>
+           <property name="text">
+            <string>管理</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_clear">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(7, 143, 255);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(7, 143, 255);
+}</string>
+           </property>
+           <property name="text">
+            <string>清空</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer_8">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>149</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

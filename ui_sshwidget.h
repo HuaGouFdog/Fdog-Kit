@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
@@ -112,6 +113,11 @@ public:
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_14;
     QWidget *widget_10;
+    QVBoxLayout *verticalLayout_5;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_8;
+    QWidget *widget_9;
     QTextEdit *textEdit;
     QWidget *widget_toolbar;
     QHBoxLayout *horizontalLayout_7;
@@ -141,7 +147,10 @@ public:
     QWidget *tab_2;
     QWidget *tab_3;
     QTextEdit *textEdit_2;
-    QLabel *label_4;
+    QScrollArea *scrollArea_2;
+    QWidget *scrollAreaWidgetContents_2;
+    QHBoxLayout *horizontalLayout_23;
+    QTextEdit *textEdit_3;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label;
@@ -685,15 +694,46 @@ public:
         verticalLayout_14->setContentsMargins(0, 0, 0, 0);
         widget_10 = new QWidget(widget_2);
         widget_10->setObjectName(QStringLiteral("widget_10"));
-        textEdit = new QTextEdit(widget_10);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setEnabled(true);
-        textEdit->setGeometry(QRect(9, 10, 921, 300));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        verticalLayout_5 = new QVBoxLayout(widget_10);
+        verticalLayout_5->setSpacing(0);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        scrollArea = new QScrollArea(widget_10);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setMinimumSize(QSize(0, 0));
+        scrollArea->setStyleSheet(QStringLiteral(""));
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1219, 372));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
-        textEdit->setSizePolicy(sizePolicy);
+        sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
+        scrollAreaWidgetContents->setSizePolicy(sizePolicy);
+        scrollAreaWidgetContents->setMinimumSize(QSize(500, 0));
+        scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 1080));
+        scrollAreaWidgetContents->setStyleSheet(QStringLiteral("border-color: rgba(255, 255, 255, 0);"));
+        verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_8->setSpacing(0);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        widget_9 = new QWidget(scrollAreaWidgetContents);
+        widget_9->setObjectName(QStringLiteral("widget_9"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(widget_9->sizePolicy().hasHeightForWidth());
+        widget_9->setSizePolicy(sizePolicy1);
+        textEdit = new QTextEdit(widget_9);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setEnabled(true);
+        textEdit->setGeometry(QRect(10, 20, 151, 161));
+        sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+        textEdit->setSizePolicy(sizePolicy1);
         textEdit->setMaximumSize(QSize(16777215, 5555555));
         QFont font3;
         font3.setFamily(QStringLiteral("Cascadia Mono,OPPOSans B"));
@@ -762,6 +802,13 @@ public:
         textEdit->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::TextEditable|Qt::TextSelectableByKeyboard);
+
+        verticalLayout_8->addWidget(widget_9);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_5->addWidget(scrollArea);
+
 
         verticalLayout_14->addWidget(widget_10);
 
@@ -1111,9 +1158,22 @@ public:
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setGeometry(QRect(10, 10, 561, 211));
         textEdit_2->setReadOnly(true);
-        label_4 = new QLabel(tab_3);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(670, 81, 161, 51));
+        scrollArea_2 = new QScrollArea(tab_3);
+        scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
+        scrollArea_2->setGeometry(QRect(630, 20, 461, 181));
+        scrollArea_2->setWidgetResizable(true);
+        scrollAreaWidgetContents_2 = new QWidget();
+        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 500, 162));
+        scrollAreaWidgetContents_2->setMinimumSize(QSize(500, 0));
+        horizontalLayout_23 = new QHBoxLayout(scrollAreaWidgetContents_2);
+        horizontalLayout_23->setObjectName(QStringLiteral("horizontalLayout_23"));
+        textEdit_3 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_3->setObjectName(QStringLiteral("textEdit_3"));
+
+        horizontalLayout_23->addWidget(textEdit_3);
+
+        scrollArea_2->setWidget(scrollAreaWidgetContents_2);
         tabWidget->addTab(tab_3, QString());
 
         verticalLayout_7->addWidget(tabWidget);
@@ -1280,7 +1340,21 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">454545456</p></body></html>", nullptr));
-        label_4->setText(QApplication::translate("sshwidget", "111111111111111", nullptr));
+        textEdit_3->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111111111111111111111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; mar"
+                        "gin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111111111111111111111111111111111111111111111111</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p></body></html>", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "11111111111111111111111111", nullptr));
         label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
         label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));

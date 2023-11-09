@@ -534,7 +534,7 @@ QToolButton::checked{
             <property name="styleSheet">
              <string notr="true">QTreeWidget::item{
 	border-bottom:1px solid rgb(255, 255, 255,100);
-	height: 22px; /*设置每个节点的高度*/
+	height: 30px; /*设置每个节点的高度*/
 	padding: -1;
 }
 
@@ -591,6 +591,18 @@ QScrollBar::up-arrow:vertical {
     border:none;
 }</string>
             </property>
+            <property name="lineWidth">
+             <number>1</number>
+            </property>
+            <property name="midLineWidth">
+             <number>0</number>
+            </property>
+            <property name="autoScrollMargin">
+             <number>20</number>
+            </property>
+            <property name="indentation">
+             <number>20</number>
+            </property>
             <property name="allColumnsShowFocus">
              <bool>false</bool>
             </property>
@@ -603,14 +615,20 @@ QScrollBar::up-arrow:vertical {
             <attribute name="headerCascadingSectionResizes">
              <bool>false</bool>
             </attribute>
+            <attribute name="headerDefaultSectionSize">
+             <number>100</number>
+            </attribute>
             <attribute name="headerHighlightSections">
              <bool>false</bool>
             </attribute>
             <attribute name="headerMinimumSectionSize">
-             <number>25</number>
+             <number>30</number>
             </attribute>
             <attribute name="headerShowSortIndicator" stdset="0">
              <bool>false</bool>
+            </attribute>
+            <attribute name="headerStretchLastSection">
+             <bool>true</bool>
             </attribute>
             <column>
              <property name="text">

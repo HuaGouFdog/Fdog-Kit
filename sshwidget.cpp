@@ -200,7 +200,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     Layout->setContentsMargins(0,0,0,0);
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
-    ui->widget_10->setLayout(Layout);
+    ui->widget_9->setLayout(Layout);
+    //ui->widget_10->setLayout(Layout);
 
     connect(textEdit_s,SIGNAL(cursorPositionChanged()),this,
                                SLOT(on_textEdit_s_cursorPositionChanged()));
@@ -354,6 +355,7 @@ void sshwidget::sendData(QString data)
     QTextCursor cursor_s = textEdit_s->textCursor();
     cursor_s.setPosition(currentPosition);
     textEdit_s->setTextCursor(cursor_s);
+
     ui->textEdit->insertHtml(data);
     textEdit_s->insertHtml(data);
 }

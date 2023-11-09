@@ -2101,7 +2101,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
         tabWidget->setCurrentIndex(1);
         stackedWidget_tool->setCurrentIndex(0);
 
@@ -2113,7 +2113,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
         toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245(&N)", nullptr));
-        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\345\216\206\345\217\262\350\277\236\346\216\245(&H)", nullptr));
+        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\350\277\236\346\216\245(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));
