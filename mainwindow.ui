@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>589</height>
+    <width>1077</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -37,7 +37,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="lib.qrc">
-    <normaloff>:/lib/wicon_46.png</normaloff>:/lib/wicon_46.png</iconset>
+    <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow,QWidget#centralWidget {
@@ -662,7 +662,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">
@@ -3231,7 +3231,7 @@ QToolButton:hover {
 }</string>
                                </property>
                                <property name="text">
-                                <string>新建终端</string>
+                                <string>新建连接</string>
                                </property>
                                <property name="icon">
                                 <iconset resource="lib.qrc">
@@ -3291,7 +3291,7 @@ QToolButton:hover {
 }</string>
                                </property>
                                <property name="text">
-                                <string>小工具集合</string>
+                                <string>工具集</string>
                                </property>
                                <property name="icon">
                                 <iconset resource="lib.qrc">

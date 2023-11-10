@@ -132,7 +132,7 @@ public:
         font.setPointSize(10);
         createconnect->setFont(font);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/wicon_46.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/lib/icon9.png"), QSize(), QIcon::Normal, QIcon::Off);
         createconnect->setWindowIcon(icon);
         createconnect->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));

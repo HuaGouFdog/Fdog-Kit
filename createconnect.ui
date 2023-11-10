@@ -39,7 +39,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="lib.qrc">
-    <normaloff>:/lib/wicon_46.png</normaloff>:/lib/wicon_46.png</iconset>
+    <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(30, 45, 54);

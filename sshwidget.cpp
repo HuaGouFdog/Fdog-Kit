@@ -24,6 +24,8 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QMimeData>
+#include "findwidget.h"
+
 QString a = "";
 
 //    // 关闭 SSH 连接
@@ -62,8 +64,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->splitter_2->setStretchFactor(0,100);
-    ui->splitter_2->setStretchFactor(1,2);
+    ui->splitter_2->setStretchFactor(10,2);
 
     ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
     //表格自适应
@@ -108,6 +109,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
     textEdit_s->setStyleSheet("QTextEdit{ \
                              background-color: rgb(0, 41, 169, 0);\
+                             selection-background-color: yellow;\
                              font: 12pt \"Cascadia Mono,OPPOSans B\";\
                              border: none;\
                              padding-top:0px;\
@@ -117,7 +119,6 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
                              border-radius: 5px;\
                              color: rgba(255, 255, 255, 0);\
                          }\
-                         \
                          QScrollBar:vertical {\
                              width: 10px;\
                              background-color: rgba(0, 41, 69, 0);\
@@ -198,8 +199,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QStackedLayout * Layout = new QStackedLayout;
     Layout->setStackingMode(QStackedLayout::StackAll);
     Layout->setContentsMargins(0,0,0,0);
+    fwidget = new findwidget(this);
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
+    Layout->addWidget(fwidget);
     ui->widget_9->setLayout(Layout);
     //ui->widget_10->setLayout(Layout);
 
@@ -942,18 +945,58 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
 void sshwidget::on_pushButton_clicked()
 {
 
-    QTextCursor cursor(ui->textEdit->document());
-    cursor.movePosition(QTextCursor::Start);
+//    QTextCursor cursor(ui->textEdit->document());
+//    cursor.movePosition(QTextCursor::Start);
 
-    for (int i = 0; i < 5 - 1; ++i)
-    {
-        cursor.movePosition(QTextCursor::Down);
-    }
+//    for (int i = 0; i < 5 - 1; ++i)
+//    {
+//        cursor.movePosition(QTextCursor::Down);
+//    }
 
-    ui->textEdit->setTextCursor(cursor);
-    ui->textEdit->ensureCursorVisible();
-    ui->textEdit->setFocusPolicy(Qt::StrongFocus);
-    ui->textEdit->setFocus();
+//    ui->textEdit->setTextCursor(cursor);
+//    ui->textEdit->ensureCursorVisible();
+//    ui->textEdit->setFocusPolicy(Qt::StrongFocus);
+//    ui->textEdit->setFocus();
+
+    // 保存原始的文本格式
+//    cursor_s = ui->textEdit->textCursor();
+//    originalFormat_s = cursor_s.charFormat();
+
+    /* 需要搜索的文本 */
+       QString searchString = ui->lineEdit->text();
+       /* 文本框的全部内容 */
+       QTextDocument *document = ui->textEdit->document();
+
+       document->undo();
+
+       bool found = false;
+
+       if (searchString.isEmpty()) {
+
+       } else {
+           /* 高亮本文配置 */
+           QTextCursor highlightCursor(document);
+
+           QTextCharFormat plainFormat(highlightCursor.charFormat());
+
+              QTextCharFormat colorFormat = plainFormat;
+              colorFormat.setForeground(Qt::black);
+              colorFormat.setBackground(Qt::yellow);
+
+              while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
+                   /* 搜索给定文本的位置 */
+                      highlightCursor = document->find(searchString, highlightCursor,
+                                                       QTextDocument::FindWholeWords);
+
+                      if (!highlightCursor.isNull()) {
+                          found = true;
+                          highlightCursor.movePosition(QTextCursor::WordRight,
+                                                       QTextCursor::KeepAnchor);
+                          /* 设置高亮文本 */
+                          highlightCursor.mergeCharFormat(colorFormat);
+                      }
+                  }
+       }
 }
 
 void sshwidget::on_textEdit_selectionChanged()
@@ -1050,7 +1093,7 @@ void sshwidget::rece_resize_sign()
     qDebug() << "Visible Line count:" << visibleLines;
     qDebug() << "Visible Column count:" << visibleColumns;
     if (columnCount != visibleColumns || lineCount != visibleLines) {
-        setTerminalSize(visibleLines, visibleColumns);
+        //setTerminalSize(visibleLines, visibleColumns);
         columnCount = visibleColumns;
         lineCount = visibleLines;
     }

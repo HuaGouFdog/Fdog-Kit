@@ -1,7 +1,9 @@
-#ifndef COLORMATCH_H
+﻿#ifndef COLORMATCH_H
 #define COLORMATCH_H
 
 #include <QWidget>
+
+
 
 namespace Ui {
 class colormatch;
@@ -12,7 +14,7 @@ class colormatch : public QWidget
     Q_OBJECT
 
 public:
-    explicit colormatch(QWidget *parent = 0);
+    explicit colormatch(QString matchName, QStringList colorData, QWidget *parent = 0);
     ~colormatch();
 
 private:

@@ -30,23 +30,23 @@ public:
     QHBoxLayout *horizontalLayout_20;
     QWidget *gridWidget_2;
     QGridLayout *gridLayout_2;
-    QLabel *label_color_matching;
-    QLabel *label_color_matching_2;
-    QLabel *label_color_matching_3;
-    QLabel *label_color_matching_5;
-    QLabel *label_color_matching_4;
-    QLabel *label_color_matching_6;
-    QLabel *label_color_matching_8;
-    QLabel *label_color_matching_7;
-    QLabel *label_color_matching_9;
-    QLabel *label_color_matching_10;
-    QLabel *label_color_matching_11;
-    QLabel *label_color_matching_14;
-    QLabel *label_color_matching_13;
-    QLabel *label_color_matching_12;
-    QLabel *label_color_matching_15;
-    QLabel *label_color_matching_16;
-    QLabel *label_65;
+    QLabel *label_color_black;
+    QLabel *label_color_brightBlack;
+    QLabel *label_color_red;
+    QLabel *label_color_green;
+    QLabel *label_color_brightRed;
+    QLabel *label_color_brightGreen;
+    QLabel *label_color_brightYellow;
+    QLabel *label_color_yellow;
+    QLabel *label_color_blue;
+    QLabel *label_color_brightBlue;
+    QLabel *label_color_purple;
+    QLabel *label_color_brightCyan;
+    QLabel *label_color_cyan;
+    QLabel *label_color_brightPurple;
+    QLabel *label_color_white;
+    QLabel *label_color_brightWhite;
+    QLabel *label_name;
     QSpacerItem *horizontalSpacer_64;
 
     void setupUi(QWidget *colormatch)
@@ -63,7 +63,7 @@ public:
         horizontalWidget_24 = new QWidget(colormatch);
         horizontalWidget_24->setObjectName(QStringLiteral("horizontalWidget_24"));
         horizontalWidget_24->setMinimumSize(QSize(0, 0));
-        horizontalWidget_24->setMaximumSize(QSize(286, 50));
+        horizontalWidget_24->setMaximumSize(QSize(400, 50));
         horizontalWidget_24->setStyleSheet(QLatin1String("background-color: rgb(0, 0, 0);\n"
 "border-radius:5px;"));
         horizontalLayout_20 = new QHBoxLayout(horizontalWidget_24);
@@ -81,149 +81,150 @@ public:
         gridLayout_2->setSpacing(2);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(-1, 2, 1, 2);
-        label_color_matching = new QLabel(gridWidget_2);
-        label_color_matching->setObjectName(QStringLiteral("label_color_matching"));
-        label_color_matching->setMinimumSize(QSize(12, 12));
-        label_color_matching->setMaximumSize(QSize(12, 12));
-        label_color_matching->setStyleSheet(QStringLiteral("background-color: rgb(12, 12, 12);"));
+        label_color_black = new QLabel(gridWidget_2);
+        label_color_black->setObjectName(QStringLiteral("label_color_black"));
+        label_color_black->setMinimumSize(QSize(12, 12));
+        label_color_black->setMaximumSize(QSize(12, 12));
+        label_color_black->setStyleSheet(QStringLiteral("background-color: rgb(12, 12, 12);"));
 
-        gridLayout_2->addWidget(label_color_matching, 0, 0, 1, 1);
+        gridLayout_2->addWidget(label_color_black, 0, 0, 1, 1);
 
-        label_color_matching_2 = new QLabel(gridWidget_2);
-        label_color_matching_2->setObjectName(QStringLiteral("label_color_matching_2"));
-        label_color_matching_2->setMinimumSize(QSize(12, 12));
-        label_color_matching_2->setMaximumSize(QSize(12, 12));
-        label_color_matching_2->setStyleSheet(QStringLiteral("background-color: rgb(118, 118, 118);"));
+        label_color_brightBlack = new QLabel(gridWidget_2);
+        label_color_brightBlack->setObjectName(QStringLiteral("label_color_brightBlack"));
+        label_color_brightBlack->setMinimumSize(QSize(12, 12));
+        label_color_brightBlack->setMaximumSize(QSize(12, 12));
+        label_color_brightBlack->setStyleSheet(QStringLiteral("background-color: rgb(118, 118, 118);"));
 
-        gridLayout_2->addWidget(label_color_matching_2, 1, 0, 1, 1);
+        gridLayout_2->addWidget(label_color_brightBlack, 1, 0, 1, 1);
 
-        label_color_matching_3 = new QLabel(gridWidget_2);
-        label_color_matching_3->setObjectName(QStringLiteral("label_color_matching_3"));
-        label_color_matching_3->setMinimumSize(QSize(12, 12));
-        label_color_matching_3->setMaximumSize(QSize(12, 12));
-        label_color_matching_3->setStyleSheet(QStringLiteral("background-color: rgb(197, 15, 31);"));
+        label_color_red = new QLabel(gridWidget_2);
+        label_color_red->setObjectName(QStringLiteral("label_color_red"));
+        label_color_red->setMinimumSize(QSize(12, 12));
+        label_color_red->setMaximumSize(QSize(12, 12));
+        label_color_red->setStyleSheet(QStringLiteral("background-color: rgb(197, 15, 31);"));
 
-        gridLayout_2->addWidget(label_color_matching_3, 0, 1, 1, 1);
+        gridLayout_2->addWidget(label_color_red, 0, 1, 1, 1);
 
-        label_color_matching_5 = new QLabel(gridWidget_2);
-        label_color_matching_5->setObjectName(QStringLiteral("label_color_matching_5"));
-        label_color_matching_5->setMinimumSize(QSize(12, 12));
-        label_color_matching_5->setMaximumSize(QSize(12, 12));
-        label_color_matching_5->setStyleSheet(QStringLiteral("background-color: rgb(19, 161, 14);"));
+        label_color_green = new QLabel(gridWidget_2);
+        label_color_green->setObjectName(QStringLiteral("label_color_green"));
+        label_color_green->setMinimumSize(QSize(12, 12));
+        label_color_green->setMaximumSize(QSize(12, 12));
+        label_color_green->setStyleSheet(QStringLiteral("background-color: rgb(19, 161, 14);"));
 
-        gridLayout_2->addWidget(label_color_matching_5, 0, 2, 1, 1);
+        gridLayout_2->addWidget(label_color_green, 0, 2, 1, 1);
 
-        label_color_matching_4 = new QLabel(gridWidget_2);
-        label_color_matching_4->setObjectName(QStringLiteral("label_color_matching_4"));
-        label_color_matching_4->setMinimumSize(QSize(12, 12));
-        label_color_matching_4->setMaximumSize(QSize(12, 12));
-        label_color_matching_4->setStyleSheet(QStringLiteral("background-color: rgb(231, 72, 86);"));
+        label_color_brightRed = new QLabel(gridWidget_2);
+        label_color_brightRed->setObjectName(QStringLiteral("label_color_brightRed"));
+        label_color_brightRed->setMinimumSize(QSize(12, 12));
+        label_color_brightRed->setMaximumSize(QSize(12, 12));
+        label_color_brightRed->setStyleSheet(QStringLiteral("background-color: rgb(231, 72, 86);"));
 
-        gridLayout_2->addWidget(label_color_matching_4, 1, 1, 1, 1);
+        gridLayout_2->addWidget(label_color_brightRed, 1, 1, 1, 1);
 
-        label_color_matching_6 = new QLabel(gridWidget_2);
-        label_color_matching_6->setObjectName(QStringLiteral("label_color_matching_6"));
-        label_color_matching_6->setMinimumSize(QSize(12, 12));
-        label_color_matching_6->setMaximumSize(QSize(12, 12));
-        label_color_matching_6->setStyleSheet(QStringLiteral("background-color: rgb(22, 198, 12);"));
+        label_color_brightGreen = new QLabel(gridWidget_2);
+        label_color_brightGreen->setObjectName(QStringLiteral("label_color_brightGreen"));
+        label_color_brightGreen->setMinimumSize(QSize(12, 12));
+        label_color_brightGreen->setMaximumSize(QSize(12, 12));
+        label_color_brightGreen->setStyleSheet(QStringLiteral("background-color: rgb(22, 198, 12);"));
 
-        gridLayout_2->addWidget(label_color_matching_6, 1, 2, 1, 1);
+        gridLayout_2->addWidget(label_color_brightGreen, 1, 2, 1, 1);
 
-        label_color_matching_8 = new QLabel(gridWidget_2);
-        label_color_matching_8->setObjectName(QStringLiteral("label_color_matching_8"));
-        label_color_matching_8->setMinimumSize(QSize(12, 12));
-        label_color_matching_8->setMaximumSize(QSize(12, 12));
-        label_color_matching_8->setStyleSheet(QStringLiteral("background-color: rgb(249, 241, 165);"));
+        label_color_brightYellow = new QLabel(gridWidget_2);
+        label_color_brightYellow->setObjectName(QStringLiteral("label_color_brightYellow"));
+        label_color_brightYellow->setMinimumSize(QSize(12, 12));
+        label_color_brightYellow->setMaximumSize(QSize(12, 12));
+        label_color_brightYellow->setStyleSheet(QStringLiteral("background-color: rgb(249, 241, 165);"));
 
-        gridLayout_2->addWidget(label_color_matching_8, 1, 3, 1, 1);
+        gridLayout_2->addWidget(label_color_brightYellow, 1, 3, 1, 1);
 
-        label_color_matching_7 = new QLabel(gridWidget_2);
-        label_color_matching_7->setObjectName(QStringLiteral("label_color_matching_7"));
-        label_color_matching_7->setMinimumSize(QSize(12, 12));
-        label_color_matching_7->setMaximumSize(QSize(12, 12));
-        label_color_matching_7->setStyleSheet(QStringLiteral("background-color: rgb(193, 156, 0);"));
+        label_color_yellow = new QLabel(gridWidget_2);
+        label_color_yellow->setObjectName(QStringLiteral("label_color_yellow"));
+        label_color_yellow->setMinimumSize(QSize(12, 12));
+        label_color_yellow->setMaximumSize(QSize(12, 12));
+        label_color_yellow->setStyleSheet(QStringLiteral("background-color: rgb(193, 156, 0);"));
 
-        gridLayout_2->addWidget(label_color_matching_7, 0, 3, 1, 1);
+        gridLayout_2->addWidget(label_color_yellow, 0, 3, 1, 1);
 
-        label_color_matching_9 = new QLabel(gridWidget_2);
-        label_color_matching_9->setObjectName(QStringLiteral("label_color_matching_9"));
-        label_color_matching_9->setMinimumSize(QSize(12, 12));
-        label_color_matching_9->setMaximumSize(QSize(12, 12));
-        label_color_matching_9->setStyleSheet(QStringLiteral("background-color: rgb(0, 55, 218);"));
+        label_color_blue = new QLabel(gridWidget_2);
+        label_color_blue->setObjectName(QStringLiteral("label_color_blue"));
+        label_color_blue->setMinimumSize(QSize(12, 12));
+        label_color_blue->setMaximumSize(QSize(12, 12));
+        label_color_blue->setStyleSheet(QStringLiteral("background-color: rgb(0, 55, 218);"));
 
-        gridLayout_2->addWidget(label_color_matching_9, 0, 4, 1, 1);
+        gridLayout_2->addWidget(label_color_blue, 0, 4, 1, 1);
 
-        label_color_matching_10 = new QLabel(gridWidget_2);
-        label_color_matching_10->setObjectName(QStringLiteral("label_color_matching_10"));
-        label_color_matching_10->setMinimumSize(QSize(12, 12));
-        label_color_matching_10->setMaximumSize(QSize(12, 12));
-        label_color_matching_10->setStyleSheet(QStringLiteral("background-color: rgb(59, 120, 255);"));
+        label_color_brightBlue = new QLabel(gridWidget_2);
+        label_color_brightBlue->setObjectName(QStringLiteral("label_color_brightBlue"));
+        label_color_brightBlue->setMinimumSize(QSize(12, 12));
+        label_color_brightBlue->setMaximumSize(QSize(12, 12));
+        label_color_brightBlue->setStyleSheet(QStringLiteral("background-color: rgb(59, 120, 255);"));
 
-        gridLayout_2->addWidget(label_color_matching_10, 1, 4, 1, 1);
+        gridLayout_2->addWidget(label_color_brightBlue, 1, 4, 1, 1);
 
-        label_color_matching_11 = new QLabel(gridWidget_2);
-        label_color_matching_11->setObjectName(QStringLiteral("label_color_matching_11"));
-        label_color_matching_11->setMinimumSize(QSize(12, 12));
-        label_color_matching_11->setMaximumSize(QSize(12, 12));
-        label_color_matching_11->setStyleSheet(QStringLiteral("background-color: rgb(136, 23, 152);"));
+        label_color_purple = new QLabel(gridWidget_2);
+        label_color_purple->setObjectName(QStringLiteral("label_color_purple"));
+        label_color_purple->setMinimumSize(QSize(12, 12));
+        label_color_purple->setMaximumSize(QSize(12, 12));
+        label_color_purple->setStyleSheet(QStringLiteral("background-color: rgb(136, 23, 152);"));
 
-        gridLayout_2->addWidget(label_color_matching_11, 0, 5, 1, 1);
+        gridLayout_2->addWidget(label_color_purple, 0, 5, 1, 1);
 
-        label_color_matching_14 = new QLabel(gridWidget_2);
-        label_color_matching_14->setObjectName(QStringLiteral("label_color_matching_14"));
-        label_color_matching_14->setMinimumSize(QSize(12, 12));
-        label_color_matching_14->setMaximumSize(QSize(12, 12));
-        label_color_matching_14->setStyleSheet(QStringLiteral("background-color: rgb(97, 214, 214);"));
+        label_color_brightCyan = new QLabel(gridWidget_2);
+        label_color_brightCyan->setObjectName(QStringLiteral("label_color_brightCyan"));
+        label_color_brightCyan->setMinimumSize(QSize(12, 12));
+        label_color_brightCyan->setMaximumSize(QSize(12, 12));
+        label_color_brightCyan->setStyleSheet(QStringLiteral("background-color: rgb(97, 214, 214);"));
 
-        gridLayout_2->addWidget(label_color_matching_14, 1, 6, 1, 1);
+        gridLayout_2->addWidget(label_color_brightCyan, 1, 6, 1, 1);
 
-        label_color_matching_13 = new QLabel(gridWidget_2);
-        label_color_matching_13->setObjectName(QStringLiteral("label_color_matching_13"));
-        label_color_matching_13->setMinimumSize(QSize(12, 12));
-        label_color_matching_13->setMaximumSize(QSize(12, 12));
-        label_color_matching_13->setStyleSheet(QStringLiteral("background-color: rgb(58, 150, 221);"));
+        label_color_cyan = new QLabel(gridWidget_2);
+        label_color_cyan->setObjectName(QStringLiteral("label_color_cyan"));
+        label_color_cyan->setMinimumSize(QSize(12, 12));
+        label_color_cyan->setMaximumSize(QSize(12, 12));
+        label_color_cyan->setStyleSheet(QStringLiteral("background-color: rgb(58, 150, 221);"));
 
-        gridLayout_2->addWidget(label_color_matching_13, 0, 6, 1, 1);
+        gridLayout_2->addWidget(label_color_cyan, 0, 6, 1, 1);
 
-        label_color_matching_12 = new QLabel(gridWidget_2);
-        label_color_matching_12->setObjectName(QStringLiteral("label_color_matching_12"));
-        label_color_matching_12->setMinimumSize(QSize(12, 12));
-        label_color_matching_12->setMaximumSize(QSize(12, 12));
-        label_color_matching_12->setStyleSheet(QStringLiteral("background-color: rgb(180, 0, 158);"));
+        label_color_brightPurple = new QLabel(gridWidget_2);
+        label_color_brightPurple->setObjectName(QStringLiteral("label_color_brightPurple"));
+        label_color_brightPurple->setMinimumSize(QSize(12, 12));
+        label_color_brightPurple->setMaximumSize(QSize(12, 12));
+        label_color_brightPurple->setStyleSheet(QStringLiteral("background-color: rgb(180, 0, 158);"));
 
-        gridLayout_2->addWidget(label_color_matching_12, 1, 5, 1, 1);
+        gridLayout_2->addWidget(label_color_brightPurple, 1, 5, 1, 1);
 
-        label_color_matching_15 = new QLabel(gridWidget_2);
-        label_color_matching_15->setObjectName(QStringLiteral("label_color_matching_15"));
-        label_color_matching_15->setMinimumSize(QSize(12, 12));
-        label_color_matching_15->setMaximumSize(QSize(12, 12));
-        label_color_matching_15->setStyleSheet(QStringLiteral("background-color: rgb(204, 204, 204);"));
+        label_color_white = new QLabel(gridWidget_2);
+        label_color_white->setObjectName(QStringLiteral("label_color_white"));
+        label_color_white->setMinimumSize(QSize(12, 12));
+        label_color_white->setMaximumSize(QSize(12, 12));
+        label_color_white->setStyleSheet(QStringLiteral("background-color: rgb(204, 204, 204);"));
 
-        gridLayout_2->addWidget(label_color_matching_15, 0, 7, 1, 1);
+        gridLayout_2->addWidget(label_color_white, 0, 7, 1, 1);
 
-        label_color_matching_16 = new QLabel(gridWidget_2);
-        label_color_matching_16->setObjectName(QStringLiteral("label_color_matching_16"));
-        label_color_matching_16->setMinimumSize(QSize(12, 12));
-        label_color_matching_16->setMaximumSize(QSize(12, 12));
-        label_color_matching_16->setStyleSheet(QStringLiteral("background-color: rgb(242, 242, 242);"));
+        label_color_brightWhite = new QLabel(gridWidget_2);
+        label_color_brightWhite->setObjectName(QStringLiteral("label_color_brightWhite"));
+        label_color_brightWhite->setMinimumSize(QSize(12, 12));
+        label_color_brightWhite->setMaximumSize(QSize(12, 12));
+        label_color_brightWhite->setStyleSheet(QLatin1String("background-color: #ffffff;\n"
+""));
 
-        gridLayout_2->addWidget(label_color_matching_16, 1, 7, 1, 1);
+        gridLayout_2->addWidget(label_color_brightWhite, 1, 7, 1, 1);
 
 
         horizontalLayout_20->addWidget(gridWidget_2);
 
-        label_65 = new QLabel(horizontalWidget_24);
-        label_65->setObjectName(QStringLiteral("label_65"));
+        label_name = new QLabel(horizontalWidget_24);
+        label_name->setObjectName(QStringLiteral("label_name"));
         QFont font;
         font.setFamily(QStringLiteral("Cascadia Code"));
         font.setPointSize(10);
         font.setBold(true);
         font.setWeight(75);
         font.setStyleStrategy(QFont::PreferAntialias);
-        label_65->setFont(font);
-        label_65->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_name->setFont(font);
+        label_name->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        horizontalLayout_20->addWidget(label_65);
+        horizontalLayout_20->addWidget(label_name);
 
 
         horizontalLayout->addWidget(horizontalWidget_24);
@@ -241,23 +242,23 @@ public:
     void retranslateUi(QWidget *colormatch)
     {
         colormatch->setWindowTitle(QApplication::translate("colormatch", "Form", nullptr));
-        label_color_matching->setText(QString());
-        label_color_matching_2->setText(QString());
-        label_color_matching_3->setText(QString());
-        label_color_matching_5->setText(QString());
-        label_color_matching_4->setText(QString());
-        label_color_matching_6->setText(QString());
-        label_color_matching_8->setText(QString());
-        label_color_matching_7->setText(QString());
-        label_color_matching_9->setText(QString());
-        label_color_matching_10->setText(QString());
-        label_color_matching_11->setText(QString());
-        label_color_matching_14->setText(QString());
-        label_color_matching_13->setText(QString());
-        label_color_matching_12->setText(QString());
-        label_color_matching_15->setText(QString());
-        label_color_matching_16->setText(QString());
-        label_65->setText(QApplication::translate("colormatch", "Campbell", nullptr));
+        label_color_black->setText(QString());
+        label_color_brightBlack->setText(QString());
+        label_color_red->setText(QString());
+        label_color_green->setText(QString());
+        label_color_brightRed->setText(QString());
+        label_color_brightGreen->setText(QString());
+        label_color_brightYellow->setText(QString());
+        label_color_yellow->setText(QString());
+        label_color_blue->setText(QString());
+        label_color_brightBlue->setText(QString());
+        label_color_purple->setText(QString());
+        label_color_brightCyan->setText(QString());
+        label_color_cyan->setText(QString());
+        label_color_brightPurple->setText(QString());
+        label_color_white->setText(QString());
+        label_color_brightWhite->setText(QString());
+        label_name->setText(QApplication::translate("colormatch", "Campbell", nullptr));
     } // retranslateUi
 
 };

@@ -2,7 +2,6 @@
 #include "mainwindow.h"
 #include <QApplication>
 //#include "utils.h"
-#include "colormatch.h"
 #include "settingwidget.h"
 int main(int argc, char *argv[])
 {
@@ -10,8 +9,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    //colormatch w;
-    //w.show();
+//    find w;
+//    w.show();
 
     return a.exec();
 }

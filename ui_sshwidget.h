@@ -18,6 +18,8 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
@@ -124,6 +126,7 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *widget_toolbar_s;
     QHBoxLayout *horizontalLayout_6;
+    QToolButton *toolButton_info;
     QToolButton *toolButton_find;
     QToolButton *toolButton_history;
     QToolButton *toolButton_upload;
@@ -151,6 +154,8 @@ public:
     QWidget *scrollAreaWidgetContents_2;
     QHBoxLayout *horizontalLayout_23;
     QTextEdit *textEdit_3;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label;
@@ -680,7 +685,7 @@ public:
         splitter_2->setHandleWidth(0);
         widget_29 = new QWidget(splitter_2);
         widget_29->setObjectName(QStringLiteral("widget_29"));
-        widget_29->setMinimumSize(QSize(0, 414));
+        widget_29->setMinimumSize(QSize(0, 0));
         widget_29->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(widget_29);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -701,22 +706,23 @@ public:
         scrollArea = new QScrollArea(widget_10);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setMinimumSize(QSize(0, 0));
-        scrollArea->setStyleSheet(QStringLiteral(""));
+        scrollArea->setStyleSheet(QStringLiteral("border:0px solid #838486;  "));
         scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1219, 372));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1221, 373));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents->setSizePolicy(sizePolicy);
-        scrollAreaWidgetContents->setMinimumSize(QSize(500, 0));
+        scrollAreaWidgetContents->setMinimumSize(QSize(0, 0));
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 1080));
-        scrollAreaWidgetContents->setStyleSheet(QStringLiteral("border-color: rgba(255, 255, 255, 0);"));
+        scrollAreaWidgetContents->setStyleSheet(QLatin1String("border-color: rgba(255, 255, 255, 0);\n"
+"background:transparent;"));
         verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
@@ -838,6 +844,28 @@ public:
         horizontalLayout_6 = new QHBoxLayout(widget_toolbar_s);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        toolButton_info = new QToolButton(widget_toolbar_s);
+        toolButton_info->setObjectName(QStringLiteral("toolButton_info"));
+        toolButton_info->setFont(font);
+        toolButton_info->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+
+        horizontalLayout_6->addWidget(toolButton_info);
+
         toolButton_find = new QToolButton(widget_toolbar_s);
         toolButton_find->setObjectName(QStringLiteral("toolButton_find"));
         toolButton_find->setFont(font);
@@ -1008,7 +1036,7 @@ public:
         splitter_2->addWidget(widget_29);
         widget_3 = new QWidget(splitter_2);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setMinimumSize(QSize(0, 186));
+        widget_3->setMinimumSize(QSize(0, 0));
         widget_3->setStyleSheet(QLatin1String("#widget_3 {\n"
 "	background-color: rgba(11, 11, 11,0);\n"
 "	border-radius: 10px;\n"
@@ -1160,11 +1188,11 @@ public:
         textEdit_2->setReadOnly(true);
         scrollArea_2 = new QScrollArea(tab_3);
         scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
-        scrollArea_2->setGeometry(QRect(630, 20, 461, 181));
+        scrollArea_2->setGeometry(QRect(580, 160, 461, 61));
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 500, 162));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 500, 89));
         scrollAreaWidgetContents_2->setMinimumSize(QSize(500, 0));
         horizontalLayout_23 = new QHBoxLayout(scrollAreaWidgetContents_2);
         horizontalLayout_23->setObjectName(QStringLiteral("horizontalLayout_23"));
@@ -1174,6 +1202,12 @@ public:
         horizontalLayout_23->addWidget(textEdit_3);
 
         scrollArea_2->setWidget(scrollAreaWidgetContents_2);
+        lineEdit = new QLineEdit(tab_3);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(610, 20, 221, 31));
+        pushButton = new QPushButton(tab_3);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(850, 20, 75, 31));
         tabWidget->addTab(tab_3, QString());
 
         verticalLayout_7->addWidget(tabWidget);
@@ -1246,7 +1280,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(sshwidget);
@@ -1320,12 +1354,13 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+        toolButton_info->setText(QApplication::translate("sshwidget", "\344\277\241\346\201\257", nullptr));
         toolButton_find->setText(QApplication::translate("sshwidget", "\346\237\245\346\211\276", nullptr));
         toolButton_history->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
         toolButton_upload->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
         toolButton_toolkit->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
         toolButton_command->setText(QApplication::translate("sshwidget", "\345\221\275\344\273\244", nullptr));
-        toolButton_conectStats->setText(QApplication::translate("sshwidget", "\350\277\236\346\216\245\345\261\236\346\200\247", nullptr));
+        toolButton_conectStats->setText(QApplication::translate("sshwidget", "\345\261\236\346\200\247", nullptr));
         toolButton_fullScreen->setText(QApplication::translate("sshwidget", "\345\205\250\345\261\217", nullptr));
         toolButton_3->setText(QApplication::translate("sshwidget", "\350\277\230\345\216\237", nullptr));
         toolButton_4->setText(QApplication::translate("sshwidget", "\346\212\223\345\214\205", nullptr));
@@ -1355,6 +1390,7 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111111111111111111111111111111111111111111111111</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p></body></html>", nullptr));
+        pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "11111111111111111111111111", nullptr));
         label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
         label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));

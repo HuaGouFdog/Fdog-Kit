@@ -51,7 +51,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>286</width>
+       <width>400</width>
        <height>50</height>
       </size>
      </property>
@@ -108,7 +108,7 @@ border-radius:5px;</string>
           <number>2</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_color_matching">
+          <widget class="QLabel" name="label_color_black">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -130,7 +130,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_color_matching_2">
+          <widget class="QLabel" name="label_color_brightBlack">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -152,7 +152,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLabel" name="label_color_matching_3">
+          <widget class="QLabel" name="label_color_red">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -174,7 +174,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="2">
-          <widget class="QLabel" name="label_color_matching_5">
+          <widget class="QLabel" name="label_color_green">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -196,7 +196,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="label_color_matching_4">
+          <widget class="QLabel" name="label_color_brightRed">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -218,7 +218,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QLabel" name="label_color_matching_6">
+          <widget class="QLabel" name="label_color_brightGreen">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -240,7 +240,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QLabel" name="label_color_matching_8">
+          <widget class="QLabel" name="label_color_brightYellow">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -262,7 +262,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QLabel" name="label_color_matching_7">
+          <widget class="QLabel" name="label_color_yellow">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -284,7 +284,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="4">
-          <widget class="QLabel" name="label_color_matching_9">
+          <widget class="QLabel" name="label_color_blue">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -306,7 +306,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="4">
-          <widget class="QLabel" name="label_color_matching_10">
+          <widget class="QLabel" name="label_color_brightBlue">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -328,7 +328,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="5">
-          <widget class="QLabel" name="label_color_matching_11">
+          <widget class="QLabel" name="label_color_purple">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -350,7 +350,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="6">
-          <widget class="QLabel" name="label_color_matching_14">
+          <widget class="QLabel" name="label_color_brightCyan">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -372,7 +372,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="6">
-          <widget class="QLabel" name="label_color_matching_13">
+          <widget class="QLabel" name="label_color_cyan">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -394,7 +394,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="5">
-          <widget class="QLabel" name="label_color_matching_12">
+          <widget class="QLabel" name="label_color_brightPurple">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -416,7 +416,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="0" column="7">
-          <widget class="QLabel" name="label_color_matching_15">
+          <widget class="QLabel" name="label_color_white">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -438,7 +438,7 @@ border-radius:5px;</string>
           </widget>
          </item>
          <item row="1" column="7">
-          <widget class="QLabel" name="label_color_matching_16">
+          <widget class="QLabel" name="label_color_brightWhite">
            <property name="minimumSize">
             <size>
              <width>12</width>
@@ -452,7 +452,8 @@ border-radius:5px;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(242, 242, 242);</string>
+            <string notr="true">background-color: #ffffff;
+</string>
            </property>
            <property name="text">
             <string/>
@@ -463,7 +464,7 @@ border-radius:5px;</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_65">
+       <widget class="QLabel" name="label_name">
         <property name="font">
          <font>
           <family>Cascadia Code</family>

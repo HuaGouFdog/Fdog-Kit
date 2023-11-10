@@ -66,5 +66,14 @@
         <file>lib/diann2.png</file>
         <file>lib/diann3.png</file>
         <file>lib/diann4.png</file>
+        <file>lib/down.png</file>
+        <file>lib/icon01.png</file>
+        <file>lib/icon2.png</file>
+        <file>lib/icon3.png</file>
+        <file>lib/icon6.png</file>
+        <file>lib/icon7.png</file>
+        <file>lib/icon8.png</file>
+        <file>lib/icon9.png</file>
+        <file>lib/icon10.png</file>
     </qresource>
 </RCC>

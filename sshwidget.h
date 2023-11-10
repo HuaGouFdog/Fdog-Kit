@@ -11,6 +11,8 @@
 #include <QScrollBar>
 #include <QTextEdit>
 #include <QClipboard>
+#include "findwidget.h"
+
 class CustomTextEdit : public QTextEdit {
     Q_OBJECT
 public:
@@ -230,6 +232,7 @@ private:
     QScrollBar *scrollBar_textEdit = NULL;
     QScrollBar *scrollBar_textEdit_s = NULL;
     CustomTextEdit *textEdit_s;
+    findwidget * fwidget = NULL;
 
     QString lastCommondS; //上一条命令
     QString ssh_path; //当前工作目录
@@ -238,6 +241,9 @@ private:
 
     int lineCount = 80;    //当前终端行数
     int columnCount = 24;  //当前终端列数
+
+    QTextCursor cursor_s;
+    QTextCharFormat originalFormat_s;
 
     int a = 0;
 };

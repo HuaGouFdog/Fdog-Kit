@@ -474,7 +474,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="page">
          <property name="styleSheet">
@@ -651,6 +651,121 @@ background-color: rgba(255, 255, 255, 0);</string>
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_9"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="verticalWidget_25" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>70</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>70</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#verticalWidget_25{background-color: rgba(66, 66, 66, 100);
+border-radius: 5px;}</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <widget class="QWidget" name="horizontalWidget_17" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_28">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_47">
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(255, 255, 255, 0);</string>
+                  </property>
+                  <property name="text">
+                   <string>托盘区显示</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_48">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                  </property>
+                  <property name="text">
+                   <string>关闭后，托盘区不显示应用</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_31">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>431</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_29"/>
              </item>
             </layout>
            </widget>
@@ -2813,7 +2928,7 @@ QFontComboBox QAbstractItemView{
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_27">
+         <layout class="QVBoxLayout" name="verticalLayout_18">
           <property name="spacing">
            <number>10</number>
           </property>
@@ -2874,660 +2989,915 @@ QFontComboBox QAbstractItemView{
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="verticalWidget_15" native="true">
+           <widget class="QScrollArea" name="scrollArea_2">
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
+              <height>515</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_15{background-color: rgba(66, 66, 66, 100);
-border-radius: 5px;}</string>
+             <string notr="true">QScrollArea {border:0px solid #838486;  }
+
+QScrollBar:vertical {
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}
+
+#verticalWidget_15,#verticalWidget_16,
+#verticalWidget_17,#verticalWidget_18,
+#verticalWidget_19,#verticalWidget_20,
+#verticalWidget_21,#verticalWidget_22,
+#verticalWidget_23,#verticalWidget_24{background-color: rgba(66, 66, 66, 0);
+border-radius: 5px;}
+
+#verticalWidget_15:hover,#verticalWidget_16:hover,
+#verticalWidget_17:hover,#verticalWidget_18:hover,
+#verticalWidget_19:hover,#verticalWidget_20:hover,
+#verticalWidget_21:hover,#verticalWidget_22:hover,
+#verticalWidget_23:hover,#verticalWidget_24:hover{
+	
+	background-color: rgba(223, 223, 223,50);
+	border-radius: 5px;}</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_25">
-             <property name="spacing">
-              <number>20</number>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>664</width>
+               <height>800</height>
+              </rect>
              </property>
-             <property name="leftMargin">
-              <number>9</number>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>800</height>
+              </size>
              </property>
-             <property name="topMargin">
-              <number>5</number>
-             </property>
-             <property name="bottomMargin">
-              <number>5</number>
-             </property>
-             <item>
-              <widget class="QWidget" name="horizontalWidget_24" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>286</width>
-                 <height>50</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 0, 0);
+             <layout class="QVBoxLayout" name="verticalLayout_19">
+              <item>
+               <widget class="QWidget" name="verticalWidget_15" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_25">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_24" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>286</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(0, 0, 0);
 border-radius:5px;</string>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_20">
-                <property name="spacing">
-                 <number>10</number>
-                </property>
-                <property name="leftMargin">
-                 <number>10</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>10</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QWidget" name="gridWidget_2" native="true">
-                  <property name="minimumSize">
-                   <size>
-                    <width>130</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QLabel{
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_20">
+                    <property name="spacing">
+                     <number>10</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>10</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>10</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QWidget" name="gridWidget_2" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>130</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel{
 	border-radius:3px;
 }</string>
-                  </property>
-                  <layout class="QGridLayout" name="gridLayout_2">
-                   <property name="topMargin">
-                    <number>2</number>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_2">
+                       <property name="topMargin">
+                        <number>2</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>1</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>2</number>
+                       </property>
+                       <property name="spacing">
+                        <number>2</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_color_matching">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(12, 12, 12);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_color_matching_2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(118, 118, 118);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QLabel" name="label_color_matching_3">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(197, 15, 31);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QLabel" name="label_color_matching_5">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(19, 161, 14);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QLabel" name="label_color_matching_4">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(231, 72, 86);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="2">
+                        <widget class="QLabel" name="label_color_matching_6">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(22, 198, 12);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="3">
+                        <widget class="QLabel" name="label_color_matching_8">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(249, 241, 165);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="3">
+                        <widget class="QLabel" name="label_color_matching_7">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(193, 156, 0);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="4">
+                        <widget class="QLabel" name="label_color_matching_9">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(0, 55, 218);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="4">
+                        <widget class="QLabel" name="label_color_matching_10">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(59, 120, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="5">
+                        <widget class="QLabel" name="label_color_matching_11">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(136, 23, 152);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="6">
+                        <widget class="QLabel" name="label_color_matching_14">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(97, 214, 214);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="6">
+                        <widget class="QLabel" name="label_color_matching_13">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(58, 150, 221);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="5">
+                        <widget class="QLabel" name="label_color_matching_12">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(180, 0, 158);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="7">
+                        <widget class="QLabel" name="label_color_matching_15">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(204, 204, 204);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="7">
+                        <widget class="QLabel" name="label_color_matching_16">
+                         <property name="minimumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>12</width>
+                           <height>12</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(242, 242, 242);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_65">
+                      <property name="font">
+                       <font>
+                        <family>Cascadia Code</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Campbell</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_66">
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
                    </property>
-                   <property name="rightMargin">
-                    <number>1</number>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(255, 255, 255);</string>
                    </property>
-                   <property name="bottomMargin">
-                    <number>2</number>
+                   <property name="text">
+                    <string>默认</string>
                    </property>
-                   <property name="spacing">
-                    <number>2</number>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_64">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
                    </property>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_color_matching">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(12, 12, 12);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_color_matching_2">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(118, 118, 118);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLabel" name="label_color_matching_3">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(197, 15, 31);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QLabel" name="label_color_matching_5">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(19, 161, 14);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QLabel" name="label_color_matching_4">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(231, 72, 86);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="2">
-                    <widget class="QLabel" name="label_color_matching_6">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(22, 198, 12);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="3">
-                    <widget class="QLabel" name="label_color_matching_8">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(249, 241, 165);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="3">
-                    <widget class="QLabel" name="label_color_matching_7">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(193, 156, 0);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="4">
-                    <widget class="QLabel" name="label_color_matching_9">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(0, 55, 218);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="4">
-                    <widget class="QLabel" name="label_color_matching_10">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(59, 120, 255);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="5">
-                    <widget class="QLabel" name="label_color_matching_11">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(136, 23, 152);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="6">
-                    <widget class="QLabel" name="label_color_matching_14">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(97, 214, 214);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="6">
-                    <widget class="QLabel" name="label_color_matching_13">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(58, 150, 221);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="5">
-                    <widget class="QLabel" name="label_color_matching_12">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(180, 0, 158);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="7">
-                    <widget class="QLabel" name="label_color_matching_15">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(204, 204, 204);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="7">
-                    <widget class="QLabel" name="label_color_matching_16">
-                     <property name="minimumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>12</width>
-                       <height>12</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(242, 242, 242);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_65">
-                  <property name="font">
-                   <font>
-                    <family>Cascadia Code</family>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>Campbell</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_66">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
-               </property>
-               <property name="text">
-                <string>默认</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_64">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_16" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_26">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_17" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_27">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_18" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_28">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_19" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_29">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_20" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_30">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_21" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_31">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_22" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_32">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_23" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_33">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_24" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_34">
+                 <property name="spacing">
+                  <number>20</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
            </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_16" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_16{background-color: rgba(66, 66, 66, 100);
-border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_26">
-             <property name="spacing">
-              <number>20</number>
-             </property>
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <property name="topMargin">
-              <number>5</number>
-             </property>
-             <property name="bottomMargin">
-              <number>5</number>
-             </property>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_17" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_17{background-color: rgba(66, 66, 66, 100);
-border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_27">
-             <property name="spacing">
-              <number>20</number>
-             </property>
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <property name="topMargin">
-              <number>5</number>
-             </property>
-             <property name="bottomMargin">
-              <number>5</number>
-             </property>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_18" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_18{background-color: rgba(66, 66, 66, 100);
-border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_28">
-             <property name="spacing">
-              <number>20</number>
-             </property>
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <property name="topMargin">
-              <number>5</number>
-             </property>
-             <property name="bottomMargin">
-              <number>5</number>
-             </property>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_19" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_19{background-color: rgba(66, 66, 66, 100);
-border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_29">
-             <property name="spacing">
-              <number>20</number>
-             </property>
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <property name="topMargin">
-              <number>5</number>
-             </property>
-             <property name="bottomMargin">
-              <number>5</number>
-             </property>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>141</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -3645,7 +4015,7 @@ border-radius: 5px;}</string>
            <rect>
             <x>20</x>
             <y>60</y>
-            <width>601</width>
+            <width>681</width>
             <height>70</height>
            </rect>
           </property>
@@ -3709,7 +4079,7 @@ border-radius: 5px;}</string>
                  <string notr="true">color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="text">
-                 <string>鼠标右键</string>
+                 <string>鼠标右键单击</string>
                 </property>
                </widget>
               </item>
@@ -3738,7 +4108,7 @@ border-radius: 5px;}</string>
                  <string notr="true">color: rgba(223, 223, 223, 150);</string>
                 </property>
                 <property name="text">
-                 <string>设置鼠标右键行为</string>
+                 <string>设置鼠标右键单击行为</string>
                 </property>
                </widget>
               </item>
@@ -3759,33 +4129,16 @@ border-radius: 5px;}</string>
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="label_61">
-             <property name="font">
-              <font>
-               <family>OPPOSans B</family>
-               <pointsize>10</pointsize>
-               <stylestrategy>PreferAntialias</stylestrategy>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>行</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBox_4">
+            <widget class="QComboBox" name="comboBox_6">
              <property name="minimumSize">
               <size>
-               <width>50</width>
+               <width>100</width>
                <height>25</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>50</width>
+               <width>100</width>
                <height>25</height>
               </size>
              </property>
@@ -3793,13 +4146,117 @@ border-radius: 5px;}</string>
               <font>
                <family>OPPOSans B</family>
                <pointsize>10</pointsize>
-               <weight>50</weight>
-               <bold>false</bold>
                <stylestrategy>PreferAntialias</stylestrategy>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">QSpinBox{
+              <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid #52DCFE;
+	border-radius:3px;
+	background:transparent;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #52DCFE;
+	color:#ffffff;
+	background-color:#000000;
+	selection-background-color:#52DCFE;
+}</string>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>复制/粘贴</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>弹出菜单</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_61">
+          <property name="geometry">
+           <rect>
+            <x>420</x>
+            <y>310</y>
+            <width>13</width>
+            <height>52</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>行</string>
+          </property>
+         </widget>
+         <widget class="QSpinBox" name="spinBox_4">
+          <property name="geometry">
+           <rect>
+            <x>439</x>
+            <y>323</y>
+            <width>50</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
 	color:#ffffff;
 	border:1px solid #52DCFE;
 	border-radius:3px;
@@ -3825,53 +4282,219 @@ QSpinBox QAbstractItemView{
 	background-color:#000000;
 	selection-background-color:#52DCFE;
 }</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_62">
+          <property name="geometry">
+           <rect>
+            <x>501</x>
+            <y>410</y>
+            <width>13</width>
+            <height>52</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>列</string>
+          </property>
+         </widget>
+         <widget class="QSpinBox" name="spinBox_5">
+          <property name="geometry">
+           <rect>
+            <x>520</x>
+            <y>423</y>
+            <width>50</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color:#ffffff;
+	border:1px solid #52DCFE;
+	border-radius:3px;
+	background:transparent;
+}
+QSpinBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QSpinBox::drop-down{
+	background:transparent;
+}
+
+
+QSpinBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QSpinBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #52DCFE;
+	color:#ffffff;
+	background-color:#000000;
+	selection-background-color:#52DCFE;
+}</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="verticalWidget_26" native="true">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>150</y>
+            <width>681</width>
+            <height>70</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#verticalWidget_26{background-color: rgba(66, 66, 66, 100);
+border-radius: 5px;}</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_35">
+           <item>
+            <widget class="QWidget" name="horizontalWidget_25" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>40</height>
+              </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>40</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_30">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_63">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>鼠标滚轮单击</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_64">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                </property>
+                <property name="text">
+                 <string>设置鼠标滚轮单击行为</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <spacer name="horizontalSpacer_62">
+            <spacer name="horizontalSpacer_63">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>5</width>
+               <width>352</width>
                <height>20</height>
               </size>
              </property>
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="label_62">
-             <property name="font">
-              <font>
-               <family>OPPOSans B</family>
-               <pointsize>10</pointsize>
-               <stylestrategy>PreferAntialias</stylestrategy>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>列</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBox_5">
+            <widget class="QComboBox" name="comboBox_8">
              <property name="minimumSize">
               <size>
-               <width>50</width>
+               <width>100</width>
                <height>25</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>50</width>
+               <width>100</width>
                <height>25</height>
               </size>
              </property>
@@ -3879,32 +4502,35 @@ QSpinBox QAbstractItemView{
               <font>
                <family>OPPOSans B</family>
                <pointsize>10</pointsize>
-               <weight>50</weight>
-               <bold>false</bold>
                <stylestrategy>PreferAntialias</stylestrategy>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">QSpinBox{
+              <string notr="true">QComboBox{
 	color:#ffffff;
 	border:1px solid #52DCFE;
 	border-radius:3px;
 	background:transparent;
 }
-QSpinBox:disabled{
+QComboBox:disabled{
 	border:1px solid gray;
 	color:gray;
 }
 
-QSpinBox::drop-down{
+QComboBox::drop-down{
 	background:transparent;
 }
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
 
 
-QSpinBox::down-arrow:enabled{
+QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
-QSpinBox QAbstractItemView{
+QComboBox QAbstractItemView{
 	outline:0px solid gray;
 	border:1px solid #52DCFE;
 	color:#ffffff;
@@ -3912,9 +4538,286 @@ QSpinBox QAbstractItemView{
 	selection-background-color:#52DCFE;
 }</string>
              </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>复制/粘贴</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>弹出菜单</string>
+              </property>
+             </item>
             </widget>
            </item>
           </layout>
+         </widget>
+         <widget class="QWidget" name="verticalWidget_27" native="true">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>240</y>
+            <width>681</width>
+            <height>70</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#verticalWidget_27{background-color: rgba(66, 66, 66, 100);
+border-radius: 5px;}</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_36">
+           <item>
+            <widget class="QWidget" name="horizontalWidget_26" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>40</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_31">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_67">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>启用背景图片</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_68">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                </property>
+                <property name="text">
+                 <string>开启后将优先使用自定义背景作为终端背景</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_65">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>352</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox_9">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>10</pointsize>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid #52DCFE;
+	border-radius:3px;
+	background:transparent;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #52DCFE;
+	color:#ffffff;
+	background-color:#000000;
+	selection-background-color:#52DCFE;
+}</string>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>复制/粘贴</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>弹出菜单</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_69">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>340</y>
+            <width>61</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>当前背景</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_70">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>370</y>
+            <width>61</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>添加图片</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_71">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>400</y>
+            <width>81</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>使用纯色背景</string>
+          </property>
          </widget>
         </widget>
         <widget class="QWidget" name="page_7">
@@ -4037,8 +4940,8 @@ QScrollBar::up-arrow:vertical {
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-276</y>
-               <width>631</width>
+               <y>0</y>
+               <width>704</width>
                <height>830</height>
               </rect>
              </property>

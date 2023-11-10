@@ -1346,7 +1346,7 @@ QToolButton:hover {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>414</height>
+           <height>0</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -1413,7 +1413,7 @@ QToolButton:hover {
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">border:0px solid #838486;  </string>
                   </property>
                   <property name="verticalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1432,8 +1432,8 @@ QToolButton:hover {
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1219</width>
-                     <height>372</height>
+                     <width>1221</width>
+                     <height>373</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1444,7 +1444,7 @@ QToolButton:hover {
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>500</width>
+                     <width>0</width>
                      <height>0</height>
                     </size>
                    </property>
@@ -1455,7 +1455,8 @@ QToolButton:hover {
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border-color: rgba(255, 255, 255, 0);</string>
+                    <string notr="true">border-color: rgba(255, 255, 255, 0);
+background:transparent;</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_8">
                     <property name="spacing">
@@ -1680,6 +1681,38 @@ border-radius: 10px;</string>
                     <number>0</number>
                    </property>
                    <item>
+                    <widget class="QToolButton" name="toolButton_info">
+                     <property name="font">
+                      <font>
+                       <family>OPPOSans B</family>
+                       <pointsize>10</pointsize>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>信息</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
                     <widget class="QToolButton" name="toolButton_find">
                      <property name="font">
                       <font>
@@ -1867,7 +1900,7 @@ QToolButton:hover {
 }</string>
                      </property>
                      <property name="text">
-                      <string>连接属性</string>
+                      <string>属性</string>
                      </property>
                     </widget>
                    </item>
@@ -1931,7 +1964,7 @@ QToolButton:hover {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>186</height>
+           <height>0</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -2028,7 +2061,7 @@ QTabBar QToolButton:hover {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -2198,10 +2231,10 @@ p, li { white-space: pre-wrap; }
              <widget class="QScrollArea" name="scrollArea_2">
               <property name="geometry">
                <rect>
-                <x>630</x>
-                <y>20</y>
+                <x>580</x>
+                <y>160</y>
                 <width>461</width>
-                <height>181</height>
+                <height>61</height>
                </rect>
               </property>
               <property name="widgetResizable">
@@ -2213,7 +2246,7 @@ p, li { white-space: pre-wrap; }
                  <x>0</x>
                  <y>0</y>
                  <width>500</width>
-                 <height>162</height>
+                 <height>89</height>
                 </rect>
                </property>
                <property name="minimumSize">
@@ -2245,6 +2278,29 @@ p, li { white-space: pre-wrap; }
                 </item>
                </layout>
               </widget>
+             </widget>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>610</x>
+                <y>20</y>
+                <width>221</width>
+                <height>31</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton">
+              <property name="geometry">
+               <rect>
+                <x>850</x>
+                <y>20</y>
+                <width>75</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>PushButton</string>
+              </property>
              </widget>
             </widget>
            </widget>

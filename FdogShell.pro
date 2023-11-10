@@ -40,7 +40,9 @@ SOURCES += \
     historyconnectwidget.cpp \
     keywidget.cpp \
     utils.cpp \
-    colormatch.cpp
+    colormatch.cpp \
+    findwidget.cpp \
+    aboutwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -58,7 +60,9 @@ HEADERS += \
     historyconnectwidget.h \
     keywidget.h \
     utils.h \
-    colormatch.h
+    colormatch.h \
+    findwidget.h \
+    aboutwidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -71,7 +75,9 @@ FORMS += \
     smalltoolwidget.ui \
     historyconnectwidget.ui \
     keywidget.ui \
-    colormatch.ui
+    colormatch.ui \
+    findwidget.ui \
+    aboutwidget.ui
 
 RESOURCES += \
     lib.qrc

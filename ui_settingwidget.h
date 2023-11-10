@@ -1,4 +1,4 @@
-﻿/********************************************************************************
+/********************************************************************************
 ** Form generated from reading UI file 'settingwidget.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.10.0
@@ -62,6 +62,14 @@ public:
     QLabel *label_6;
     QSpacerItem *horizontalSpacer_2;
     QVBoxLayout *verticalLayout_9;
+    QWidget *verticalWidget_25;
+    QHBoxLayout *horizontalLayout_18;
+    QWidget *horizontalWidget_17;
+    QVBoxLayout *verticalLayout_28;
+    QLabel *label_47;
+    QLabel *label_48;
+    QSpacerItem *horizontalSpacer_31;
+    QVBoxLayout *verticalLayout_29;
     QWidget *verticalWidget_2;
     QHBoxLayout *horizontalLayout_4;
     QWidget *horizontalWidget_3;
@@ -168,10 +176,13 @@ public:
     QFontComboBox *fontComboBox_2;
     QSpacerItem *verticalSpacer_5;
     QWidget *page_4;
-    QVBoxLayout *verticalLayout_27;
+    QVBoxLayout *verticalLayout_18;
     QWidget *horizontalWidget_8;
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_12;
+    QScrollArea *scrollArea_2;
+    QWidget *scrollAreaWidgetContents_2;
+    QVBoxLayout *verticalLayout_19;
     QWidget *verticalWidget_15;
     QHBoxLayout *horizontalLayout_25;
     QWidget *horizontalWidget_24;
@@ -205,7 +216,17 @@ public:
     QHBoxLayout *horizontalLayout_28;
     QWidget *verticalWidget_19;
     QHBoxLayout *horizontalLayout_29;
-    QSpacerItem *verticalSpacer_6;
+    QWidget *verticalWidget_20;
+    QHBoxLayout *horizontalLayout_30;
+    QWidget *verticalWidget_21;
+    QHBoxLayout *horizontalLayout_31;
+    QWidget *verticalWidget_22;
+    QHBoxLayout *horizontalLayout_32;
+    QWidget *verticalWidget_23;
+    QHBoxLayout *horizontalLayout_33;
+    QWidget *verticalWidget_24;
+    QHBoxLayout *horizontalLayout_34;
+    QSpacerItem *verticalSpacer_7;
     QWidget *page_5;
     QWidget *horizontalWidget_9;
     QHBoxLayout *horizontalLayout_10;
@@ -615,6 +636,54 @@ public:
 
 
         verticalLayout_6->addWidget(verticalWidget);
+
+        verticalWidget_25 = new QWidget(page);
+        verticalWidget_25->setObjectName(QStringLiteral("verticalWidget_25"));
+        verticalWidget_25->setMinimumSize(QSize(0, 70));
+        verticalWidget_25->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_25->setStyleSheet(QLatin1String("#verticalWidget_25{background-color: rgba(66, 66, 66, 100);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_18 = new QHBoxLayout(verticalWidget_25);
+        horizontalLayout_18->setObjectName(QStringLiteral("horizontalLayout_18"));
+        horizontalWidget_17 = new QWidget(verticalWidget_25);
+        horizontalWidget_17->setObjectName(QStringLiteral("horizontalWidget_17"));
+        horizontalWidget_17->setMinimumSize(QSize(0, 40));
+        horizontalWidget_17->setMaximumSize(QSize(16777215, 40));
+        horizontalWidget_17->setStyleSheet(QStringLiteral(""));
+        verticalLayout_28 = new QVBoxLayout(horizontalWidget_17);
+        verticalLayout_28->setSpacing(0);
+        verticalLayout_28->setObjectName(QStringLiteral("verticalLayout_28"));
+        verticalLayout_28->setContentsMargins(0, 0, 0, 0);
+        label_47 = new QLabel(horizontalWidget_17);
+        label_47->setObjectName(QStringLiteral("label_47"));
+        label_47->setFont(font);
+        label_47->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"));
+
+        verticalLayout_28->addWidget(label_47);
+
+        label_48 = new QLabel(horizontalWidget_17);
+        label_48->setObjectName(QStringLiteral("label_48"));
+        label_48->setMaximumSize(QSize(16777215, 20));
+        label_48->setFont(font);
+        label_48->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
+
+        verticalLayout_28->addWidget(label_48);
+
+
+        horizontalLayout_18->addWidget(horizontalWidget_17);
+
+        horizontalSpacer_31 = new QSpacerItem(431, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_18->addItem(horizontalSpacer_31);
+
+        verticalLayout_29 = new QVBoxLayout();
+        verticalLayout_29->setObjectName(QStringLiteral("verticalLayout_29"));
+
+        horizontalLayout_18->addLayout(verticalLayout_29);
+
+
+        verticalLayout_6->addWidget(verticalWidget_25);
 
         verticalWidget_2 = new QWidget(page);
         verticalWidget_2->setObjectName(QStringLiteral("verticalWidget_2"));
@@ -1570,10 +1639,10 @@ public:
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
         page_4->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
-        verticalLayout_27 = new QVBoxLayout(page_4);
-        verticalLayout_27->setSpacing(10);
-        verticalLayout_27->setObjectName(QStringLiteral("verticalLayout_27"));
-        verticalLayout_27->setContentsMargins(20, 10, 60, 10);
+        verticalLayout_18 = new QVBoxLayout(page_4);
+        verticalLayout_18->setSpacing(10);
+        verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
+        verticalLayout_18->setContentsMargins(20, 10, 60, 10);
         horizontalWidget_8 = new QWidget(page_4);
         horizontalWidget_8->setObjectName(QStringLiteral("horizontalWidget_8"));
         horizontalWidget_8->setMinimumSize(QSize(0, 40));
@@ -1589,14 +1658,86 @@ public:
         horizontalLayout_9->addWidget(label_12);
 
 
-        verticalLayout_27->addWidget(horizontalWidget_8);
+        verticalLayout_18->addWidget(horizontalWidget_8);
 
-        verticalWidget_15 = new QWidget(page_4);
+        scrollArea_2 = new QScrollArea(page_4);
+        scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
+        scrollArea_2->setMinimumSize(QSize(0, 515));
+        scrollArea_2->setStyleSheet(QString::fromUtf8("QScrollArea {border:0px solid #838486;  }\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    width: 10px;\n"
+"	background-color: rgba(0, 41, 69, 0);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 10px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+""
+                        "    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"\n"
+"#verticalWidget_15,#verticalWidget_16,\n"
+"#verticalWidget_17,#verticalWidget_18,\n"
+"#verticalWidget_19,#verticalWidget_20,\n"
+"#verticalWidget_21,#verticalWidget_22,\n"
+"#verticalWidget_23,#verticalWidget_24{background-color: rgba(66, 66, 66, 0);\n"
+"border-radius: 5px;}\n"
+"\n"
+"#verticalWidget_15:hover,#verticalWidget_16:hover,\n"
+"#verticalWidget_17:hover,#verticalWidget_18:hover,\n"
+"#verticalWidget_19:hover,#verticalWidget_20:hover,\n"
+"#verticalWidget_21:hover,#verticalWidget_22:hover,\n"
+"#verticalWidget_23:hover,#verticalWidget_24:hover{\n"
+"	\n"
+"	background-color: rgba(223, 223, 223,50);\n"
+"	border-radius: 5px;}"));
+        scrollArea_2->setWidgetResizable(true);
+        scrollAreaWidgetContents_2 = new QWidget();
+        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 664, 800));
+        scrollAreaWidgetContents_2->setMinimumSize(QSize(0, 800));
+        verticalLayout_19 = new QVBoxLayout(scrollAreaWidgetContents_2);
+        verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
+        verticalWidget_15 = new QWidget(scrollAreaWidgetContents_2);
         verticalWidget_15->setObjectName(QStringLiteral("verticalWidget_15"));
         verticalWidget_15->setMinimumSize(QSize(0, 70));
         verticalWidget_15->setMaximumSize(QSize(16777215, 70));
-        verticalWidget_15->setStyleSheet(QLatin1String("#verticalWidget_15{background-color: rgba(66, 66, 66, 100);\n"
-"border-radius: 5px;}"));
+        verticalWidget_15->setStyleSheet(QStringLiteral(""));
         horizontalLayout_25 = new QHBoxLayout(verticalWidget_15);
         horizontalLayout_25->setSpacing(20);
         horizontalLayout_25->setObjectName(QStringLiteral("horizontalLayout_25"));
@@ -1781,63 +1922,123 @@ public:
         horizontalLayout_25->addItem(horizontalSpacer_64);
 
 
-        verticalLayout_27->addWidget(verticalWidget_15);
+        verticalLayout_19->addWidget(verticalWidget_15);
 
-        verticalWidget_16 = new QWidget(page_4);
+        verticalWidget_16 = new QWidget(scrollAreaWidgetContents_2);
         verticalWidget_16->setObjectName(QStringLiteral("verticalWidget_16"));
         verticalWidget_16->setMinimumSize(QSize(0, 70));
         verticalWidget_16->setMaximumSize(QSize(16777215, 70));
-        verticalWidget_16->setStyleSheet(QLatin1String("#verticalWidget_16{background-color: rgba(66, 66, 66, 100);\n"
-"border-radius: 5px;}"));
+        verticalWidget_16->setStyleSheet(QStringLiteral(""));
         horizontalLayout_26 = new QHBoxLayout(verticalWidget_16);
         horizontalLayout_26->setSpacing(20);
         horizontalLayout_26->setObjectName(QStringLiteral("horizontalLayout_26"));
         horizontalLayout_26->setContentsMargins(9, 5, -1, 5);
 
-        verticalLayout_27->addWidget(verticalWidget_16);
+        verticalLayout_19->addWidget(verticalWidget_16);
 
-        verticalWidget_17 = new QWidget(page_4);
+        verticalWidget_17 = new QWidget(scrollAreaWidgetContents_2);
         verticalWidget_17->setObjectName(QStringLiteral("verticalWidget_17"));
         verticalWidget_17->setMinimumSize(QSize(0, 70));
         verticalWidget_17->setMaximumSize(QSize(16777215, 70));
-        verticalWidget_17->setStyleSheet(QLatin1String("#verticalWidget_17{background-color: rgba(66, 66, 66, 100);\n"
-"border-radius: 5px;}"));
+        verticalWidget_17->setStyleSheet(QStringLiteral(""));
         horizontalLayout_27 = new QHBoxLayout(verticalWidget_17);
         horizontalLayout_27->setSpacing(20);
         horizontalLayout_27->setObjectName(QStringLiteral("horizontalLayout_27"));
         horizontalLayout_27->setContentsMargins(9, 5, -1, 5);
 
-        verticalLayout_27->addWidget(verticalWidget_17);
+        verticalLayout_19->addWidget(verticalWidget_17);
 
-        verticalWidget_18 = new QWidget(page_4);
+        verticalWidget_18 = new QWidget(scrollAreaWidgetContents_2);
         verticalWidget_18->setObjectName(QStringLiteral("verticalWidget_18"));
         verticalWidget_18->setMinimumSize(QSize(0, 70));
         verticalWidget_18->setMaximumSize(QSize(16777215, 70));
-        verticalWidget_18->setStyleSheet(QLatin1String("#verticalWidget_18{background-color: rgba(66, 66, 66, 100);\n"
-"border-radius: 5px;}"));
+        verticalWidget_18->setStyleSheet(QStringLiteral(""));
         horizontalLayout_28 = new QHBoxLayout(verticalWidget_18);
         horizontalLayout_28->setSpacing(20);
         horizontalLayout_28->setObjectName(QStringLiteral("horizontalLayout_28"));
         horizontalLayout_28->setContentsMargins(9, 5, -1, 5);
 
-        verticalLayout_27->addWidget(verticalWidget_18);
+        verticalLayout_19->addWidget(verticalWidget_18);
 
-        verticalWidget_19 = new QWidget(page_4);
+        verticalWidget_19 = new QWidget(scrollAreaWidgetContents_2);
         verticalWidget_19->setObjectName(QStringLiteral("verticalWidget_19"));
         verticalWidget_19->setMinimumSize(QSize(0, 70));
         verticalWidget_19->setMaximumSize(QSize(16777215, 70));
-        verticalWidget_19->setStyleSheet(QLatin1String("#verticalWidget_19{background-color: rgba(66, 66, 66, 100);\n"
-"border-radius: 5px;}"));
+        verticalWidget_19->setStyleSheet(QStringLiteral(""));
         horizontalLayout_29 = new QHBoxLayout(verticalWidget_19);
         horizontalLayout_29->setSpacing(20);
         horizontalLayout_29->setObjectName(QStringLiteral("horizontalLayout_29"));
         horizontalLayout_29->setContentsMargins(9, 5, -1, 5);
 
-        verticalLayout_27->addWidget(verticalWidget_19);
+        verticalLayout_19->addWidget(verticalWidget_19);
 
-        verticalSpacer_6 = new QSpacerItem(20, 141, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalWidget_20 = new QWidget(scrollAreaWidgetContents_2);
+        verticalWidget_20->setObjectName(QStringLiteral("verticalWidget_20"));
+        verticalWidget_20->setMinimumSize(QSize(0, 70));
+        verticalWidget_20->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_20->setStyleSheet(QStringLiteral(""));
+        horizontalLayout_30 = new QHBoxLayout(verticalWidget_20);
+        horizontalLayout_30->setSpacing(20);
+        horizontalLayout_30->setObjectName(QStringLiteral("horizontalLayout_30"));
+        horizontalLayout_30->setContentsMargins(9, 5, -1, 5);
 
-        verticalLayout_27->addItem(verticalSpacer_6);
+        verticalLayout_19->addWidget(verticalWidget_20);
+
+        verticalWidget_21 = new QWidget(scrollAreaWidgetContents_2);
+        verticalWidget_21->setObjectName(QStringLiteral("verticalWidget_21"));
+        verticalWidget_21->setMinimumSize(QSize(0, 70));
+        verticalWidget_21->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_21->setStyleSheet(QStringLiteral(""));
+        horizontalLayout_31 = new QHBoxLayout(verticalWidget_21);
+        horizontalLayout_31->setSpacing(20);
+        horizontalLayout_31->setObjectName(QStringLiteral("horizontalLayout_31"));
+        horizontalLayout_31->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_19->addWidget(verticalWidget_21);
+
+        verticalWidget_22 = new QWidget(scrollAreaWidgetContents_2);
+        verticalWidget_22->setObjectName(QStringLiteral("verticalWidget_22"));
+        verticalWidget_22->setMinimumSize(QSize(0, 70));
+        verticalWidget_22->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_22->setStyleSheet(QStringLiteral(""));
+        horizontalLayout_32 = new QHBoxLayout(verticalWidget_22);
+        horizontalLayout_32->setSpacing(20);
+        horizontalLayout_32->setObjectName(QStringLiteral("horizontalLayout_32"));
+        horizontalLayout_32->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_19->addWidget(verticalWidget_22);
+
+        verticalWidget_23 = new QWidget(scrollAreaWidgetContents_2);
+        verticalWidget_23->setObjectName(QStringLiteral("verticalWidget_23"));
+        verticalWidget_23->setMinimumSize(QSize(0, 70));
+        verticalWidget_23->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_23->setStyleSheet(QStringLiteral(""));
+        horizontalLayout_33 = new QHBoxLayout(verticalWidget_23);
+        horizontalLayout_33->setSpacing(20);
+        horizontalLayout_33->setObjectName(QStringLiteral("horizontalLayout_33"));
+        horizontalLayout_33->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_19->addWidget(verticalWidget_23);
+
+        verticalWidget_24 = new QWidget(scrollAreaWidgetContents_2);
+        verticalWidget_24->setObjectName(QStringLiteral("verticalWidget_24"));
+        verticalWidget_24->setMinimumSize(QSize(0, 70));
+        verticalWidget_24->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_24->setStyleSheet(QStringLiteral(""));
+        horizontalLayout_34 = new QHBoxLayout(verticalWidget_24);
+        horizontalLayout_34->setSpacing(20);
+        horizontalLayout_34->setObjectName(QStringLiteral("horizontalLayout_34"));
+        horizontalLayout_34->setContentsMargins(9, 5, -1, 5);
+
+        verticalLayout_19->addWidget(verticalWidget_24);
+
+        verticalSpacer_7 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_19->addItem(verticalSpacer_7);
+
+        scrollArea_2->setWidget(scrollAreaWidgetContents_2);
+
+        verticalLayout_18->addWidget(scrollArea_2);
 
         stackedWidget->addWidget(page_4);
         page_5 = new QWidget();
@@ -2081,7 +2282,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -276, 631, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 391, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -3046,7 +3247,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(settingwidget);
@@ -3066,6 +3267,8 @@ public:
         label->setText(QApplication::translate("settingwidget", "\345\220\257\345\212\250", nullptr));
         label_5->setText(QApplication::translate("settingwidget", "\345\274\200\346\234\272\346\227\266\345\220\257\345\212\250", nullptr));
         label_6->setText(QApplication::translate("settingwidget", "\345\274\200\345\220\257\345\220\216\345\260\206\345\234\250\350\256\241\347\256\227\346\234\272\345\274\200\346\234\272\345\220\216\350\207\252\345\212\250\345\220\257\345\212\250\343\200\202", nullptr));
+        label_47->setText(QApplication::translate("settingwidget", "\346\211\230\347\233\230\345\214\272\346\230\276\347\244\272", nullptr));
+        label_48->setText(QApplication::translate("settingwidget", "\345\205\263\351\227\255\345\220\216\357\274\214\346\211\230\347\233\230\345\214\272\344\270\215\346\230\276\347\244\272\345\272\224\347\224\250", nullptr));
         label_2->setText(QApplication::translate("settingwidget", "\345\220\257\345\212\250\346\250\241\345\274\217", nullptr));
         label_7->setText(QApplication::translate("settingwidget", "\351\200\211\346\213\251\345\272\224\347\224\250\345\220\257\345\212\250\346\227\266\347\232\204\346\230\276\347\244\272\346\226\271\345\274\217", nullptr));
         comboBox->setItemText(0, QApplication::translate("settingwidget", "\351\273\230\350\256\244", nullptr));

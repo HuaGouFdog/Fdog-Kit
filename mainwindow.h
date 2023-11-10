@@ -12,7 +12,7 @@
 #include <QRect>
 #include "settingwidget.h"
 #include <QSystemTrayIcon>
-
+#include "aboutwidget.h"
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
 
@@ -119,6 +119,8 @@ private slots:
 
     void restoreWindow();
 
+    void on_toolButton_about_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -171,6 +173,8 @@ private:
     bool isShowToolKit = false; //是否显示工具栏
     bool isFullScreen = false; //是否全屏
     bool isMaxShow = false;    //是否最大化显示
+
+    aboutwidget *awidget = nullptr;
 };
 
 #endif // MAINWINDOW_H

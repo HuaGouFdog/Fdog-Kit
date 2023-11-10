@@ -201,7 +201,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(806, 589);
+        MainWindow->resize(1077, 672);
         MainWindow->setMinimumSize(QSize(270, 0));
         MainWindow->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
@@ -211,7 +211,7 @@ public:
         MainWindow->setFont(font);
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/wicon_46.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/lib/icon9.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QLatin1String("QMainWindow,QWidget#centralWidget {\n"
 "background-color: rgb(67, 77, 88);\n"
@@ -2101,7 +2101,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(1);
         stackedWidget_tool->setCurrentIndex(0);
 
@@ -2167,8 +2167,8 @@ public:
         toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
         widget_welcome_body_widget2_info_widget_icon->setText(QString());
         widget_welcome_body_widget2_info_text->setText(QApplication::translate("MainWindow", "\346\254\242\350\277\216\344\275\277\347\224\250Fdog-kit", nullptr));
-        widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\347\273\210\347\253\257", nullptr));
-        widget_welcome_body_widget2_newCreate_newTool->setText(QApplication::translate("MainWindow", "\345\260\217\345\267\245\345\205\267\351\233\206\345\220\210", nullptr));
+        widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
+        widget_welcome_body_widget2_newCreate_newTool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267\351\233\206", nullptr));
         widget_welcome_body_widget2_newCreate_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));
         widget_welcome_body_widget2_nearestConnectionInfo_nearest->setText(QApplication::translate("MainWindow", "\346\234\200\350\277\221\350\277\236\346\216\245\357\274\232", nullptr));
         toolButton_20->setText(QApplication::translate("MainWindow", "172.16.8.156", nullptr));

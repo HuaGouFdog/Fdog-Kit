@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
-    ::SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+    SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
 
     //设置无边框
     //setWindowFlag(Qt::FramelessWindowHint);
@@ -45,9 +45,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //设置阴影效果
     defaultShadow = new QGraphicsDropShadowEffect();
     //模糊半径
-    defaultShadow->setBlurRadius(15.0);
+    defaultShadow->setBlurRadius(15);
     //颜色值
-    defaultShadow->setColor(QColor(0, 0, 0, 250));
+    defaultShadow->setColor(QColor(0, 0, 0, 255));
     //横纵偏移量
     defaultShadow->setOffset(0, 0);
     //不要直接给this，会报UpdateLayeredWindowIndirect failed
@@ -123,30 +123,6 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start();
 
     ui->widget_4->hide();
-
-    // 找到任务栏窗口句柄
-    HWND taskbarHwnd = FindWindow(L"Shell_TrayWnd", NULL);
-
-    // 找到包含任务栏按钮的子窗口
-    HWND taskbarButtonHwnd = FindWindowEx(taskbarHwnd, NULL, L"MSTaskListWClass", NULL);
-
-    // 获取任务栏按钮的位置信息
-    RECT taskbarRect;
-    GetWindowRect(taskbarButtonHwnd, &taskbarRect);
-
-    // 枚举任务栏按钮
-    HWND child = FindWindowEx(taskbarHwnd, NULL, L"ReBarWindow32", NULL);
-    child = FindWindowEx(child, NULL, L"MSTaskSwWClass", NULL);
-    int index = 0;
-    do {
-        RECT buttonRect;
-        GetWindowRect(child, &buttonRect);
-        qDebug() << "Button " << index << " Left: " << buttonRect.left;
-        qDebug() << "Button " << index << " Top: " << buttonRect.top;
-        qDebug() << "Button " << index << " Right: " << buttonRect.right;
-        qDebug() << "Button " << index << " Bottom: " << buttonRect.bottom;
-        index++;
-    } while ((child = GetWindow(child, GW_HWNDNEXT)) && index < 100); // 假设最多有100个按钮
 
     // 创建系统托盘图标
     trayIcon = new QSystemTrayIcon(QIcon(":lib/diann.png"), this);
@@ -987,7 +963,6 @@ void MainWindow::rece_toolButton_fullScreen_sign()
         } else {
             this->showNormal();
         }
-
         isFullScreen = false;
     }
 
@@ -1002,3 +977,9 @@ void MainWindow::on_toolButton_setting_clicked()
      stwidget->show();
 }
 
+
+void MainWindow::on_toolButton_about_clicked()
+{
+     awidget = new aboutwidget();
+     awidget->show();
+}
