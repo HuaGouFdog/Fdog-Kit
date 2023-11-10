@@ -15,16 +15,31 @@
 #include <QDateTime>
 #include <QClipboard>
 #include "smalltoolwidget.h"
+#include <QParallelAnimationGroup>
+#include <Windows.h>
+#include <qt_windows.h>
+#include <QSystemTrayIcon>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
     ui->setupUi(this);
     //透明背景
     this->setAttribute(Qt::WA_TranslucentBackground);
+
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+    // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
+    this->setAttribute(Qt::WA_TranslucentBackground, true);
+
+    HWND hwnd = (HWND)this->winId();
+    DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
+    ::SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+
     //设置无边框
-    setWindowFlag(Qt::FramelessWindowHint);
-    //setWindowFlags(windowFlags()|Qt::FramelessWindowHint);
+    //setWindowFlag(Qt::FramelessWindowHint);
+    //setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::FramelessWindowHint);
+    //
     //设置内边距
     setContentsMargins(10, 10, 10, 10);
     //设置阴影效果
@@ -108,6 +123,46 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start();
 
     ui->widget_4->hide();
+
+    // 找到任务栏窗口句柄
+    HWND taskbarHwnd = FindWindow(L"Shell_TrayWnd", NULL);
+
+    // 找到包含任务栏按钮的子窗口
+    HWND taskbarButtonHwnd = FindWindowEx(taskbarHwnd, NULL, L"MSTaskListWClass", NULL);
+
+    // 获取任务栏按钮的位置信息
+    RECT taskbarRect;
+    GetWindowRect(taskbarButtonHwnd, &taskbarRect);
+
+    // 枚举任务栏按钮
+    HWND child = FindWindowEx(taskbarHwnd, NULL, L"ReBarWindow32", NULL);
+    child = FindWindowEx(child, NULL, L"MSTaskSwWClass", NULL);
+    int index = 0;
+    do {
+        RECT buttonRect;
+        GetWindowRect(child, &buttonRect);
+        qDebug() << "Button " << index << " Left: " << buttonRect.left;
+        qDebug() << "Button " << index << " Top: " << buttonRect.top;
+        qDebug() << "Button " << index << " Right: " << buttonRect.right;
+        qDebug() << "Button " << index << " Bottom: " << buttonRect.bottom;
+        index++;
+    } while ((child = GetWindow(child, GW_HWNDNEXT)) && index < 100); // 假设最多有100个按钮
+
+    // 创建系统托盘图标
+    trayIcon = new QSystemTrayIcon(QIcon(":lib/diann.png"), this);
+    trayIcon->show();
+
+    // 创建一个菜单
+    QMenu* menu = new QMenu();
+    QAction* restoreAction = new QAction("Restore");
+    menu->addAction(restoreAction);
+
+    // 将菜单设置给系统托盘图标
+    trayIcon->setContextMenu(menu);
+
+    // 处理单击事件
+    QObject::connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::trayIconActivated);
+    QObject::connect(restoreAction, &QAction::triggered, this, &MainWindow::restoreWindow);
 }
 
 MainWindow::~MainWindow()
@@ -383,6 +438,33 @@ void MainWindow::showEvent(QShowEvent *event)
     //return MainWindow::showEvent(event);
 }
 
+bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+{
+    MSG* msg = (MSG*)message;
+    switch (msg->message) {
+    //没有这一段，将不会显示窗口
+    case WM_NCCALCSIZE:
+        return true;
+
+    //最大化是填充屏幕
+    case WM_GETMINMAXINFO:
+    {
+        if (::IsZoomed(msg->hwnd)) {
+            // 最大化时会超出屏幕，所以填充边框间距
+            RECT frame = { 0, 0, 0, 0 };
+            AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
+            frame.left = abs(frame.left);
+            frame.top = abs(frame.bottom);
+            this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+        }
+        *result = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
+        return true;
+    }
+        break;
+    }
+    return QMainWindow::nativeEvent(eventType, message, result);
+}
+
 void MainWindow::newConnectZk(QString name, QString host, QString port)
 {
 
@@ -391,36 +473,141 @@ void MainWindow::newConnectZk(QString name, QString host, QString port)
 void MainWindow::on_toolButton_close_clicked()
 {
     //关闭
+    //界面动画,窗口下坠
+//    QPropertyAnimation* closeAnimation = new QPropertyAnimation(this,"geometry");
+//    closeAnimation->setStartValue(geometry());
+//    closeAnimation->setEndValue(QRect(geometry().x(),geometry().y()+height(),width(),0));
+//    closeAnimation->setDuration(200);
+//    closeAnimation->setEasingCurve(QEasingCurve::Linear);   //设置速度曲线
+
+//    //界面动画,消失效果
+//    QPropertyAnimation *WindowDisappear_animation = new QPropertyAnimation(this, "windowOpacity");
+//    WindowDisappear_animation->setDuration(200);
+//    WindowDisappear_animation->setStartValue(1);
+//    WindowDisappear_animation->setEndValue(0);
+//    WindowDisappear_animation->setEasingCurve(QEasingCurve::InCubic); // 使用缓动效果
+
+//    //缩放
+////    QPropertyAnimation *pScaleAnimation1 = new QPropertyAnimation(this, "geometry");
+////    pScaleAnimation1->setDuration(100);
+////    pScaleAnimation1->setStartValue(QRect(190, 230, 0, 0));
+////    pScaleAnimation1->setEndValue(QRect(120, 160, 140, 140));
+
+//    QPropertyAnimation *animation = new QPropertyAnimation(this, "geometry");
+//    animation->setDuration(200); // 设置动画持续时间为1秒
+//    animation->setStartValue(this->geometry());
+//    animation->setEndValue(QRect(980, 1280, 0, 0)); // 缩小为原来的一半
+//    animation->setEasingCurve(QEasingCurve::InCubic); // 使用缓动效果
+
+
+//    /*
+
+//QRect mRect；
+//mRect = QGuiApplication::primaryScreen()->geometry();
+//qDebug()<<"width:"<<mRect.width()<<"  height:"<<mRect.height();
+//*/
+//    //创建并行动画组
+//    QParallelAnimationGroup *group = new QParallelAnimationGroup(this);
+//    //group->addAnimation(closeAnimation);    //动画组添加移动动画
+//    group->addAnimation(WindowDisappear_animation);         //动画组添加透明-显现动画
+//    group->addAnimation(animation);         //动画组添加透明-显现动画
+//    group->start(QAbstractAnimation::DeleteWhenStopped);    //动画组中的动画执行完毕后删除对象
+//    connect(group, &QParallelAnimationGroup::finished, this, &MainWindow::closeWindow); //关闭动画完成后再退出软件
+    this->close();
+}
+
+void MainWindow::closeWindow()
+{
     this->close();
 }
 
 void MainWindow::on_toolButton_min_clicked()
 {
-    //最小化
-    // 获取任务栏的位置
-    QRect taskbarRect;
-    QScreen *screen = QGuiApplication::primaryScreen();
-    if (screen) {
-        QRect screenRect = screen->geometry();
-        QRect availableRect = screen->availableGeometry();
-        taskbarRect = QRect(screenRect.x(), availableRect.y() + availableRect.height(), screenRect.width(), screenRect.height() - availableRect.height());
-    }
+//    //记录当前坐标
+//    mWindow = this->rect();
+//    //关闭
+//    //界面动画,窗口下坠
+//    QPropertyAnimation* closeAnimation = new QPropertyAnimation(this,"geometry");
+//    closeAnimation->setStartValue(geometry());
+//    closeAnimation->setEndValue(QRect(geometry().x(),geometry().y()+height(),width(),0));
+//    closeAnimation->setDuration(200);
+//    closeAnimation->setEasingCurve(QEasingCurve::Linear);   //设置速度曲线
 
-    QPropertyAnimation *minimumAnimation = new QPropertyAnimation(this, "geometry");
+//    //界面动画,消失效果
+//    QPropertyAnimation *WindowDisappear_animation = new QPropertyAnimation(this, "windowOpacity");
+//    WindowDisappear_animation->setDuration(200);
+//    WindowDisappear_animation->setStartValue(1);
+//    WindowDisappear_animation->setEndValue(0);
+//    WindowDisappear_animation->setEasingCurve(QEasingCurve::InCubic); // 使用缓动效果
 
-    //minimumAnimation->setDuration(500); // 设置动画持续时间（以毫秒为单位）
-    //minimumAnimation->setStartValue(this->geometry()); // 设置动画起始位置为当前窗体的几何属性
-   // minimumAnimation->setEndValue(QRect(this->x(), this->y(), 0, 0)); // 设置动画结束位置为窗体的左上角，宽度和高度为0
+//    //缩放
+////    QPropertyAnimation *pScaleAnimation1 = new QPropertyAnimation(this, "geometry");
+////    pScaleAnimation1->setDuration(100);
+////    pScaleAnimation1->setStartValue(QRect(190, 230, 0, 0));
+////    pScaleAnimation1->setEndValue(QRect(120, 160, 140, 140));
 
-//    minimumAnimation->setDuration(500); // 设置动画持续时间（以毫秒为单位）
-//    minimumAnimation->setStartValue(this->geometry()); // 设置动画起始位置为当前窗体的几何属性
-//    minimumAnimation->setEndValue(taskbarRect); // 设置动画结束位置为任务栏的位置
-//    minimumAnimation->start();
+//    QPropertyAnimation *animation = new QPropertyAnimation(this, "geometry");
+//    animation->setDuration(200); // 设置动画持续时间为1秒
+//    animation->setStartValue(this->geometry());
+//    animation->setEndValue(QRect(980, 1280, 0, 0)); // 缩小为原来的一半
+//    animation->setEasingCurve(QEasingCurve::InCubic); // 使用缓动效果
+
+
+//    /*
+
+//QRect mRect；
+//mRect = QGuiApplication::primaryScreen()->geometry();
+//qDebug()<<"width:"<<mRect.width()<<"  height:"<<mRect.height();
+//*/
+//    //创建并行动画组
+//    QParallelAnimationGroup *group = new QParallelAnimationGroup(this);
+//    //group->addAnimation(closeAnimation);    //动画组添加移动动画
+//    group->addAnimation(WindowDisappear_animation);         //动画组添加透明-显现动画
+//    group->addAnimation(animation);         //动画组添加透明-显现动画
+//    group->start(QAbstractAnimation::DeleteWhenStopped);    //动画组中的动画执行完毕后删除对象
+//    connect(group, &QParallelAnimationGroup::finished, this, &MainWindow::minWindow); //关闭动画完成后再退出软件
     this->showMinimized();
+}
+
+void MainWindow::minWindow()
+{
+    this->showMinimized();
+}
+
+void MainWindow::maxWindow()
+{
+    //mWindow
+}
+
+void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger) {
+        // 处理单击事件，例如还原窗口
+        qDebug() << "点击";
+        //this->showMaximized();
+        //restoreWindow();
+    } else if (reason == QSystemTrayIcon::DoubleClick) {
+        // 处理双击事件
+        // 双击任务栏图标时的操作
+    } else if (reason == QSystemTrayIcon::Context) {
+        // 处理右键点击事件
+        // 右键点击任务栏图标时的操作
+    }
+    // 其他操作
+}
+
+void MainWindow::restoreWindow()
+{
+//    if (isMinimized()) {
+//        showNormal();
+//    } else {
+//        show();
+//    }
 }
 
 void MainWindow::on_toolButton_max_clicked()
 {
+    qDebug() << "显示最大化";
     //最大化
     if (!showFlag) {
         setContentsMargins(0, 0, 0, 0);
@@ -779,7 +966,7 @@ void MainWindow::rece_toolButton_fullScreen_sign()
         setContentsMargins(0, 0, 0, 0);
         ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
-        this->showNormal();
+        //this->showNormal();
         ui->toolButton_min->hide();
         ui->toolButton_max->hide();
         ui->toolButton_close->hide();
@@ -814,3 +1001,4 @@ void MainWindow::on_toolButton_setting_clicked()
      ui->stackedWidget->setCurrentIndex(0);
      stwidget->show();
 }
+

@@ -201,7 +201,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1024, 650);
+        MainWindow->resize(806, 589);
         MainWindow->setMinimumSize(QSize(270, 0));
         MainWindow->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
@@ -2101,7 +2101,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(1);
         stackedWidget_tool->setCurrentIndex(0);
 

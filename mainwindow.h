@@ -11,7 +11,7 @@
 #include <QVector>
 #include <QRect>
 #include "settingwidget.h"
-
+#include <QSystemTrayIcon>
 
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
@@ -53,6 +53,8 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放
     void mouseDoubleClickEvent(QMouseEvent *event); //鼠标双击
     void showEvent(QShowEvent *event);
+
+    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
     void newConnectZk(QString name, QString host, QString port);
 
@@ -107,6 +109,16 @@ private slots:
 
     void on_toolButton_setting_clicked();
 
+    void closeWindow();
+
+    void minWindow();
+
+    void maxWindow();
+
+    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
+
+    void restoreWindow();
+
 private:
     Ui::MainWindow *ui;
 
@@ -119,7 +131,8 @@ private:
     QRect m_bottomBorderRect;
     QRect m_leftBorderRect;
 
-
+    QRect mWindow;
+    QSystemTrayIcon* trayIcon;
 
     QGraphicsDropShadowEffect * defaultShadow;
     QPoint last;            //窗口拖动用变量
