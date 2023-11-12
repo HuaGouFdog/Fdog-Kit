@@ -37,15 +37,15 @@ class sshhandle : public QObject
 public:
     explicit sshhandle(QObject *parent = nullptr);
     datahandle ac;
-    LIBSSH2_SESSION *session_ssh;  //ssh session
-    LIBSSH2_CHANNEL *channel_ssh;  //ssh channel
+    LIBSSH2_SESSION *session_ssh = nullptr;  //ssh session
+    LIBSSH2_CHANNEL *channel_ssh = nullptr;  //ssh channel
 
-    LIBSSH2_SESSION *session_exec; //exec session
-    LIBSSH2_CHANNEL *channel_exec; //exec channel
+    LIBSSH2_SESSION *session_exec = nullptr; //exec session
+    LIBSSH2_CHANNEL *channel_exec = nullptr; //exec channel
 
-    LIBSSH2_SESSION *       session_ssh_sftp;   //exec session
-    LIBSSH2_SFTP*           session_sftp;       //sftp
-    LIBSSH2_SFTP_HANDLE *   handle_sftp;        //sftp
+    LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
+    LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp
+    LIBSSH2_SFTP_HANDLE *   handle_sftp = nullptr;        //sftp
 signals:
     void send_init();
     void send_init_poll();

@@ -345,6 +345,9 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
 
 void sshwidget::setTerminalSize(int height, int width)
 {
+    if (m_sshhandle->channel_ssh == nullptr) {
+        return;
+    }
     int ret = libssh2_channel_request_pty_size(m_sshhandle->channel_ssh, width, height);
     if (ret != 0) {
         qDebug() << "libssh2_channel_request_pty_size出错" << ret;
@@ -1196,7 +1199,7 @@ void sshwidget::rece_resize_sign()
     qDebug() << "Visible Line count:" << visibleLines;
     qDebug() << "Visible Column count:" << visibleColumns;
     if (columnCount != visibleColumns || lineCount != visibleLines) {
-        //setTerminalSize(visibleLines, visibleColumns);
+        setTerminalSize(visibleLines, visibleColumns);
         columnCount = visibleColumns;
         lineCount = visibleLines;
     }
