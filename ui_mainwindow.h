@@ -40,6 +40,7 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *widget_title;
     QHBoxLayout *horizontalLayout;
+    QToolButton *toolButton;
     QToolButton *toolButton_newCreate;
     QToolButton *toolButton_newCreate_2;
     QToolButton *toolButton_tool;
@@ -238,6 +239,30 @@ public:
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 1, 0, 2);
+        toolButton = new QToolButton(widget_title);
+        toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
+"	\n"
+"	color: rgb(217, 236, 237);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+        toolButton->setIcon(icon);
+        toolButton->setIconSize(QSize(20, 20));
+
+        horizontalLayout->addWidget(toolButton);
+
         toolButton_newCreate = new QToolButton(widget_title);
         toolButton_newCreate->setObjectName(QStringLiteral("toolButton_newCreate"));
         toolButton_newCreate->setMinimumSize(QSize(80, 20));
@@ -738,6 +763,7 @@ public:
         textEdit = new QTextEdit(page_4);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setFont(font1);
+        textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
@@ -2101,7 +2127,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(1);
         stackedWidget_tool->setCurrentIndex(0);
 
@@ -2112,6 +2138,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
+        toolButton->setText(QApplication::translate("MainWindow", "...", nullptr));
         toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245(&N)", nullptr));
         toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\350\277\236\346\216\245(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));

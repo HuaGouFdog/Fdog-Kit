@@ -104,6 +104,42 @@ color: rgb(255, 255, 255);</string>
         <number>2</number>
        </property>
        <item>
+        <widget class="QToolButton" name="toolButton">
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	
+	color: rgb(217, 236, 237);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="toolButton_newCreate">
          <property name="minimumSize">
           <size>
@@ -662,7 +698,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">
@@ -1050,6 +1086,9 @@ color: rgb(255, 255, 255);</string>
                       <pointsize>10</pointsize>
                       <stylestrategy>PreferAntialias</stylestrategy>
                      </font>
+                    </property>
+                    <property name="cursor" stdset="0">
+                     <cursorShape>ArrowCursor</cursorShape>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(25, 25, 25, 155);

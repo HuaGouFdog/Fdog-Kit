@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>650</height>
+    <width>1077</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -37,7 +37,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="lib.qrc">
-    <normaloff>:/lib/wicon_46.png</normaloff>:/lib/wicon_46.png</iconset>
+    <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow,QWidget#centralWidget {
@@ -104,6 +104,42 @@ color: rgb(255, 255, 255);</string>
         <number>2</number>
        </property>
        <item>
+        <widget class="QToolButton" name="toolButton">
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	
+	color: rgb(217, 236, 237);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="toolButton_newCreate">
          <property name="minimumSize">
           <size>
@@ -144,7 +180,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>新建终端(&amp;N)</string>
+          <string>新建连接(&amp;N)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -201,7 +237,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>快速连接(&amp;H)</string>
+          <string>管理连接(&amp;H)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -927,33 +963,37 @@ border-left:2px solid rgb(108, 117, 125, 65);
                     <enum>Qt::LeftToRight</enum>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QComboBox{ 
-border:0px solid gray;  
-border-radius:5px;  
-/*padding: 5px; */
-/*min-width:4em;*/
+                    <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid #52DCFE;
+	border-radius:3px;
+	background:transparent;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
 }
 
 QComboBox::drop-down{
-subcontrol-origin:padding; 
-subcontrol-position:top right; 
-width:20px; 
-/*border-left-width:1px;*/
-border-left-color:darkgray;
-border-left-style:solid; 
-border-top-right-radius:3px; 
-border-bottom-right-radius:3px;
-}
-QComboBox QAbstractItemView{
-border: 2px solid #4E6D8C;
+	background:transparent;
 }
 QComboBox::down-arrow{
-border-image: url(:/lib/up.png);
+	border-image: url(:/lib/up.png);
     width:20px;
 	height:20px;
-
 }
-</string>
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #52DCFE;
+	color:#ffffff;
+	background-color:#000000;
+	selection-background-color:#52DCFE;
+}</string>
                    </property>
                    <property name="inputMethodHints">
                     <set>Qt::ImhDate</set>
@@ -1046,6 +1086,9 @@ color: rgb(255, 255, 255);</string>
                       <pointsize>10</pointsize>
                       <stylestrategy>PreferAntialias</stylestrategy>
                      </font>
+                    </property>
+                    <property name="cursor" stdset="0">
+                     <cursorShape>ArrowCursor</cursorShape>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(25, 25, 25, 155);
@@ -3127,7 +3170,7 @@ color: rgb(255, 255, 255);</string>
                                <property name="font">
                                 <font>
                                  <family>OPPOSans B</family>
-                                 <pointsize>20</pointsize>
+                                 <pointsize>14</pointsize>
                                  <weight>50</weight>
                                  <italic>false</italic>
                                  <bold>false</bold>
@@ -3139,7 +3182,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(242, 245, 255);</string>
                                </property>
                                <property name="text">
-                                <string>Fdog-kit</string>
+                                <string>欢迎使用Fdog-kit</string>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>
@@ -3227,7 +3270,7 @@ QToolButton:hover {
 }</string>
                                </property>
                                <property name="text">
-                                <string>新建终端</string>
+                                <string>新建连接</string>
                                </property>
                                <property name="icon">
                                 <iconset resource="lib.qrc">
@@ -3287,7 +3330,7 @@ QToolButton:hover {
 }</string>
                                </property>
                                <property name="text">
-                                <string>小工具集合</string>
+                                <string>工具集</string>
                                </property>
                                <property name="icon">
                                 <iconset resource="lib.qrc">
