@@ -11,6 +11,7 @@
 #include <QScrollBar>
 #include <QTextEdit>
 #include <QClipboard>
+#include <QInputMethodEvent>
 #include "findwidget.h"
 
 class CustomTextEdit : public QTextEdit {
@@ -80,6 +81,7 @@ signals:
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override
     {
+        //KeyPress 处理键盘事件 InputMethod 处理输入法事件
         if (event->type() == QEvent::KeyPress)
         {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -105,6 +107,16 @@ protected:
             QString key = keyEvent->text();
             //qDebug() << "Pressed key:" << key;
             emit send_key_sign(key);
+            return true;
+        } else if (event->type() == QEvent::InputMethod) {
+            QInputMethodEvent *keyEvent = dynamic_cast<QInputMethodEvent *>(event);
+            QString strInput =  keyEvent->commitString();
+
+            if (strInput.length() == 0) {
+               return true;
+            }
+            qDebug() << "输入法事件:" << strInput;
+            emit send_key_sign(strInput);
             return true;
         }
         return QObject::eventFilter(obj, event);
@@ -246,6 +258,20 @@ private:
     QTextCharFormat originalFormat_s;
 
     int a = 0;
+
+    //处理退格
+    bool isChinese = false; //是否中文
+    int ChineseBackspaceSum = 0; //记录中文退格
+
+    //处理退格删除
+    bool isDeleteChinese = false; //是否中文
+    int ChineseBackspaceDeleteSum = 0; //记录中文退格
+
+    //处理右移
+    bool isRightShiftChinese = false; //是否中文
+    int ChineseRightShiftSum = 0; //记录中文退格
+
+
 };
 
 #endif // SSHWIDGET_H

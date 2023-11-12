@@ -741,33 +741,136 @@ void sshwidget::rece_channel_readS(QStringList data)
                 sum2--;
                 continue;
             }
-            QTextCursor cursor = ui->textEdit->textCursor();
-            cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
-            cursor.deletePreviousChar();
-            ui->textEdit->setTextCursor(cursor);
 
-            QTextCursor cursor2 = textEdit_s->textCursor();
-            cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
-            cursor2.deletePreviousChar();
-            textEdit_s->setTextCursor(cursor2);
+            QTextCursor cursor = ui->textEdit->textCursor();
+
+            // 将光标移动到前一个位置
+            cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, 1);
+
+            // 获取选定文本
+            QString previousChar = cursor.selectedText();
+            qDebug() << "前一个字符为" << previousChar;
+            isDeleteChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+
+            if(isDeleteChinese) {
+                qDebug() << "存在中文";
+                //判断上一个是否\b
+                if (ChineseBackspaceDeleteSum!= 0) {
+                    //上一个就是\b
+                    //退格
+                    QTextCursor cursor = ui->textEdit->textCursor();
+                    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+                    cursor.deletePreviousChar();
+                    ui->textEdit->setTextCursor(cursor);
+
+                    QTextCursor cursor2 = textEdit_s->textCursor();
+                    cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+                    cursor2.deletePreviousChar();
+                    textEdit_s->setTextCursor(cursor2);
+                    isDeleteChinese = false;
+                    ChineseBackspaceDeleteSum = 0;
+                } else {
+                    //记录
+                    isDeleteChinese = true;
+                    ChineseBackspaceDeleteSum++;
+                }
+            } else {
+                QTextCursor cursor = ui->textEdit->textCursor();
+                cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+                cursor.deletePreviousChar();
+                ui->textEdit->setTextCursor(cursor);
+
+                QTextCursor cursor2 = textEdit_s->textCursor();
+                cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+                cursor2.deletePreviousChar();
+                textEdit_s->setTextCursor(cursor2);
+            }
+
+
         } else if (data[i] == "\u001B[C") {
             sum2++;
             qDebug() << "sum2++";
-            QTextCursor cursor = ui->textEdit->textCursor();
-            cursor.movePosition(QTextCursor::Right);
-            ui->textEdit->setTextCursor(cursor);
 
-            QTextCursor cursor2 = textEdit_s->textCursor();
-            cursor2.movePosition(QTextCursor::Right);
-            textEdit_s->setTextCursor(cursor2);
+            QTextCursor cursor = ui->textEdit->textCursor();
+
+            // 将光标移动到前一个位置
+            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, 1);
+
+            // 获取选定文本
+            QString previousChar = cursor.selectedText();
+            qDebug() << "后一个字符为" << previousChar;
+            isRightShiftChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+
+            if(isRightShiftChinese) {
+                qDebug() << "存在中文";
+                //判断上一个是否\b
+                if (ChineseRightShiftSum!= 0) {
+                    //上一个就是\b
+                    //退格
+                    QTextCursor cursor = ui->textEdit->textCursor();
+                    cursor.movePosition(QTextCursor::Right);
+                    ui->textEdit->setTextCursor(cursor);
+
+                    QTextCursor cursor2 = textEdit_s->textCursor();
+                    cursor2.movePosition(QTextCursor::Right);
+                    textEdit_s->setTextCursor(cursor2);
+                    isRightShiftChinese = false;
+                    ChineseRightShiftSum = 0;
+                } else {
+                    //记录
+                    isRightShiftChinese = true;
+                    ChineseRightShiftSum++;
+                }
+            } else {
+                QTextCursor cursor = ui->textEdit->textCursor();
+                cursor.movePosition(QTextCursor::Right);
+                ui->textEdit->setTextCursor(cursor);
+
+                QTextCursor cursor2 = textEdit_s->textCursor();
+                cursor2.movePosition(QTextCursor::Right);
+                textEdit_s->setTextCursor(cursor2);
+            }
+
         } else if (data[i] == "\u001B[D") {
             QTextCursor cursor = ui->textEdit->textCursor();
-            cursor.movePosition(QTextCursor::Left);
-            ui->textEdit->setTextCursor(cursor);
 
-            QTextCursor cursor2 = textEdit_s->textCursor();
-            cursor2.movePosition(QTextCursor::Left);
-            textEdit_s->setTextCursor(cursor2);
+            // 将光标移动到前一个位置
+            cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, 1);
+
+            // 获取选定文本
+            QString previousChar = cursor.selectedText();
+            qDebug() << "前一个字符为" << previousChar;
+            isChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+
+            if(isChinese) {
+                qDebug() << "存在中文";
+                //判断上一个是否\b
+                if (ChineseBackspaceSum!= 0) {
+                    //上一个就是\b
+                    //退格
+                    QTextCursor cursor = ui->textEdit->textCursor();
+                    cursor.movePosition(QTextCursor::Left);
+                    ui->textEdit->setTextCursor(cursor);
+
+                    QTextCursor cursor2 = textEdit_s->textCursor();
+                    cursor2.movePosition(QTextCursor::Left);
+                    textEdit_s->setTextCursor(cursor2);
+                    isChinese = false;
+                    ChineseBackspaceSum = 0;
+                } else {
+                    //记录
+                    isChinese = true;
+                    ChineseBackspaceSum++;
+                }
+            } else {
+                QTextCursor cursor = ui->textEdit->textCursor();
+                cursor.movePosition(QTextCursor::Left);
+                ui->textEdit->setTextCursor(cursor);
+
+                QTextCursor cursor2 = textEdit_s->textCursor();
+                cursor2.movePosition(QTextCursor::Left);
+                textEdit_s->setTextCursor(cursor2);
+            }
         } else if (data[i] == "\u001B[K") {
             QTextCursor cursor = ui->textEdit->textCursor();
             //int cursorPos = cursor.position();
