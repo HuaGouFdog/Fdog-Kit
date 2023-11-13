@@ -117,7 +117,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
                              padding-left:0px;\
                              padding-right:0px;\
                              border-radius: 5px;\
-                             color: rgba(255, 255, 255, 0);\
+                             color: rgba(255, 255, 255, 255);\
                          }\
                          QScrollBar:vertical {\
                              width: 10px;\
@@ -345,13 +345,13 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
 
 void sshwidget::setTerminalSize(int height, int width)
 {
-    if (m_sshhandle->channel_ssh == nullptr) {
-        return;
-    }
-    int ret = libssh2_channel_request_pty_size(m_sshhandle->channel_ssh, width, height);
-    if (ret != 0) {
-        qDebug() << "libssh2_channel_request_pty_size出错" << ret;
-    }
+//    if (m_sshhandle->channel_ssh == nullptr) {
+//        return;
+//    }
+//    int ret = libssh2_channel_request_pty_size(m_sshhandle->channel_ssh, width, height);
+//    if (ret != 0) {
+//        qDebug() << "libssh2_channel_request_pty_size出错" << ret;
+//    }
 }
 
 void sshwidget::sendData(QString data)
@@ -726,16 +726,23 @@ void sshwidget::rece_channel_readS(QStringList data)
         if (data[i] == "\r") {
             //移动到行首
             QTextCursor cursor = ui->textEdit->textCursor();
+            QTextCursor cursor2 = textEdit_s->textCursor();
+
+            qDebug() << "cursor = " << cursor.position();
+            qDebug() << "cursor2 = " << cursor2.position();
             // 将光标移动到当前行的行首
             cursor.movePosition(QTextCursor::StartOfLine);
             // 设置新的光标位置
             ui->textEdit->setTextCursor(cursor);
 
-            QTextCursor cursor2 = textEdit_s->textCursor();
             // 将光标移动到当前行的行首
             cursor2.movePosition(QTextCursor::StartOfLine);
             // 设置新的光标位置
             textEdit_s->setTextCursor(cursor2);
+            qDebug() << "cursor = " << cursor.position();
+            qDebug() << "cursor2 = " << cursor2.position();
+            isEnter = true;
+            continue;
         } else if (data[i] == "\b") {
             sum++;
             //sum2--;
@@ -973,6 +980,28 @@ void sshwidget::rece_channel_readS(QStringList data)
                 data[i].replace(regExp4.cap(0), "");
                 //break;
             }
+            pos = 0;
+            QRegExp regExp5("\\x001B\\[(\\d+)G");
+            while ((pos = regExp5.indexIn(data[i], pos)) != -1) {
+                qDebug() << "检测到G系列 =" << regExp5.cap(1);
+
+                //向移动8位
+                QTextCursor cursor = ui->textEdit->textCursor();
+                QTextCursor cursor2 = textEdit_s->textCursor();
+                qDebug() << "cursor = " << cursor.position();
+                qDebug() << "cursor2 = " << cursor2.position();
+                cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp5.cap(1).toInt()-1);
+                //ui->textEdit->setTextCursor(cursor);
+
+                cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp5.cap(1).toInt()-1);
+                textEdit_s->setTextCursor(cursor2);
+                ui->textEdit->setTextCursor(cursor);
+
+                qDebug() << "cursor = " << cursor.position();
+                qDebug() << "cursor2 = " << cursor2.position();
+                data[i].replace(regExp5.cap(0), "");
+                //break;
+            }
             //qDebug() << "走到这里5";
             if (!isa) {
                 //qDebug() << "走到这里6";
@@ -995,11 +1024,46 @@ void sshwidget::rece_channel_readS(QStringList data)
                     }
                     sum = 0;
                 }
+//                if (data[i] == "use&nbsp;IM_CERT") {
+//                    continue;
+//                }
+                if (isEnter && data[i].length()!= 0) {
+                    qDebug() << "1删除" << data[i].length();
+                    isEnter = false;
+                    //向右删除data[i]长度数据
+                    QTextCursor cursor = ui->textEdit->textCursor();
+                    cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
+                    // 删除当前光标后的内容
+                    cursor.removeSelectedText();
+                    ui->textEdit->setTextCursor(cursor);
+                    QTextCursor cursor2 = textEdit_s->textCursor();
+                    cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
+                    // 删除当前光标后的内容
+                    cursor2.removeSelectedText();
+                    textEdit_s->setTextCursor(cursor2);
+                }
                 qDebug() << "准备打印" << data[i];
                 sendData(data[i]);
 
             } else {
                 //qDebug() << "走到这里8";
+//                if (data[i] == "use&nbsp;IM_CERT") {
+//                    continue;
+//                }
+                if (isEnter && data[i].length()!= 0) {
+                    qDebug() << "2删除" << data[i].length();
+                    QTextCursor cursor = ui->textEdit->textCursor();
+                    cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
+                    // 删除当前光标后的内容
+                    cursor.removeSelectedText();
+                    ui->textEdit->setTextCursor(cursor);
+                    QTextCursor cursor2 = textEdit_s->textCursor();
+                    cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
+                    // 删除当前光标后的内容
+                    cursor2.removeSelectedText();
+                    textEdit_s->setTextCursor(cursor2);
+                    isEnter = false;
+                }
                 qDebug() << "准备打印" << data[i];
                 sendData(data[i]);
             }

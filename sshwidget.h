@@ -87,11 +87,11 @@ protected:
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 
             if (keyEvent->key() == Qt::Key_Up) {
-                //qDebug() << "Up key pressed";
+                qDebug() << "Up key pressed";
                 emit send_key_sign("\u001B[A");
                 return true;
             } else if (keyEvent->key() == Qt::Key_Down) {
-                //qDebug() << "Down key pressed";
+                qDebug() << "Down key pressed";
                 emit send_key_sign("\u001B[B");
                 return true;
             } else if (keyEvent->key() == Qt::Key_Left) {
@@ -105,7 +105,7 @@ protected:
             }
 
             QString key = keyEvent->text();
-            //qDebug() << "Pressed key:" << key;
+            qDebug() << "Pressed key:" << key;
             emit send_key_sign(key);
             return true;
         } else if (event->type() == QEvent::InputMethod) {
@@ -271,6 +271,8 @@ private:
     bool isRightShiftChinese = false; //是否中文
     int ChineseRightShiftSum = 0; //记录中文退格
 
+
+    bool isEnter = false;   //是否回车状态
 
 };
 

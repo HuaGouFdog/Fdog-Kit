@@ -107,6 +107,8 @@ datahandle::datahandle(QObject *parent) : QObject(parent)
 
 void datahandle::stringToHtmlFilter(QString &str)
 {
+    qDebug() << "对数据进行替换:" << str;
+    //这里有个问题，有些空格会被包含在里面，如果背景有颜色，空格也会有颜色
     //注意这几行代码的顺序不能乱，否则会造成多次替换
     str.replace("&","&amp;");
     str.replace(">","&gt;");
@@ -256,7 +258,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     //解析数据\u001B[34;42mjenkins_home\u001B[0m
     QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
     int pos = 0;
-
+    //stringToHtmlFilter3(data);
     while ((pos = regex.indexIn(data, pos)) != -1) {
         QString match = regex.cap(0); // 获取完整的匹配项
         //qDebug() << "Matched email:" << match;
@@ -303,7 +305,11 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //替换
         data.replace(match, cc);
         pos += regex.matchedLength();
+        qDebug() << "pos = " << pos;
     }
+    qDebug() << "data.length =" << data.length();
+    qDebug() << "pos = " << pos;
+    //stringToHtmlFilter(data);
     return data;
 }
 
@@ -311,8 +317,6 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    //qDebug() << "head = " << head;
-    //qDebug() << "commond = " << commond;
     qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
@@ -563,7 +567,7 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加d" << match << " position = " << position;
+                qDebug() << "添加H" << match << " position = " << position;
                 data = data.mid(position + match.length());
                 //break;
             }
@@ -601,7 +605,26 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加d" << match << " position = " << position;
+                qDebug() << "添加r" << match << " position = " << position;
+                data = data.mid(position + match.length());
+                //break;
+            }
+
+            QRegExp regExp5("\\x001B\\[(\\d+)G");
+            pos = 0;
+            while ((pos = regExp5.indexIn(data, pos)) != -1) {
+                QString match = regExp5.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+
+                //dataS.append(data.mid(0, match.length()));
+                //data = data.mid(position + match.length());
+                qDebug() << "添加G" << match << " position = " << position;
                 data = data.mid(position + match.length());
                 //break;
             }
