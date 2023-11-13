@@ -808,7 +808,7 @@ public:
 "}"));
         textEdit->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         textEdit->setReadOnly(false);
-        textEdit->setTextInteractionFlags(Qt::TextEditable|Qt::TextSelectableByKeyboard);
+        textEdit->setTextInteractionFlags(Qt::TextEditorInteraction);
 
         verticalLayout_8->addWidget(widget_9);
 

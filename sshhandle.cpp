@@ -283,7 +283,7 @@ void sshhandle::init_poll()
                     QString a = ac.processData(buffer);
                     QStringList dataList = ac.processDataS(a);
                     //qDebug() << "添加工作路径" << ac.ssh_path;
-                    dataList.insert(0,ac.ssh_path);
+                    dataList.insert(0, ac.ssh_path);
                     emit send_channel_readS(dataList);
 
                     //emit send_channel_read(ac.processData(buffer));

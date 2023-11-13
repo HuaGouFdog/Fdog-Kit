@@ -319,10 +319,16 @@ QString datahandle::processData(QString data)
     QString head;
     qDebug() << "processData修改前数据：" << data;
 
-    QRegExp regExp("(\\x001B)\\]0;\\S+\\x0007\\x001B\\[\\?1034h");
+    QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
         //替换
-        //qDebug() << "修改后数据：" << regExp.cap(1);
+        qDebug() << "获取工作目录标识" << regExp.cap(2);
+        int colonIndex = regExp.cap(2).indexOf(':');
+        if (colonIndex != -1) {
+            QString extractedData = regExp.cap(2).mid(colonIndex + 1);
+            qDebug() << "获取工作目录：" << extractedData;
+            ssh_path = extractedData;
+        }
         data = data.replace(regExp.cap(0), "");
     }
 
@@ -331,11 +337,11 @@ QString datahandle::processData(QString data)
     QRegExp regExp1("(\\x001B)\\]0;(\\S+)\\x0007");
     if (regExp1.indexIn(data)>=0) {
         //替换
-        //qDebug() << "获取工作目录标识" << regExp1.cap(2);
+        qDebug() << "获取工作目录标识" << regExp1.cap(2);
         int colonIndex = regExp1.cap(2).indexOf(':');
         if (colonIndex != -1) {
             QString extractedData = regExp1.cap(2).mid(colonIndex + 1);
-            //qDebug() << "获取工作目录：" << extractedData;
+            qDebug() << "获取工作目录：" << extractedData;
             ssh_path = extractedData;
         }
         data = data.replace(regExp1.cap(0), "");
@@ -541,16 +547,23 @@ QStringList datahandle::processDataS(QString data)
             qDebug() << "添加\u001B[H";
         } else {
             //参数不确定的需要在这里解析
-            QRegExp regExp("\\x001B\\[(\\d+)P");
+            QRegExp regExp("\\x001B\\[(\\d+)*P");
             int pos = 0;
             while ((pos = regExp.indexIn(data, pos)) != -1) {
                 QString match = regExp.cap(0); // 获取完整的匹配项
                 int position = data.indexOf(match);
-                dataS.append(data.mid(0, match.length()));
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+
+                //dataS.append(data.mid(0, match.length()));
+                //data = data.mid(position + match.length());
+                qDebug() << "添加P" << match << " position = " << position;
                 data = data.mid(position + match.length());
-                //可能需要递归
-                //qDebug() << "添加d";
-                break;
+                //break;
             }
 
             QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
