@@ -18,15 +18,17 @@ struct ServerInfoStruct {
     QString time;          //系统时间
     QString runTime;       //运行时间
     QString architecture;  //硬件架构
-    QString systemType;    //系统类型
+    QString cpuInfo;        //CPU信息
     QString systemName;    //操作系统名称
     QString loginCount;    //当前登录数
     QString cpuUseRate;    //cpu使用率
     QString memUseRate;    //内存使用率
     QString memUse;
     QString swapUseRate;   //交换使用率
+    QString diskUseRate;   //磁盘使用率
     QString swapFree;
     QString swapUse;
+    QString load; //负载
 };
 
 Q_DECLARE_METATYPE(ServerInfoStruct);

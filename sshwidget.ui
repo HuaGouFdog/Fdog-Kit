@@ -58,10 +58,17 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#widget{
-border-right:2px solid rgb(108, 117, 125, 65); 
+border-right:2px solid rgba(108, 117, 125, 65); 
+}
+
+QLabel{
+color: rgb(255, 255, 255);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="spacing">
+       <number>10</number>
+      </property>
       <property name="leftMargin">
        <number>7</number>
       </property>
@@ -106,6 +113,18 @@ border-right:2px solid rgb(108, 117, 125, 65);
          </property>
          <item>
           <widget class="QLabel" name="label_serverTitle">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -153,6 +172,18 @@ border-right:2px solid rgb(108, 117, 125, 65);
          </property>
          <item>
           <widget class="QLabel" name="label_ip">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -161,7 +192,7 @@ border-right:2px solid rgb(108, 117, 125, 65);
             </font>
            </property>
            <property name="text">
-            <string>IP</string>
+            <string>IP -</string>
            </property>
           </widget>
          </item>
@@ -201,7 +232,7 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_30" native="true">
+       <widget class="QWidget" name="widget_31" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -214,7 +245,7 @@ QToolButton:hover {
           <height>20</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_20">
+        <layout class="QHBoxLayout" name="horizontalLayout_26">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -231,7 +262,19 @@ QToolButton:hover {
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_time">
+          <widget class="QLabel" name="label_load">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -240,7 +283,7 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>系统时间</string>
+            <string>负载 -</string>
            </property>
           </widget>
          </item>
@@ -285,6 +328,18 @@ QToolButton:hover {
          </property>
          <item>
           <widget class="QLabel" name="label_runTime">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -293,7 +348,7 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>运行时间</string>
+            <string>运行 -</string>
            </property>
           </widget>
          </item>
@@ -332,6 +387,18 @@ QToolButton:hover {
          </property>
          <item>
           <widget class="QLabel" name="label_loginCount">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -340,7 +407,7 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>终端连接</string>
+            <string>终端连接 -</string>
            </property>
           </widget>
          </item>
@@ -348,20 +415,23 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="verticalWidget" native="true">
+       <widget class="QWidget" name="widget_27" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>40</height>
+          <height>20</height>
          </size>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout_24">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <property name="leftMargin">
           <number>0</number>
          </property>
@@ -376,6 +446,18 @@ QToolButton:hover {
          </property>
          <item>
           <widget class="QLabel" name="label_architecture">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -384,12 +466,57 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>硬件架构</string>
+            <string>系统信息 -</string>
            </property>
           </widget>
          </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="verticalWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>20</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
-          <widget class="QLabel" name="label_systemType">
+          <widget class="QLabel" name="label_cpuInfo">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -398,7 +525,7 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>系统类型</string>
+            <string>cpu信息 -</string>
            </property>
           </widget>
          </item>
@@ -439,7 +566,7 @@ QToolButton:hover {
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="label_cpu">
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -448,22 +575,22 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>CPU</string>
+            <string>cpu</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QProgressBar" name="progressBar">
+          <widget class="QProgressBar" name="progressBar_cpu">
            <property name="minimumSize">
             <size>
              <width>120</width>
-             <height>18</height>
+             <height>16</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>120</width>
-             <height>18</height>
+             <height>16</height>
             </size>
            </property>
            <property name="font">
@@ -475,11 +602,12 @@ QToolButton:hover {
            <property name="styleSheet">
             <string notr="true">QProgressBar {
 	border: 1px solid;
-	border-color: rgb(255, 255, 255);
+	
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
 	background-color: #FFFFFF; 
 	text-align:center; 
-	color: rgb(0, 0, 0);
+	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
@@ -489,10 +617,10 @@ QProgressBar:chunk{
 }</string>
            </property>
            <property name="value">
-            <number>100</number>
+            <number>0</number>
            </property>
            <property name="format">
-            <string>%p%     32G/110G</string>
+            <string>%p%</string>
            </property>
           </widget>
          </item>
@@ -500,7 +628,7 @@ QProgressBar:chunk{
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_swap_info" native="true">
+       <widget class="QWidget" name="widget_mem_info_2" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -513,7 +641,7 @@ QProgressBar:chunk{
           <height>20</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_16">
+        <layout class="QHBoxLayout" name="horizontalLayout_25">
          <property name="spacing">
           <number>6</number>
          </property>
@@ -530,7 +658,7 @@ QProgressBar:chunk{
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_17">
+          <widget class="QLabel" name="label_disk">
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -539,22 +667,22 @@ QProgressBar:chunk{
             </font>
            </property>
            <property name="text">
-            <string>交换</string>
+            <string>磁盘</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QProgressBar" name="progressBar_2">
+          <widget class="QProgressBar" name="progressBar_disk">
            <property name="minimumSize">
             <size>
              <width>120</width>
-             <height>18</height>
+             <height>16</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>120</width>
-             <height>18</height>
+             <height>16</height>
             </size>
            </property>
            <property name="font">
@@ -566,11 +694,12 @@ QProgressBar:chunk{
            <property name="styleSheet">
             <string notr="true">QProgressBar {
 	border: 1px solid;
-	border-color: rgb(255, 255, 255);
+	
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
 	background-color: #FFFFFF; 
 	text-align:center; 
-	color: rgb(0, 0, 0);
+	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
@@ -580,10 +709,10 @@ QProgressBar:chunk{
 }</string>
            </property>
            <property name="value">
-            <number>56</number>
+            <number>0</number>
            </property>
            <property name="format">
-            <string>%p%    32G/110G</string>
+            <string>%p%</string>
            </property>
           </widget>
          </item>
@@ -621,7 +750,7 @@ QProgressBar:chunk{
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_14">
+          <widget class="QLabel" name="label_mem">
            <property name="font">
             <font>
              <family>OPPOSans B</family>
@@ -635,17 +764,17 @@ QProgressBar:chunk{
           </widget>
          </item>
          <item>
-          <widget class="QProgressBar" name="progressBar_3">
+          <widget class="QProgressBar" name="progressBar_mem">
            <property name="minimumSize">
             <size>
              <width>120</width>
-             <height>18</height>
+             <height>16</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>120</width>
-             <height>18</height>
+             <height>16</height>
             </size>
            </property>
            <property name="font">
@@ -657,11 +786,12 @@ QProgressBar:chunk{
            <property name="styleSheet">
             <string notr="true">QProgressBar {
 	border: 1px solid;
-	border-color: rgb(255, 255, 255);
+	
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
 	background-color: #FFFFFF; 
 	text-align:center; 
-	color: rgb(0, 0, 0);
+	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
@@ -671,10 +801,10 @@ QProgressBar:chunk{
 }</string>
            </property>
            <property name="value">
-            <number>80</number>
+            <number>0</number>
            </property>
            <property name="format">
-            <string>%p%    32G/110G</string>
+            <string>%p%</string>
            </property>
           </widget>
          </item>
@@ -682,22 +812,22 @@ QProgressBar:chunk{
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_22" native="true">
+       <widget class="QWidget" name="widget_swap_info" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>90</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>90</height>
+          <height>20</height>
          </size>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_16">
          <property name="spacing">
-          <number>0</number>
+          <number>6</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -712,288 +842,61 @@ QProgressBar:chunk{
           <number>0</number>
          </property>
          <item>
-          <widget class="QTableWidget" name="tableWidget">
+          <widget class="QLabel" name="label_swap">
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>9</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>交换</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QProgressBar" name="progressBar_swap">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>16</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
-             <height>16777215</height>
+             <width>120</width>
+             <height>16</height>
             </size>
            </property>
            <property name="font">
             <font>
              <family>OPPOSans B</family>
              <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">QHeaderView::section{background-color:transparent;}</string>
+            <string notr="true">QProgressBar {
+	border: 1px solid;
+	
+	border-color: rgb(180, 180, 180);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgba(0, 0, 0, 200);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
            </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
+           <property name="value">
+            <number>0</number>
            </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="autoScrollMargin">
-            <number>16</number>
-           </property>
-           <property name="dragEnabled">
-            <bool>false</bool>
-           </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
-           <property name="showGrid">
-            <bool>false</bool>
-           </property>
-           <property name="gridStyle">
-            <enum>Qt::NoPen</enum>
-           </property>
-           <property name="rowCount">
-            <number>4</number>
-           </property>
-           <attribute name="horizontalHeaderVisible">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="horizontalHeaderCascadingSectionResizes">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="horizontalHeaderDefaultSectionSize">
-            <number>57</number>
-           </attribute>
-           <attribute name="horizontalHeaderHighlightSections">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="horizontalHeaderMinimumSectionSize">
-            <number>25</number>
-           </attribute>
-           <attribute name="verticalHeaderVisible">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="verticalHeaderDefaultSectionSize">
-            <number>23</number>
-           </attribute>
-           <attribute name="verticalHeaderHighlightSections">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="verticalHeaderMinimumSectionSize">
-            <number>25</number>
-           </attribute>
-           <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-            <bool>false</bool>
-           </attribute>
-           <row/>
-           <row/>
-           <row/>
-           <row/>
-           <column>
-            <property name="text">
-             <string>内存</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>CPU</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>命令</string>
-            </property>
-           </column>
-           <item row="0" column="0">
-            <property name="text">
-             <string>231</string>
-            </property>
-           </item>
-           <item row="0" column="1">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="0" column="2">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="1" column="0">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="1" column="1">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="1" column="2">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="2" column="0">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="2" column="1">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="2" column="2">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="3" column="0">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="3" column="1">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-           <item row="3" column="2">
-            <property name="text">
-             <string>321</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="widget_23" native="true">
-        <layout class="QGridLayout" name="gridLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>6</number>
-         </property>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_23">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>路径</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_20">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>路径</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_21">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>路径</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_22">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>路径</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_28">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>可用/大小</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_29">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>可用大小</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_30">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>可用大小</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_31">
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>可用大小</string>
+           <property name="format">
+            <string>%p%</string>
            </property>
           </widget>
          </item>
@@ -1012,17 +915,6 @@ QProgressBar:chunk{
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QWidget" name="widget_4" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_21"/>
-       </widget>
       </item>
      </layout>
     </widget>
@@ -1720,12 +1612,13 @@ QToolButton:hover {
  
 /*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
-    background-color: rgba(11, 11, 11,150);
+    /*background-color: rgba(11, 11, 11,150);*/
+	background-color: rgb(30, 45, 54);
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
-	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
-	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
+	/*border-top-left-radius: 5px;*/    /*设置tab的边框的圆角（左上圆角）*/
+	/*border-top-right-radius: 5px;*/    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
 	padding: 4px;
 	margin-right:0px;
@@ -1744,7 +1637,7 @@ QTabBar::tab:selected{
  
 /*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
 QTabBar::tab:hover:!selected {
-	background-color: rgb(100, 117, 125, 255);
+	/*background-color: rgb(100, 117, 125, 255);*/
 }
  
 /*设置TabWidget的边框的样式*/
@@ -1773,7 +1666,7 @@ QTabBar QToolButton:hover {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">

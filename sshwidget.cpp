@@ -68,7 +68,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 
     ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
     //表格自适应
-    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    //ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
     setMouseTracking(true);
     QString host = cInfoStruct.host;
@@ -1273,14 +1273,16 @@ void sshwidget::rece_key_sign(QString key)
 void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
 {
     ui->label_ip->setText(serverInfo.ip);
-    ui->label_time->setText(serverInfo.time);
+    ui->label_load->setText(serverInfo.load);
     ui->label_runTime->setText(serverInfo.runTime);
     ui->label_loginCount->setText(serverInfo.loginCount);
     ui->label_architecture->setText(serverInfo.architecture);
-    ui->label_systemType->setText(serverInfo.systemType);
-//    ui->label_cpuUseRate->setText(serverInfo.cpuUseRate);
-//    ui->label_memUseRate->setText(serverInfo.memUseRate);
-//    ui->label_swapUseRate->setText(serverInfo.swapUseRate);
+    ui->label_cpuInfo->setText(serverInfo.cpuInfo);
+
+    ui->progressBar_cpu->setValue(23);
+    ui->progressBar_mem->setValue(65);
+    ui->progressBar_swap->setValue(11);
+    ui->progressBar_disk->setValue(20);
 }
 
 void sshwidget::on_pushButton_clicked()

@@ -244,7 +244,7 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     initSFTP(connrectType, host, port, username, password);
     qDebug() << "全部初始化完成";
 
-    //getServerInfo();
+    getServerInfo();
     return;
 }
 
@@ -328,61 +328,137 @@ void sshhandle::getServerInfo()
     QString commond;
     QString data;
     //获取服务器IP
+
     commond = "hostname -I";
     QStringList dataList = commondExec(commond).split(" ");
-    serverInfo.ip = "IP：" + dataList[0];
-    //获取服务器运行时间
-    commond = "uptime";
-    QStringList dataList2 = commondExec(commond).split(",");
-    QStringList dataList3 = dataList2[0].split(" ");
-    serverInfo.time = "系统时间：" + dataList3[0];
-    qDebug() << "dataList3.length() = " << dataList3.length();
-    qDebug() << " 0 = " << dataList3[0];
-    qDebug() << " 1 = " << dataList3[1];
-    qDebug() << " 2 = " << dataList3[2];
-    serverInfo.time = "系统时间：" + dataList3[1];
-    if (dataList3.length()==5) {
-        serverInfo.runTime = "运行时间：" + dataList3[3] + "天";
-    } else {
-        serverInfo.runTime = "运行时间：" + dataList2[1];
-    }
-    //获取服务器信息
+    serverInfo.ip = "IP " + dataList[0];
+
+    commond = "top -n 1 -b | head -n 5";
+    QStringList dataList2 = commondExec(commond).split("\n");
+    qDebug() << "top =" << dataList2;
+
+    QStringList dataListInfo = dataList2[0].split(" ");
+    dataListInfo.removeAll("");
+    //QStringList dataListTasks = dataList2[1].split(" ");
+    QStringList dataListCpu = dataList2[2].split(" ");
+    dataListCpu.removeAll("");
+    QStringList dataListMem = dataList2[4].split(" ");
+    dataListMem.removeAll("");
+    QStringList dataListSwap = dataList2[5].split(" ");
+    dataListSwap.removeAll("");
+
+    qDebug() << "运行时间=" << dataListInfo[4];
+    serverInfo.runTime = "运行 " + dataListInfo[4] + "天";
+    //qDebug() << "终端链接=" << dataListInfo[7];
+    serverInfo.loginCount = "终端连接：" + dataListInfo[7];
+
+    serverInfo.load = "负载 " + dataListInfo[11] + "  " + dataListInfo[12] + "  " + dataListInfo[13];
+    qDebug() << "1分=" << dataListInfo[11];
+    qDebug() << "15分=" << dataListInfo[12];
+    qDebug() << "30分=" << dataListInfo[13];
+
+    qDebug() << "cpu占用=" << ((100.00 - dataListCpu[7].toDouble())) << "%";
+    serverInfo.cpuUseRate = "12";
+    serverInfo.memUseRate = "65";
+    serverInfo.swapUseRate = "84";
+
+    //    serverInfo.cpuUseRate = QString::number(int(cpuUseRate_)) + "%";
+
+    //    double memFree_ = dataList8_mem[8].toDouble() + dataList8_mem[14].toDouble();
+    //    double memUse_ =dataList8_mem[4].toDouble() - memFree_;
+    //    serverInfo.memUseRate = QString::number(int(memUse_/dataList8_mem[4].toDouble()*100)) + "%";
+
+    //    double swapFree_ = dataList8_swap[6].toDouble();
+    //    double swapUse_ = dataList8_swap[3].toDouble() - swapFree_;
+    //    serverInfo.swapUseRate = QString::number(int(swapUse_/dataList8_swap[3].toDouble()*100)) + "%";
+
+    //    QStringList dataList8_mem = dataList8[3].split(" ");
+    //    QStringList dataList8_swap = dataList8[4].split(" ");
+
+    //    qDebug() << " cpu = " << dataList8_cpu[1] + dataList8_cpu[3] << " dataList8_swap = " << dataList8_cpu;
+        //qDebug() << " mem = " << dataListMem[4] + dataListMem[5];
+        //qDebug() << " swap = " << dataListSwap[3] + dataListSwap[5];
+
+    //    double cpuUseRate_ = dataList8_cpu[1].toDouble() + dataList8_cpu[3].toDouble();
+    //    serverInfo.cpuUseRate = QString::number(int(cpuUseRate_)) + "%";
+
+    //    double memFree_ = dataList8_mem[8].toDouble() + dataList8_mem[14].toDouble();
+    //    double memUse_ =dataList8_mem[4].toDouble() - memFree_;
+    //    serverInfo.memUseRate = QString::number(int(memUse_/dataList8_mem[4].toDouble()*100)) + "%";
+
+    //    double swapFree_ = dataList8_swap[6].toDouble();
+    //    double swapUse_ = dataList8_swap[3].toDouble() - swapFree_;
+    //    serverInfo.swapUseRate = QString::number(int(swapUse_/dataList8_swap[3].toDouble()*100)) + "%";
+    //    qDebug() << memFree_  << " " << memUse_;
+    //    qDebug() << dataList8_mem[4].toDouble();
+    //    qDebug() << "cpuUseRate" << serverInfo.cpuUseRate;
+    //    qDebug() << "memUseRate" << serverInfo.memUseRate;
+    //    qDebug() << "swapUseRate" << serverInfo.swapUseRate;
+
+
+
+
+    //    //获取服务器信息
     commond = "uname -p -i -o";
     QStringList dataList5 = commondExec(commond).split(" ");
-    serverInfo.architecture = "系统架构：" + dataList5[0];// + "/" + dataList5[1];
+    serverInfo.architecture = "系统信息：" + dataList5[0];// + "/" + dataList5[1];
     QStringList dataList6 = dataList5[2].split("\n");
-    serverInfo.systemType = "系统类型：" + dataList6[0];
-    //获取服务器登录人数
-    commond = "who | wc -l";
-    QStringList dataList7 = commondExec(commond).split("\n");
-    qDebug() << " 3 = " << dataList7[0];
-    serverInfo.loginCount = "终端连接：" + dataList7[0];
+    serverInfo.cpuInfo = "cpu信息：8核16线程";// + dataList6[0];
 
-    commond = "top -n 1 -b | head -n 20";
-    QStringList dataList8 = commondExec(commond).split("\n");
-    QStringList dataList8_cpu = dataList8[2].split(" ");
-    QStringList dataList8_mem = dataList8[3].split(" ");
-    QStringList dataList8_swap = dataList8[4].split(" ");
 
-    qDebug() << " cpu = " << dataList8_cpu[1] + dataList8_cpu[3] << " dataList8_swap = " << dataList8_cpu;
-    qDebug() << " mem = " << dataList8_mem[4] + dataList8_mem[5]<< " dataList8_mem = " << dataList8_mem;
-    qDebug() << " swap = " << dataList8_swap[3] + dataList8_swap[5]<< " dataList8_swap = " << dataList8_swap;
 
-    double cpuUseRate_ = dataList8_cpu[1].toDouble() + dataList8_cpu[3].toDouble();
-    serverInfo.cpuUseRate = QString::number(int(cpuUseRate_)) + "%";
+//    //获取服务器运行时间
+//    commond = "uptime";
+//    QStringList dataList2 = commondExec(commond).split(",");
+//    QStringList dataList3 = dataList2[0].split(" ");
+//    serverInfo.time = "系统时间：" + dataList3[0];
+//    qDebug() << "dataList3.length() = " << dataList3.length();
+//    qDebug() << " 0 = " << dataList3[0];
+//    qDebug() << " 1 = " << dataList3[1];
+//    qDebug() << " 2 = " << dataList3[2];
+//    serverInfo.time = "系统时间：" + dataList3[1];
+//    if (dataList3.length()==5) {
+//        serverInfo.runTime = "运行时间：" + dataList3[3] + "天";
+//    } else {
+//        serverInfo.runTime = "运行时间：" + dataList2[1];
+//    }
+//    //获取服务器信息
+//    commond = "uname -p -i -o";
+//    QStringList dataList5 = commondExec(commond).split(" ");
+//    serverInfo.architecture = "系统架构：" + dataList5[0];// + "/" + dataList5[1];
+//    QStringList dataList6 = dataList5[2].split("\n");
+//    serverInfo.systemType = "系统类型：" + dataList6[0];
+//    //获取服务器登录人数
+//    commond = "who | wc -l";
+//    QStringList dataList7 = commondExec(commond).split("\n");
+//    qDebug() << " 3 = " << dataList7[0];
+//    serverInfo.loginCount = "终端连接：" + dataList7[0];
 
-    double memFree_ = dataList8_mem[8].toDouble() + dataList8_mem[14].toDouble();
-    double memUse_ =dataList8_mem[4].toDouble() - memFree_;
-    serverInfo.memUseRate = QString::number(int(memUse_/dataList8_mem[4].toDouble()*100)) + "%";
+//    commond = "top -n 1 -b | head -n 20";
+//    QStringList dataList8 = commondExec(commond).split("\n");
+//    QStringList dataList8_cpu = dataList8[2].split(" ");
+//    QStringList dataList8_mem = dataList8[3].split(" ");
+//    QStringList dataList8_swap = dataList8[4].split(" ");
 
-    double swapFree_ = dataList8_swap[6].toDouble();
-    double swapUse_ = dataList8_swap[3].toDouble() - swapFree_;
-    serverInfo.swapUseRate = QString::number(int(swapUse_/dataList8_swap[3].toDouble()*100)) + "%";
-    qDebug() << memFree_  << " " << memUse_;
-    qDebug() << dataList8_mem[4].toDouble();
-    qDebug() << "cpuUseRate" << serverInfo.cpuUseRate;
-    qDebug() << "memUseRate" << serverInfo.memUseRate;
-    qDebug() << "swapUseRate" << serverInfo.swapUseRate;
+//    qDebug() << " cpu = " << dataList8_cpu[1] + dataList8_cpu[3] << " dataList8_swap = " << dataList8_cpu;
+//    qDebug() << " mem = " << dataList8_mem[4] + dataList8_mem[5]<< " dataList8_mem = " << dataList8_mem;
+//    qDebug() << " swap = " << dataList8_swap[3] + dataList8_swap[5]<< " dataList8_swap = " << dataList8_swap;
+
+//    double cpuUseRate_ = dataList8_cpu[1].toDouble() + dataList8_cpu[3].toDouble();
+//    serverInfo.cpuUseRate = QString::number(int(cpuUseRate_)) + "%";
+
+//    double memFree_ = dataList8_mem[8].toDouble() + dataList8_mem[14].toDouble();
+//    double memUse_ =dataList8_mem[4].toDouble() - memFree_;
+//    serverInfo.memUseRate = QString::number(int(memUse_/dataList8_mem[4].toDouble()*100)) + "%";
+
+//    double swapFree_ = dataList8_swap[6].toDouble();
+//    double swapUse_ = dataList8_swap[3].toDouble() - swapFree_;
+//    serverInfo.swapUseRate = QString::number(int(swapUse_/dataList8_swap[3].toDouble()*100)) + "%";
+//    qDebug() << memFree_  << " " << memUse_;
+//    qDebug() << dataList8_mem[4].toDouble();
+//    qDebug() << "cpuUseRate" << serverInfo.cpuUseRate;
+//    qDebug() << "memUseRate" << serverInfo.memUseRate;
+//    qDebug() << "swapUseRate" << serverInfo.swapUseRate;
 
     emit send_getServerInfo(serverInfo);
     return;
@@ -390,7 +466,7 @@ void sshhandle::getServerInfo()
 
 QString sshhandle::commondExec(QString commond)
 {
-    //channel2 = libssh2_channel_open_session(session_exec);
+    channel_exec = libssh2_channel_open_session(session_exec);
     int rc = libssh2_channel_exec(channel_exec, commond.toStdString().c_str());
     if (rc != 0) {
         qDebug() << "libssh2_channel_exec faild commond =" << commond;
