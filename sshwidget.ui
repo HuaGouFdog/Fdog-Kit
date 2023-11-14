@@ -424,7 +424,7 @@ QToolButton:hover {
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_14">
          <property name="spacing">
-          <number>0</number>
+          <number>6</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -453,152 +453,47 @@ QToolButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_5" native="true">
+          <widget class="QProgressBar" name="progressBar">
            <property name="minimumSize">
             <size>
-             <width>125</width>
-             <height>0</height>
+             <width>120</width>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
-             <height>12</height>
+             <width>120</width>
+             <height>18</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(99, 94, 68);</string>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QWidget" name="widget_6" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>60</width>
-                <height>12</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(0, 255, 0);</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_cpuUseRate">
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(0, 0, 0);</string>
-                 </property>
-                 <property name="text">
-                  <string> 29%</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QWidget" name="widget_7" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>12</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>OPPOSans B</family>
-                <pointsize>10</pointsize>
-                <stylestrategy>PreferAntialias</stylestrategy>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_7">
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(0, 0, 0);</string>
-                 </property>
-                 <property name="text">
-                  <string>32G/110.1G </string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
+           <property name="styleSheet">
+            <string notr="true">QProgressBar {
+	border: 1px solid;
+	border-color: rgb(255, 255, 255);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgb(0, 0, 0);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+           <property name="format">
+            <string>%p%     32G/110G</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -649,139 +544,47 @@ QToolButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_18" native="true">
+          <widget class="QProgressBar" name="progressBar_2">
            <property name="minimumSize">
             <size>
-             <width>125</width>
-             <height>0</height>
+             <width>120</width>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
-             <height>12</height>
+             <width>120</width>
+             <height>18</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(99, 94, 68);</string>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,0">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QWidget" name="widget_19" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>74</width>
-                <height>12</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(253, 210, 174);</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_12">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_memUseRate">
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(0, 0, 0);</string>
-                 </property>
-                 <property name="text">
-                  <string> 29%</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QWidget" name="widget_20" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>12</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_13">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_19">
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(0, 0, 0);</string>
-                 </property>
-                 <property name="text">
-                  <string>32G/110.1G </string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
+           <property name="styleSheet">
+            <string notr="true">QProgressBar {
+	border: 1px solid;
+	border-color: rgb(255, 255, 255);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgb(0, 0, 0);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+           </property>
+           <property name="value">
+            <number>56</number>
+           </property>
+           <property name="format">
+            <string>%p%    32G/110G</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -832,139 +635,47 @@ QToolButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_14" native="true">
+          <widget class="QProgressBar" name="progressBar_3">
            <property name="minimumSize">
             <size>
-             <width>125</width>
-             <height>0</height>
+             <width>120</width>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>125</width>
-             <height>12</height>
+             <width>120</width>
+             <height>18</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(99, 94, 68);</string>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QWidget" name="widget_15" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>74</width>
-                <height>12</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(253, 210, 174);</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_9">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_swapUseRate">
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(0, 0, 0);</string>
-                 </property>
-                 <property name="text">
-                  <string> 29%</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QWidget" name="widget_16" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>12</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_10">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_16">
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(0, 0, 0);</string>
-                 </property>
-                 <property name="text">
-                  <string>32G/110.1G </string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
+           <property name="styleSheet">
+            <string notr="true">QProgressBar {
+	border: 1px solid;
+	border-color: rgb(255, 255, 255);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgb(0, 0, 0);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+           </property>
+           <property name="value">
+            <number>80</number>
+           </property>
+           <property name="format">
+            <string>%p%    32G/110G</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -2062,7 +1773,7 @@ QTabBar QToolButton:hover {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">

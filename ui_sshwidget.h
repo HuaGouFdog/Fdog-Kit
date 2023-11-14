@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
@@ -61,36 +62,15 @@ public:
     QWidget *widget_cpu_info;
     QHBoxLayout *horizontalLayout_14;
     QLabel *label_3;
-    QWidget *widget_5;
-    QHBoxLayout *horizontalLayout;
-    QWidget *widget_6;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_cpuUseRate;
-    QWidget *widget_7;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_7;
+    QProgressBar *progressBar;
     QWidget *widget_swap_info;
     QHBoxLayout *horizontalLayout_16;
     QLabel *label_17;
-    QWidget *widget_18;
-    QHBoxLayout *horizontalLayout_11;
-    QWidget *widget_19;
-    QHBoxLayout *horizontalLayout_12;
-    QLabel *label_memUseRate;
-    QWidget *widget_20;
-    QHBoxLayout *horizontalLayout_13;
-    QLabel *label_19;
+    QProgressBar *progressBar_2;
     QWidget *widget_mem_info;
     QHBoxLayout *horizontalLayout_15;
     QLabel *label_14;
-    QWidget *widget_14;
-    QHBoxLayout *horizontalLayout_8;
-    QWidget *widget_15;
-    QHBoxLayout *horizontalLayout_9;
-    QLabel *label_swapUseRate;
-    QWidget *widget_16;
-    QHBoxLayout *horizontalLayout_10;
-    QLabel *label_16;
+    QProgressBar *progressBar_3;
     QWidget *widget_22;
     QVBoxLayout *verticalLayout_2;
     QTableWidget *tableWidget;
@@ -332,7 +312,7 @@ public:
         widget_cpu_info->setMaximumSize(QSize(16777215, 20));
         widget_cpu_info->setStyleSheet(QStringLiteral(""));
         horizontalLayout_14 = new QHBoxLayout(widget_cpu_info);
-        horizontalLayout_14->setSpacing(0);
+        horizontalLayout_14->setSpacing(6);
         horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
         horizontalLayout_14->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(widget_cpu_info);
@@ -341,57 +321,31 @@ public:
 
         horizontalLayout_14->addWidget(label_3);
 
-        widget_5 = new QWidget(widget_cpu_info);
-        widget_5->setObjectName(QStringLiteral("widget_5"));
-        widget_5->setMinimumSize(QSize(125, 0));
-        widget_5->setMaximumSize(QSize(16777215, 12));
-        widget_5->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
-        horizontalLayout = new QHBoxLayout(widget_5);
-        horizontalLayout->setSpacing(0);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        widget_6 = new QWidget(widget_5);
-        widget_6->setObjectName(QStringLiteral("widget_6"));
-        widget_6->setMaximumSize(QSize(60, 12));
-        widget_6->setStyleSheet(QStringLiteral("background-color: rgb(0, 255, 0);"));
-        horizontalLayout_2 = new QHBoxLayout(widget_6);
-        horizontalLayout_2->setSpacing(0);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_cpuUseRate = new QLabel(widget_6);
-        label_cpuUseRate->setObjectName(QStringLiteral("label_cpuUseRate"));
-        label_cpuUseRate->setMaximumSize(QSize(16777215, 16777215));
-        label_cpuUseRate->setFont(font1);
-        label_cpuUseRate->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        progressBar = new QProgressBar(widget_cpu_info);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setMinimumSize(QSize(120, 18));
+        progressBar->setMaximumSize(QSize(120, 18));
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(9);
+        progressBar->setFont(font3);
+        progressBar->setStyleSheet(QLatin1String("QProgressBar {\n"
+"	border: 1px solid;\n"
+"	border-color: rgb(255, 255, 255);\n"
+"	border-radius: 2px; \n"
+"	background-color: #FFFFFF; \n"
+"	text-align:center; \n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QProgressBar:chunk{\n"
+"	border-radius:2px;\n"
+"	\n"
+"	background-color: rgb(0, 255, 0);\n"
+"}"));
+        progressBar->setValue(100);
 
-        horizontalLayout_2->addWidget(label_cpuUseRate);
-
-
-        horizontalLayout->addWidget(widget_6);
-
-        widget_7 = new QWidget(widget_5);
-        widget_7->setObjectName(QStringLiteral("widget_7"));
-        widget_7->setMaximumSize(QSize(16777215, 12));
-        widget_7->setFont(font);
-        widget_7->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        horizontalLayout_3 = new QHBoxLayout(widget_7);
-        horizontalLayout_3->setSpacing(0);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(widget_7);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setFont(font1);
-        label_7->setLayoutDirection(Qt::LeftToRight);
-        label_7->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
-        label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        horizontalLayout_3->addWidget(label_7);
-
-
-        horizontalLayout->addWidget(widget_7);
-
-
-        horizontalLayout_14->addWidget(widget_5);
+        horizontalLayout_14->addWidget(progressBar);
 
 
         verticalLayout_3->addWidget(widget_cpu_info);
@@ -410,55 +364,28 @@ public:
 
         horizontalLayout_16->addWidget(label_17);
 
-        widget_18 = new QWidget(widget_swap_info);
-        widget_18->setObjectName(QStringLiteral("widget_18"));
-        widget_18->setMinimumSize(QSize(125, 0));
-        widget_18->setMaximumSize(QSize(16777215, 12));
-        widget_18->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
-        horizontalLayout_11 = new QHBoxLayout(widget_18);
-        horizontalLayout_11->setSpacing(0);
-        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
-        widget_19 = new QWidget(widget_18);
-        widget_19->setObjectName(QStringLiteral("widget_19"));
-        widget_19->setMaximumSize(QSize(74, 12));
-        widget_19->setStyleSheet(QStringLiteral("background-color: rgb(253, 210, 174);"));
-        horizontalLayout_12 = new QHBoxLayout(widget_19);
-        horizontalLayout_12->setSpacing(0);
-        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
-        horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
-        label_memUseRate = new QLabel(widget_19);
-        label_memUseRate->setObjectName(QStringLiteral("label_memUseRate"));
-        label_memUseRate->setFont(font1);
-        label_memUseRate->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        progressBar_2 = new QProgressBar(widget_swap_info);
+        progressBar_2->setObjectName(QStringLiteral("progressBar_2"));
+        progressBar_2->setMinimumSize(QSize(120, 18));
+        progressBar_2->setMaximumSize(QSize(120, 18));
+        progressBar_2->setFont(font3);
+        progressBar_2->setStyleSheet(QLatin1String("QProgressBar {\n"
+"	border: 1px solid;\n"
+"	border-color: rgb(255, 255, 255);\n"
+"	border-radius: 2px; \n"
+"	background-color: #FFFFFF; \n"
+"	text-align:center; \n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QProgressBar:chunk{\n"
+"	border-radius:2px;\n"
+"	\n"
+"	background-color: rgb(0, 255, 0);\n"
+"}"));
+        progressBar_2->setValue(56);
 
-        horizontalLayout_12->addWidget(label_memUseRate);
-
-
-        horizontalLayout_11->addWidget(widget_19);
-
-        widget_20 = new QWidget(widget_18);
-        widget_20->setObjectName(QStringLiteral("widget_20"));
-        widget_20->setMaximumSize(QSize(16777215, 12));
-        widget_20->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        horizontalLayout_13 = new QHBoxLayout(widget_20);
-        horizontalLayout_13->setSpacing(0);
-        horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
-        horizontalLayout_13->setContentsMargins(0, 0, 0, 0);
-        label_19 = new QLabel(widget_20);
-        label_19->setObjectName(QStringLiteral("label_19"));
-        label_19->setFont(font1);
-        label_19->setLayoutDirection(Qt::LeftToRight);
-        label_19->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
-        label_19->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        horizontalLayout_13->addWidget(label_19);
-
-
-        horizontalLayout_11->addWidget(widget_20);
-
-
-        horizontalLayout_16->addWidget(widget_18);
+        horizontalLayout_16->addWidget(progressBar_2);
 
 
         verticalLayout_3->addWidget(widget_swap_info);
@@ -477,55 +404,28 @@ public:
 
         horizontalLayout_15->addWidget(label_14);
 
-        widget_14 = new QWidget(widget_mem_info);
-        widget_14->setObjectName(QStringLiteral("widget_14"));
-        widget_14->setMinimumSize(QSize(125, 0));
-        widget_14->setMaximumSize(QSize(125, 12));
-        widget_14->setStyleSheet(QStringLiteral("background-color: rgb(99, 94, 68);"));
-        horizontalLayout_8 = new QHBoxLayout(widget_14);
-        horizontalLayout_8->setSpacing(0);
-        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        widget_15 = new QWidget(widget_14);
-        widget_15->setObjectName(QStringLiteral("widget_15"));
-        widget_15->setMaximumSize(QSize(74, 12));
-        widget_15->setStyleSheet(QStringLiteral("background-color: rgb(253, 210, 174);"));
-        horizontalLayout_9 = new QHBoxLayout(widget_15);
-        horizontalLayout_9->setSpacing(0);
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
-        label_swapUseRate = new QLabel(widget_15);
-        label_swapUseRate->setObjectName(QStringLiteral("label_swapUseRate"));
-        label_swapUseRate->setFont(font1);
-        label_swapUseRate->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        progressBar_3 = new QProgressBar(widget_mem_info);
+        progressBar_3->setObjectName(QStringLiteral("progressBar_3"));
+        progressBar_3->setMinimumSize(QSize(120, 18));
+        progressBar_3->setMaximumSize(QSize(120, 18));
+        progressBar_3->setFont(font3);
+        progressBar_3->setStyleSheet(QLatin1String("QProgressBar {\n"
+"	border: 1px solid;\n"
+"	border-color: rgb(255, 255, 255);\n"
+"	border-radius: 2px; \n"
+"	background-color: #FFFFFF; \n"
+"	text-align:center; \n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QProgressBar:chunk{\n"
+"	border-radius:2px;\n"
+"	\n"
+"	background-color: rgb(0, 255, 0);\n"
+"}"));
+        progressBar_3->setValue(80);
 
-        horizontalLayout_9->addWidget(label_swapUseRate);
-
-
-        horizontalLayout_8->addWidget(widget_15);
-
-        widget_16 = new QWidget(widget_14);
-        widget_16->setObjectName(QStringLiteral("widget_16"));
-        widget_16->setMaximumSize(QSize(16777215, 12));
-        widget_16->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        horizontalLayout_10 = new QHBoxLayout(widget_16);
-        horizontalLayout_10->setSpacing(0);
-        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
-        label_16 = new QLabel(widget_16);
-        label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setFont(font1);
-        label_16->setLayoutDirection(Qt::LeftToRight);
-        label_16->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
-        label_16->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        horizontalLayout_10->addWidget(label_16);
-
-
-        horizontalLayout_8->addWidget(widget_16);
-
-
-        horizontalLayout_15->addWidget(widget_14);
+        horizontalLayout_15->addWidget(progressBar_3);
 
 
         verticalLayout_3->addWidget(widget_mem_info);
@@ -741,14 +641,14 @@ public:
         sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy1);
         textEdit->setMaximumSize(QSize(16777215, 5555555));
-        QFont font3;
-        font3.setFamily(QStringLiteral("Cascadia Mono,OPPOSans B"));
-        font3.setPointSize(12);
-        font3.setBold(false);
-        font3.setItalic(false);
-        font3.setWeight(50);
-        font3.setStyleStrategy(QFont::PreferAntialias);
-        textEdit->setFont(font3);
+        QFont font4;
+        font4.setFamily(QStringLiteral("Cascadia Mono,OPPOSans B"));
+        font4.setPointSize(12);
+        font4.setBold(false);
+        font4.setItalic(false);
+        font4.setWeight(50);
+        font4.setStyleStrategy(QFont::PreferAntialias);
+        textEdit->setFont(font4);
         textEdit->setStyleSheet(QString::fromUtf8("QTextEdit{\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "	font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
@@ -1281,7 +1181,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(sshwidget);
@@ -1299,14 +1199,11 @@ public:
         label_architecture->setText(QApplication::translate("sshwidget", "\347\241\254\344\273\266\346\236\266\346\236\204", nullptr));
         label_systemType->setText(QApplication::translate("sshwidget", "\347\263\273\347\273\237\347\261\273\345\236\213", nullptr));
         label_3->setText(QApplication::translate("sshwidget", "CPU", nullptr));
-        label_cpuUseRate->setText(QApplication::translate("sshwidget", " 29%", nullptr));
-        label_7->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
+        progressBar->setFormat(QApplication::translate("sshwidget", "%p%     32G/110G", nullptr));
         label_17->setText(QApplication::translate("sshwidget", "\344\272\244\346\215\242", nullptr));
-        label_memUseRate->setText(QApplication::translate("sshwidget", " 29%", nullptr));
-        label_19->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
+        progressBar_2->setFormat(QApplication::translate("sshwidget", "%p%    32G/110G", nullptr));
         label_14->setText(QApplication::translate("sshwidget", "\345\206\205\345\255\230", nullptr));
-        label_swapUseRate->setText(QApplication::translate("sshwidget", " 29%", nullptr));
-        label_16->setText(QApplication::translate("sshwidget", "32G/110.1G ", nullptr));
+        progressBar_3->setFormat(QApplication::translate("sshwidget", "%p%    32G/110G", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("sshwidget", "\345\206\205\345\255\230", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);

@@ -1278,9 +1278,9 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
     ui->label_loginCount->setText(serverInfo.loginCount);
     ui->label_architecture->setText(serverInfo.architecture);
     ui->label_systemType->setText(serverInfo.systemType);
-    ui->label_cpuUseRate->setText(serverInfo.cpuUseRate);
-    ui->label_memUseRate->setText(serverInfo.memUseRate);
-    ui->label_swapUseRate->setText(serverInfo.swapUseRate);
+//    ui->label_cpuUseRate->setText(serverInfo.cpuUseRate);
+//    ui->label_memUseRate->setText(serverInfo.memUseRate);
+//    ui->label_swapUseRate->setText(serverInfo.swapUseRate);
 }
 
 void sshwidget::on_pushButton_clicked()
