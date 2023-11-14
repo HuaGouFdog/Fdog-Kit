@@ -701,11 +701,8 @@ void sshwidget::rece_channel_read(QString data)
 
 void sshwidget::rece_channel_readS(QStringList data)
 {
-    qDebug() << "data1 = " << data;
     data.removeAll("");  // 删除空字符串
-    qDebug() << "data2 = " << data;
     //data.append("");
-    qDebug() << "data3 = " << data;
     int sum = 0;
     int sum2 = 0;
     //qDebug() << "rece_channel_readS data len1 = " << data.length();
@@ -717,6 +714,7 @@ void sshwidget::rece_channel_readS(QStringList data)
         qDebug() << "获取数据1： " << data[i];
         if (data[i] == "\b" && lastCommondS == "\u001B[D") {
             data[i] = "\u001B[D";
+            lastCommondS = "";
         }
 
         if (data[i] == "\r") {
@@ -736,14 +734,30 @@ void sshwidget::rece_channel_readS(QStringList data)
             isEnter = true;
             continue;
         } else if (data[i] == "\b") {
+            qDebug() << "准备打印" << data[i];
+//            qDebug() << "检测到\\b";
             sum++;
+            QTextCursor cursor6 = ui->textEdit->textCursor();
+            cursor6.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+            qDebug() << "选中内容 = " << cursor6.selectedText();
+            //cursor6.deletePreviousChar();
+            ui->textEdit->setTextCursor(cursor6);
+
+            QTextCursor cursor2 = textEdit_s->textCursor();
+            cursor2.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+            //cursor2.deletePreviousChar();
+            textEdit_s->setTextCursor(cursor2);
+
+
+            //先移动过去
+            continue;
             //sum2--;
-            qDebug() << "=====sum2 = " << sum2;
-            if (sum2 != 0) {
-                sum2--;
-                continue;
-            }
-            if (i > 0 && data[i-1] == "\u001B[K") {
+            //qDebug() << "=====sum2 = " << sum2;
+//            if (sum2 != 0) {
+//                sum2--;
+//                continue;
+//            }
+            //if (i > 0 && data[i-1] == "\u001B[K") {
                 QTextCursor cursor = ui->textEdit->textCursor();
 
                 // 将光标移动到前一个位置
@@ -751,7 +765,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
                 // 获取选定文本
                 QString previousChar = cursor.selectedText();
-                qDebug() << "前一个字符为" << previousChar;
+                qDebug() << "1前一个字符为" << previousChar;
                 isChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
 
                 if(isChinese) {
@@ -775,32 +789,25 @@ void sshwidget::rece_channel_readS(QStringList data)
                         ChineseBackspaceSum++;
                     }
                 } else {
-                    QTextCursor cursor = ui->textEdit->textCursor();
-                    cursor.movePosition(QTextCursor::Left);
-                    ui->textEdit->setTextCursor(cursor);
+                    //如果前面有数据，后面也有数据，记录
+                    QTextCursor cursor3 = ui->textEdit->textCursor();
+                    cursor3.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, 1);
 
-                    QTextCursor cursor2 = textEdit_s->textCursor();
-                    cursor2.movePosition(QTextCursor::Left);
-                    textEdit_s->setTextCursor(cursor2);
-                }
+                    // 获取选定文本
+                    QString previousChar = cursor3.selectedText();
+                    qDebug() << "后一个字符为" << previousChar;
+                    QString previousChar2;
+                    //if (i > 0 && data[i-1].length() >= 1) {
+                        qDebug() << "i = " << i;
+                        QTextCursor cursor5 = ui->textEdit->textCursor();
+                        cursor5.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, 1);
+                        // 获取选定文本
+                        previousChar2 = cursor5.selectedText();
+                        qDebug() << "前一个字符为" << previousChar2;
+                    //}
 
-            } else {
-                QTextCursor cursor = ui->textEdit->textCursor();
-
-                // 将光标移动到前一个位置
-                cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, 1);
-
-                // 获取选定文本
-                QString previousChar = cursor.selectedText();
-                qDebug() << "前一个字符为" << previousChar;
-                isDeleteChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
-
-                if(isDeleteChinese) {
-                    qDebug() << "存在中文";
-                    //判断上一个是否\b
-                    if (ChineseBackspaceDeleteSum!= 0) {
-                        //上一个就是\b
-                        //退格
+                    if (previousChar != "" && previousChar2 != "") {
+                        //覆盖
                         QTextCursor cursor = ui->textEdit->textCursor();
                         cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
                         cursor.deletePreviousChar();
@@ -810,30 +817,108 @@ void sshwidget::rece_channel_readS(QStringList data)
                         cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
                         cursor2.deletePreviousChar();
                         textEdit_s->setTextCursor(cursor2);
-                        isDeleteChinese = false;
-                        ChineseBackspaceDeleteSum = 0;
-                    } else {
-                        //记录
-                        isDeleteChinese = true;
-                        ChineseBackspaceDeleteSum++;
+                        continue;
                     }
-                } else {
+
                     QTextCursor cursor = ui->textEdit->textCursor();
-                    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
-                    cursor.deletePreviousChar();
+                    cursor.movePosition(QTextCursor::Left);
                     ui->textEdit->setTextCursor(cursor);
 
                     QTextCursor cursor2 = textEdit_s->textCursor();
-                    cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
-                    cursor2.deletePreviousChar();
+                    cursor2.movePosition(QTextCursor::Left);
                     textEdit_s->setTextCursor(cursor2);
                 }
 
-            }
+            //} else if (i > 0 && data[i-1] == "\u001B[K") {
+
+//                QTextCursor cursor = ui->textEdit->textCursor();
+
+//                // 将光标移动到前一个位置
+//                cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, 1);
+
+//                // 获取选定文本
+//                QString previousChar = cursor.selectedText();
+//                qDebug() << "前一个字符为" << previousChar;
+//                isChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+
+//                if(isChinese) {
+//                    qDebug() << "存在中文";
+//                    //判断上一个是否\b
+//                    if (ChineseBackspaceSum!= 0) {
+//                        //上一个就是\b
+//                        //退格
+//                        QTextCursor cursor = ui->textEdit->textCursor();
+//                        cursor.movePosition(QTextCursor::Left);
+//                        ui->textEdit->setTextCursor(cursor);
+
+//                        QTextCursor cursor2 = textEdit_s->textCursor();
+//                        cursor2.movePosition(QTextCursor::Left);
+//                        textEdit_s->setTextCursor(cursor2);
+//                        isChinese = false;
+//                        ChineseBackspaceSum = 0;
+//                    } else {
+//                        //记录
+//                        isChinese = true;
+//                        ChineseBackspaceSum++;
+//                    }
+//                } else {
+//                    QTextCursor cursor = ui->textEdit->textCursor();
+//                    cursor.movePosition(QTextCursor::Left);
+//                    ui->textEdit->setTextCursor(cursor);
+
+//                    QTextCursor cursor2 = textEdit_s->textCursor();
+//                    cursor2.movePosition(QTextCursor::Left);
+//                    textEdit_s->setTextCursor(cursor2);
+//                }
+//                QTextCursor cursor = ui->textEdit->textCursor();
+
+//                // 将光标移动到前一个位置
+//                cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, 1);
+
+//                // 获取选定文本
+//                QString previousChar = cursor.selectedText();
+//                qDebug() << "前一个字符为" << previousChar;
+//                isDeleteChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+
+//                if(isDeleteChinese) {
+//                    qDebug() << "存在中文";
+//                    //判断上一个是否\b
+//                    if (ChineseBackspaceDeleteSum!= 0) {
+//                        //上一个就是\b
+//                        //退格
+//                        QTextCursor cursor = ui->textEdit->textCursor();
+//                        cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+//                        cursor.deletePreviousChar();
+//                        ui->textEdit->setTextCursor(cursor);
+
+//                        QTextCursor cursor2 = textEdit_s->textCursor();
+//                        cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+//                        cursor2.deletePreviousChar();
+//                        textEdit_s->setTextCursor(cursor2);
+//                        isDeleteChinese = false;
+//                        ChineseBackspaceDeleteSum = 0;
+//                    } else {
+//                        //记录
+//                        isDeleteChinese = true;
+//                        ChineseBackspaceDeleteSum++;
+//                    }
+//                } else {
+//                    QTextCursor cursor = ui->textEdit->textCursor();
+//                    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+//                    cursor.deletePreviousChar();
+//                    ui->textEdit->setTextCursor(cursor);
+
+//                    QTextCursor cursor2 = textEdit_s->textCursor();
+//                    cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor);
+//                    cursor2.deletePreviousChar();
+//                    textEdit_s->setTextCursor(cursor2);
+//                }
+
+            //}
 
 
         } else if (data[i] == "\u001B[C") {
-            sum2++;
+            //sum2++;
             qDebug() << "sum2++";
 
             QTextCursor cursor = ui->textEdit->textCursor();
@@ -884,7 +969,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
             // 获取选定文本
             QString previousChar = cursor.selectedText();
-            qDebug() << "前一个字符为" << previousChar;
+            qDebug() << "2前一个字符为" << previousChar;
             isChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
 
             if(isChinese) {
@@ -917,12 +1002,14 @@ void sshwidget::rece_channel_readS(QStringList data)
                 textEdit_s->setTextCursor(cursor2);
             }
         } else if (data[i] == "\u001B[K") {
+            qDebug() << "删除光标后面的数据";
             QTextCursor cursor = ui->textEdit->textCursor();
             //int cursorPos = cursor.position();
             //int textLength = ui->textEdit->toPlainText().length();
             //int charsToEnd = textLength - cursorPos;
 
             cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+            qDebug() << "选中内容 = " << cursor.selectedText();
             // 删除当前光标后的内容
             cursor.removeSelectedText();
             ui->textEdit->setTextCursor(cursor);
@@ -931,6 +1018,8 @@ void sshwidget::rece_channel_readS(QStringList data)
             // 删除当前光标后的内容
             cursor2.removeSelectedText();
             textEdit_s->setTextCursor(cursor2);
+
+
 //            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, charsToEnd);
 //            cursor.deletePreviousChar();
 
@@ -981,15 +1070,49 @@ void sshwidget::rece_channel_readS(QStringList data)
             bool isa = false;
             while ((pos = regExp.indexIn(data[i], pos)) != -1) {
                 QString match = regExp.cap(1); //删除
+                //获取当前光标位置
                 QTextCursor cursor = ui->textEdit->textCursor();
-                cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, match.toInt());
-                cursor.deletePreviousChar();
+                //原位置
+                int pos_1  = ui->textEdit->textCursor().position();
+                qDebug() << "原位置 = " << ui->textEdit->textCursor().position();
+//                //移动到行尾
+                cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::MoveAnchor);
+                ui->textEdit->setTextCursor(cursor);
+
+
                 QTextCursor cursor2 = textEdit_s->textCursor();
-                cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, match.toInt());
+                int pos2  = cursor2.position();
+                QTextCursor cursor_2 = cursor2;
+                cursor2.movePosition(QTextCursor::EndOfLine, QTextCursor::MoveAnchor);
+                textEdit_s->setTextCursor(cursor2);
+
+                qDebug() << "到尾部位置 = " << ui->textEdit->textCursor().position();
+
+                cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, match.toInt());
+
+                qDebug() << "P 选中字符为" << cursor.selectedText();
+
+                cursor.deletePreviousChar();
+                //QTextCursor cursor2 = textEdit_s->textCursor();
+                cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, match.toInt());
                 cursor2.deletePreviousChar();
-                qDebug() << "match = " <<match.toInt();
+                ui->textEdit->setTextCursor(cursor);
+                textEdit_s->setTextCursor(cursor2);
+
+                qDebug() << "删除后位置 = " << ui->textEdit->textCursor().position();
+
+                cursor.setPosition(pos_1);
+                cursor2.setPosition(pos2);
+
+                ui->textEdit->setTextCursor(cursor);
+                textEdit_s->setTextCursor(cursor2);
+
+//                qDebug() << "重新后位置 = " << ui->textEdit->textCursor().position() << " pos_1 = " << pos_1;
+
                 sum = sum - match.toInt();
+                qDebug() << "match = " <<match.toInt();
                 data[i].replace(regExp.cap(0), "");
+                //应该是从右边删除
                 isa = true;
                 //break;
             }
@@ -1037,22 +1160,36 @@ void sshwidget::rece_channel_readS(QStringList data)
             if (!isa) {
                 if (sum != 0) {
                     //qDebug() << "走到这里7";
-                    QTextCursor cursor = ui->textEdit->textCursor();
-                    QTextCursor cursor2 = textEdit_s->textCursor();
-                    int cursorPos = cursor.position();
+                    QTextCursor cursor4 = ui->textEdit->textCursor();
+                    //QTextCursor cursor2 = textEdit_s->textCursor();
+                    int cursorPos = cursor4.position();
                     int textLength = ui->textEdit->toPlainText().length();
                     int charsToEnd = textLength - cursorPos;
                     qDebug() << "有字符：" << charsToEnd << "有b:" <<sum;
                     qDebug() << i;
-                    qDebug() << data.length() - 1;
-                    if (data[i] == "" && data[i - 1] == "\b") {
-                        sum--;
-                        qDebug() << "sum--";
-                        continue;
-                    } else {
+                    qDebug() << data[i].length() - 1;
 
+                    //覆盖 如果data[i]有数据就覆盖几个，剩下的继续覆盖
+                    if (sum != 0) {
+                        QTextCursor cursor = ui->textEdit->textCursor();
+                        cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
+                        cursor.deletePreviousChar();
+                        ui->textEdit->setTextCursor(cursor);
+
+                        QTextCursor cursor2 = textEdit_s->textCursor();
+                        cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
+                        cursor2.deletePreviousChar();
+                        textEdit_s->setTextCursor(cursor2);
+                        sum = 0;
                     }
-                    sum = 0;
+
+//                    if (data[i] == "" && data[i - 1] == "\b") {
+//                        sum--;
+//                        qDebug() << "sum--";
+//                        continue;
+//                    } else {
+
+//                    }
                 }
 //                if (data[i] == "use&nbsp;IM_CERT") {
 //                    continue;
@@ -1280,7 +1417,7 @@ void sshwidget::rece_paste_sgin()
 
 void sshwidget::rece_resize_sign()
 {
-    qDebug() << "终端大小改变为" << textEdit_s->size();
+    //qDebug() << "终端大小改变为" << textEdit_s->size();
     // 获取文本编辑框的视口大小
     QSize viewportSize = textEdit_s->viewport()->size();
 
@@ -1294,8 +1431,8 @@ void sshwidget::rece_resize_sign()
     int visibleColumns = viewportSize.width() / charWidth;
 
     // 输出行数和列数
-    qDebug() << "Visible Line count:" << visibleLines;
-    qDebug() << "Visible Column count:" << visibleColumns;
+    //qDebug() << "Visible Line count:" << visibleLines;
+    //qDebug() << "Visible Column count:" << visibleColumns;
     if (columnCount != visibleColumns || lineCount != visibleLines) {
         setTerminalSize(visibleLines, visibleColumns);
         columnCount = visibleColumns;
