@@ -58,8 +58,9 @@ public:
     QHBoxLayout *horizontalLayout_24;
     QLabel *label_architecture;
     QWidget *verticalWidget;
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QLabel *label_cpuInfo;
+    QSpacerItem *verticalSpacer_2;
     QWidget *widget_cpu_info;
     QHBoxLayout *horizontalLayout_14;
     QLabel *label_cpu;
@@ -126,6 +127,7 @@ public:
     QTextEdit *textEdit_3;
     QLineEdit *lineEdit;
     QPushButton *pushButton;
+    QWidget *tab_4;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label;
@@ -161,13 +163,13 @@ public:
 "color: rgb(255, 255, 255);\n"
 "}"));
         verticalLayout_3 = new QVBoxLayout(widget);
-        verticalLayout_3->setSpacing(10);
+        verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(7, 10, 7, 5);
         widget_server_info = new QWidget(widget);
         widget_server_info->setObjectName(QStringLiteral("widget_server_info"));
-        widget_server_info->setMinimumSize(QSize(0, 20));
-        widget_server_info->setMaximumSize(QSize(16777215, 20));
+        widget_server_info->setMinimumSize(QSize(0, 30));
+        widget_server_info->setMaximumSize(QSize(16777215, 30));
         horizontalLayout_22 = new QHBoxLayout(widget_server_info);
         horizontalLayout_22->setSpacing(0);
         horizontalLayout_22->setObjectName(QStringLiteral("horizontalLayout_22"));
@@ -189,8 +191,8 @@ public:
 
         widget_ip_info = new QWidget(widget);
         widget_ip_info->setObjectName(QStringLiteral("widget_ip_info"));
-        widget_ip_info->setMinimumSize(QSize(0, 20));
-        widget_ip_info->setMaximumSize(QSize(16777215, 20));
+        widget_ip_info->setMinimumSize(QSize(0, 25));
+        widget_ip_info->setMaximumSize(QSize(16777215, 25));
         horizontalLayout_4 = new QHBoxLayout(widget_ip_info);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
@@ -230,8 +232,8 @@ public:
 
         widget_31 = new QWidget(widget);
         widget_31->setObjectName(QStringLiteral("widget_31"));
-        widget_31->setMinimumSize(QSize(0, 20));
-        widget_31->setMaximumSize(QSize(16777215, 20));
+        widget_31->setMinimumSize(QSize(0, 25));
+        widget_31->setMaximumSize(QSize(16777215, 25));
         horizontalLayout_26 = new QHBoxLayout(widget_31);
         horizontalLayout_26->setSpacing(0);
         horizontalLayout_26->setObjectName(QStringLiteral("horizontalLayout_26"));
@@ -249,8 +251,8 @@ public:
 
         widget_run_info = new QWidget(widget);
         widget_run_info->setObjectName(QStringLiteral("widget_run_info"));
-        widget_run_info->setMinimumSize(QSize(0, 20));
-        widget_run_info->setMaximumSize(QSize(16777215, 20));
+        widget_run_info->setMinimumSize(QSize(0, 25));
+        widget_run_info->setMaximumSize(QSize(16777215, 25));
         QFont font2;
         font2.setFamily(QStringLiteral("OPPOSans B"));
         font2.setPointSize(10);
@@ -272,8 +274,8 @@ public:
 
         widget_25 = new QWidget(widget);
         widget_25->setObjectName(QStringLiteral("widget_25"));
-        widget_25->setMinimumSize(QSize(0, 20));
-        widget_25->setMaximumSize(QSize(16777215, 20));
+        widget_25->setMinimumSize(QSize(0, 25));
+        widget_25->setMaximumSize(QSize(16777215, 25));
         horizontalLayout_18 = new QHBoxLayout(widget_25);
         horizontalLayout_18->setSpacing(0);
         horizontalLayout_18->setObjectName(QStringLiteral("horizontalLayout_18"));
@@ -291,8 +293,8 @@ public:
 
         widget_27 = new QWidget(widget);
         widget_27->setObjectName(QStringLiteral("widget_27"));
-        widget_27->setMinimumSize(QSize(0, 20));
-        widget_27->setMaximumSize(QSize(16777215, 20));
+        widget_27->setMinimumSize(QSize(0, 25));
+        widget_27->setMaximumSize(QSize(16777215, 25));
         horizontalLayout_24 = new QHBoxLayout(widget_27);
         horizontalLayout_24->setSpacing(0);
         horizontalLayout_24->setObjectName(QStringLiteral("horizontalLayout_24"));
@@ -310,22 +312,26 @@ public:
 
         verticalWidget = new QWidget(widget);
         verticalWidget->setObjectName(QStringLiteral("verticalWidget"));
-        verticalWidget->setMinimumSize(QSize(0, 20));
-        verticalWidget->setMaximumSize(QSize(16777215, 20));
-        verticalLayout = new QVBoxLayout(verticalWidget);
-        verticalLayout->setSpacing(0);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        verticalWidget->setMinimumSize(QSize(0, 25));
+        verticalWidget->setMaximumSize(QSize(16777215, 25));
+        horizontalLayout = new QHBoxLayout(verticalWidget);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label_cpuInfo = new QLabel(verticalWidget);
         label_cpuInfo->setObjectName(QStringLiteral("label_cpuInfo"));
         label_cpuInfo->setMinimumSize(QSize(0, 20));
         label_cpuInfo->setMaximumSize(QSize(16777215, 20));
         label_cpuInfo->setFont(font1);
 
-        verticalLayout->addWidget(label_cpuInfo);
+        horizontalLayout->addWidget(label_cpuInfo);
 
 
         verticalLayout_3->addWidget(verticalWidget);
+
+        verticalSpacer_2 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        verticalLayout_3->addItem(verticalSpacer_2);
 
         widget_cpu_info = new QWidget(widget);
         widget_cpu_info->setObjectName(QStringLiteral("widget_cpu_info"));
@@ -344,14 +350,11 @@ public:
 
         progressBar_cpu = new QProgressBar(widget_cpu_info);
         progressBar_cpu->setObjectName(QStringLiteral("progressBar_cpu"));
-        progressBar_cpu->setMinimumSize(QSize(120, 16));
-        progressBar_cpu->setMaximumSize(QSize(120, 16));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(9);
-        progressBar_cpu->setFont(font3);
+        progressBar_cpu->setMinimumSize(QSize(120, 14));
+        progressBar_cpu->setMaximumSize(QSize(120, 14));
+        progressBar_cpu->setFont(font1);
         progressBar_cpu->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
 "	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
@@ -388,11 +391,14 @@ public:
 
         progressBar_disk = new QProgressBar(widget_mem_info_2);
         progressBar_disk->setObjectName(QStringLiteral("progressBar_disk"));
-        progressBar_disk->setMinimumSize(QSize(120, 16));
-        progressBar_disk->setMaximumSize(QSize(120, 16));
+        progressBar_disk->setMinimumSize(QSize(120, 14));
+        progressBar_disk->setMaximumSize(QSize(120, 14));
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(9);
         progressBar_disk->setFont(font3);
         progressBar_disk->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
 "	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
@@ -429,11 +435,11 @@ public:
 
         progressBar_mem = new QProgressBar(widget_mem_info);
         progressBar_mem->setObjectName(QStringLiteral("progressBar_mem"));
-        progressBar_mem->setMinimumSize(QSize(120, 16));
-        progressBar_mem->setMaximumSize(QSize(120, 16));
+        progressBar_mem->setMinimumSize(QSize(120, 14));
+        progressBar_mem->setMaximumSize(QSize(120, 14));
         progressBar_mem->setFont(font3);
         progressBar_mem->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
 "	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
@@ -470,11 +476,11 @@ public:
 
         progressBar_swap = new QProgressBar(widget_swap_info);
         progressBar_swap->setObjectName(QStringLiteral("progressBar_swap"));
-        progressBar_swap->setMinimumSize(QSize(120, 16));
-        progressBar_swap->setMaximumSize(QSize(120, 16));
+        progressBar_swap->setMinimumSize(QSize(120, 14));
+        progressBar_swap->setMaximumSize(QSize(120, 14));
         progressBar_swap->setFont(font3);
         progressBar_swap->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
 "	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
@@ -489,6 +495,7 @@ public:
 "	background-color: rgb(0, 255, 0);\n"
 "}"));
         progressBar_swap->setValue(0);
+        progressBar_swap->setTextDirection(QProgressBar::TopToBottom);
 
         horizontalLayout_16->addWidget(progressBar_swap);
 
@@ -566,7 +573,7 @@ public:
         textEdit = new QTextEdit(widget_9);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setEnabled(true);
-        textEdit->setGeometry(QRect(10, 20, 151, 161));
+        textEdit->setGeometry(QRect(10, 20, 151, 141));
         sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy1);
         textEdit->setMaximumSize(QSize(16777215, 5555555));
@@ -586,18 +593,24 @@ public:
 "    padding-bottom:0px;\n"
 "	padding-left:0px;\n"
 "    padding-right:0px;\n"
-"color: rgba(255, 255, 255, 0);\n"
+"color: rgba(255, 255, 255, 255);\n"
 "border-radius: 5px;\n"
 "}\n"
 "\n"
-"QScrollBar:vertical {\n"
+"QTextEdit::cursor {\n"
+"     background-color: red;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical{\n"
 "    width: 10px;\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
 "    padding-bottom: 0px;\n"
 "}\n"
-"QScrollBar::handle:vertical {\n"
+"\n"
+"\n"
+"QScrollBar::handle:vertical{\n"
 "    width: 10px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);\n"
@@ -609,11 +622,11 @@ public:
 "QScrollBar::sub-page:vertical {\n"
 "    \n"
 "	background-color: rgba(255, 255, 255, 0);\n"
-"}\n"
+""
+                        "}\n"
 "QScrollBar::add-page:vertical \n"
 "{\n"
-"    background-color: rgba(25"
-                        "5, 255, 255, 0);\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
@@ -632,10 +645,12 @@ public:
 "QScrollBar::down-arrow:vertical {\n"
 "    border:none;\n"
 "}\n"
+"\n"
 "QScrollBar::up-arrow:vertical {\n"
 "    border:none;\n"
 "}"));
         textEdit->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        textEdit->setLineWrapMode(QTextEdit::NoWrap);
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::TextEditorInteraction);
 
@@ -892,13 +907,14 @@ public:
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	/*border-top-left-radius: 5px;*/    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	/*border-top-right-radius: 5px;*/    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211"
-                        "*/\n"
-"	/*width:120px;*/\n"
+"	border-top-left-radius: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-right-radius: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	"
+                        "/*width:120px;*/\n"
 "	padding: 4px;\n"
 "	margin-right:0px;\n"
 "	margin-left: 0px;\n"
+"	\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
@@ -917,9 +933,9 @@ public:
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
-""
-                        "QTabWidget::pane {\n"
-"    border-top:2px solid rgba(11, 11, 11,0);\n"
+"QT"
+                        "abWidget::pane {\n"
+"   border:2px solid rgb(108, 117, 125, 65); \n"
 "}\n"
 " \n"
 "\n"
@@ -945,7 +961,7 @@ public:
         tab->setObjectName(QStringLiteral("tab"));
         gridWidget = new QWidget(tab);
         gridWidget->setObjectName(QStringLiteral("gridWidget"));
-        gridWidget->setGeometry(QRect(-1, -1, 301, 31));
+        gridWidget->setGeometry(QRect(-1, -1, 301, 41));
         gridWidget->setStyleSheet(QLatin1String("QToolButton {\n"
 "	\n"
 "	color: rgb(217, 236, 237);\n"
@@ -1016,7 +1032,7 @@ public:
         textEdit_2 = new QTextEdit(tab_3);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setGeometry(QRect(10, 10, 561, 211));
-        textEdit_2->setReadOnly(true);
+        textEdit_2->setReadOnly(false);
         scrollArea_2 = new QScrollArea(tab_3);
         scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
         scrollArea_2->setGeometry(QRect(580, 160, 461, 61));
@@ -1040,18 +1056,21 @@ public:
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(850, 20, 75, 31));
         tabWidget->addTab(tab_3, QString());
+        tab_4 = new QWidget();
+        tab_4->setObjectName(QStringLiteral("tab_4"));
+        tabWidget->addTab(tab_4, QString());
 
         verticalLayout_7->addWidget(tabWidget);
 
         widget_8 = new QWidget(widget_3);
         widget_8->setObjectName(QStringLiteral("widget_8"));
-        widget_8->setMinimumSize(QSize(0, 20));
-        widget_8->setMaximumSize(QSize(16777215, 18));
+        widget_8->setMinimumSize(QSize(0, 25));
+        widget_8->setMaximumSize(QSize(16777215, 25));
         widget_8->setFont(font);
         widget_8->setStyleSheet(QStringLiteral(""));
         horizontalLayout_5 = new QHBoxLayout(widget_8);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_5->setContentsMargins(2, 5, 2, 0);
         label = new QLabel(widget_8);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
@@ -1111,7 +1130,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(sshwidget);
@@ -1140,7 +1159,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1\\b1</p></body></html>", nullptr));
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         toolButton_info->setText(QApplication::translate("sshwidget", "\344\277\241\346\201\257", nullptr));
         toolButton_find->setText(QApplication::translate("sshwidget", "\346\237\245\346\211\276", nullptr));
         toolButton_history->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
@@ -1178,7 +1197,8 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "11111111111111111111111111", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "java", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("sshwidget", "\346\211\223\345\214\205", nullptr));
         label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
         label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));
         toolButton_2->setText(QApplication::translate("sshwidget", "\347\274\226\350\276\221", nullptr));

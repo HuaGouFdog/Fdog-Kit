@@ -25,6 +25,7 @@
 #include <QMenu>
 #include <QMimeData>
 #include "findwidget.h"
+#include <QTextEdit>
 
 QString a = "";
 
@@ -63,6 +64,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     ui(new Ui::sshwidget)
 {
     ui->setupUi(this);
+
+
+    ui->textEdit_2->setOverwriteMode(true);
 
     ui->splitter_2->setStretchFactor(10,2);
 
@@ -107,9 +111,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     textEdit_s = new CustomTextEdit(this);
     textEdit_s->setReadOnly(true);
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
+    textEdit_s->setLineWrapMode(QTextEdit::NoWrap); //不自动换行
     textEdit_s->setStyleSheet("QTextEdit{ \
                              background-color: rgb(0, 41, 169, 0);\
-                             selection-background-color: yellow;\
+                             selection-background-color: rgb(5, 96, 159);\
                              font: 12pt \"Cascadia Mono,OPPOSans B\";\
                              border: none;\
                              padding-top:0px;\
@@ -117,7 +122,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
                              padding-left:0px;\
                              padding-right:0px;\
                              border-radius: 5px;\
-                             color: rgba(255, 255, 255, 255);\
+                             color: rgba(255, 255, 255, 0);\
                          }\
                          QScrollBar:vertical {\
                              width: 10px;\
@@ -192,7 +197,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     //ui->textEdit_4->setFocus();
     movePos = false;
 
-    ui->textEdit->setCursorWidth(8);
+    ui->textEdit->setCursorWidth(2);
 
 //    QTextCursor cursor = ui->textEdit->textCursor();
     //ui->textEdit->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
@@ -253,6 +258,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     //ui->widget_3->hide();
     //ui->widget_4->hide();
     //ui->horizontalWidget->hide();
+
+    ui->textEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    textEdit_s->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 sshwidget::~sshwidget()
@@ -345,13 +353,13 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
 
 void sshwidget::setTerminalSize(int height, int width)
 {
-//    if (m_sshhandle->channel_ssh == nullptr) {
-//        return;
-//    }
-//    int ret = libssh2_channel_request_pty_size(m_sshhandle->channel_ssh, width, height);
-//    if (ret != 0) {
-//        qDebug() << "libssh2_channel_request_pty_size出错" << ret;
-//    }
+    if (m_sshhandle->channel_ssh == nullptr) {
+        return;
+    }
+    int ret = libssh2_channel_request_pty_size(m_sshhandle->channel_ssh, width, height);
+    if (ret != 0) {
+        qDebug() << "libssh2_channel_request_pty_size出错" << ret;
+    }
 }
 
 void sshwidget::sendData(QString data)
