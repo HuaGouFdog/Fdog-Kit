@@ -25,6 +25,7 @@
 #include <QMenu>
 #include <QMimeData>
 #include "findwidget.h"
+#include "downloadwidget.h"
 #include <QTextEdit>
 
 QString a = "";
@@ -204,12 +205,15 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QStackedLayout * Layout = new QStackedLayout;
     Layout->setStackingMode(QStackedLayout::StackAll);
     Layout->setContentsMargins(0,0,0,0);
-    fwidget = new findwidget(this);
+    fwidget = new findwidget(textEdit_s);
+    dlwidget = new downloadwidget(textEdit_s);
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
-    Layout->addWidget(fwidget);
+
+    //fwidget->raise();
+    //Layout->addWidget(fwidget);
+
     ui->widget_9->setLayout(Layout);
-    //ui->widget_10->setLayout(Layout);
 
     connect(textEdit_s,SIGNAL(cursorPositionChanged()),this,
                                SLOT(on_textEdit_s_cursorPositionChanged()));
@@ -1448,6 +1452,21 @@ void sshwidget::rece_resize_sign()
         columnCount = visibleColumns;
         lineCount = visibleLines;
     }
+
+    // 获取标签的坐标和大小
+    int x = textEdit_s->geometry().x();
+    int y = textEdit_s->geometry().y();
+    int width = textEdit_s->geometry().width();
+    int height = textEdit_s->geometry().height();
+
+    // 输出坐标和大小信息
+    qDebug() << "X: " << x;
+    qDebug() << "Y: " << y;
+    qDebug() << "Width: " << width;
+    qDebug() << "Height: " << height;
+
+    fwidget->move(width - fwidget->geometry().width(), 10);
+    dlwidget->move(width - dlwidget->geometry().width() - 5, 45);
 }
 
 void sshwidget::on_toolButton_toolkit_clicked()
