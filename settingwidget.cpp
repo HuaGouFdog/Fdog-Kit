@@ -2,7 +2,7 @@
 #include "ui_settingwidget.h"
 #include "utils.h"
 #include "colormatch.h"
-
+#include <QPropertyAnimation>
 QStringList campbell = {"#0C0C0C","#767676",
                         "#C50F1F","#E74856",
                         "#13A10E","#16C60C",
@@ -165,6 +165,18 @@ settingwidget::settingwidget(QWidget *parent) :
     ui->verticalWidget_24->layout()->addWidget(cm9);
     cm9->show();
 
+    QButtonGroup * m_buttonGroup = new QButtonGroup(this);
+    m_buttonGroup->addButton(ui->toolButton_activate, 0);
+    m_buttonGroup->addButton(ui->toolButton_appearance, 1);
+    m_buttonGroup->addButton(ui->toolButton_typeface, 2);
+    m_buttonGroup->addButton(ui->toolButton_colorMatch, 3);
+    m_buttonGroup->addButton(ui->toolButton_theme, 4);
+    m_buttonGroup->addButton(ui->toolButton_terminal, 5);
+    m_buttonGroup->addButton(ui->toolButton_shortcutKey, 6);
+    m_buttonGroup->button(0)->setChecked(true); //设置按钮组第一个按钮高亮显示
+    m_buttonGroup->setExclusive(true);
+
+    connect(m_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(on_Menu_clicked(int)));
 }
 
 settingwidget::~settingwidget()
@@ -172,7 +184,18 @@ settingwidget::~settingwidget()
     delete ui;
 }
 
-void settingwidget::on_toolButton_clicked()
+void settingwidget::on_Menu_clicked(int index)
 {
-    ui->stackedWidget->setCurrentIndex((ui->stackedWidget->currentIndex() + 1)%7);
+    ui->stackedWidget->setCurrentIndex(index);
 }
+
+//void settingwidget::on_toolButton_clicked()
+//{
+////    QPropertyAnimation* animation = new QPropertyAnimation(ui->stackedWidget, "currentIndex");
+////    animation->setDuration(100);
+////    animation->setStartValue(ui->stackedWidget->currentIndex());
+////    animation->setEndValue((ui->stackedWidget->currentIndex() + 1)%7);
+////    animation->start(QAbstractAnimation::DeleteWhenStopped);
+////    animation->setEasingCurve(QEasingCurve::InCubic); // 使用缓动效果
+//    ui->stackedWidget->setCurrentIndex((ui->stackedWidget->currentIndex() + 1)%7);
+//}

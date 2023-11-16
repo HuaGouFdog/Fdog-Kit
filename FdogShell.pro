@@ -42,7 +42,8 @@ SOURCES += \
     utils.cpp \
     colormatch.cpp \
     findwidget.cpp \
-    aboutwidget.cpp
+    aboutwidget.cpp \
+    downloadwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -62,7 +63,8 @@ HEADERS += \
     utils.h \
     colormatch.h \
     findwidget.h \
-    aboutwidget.h
+    aboutwidget.h \
+    downloadwidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -77,7 +79,8 @@ FORMS += \
     keywidget.ui \
     colormatch.ui \
     findwidget.ui \
-    aboutwidget.ui
+    aboutwidget.ui \
+    downloadwidget.ui
 
 RESOURCES += \
     lib.qrc

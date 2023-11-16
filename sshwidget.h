@@ -13,6 +13,7 @@
 #include <QClipboard>
 #include <QInputMethodEvent>
 #include "findwidget.h"
+#include "downloadwidget.h"
 
 class CustomTextEdit : public QTextEdit {
     Q_OBJECT
@@ -245,6 +246,7 @@ private:
     QScrollBar *scrollBar_textEdit_s = NULL;
     CustomTextEdit *textEdit_s;
     findwidget * fwidget = NULL;
+    downloadwidget * dlwidget = NULL;
 
     QString lastCommondS; //上一条命令
     QString ssh_path; //当前工作目录

@@ -51,7 +51,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="widget" native="true">
+       <widget class="QWidget" name="widget_left" native="true">
         <property name="minimumSize">
          <size>
           <width>180</width>
@@ -95,7 +95,7 @@ QToolButton:checked {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
-          <number>0</number>
+          <number>5</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -110,7 +110,7 @@ QToolButton:checked {
           <number>10</number>
          </property>
          <item>
-          <widget class="QToolButton" name="toolButton_9">
+          <widget class="QToolButton" name="toolButton_activate">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -152,13 +152,16 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_4">
+          <widget class="QToolButton" name="toolButton_appearance">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>3</horstretch>
@@ -200,13 +203,16 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_2">
+          <widget class="QToolButton" name="toolButton_typeface">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>3</horstretch>
@@ -248,13 +254,16 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_6">
+          <widget class="QToolButton" name="toolButton_colorMatch">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>3</horstretch>
@@ -296,13 +305,16 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_5">
+          <widget class="QToolButton" name="toolButton_theme">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>3</horstretch>
@@ -344,13 +356,19 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_8">
+          <widget class="QToolButton" name="toolButton_terminal">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -392,13 +410,16 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_7">
+          <widget class="QToolButton" name="toolButton_shortcutKey">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>3</horstretch>
@@ -440,6 +461,9 @@ QToolButton:checked {
              <height>22</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
@@ -474,9 +498,9 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>5</number>
+         <number>0</number>
         </property>
-        <widget class="QWidget" name="page">
+        <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -491,7 +515,7 @@ QToolButton:checked {
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>60</number>
+           <number>50</number>
           </property>
           <property name="bottomMargin">
            <number>10</number>
@@ -555,7 +579,7 @@ QToolButton:checked {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -670,7 +694,7 @@ background-color: rgba(255, 255, 255, 0);</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_25{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_25{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -785,7 +809,7 @@ background-color: rgba(255, 255, 255, 0);</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_2{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_2{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -976,7 +1000,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_3{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_3{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -1194,7 +1218,7 @@ QSpinBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_4{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_4{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -1311,7 +1335,7 @@ border-radius: 5px;}</string>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_2">
+        <widget class="QWidget" name="page_appearance">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -1326,7 +1350,7 @@ border-radius: 5px;}</string>
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>60</number>
+           <number>50</number>
           </property>
           <property name="bottomMargin">
            <number>10</number>
@@ -1390,7 +1414,7 @@ border-radius: 5px;}</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_5{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_5{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_13">
@@ -1576,7 +1600,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_9{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_9{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_19">
@@ -1767,7 +1791,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_6{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_6{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
@@ -1884,7 +1908,7 @@ border-radius: 5px;}</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_7{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_7{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_15">
@@ -2070,7 +2094,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_8{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_8{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -2261,7 +2285,7 @@ QComboBox QAbstractItemView{
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_3">
+        <widget class="QWidget" name="page_typeface">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -2276,7 +2300,7 @@ QComboBox QAbstractItemView{
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>60</number>
+           <number>50</number>
           </property>
           <property name="bottomMargin">
            <number>10</number>
@@ -2340,7 +2364,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_11{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_11{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_21">
@@ -2507,7 +2531,7 @@ QSpinBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_10{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_10{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -2560,7 +2584,7 @@ p, li { white-space: pre-wrap; }
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_12{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_12{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_22">
@@ -2742,7 +2766,7 @@ QFontComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_13{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_13{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_23">
@@ -2924,7 +2948,7 @@ QFontComboBox QAbstractItemView{
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_4">
+        <widget class="QWidget" name="page_colorMatch">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -2939,7 +2963,7 @@ QFontComboBox QAbstractItemView{
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>60</number>
+           <number>50</number>
           </property>
           <property name="bottomMargin">
            <number>10</number>
@@ -3068,7 +3092,7 @@ border-radius: 5px;}
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>664</width>
+               <width>832</width>
                <height>800</height>
               </rect>
              </property>
@@ -3901,7 +3925,7 @@ border-radius:5px;</string>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_5">
+        <widget class="QWidget" name="page_theme">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -3956,7 +3980,7 @@ border-radius:5px;</string>
           </layout>
          </widget>
         </widget>
-        <widget class="QWidget" name="page_6">
+        <widget class="QWidget" name="page_terminal">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -3971,7 +3995,7 @@ border-radius:5px;</string>
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>60</number>
+           <number>50</number>
           </property>
           <property name="bottomMargin">
            <number>10</number>
@@ -4035,7 +4059,7 @@ border-radius:5px;</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_14{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_14{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_24">
@@ -4221,7 +4245,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_26{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_26{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_35">
@@ -4407,7 +4431,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_27{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_27{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_36">
@@ -4598,7 +4622,7 @@ QComboBox QAbstractItemView{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_28{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_28{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_37">
@@ -4728,7 +4752,7 @@ QToolButton:checked {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_29{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_29{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_38">
@@ -4861,7 +4885,7 @@ border-radius: 5px;}</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_30{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_30{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_39">
@@ -4959,7 +4983,7 @@ border-radius: 5px;}</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_31{background-color: rgba(66, 66, 66, 100);
+             <string notr="true">#verticalWidget_31{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_40" stretch="1,1">
@@ -5049,7 +5073,7 @@ border-radius: 5px;}</string>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_7">
+        <widget class="QWidget" name="page_shortcutKey">
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <property name="spacing">
            <number>10</number>
@@ -5061,7 +5085,7 @@ border-radius: 5px;}</string>
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>60</number>
+           <number>50</number>
           </property>
           <property name="bottomMargin">
            <number>10</number>
@@ -5170,8 +5194,8 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>674</width>
-               <height>893</height>
+               <width>832</width>
+               <height>830</height>
               </rect>
              </property>
              <property name="minimumSize">

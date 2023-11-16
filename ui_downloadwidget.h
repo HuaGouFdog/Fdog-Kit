@@ -16,8 +16,9 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -37,21 +38,22 @@ public:
     QToolButton *toolButton_file_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_5;
-    QLineEdit *lineEdit_6;
-    QLineEdit *lineEdit_7;
-    QLineEdit *lineEdit_8;
-    QLineEdit *lineEdit_9;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *label;
+    QWidget *widget_5;
+    QProgressBar *progressBar;
+    QWidget *widget_4;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_3;
+    QSpacerItem *horizontalSpacer;
+    QLabel *label_4;
 
     void setupUi(QWidget *downloadwidget)
     {
         if (downloadwidget->objectName().isEmpty())
             downloadwidget->setObjectName(QStringLiteral("downloadwidget"));
-        downloadwidget->resize(280, 323);
+        downloadwidget->resize(280, 289);
         downloadwidget->setMinimumSize(QSize(280, 0));
         downloadwidget->setMaximumSize(QSize(280, 16777215));
         downloadwidget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
@@ -62,8 +64,12 @@ public:
         widget_2 = new QWidget(downloadwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setStyleSheet(QLatin1String("#widget_2{\n"
+"	border: 2px solid;\n"
 "	\n"
-"	background-color: rgb(138, 138, 138);\n"
+"	\n"
+"	border-color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(30, 45, 54);\n"
 "	border-radius: 5px;\n"
 "}"));
         verticalLayout_2 = new QVBoxLayout(widget_2);
@@ -85,6 +91,7 @@ public:
         font.setStyleStrategy(QFont::PreferAntialias);
         label_2->setFont(font);
         label_2->setLayoutDirection(Qt::LeftToRight);
+        label_2->setStyleSheet(QStringLiteral(""));
         label_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         label_2->setWordWrap(true);
 
@@ -149,38 +156,101 @@ public:
 
         scrollArea = new QScrollArea(widget_2);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        scrollArea->setStyleSheet(QLatin1String("#scrollArea{\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"	border: 2px solid;\n"
+"	\n"
+"	border-color: rgb(255, 255, 255);\n"
+"}\n"
+""));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 262, 266));
-        lineEdit = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(0, 0, 261, 20));
-        lineEdit_2 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(0, 30, 261, 20));
-        lineEdit_3 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(0, 60, 261, 20));
-        lineEdit_4 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(0, 90, 261, 20));
-        lineEdit_5 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
-        lineEdit_5->setGeometry(QRect(0, 120, 261, 20));
-        lineEdit_6 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
-        lineEdit_6->setGeometry(QRect(0, 150, 261, 20));
-        lineEdit_7 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
-        lineEdit_7->setGeometry(QRect(0, 180, 261, 20));
-        lineEdit_8 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_8->setObjectName(QStringLiteral("lineEdit_8"));
-        lineEdit_8->setGeometry(QRect(0, 210, 261, 20));
-        lineEdit_9 = new QLineEdit(scrollAreaWidgetContents);
-        lineEdit_9->setObjectName(QStringLiteral("lineEdit_9"));
-        lineEdit_9->setGeometry(QRect(0, 240, 261, 20));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 260, 230));
+        widget = new QWidget(scrollAreaWidgetContents);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(0, 0, 261, 41));
+        widget->setStyleSheet(QStringLiteral(""));
+        verticalLayout_3 = new QVBoxLayout(widget);
+        verticalLayout_3->setSpacing(0);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(0, 20));
+        label->setMaximumSize(QSize(16777215, 20));
+        QFont font1;
+        font1.setFamily(QStringLiteral("OPPOSans B"));
+        font1.setPointSize(9);
+        font1.setStyleStrategy(QFont::PreferAntialias);
+        label->setFont(font1);
+        label->setStyleSheet(QStringLiteral(""));
+
+        verticalLayout_3->addWidget(label);
+
+        widget_5 = new QWidget(widget);
+        widget_5->setObjectName(QStringLiteral("widget_5"));
+        widget_5->setMinimumSize(QSize(0, 20));
+        widget_5->setMaximumSize(QSize(16777215, 20));
+
+        verticalLayout_3->addWidget(widget_5);
+
+        progressBar = new QProgressBar(scrollAreaWidgetContents);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setGeometry(QRect(10, 100, 241, 18));
+        progressBar->setMinimumSize(QSize(0, 18));
+        progressBar->setMaximumSize(QSize(16777215, 18));
+        progressBar->setStyleSheet(QLatin1String("QProgressBar {\n"
+"	border: 1px solid;\n"
+"	border-color: rgb(91, 91, 91);\n"
+"	border-radius: 0px; \n"
+"	/*background-color: #FFFFFF; */\n"
+"	text-align:center; \n"
+"	color: rgba(0, 0, 0, 200);\n"
+"}\n"
+"\n"
+"QProgressBar:chunk{\n"
+"	border-radius:0px;\n"
+"	background-color: rgb(180, 220, 255);\n"
+"}"));
+        progressBar->setValue(95);
+        progressBar->setTextVisible(false);
+        progressBar->setInvertedAppearance(false);
+        progressBar->setTextDirection(QProgressBar::TopToBottom);
+        widget_4 = new QWidget(scrollAreaWidgetContents);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setGeometry(QRect(10, 70, 241, 18));
+        widget_4->setMinimumSize(QSize(0, 18));
+        widget_4->setMaximumSize(QSize(16777215, 18));
+        widget_4->setStyleSheet(QLatin1String("background-color: rgba(131, 185, 255, 0);\n"
+"color: rgb(0, 0, 0);"));
+        horizontalLayout = new QHBoxLayout(widget_4);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(3, 0, 3, 0);
+        label_3 = new QLabel(widget_4);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMinimumSize(QSize(12, 12));
+        label_3->setMaximumSize(QSize(12, 12));
+        label_3->setStyleSheet(QStringLiteral("image: url(:/lib/peixu.png);"));
+
+        horizontalLayout->addWidget(label_3);
+
+        horizontalSpacer = new QSpacerItem(99, 15, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        label_4 = new QLabel(widget_4);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setMaximumSize(QSize(16777215, 15));
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans B"));
+        font2.setPointSize(9);
+        label_4->setFont(font2);
+        label_4->setStyleSheet(QStringLiteral(""));
+
+        horizontalLayout->addWidget(label_4);
+
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout_2->addWidget(scrollArea);
@@ -198,6 +268,10 @@ public:
     {
         downloadwidget->setWindowTitle(QApplication::translate("downloadwidget", "Form", nullptr));
         label_2->setText(QApplication::translate("downloadwidget", "\345\275\223\345\211\215\344\270\213\350\275\275\350\267\257\345\276\204\357\274\232 C:\\Users\\\345\274\240\346\227\255\\Desktop\\fsdownload", nullptr));
+        label->setText(QApplication::translate("downloadwidget", "bison-2.5.1.tar.gz", nullptr));
+        progressBar->setFormat(QApplication::translate("downloadwidget", "%p%", nullptr));
+        label_3->setText(QString());
+        label_4->setText(QApplication::translate("downloadwidget", "52.6% 456k/s  23M", nullptr));
     } // retranslateUi
 
 };

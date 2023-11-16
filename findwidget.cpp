@@ -15,7 +15,7 @@ findwidget::findwidget(QWidget *parent) :
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
-    ui->lineEdit->addAction(action,QLineEdit::LeadingPosition);
+    ui->lineEdit_search->addAction(action,QLineEdit::LeadingPosition);
 }
 
 findwidget::~findwidget()

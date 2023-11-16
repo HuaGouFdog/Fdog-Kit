@@ -39,13 +39,13 @@
     <widget class="QWidget" name="widget" native="true">
      <property name="minimumSize">
       <size>
-       <width>170</width>
+       <width>145</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>170</width>
+       <width>145</width>
        <height>16777215</height>
       </size>
      </property>
@@ -67,10 +67,10 @@ color: rgb(255, 255, 255);
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <property name="spacing">
-       <number>0</number>
+       <number>7</number>
       </property>
       <property name="leftMargin">
-       <number>7</number>
+       <number>3</number>
       </property>
       <property name="topMargin">
        <number>10</number>
@@ -145,13 +145,13 @@ color: rgb(255, 255, 255);
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -232,76 +232,17 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_31" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>25</height>
-         </size>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_26">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_load">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>9</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="text">
-            <string>负载 -</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
        <widget class="QWidget" name="widget_run_info" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <property name="font">
@@ -360,13 +301,13 @@ QToolButton:hover {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -419,13 +360,13 @@ QToolButton:hover {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_24">
@@ -466,7 +407,7 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>系统信息 -</string>
+            <string>系统架构 -</string>
            </property>
           </widget>
          </item>
@@ -478,13 +419,13 @@ QToolButton:hover {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>25</height>
+          <height>20</height>
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
@@ -533,6 +474,65 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
+       <widget class="QWidget" name="widget_31" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>20</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_26">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_load">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>9</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>负载 -</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -553,21 +553,21 @@ QToolButton:hover {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <layout class="QVBoxLayout" name="verticalLayout_10">
          <property name="spacing">
-          <number>6</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -599,13 +599,13 @@ QToolButton:hover {
           <widget class="QProgressBar" name="progressBar_cpu">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
@@ -618,23 +618,32 @@ QToolButton:hover {
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 0px solid;
+	border: 1px solid;
 	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
+	
+	border-color: rgb(91, 91, 91);
+	border-radius: 0px; 
+	
+	
+	/*border-image: url(:/lib/jianbian1.png);*/
+	background-color: #FFFFFF;
 	text-align:center; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:2px;
+	border-radius:0px;
 	
-	background-color: rgb(0, 255, 0);
+	
+	background-color: rgb(134, 240, 118);
+	/*background-color: #FFFFFF;*/
 }</string>
            </property>
            <property name="value">
-            <number>0</number>
+            <number>35</number>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
            </property>
            <property name="format">
             <string>%p%</string>
@@ -649,18 +658,18 @@ QProgressBar:chunk{
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_25">
+        <layout class="QVBoxLayout" name="verticalLayout_11">
          <property name="spacing">
-          <number>6</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -692,13 +701,13 @@ QProgressBar:chunk{
           <widget class="QProgressBar" name="progressBar_disk">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
@@ -710,23 +719,32 @@ QProgressBar:chunk{
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 0px solid;
+	border: 1px solid;
 	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
+	
+	border-color: rgb(91, 91, 91);
+	border-radius: 0px; 
+	
+	
+	/*border-image: url(:/lib/jianbian1.png);*/
+	background-color: #FFFFFF;
 	text-align:center; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:2px;
+	border-radius:0px;
 	
-	background-color: rgb(0, 255, 0);
+	
+	background-color: rgb(134, 240, 118);
+	/*background-color: #FFFFFF;*/
 }</string>
            </property>
            <property name="value">
             <number>0</number>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
            </property>
            <property name="format">
             <string>%p%</string>
@@ -741,18 +759,18 @@ QProgressBar:chunk{
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_15">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="spacing">
-          <number>6</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -784,13 +802,13 @@ QProgressBar:chunk{
           <widget class="QProgressBar" name="progressBar_mem">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
@@ -802,23 +820,32 @@ QProgressBar:chunk{
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 0px solid;
+	border: 1px solid;
 	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
+	
+	border-color: rgb(91, 91, 91);
+	border-radius: 0px; 
+	
+	
+	/*border-image: url(:/lib/jianbian1.png);*/
+	background-color: #FFFFFF;
 	text-align:center; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:2px;
+	border-radius:0px;
 	
-	background-color: rgb(0, 255, 0);
+	
+	background-color: rgb(134, 240, 118);
+	/*background-color: #FFFFFF;*/
 }</string>
            </property>
            <property name="value">
             <number>0</number>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
            </property>
            <property name="format">
             <string>%p%</string>
@@ -833,18 +860,18 @@ QProgressBar:chunk{
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>20</height>
+          <height>40</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_16">
+        <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
-          <number>6</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -876,13 +903,13 @@ QProgressBar:chunk{
           <widget class="QProgressBar" name="progressBar_swap">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>120</width>
+             <width>130</width>
              <height>14</height>
             </size>
            </property>
@@ -894,23 +921,32 @@ QProgressBar:chunk{
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 0px solid;
+	border: 1px solid;
 	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
+	
+	border-color: rgb(91, 91, 91);
+	border-radius: 0px; 
+	
+	
+	/*border-image: url(:/lib/jianbian1.png);*/
+	background-color: #FFFFFF;
 	text-align:center; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:2px;
+	border-radius:0px;
 	
-	background-color: rgb(0, 255, 0);
+	
+	background-color: rgb(134, 240, 118);
+	/*background-color: #FFFFFF;*/
 }</string>
            </property>
            <property name="value">
             <number>0</number>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
            </property>
            <property name="textDirection">
             <enum>QProgressBar::TopToBottom</enum>
@@ -1055,7 +1091,7 @@ QProgressBar:chunk{
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1221</width>
+                     <width>1246</width>
                      <height>373</height>
                     </rect>
                    </property>
@@ -1697,7 +1733,7 @@ QTabBar QToolButton:hover {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -1943,6 +1979,294 @@ p, li { white-space: pre-wrap; }
              <attribute name="title">
               <string>打包</string>
              </attribute>
+             <widget class="QProgressBar" name="progressBar_swap_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>180</y>
+                <width>120</width>
+                <height>14</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QProgressBar {
+	border: 0px solid;
+	
+	border-color: rgb(180, 180, 180);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgba(0, 0, 0, 200);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+              <property name="textDirection">
+               <enum>QProgressBar::TopToBottom</enum>
+              </property>
+              <property name="format">
+               <string>%p%</string>
+              </property>
+             </widget>
+             <widget class="QProgressBar" name="progressBar_cpu_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>30</y>
+                <width>120</width>
+                <height>14</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QProgressBar {
+	border: 0px solid;
+	
+	border-color: rgb(180, 180, 180);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgba(0, 0, 0, 200);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+              <property name="format">
+               <string>%p%</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_swap_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>150</y>
+                <width>30</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="text">
+               <string>交换</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_cpu_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>0</y>
+                <width>30</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="text">
+               <string>cpu</string>
+              </property>
+             </widget>
+             <widget class="QProgressBar" name="progressBar_mem_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>130</y>
+                <width>120</width>
+                <height>14</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QProgressBar {
+	border: 0px solid;
+	
+	border-color: rgb(180, 180, 180);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgba(0, 0, 0, 200);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+              <property name="format">
+               <string>%p%</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_disk_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>50</y>
+                <width>30</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="text">
+               <string>磁盘</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_mem_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>100</y>
+                <width>30</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="text">
+               <string>内存</string>
+              </property>
+             </widget>
+             <widget class="QProgressBar" name="progressBar_disk_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>80</y>
+                <width>120</width>
+                <height>14</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>120</width>
+                <height>14</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QProgressBar {
+	border: 0px solid;
+	
+	border-color: rgb(180, 180, 180);
+	border-radius: 2px; 
+	background-color: #FFFFFF; 
+	text-align:center; 
+	color: rgba(0, 0, 0, 200);
+}
+
+QProgressBar:chunk{
+	border-radius:2px;
+	
+	background-color: rgb(0, 255, 0);
+}</string>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+              <property name="format">
+               <string>%p%</string>
+              </property>
+             </widget>
             </widget>
            </widget>
           </item>

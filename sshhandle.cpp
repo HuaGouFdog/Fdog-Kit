@@ -350,7 +350,7 @@ void sshhandle::getServerInfo()
     qDebug() << "运行时间=" << dataListInfo[4];
     serverInfo.runTime = "运行 " + dataListInfo[4] + "天";
     //qDebug() << "终端链接=" << dataListInfo[7];
-    serverInfo.loginCount = "终端连接：" + dataListInfo[7];
+    serverInfo.loginCount = "终端连接 " + dataListInfo[7];
 
     serverInfo.load = "负载 " + dataListInfo[11] + "  " + dataListInfo[12] + "  " + dataListInfo[13];
     qDebug() << "1分=" << dataListInfo[11];
@@ -401,9 +401,9 @@ void sshhandle::getServerInfo()
     //    //获取服务器信息
     commond = "uname -p -i -o";
     QStringList dataList5 = commondExec(commond).split(" ");
-    serverInfo.architecture = "系统信息：" + dataList5[0];// + "/" + dataList5[1];
+    serverInfo.architecture = "系统架构 " + dataList5[0];// + "/" + dataList5[1];
     QStringList dataList6 = dataList5[2].split("\n");
-    serverInfo.cpuInfo = "cpu信息：8核16线程";// + dataList6[0];
+    serverInfo.cpuInfo = "cpu信息 8核16线程";// + dataList6[0];
 
 
 

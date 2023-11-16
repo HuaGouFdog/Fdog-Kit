@@ -143,13 +143,13 @@ QToolButton:hover {
         <widget class="QToolButton" name="toolButton_newCreate">
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>0</width>
            <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>80</width>
+           <width>1111111</width>
            <height>16777215</height>
           </size>
          </property>
@@ -180,7 +180,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>新建连接(&amp;N)</string>
+          <string>新建(&amp;N)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -200,13 +200,13 @@ QToolButton:hover {
         <widget class="QToolButton" name="toolButton_newCreate_2">
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>0</width>
            <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>80</width>
+           <width>1111111</width>
            <height>16777215</height>
           </size>
          </property>
@@ -237,7 +237,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>管理连接(&amp;H)</string>
+          <string>管理(&amp;H)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -263,7 +263,7 @@ QToolButton:hover {
          </property>
          <property name="maximumSize">
           <size>
-           <width>55</width>
+           <width>111111</width>
            <height>16777215</height>
           </size>
          </property>
@@ -698,7 +698,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">

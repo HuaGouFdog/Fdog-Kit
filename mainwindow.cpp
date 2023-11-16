@@ -606,7 +606,16 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
     ui->tabWidget->removeTab(index);
     if(ui->tabWidget->count() == 0) {
-        ui->stackedWidget->setCurrentIndex(2);
+        //创建快速连接
+        int8_t connectType = 0;
+        //创建连接窗口
+        hcwidget = new historyconnectwidget(connectType);
+        //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+        ui->tabWidget->addTab(hcwidget, "快速连接");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        ui->stackedWidget->setCurrentIndex(0);
+        hcwidget->show();
+        //ui->stackedWidget->setCurrentIndex(2);
     }
 }
 
@@ -672,7 +681,7 @@ void MainWindow::on_newTool()
         //sshWidgetList.push_back(tswidget);
         tswidget->show();
     ui->stackedWidget->setCurrentIndex(0);
-    ui->widget_line->show();
+    //ui->widget_line->show();
 }
 
 void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
@@ -702,7 +711,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
-    ui->widget_line->show();
+    //ui->widget_line->show();
 }
 
 void MainWindow::on_newClose()

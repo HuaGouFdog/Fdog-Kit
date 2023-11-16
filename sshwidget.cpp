@@ -207,11 +207,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     Layout->setContentsMargins(0,0,0,0);
     fwidget = new findwidget(textEdit_s);
     dlwidget = new downloadwidget(textEdit_s);
+
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
-
-    //fwidget->raise();
-    //Layout->addWidget(fwidget);
 
     ui->widget_9->setLayout(Layout);
 

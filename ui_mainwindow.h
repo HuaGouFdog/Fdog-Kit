@@ -265,8 +265,8 @@ public:
 
         toolButton_newCreate = new QToolButton(widget_title);
         toolButton_newCreate->setObjectName(QStringLiteral("toolButton_newCreate"));
-        toolButton_newCreate->setMinimumSize(QSize(80, 20));
-        toolButton_newCreate->setMaximumSize(QSize(80, 16777215));
+        toolButton_newCreate->setMinimumSize(QSize(0, 20));
+        toolButton_newCreate->setMaximumSize(QSize(1111111, 16777215));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         font1.setPointSize(10);
@@ -297,8 +297,8 @@ public:
 
         toolButton_newCreate_2 = new QToolButton(widget_title);
         toolButton_newCreate_2->setObjectName(QStringLiteral("toolButton_newCreate_2"));
-        toolButton_newCreate_2->setMinimumSize(QSize(80, 20));
-        toolButton_newCreate_2->setMaximumSize(QSize(80, 16777215));
+        toolButton_newCreate_2->setMinimumSize(QSize(0, 20));
+        toolButton_newCreate_2->setMaximumSize(QSize(1111111, 16777215));
         toolButton_newCreate_2->setFont(font1);
         toolButton_newCreate_2->setStyleSheet(QLatin1String("QToolButton {\n"
 "	\n"
@@ -326,7 +326,7 @@ public:
         toolButton_tool = new QToolButton(widget_title);
         toolButton_tool->setObjectName(QStringLiteral("toolButton_tool"));
         toolButton_tool->setMinimumSize(QSize(0, 20));
-        toolButton_tool->setMaximumSize(QSize(55, 16777215));
+        toolButton_tool->setMaximumSize(QSize(111111, 16777215));
         toolButton_tool->setFont(font1);
         toolButton_tool->setStyleSheet(QLatin1String("QToolButton {\n"
 "	\n"
@@ -2127,7 +2127,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(1);
         stackedWidget_tool->setCurrentIndex(0);
 
@@ -2139,8 +2139,8 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
         toolButton->setText(QApplication::translate("MainWindow", "...", nullptr));
-        toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245(&N)", nullptr));
-        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\350\277\236\346\216\245(&H)", nullptr));
+        toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272(&N)", nullptr));
+        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));

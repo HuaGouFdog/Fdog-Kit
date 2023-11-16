@@ -75,5 +75,12 @@
         <file>lib/icon8.png</file>
         <file>lib/icon9.png</file>
         <file>lib/icon10.png</file>
+        <file>lib/file.png</file>
+        <file>lib/download.png</file>
+        <file>lib/setting2.png</file>
+        <file>lib/sanjiao.png</file>
+        <file>lib/peixu.png</file>
+        <file>lib/peixu2.png</file>
+        <file>lib/jianbian1.png</file>
     </qresource>
 </RCC>

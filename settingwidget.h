@@ -16,7 +16,7 @@ public:
     ~settingwidget();
 
 private slots:
-    void on_toolButton_clicked();
+    void on_Menu_clicked(int index);
 
 private:
     Ui::settingwidget *ui;
