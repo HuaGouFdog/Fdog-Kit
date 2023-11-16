@@ -3,6 +3,8 @@
 #include "utils.h"
 #include "colormatch.h"
 #include <QPropertyAnimation>
+#include <QFontDatabase>
+#include <QListWidget>
 QStringList campbell = {"#0C0C0C","#767676",
                         "#C50F1F","#E74856",
                         "#13A10E","#16C60C",
@@ -177,6 +179,11 @@ settingwidget::settingwidget(QWidget *parent) :
     m_buttonGroup->setExclusive(true);
 
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(on_Menu_clicked(int)));
+
+    QFontDatabase fdb;
+    QStringList fontList = fdb.families();
+    ui->listWidget_en->addItems(fontList);
+    ui->listWidget_cn->addItems(fontList);
 }
 
 settingwidget::~settingwidget()

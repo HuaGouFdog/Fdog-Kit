@@ -82,5 +82,9 @@
         <file>lib/peixu.png</file>
         <file>lib/peixu2.png</file>
         <file>lib/jianbian1.png</file>
+        <file>lib/t1.png</file>
+        <file>lib/t2.png</file>
+        <file>lib/t3.png</file>
+        <file>lib/t4.png</file>
     </qresource>
 </RCC>
