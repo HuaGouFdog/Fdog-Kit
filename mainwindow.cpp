@@ -245,44 +245,137 @@ void MainWindow::updateWindowSize()
     QRect windowRect = m_windowRectBeforeStretch;
     int delValue_X = m_startPoint.x() - m_endPoint.x();
     int delValue_Y = m_startPoint.y() - m_endPoint.y();
-
+    int m_windowMinWidth = 600;
+    int m_windowMinHeight = 600;
     if (m_stretchRectState == LEFT_BORDER)
     {
+        qDebug() << "更新窗口大小 this->geometry().width() = "<< this->geometry().width() << " delValue_X= " << delValue_X;
+        if (this->geometry().width() <= m_windowMinWidth && delValue_X <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            return;
+        }
         QPoint topLeftPoint = windowRect.topLeft();
         topLeftPoint.setX(topLeftPoint.x() - delValue_X);
-        windowRect.setTopLeft(topLeftPoint);
+        windowRect.setBottomLeft(topLeftPoint);
+        this->setGeometry(windowRect);
     }
     else if (m_stretchRectState == RIGHT_BORDER)
     {
         QPoint bottomRightPoint = windowRect.bottomRight();
         bottomRightPoint.setX(bottomRightPoint.x() - delValue_X);
         windowRect.setBottomRight(bottomRightPoint);
+        this->setGeometry(windowRect);
     }
     else if (m_stretchRectState == TOP_BORDER)
     {
+        if (this->geometry().height() <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
+            return;
+        }
         QPoint topLeftPoint = windowRect.topLeft();
         topLeftPoint.setY(topLeftPoint.y() - delValue_Y);
         windowRect.setTopLeft(topLeftPoint);
+        this->setGeometry(windowRect);
     }
     else if (m_stretchRectState == BOTTOM_BORDER)
     {
+        qDebug() << "下边BOTTOM_BORDER";
         QPoint bottomRightPoint = windowRect.bottomRight();
         bottomRightPoint.setY(bottomRightPoint.y() - delValue_Y);
         windowRect.setBottomRight(bottomRightPoint);
+        this->setGeometry(windowRect);
     }
     else if (m_stretchRectState == LEFT_TOP_RECT)
     {
-        QPoint topLeftPoint = windowRect.topLeft();
-        topLeftPoint.setX(topLeftPoint.x() - delValue_X);
-        topLeftPoint.setY(topLeftPoint.y() - delValue_Y);
-        windowRect.setTopLeft(topLeftPoint);
+        //qDebug() << "更新窗口大小 this->geometry().width() = "<< this->geometry().width() << " delValue_X= " << delValue_X;
+        //qDebug() << "更新窗口大小 this->geometry().height() = "<< this->geometry().height() << " delValue_Y= " << delValue_Y;
+        if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0
+                && this->geometry().height() -3 <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            return;
+        }
+        int a = 0;
+        if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            a = 1;
+        }
+        if (this->geometry().height() - 3 <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
+            a = 2;
+        }
+        qDebug() << " windowRect1 = " << this->geometry();
+        if (a == 0) {
+            qDebug() << "走1";
+            QPoint topLeftPoint = windowRect.topLeft();
+            topLeftPoint.setX(topLeftPoint.x() - delValue_X);
+            topLeftPoint.setY(topLeftPoint.y() - delValue_Y);
+            windowRect.setTopLeft(topLeftPoint);
+            this->setGeometry(windowRect);
+        } else if (a == 1) {
+            qDebug() << "走2";
+            QPoint topLeftPoint = windowRect.topLeft();
+            topLeftPoint.setX(this->geometry().x());
+            topLeftPoint.setY(topLeftPoint.y() - delValue_Y);
+            windowRect.setTopLeft(topLeftPoint);
+            qDebug() << " topLeftPoint2 = " << topLeftPoint;
+            qDebug() << " windowRect2 = " << this->geometry();
+            this->setGeometry(windowRect);
+        } else if (a == 2) {
+            qDebug() << "走3";
+            QPoint topLeftPoint = windowRect.topLeft();
+            topLeftPoint.setX(topLeftPoint.x() - delValue_X);
+            topLeftPoint.setY(this->geometry().y());
+            windowRect.setTopLeft(topLeftPoint);
+            this->setGeometry(windowRect);
+        }
+        qDebug() << " windowRect3 = " << this->geometry();
     }
     else if (m_stretchRectState == RIGHT_TOP_RECT)
     {
-        QPoint topRightPoint = windowRect.topRight();
-        topRightPoint.setX(topRightPoint.x() - delValue_X);
-        topRightPoint.setY(topRightPoint.y() - delValue_Y);
-        windowRect.setTopRight(topRightPoint);
+        if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0
+                && this->geometry().height() -3 <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            return;
+        }
+        int a = 0;
+        if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            a = 1;
+        }
+        if (this->geometry().height() - 3 <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
+            a = 2;
+        }
+
+        if (a == 0) {
+            qDebug() << "走1";
+            QPoint topRightPoint = windowRect.topRight();
+            topRightPoint.setX(topRightPoint.x() - delValue_X);
+            topRightPoint.setY(topRightPoint.y() - delValue_Y);
+            windowRect.setTopRight(topRightPoint);
+            this->setGeometry(windowRect);
+        } else if (a == 1) {
+            qDebug() << "走2";
+            QPoint topRightPoint = windowRect.topRight();
+            topRightPoint.setX(this->geometry().x());
+            topRightPoint.setY(topRightPoint.y() - delValue_Y);
+            windowRect.setTopRight(topRightPoint);
+            qDebug() << " topLeftPoint2 = " << topRightPoint;
+            qDebug() << " windowRect2 = " << this->geometry();
+            this->setGeometry(windowRect);
+        } else if (a == 2) {
+            qDebug() << "走3";
+            QPoint topRightPoint = windowRect.topRight();
+            topRightPoint.setX(topRightPoint.x() - delValue_X);
+            topRightPoint.setY(this->geometry().y());
+            windowRect.setTopRight(topRightPoint);
+            this->setGeometry(windowRect);
+        }
+//        QPoint topRightPoint = windowRect.topRight();
+//        topRightPoint.setX(topRightPoint.x() - delValue_X);
+//        topRightPoint.setY(topRightPoint.y() - delValue_Y);
+//        windowRect.setTopRight(topRightPoint);
+//        this->setGeometry(windowRect);
     }
     else if (m_stretchRectState == RIGHT_BOTTOM_RECT)
     {
@@ -290,31 +383,49 @@ void MainWindow::updateWindowSize()
         bottomRightPoint.setX(bottomRightPoint.x() - delValue_X);
         bottomRightPoint.setY(bottomRightPoint.y() - delValue_Y);
         windowRect.setBottomRight(bottomRightPoint);
+        this->setGeometry(windowRect);
     }
     else if (m_stretchRectState == LEFT_BOTTOM_RECT)
     {
-        QPoint bottomLeftPoint = windowRect.bottomLeft();
-        bottomLeftPoint.setX(bottomLeftPoint.x() - delValue_X);
-        bottomLeftPoint.setY(bottomLeftPoint.y() - delValue_Y);
-        windowRect.setBottomLeft(bottomLeftPoint);
+        if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0
+                && this->geometry().height() -3 <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            return;
+        }
+        int a = 0;
+        if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0) {
+            qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
+            a = 1;
+        }
+        if (this->geometry().height() - 3 <= m_windowMinHeight && delValue_Y <= 0) {
+            qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
+            a = 2;
+        }
+        if (a == 0) {
+            qDebug() << "走1";
+            QPoint bottomLeftPoint = windowRect.bottomLeft();
+            bottomLeftPoint.setX(bottomLeftPoint.x() - delValue_X);
+            bottomLeftPoint.setY(bottomLeftPoint.y() - delValue_Y);
+            windowRect.setBottomLeft(bottomLeftPoint);
+            this->setGeometry(windowRect);
+        } else if (a == 1) {
+            qDebug() << "走2";
+            QPoint bottomLeftPoint = windowRect.bottomLeft();
+            bottomLeftPoint.setX(this->geometry().x());
+            bottomLeftPoint.setY(bottomLeftPoint.y() - delValue_Y);
+            windowRect.setBottomLeft(bottomLeftPoint);
+            qDebug() << " topLeftPoint2 = " << bottomLeftPoint;
+            qDebug() << " windowRect2 = " << this->geometry();
+            this->setGeometry(windowRect);
+        } else if (a == 2) {
+            qDebug() << "走3";
+            QPoint bottomLeftPoint = windowRect.bottomLeft();
+            bottomLeftPoint.setX(bottomLeftPoint.x() - delValue_X);
+            bottomLeftPoint.setY(this->geometry().y());
+            windowRect.setBottomLeft(bottomLeftPoint);
+            this->setGeometry(windowRect);
+        }
     }
-
-    // 避免宽或高为零窗口显示有误，这里给窗口设置最小拉伸高度、宽度;
-    int m_windowMinWidth = 50;
-    int m_windowMinHeight = 50;
-    if (windowRect.width() < m_windowMinWidth)
-    {
-        windowRect.setLeft(this->geometry().left());
-        windowRect.setWidth(m_windowMinWidth);
-    }
-    if (windowRect.height() < m_windowMinHeight)
-    {
-        windowRect.setTop(this->geometry().top());
-        windowRect.setHeight(m_windowMinHeight);
-    }
-
-    this->setGeometry(windowRect);
-
 }
 
 void MainWindow::setSupportStretch(bool isSupportStretch)
@@ -374,8 +485,11 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {   //qDebug() << ui->widget
     // 如果当前鼠标左键已经按下，则记录下第二个点的位置，并更新窗口的大小;
     else
     {
+
         m_endPoint = this->mapToGlobal(event->pos());
+        //m_windowRectBeforeStretch = this->geometry();
         updateWindowSize();
+        qDebug() << "刷新m_windowRectBeforeStretch";
     }
 }
 
