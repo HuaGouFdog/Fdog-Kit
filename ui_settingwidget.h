@@ -48,7 +48,6 @@ public:
     QToolButton *toolButton_theme;
     QToolButton *toolButton_terminal;
     QToolButton *toolButton_shortcutKey;
-    QToolButton *toolButton;
     QSpacerItem *verticalSpacer;
     QStackedWidget *stackedWidget;
     QWidget *page_activate;
@@ -186,29 +185,6 @@ public:
     QVBoxLayout *verticalLayout_19;
     QWidget *verticalWidget_15;
     QHBoxLayout *horizontalLayout_25;
-    QWidget *horizontalWidget_24;
-    QHBoxLayout *horizontalLayout_20;
-    QWidget *gridWidget_2;
-    QGridLayout *gridLayout_2;
-    QLabel *label_color_matching;
-    QLabel *label_color_matching_2;
-    QLabel *label_color_matching_3;
-    QLabel *label_color_matching_5;
-    QLabel *label_color_matching_4;
-    QLabel *label_color_matching_6;
-    QLabel *label_color_matching_8;
-    QLabel *label_color_matching_7;
-    QLabel *label_color_matching_9;
-    QLabel *label_color_matching_10;
-    QLabel *label_color_matching_11;
-    QLabel *label_color_matching_14;
-    QLabel *label_color_matching_13;
-    QLabel *label_color_matching_12;
-    QLabel *label_color_matching_15;
-    QLabel *label_color_matching_16;
-    QLabel *label_65;
-    QLabel *label_66;
-    QSpacerItem *horizontalSpacer_64;
     QWidget *verticalWidget_16;
     QHBoxLayout *horizontalLayout_26;
     QWidget *verticalWidget_17;
@@ -614,11 +590,6 @@ public:
         toolButton_shortcutKey->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout->addWidget(toolButton_shortcutKey);
-
-        toolButton = new QToolButton(widget_left);
-        toolButton->setObjectName(QStringLiteral("toolButton"));
-
-        verticalLayout->addWidget(toolButton);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -1828,185 +1799,6 @@ public:
         horizontalLayout_25->setSpacing(20);
         horizontalLayout_25->setObjectName(QStringLiteral("horizontalLayout_25"));
         horizontalLayout_25->setContentsMargins(9, 5, -1, 5);
-        horizontalWidget_24 = new QWidget(verticalWidget_15);
-        horizontalWidget_24->setObjectName(QStringLiteral("horizontalWidget_24"));
-        horizontalWidget_24->setMinimumSize(QSize(0, 0));
-        horizontalWidget_24->setMaximumSize(QSize(286, 50));
-        horizontalWidget_24->setStyleSheet(QLatin1String("background-color: rgb(0, 0, 0);\n"
-"border-radius:5px;"));
-        horizontalLayout_20 = new QHBoxLayout(horizontalWidget_24);
-        horizontalLayout_20->setSpacing(10);
-        horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
-        horizontalLayout_20->setContentsMargins(10, 0, 10, 0);
-        gridWidget_2 = new QWidget(horizontalWidget_24);
-        gridWidget_2->setObjectName(QStringLiteral("gridWidget_2"));
-        gridWidget_2->setMinimumSize(QSize(130, 0));
-        gridWidget_2->setMaximumSize(QSize(16777215, 40));
-        gridWidget_2->setStyleSheet(QLatin1String("QLabel{\n"
-"	border-radius:3px;\n"
-"}"));
-        gridLayout_2 = new QGridLayout(gridWidget_2);
-        gridLayout_2->setSpacing(2);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        gridLayout_2->setContentsMargins(-1, 2, 1, 2);
-        label_color_matching = new QLabel(gridWidget_2);
-        label_color_matching->setObjectName(QStringLiteral("label_color_matching"));
-        label_color_matching->setMinimumSize(QSize(12, 12));
-        label_color_matching->setMaximumSize(QSize(12, 12));
-        label_color_matching->setStyleSheet(QStringLiteral("background-color: rgb(12, 12, 12);"));
-
-        gridLayout_2->addWidget(label_color_matching, 0, 0, 1, 1);
-
-        label_color_matching_2 = new QLabel(gridWidget_2);
-        label_color_matching_2->setObjectName(QStringLiteral("label_color_matching_2"));
-        label_color_matching_2->setMinimumSize(QSize(12, 12));
-        label_color_matching_2->setMaximumSize(QSize(12, 12));
-        label_color_matching_2->setStyleSheet(QStringLiteral("background-color: rgb(118, 118, 118);"));
-
-        gridLayout_2->addWidget(label_color_matching_2, 1, 0, 1, 1);
-
-        label_color_matching_3 = new QLabel(gridWidget_2);
-        label_color_matching_3->setObjectName(QStringLiteral("label_color_matching_3"));
-        label_color_matching_3->setMinimumSize(QSize(12, 12));
-        label_color_matching_3->setMaximumSize(QSize(12, 12));
-        label_color_matching_3->setStyleSheet(QStringLiteral("background-color: rgb(197, 15, 31);"));
-
-        gridLayout_2->addWidget(label_color_matching_3, 0, 1, 1, 1);
-
-        label_color_matching_5 = new QLabel(gridWidget_2);
-        label_color_matching_5->setObjectName(QStringLiteral("label_color_matching_5"));
-        label_color_matching_5->setMinimumSize(QSize(12, 12));
-        label_color_matching_5->setMaximumSize(QSize(12, 12));
-        label_color_matching_5->setStyleSheet(QStringLiteral("background-color: rgb(19, 161, 14);"));
-
-        gridLayout_2->addWidget(label_color_matching_5, 0, 2, 1, 1);
-
-        label_color_matching_4 = new QLabel(gridWidget_2);
-        label_color_matching_4->setObjectName(QStringLiteral("label_color_matching_4"));
-        label_color_matching_4->setMinimumSize(QSize(12, 12));
-        label_color_matching_4->setMaximumSize(QSize(12, 12));
-        label_color_matching_4->setStyleSheet(QStringLiteral("background-color: rgb(231, 72, 86);"));
-
-        gridLayout_2->addWidget(label_color_matching_4, 1, 1, 1, 1);
-
-        label_color_matching_6 = new QLabel(gridWidget_2);
-        label_color_matching_6->setObjectName(QStringLiteral("label_color_matching_6"));
-        label_color_matching_6->setMinimumSize(QSize(12, 12));
-        label_color_matching_6->setMaximumSize(QSize(12, 12));
-        label_color_matching_6->setStyleSheet(QStringLiteral("background-color: rgb(22, 198, 12);"));
-
-        gridLayout_2->addWidget(label_color_matching_6, 1, 2, 1, 1);
-
-        label_color_matching_8 = new QLabel(gridWidget_2);
-        label_color_matching_8->setObjectName(QStringLiteral("label_color_matching_8"));
-        label_color_matching_8->setMinimumSize(QSize(12, 12));
-        label_color_matching_8->setMaximumSize(QSize(12, 12));
-        label_color_matching_8->setStyleSheet(QStringLiteral("background-color: rgb(249, 241, 165);"));
-
-        gridLayout_2->addWidget(label_color_matching_8, 1, 3, 1, 1);
-
-        label_color_matching_7 = new QLabel(gridWidget_2);
-        label_color_matching_7->setObjectName(QStringLiteral("label_color_matching_7"));
-        label_color_matching_7->setMinimumSize(QSize(12, 12));
-        label_color_matching_7->setMaximumSize(QSize(12, 12));
-        label_color_matching_7->setStyleSheet(QStringLiteral("background-color: rgb(193, 156, 0);"));
-
-        gridLayout_2->addWidget(label_color_matching_7, 0, 3, 1, 1);
-
-        label_color_matching_9 = new QLabel(gridWidget_2);
-        label_color_matching_9->setObjectName(QStringLiteral("label_color_matching_9"));
-        label_color_matching_9->setMinimumSize(QSize(12, 12));
-        label_color_matching_9->setMaximumSize(QSize(12, 12));
-        label_color_matching_9->setStyleSheet(QStringLiteral("background-color: rgb(0, 55, 218);"));
-
-        gridLayout_2->addWidget(label_color_matching_9, 0, 4, 1, 1);
-
-        label_color_matching_10 = new QLabel(gridWidget_2);
-        label_color_matching_10->setObjectName(QStringLiteral("label_color_matching_10"));
-        label_color_matching_10->setMinimumSize(QSize(12, 12));
-        label_color_matching_10->setMaximumSize(QSize(12, 12));
-        label_color_matching_10->setStyleSheet(QStringLiteral("background-color: rgb(59, 120, 255);"));
-
-        gridLayout_2->addWidget(label_color_matching_10, 1, 4, 1, 1);
-
-        label_color_matching_11 = new QLabel(gridWidget_2);
-        label_color_matching_11->setObjectName(QStringLiteral("label_color_matching_11"));
-        label_color_matching_11->setMinimumSize(QSize(12, 12));
-        label_color_matching_11->setMaximumSize(QSize(12, 12));
-        label_color_matching_11->setStyleSheet(QStringLiteral("background-color: rgb(136, 23, 152);"));
-
-        gridLayout_2->addWidget(label_color_matching_11, 0, 5, 1, 1);
-
-        label_color_matching_14 = new QLabel(gridWidget_2);
-        label_color_matching_14->setObjectName(QStringLiteral("label_color_matching_14"));
-        label_color_matching_14->setMinimumSize(QSize(12, 12));
-        label_color_matching_14->setMaximumSize(QSize(12, 12));
-        label_color_matching_14->setStyleSheet(QStringLiteral("background-color: rgb(97, 214, 214);"));
-
-        gridLayout_2->addWidget(label_color_matching_14, 1, 6, 1, 1);
-
-        label_color_matching_13 = new QLabel(gridWidget_2);
-        label_color_matching_13->setObjectName(QStringLiteral("label_color_matching_13"));
-        label_color_matching_13->setMinimumSize(QSize(12, 12));
-        label_color_matching_13->setMaximumSize(QSize(12, 12));
-        label_color_matching_13->setStyleSheet(QStringLiteral("background-color: rgb(58, 150, 221);"));
-
-        gridLayout_2->addWidget(label_color_matching_13, 0, 6, 1, 1);
-
-        label_color_matching_12 = new QLabel(gridWidget_2);
-        label_color_matching_12->setObjectName(QStringLiteral("label_color_matching_12"));
-        label_color_matching_12->setMinimumSize(QSize(12, 12));
-        label_color_matching_12->setMaximumSize(QSize(12, 12));
-        label_color_matching_12->setStyleSheet(QStringLiteral("background-color: rgb(180, 0, 158);"));
-
-        gridLayout_2->addWidget(label_color_matching_12, 1, 5, 1, 1);
-
-        label_color_matching_15 = new QLabel(gridWidget_2);
-        label_color_matching_15->setObjectName(QStringLiteral("label_color_matching_15"));
-        label_color_matching_15->setMinimumSize(QSize(12, 12));
-        label_color_matching_15->setMaximumSize(QSize(12, 12));
-        label_color_matching_15->setStyleSheet(QStringLiteral("background-color: rgb(204, 204, 204);"));
-
-        gridLayout_2->addWidget(label_color_matching_15, 0, 7, 1, 1);
-
-        label_color_matching_16 = new QLabel(gridWidget_2);
-        label_color_matching_16->setObjectName(QStringLiteral("label_color_matching_16"));
-        label_color_matching_16->setMinimumSize(QSize(12, 12));
-        label_color_matching_16->setMaximumSize(QSize(12, 12));
-        label_color_matching_16->setStyleSheet(QStringLiteral("background-color: rgb(242, 242, 242);"));
-
-        gridLayout_2->addWidget(label_color_matching_16, 1, 7, 1, 1);
-
-
-        horizontalLayout_20->addWidget(gridWidget_2);
-
-        label_65 = new QLabel(horizontalWidget_24);
-        label_65->setObjectName(QStringLiteral("label_65"));
-        QFont font3;
-        font3.setFamily(QStringLiteral("Cascadia Code"));
-        font3.setPointSize(10);
-        font3.setBold(true);
-        font3.setWeight(75);
-        font3.setStyleStrategy(QFont::PreferAntialias);
-        label_65->setFont(font3);
-        label_65->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-
-        horizontalLayout_20->addWidget(label_65);
-
-
-        horizontalLayout_25->addWidget(horizontalWidget_24);
-
-        label_66 = new QLabel(verticalWidget_15);
-        label_66->setObjectName(QStringLiteral("label_66"));
-        label_66->setFont(font);
-        label_66->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-
-        horizontalLayout_25->addWidget(label_66);
-
-        horizontalSpacer_64 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_25->addItem(horizontalSpacer_64);
-
 
         verticalLayout_19->addWidget(verticalWidget_15);
 
@@ -2802,7 +2594,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 832, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, -140, 832, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -2988,6 +2780,8 @@ public:
         lineEdit_10->setMinimumSize(QSize(0, 30));
         lineEdit_10->setMaximumSize(QSize(16777215, 30));
         lineEdit_10->setFont(font);
+        lineEdit_10->setAlignment(Qt::AlignCenter);
+        lineEdit_10->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_10, 10, 2, 1, 1);
 
@@ -2998,6 +2792,8 @@ public:
         lineEdit_9->setMinimumSize(QSize(0, 30));
         lineEdit_9->setMaximumSize(QSize(16777215, 30));
         lineEdit_9->setFont(font);
+        lineEdit_9->setAlignment(Qt::AlignCenter);
+        lineEdit_9->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_9, 9, 2, 1, 1);
 
@@ -3008,6 +2804,8 @@ public:
         lineEdit_11->setMinimumSize(QSize(0, 30));
         lineEdit_11->setMaximumSize(QSize(16777215, 30));
         lineEdit_11->setFont(font);
+        lineEdit_11->setAlignment(Qt::AlignCenter);
+        lineEdit_11->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_11, 13, 2, 1, 1);
 
@@ -3018,6 +2816,8 @@ public:
         lineEdit_12->setMinimumSize(QSize(0, 30));
         lineEdit_12->setMaximumSize(QSize(16777215, 30));
         lineEdit_12->setFont(font);
+        lineEdit_12->setAlignment(Qt::AlignCenter);
+        lineEdit_12->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_12, 14, 2, 1, 1);
 
@@ -3028,6 +2828,8 @@ public:
         lineEdit_14->setMinimumSize(QSize(0, 30));
         lineEdit_14->setMaximumSize(QSize(16777215, 30));
         lineEdit_14->setFont(font);
+        lineEdit_14->setAlignment(Qt::AlignCenter);
+        lineEdit_14->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_14, 16, 2, 1, 1);
 
@@ -3038,6 +2840,8 @@ public:
         lineEdit_13->setMinimumSize(QSize(0, 30));
         lineEdit_13->setMaximumSize(QSize(16777215, 30));
         lineEdit_13->setFont(font);
+        lineEdit_13->setAlignment(Qt::AlignCenter);
+        lineEdit_13->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_13, 15, 2, 1, 1);
 
@@ -3361,6 +3165,8 @@ public:
         lineEdit_15->setMinimumSize(QSize(0, 30));
         lineEdit_15->setMaximumSize(QSize(16777215, 30));
         lineEdit_15->setFont(font);
+        lineEdit_15->setAlignment(Qt::AlignCenter);
+        lineEdit_15->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_15, 17, 2, 1, 1);
 
@@ -3371,6 +3177,8 @@ public:
         lineEdit_16->setMinimumSize(QSize(0, 30));
         lineEdit_16->setMaximumSize(QSize(16777215, 30));
         lineEdit_16->setFont(font);
+        lineEdit_16->setAlignment(Qt::AlignCenter);
+        lineEdit_16->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_16, 18, 2, 1, 1);
 
@@ -3381,6 +3189,8 @@ public:
         lineEdit_20->setMinimumSize(QSize(0, 30));
         lineEdit_20->setMaximumSize(QSize(16777215, 30));
         lineEdit_20->setFont(font);
+        lineEdit_20->setAlignment(Qt::AlignCenter);
+        lineEdit_20->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_20, 22, 2, 1, 1);
 
@@ -3391,6 +3201,8 @@ public:
         lineEdit_19->setMinimumSize(QSize(0, 30));
         lineEdit_19->setMaximumSize(QSize(16777215, 30));
         lineEdit_19->setFont(font);
+        lineEdit_19->setAlignment(Qt::AlignCenter);
+        lineEdit_19->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_19, 21, 2, 1, 1);
 
@@ -3401,6 +3213,8 @@ public:
         lineEdit_17->setMinimumSize(QSize(0, 30));
         lineEdit_17->setMaximumSize(QSize(16777215, 30));
         lineEdit_17->setFont(font);
+        lineEdit_17->setAlignment(Qt::AlignCenter);
+        lineEdit_17->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_17, 19, 2, 1, 1);
 
@@ -3411,6 +3225,8 @@ public:
         lineEdit_18->setMinimumSize(QSize(0, 30));
         lineEdit_18->setMaximumSize(QSize(16777215, 30));
         lineEdit_18->setFont(font);
+        lineEdit_18->setAlignment(Qt::AlignCenter);
+        lineEdit_18->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_18, 20, 2, 1, 1);
 
@@ -3512,6 +3328,8 @@ public:
         lineEdit_3->setMinimumSize(QSize(0, 30));
         lineEdit_3->setMaximumSize(QSize(16777215, 30));
         lineEdit_3->setFont(font);
+        lineEdit_3->setAlignment(Qt::AlignCenter);
+        lineEdit_3->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_3, 2, 2, 1, 1);
 
@@ -3522,6 +3340,8 @@ public:
         lineEdit_5->setMinimumSize(QSize(0, 30));
         lineEdit_5->setMaximumSize(QSize(16777215, 30));
         lineEdit_5->setFont(font);
+        lineEdit_5->setAlignment(Qt::AlignCenter);
+        lineEdit_5->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_5, 4, 2, 1, 1);
 
@@ -3532,6 +3352,8 @@ public:
         lineEdit_4->setMinimumSize(QSize(0, 30));
         lineEdit_4->setMaximumSize(QSize(16777215, 30));
         lineEdit_4->setFont(font);
+        lineEdit_4->setAlignment(Qt::AlignCenter);
+        lineEdit_4->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_4, 3, 2, 1, 1);
 
@@ -3542,6 +3364,8 @@ public:
         lineEdit_6->setMinimumSize(QSize(0, 30));
         lineEdit_6->setMaximumSize(QSize(16777215, 30));
         lineEdit_6->setFont(font);
+        lineEdit_6->setAlignment(Qt::AlignCenter);
+        lineEdit_6->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_6, 6, 2, 1, 1);
 
@@ -3552,6 +3376,8 @@ public:
         lineEdit_7->setMinimumSize(QSize(0, 30));
         lineEdit_7->setMaximumSize(QSize(16777215, 30));
         lineEdit_7->setFont(font);
+        lineEdit_7->setAlignment(Qt::AlignCenter);
+        lineEdit_7->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_7, 7, 2, 1, 1);
 
@@ -3562,6 +3388,8 @@ public:
         lineEdit->setMinimumSize(QSize(0, 30));
         lineEdit->setMaximumSize(QSize(16777215, 30));
         lineEdit->setFont(font);
+        lineEdit->setAlignment(Qt::AlignCenter);
+        lineEdit->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit, 0, 2, 1, 1);
 
@@ -3572,6 +3400,8 @@ public:
         lineEdit_8->setMinimumSize(QSize(0, 30));
         lineEdit_8->setMaximumSize(QSize(16777215, 30));
         lineEdit_8->setFont(font);
+        lineEdit_8->setAlignment(Qt::AlignCenter);
+        lineEdit_8->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_8, 8, 2, 1, 1);
 
@@ -3601,6 +3431,8 @@ public:
         lineEdit_22->setMinimumSize(QSize(0, 30));
         lineEdit_22->setMaximumSize(QSize(16777215, 30));
         lineEdit_22->setFont(font);
+        lineEdit_22->setAlignment(Qt::AlignCenter);
+        lineEdit_22->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_22, 11, 2, 1, 1);
 
@@ -3654,6 +3486,8 @@ public:
         lineEdit_2->setMinimumSize(QSize(0, 30));
         lineEdit_2->setMaximumSize(QSize(16777215, 30));
         lineEdit_2->setFont(font);
+        lineEdit_2->setAlignment(Qt::AlignCenter);
+        lineEdit_2->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_2, 1, 2, 1, 1);
 
@@ -3700,6 +3534,8 @@ public:
         lineEdit_21->setMinimumSize(QSize(0, 30));
         lineEdit_21->setMaximumSize(QSize(16777215, 30));
         lineEdit_21->setFont(font);
+        lineEdit_21->setAlignment(Qt::AlignCenter);
+        lineEdit_21->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_21, 5, 2, 1, 1);
 
@@ -3725,6 +3561,8 @@ public:
         lineEdit_23->setMinimumSize(QSize(0, 30));
         lineEdit_23->setMaximumSize(QSize(16777215, 30));
         lineEdit_23->setFont(font);
+        lineEdit_23->setAlignment(Qt::AlignCenter);
+        lineEdit_23->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_23, 12, 2, 1, 1);
 
@@ -3767,7 +3605,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(settingwidget);
@@ -3783,7 +3621,6 @@ public:
         toolButton_theme->setText(QApplication::translate("settingwidget", "\344\270\273\351\242\230", nullptr));
         toolButton_terminal->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257", nullptr));
         toolButton_shortcutKey->setText(QApplication::translate("settingwidget", "\345\277\253\346\215\267\351\224\256", nullptr));
-        toolButton->setText(QApplication::translate("settingwidget", "\346\265\213\350\257\225", nullptr));
         label->setText(QApplication::translate("settingwidget", "\345\220\257\345\212\250", nullptr));
         label_5->setText(QApplication::translate("settingwidget", "\345\274\200\346\234\272\346\227\266\345\220\257\345\212\250", nullptr));
         label_6->setText(QApplication::translate("settingwidget", "\345\274\200\345\220\257\345\220\216\345\260\206\345\234\250\350\256\241\347\256\227\346\234\272\345\274\200\346\234\272\345\220\216\350\207\252\345\212\250\345\220\257\345\212\250\343\200\202", nullptr));
@@ -3839,24 +3676,6 @@ public:
         label_52->setText(QApplication::translate("settingwidget", "\350\213\261\346\226\207\345\255\227\344\275\223", nullptr));
         label_62->setText(QApplication::translate("settingwidget", "\344\270\255\346\226\207\345\255\227\344\275\223", nullptr));
         label_12->setText(QApplication::translate("settingwidget", "\351\205\215\350\211\262", nullptr));
-        label_color_matching->setText(QString());
-        label_color_matching_2->setText(QString());
-        label_color_matching_3->setText(QString());
-        label_color_matching_5->setText(QString());
-        label_color_matching_4->setText(QString());
-        label_color_matching_6->setText(QString());
-        label_color_matching_8->setText(QString());
-        label_color_matching_7->setText(QString());
-        label_color_matching_9->setText(QString());
-        label_color_matching_10->setText(QString());
-        label_color_matching_11->setText(QString());
-        label_color_matching_14->setText(QString());
-        label_color_matching_13->setText(QString());
-        label_color_matching_12->setText(QString());
-        label_color_matching_15->setText(QString());
-        label_color_matching_16->setText(QString());
-        label_65->setText(QApplication::translate("settingwidget", "Campbell", nullptr));
-        label_66->setText(QApplication::translate("settingwidget", "\351\273\230\350\256\244", nullptr));
         label_13->setText(QApplication::translate("settingwidget", "\344\270\273\351\242\230", nullptr));
         label_76->setText(QString());
         label_77->setText(QString());
@@ -3904,6 +3723,12 @@ public:
         label_27->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257-\345\216\206\345\217\262", nullptr));
         label_29->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257-\346\230\276\347\244\272/\351\232\220\350\227\217\345\221\275\344\273\244", nullptr));
         label_28->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257-\344\270\212\344\274\240", nullptr));
+        lineEdit_10->setText(QApplication::translate("settingwidget", "Ctrl + Shift + f", nullptr));
+        lineEdit_9->setText(QApplication::translate("settingwidget", "Ctrl + v", nullptr));
+        lineEdit_11->setText(QApplication::translate("settingwidget", "Ctrl + t", nullptr));
+        lineEdit_12->setText(QApplication::translate("settingwidget", "Ctrl + h", nullptr));
+        lineEdit_14->setText(QApplication::translate("settingwidget", "Ctrl + b", nullptr));
+        lineEdit_13->setText(QApplication::translate("settingwidget", "Ctrl + l", nullptr));
         toolButton_14->setText(QString());
         toolButton_13->setText(QString());
         toolButton_12->setText(QString());
@@ -3923,6 +3748,12 @@ public:
         label_34->setText(QApplication::translate("settingwidget", "\346\211\223\345\274\200\350\256\276\347\275\256", nullptr));
         label_35->setText(QApplication::translate("settingwidget", "\345\267\245\345\205\267\346\240\217\346\250\241\345\274\217", nullptr));
         label_36->setText(QApplication::translate("settingwidget", "\345\205\263\351\227\255\351\200\211\344\270\255\346\240\207\347\255\276\351\241\265", nullptr));
+        lineEdit_15->setText(QApplication::translate("settingwidget", "Ctrl + i", nullptr));
+        lineEdit_16->setText(QApplication::translate("settingwidget", "F11", nullptr));
+        lineEdit_20->setText(QApplication::translate("settingwidget", "F10", nullptr));
+        lineEdit_19->setText(QApplication::translate("settingwidget", "Ctrl + Alt + s", nullptr));
+        lineEdit_17->setText(QApplication::translate("settingwidget", "Ctrl + Alt + n", nullptr));
+        lineEdit_18->setText(QApplication::translate("settingwidget", "Ctrl + Alt + h", nullptr));
         toolButton_26->setText(QString());
         toolButton_24->setText(QString());
         toolButton_25->setText(QString());
@@ -3930,13 +3761,24 @@ public:
         toolButton_29->setText(QString());
         toolButton_27->setText(QString());
         label_16->setText(QApplication::translate("settingwidget", "\344\270\212\344\270\200\344\270\252\346\240\207\347\255\276", nullptr));
+        lineEdit_3->setText(QApplication::translate("settingwidget", "Alt + 0", nullptr));
+        lineEdit_5->setText(QApplication::translate("settingwidget", "Alt + d", nullptr));
+        lineEdit_4->setText(QApplication::translate("settingwidget", "Alt + 9", nullptr));
+        lineEdit_6->setText(QApplication::translate("settingwidget", "Ctrl + Shift + c", nullptr));
+        lineEdit_7->setText(QApplication::translate("settingwidget", "Ctrl + c", nullptr));
+        lineEdit->setText(QApplication::translate("settingwidget", "Alt + \342\206\220", nullptr));
+        lineEdit_8->setText(QApplication::translate("settingwidget", "Ctrl + Shift + v", nullptr));
         label_57->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257-\346\237\245\346\211\276-\344\270\212\344\270\200\344\270\252", nullptr));
+        lineEdit_22->setText(QApplication::translate("settingwidget", "Alt + \342\206\221", nullptr));
         toolButton_31->setText(QString());
         toolButton_11->setText(QString());
         label_17->setText(QApplication::translate("settingwidget", "\344\270\213\344\270\200\344\270\252\346\240\207\347\255\276", nullptr));
+        lineEdit_2->setText(QApplication::translate("settingwidget", "Alt + \342\206\222", nullptr));
         toolButton_10->setText(QString());
         toolButton_30->setText(QString());
+        lineEdit_21->setText(QApplication::translate("settingwidget", "Alt + q", nullptr));
         label_58->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257-\346\237\245\346\211\276-\344\270\213\344\270\200\344\270\252", nullptr));
+        lineEdit_23->setText(QApplication::translate("settingwidget", "Alt + \342\206\223", nullptr));
         toolButton_32->setText(QString());
     } // retranslateUi
 

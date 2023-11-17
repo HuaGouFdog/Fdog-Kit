@@ -470,13 +470,6 @@ QToolButton:checked {
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton">
-           <property name="text">
-            <string>测试</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -498,7 +491,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>6</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -3108,479 +3101,6 @@ border-radius: 5px;}
                  <property name="bottomMargin">
                   <number>5</number>
                  </property>
-                 <item>
-                  <widget class="QWidget" name="horizontalWidget_24" native="true">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>286</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(0, 0, 0);
-border-radius:5px;</string>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_20">
-                    <property name="spacing">
-                     <number>10</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>10</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>10</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <widget class="QWidget" name="gridWidget_2" native="true">
-                      <property name="minimumSize">
-                       <size>
-                        <width>130</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QLabel{
-	border-radius:3px;
-}</string>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout_2">
-                       <property name="topMargin">
-                        <number>2</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>1</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>2</number>
-                       </property>
-                       <property name="spacing">
-                        <number>2</number>
-                       </property>
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_color_matching">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(12, 12, 12);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="0">
-                        <widget class="QLabel" name="label_color_matching_2">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(118, 118, 118);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="1">
-                        <widget class="QLabel" name="label_color_matching_3">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(197, 15, 31);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="2">
-                        <widget class="QLabel" name="label_color_matching_5">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(19, 161, 14);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="1">
-                        <widget class="QLabel" name="label_color_matching_4">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(231, 72, 86);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="2">
-                        <widget class="QLabel" name="label_color_matching_6">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(22, 198, 12);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="3">
-                        <widget class="QLabel" name="label_color_matching_8">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(249, 241, 165);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="3">
-                        <widget class="QLabel" name="label_color_matching_7">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(193, 156, 0);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="4">
-                        <widget class="QLabel" name="label_color_matching_9">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(0, 55, 218);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="4">
-                        <widget class="QLabel" name="label_color_matching_10">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(59, 120, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="5">
-                        <widget class="QLabel" name="label_color_matching_11">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(136, 23, 152);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="6">
-                        <widget class="QLabel" name="label_color_matching_14">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(97, 214, 214);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="6">
-                        <widget class="QLabel" name="label_color_matching_13">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(58, 150, 221);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="5">
-                        <widget class="QLabel" name="label_color_matching_12">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(180, 0, 158);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="7">
-                        <widget class="QLabel" name="label_color_matching_15">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(204, 204, 204);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="7">
-                        <widget class="QLabel" name="label_color_matching_16">
-                         <property name="minimumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>12</width>
-                           <height>12</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(242, 242, 242);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_65">
-                      <property name="font">
-                       <font>
-                        <family>Cascadia Code</family>
-                        <pointsize>10</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
-                        <stylestrategy>PreferAntialias</stylestrategy>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="text">
-                       <string>Campbell</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_66">
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                     <stylestrategy>PreferAntialias</stylestrategy>
-                    </font>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">color: rgb(255, 255, 255);</string>
-                   </property>
-                   <property name="text">
-                    <string>默认</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_64">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
                 </layout>
                </widget>
               </item>
@@ -5390,7 +4910,7 @@ QScrollBar::up-arrow:vertical {
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
+               <y>-140</y>
                <width>832</width>
                <height>830</height>
               </rect>
@@ -5848,6 +5368,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Ctrl + Shift + f</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="9" column="2">
@@ -5876,6 +5405,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + v</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -5906,6 +5444,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Ctrl + t</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="14" column="2">
@@ -5934,6 +5481,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + h</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -5964,6 +5520,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Ctrl + b</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="15" column="2">
@@ -5992,6 +5557,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + l</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7029,6 +6603,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Ctrl + i</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="18" column="2">
@@ -7057,6 +6640,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>F11</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7087,6 +6679,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>F10</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="21" column="2">
@@ -7115,6 +6716,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + Alt + s</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7145,6 +6755,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Ctrl + Alt + n</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="20" column="2">
@@ -7173,6 +6792,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + Alt + h</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7508,6 +7136,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Alt + 0</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="4" column="2">
@@ -7536,6 +7173,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Alt + d</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7566,6 +7212,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Alt + 9</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="6" column="2">
@@ -7594,6 +7249,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + Shift + c</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7624,6 +7288,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Ctrl + c</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="0" column="2">
@@ -7653,6 +7326,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Alt + ←</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="8" column="2">
@@ -7681,6 +7363,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Ctrl + Shift + v</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7766,6 +7457,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Alt + ↑</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -7935,6 +7635,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Alt + →</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="0" column="3">
@@ -8086,6 +7795,15 @@ QToolButton:checked {
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
                   </property>
+                  <property name="text">
+                   <string>Alt + q</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="5" column="4">
@@ -8157,6 +7875,15 @@ QToolButton:checked {
                     <pointsize>10</pointsize>
                     <stylestrategy>PreferAntialias</stylestrategy>
                    </font>
+                  </property>
+                  <property name="text">
+                   <string>Alt + ↓</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>

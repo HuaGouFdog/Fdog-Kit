@@ -130,6 +130,9 @@ settingwidget::settingwidget(QWidget *parent) :
     ui->verticalLayout_29->addWidget(cb4);
     cb4->show();
 
+    colormatch * cm_ = new colormatch("Campbell", campbell, this);
+    ui->verticalWidget_15->layout()->addWidget(cm_);
+    cm_->show();
 
     colormatch * cm = new colormatch("Campbell Powershell", campbellPowershell, this);
     ui->verticalWidget_16->layout()->addWidget(cm);
