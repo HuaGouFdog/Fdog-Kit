@@ -121,6 +121,8 @@ private slots:
 
     void on_toolButton_about_clicked();
 
+
+
 private:
     Ui::MainWindow *ui;
 

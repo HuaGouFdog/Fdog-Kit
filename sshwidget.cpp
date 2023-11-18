@@ -115,7 +115,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     textEdit_s->setLineWrapMode(QTextEdit::NoWrap); //不自动换行
     textEdit_s->setStyleSheet("QTextEdit{ \
                              background-color: rgb(0, 41, 169, 0);\
-                             selection-background-color: rgb(5, 96, 159);\
+                             selection-background-color: rgb(50, 130, 190);\
                              font: 12pt \"Cascadia Mono,OPPOSans B\";\
                              border: none;\
                              padding-top:0px;\
@@ -205,9 +205,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QStackedLayout * Layout = new QStackedLayout;
     Layout->setStackingMode(QStackedLayout::StackAll);
     Layout->setContentsMargins(0,0,0,0);
-    fwidget = new findwidget(textEdit_s);
     dlwidget = new downloadwidget(textEdit_s);
-
+    fwidget = new findwidget(textEdit_s);
+    //dlwidget->hide();
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
 
@@ -1463,8 +1463,8 @@ void sshwidget::rece_resize_sign()
     qDebug() << "Width: " << width;
     qDebug() << "Height: " << height;
 
-    fwidget->move(width - fwidget->geometry().width(), 10);
-    dlwidget->move(width - dlwidget->geometry().width() - 5, 45);
+    fwidget->move(width - fwidget->geometry().width() - 50, 10);
+    dlwidget->move(width - dlwidget->geometry().width() - 20, 10);
 }
 
 void sshwidget::on_toolButton_toolkit_clicked()
@@ -1497,4 +1497,40 @@ void sshwidget::on_toolButton_upload_clicked()
 void sshwidget::on_toolButton_fullScreen_clicked()
 {
     emit send_toolButton_fullScreen_sign();
+}
+
+void sshwidget::on_toolButton_find_clicked()
+{
+    if (fwidget->isHidden()) {
+        fwidget->show();
+    }
+}
+
+void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
+{
+    qDebug() << "触发";
+    QMenu *menu = new QMenu(ui->tabWidget);
+    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    menu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction *pnew = new QAction("添加命令", ui->tabWidget);
+    QAction *pnew1 = new QAction("创建菜单", ui->tabWidget);
+    connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+    connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
+    menu->addAction(pnew);
+    menu->addSeparator();
+    menu->addAction(pnew1);
+    menu->move(cursor().pos());
+    menu->show();
+
+
+}
+
+void sshwidget::rece_addCommond_sgin()
+{
+    //添加命令
+}
+
+void sshwidget::rece_mkdirFolder_sgin()
+{
+    //创建文件夹
 }

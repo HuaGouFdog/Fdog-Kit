@@ -30,6 +30,10 @@ class Ui_downloadwidget
 public:
     QVBoxLayout *verticalLayout;
     QWidget *widget_2;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer_2;
+    QToolButton *toolButton_file;
+    QWidget *widget_body;
     QVBoxLayout *verticalLayout_2;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_2;
@@ -53,18 +57,58 @@ public:
     {
         if (downloadwidget->objectName().isEmpty())
             downloadwidget->setObjectName(QStringLiteral("downloadwidget"));
-        downloadwidget->resize(280, 289);
+        downloadwidget->resize(280, 330);
         downloadwidget->setMinimumSize(QSize(280, 0));
         downloadwidget->setMaximumSize(QSize(280, 16777215));
-        downloadwidget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        downloadwidget->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(downloadwidget);
-        verticalLayout->setSpacing(0);
+        verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(3, 3, 3, 3);
+        verticalLayout->setContentsMargins(0, 3, 0, 0);
         widget_2 = new QWidget(downloadwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setStyleSheet(QLatin1String("#widget_2{\n"
-"	border: 2px solid;\n"
+        widget_2->setMinimumSize(QSize(0, 28));
+        horizontalLayout_3 = new QHBoxLayout(widget_2);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 5, 0);
+        horizontalSpacer_2 = new QSpacerItem(244, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_2);
+
+        toolButton_file = new QToolButton(widget_2);
+        toolButton_file->setObjectName(QStringLiteral("toolButton_file"));
+        toolButton_file->setMinimumSize(QSize(22, 25));
+        toolButton_file->setMaximumSize(QSize(22, 25));
+        toolButton_file->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/download.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_file->setIcon(icon);
+        toolButton_file->setIconSize(QSize(22, 22));
+
+        horizontalLayout_3->addWidget(toolButton_file);
+
+
+        verticalLayout->addWidget(widget_2);
+
+        widget_body = new QWidget(downloadwidget);
+        widget_body->setObjectName(QStringLiteral("widget_body"));
+        widget_body->setStyleSheet(QLatin1String("#widget_body{\n"
+"	border: 1px solid;\n"
 "	\n"
 "	\n"
 "	border-color: rgb(255, 255, 255);\n"
@@ -72,17 +116,17 @@ public:
 "	background-color: rgb(30, 45, 54);\n"
 "	border-radius: 5px;\n"
 "}"));
-        verticalLayout_2 = new QVBoxLayout(widget_2);
+        verticalLayout_2 = new QVBoxLayout(widget_body);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(5, 0, 5, 5);
-        widget_3 = new QWidget(widget_2);
+        widget_3 = new QWidget(widget_body);
         widget_3->setObjectName(QStringLiteral("widget_3"));
         widget_3->setStyleSheet(QStringLiteral("background-color: rgba(125, 125, 125, 0);"));
         horizontalLayout_2 = new QHBoxLayout(widget_3);
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(5, 5, 5, 5);
+        horizontalLayout_2->setContentsMargins(5, 5, 0, 5);
         label_2 = new QLabel(widget_3);
         label_2->setObjectName(QStringLiteral("label_2"));
         QFont font;
@@ -117,9 +161,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/file.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_file_3->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/file.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_file_3->setIcon(icon1);
         toolButton_file_3->setIconSize(QSize(20, 20));
 
         horizontalLayout_2->addWidget(toolButton_file_3);
@@ -144,9 +188,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/setting2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_file_2->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/lib/setting2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_file_2->setIcon(icon2);
         toolButton_file_2->setIconSize(QSize(20, 20));
 
         horizontalLayout_2->addWidget(toolButton_file_2);
@@ -154,11 +198,11 @@ public:
 
         verticalLayout_2->addWidget(widget_3);
 
-        scrollArea = new QScrollArea(widget_2);
+        scrollArea = new QScrollArea(widget_body);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setStyleSheet(QLatin1String("#scrollArea{\n"
 "background-color: rgba(255, 255, 255, 0);\n"
-"	border: 2px solid;\n"
+"	border: 1px solid;\n"
 "	\n"
 "	border-color: rgb(255, 255, 255);\n"
 "}\n"
@@ -166,10 +210,10 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 260, 230));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 268, 238));
         widget = new QWidget(scrollAreaWidgetContents);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(0, 0, 261, 41));
+        widget->setGeometry(QRect(10, 0, 251, 41));
         widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(0);
@@ -256,7 +300,7 @@ public:
         verticalLayout_2->addWidget(scrollArea);
 
 
-        verticalLayout->addWidget(widget_2);
+        verticalLayout->addWidget(widget_body);
 
 
         retranslateUi(downloadwidget);

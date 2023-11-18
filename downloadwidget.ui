@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>280</width>
-    <height>289</height>
+    <height>330</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,29 +26,110 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>0</number>
+    <number>10</number>
    </property>
    <property name="leftMargin">
-    <number>3</number>
+    <number>0</number>
    </property>
    <property name="topMargin">
     <number>3</number>
    </property>
    <property name="rightMargin">
-    <number>3</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>3</number>
+    <number>0</number>
    </property>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>28</height>
+      </size>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>5</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>244</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_file">
+        <property name="minimumSize">
+         <size>
+          <width>22</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>22</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+        </property>
+        <property name="icon">
+         <iconset resource="lib.qrc">
+          <normaloff>:/lib/download.png</normaloff>:/lib/download.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_body" native="true">
      <property name="styleSheet">
-      <string notr="true">#widget_2{
-	border: 2px solid;
+      <string notr="true">#widget_body{
+	border: 1px solid;
 	
 	
 	border-color: rgb(255, 255, 255);
@@ -89,7 +170,7 @@
           <number>5</number>
          </property>
          <property name="rightMargin">
-          <number>5</number>
+          <number>0</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
@@ -216,7 +297,7 @@ QToolButton:hover {
         <property name="styleSheet">
          <string notr="true">#scrollArea{
 background-color: rgba(255, 255, 255, 0);
-	border: 2px solid;
+	border: 1px solid;
 	
 	border-color: rgb(255, 255, 255);
 }
@@ -230,16 +311,16 @@ background-color: rgba(255, 255, 255, 0);
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>260</width>
-           <height>230</height>
+           <width>268</width>
+           <height>238</height>
           </rect>
          </property>
          <widget class="QWidget" name="widget" native="true">
           <property name="geometry">
            <rect>
-            <x>0</x>
+            <x>10</x>
             <y>0</y>
-            <width>261</width>
+            <width>251</width>
             <height>41</height>
            </rect>
           </property>

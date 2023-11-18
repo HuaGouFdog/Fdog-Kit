@@ -1,4 +1,4 @@
-#ifndef DOWNLOADWIDGET_H
+﻿#ifndef DOWNLOADWIDGET_H
 #define DOWNLOADWIDGET_H
 
 #include <QWidget>
@@ -14,6 +14,9 @@ class downloadwidget : public QWidget
 public:
     explicit downloadwidget(QWidget *parent = 0);
     ~downloadwidget();
+
+private slots:
+    void on_toolButton_file_clicked();
 
 private:
     Ui::downloadwidget *ui;

@@ -18,9 +18,24 @@ downloadwidget::downloadwidget(QWidget *parent) :
     Layout->addWidget(ui->widget_4);
 
     ui->widget_5->setLayout(Layout);
+
+    //默认只显示下载图标
+    ui->widget_body->hide();
+    this->setFixedSize(280,25);
 }
 
 downloadwidget::~downloadwidget()
 {
     delete ui;
+}
+
+void downloadwidget::on_toolButton_file_clicked()
+{
+    if (ui->widget_body->isHidden()) {
+        ui->widget_body->show();
+        this->setFixedSize(280,330);
+    } else {
+        ui->widget_body->hide();
+        this->setFixedSize(280,25);
+    }
 }

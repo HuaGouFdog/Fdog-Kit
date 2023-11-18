@@ -17,7 +17,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -37,21 +36,24 @@ public:
     QToolButton *toolButton_up;
     QToolButton *toolButton_down;
     QToolButton *toolButton_close;
-    QSpacerItem *horizontalSpacer;
-    QToolButton *toolButton_file;
 
     void setupUi(QWidget *findwidget)
     {
         if (findwidget->objectName().isEmpty())
             findwidget->setObjectName(QStringLiteral("findwidget"));
-        findwidget->resize(300, 35);
-        findwidget->setMinimumSize(QSize(300, 35));
-        findwidget->setMaximumSize(QSize(300, 35));
+        findwidget->resize(260, 35);
+        findwidget->setMinimumSize(QSize(260, 35));
+        findwidget->setMaximumSize(QSize(260, 35));
+        QFont font;
+        font.setFamily(QStringLiteral("OPPOSans B"));
+        font.setPointSize(10);
+        font.setStyleStrategy(QFont::PreferAntialias);
+        findwidget->setFont(font);
         findwidget->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(findwidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(3, 2, 0, 2);
+        verticalLayout->setContentsMargins(3, 0, 0, 2);
         horizontalWidget = new QWidget(findwidget);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
         horizontalWidget->setMinimumSize(QSize(0, 28));
@@ -62,7 +64,8 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 10, 0);
         widget_4 = new QWidget(horizontalWidget);
         widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setMinimumSize(QSize(53, 0));
+        widget_4->setMinimumSize(QSize(53, 25));
+        widget_4->setMaximumSize(QSize(16777215, 25));
         widget_4->setStyleSheet(QLatin1String("#widget_4{\n"
 "background-color: rgba(144, 144, 144, 150);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
@@ -78,10 +81,6 @@ public:
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
         lineEdit_search->setMinimumSize(QSize(140, 25));
         lineEdit_search->setMaximumSize(QSize(140, 25));
-        QFont font;
-        font.setFamily(QStringLiteral("OPPOSans B"));
-        font.setPointSize(10);
-        font.setStyleStrategy(QFont::PreferAntialias);
         lineEdit_search->setFont(font);
         lineEdit_search->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);"));
@@ -95,6 +94,8 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(label_conut->sizePolicy().hasHeightForWidth());
         label_conut->setSizePolicy(sizePolicy);
+        label_conut->setMinimumSize(QSize(30, 25));
+        label_conut->setMaximumSize(QSize(1555555, 25));
         label_conut->setFont(font);
         label_conut->setStyleSheet(QLatin1String("\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
@@ -186,37 +187,6 @@ public:
         toolButton_close->setIconSize(QSize(25, 25));
 
         horizontalLayout->addWidget(toolButton_close);
-
-        horizontalSpacer = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
-        toolButton_file = new QToolButton(horizontalWidget);
-        toolButton_file->setObjectName(QStringLiteral("toolButton_file"));
-        toolButton_file->setMinimumSize(QSize(22, 25));
-        toolButton_file->setMaximumSize(QSize(22, 25));
-        toolButton_file->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/lib/download.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_file->setIcon(icon3);
-        toolButton_file->setIconSize(QSize(22, 22));
-
-        horizontalLayout->addWidget(toolButton_file);
 
 
         verticalLayout->addWidget(horizontalWidget);

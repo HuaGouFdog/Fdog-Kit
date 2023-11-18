@@ -922,7 +922,47 @@ public:
 "	background-color: rgba(11, 11, 11,0);\n"
 "	border-radius: 10px;\n"
 "}\n"
-""));
+"\n"
+"QMenu {\n"
+"\n"
+"background-color:rgb(253,253,254);\n"
+"/*padding:5px;*/\n"
+"padding: 3px 0px 3px 0px;\n"
+"border-radius:6px;\n"
+"border:2px solid rgb(108, 117, 125, 65); \n"
+"}\n"
+"QMenu::item {\n"
+"	font-size: 10pt;\n"
+"	\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	\n"
+"	color: rgb(63, 63, 63);\n"
+"    background-color:rgb(253,253,254);\n"
+"    padding: 5px 25px 5px 25px;\n"
+"    /*margin: 2px 2px 2px 2px;*/\n"
+"}\n"
+"QMenu::item:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"}\n"
+"QMenu::icon:checked {\n"
+"    background: rgb(253,253,254);\n"
+"    position: absolute;\n"
+"    top: 1px;\n"
+"    right: 1px;\n"
+"    bottom: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"QMenu::icon:checked:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"    background-image: url(:/space_selected.png);\n"
+"}\n"
+"QMenu::separator {\n"
+"    height: 2px;\n"
+"    background: rgb(235,235,236);\n"
+"    /*margin-left: 10px;*/\n"
+"    /*"
+                        "margin-right: 10px;*/\n"
+"}"));
         verticalLayout_7 = new QVBoxLayout(widget_3);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
@@ -930,6 +970,7 @@ public:
         tabWidget = new QTabWidget(widget_3);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setFont(font);
+        tabWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
@@ -993,6 +1034,7 @@ public:
 "QTabBar QToolButton:hover {\n"
 "	background-color: rgba(100, 117, 125, 0);\n"
 "}"));
+        tabWidget->setTabShape(QTabWidget::Rounded);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         gridWidget = new QWidget(tab);
@@ -1271,7 +1313,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(sshwidget);

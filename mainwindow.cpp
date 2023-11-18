@@ -83,18 +83,23 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(db, SIGNAL(triggered()), this, SLOT(on_newCreate()));
 
 
-    men_tool = new QMenu();
-    men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
-                       "QMenu::item:selected {background-color: #0B0E11;}");
-
-    jsonFormat = new QAction(QIcon(":lib/powershell.png"), "JSON格式化");
+    men_tool = new QMenu(ui->toolButton_tool);
+    //men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
+    //                   "QMenu::item:selected {background-color: #0B0E11;}");
+    men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    men_tool->setAttribute(Qt::WA_TranslucentBackground);
+    jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
     men_tool->addAction(jsonFormat);
-    xmlFormat = new QAction(QIcon(":lib/powershell.png"), "XML格式化");
+    men_tool->addSeparator();
+    xmlFormat = new QAction(QIcon(":lib/xml (2).png"), "XML格式化");
     men_tool->addAction(xmlFormat);
-    textDiff = new QAction(QIcon(":lib/powershell.png"), "文本对比");
+    men_tool->addSeparator();
+    textDiff = new QAction(QIcon(":lib/XML-Local-hover.png"), "文本对比");
     men_tool->addAction(textDiff);
-    toolAssemble = new QAction(QIcon(":lib/powershell.png"), "小工具集合");
+    men_tool->addSeparator();
+    toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具集合");
     men_tool->addAction(toolAssemble);
+    men_tool->addSeparator();
     ui->toolButton_tool->setMenu(men_tool);
 
     connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
@@ -768,34 +773,28 @@ void MainWindow::on_newTool()
         QString toolName;
         QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
+        //创建连接窗口
+        tswidget = new toolswidget();
+        QSize iconSize(16, 16); // 设置图标的大小
         qDebug() <<"工具：" << actionText;
         if (actionText == "小工具集合") {
             ui->stackedWidget->setCurrentIndex(0);
             ui->widget_4->show();
             return;
-            //connectType =SSH_CONNECT_TYPE;
+            ui->tabWidget->addTab(tswidget, QIcon(":lib/toolBox.png").pixmap(iconSize), toolName);
         } else if (actionText == "JSON格式化") {
             toolName = "JSON格式化";
-            //connectType =ZK_CONNECT_TYPE;
+            ui->tabWidget->addTab(tswidget, QIcon(":lib/json (2).png").pixmap(iconSize), toolName);
         } else if (actionText == "XML格式化") {
             toolName = "XML格式化";
-            //connectType =REDIS_CONNECT_TYPE;
+            ui->tabWidget->addTab(tswidget, QIcon(":lib/xml (2).png").pixmap(iconSize), toolName);
         } else if (actionText == "文本对比") {
             toolName = "文本对比";
+            ui->tabWidget->addTab(tswidget, QIcon(":lib/XML-Local-hover.png").pixmap(iconSize), toolName);
         }
-
-        //创建连接窗口
-        tswidget = new toolswidget();
-        //connect(tswidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        QSize iconSize(16, 16); // 设置图标的大小
-        //sshWidgetList.push_back(tswidget);
-        ui->stackedWidget->setCurrentIndex(0);
-        ui->tabWidget->addTab(tswidget, QIcon(":lib/tool.png").pixmap(iconSize), toolName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-        //sshWidgetList.push_back(tswidget);
         tswidget->show();
-    ui->stackedWidget->setCurrentIndex(0);
-    //ui->widget_line->show();
+        ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)

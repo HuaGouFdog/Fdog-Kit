@@ -224,6 +224,14 @@ private slots:
 
     void on_toolButton_fullScreen_clicked();
 
+    void on_toolButton_find_clicked();
+
+    void on_tabWidget_customContextMenuRequested(const QPoint &pos);
+
+    void rece_addCommond_sgin();
+
+    void rece_mkdirFolder_sgin();
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号

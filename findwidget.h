@@ -1,4 +1,4 @@
-#ifndef FINDWIDGET_H
+﻿#ifndef FINDWIDGET_H
 #define FINDWIDGET_H
 
 #include <QWidget>
@@ -14,6 +14,14 @@ class findwidget : public QWidget
 public:
     explicit findwidget(QWidget *parent = 0);
     ~findwidget();
+
+signals:
+    void send_toolButton_file_sgin();
+
+private slots:
+    void on_toolButton_file_clicked();
+
+    void on_toolButton_close_clicked();
 
 private:
     Ui::findwidget *ui;

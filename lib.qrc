@@ -86,5 +86,9 @@
         <file>lib/t2.png</file>
         <file>lib/t3.png</file>
         <file>lib/t4.png</file>
+        <file>lib/json (2).png</file>
+        <file>lib/xml (2).png</file>
+        <file>lib/XML-Local-hover.png</file>
+        <file>lib/toolBox.png</file>
     </qresource>
 </RCC>

@@ -203,7 +203,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1077, 672);
-        MainWindow->setMinimumSize(QSize(270, 0));
+        MainWindow->setMinimumSize(QSize(600, 600));
         MainWindow->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("Cascadia Mono"));
@@ -233,7 +233,8 @@ public:
         widget_title->setMinimumSize(QSize(0, 22));
         widget_title->setMaximumSize(QSize(16777215, 24));
         widget_title->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(255, 255, 255);\n"
+""));
         horizontalLayout = new QHBoxLayout(widget_title);
         horizontalLayout->setSpacing(4);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -241,6 +242,8 @@ public:
         horizontalLayout->setContentsMargins(0, 1, 0, 2);
         toolButton = new QToolButton(widget_title);
         toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setMinimumSize(QSize(20, 20));
+        toolButton->setMaximumSize(QSize(20, 20));
         toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
 "	\n"
 "	color: rgb(217, 236, 237);\n"
@@ -344,6 +347,45 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
+"}\n"
+"\n"
+"QMenu {\n"
+"\n"
+"background-color:rgb(253,253,254);\n"
+"/*padding:5px;*/\n"
+"padding: 3px 0px 3px 0px;\n"
+"border-radius:4px;\n"
+"border:2px solid rgb(108, 117, 125, 65); \n"
+"}\n"
+"QMenu::item {\n"
+"	font: 8pt \"OPPOSans B\";\n"
+"	\n"
+"	color: rgb(63, 63, 63);\n"
+"    background-color:rgb(253,253,254);\n"
+"    padding: 5px 20px 5px 20px;\n"
+"    /*margin: 2px 2px 2px 2px;*/\n"
+"}\n"
+"QMenu::item:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"}\n"
+"QMenu::icon:checked {\n"
+"    background: rgb(253,253,254);\n"
+"    position: absolute;\n"
+"    top: 1px;\n"
+"    right: 1px;\n"
+"    bottom: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"QMenu::icon:checked:selected {\n"
+"    backgrou"
+                        "nd-color : rgb(236,236,237);\n"
+"    background-image: url(:/space_selected.png);\n"
+"}\n"
+"QMenu::separator {\n"
+"    height: 2px;\n"
+"    background: rgb(235,235,236);\n"
+"    /*margin-left: 10px;*/\n"
+"    /*margin-right: 10px;*/\n"
 "}"));
         toolButton_tool->setIconSize(QSize(14, 14));
         toolButton_tool->setPopupMode(QToolButton::InstantPopup);
