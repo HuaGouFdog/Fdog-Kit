@@ -26,7 +26,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">color: rgb(45, 45, 45);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -129,13 +129,10 @@ QToolButton:hover {
     <widget class="QWidget" name="widget_body" native="true">
      <property name="styleSheet">
       <string notr="true">#widget_body{
-	border: 1px solid;
-	
-	
-	border-color: rgb(255, 255, 255);
-	
-	background-color: rgb(30, 45, 54);
-	border-radius: 5px;
+background-color: rgb(162, 162, 162);
+/*padding:5px;*/
+border-radius:6px;
+border:2px solid rgb(108, 117, 125, 65); 
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -296,10 +293,8 @@ QToolButton:hover {
        <widget class="QScrollArea" name="scrollArea">
         <property name="styleSheet">
          <string notr="true">#scrollArea{
-background-color: rgba(255, 255, 255, 0);
 	border: 1px solid;
-	
-	border-color: rgb(255, 255, 255);
+	background-color: rgb(29, 29, 29);
 }
 </string>
         </property>
@@ -315,6 +310,9 @@ background-color: rgba(255, 255, 255, 0);
            <height>238</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 150);</string>
+         </property>
          <widget class="QWidget" name="widget" native="true">
           <property name="geometry">
            <rect>
@@ -325,7 +323,7 @@ background-color: rgba(255, 255, 255, 0);
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <property name="spacing">
@@ -365,7 +363,7 @@ background-color: rgba(255, 255, 255, 0);
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">color: rgb(45, 45, 45);</string>
              </property>
              <property name="text">
               <string>bison-2.5.1.tar.gz</string>
@@ -385,6 +383,9 @@ background-color: rgba(255, 255, 255, 0);
                <width>16777215</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
              </property>
             </widget>
            </item>
@@ -533,7 +534,7 @@ color: rgb(0, 0, 0);</string>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">color: rgb(45, 45, 45);</string>
              </property>
              <property name="text">
               <string>52.6% 456k/s  23M</string>

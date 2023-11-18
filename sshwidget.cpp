@@ -207,7 +207,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     Layout->setContentsMargins(0,0,0,0);
     dlwidget = new downloadwidget(textEdit_s);
     fwidget = new findwidget(textEdit_s);
-    //dlwidget->hide();
+    hcwidget = new historycommondwidget(textEdit_s);
+    hcwidget->hide();
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
 
@@ -1465,6 +1466,11 @@ void sshwidget::rece_resize_sign()
 
     fwidget->move(width - fwidget->geometry().width() - 50, 10);
     dlwidget->move(width - dlwidget->geometry().width() - 20, 10);
+
+    QPoint widgetAPos = ui->toolButton_history->mapToGlobal(QPoint(0, 0)); // 获取控件a在屏幕上的位置
+    QPoint widgetBPos = textEdit_s->mapFromGlobal(widgetAPos); // 将控件a的全局坐标映射为控件b的局部坐标
+    qDebug() << "WidgetB's position relative to WidgetA:" << widgetBPos;
+    hcwidget->move(widgetBPos.x()- 100, widgetBPos.y() - 250);
 }
 
 void sshwidget::on_toolButton_toolkit_clicked()
@@ -1579,5 +1585,14 @@ void sshwidget::on_toolButton_info_clicked()
         ui->widget->show();
     } else {
         ui->widget->hide();
+    }
+}
+
+void sshwidget::on_toolButton_history_clicked()
+{
+    if (hcwidget->isHidden()) {
+        hcwidget->show();
+    } else {
+        hcwidget->hide();
     }
 }

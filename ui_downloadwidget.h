@@ -60,7 +60,7 @@ public:
         downloadwidget->resize(280, 330);
         downloadwidget->setMinimumSize(QSize(280, 0));
         downloadwidget->setMaximumSize(QSize(280, 16777215));
-        downloadwidget->setStyleSheet(QStringLiteral(""));
+        downloadwidget->setStyleSheet(QStringLiteral("color: rgb(45, 45, 45);"));
         verticalLayout = new QVBoxLayout(downloadwidget);
         verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -108,13 +108,10 @@ public:
         widget_body = new QWidget(downloadwidget);
         widget_body->setObjectName(QStringLiteral("widget_body"));
         widget_body->setStyleSheet(QLatin1String("#widget_body{\n"
-"	border: 1px solid;\n"
-"	\n"
-"	\n"
-"	border-color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color: rgb(30, 45, 54);\n"
-"	border-radius: 5px;\n"
+"background-color: rgb(162, 162, 162);\n"
+"/*padding:5px;*/\n"
+"border-radius:6px;\n"
+"border:2px solid rgb(108, 117, 125, 65); \n"
 "}"));
         verticalLayout_2 = new QVBoxLayout(widget_body);
         verticalLayout_2->setSpacing(0);
@@ -201,20 +198,19 @@ public:
         scrollArea = new QScrollArea(widget_body);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setStyleSheet(QLatin1String("#scrollArea{\n"
-"background-color: rgba(255, 255, 255, 0);\n"
 "	border: 1px solid;\n"
-"	\n"
-"	border-color: rgb(255, 255, 255);\n"
+"	background-color: rgb(29, 29, 29);\n"
 "}\n"
 ""));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 268, 238));
+        scrollAreaWidgetContents->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 150);"));
         widget = new QWidget(scrollAreaWidgetContents);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setGeometry(QRect(10, 0, 251, 41));
-        widget->setStyleSheet(QStringLiteral(""));
+        widget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -228,7 +224,7 @@ public:
         font1.setPointSize(9);
         font1.setStyleStrategy(QFont::PreferAntialias);
         label->setFont(font1);
-        label->setStyleSheet(QStringLiteral(""));
+        label->setStyleSheet(QStringLiteral("color: rgb(45, 45, 45);"));
 
         verticalLayout_3->addWidget(label);
 
@@ -236,6 +232,7 @@ public:
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(0, 20));
         widget_5->setMaximumSize(QSize(16777215, 20));
+        widget_5->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
 
         verticalLayout_3->addWidget(widget_5);
 
@@ -291,7 +288,7 @@ public:
         font2.setFamily(QStringLiteral("OPPOSans B"));
         font2.setPointSize(9);
         label_4->setFont(font2);
-        label_4->setStyleSheet(QStringLiteral(""));
+        label_4->setStyleSheet(QStringLiteral("color: rgb(45, 45, 45);"));
 
         horizontalLayout->addWidget(label_4);
 

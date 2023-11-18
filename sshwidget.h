@@ -238,6 +238,8 @@ private slots:
 
     void on_toolButton_info_clicked();
 
+    void on_toolButton_history_clicked();
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号
@@ -261,6 +263,7 @@ private:
     CustomTextEdit *textEdit_s;
     findwidget * fwidget = NULL;
     downloadwidget * dlwidget = NULL;
+    historycommondwidget * hcwidget = NULL;
 
     QString lastCommondS; //上一条命令
     QString ssh_path; //当前工作目录
