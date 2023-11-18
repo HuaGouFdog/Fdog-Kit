@@ -1725,11 +1725,11 @@ QTabBar::tab{
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
-	border-top-left-radius: 0px;    /*设置tab的边框的圆角（左上圆角）*/
-	border-top-right-radius: 0px;    /*设置tab的边框的圆角（右上圆角）*/
+	border-top-left-radius: 2px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 2px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
 	padding: 4px;
-	margin-right:0px;
+	margin-right:3px;
 	margin-left: 0px;
 	
 }

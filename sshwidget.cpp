@@ -1510,19 +1510,42 @@ void sshwidget::on_toolButton_find_clicked()
 
 void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
 {
-    qDebug() << "触发";
-    QMenu *menu = new QMenu(ui->tabWidget);
-    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
-    menu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction *pnew = new QAction("添加命令", ui->tabWidget);
-    QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
-    connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
-    connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
-    menu->addAction(pnew);
-    menu->addSeparator();
-    menu->addAction(pnew1);
-    menu->move(cursor().pos());
-    menu->show();
+    if (ui->tabWidget->currentIndex() == ui->tabWidget->tabBar()->tabAt(pos)) {
+        qDebug() << "标签";
+        QMenu *menu = new QMenu(ui->tabWidget);
+        menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+        menu->setAttribute(Qt::WA_TranslucentBackground);
+        QAction *pnew = new QAction("添加命令", ui->tabWidget);
+        QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
+        QAction *pnew2 = new QAction("重命名", ui->tabWidget);
+        QAction *pnew3 = new QAction("删除", ui->tabWidget);
+        connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+        connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
+        menu->addAction(pnew);
+        menu->addSeparator();
+        menu->addAction(pnew1);
+        menu->addSeparator();
+        menu->addAction(pnew2);
+        menu->addSeparator();
+        menu->addAction(pnew3);
+        menu->move(cursor().pos());
+        menu->show();
+    } else {
+        qDebug() << "内容";
+        QMenu *menu = new QMenu(ui->tabWidget);
+        menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+        menu->setAttribute(Qt::WA_TranslucentBackground);
+        QAction *pnew = new QAction("添加命令", ui->tabWidget);
+        QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
+        connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+        connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
+        menu->addAction(pnew);
+        menu->addSeparator();
+        menu->addAction(pnew1);
+        menu->move(cursor().pos());
+        menu->show();
+    }
+
 
 
 }

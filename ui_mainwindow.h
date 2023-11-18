@@ -42,7 +42,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QToolButton *toolButton;
     QToolButton *toolButton_newCreate;
-    QToolButton *toolButton_newCreate_2;
+    QToolButton *toolButton_manage;
     QToolButton *toolButton_tool;
     QToolButton *toolButton_setting;
     QToolButton *toolButton_about;
@@ -298,12 +298,12 @@ public:
 
         horizontalLayout->addWidget(toolButton_newCreate);
 
-        toolButton_newCreate_2 = new QToolButton(widget_title);
-        toolButton_newCreate_2->setObjectName(QStringLiteral("toolButton_newCreate_2"));
-        toolButton_newCreate_2->setMinimumSize(QSize(0, 20));
-        toolButton_newCreate_2->setMaximumSize(QSize(1111111, 16777215));
-        toolButton_newCreate_2->setFont(font1);
-        toolButton_newCreate_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_manage = new QToolButton(widget_title);
+        toolButton_manage->setObjectName(QStringLiteral("toolButton_manage"));
+        toolButton_manage->setMinimumSize(QSize(0, 20));
+        toolButton_manage->setMaximumSize(QSize(1111111, 16777215));
+        toolButton_manage->setFont(font1);
+        toolButton_manage->setStyleSheet(QLatin1String("QToolButton {\n"
 "	\n"
 "	color: rgb(217, 236, 237);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -320,11 +320,11 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        toolButton_newCreate_2->setIconSize(QSize(16, 16));
-        toolButton_newCreate_2->setPopupMode(QToolButton::InstantPopup);
-        toolButton_newCreate_2->setToolButtonStyle(Qt::ToolButtonTextOnly);
+        toolButton_manage->setIconSize(QSize(16, 16));
+        toolButton_manage->setPopupMode(QToolButton::InstantPopup);
+        toolButton_manage->setToolButtonStyle(Qt::ToolButtonTextOnly);
 
-        horizontalLayout->addWidget(toolButton_newCreate_2);
+        horizontalLayout->addWidget(toolButton_manage);
 
         toolButton_tool = new QToolButton(widget_title);
         toolButton_tool->setObjectName(QStringLiteral("toolButton_tool"));
@@ -358,7 +358,7 @@ public:
 "border:2px solid rgb(108, 117, 125, 65); \n"
 "}\n"
 "QMenu::item {\n"
-"	font: 8pt \"OPPOSans B\";\n"
+"	font: 9pt \"OPPOSans B\";\n"
 "	\n"
 "	color: rgb(63, 63, 63);\n"
 "    background-color:rgb(253,253,254);\n"
@@ -595,6 +595,45 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         widget_3 = new QWidget(page);
         widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setStyleSheet(QLatin1String("QMenu {\n"
+"\n"
+"background-color:rgb(253,253,254);\n"
+"/*padding:5px;*/\n"
+"padding: 3px 0px 3px 0px;\n"
+"border-radius:6px;\n"
+"border:2px solid rgb(108, 117, 125, 65); \n"
+"}\n"
+"QMenu::item {\n"
+"	font-size: 10pt;\n"
+"	\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	\n"
+"	color: rgb(63, 63, 63);\n"
+"    background-color:rgb(253,253,254);\n"
+"    padding: 5px 25px 5px 25px;\n"
+"    /*margin: 2px 2px 2px 2px;*/\n"
+"}\n"
+"QMenu::item:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"}\n"
+"QMenu::icon:checked {\n"
+"    background: rgb(253,253,254);\n"
+"    position: absolute;\n"
+"    top: 1px;\n"
+"    right: 1px;\n"
+"    bottom: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"QMenu::icon:checked:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"    background-image: url(:/space_selected.png);\n"
+"}\n"
+"QMenu::separator {\n"
+"    height: 2px;\n"
+"    background: rgb(235,235,236);\n"
+"    /*margin-left: 10px;*/\n"
+"    /*margin-right: 10px;*/\n"
+"}"));
         verticalLayout_4 = new QVBoxLayout(widget_3);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -612,6 +651,7 @@ public:
         font3.setPointSize(11);
         font3.setStyleStrategy(QFont::PreferAntialias);
         tabWidget->setFont(font3);
+        tabWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
 "\n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
@@ -2185,7 +2225,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
         toolButton->setText(QApplication::translate("MainWindow", "...", nullptr));
         toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272(&N)", nullptr));
-        toolButton_newCreate_2->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206(&H)", nullptr));
+        toolButton_manage->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));

@@ -1105,3 +1105,52 @@ void MainWindow::on_toolButton_about_clicked()
      awidget = new aboutwidget();
      awidget->show();
 }
+
+void MainWindow::on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked()
+{
+    int8_t connectType = 0;
+    //创建连接窗口
+    hcwidget = new historyconnectwidget(connectType);
+    //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    ui->tabWidget->addTab(hcwidget, "快速连接");
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    ui->stackedWidget->setCurrentIndex(0);
+    hcwidget->show();
+}
+
+void MainWindow::on_toolButton_manage_clicked()
+{
+    int8_t connectType = 0;
+    //创建连接窗口
+    hcwidget = new historyconnectwidget(connectType);
+    //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    ui->tabWidget->addTab(hcwidget, "快速连接");
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    ui->stackedWidget->setCurrentIndex(0);
+    hcwidget->show();
+}
+
+void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
+{
+    if (ui->tabWidget->currentIndex() == ui->tabWidget->tabBar()->tabAt(pos)) {
+        qDebug() << "标签";
+        QMenu *menu = new QMenu(ui->tabWidget);
+        menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+        menu->setAttribute(Qt::WA_TranslucentBackground);
+        QAction *pnew = new QAction("复制标签", ui->tabWidget);
+        QAction *pnew1 = new QAction("关闭", ui->tabWidget);
+        QAction *pnew2 = new QAction("关闭其他", ui->tabWidget);
+        QAction *pnew3 = new QAction("关闭全部", ui->tabWidget);
+        //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+        //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
+        menu->addAction(pnew);
+        menu->addSeparator();
+        menu->addAction(pnew1);
+        menu->addSeparator();
+        menu->addAction(pnew2);
+        menu->addSeparator();
+        menu->addAction(pnew3);
+        menu->move(cursor().pos());
+        menu->show();
+    }
+}

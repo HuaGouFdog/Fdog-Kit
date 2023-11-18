@@ -123,6 +123,12 @@ private slots:
 
 
 
+    void on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked();
+
+    void on_toolButton_manage_clicked();
+
+    void on_tabWidget_customContextMenuRequested(const QPoint &pos);
+
 private:
     Ui::MainWindow *ui;
 
