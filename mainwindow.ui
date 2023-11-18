@@ -406,8 +406,8 @@ QToolButton:hover {
          </property>
          <property name="iconSize">
           <size>
-           <width>14</width>
-           <height>14</height>
+           <width>16</width>
+           <height>16</height>
           </size>
          </property>
          <property name="popupMode">
@@ -749,7 +749,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">
@@ -807,10 +807,6 @@ color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">
- QTabWidget::tab-bar {
-         left:0px;       
-}
-	
 
 /*设置TabWidget中tab_1的样式*/
 #tab_1.QWidget{
@@ -832,8 +828,8 @@ QTabBar::tab{
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
 	padding: 4px;
-	margin-right:0px;
-	margin-left: 0px;
+	/*margin-right:0px;
+	margin-left: 0px;*/
 }
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
@@ -879,6 +875,15 @@ QTabBar QToolButton:hover {
                 <property name="currentIndex">
                  <number>1</number>
                 </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+                <property name="documentMode">
+                 <bool>false</bool>
+                </property>
                 <property name="tabsClosable">
                  <bool>true</bool>
                 </property>
@@ -886,13 +891,21 @@ QTabBar QToolButton:hover {
                  <bool>true</bool>
                 </property>
                 <widget class="QWidget" name="tab">
+                 <attribute name="icon">
+                  <iconset resource="lib.qrc">
+                   <normaloff>:/lib/XML-Local-hover.png</normaloff>:/lib/XML-Local-hover.png</iconset>
+                 </attribute>
                  <attribute name="title">
-                  <string>11111111111111111</string>
+                  <string>11</string>
                  </attribute>
                 </widget>
                 <widget class="QWidget" name="tab_2">
+                 <attribute name="icon">
+                  <iconset resource="lib.qrc">
+                   <normaloff>:/lib/toolBox.png</normaloff>:/lib/toolBox.png</iconset>
+                 </attribute>
                  <attribute name="title">
-                  <string>33333333333333333333</string>
+                  <string>22</string>
                  </attribute>
                 </widget>
                </widget>
@@ -980,6 +993,9 @@ border-left:2px solid rgb(108, 117, 125, 65);
                      <pointsize>10</pointsize>
                      <stylestrategy>PreferAntialias</stylestrategy>
                     </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string>小工具集合</string>

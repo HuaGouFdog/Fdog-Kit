@@ -1630,7 +1630,7 @@ QToolButton:hover {
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="widget_3" native="true">
+        <widget class="QWidget" name="widget_bottom" native="true">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -1638,7 +1638,7 @@ QToolButton:hover {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#widget_3 {
+          <string notr="true">#widget_bottom {
 	background-color: rgba(11, 11, 11,0);
 	border-radius: 10px;
 }

@@ -1503,6 +1503,8 @@ void sshwidget::on_toolButton_find_clicked()
 {
     if (fwidget->isHidden()) {
         fwidget->show();
+    } else {
+        fwidget->hide();
     }
 }
 
@@ -1513,7 +1515,7 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu->setAttribute(Qt::WA_TranslucentBackground);
     QAction *pnew = new QAction("添加命令", ui->tabWidget);
-    QAction *pnew1 = new QAction("创建菜单", ui->tabWidget);
+    QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
     connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
     connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
     menu->addAction(pnew);
@@ -1528,9 +1530,31 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
 void sshwidget::rece_addCommond_sgin()
 {
     //添加命令
+    addcommondwidget * addcwidget = new addcommondwidget();
+    addcwidget->show();
 }
 
 void sshwidget::rece_mkdirFolder_sgin()
 {
     //创建文件夹
+    mkdirfolderwidget * mkdirfwidget = new mkdirfolderwidget();
+    mkdirfwidget->show();
+}
+
+void sshwidget::on_toolButton_command_clicked()
+{
+    if (ui->widget_bottom->isHidden()) {
+        ui->widget_bottom->show();
+    } else {
+        ui->widget_bottom->hide();
+    }
+}
+
+void sshwidget::on_toolButton_info_clicked()
+{
+    if (ui->widget->isHidden()) {
+        ui->widget->show();
+    } else {
+        ui->widget->hide();
+    }
 }

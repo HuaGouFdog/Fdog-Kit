@@ -14,6 +14,8 @@
 #include <QInputMethodEvent>
 #include "findwidget.h"
 #include "downloadwidget.h"
+#include "mkdirfolderwidget.h"
+#include "addcommondwidget.h"
 
 class CustomTextEdit : public QTextEdit {
     Q_OBJECT
@@ -231,6 +233,10 @@ private slots:
     void rece_addCommond_sgin();
 
     void rece_mkdirFolder_sgin();
+
+    void on_toolButton_command_clicked();
+
+    void on_toolButton_info_clicked();
 
 private:
     Ui::sshwidget *ui;

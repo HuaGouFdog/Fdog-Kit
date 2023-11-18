@@ -43,7 +43,9 @@ SOURCES += \
     colormatch.cpp \
     findwidget.cpp \
     aboutwidget.cpp \
-    downloadwidget.cpp
+    downloadwidget.cpp \
+    mkdirfolderwidget.cpp \
+    addcommondwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -64,7 +66,9 @@ HEADERS += \
     colormatch.h \
     findwidget.h \
     aboutwidget.h \
-    downloadwidget.h
+    downloadwidget.h \
+    mkdirfolderwidget.h \
+    addcommondwidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -80,7 +84,9 @@ FORMS += \
     colormatch.ui \
     findwidget.ui \
     aboutwidget.ui \
-    downloadwidget.ui
+    downloadwidget.ui \
+    mkdirfolderwidget.ui \
+    addcommondwidget.ui
 
 RESOURCES += \
     lib.qrc

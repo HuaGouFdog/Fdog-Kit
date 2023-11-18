@@ -106,7 +106,7 @@ public:
     QToolButton *toolButton_conectStats;
     QToolButton *toolButton_fullScreen;
     QSpacerItem *horizontalSpacer_3;
-    QWidget *widget_3;
+    QWidget *widget_bottom;
     QVBoxLayout *verticalLayout_7;
     QTabWidget *tabWidget;
     QWidget *tab;
@@ -915,10 +915,10 @@ public:
         verticalLayout_4->addWidget(widget_2);
 
         splitter_2->addWidget(widget_29);
-        widget_3 = new QWidget(splitter_2);
-        widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setMinimumSize(QSize(0, 0));
-        widget_3->setStyleSheet(QLatin1String("#widget_3 {\n"
+        widget_bottom = new QWidget(splitter_2);
+        widget_bottom->setObjectName(QStringLiteral("widget_bottom"));
+        widget_bottom->setMinimumSize(QSize(0, 0));
+        widget_bottom->setStyleSheet(QLatin1String("#widget_bottom {\n"
 "	background-color: rgba(11, 11, 11,0);\n"
 "	border-radius: 10px;\n"
 "}\n"
@@ -960,14 +960,14 @@ public:
 "    height: 2px;\n"
 "    background: rgb(235,235,236);\n"
 "    /*margin-left: 10px;*/\n"
-"    /*"
-                        "margin-right: 10px;*/\n"
+" "
+                        "   /*margin-right: 10px;*/\n"
 "}"));
-        verticalLayout_7 = new QVBoxLayout(widget_3);
+        verticalLayout_7 = new QVBoxLayout(widget_bottom);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(5, 5, 5, 5);
-        tabWidget = new QTabWidget(widget_3);
+        tabWidget = new QTabWidget(widget_bottom);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setFont(font);
         tabWidget->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -1245,7 +1245,7 @@ public:
 
         verticalLayout_7->addWidget(tabWidget);
 
-        widget_8 = new QWidget(widget_3);
+        widget_8 = new QWidget(widget_bottom);
         widget_8->setObjectName(QStringLiteral("widget_8"));
         widget_8->setMinimumSize(QSize(0, 25));
         widget_8->setMaximumSize(QSize(16777215, 25));
@@ -1303,7 +1303,7 @@ public:
 
         verticalLayout_7->addWidget(widget_8);
 
-        splitter_2->addWidget(widget_3);
+        splitter_2->addWidget(widget_bottom);
 
         verticalLayout_6->addWidget(splitter_2);
 
