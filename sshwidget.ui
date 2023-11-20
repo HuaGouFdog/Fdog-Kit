@@ -348,7 +348,7 @@ QToolButton:hover {
             </font>
            </property>
            <property name="text">
-            <string>终端连接 -</string>
+            <string>终端用户 -</string>
            </property>
           </widget>
          </item>
@@ -600,13 +600,13 @@ QToolButton:hover {
            <property name="minimumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="font">
@@ -627,7 +627,7 @@ QToolButton:hover {
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:center; 
+	text-align:right;
 	color: rgba(0, 0, 0, 200);
 }
 
@@ -640,13 +640,16 @@ QProgressBar:chunk{
 }</string>
            </property>
            <property name="value">
-            <number>35</number>
+            <number>0</number>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
            <property name="invertedAppearance">
             <bool>false</bool>
            </property>
            <property name="format">
-            <string>%p%</string>
+            <string>%p% </string>
            </property>
           </widget>
          </item>
@@ -693,7 +696,7 @@ QProgressBar:chunk{
             </font>
            </property>
            <property name="text">
-            <string>磁盘</string>
+            <string>io</string>
            </property>
           </widget>
          </item>
@@ -702,13 +705,13 @@ QProgressBar:chunk{
            <property name="minimumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="font">
@@ -716,6 +719,9 @@ QProgressBar:chunk{
              <family>OPPOSans B</family>
              <pointsize>9</pointsize>
             </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
@@ -728,7 +734,7 @@ QProgressBar:chunk{
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:center; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
@@ -743,11 +749,14 @@ QProgressBar:chunk{
            <property name="value">
             <number>0</number>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
            <property name="invertedAppearance">
             <bool>false</bool>
            </property>
            <property name="format">
-            <string>%p%</string>
+            <string>%p% </string>
            </property>
           </widget>
          </item>
@@ -803,13 +812,13 @@ QProgressBar:chunk{
            <property name="minimumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="font">
@@ -817,6 +826,9 @@ QProgressBar:chunk{
              <family>OPPOSans B</family>
              <pointsize>9</pointsize>
             </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
@@ -829,7 +841,7 @@ QProgressBar:chunk{
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:center; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
@@ -844,11 +856,14 @@ QProgressBar:chunk{
            <property name="value">
             <number>0</number>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
            <property name="invertedAppearance">
             <bool>false</bool>
            </property>
            <property name="format">
-            <string>%p%</string>
+            <string>%p% </string>
            </property>
           </widget>
          </item>
@@ -904,13 +919,13 @@ QProgressBar:chunk{
            <property name="minimumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>130</width>
-             <height>14</height>
+             <height>18</height>
             </size>
            </property>
            <property name="font">
@@ -918,6 +933,9 @@ QProgressBar:chunk{
              <family>OPPOSans B</family>
              <pointsize>9</pointsize>
             </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
@@ -930,7 +948,7 @@ QProgressBar:chunk{
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:center; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
@@ -945,6 +963,9 @@ QProgressBar:chunk{
            <property name="value">
             <number>0</number>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
            <property name="invertedAppearance">
             <bool>false</bool>
            </property>
@@ -952,7 +973,7 @@ QProgressBar:chunk{
             <enum>QProgressBar::TopToBottom</enum>
            </property>
            <property name="format">
-            <string>%p%</string>
+            <string>%p% </string>
            </property>
           </widget>
          </item>
@@ -1092,7 +1113,7 @@ QProgressBar:chunk{
                      <x>0</x>
                      <y>0</y>
                      <width>1246</width>
-                     <height>373</height>
+                     <height>359</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1778,7 +1799,7 @@ QTabBar QToolButton:hover {
              <enum>QTabWidget::Rounded</enum>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -2113,7 +2134,7 @@ QProgressBar:chunk{
 	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
 	background-color: #FFFFFF; 
-	text-align:center; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
@@ -2124,7 +2145,16 @@ QProgressBar:chunk{
 }</string>
               </property>
               <property name="value">
-               <number>0</number>
+               <number>29</number>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="textDirection">
+               <enum>QProgressBar::TopToBottom</enum>
               </property>
               <property name="format">
                <string>%p%</string>
@@ -2310,6 +2340,25 @@ QProgressBar:chunk{
               </property>
               <property name="format">
                <string>%p%</string>
+              </property>
+             </widget>
+             <widget class="QProgressBar" name="progressBar">
+              <property name="geometry">
+               <rect>
+                <x>420</x>
+                <y>70</y>
+                <width>118</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="value">
+               <number>24</number>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
               </property>
              </widget>
             </widget>

@@ -101,13 +101,21 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
                             SLOT(rece_init()));
     connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
                             SLOT(rece_getServerInfo(ServerInfoStruct)));
-    thread->start();
+    //thread->start();
     //thread2->start();
     int connrectType = 1;
     //这里设置初始化方式
     //密码
     //密钥 Path name of the public key file. (e.g. /etc/ssh/hostkey.pub). If libssh2 is built against OpenSSL, this option can be set to NULL.
-    QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    //QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+
+    threadExec = new QThread();
+    sshExec = new sshHandleExec();
+    sshExec->moveToThread(threadExec);
+    connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
+                            SLOT(rece_getServerInfo(ServerInfoStruct)));
+    threadExec->start();
+    QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 
     textEdit_s = new CustomTextEdit(this);
     textEdit_s->setReadOnly(true);
@@ -1290,10 +1298,13 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
     ui->label_architecture->setText(serverInfo.architecture);
     ui->label_cpuInfo->setText(serverInfo.cpuInfo);
 
-    ui->progressBar_cpu->setValue(23);
-    ui->progressBar_mem->setValue(65);
-    ui->progressBar_swap->setValue(11);
-    ui->progressBar_disk->setValue(20);
+    ui->progressBar_mem->setFormat("%p%   " + serverInfo.memUse + " ");
+    ui->progressBar_swap->setFormat("%p%   " + serverInfo.swapUse + " ");
+    ui->progressBar_cpu->setValue(serverInfo.cpuUseRate.toInt());
+    ui->progressBar_disk->setValue(serverInfo.diskUseRate.toInt());
+    ui->progressBar_mem->setValue(serverInfo.memUseRate.toInt());
+    ui->progressBar_swap->setValue(serverInfo.swapUseRate.toInt());
+
 }
 
 void sshwidget::on_pushButton_clicked()

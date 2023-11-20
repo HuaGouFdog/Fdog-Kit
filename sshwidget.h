@@ -245,7 +245,9 @@ private:
     int lineNumber;         //记录行号
     int columnNumber;       //记录列数
     QThread * thread;
+    QThread * threadExec;
     sshhandle * m_sshhandle;
+    sshHandleExec * sshExec;
     QThread * thread2;
     sshhandle * m_sshhandle2;
     KeyFilter *keyFilter;

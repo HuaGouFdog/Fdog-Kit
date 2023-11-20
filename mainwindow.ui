@@ -871,7 +871,7 @@ QTabBar::tab{
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
-	padding: 4px;
+	padding: 3px;
 	/*margin-right:0px;
 	margin-left: 0px;*/
 }
@@ -1054,13 +1054,13 @@ border-left:2px solid rgb(108, 117, 125, 65);
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>0</height>
+                     <height>30</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>26</height>
+                     <height>30</height>
                     </size>
                    </property>
                    <property name="font">
@@ -1077,7 +1077,7 @@ border-left:2px solid rgb(108, 117, 125, 65);
                     <string notr="true">QComboBox{
 	color:#ffffff;
 	border:1px solid #52DCFE;
-	border-radius:3px;
+	border-radius:5px;
 	background:transparent;
 }
 QComboBox:disabled{

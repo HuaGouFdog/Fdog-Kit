@@ -674,7 +674,7 @@ public:
                         "\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	/*width:120px;*/\n"
-"	padding: 4px;\n"
+"	padding: 3px;\n"
 "	/*margin-right:0px;\n"
 "	margin-left: 0px;*/\n"
 "}\n"
@@ -787,14 +787,14 @@ public:
         comboBox_tool->addItem(QString());
         comboBox_tool->addItem(QString());
         comboBox_tool->setObjectName(QStringLiteral("comboBox_tool"));
-        comboBox_tool->setMinimumSize(QSize(0, 0));
-        comboBox_tool->setMaximumSize(QSize(16777215, 26));
+        comboBox_tool->setMinimumSize(QSize(0, 30));
+        comboBox_tool->setMaximumSize(QSize(16777215, 30));
         comboBox_tool->setFont(font1);
         comboBox_tool->setLayoutDirection(Qt::LeftToRight);
         comboBox_tool->setStyleSheet(QLatin1String("QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:1px solid #52DCFE;\n"
-"	border-radius:3px;\n"
+"	border-radius:5px;\n"
 "	background:transparent;\n"
 "}\n"
 "QComboBox:disabled{\n"

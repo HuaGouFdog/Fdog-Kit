@@ -136,6 +136,7 @@ public:
     QLabel *label_disk_2;
     QLabel *label_mem_2;
     QProgressBar *progressBar_disk_2;
+    QProgressBar *progressBar;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label;
@@ -358,8 +359,8 @@ public:
 
         progressBar_cpu = new QProgressBar(widget_cpu_info);
         progressBar_cpu->setObjectName(QStringLiteral("progressBar_cpu"));
-        progressBar_cpu->setMinimumSize(QSize(130, 14));
-        progressBar_cpu->setMaximumSize(QSize(130, 14));
+        progressBar_cpu->setMinimumSize(QSize(130, 18));
+        progressBar_cpu->setMaximumSize(QSize(130, 18));
         progressBar_cpu->setFont(font1);
         progressBar_cpu->setStyleSheet(QLatin1String("QProgressBar {\n"
 "	border: 1px solid;\n"
@@ -371,7 +372,7 @@ public:
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:center; \n"
+"	text-align:right;\n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
@@ -382,7 +383,8 @@ public:
 "	background-color: rgb(134, 240, 118);\n"
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
-        progressBar_cpu->setValue(35);
+        progressBar_cpu->setValue(0);
+        progressBar_cpu->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         progressBar_cpu->setInvertedAppearance(false);
 
         verticalLayout_10->addWidget(progressBar_cpu);
@@ -406,12 +408,13 @@ public:
 
         progressBar_disk = new QProgressBar(widget_mem_info_2);
         progressBar_disk->setObjectName(QStringLiteral("progressBar_disk"));
-        progressBar_disk->setMinimumSize(QSize(130, 14));
-        progressBar_disk->setMaximumSize(QSize(130, 14));
+        progressBar_disk->setMinimumSize(QSize(130, 18));
+        progressBar_disk->setMaximumSize(QSize(130, 18));
         QFont font3;
         font3.setFamily(QStringLiteral("OPPOSans B"));
         font3.setPointSize(9);
         progressBar_disk->setFont(font3);
+        progressBar_disk->setLayoutDirection(Qt::LeftToRight);
         progressBar_disk->setStyleSheet(QLatin1String("QProgressBar {\n"
 "	border: 1px solid;\n"
 "	\n"
@@ -422,7 +425,7 @@ public:
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:center; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
@@ -434,6 +437,7 @@ public:
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
         progressBar_disk->setValue(0);
+        progressBar_disk->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         progressBar_disk->setInvertedAppearance(false);
 
         verticalLayout_11->addWidget(progressBar_disk);
@@ -457,9 +461,10 @@ public:
 
         progressBar_mem = new QProgressBar(widget_mem_info);
         progressBar_mem->setObjectName(QStringLiteral("progressBar_mem"));
-        progressBar_mem->setMinimumSize(QSize(130, 14));
-        progressBar_mem->setMaximumSize(QSize(130, 14));
+        progressBar_mem->setMinimumSize(QSize(130, 18));
+        progressBar_mem->setMaximumSize(QSize(130, 18));
         progressBar_mem->setFont(font3);
+        progressBar_mem->setLayoutDirection(Qt::LeftToRight);
         progressBar_mem->setStyleSheet(QLatin1String("QProgressBar {\n"
 "	border: 1px solid;\n"
 "	\n"
@@ -470,7 +475,7 @@ public:
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:center; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
@@ -482,6 +487,7 @@ public:
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
         progressBar_mem->setValue(0);
+        progressBar_mem->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         progressBar_mem->setInvertedAppearance(false);
 
         verticalLayout_2->addWidget(progressBar_mem);
@@ -505,9 +511,10 @@ public:
 
         progressBar_swap = new QProgressBar(widget_swap_info);
         progressBar_swap->setObjectName(QStringLiteral("progressBar_swap"));
-        progressBar_swap->setMinimumSize(QSize(130, 14));
-        progressBar_swap->setMaximumSize(QSize(130, 14));
+        progressBar_swap->setMinimumSize(QSize(130, 18));
+        progressBar_swap->setMaximumSize(QSize(130, 18));
         progressBar_swap->setFont(font3);
+        progressBar_swap->setLayoutDirection(Qt::LeftToRight);
         progressBar_swap->setStyleSheet(QLatin1String("QProgressBar {\n"
 "	border: 1px solid;\n"
 "	\n"
@@ -518,7 +525,7 @@ public:
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:center; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
@@ -530,6 +537,7 @@ public:
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
         progressBar_swap->setValue(0);
+        progressBar_swap->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         progressBar_swap->setInvertedAppearance(false);
         progressBar_swap->setTextDirection(QProgressBar::TopToBottom);
 
@@ -585,7 +593,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1246, 373));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1246, 359));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -1171,7 +1179,7 @@ public:
 "	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
 "	background-color: #FFFFFF; \n"
-"	text-align:center; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
@@ -1180,7 +1188,10 @@ public:
 "	\n"
 "	background-color: rgb(0, 255, 0);\n"
 "}"));
-        progressBar_cpu_2->setValue(0);
+        progressBar_cpu_2->setValue(29);
+        progressBar_cpu_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        progressBar_cpu_2->setOrientation(Qt::Horizontal);
+        progressBar_cpu_2->setTextDirection(QProgressBar::TopToBottom);
         label_swap_2 = new QLabel(tab_4);
         label_swap_2->setObjectName(QStringLiteral("label_swap_2"));
         label_swap_2->setGeometry(QRect(160, 150, 30, 20));
@@ -1241,6 +1252,12 @@ public:
 "	background-color: rgb(0, 255, 0);\n"
 "}"));
         progressBar_disk_2->setValue(0);
+        progressBar = new QProgressBar(tab_4);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setGeometry(QRect(420, 70, 118, 23));
+        progressBar->setValue(24);
+        progressBar->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        progressBar->setInvertedAppearance(false);
         tabWidget->addTab(tab_4, QString());
 
         verticalLayout_7->addWidget(tabWidget);
@@ -1313,7 +1330,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(sshwidget);
@@ -1326,18 +1343,18 @@ public:
         label_ip->setText(QApplication::translate("sshwidget", "IP -", nullptr));
         toolButton->setText(QApplication::translate("sshwidget", "\345\244\215\345\210\266", nullptr));
         label_runTime->setText(QApplication::translate("sshwidget", "\350\277\220\350\241\214 -", nullptr));
-        label_loginCount->setText(QApplication::translate("sshwidget", "\347\273\210\347\253\257\350\277\236\346\216\245 -", nullptr));
+        label_loginCount->setText(QApplication::translate("sshwidget", "\347\273\210\347\253\257\347\224\250\346\210\267 -", nullptr));
         label_architecture->setText(QApplication::translate("sshwidget", "\347\263\273\347\273\237\346\236\266\346\236\204 -", nullptr));
         label_cpuInfo->setText(QApplication::translate("sshwidget", "cpu\344\277\241\346\201\257 -", nullptr));
         label_load->setText(QApplication::translate("sshwidget", "\350\264\237\350\275\275 -", nullptr));
         label_cpu->setText(QApplication::translate("sshwidget", "cpu", nullptr));
-        progressBar_cpu->setFormat(QApplication::translate("sshwidget", "%p%", nullptr));
-        label_disk->setText(QApplication::translate("sshwidget", "\347\243\201\347\233\230", nullptr));
-        progressBar_disk->setFormat(QApplication::translate("sshwidget", "%p%", nullptr));
+        progressBar_cpu->setFormat(QApplication::translate("sshwidget", "%p% ", nullptr));
+        label_disk->setText(QApplication::translate("sshwidget", "io", nullptr));
+        progressBar_disk->setFormat(QApplication::translate("sshwidget", "%p% ", nullptr));
         label_mem->setText(QApplication::translate("sshwidget", "\345\206\205\345\255\230", nullptr));
-        progressBar_mem->setFormat(QApplication::translate("sshwidget", "%p%", nullptr));
+        progressBar_mem->setFormat(QApplication::translate("sshwidget", "%p% ", nullptr));
         label_swap->setText(QApplication::translate("sshwidget", "\344\272\244\346\215\242", nullptr));
-        progressBar_swap->setFormat(QApplication::translate("sshwidget", "%p%", nullptr));
+        progressBar_swap->setFormat(QApplication::translate("sshwidget", "%p% ", nullptr));
         textEdit->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

@@ -45,7 +45,8 @@ SOURCES += \
     aboutwidget.cpp \
     downloadwidget.cpp \
     mkdirfolderwidget.cpp \
-    addcommondwidget.cpp
+    addcommondwidget.cpp \
+    historycommondwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -68,7 +69,8 @@ HEADERS += \
     aboutwidget.h \
     downloadwidget.h \
     mkdirfolderwidget.h \
-    addcommondwidget.h
+    addcommondwidget.h \
+    historycommondwidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -86,7 +88,8 @@ FORMS += \
     aboutwidget.ui \
     downloadwidget.ui \
     mkdirfolderwidget.ui \
-    addcommondwidget.ui
+    addcommondwidget.ui \
+    historycommondwidget.ui
 
 RESOURCES += \
     lib.qrc
