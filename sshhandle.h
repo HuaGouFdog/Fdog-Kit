@@ -90,10 +90,11 @@ public:
     //QString commondExec(QString commond);
 signals:
     //void send_getServerInfo(ServerInfoStruct serverInfo);
+    void send_createNewFile_sgin(QString filePath = "", QString fileName = "", int fileType = -1, int64_t fileSize = 0);
     void send_fileProgress_sgin(int64_t sum, int64_t filesize);
 public slots:
     void init(int connrectType, QString host, QString port, QString username, QString password);
-    bool uploadFile(QString local_file_path, QString remote_file_path);
+    bool uploadFile(QString local_file_path, QString remote_file_path, QString fileName);
 private:
     LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
     LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp

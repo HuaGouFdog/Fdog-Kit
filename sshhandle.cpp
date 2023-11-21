@@ -756,7 +756,7 @@ sshHandleSftp::sshHandleSftp(QObject *parent)
     qRegisterMetaType<int64_t>("int64_t");
 }
 
-bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path)
+bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path, QString fileName)
 {
     //调子线程执行
     qDebug() << "开始上传 local_file_path = " << local_file_path << " remote_file_path = " << remote_file_path;
@@ -784,67 +784,71 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
     fseek(local_file, 0, SEEK_SET);
 
     qDebug() << "文件大小为" << filesize;
+    emit send_createNewFile_sgin(local_file_path, fileName, 2, filesize);
+    qDebug() << "创建进度条";
     int sum = 0;
 
     handle_sftp = NULL;
     handle_sftp = libssh2_sftp_open(session_sftp, remote_file_path.toStdString().c_str(),
                                                             LIBSSH2_FXF_WRITE | LIBSSH2_FXF_CREAT | LIBSSH2_FXF_TRUNC,
                                                             LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR);
-        if (handle_sftp == NULL) {
-            qDebug() << "sftp_handle失败";
-            int error_code = libssh2_sftp_last_error(session_sftp);
-            qDebug() << "Failed to open file: " << error_code;
-            // 处理远程文件创建失败的情况
-            fclose(local_file);
-            libssh2_sftp_shutdown(session_sftp);
-//            libssh2_session_disconnect(session, "Failed to create remote file");
-            //libssh2_session_free(session_ssh_sftp);
-//            libssh2_exit();
-            return false;
-        } else {
-            qDebug() << "sftp_handle成功";
+    qDebug() << "创建进度条 2";
+    if (handle_sftp == NULL) {
+        qDebug() << "sftp_handle失败";
+        int error_code = libssh2_sftp_last_error(session_sftp);
+        qDebug() << "Failed to open file: " << error_code;
+        // 处理远程文件创建失败的情况
+        fclose(local_file);
+        libssh2_sftp_shutdown(session_sftp);
+        //            libssh2_session_disconnect(session, "Failed to create remote file");
+        //libssh2_session_free(session_ssh_sftp);
+        //            libssh2_exit();
+        return false;
+    } else {
+        qDebug() << "sftp_handle成功";
+    }
+    qDebug() << "创建进度条 3";
+    // 读取本地文件内容并写入到远程文件
+    char buffer[100000 * 2] = { 0 }; //100000 * 2
+    qDebug() << "准备" << 1;
+
+    /* 上传数据 */
+    QElapsedTimer timer;
+    timer.start(); // 启动计时器
+    while (TRUE){
+        int nread = fread(buffer, 1,sizeof(buffer), local_file);
+        if(nread <= 0) {
+            break;
         }
-
-        // 读取本地文件内容并写入到远程文件
-        char buffer[100000 * 2] = { 0 }; //100000 * 2
-        qDebug() << "准备" << 1;
-
-        /* 上传数据 */
-        QElapsedTimer timer;
-            timer.start(); // 启动计时器
-        while (TRUE){
-            int nread = fread(buffer, 1,sizeof(buffer), local_file);
-            if(nread <= 0) {
+        for(char * ptr = buffer; nread;){
+            //qDebug() << "循环读取1";
+            //发现个问题 这个函数最高只能写入30000字节数据 所以调太大是没用的 后来还发现如果缓冲区设成30000 上传速度也会变慢
+            // 必须高于30000的2倍数 所以 我设置成了2倍
+            int len = libssh2_sftp_write(handle_sftp, ptr, nread);
+            //qDebug() << "nread = " << len;
+            //发送进度条
+            sum = sum + len;
+            emit send_fileProgress_sgin(sum, filesize);
+            if(len < 0) {
                 break;
             }
-            for(char * ptr = buffer; nread;){
-                //qDebug() << "循环读取1";
-                //发现个问题 这个函数最高只能写入30000字节数据 所以调太大是没用的 后来还发现如果缓冲区设成30000 上传速度也会变慢
-                // 必须高于30000的2倍数 所以 我设置成了2倍
-                int len = libssh2_sftp_write(handle_sftp, ptr, nread);
-                //qDebug() << "nread = " << len;
-                //发送进度条
-                sum = sum + len;
-                emit send_fileProgress_sgin(sum, filesize);
-                if(len < 0) {
-                    break;
-                }
-                ptr += len;
-                nread -= len;
-            }
+            ptr += len;
+            nread -= len;
         }
-        qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
-        qDebug() << "Elapsed Time:" << elapsedTime << "ms";
-        qDebug() <<"上传完成";
-        // 关闭文件句柄和本地文件
-        libssh2_sftp_close(handle_sftp);
-        fclose(local_file);
+    }
+    qDebug() << "创建进度条 4";
+    qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
+    qDebug() << "Elapsed Time:" << elapsedTime << "ms";
+    qDebug() <<"上传完成";
+    // 关闭文件句柄和本地文件
+    libssh2_sftp_close(handle_sftp);
+    fclose(local_file);
 
-        // 断开 SSH 连接和释放会话
-        libssh2_sftp_shutdown(session_sftp);
-//        libssh2_session_disconnect(session, "Upload complete");
-        //libssh2_session_free(session_ssh_sftp);
-        //        libssh2_exit();
+    // 断开 SSH 连接和释放会话
+    //libssh2_sftp_shutdown(session_sftp);
+    //        libssh2_session_disconnect(session, "Upload complete");
+    //libssh2_session_free(session_ssh_sftp);
+    //        libssh2_exit();
     return true;
 }
 

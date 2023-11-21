@@ -176,7 +176,7 @@ public:
     //发送命令
     void sendCommandData(QString data);
     //发送上传命令
-    void sendUploadCommandData(QString local_file_path, QString remote_file_path);
+    void sendUploadCommandData(QString local_file_path, QString remote_file_path, QString fileName);
     //设置终端窗口大小
     void setTerminalSize(int height, int width);
 
@@ -236,6 +236,8 @@ private slots:
 
     void rece_mkdirFolder_sgin();
 
+    void rece_createNewFile_sgin(QString filePath = "", QString fileName = "", int fileType = -1, int64_t fileSize = 0);
+
     void on_toolButton_command_clicked();
 
     void on_toolButton_info_clicked();
@@ -268,6 +270,7 @@ private:
     QScrollBar *scrollBar_textEdit_s = NULL;
     CustomTextEdit *textEdit_s;
     findwidget * fwidget = NULL;
+    QVector<fileProgressWidget *> fwidgetList;
     downloadwidget * dlwidget = NULL;
     historycommondwidget * hcwidget = NULL;
 

@@ -126,6 +126,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     sshSftp->moveToThread(threadSftp);
     connect(sshSftp, SIGNAL(send_fileProgress_sgin(int64_t,int64_t)),this,
                             SLOT(rece_fileProgress_sgin(int64_t,int64_t)));
+
+    connect(sshSftp, SIGNAL(send_createNewFile_sgin(QString,QString,int,int64_t)),this,
+                            SLOT(rece_createNewFile_sgin(QString,QString,int,int64_t)));
     threadSftp->start();
     qDebug("执行3");
     QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
@@ -297,10 +300,10 @@ void sshwidget::sendCommandData(QString data)
     libssh2_channel_write(m_sshhandle->channel_ssh, data.toStdString().c_str(), strlen(data.toStdString().c_str()));
 }
 
-void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_file_path)
+void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_file_path, QString fileName)
 {
     //调子线程执行
-    QMetaObject::invokeMethod(sshSftp,"uploadFile", Qt::QueuedConnection, Q_ARG(QString, local_file_path), Q_ARG(QString,remote_file_path));
+    QMetaObject::invokeMethod(sshSftp,"uploadFile", Qt::QueuedConnection, Q_ARG(QString, local_file_path), Q_ARG(QString,remote_file_path), Q_ARG(QString,fileName));
 }
 
 void sshwidget::setTerminalSize(int height, int width)
@@ -1250,31 +1253,33 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
 
 void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize)
 {
+     //dlwidget->updateFileProgress(sum, filesize);
+    dlwidget->fwidget->rece_file_progress_sgin(sum, filesize);
     //更新文件进度
-    qDebug() << "sum =" << sum << " filesize = " << filesize;
-    //计算大小
-    double count_m = (double)filesize / (double)1024 / (double)1024;
-    double count_g = 0.0;
-    QString countStr = "";
-    if (count_m >= 1024) {
-        count_g = count_m / 1024;
-        countStr = QString::number(count_g, 'f', 1) + "G";
-    } else {
-        countStr = QString::number(count_m, 'f', 1) + "M";
-    }
+//    qDebug() << "sum =" << sum << " filesize = " << filesize;
+//    //计算大小
+//    double count_m = (double)filesize / (double)1024 / (double)1024;
+//    double count_g = 0.0;
+//    QString countStr = "";
+//    if (count_m >= 1024) {
+//        count_g = count_m / 1024;
+//        countStr = QString::number(count_g, 'f', 1) + "G";
+//    } else {
+//        countStr = QString::number(count_m, 'f', 1) + "M";
+//    }
 
-    double sum_m = (double)sum / (double)1024 / (double)1024;
-    double sum_g = 0.0;
-    QString sumStr = "";
-    if (sum_m >= 1024) {
-        sum_g = count_m / 1024;
-        sumStr = QString::number(sum_g, 'f', 1) + "G";
-    } else {
-        sumStr = QString::number(sum_m, 'f', 1) + "M";
-    }
-    ui->progressBar->setFormat("%p%   " + sumStr + "/" + countStr);
-    ui->progressBar->setMaximum(filesize);
-    ui->progressBar->setValue(sum);
+//    double sum_m = (double)sum / (double)1024 / (double)1024;
+//    double sum_g = 0.0;
+//    QString sumStr = "";
+//    if (sum_m >= 1024) {
+//        sum_g = count_m / 1024;
+//        sumStr = QString::number(sum_g, 'f', 1) + "G";
+//    } else {
+//        sumStr = QString::number(sum_m, 'f', 1) + "M";
+//    }
+//    ui->progressBar->setFormat("%p%   " + sumStr + "/" + countStr);
+//    ui->progressBar->setMaximum(filesize);
+//    ui->progressBar->setValue(sum);
 }
 
 void sshwidget::on_pushButton_clicked()
@@ -1482,7 +1487,7 @@ void sshwidget::on_toolButton_upload_clicked()
     if (ssh_path.contains("~")) {
         ssh_path.replace("~","/root");
     }
-    sendUploadCommandData(A, ssh_path + "/" + fileName);
+    sendUploadCommandData(A, ssh_path + "/" + fileName, fileName);
 }
 
 void sshwidget::on_toolButton_fullScreen_clicked()
@@ -1553,6 +1558,14 @@ void sshwidget::rece_mkdirFolder_sgin()
     //创建文件夹
     mkdirfolderwidget * mkdirfwidget = new mkdirfolderwidget();
     mkdirfwidget->show();
+}
+
+void sshwidget::rece_createNewFile_sgin(QString filePath, QString fileName, int fileType, int64_t fileSize)
+{
+    qDebug() << "rece_createNewFile_sgin start";
+    dlwidget->createNewFile(filePath, fileName, fileType, fileSize);
+    fwidgetList.append(dlwidget->fwidget);
+    qDebug() << "rece_createNewFile_sgin end";
 }
 
 void sshwidget::on_toolButton_command_clicked()
