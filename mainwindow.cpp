@@ -825,6 +825,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
     //ui->widget_line->show();
+    qDebug() << "on_newConnnect调用结束";
 }
 
 void MainWindow::on_newClose()
@@ -1040,22 +1041,22 @@ void MainWindow::on_toolButton_newCreate_clicked()
     ccwidget->show();
 }
 
-void MainWindow::on_toolButton_newCreate_2_clicked()
-{
-    //if (hcwidget == nullptr) {
-        int8_t connectType = 0;
-        //创建连接窗口
-        hcwidget = new historyconnectwidget(connectType);
-        //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        ui->tabWidget->addTab(hcwidget, "快速连接");
-        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-        ui->stackedWidget->setCurrentIndex(0);
-        hcwidget->show();
-//    } else {
-//        //不创建
-//        hcwidget->setFocus();
-        //    }
-}
+//void MainWindow::on_toolButton_newCreate_2_clicked()
+//{
+//    //if (hcwidget == nullptr) {
+//        int8_t connectType = 0;
+//        //创建连接窗口
+//        hcwidget = new historyconnectwidget(connectType);
+//        //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+//        ui->tabWidget->addTab(hcwidget, "快速连接");
+//        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+//        ui->stackedWidget->setCurrentIndex(0);
+//        hcwidget->show();
+////    } else {
+////        //不创建
+////        hcwidget->setFocus();
+//        //    }
+//}
 
 void MainWindow::rece_toolButton_fullScreen_sign()
 {

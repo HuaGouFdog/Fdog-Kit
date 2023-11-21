@@ -622,7 +622,7 @@ QToolButton:hover {
 	
 	
 	border-color: rgb(91, 91, 91);
-	border-radius: 0px; 
+	border-radius: 2px; 
 	
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
@@ -632,15 +632,16 @@ QToolButton:hover {
 }
 
 QProgressBar:chunk{
-	border-radius:0px;
+	border-radius:2px;
 	
 	
-	background-color: rgb(134, 240, 118);
+	
+	background-color: rgb(87, 255, 92);
 	/*background-color: #FFFFFF;*/
 }</string>
            </property>
            <property name="value">
-            <number>0</number>
+            <number>25</number>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -729,20 +730,21 @@ QProgressBar:chunk{
 	
 	
 	border-color: rgb(91, 91, 91);
-	border-radius: 0px; 
+	border-radius: 2px; 
 	
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:right; 
+	text-align:right;
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:0px;
+	border-radius:2px;
 	
 	
-	background-color: rgb(134, 240, 118);
+	
+	background-color: rgb(87, 255, 92);
 	/*background-color: #FFFFFF;*/
 }</string>
            </property>
@@ -836,20 +838,21 @@ QProgressBar:chunk{
 	
 	
 	border-color: rgb(91, 91, 91);
-	border-radius: 0px; 
+	border-radius: 2px; 
 	
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:right; 
+	text-align:right;
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:0px;
+	border-radius:2px;
 	
 	
-	background-color: rgb(134, 240, 118);
+	
+	background-color: rgb(87, 255, 92);
 	/*background-color: #FFFFFF;*/
 }</string>
            </property>
@@ -943,20 +946,21 @@ QProgressBar:chunk{
 	
 	
 	border-color: rgb(91, 91, 91);
-	border-radius: 0px; 
+	border-radius: 2px; 
 	
 	
 	/*border-image: url(:/lib/jianbian1.png);*/
 	background-color: #FFFFFF;
-	text-align:right; 
+	text-align:right;
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
-	border-radius:0px;
+	border-radius:2px;
 	
 	
-	background-color: rgb(134, 240, 118);
+	
+	background-color: rgb(87, 255, 92);
 	/*background-color: #FFFFFF;*/
 }</string>
            </property>
@@ -2048,8 +2052,8 @@ p, li { white-space: pre-wrap; }
              <widget class="QProgressBar" name="progressBar_swap_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>180</y>
+                <x>30</x>
+                <y>200</y>
                 <width>120</width>
                 <height>14</height>
                </rect>
@@ -2102,8 +2106,8 @@ QProgressBar:chunk{
              <widget class="QProgressBar" name="progressBar_cpu_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>30</y>
+                <x>30</x>
+                <y>50</y>
                 <width>120</width>
                 <height>14</height>
                </rect>
@@ -2163,8 +2167,8 @@ QProgressBar:chunk{
              <widget class="QLabel" name="label_swap_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>150</y>
+                <x>30</x>
+                <y>170</y>
                 <width>30</width>
                 <height>20</height>
                </rect>
@@ -2183,8 +2187,8 @@ QProgressBar:chunk{
              <widget class="QLabel" name="label_cpu_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>0</y>
+                <x>30</x>
+                <y>20</y>
                 <width>30</width>
                 <height>20</height>
                </rect>
@@ -2203,8 +2207,8 @@ QProgressBar:chunk{
              <widget class="QProgressBar" name="progressBar_mem_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>130</y>
+                <x>30</x>
+                <y>150</y>
                 <width>120</width>
                 <height>14</height>
                </rect>
@@ -2254,8 +2258,8 @@ QProgressBar:chunk{
              <widget class="QLabel" name="label_disk_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>50</y>
+                <x>30</x>
+                <y>70</y>
                 <width>30</width>
                 <height>20</height>
                </rect>
@@ -2274,8 +2278,8 @@ QProgressBar:chunk{
              <widget class="QLabel" name="label_mem_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>100</y>
+                <x>30</x>
+                <y>120</y>
                 <width>30</width>
                 <height>20</height>
                </rect>
@@ -2294,8 +2298,8 @@ QProgressBar:chunk{
              <widget class="QProgressBar" name="progressBar_disk_2">
               <property name="geometry">
                <rect>
-                <x>160</x>
-                <y>80</y>
+                <x>30</x>
+                <y>100</y>
                 <width>120</width>
                 <height>14</height>
                </rect>
@@ -2345,14 +2349,24 @@ QProgressBar:chunk{
              <widget class="QProgressBar" name="progressBar">
               <property name="geometry">
                <rect>
-                <x>420</x>
+                <x>190</x>
                 <y>70</y>
-                <width>118</width>
+                <width>581</width>
                 <height>23</height>
                </rect>
               </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>10</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
               <property name="value">
-               <number>24</number>
+               <number>0</number>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

@@ -23,11 +23,6 @@ findwidget::~findwidget()
     delete ui;
 }
 
-void findwidget::on_toolButton_file_clicked()
-{
-    emit send_toolButton_file_sgin();
-}
-
 void findwidget::on_toolButton_close_clicked()
 {
     this->hide();

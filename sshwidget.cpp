@@ -83,11 +83,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 
 
     //初始化
+    int connrectType = 1;
     thread = new QThread();
     m_sshhandle = new sshhandle();
-
     //thread2 = new QThread();
-    m_sshhandle2 = new sshhandle();
+    //m_sshhandle2 = new sshhandle();
     //m_sshhandle2->channel = m_sshhandle->channel;
     // 将对象移动到线程中
     m_sshhandle->moveToThread(thread);
@@ -101,22 +101,35 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
                             SLOT(rece_init()));
     connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
                             SLOT(rece_getServerInfo(ServerInfoStruct)));
-    //thread->start();
-    //thread2->start();
-    int connrectType = 1;
+    thread->start();
+    qDebug("执行0");
     //这里设置初始化方式
     //密码
     //密钥 Path name of the public key file. (e.g. /etc/ssh/hostkey.pub). If libssh2 is built against OpenSSL, this option can be set to NULL.
-    //QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-
+    QMetaObject::invokeMethod(m_sshhandle,"init",Qt::BlockingQueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    qDebug("执行01");
+    //QThread::msleep(100);
+    //exec
     threadExec = new QThread();
     sshExec = new sshHandleExec();
     sshExec->moveToThread(threadExec);
     connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
                             SLOT(rece_getServerInfo(ServerInfoStruct)));
     threadExec->start();
+    qDebug("执行1");
     QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-
+    qDebug("执行2");
+    //QThread::msleep(1000);
+    //sftp
+    sshSftp = new sshHandleSftp();
+    threadSftp = new QThread();
+    sshSftp->moveToThread(threadSftp);
+    connect(sshSftp, SIGNAL(send_fileProgress_sgin(int64_t,int64_t)),this,
+                            SLOT(rece_fileProgress_sgin(int64_t,int64_t)));
+    threadSftp->start();
+    qDebug("执行3");
+    QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    qDebug("执行4");
     textEdit_s = new CustomTextEdit(this);
     textEdit_s->setReadOnly(true);
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
@@ -222,8 +235,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
 
     ui->widget_9->setLayout(Layout);
 
-    connect(textEdit_s,SIGNAL(cursorPositionChanged()),this,
-                               SLOT(on_textEdit_s_cursorPositionChanged()));
+    // connect(textEdit_s,SIGNAL(cursorPositionChanged()),this,
+    //                            SLOT(on_textEdit_s_cursorPositionChanged()));
     connect(textEdit_s,SIGNAL(send_mousePress_sign()),this,
                                SLOT(rece_send_mousePress_sign()));
     connect(textEdit_s,SIGNAL(send_paste_sgin()),this,
@@ -286,80 +299,8 @@ void sshwidget::sendCommandData(QString data)
 
 void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_file_path)
 {
-
-    QTextCodec *code = QTextCodec::codecForName("GB2312");
-    std::string name = code->fromUnicode(local_file_path.toStdString().c_str()).data();
-    // 打开本地文件
-    FILE *local_file = NULL;
-    local_file= fopen(name.c_str(), "rb");
-    if (local_file == NULL) {
-        qDebug() << "打开文件失败";
-        // 处理本地文件打开失败的情况
-        //libssh2_sftp_shutdown(sftp_session);
-        //libssh2_session_disconnect(session, "Failed to open local file");
-        //libssh2_session_free(session);
-        //libssh2_exit();
-        return;
-    } else {
-        qDebug() << "打开文件成功";
-    }
-
-    m_sshhandle->handle_sftp = NULL;
-    m_sshhandle->handle_sftp = libssh2_sftp_open(m_sshhandle->session_sftp, remote_file_path.toStdString().c_str(),
-                                                            LIBSSH2_FXF_WRITE | LIBSSH2_FXF_CREAT | LIBSSH2_FXF_TRUNC,
-                                                            LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR);
-        if (m_sshhandle->handle_sftp == NULL) {
-            qDebug() << "sftp_handle失败";
-            int error_code = libssh2_sftp_last_error(m_sshhandle->session_sftp);
-            qDebug() << "Failed to open file: " << error_code;
-            // 处理远程文件创建失败的情况
-            fclose(local_file);
-            libssh2_sftp_shutdown(m_sshhandle->session_sftp);
-//            libssh2_session_disconnect(session, "Failed to create remote file");
-//            libssh2_session_free(session);
-//            libssh2_exit();
-            return;
-        } else {
-            qDebug() << "sftp_handle成功";
-        }
-
-        // 读取本地文件内容并写入到远程文件
-        char buffer[100000 * 2] = { 0 };
-        qDebug() << "准备" << 1;
-
-        /* 上传数据 */
-        QElapsedTimer timer;
-            timer.start(); // 启动计时器
-        while (TRUE){
-            int nread = fread(buffer,1,sizeof(buffer), local_file);
-            if(nread <= 0) {
-                break;
-            }
-            for(char * ptr = buffer; nread;){
-                //qDebug() << "循环读取1";
-                //发现个问题 这个函数最高只能写入30000字节数据 所以调太大是没用的 后来还发现如果缓冲区设成30000 上传速度也会变慢
-                // 必须高于30000的2倍数 所以 我设置成了2倍
-                int len = libssh2_sftp_write(m_sshhandle->handle_sftp, ptr, nread);
-                //qDebug() << "循环读取2";
-                if(len < 0) {
-                    break;
-                }
-                ptr += len;
-                nread -= len;
-            }
-        }
-        qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
-            qDebug() << "Elapsed Time:" << elapsedTime << "ms";
-        qDebug() <<"开始完成";
-        // 关闭文件句柄和本地文件
-        libssh2_sftp_close(m_sshhandle->handle_sftp);
-        fclose(local_file);
-
-        // 断开 SSH 连接和释放会话
-        libssh2_sftp_shutdown(m_sshhandle->session_sftp);
-//        libssh2_session_disconnect(session, "Upload complete");
-//        libssh2_session_free(session);
-        //        libssh2_exit();
+    //调子线程执行
+    QMetaObject::invokeMethod(sshSftp,"uploadFile", Qt::QueuedConnection, Q_ARG(QString, local_file_path), Q_ARG(QString,remote_file_path));
 }
 
 void sshwidget::setTerminalSize(int height, int width)
@@ -724,7 +665,7 @@ void sshwidget::rece_channel_readS(QStringList data)
     //data.append("");
     int sum = 0;
     int sum2 = 0;
-    //qDebug() << "rece_channel_readS data len1 = " << data.length();
+    qDebug() << "rece_channel_readS data  = " << data;
     //第一条固定为工作路径
     ssh_path = data[0];
     data = data.mid(1);
@@ -1307,6 +1248,35 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
 
 }
 
+void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize)
+{
+    //更新文件进度
+    qDebug() << "sum =" << sum << " filesize = " << filesize;
+    //计算大小
+    double count_m = (double)filesize / (double)1024 / (double)1024;
+    double count_g = 0.0;
+    QString countStr = "";
+    if (count_m >= 1024) {
+        count_g = count_m / 1024;
+        countStr = QString::number(count_g, 'f', 1) + "G";
+    } else {
+        countStr = QString::number(count_m, 'f', 1) + "M";
+    }
+
+    double sum_m = (double)sum / (double)1024 / (double)1024;
+    double sum_g = 0.0;
+    QString sumStr = "";
+    if (sum_m >= 1024) {
+        sum_g = count_m / 1024;
+        sumStr = QString::number(sum_g, 'f', 1) + "G";
+    } else {
+        sumStr = QString::number(sum_m, 'f', 1) + "M";
+    }
+    ui->progressBar->setFormat("%p%   " + sumStr + "/" + countStr);
+    ui->progressBar->setMaximum(filesize);
+    ui->progressBar->setValue(sum);
+}
+
 void sshwidget::on_pushButton_clicked()
 {
 
@@ -1470,17 +1440,17 @@ void sshwidget::rece_resize_sign()
     int height = textEdit_s->geometry().height();
 
     // 输出坐标和大小信息
-    qDebug() << "X: " << x;
-    qDebug() << "Y: " << y;
-    qDebug() << "Width: " << width;
-    qDebug() << "Height: " << height;
+    // qDebug() << "X: " << x;
+    // qDebug() << "Y: " << y;
+    // qDebug() << "Width: " << width;
+    // qDebug() << "Height: " << height;
 
     fwidget->move(width - fwidget->geometry().width() - 50, 10);
     dlwidget->move(width - dlwidget->geometry().width() - 20, 10);
 
     QPoint widgetAPos = ui->toolButton_history->mapToGlobal(QPoint(0, 0)); // 获取控件a在屏幕上的位置
     QPoint widgetBPos = textEdit_s->mapFromGlobal(widgetAPos); // 将控件a的全局坐标映射为控件b的局部坐标
-    qDebug() << "WidgetB's position relative to WidgetA:" << widgetBPos;
+    //qDebug() << "WidgetB's position relative to WidgetA:" << widgetBPos;
     hcwidget->move(widgetBPos.x()- 100, widgetBPos.y() - 250);
 }
 
@@ -1508,6 +1478,10 @@ void sshwidget::on_toolButton_upload_clicked()
     }
 
     //sendUploadCommandData("C:\\Users\\张旭\\Desktop\\fsdownload\\apinfo.json", "/data/linkdood/im/apinfo.json");
+    //调子线程执行
+    if (ssh_path.contains("~")) {
+        ssh_path.replace("~","/root");
+    }
     sendUploadCommandData(A, ssh_path + "/" + fileName);
 }
 

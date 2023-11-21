@@ -107,7 +107,7 @@ datahandle::datahandle(QObject *parent) : QObject(parent)
 
 void datahandle::stringToHtmlFilter(QString &str)
 {
-    qDebug() << "对数据进行替换:" << str;
+    //qDebug() << "对数据进行替换:" << str;
     //这里有个问题，有些空格会被包含在里面，如果背景有颜色，空格也会有颜色
     //注意这几行代码的顺序不能乱，否则会造成多次替换
     str.replace("&","&amp;");
@@ -194,7 +194,7 @@ void datahandle::stringToHtmlFilter5(QString &str)
     while ((pos = regex.indexIn(str, pos)) != -1) {
         QString match = regex.cap(0); // 获取完整的匹配项
         str.replace(regex.cap(0), "");
-        qDebug() << "Matched stringToHtmlFilter5:" << match;
+        //qDebug() << "Matched stringToHtmlFilter5:" << match;
         pos += regex.matchedLength();
     }
 
@@ -233,7 +233,7 @@ void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
         array2.append(backCrl->green());
         array2.append(backCrl->blue());
         QString strC2(array2.toHex());
-        qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
+        //qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
         str = QString("<span style=\" color:#%1; background-color:#%2;\">%3</span>").arg(strC).arg(strC2).arg(str);
     } else if (fontCrl != NULL) {
         QByteArray array;
@@ -305,10 +305,10 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //替换
         data.replace(match, cc);
         pos += regex.matchedLength();
-        qDebug() << "pos = " << pos;
+        //qDebug() << "pos = " << pos;
     }
-    qDebug() << "data.length =" << data.length();
-    qDebug() << "pos = " << pos;
+    //qDebug() << "data.length =" << data.length();
+    //qDebug() << "pos = " << pos;
     //stringToHtmlFilter(data);
     return data;
 }
@@ -317,16 +317,16 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    qDebug() << "processData修改前数据：" << data;
+    //qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
         //替换
-        qDebug() << "获取工作目录标识" << regExp.cap(2);
+        //qDebug() << "获取工作目录标识" << regExp.cap(2);
         int colonIndex = regExp.cap(2).indexOf(':');
         if (colonIndex != -1) {
             QString extractedData = regExp.cap(2).mid(colonIndex + 1);
-            qDebug() << "获取工作目录：" << extractedData;
+            //qDebug() << "获取工作目录：" << extractedData;
             ssh_path = extractedData;
         }
         data = data.replace(regExp.cap(0), "");
@@ -337,11 +337,11 @@ QString datahandle::processData(QString data)
     QRegExp regExp1("(\\x001B)\\]0;(\\S+)\\x0007");
     if (regExp1.indexIn(data)>=0) {
         //替换
-        qDebug() << "获取工作目录标识" << regExp1.cap(2);
+        //qDebug() << "获取工作目录标识" << regExp1.cap(2);
         int colonIndex = regExp1.cap(2).indexOf(':');
         if (colonIndex != -1) {
             QString extractedData = regExp1.cap(2).mid(colonIndex + 1);
-            qDebug() << "获取工作目录：" << extractedData;
+            //qDebug() << "获取工作目录：" << extractedData;
             ssh_path = extractedData;
         }
         data = data.replace(regExp1.cap(0), "");
@@ -403,7 +403,7 @@ QStringList datahandle::processDataS(QString data)
             if (position == 0) {
                 dataS.append(data.mid(0, 1));
             } else {
-                qDebug() << "processDataS 进入 " << data.mid(0, position);
+                //qDebug() << "processDataS 进入 " << data.mid(0, position);
                 sum++;
                 dataS.append(processDataS(data.mid(0, position)));
                 dataS.append(data.mid(position, 1));
@@ -416,7 +416,7 @@ QStringList datahandle::processDataS(QString data)
             if (position == 0) {
                 dataS.append(data.mid(0, 1));
             } else {
-                qDebug() << "processDataS 进入 " << data.mid(0, position);
+                //qDebug() << "processDataS 进入 " << data.mid(0, position);
                 sum++;
                 dataS.append(processDataS(data.mid(0, position)));
                 dataS.append(data.mid(position, 1));
@@ -437,14 +437,14 @@ QStringList datahandle::processDataS(QString data)
             int position = data.indexOf("\u001B[C");
             if (position == 0) {
                 dataS.append(data.mid(0, 3));
-                qDebug() << "添加 里面1" << data << " 长度" << data.length();
-                qDebug() << "添加 里面2" << data.mid(0, 3);
+                //qDebug() << "添加 里面1" << data << " 长度" << data.length();
+                //qDebug() << "添加 里面2" << data.mid(0, 3);
             } else {
                 dataS.append(processDataS(data.mid(0, position)));
                 dataS.append(data.mid(position, 3));
             }
             data = data.mid(position + 3);
-            qDebug() << "添加c";
+            //qDebug() << "添加c";
         } else if (data.contains("\u001B[?1049h")) {
             int position = data.indexOf("\u001B[?1049h");
             if (position == 0) {
@@ -454,7 +454,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 8));
             }
             data = data.mid(position + 8);
-            qDebug() << "添加\u001B[?1049h";
+            //qDebug() << "添加\u001B[?1049h";
         } else if (data.contains("\u001B[?1049l")) {
             int position = data.indexOf("\u001B[?1049l");
             if (position == 0) {
@@ -464,7 +464,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 8));
             }
             data = data.mid(position + 8);
-            qDebug() << "添加\u001B[?1049l";
+            //qDebug() << "添加\u001B[?1049l";
         } else if (data.contains("\u001B[?1h")) {
             int position = data.indexOf("\u001B[?1h");
             if (position == 0) {
@@ -474,7 +474,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 5));
             }
             data = data.mid(position + 5);
-            qDebug() << "添加\u001B[?1h";
+            //qDebug() << "添加\u001B[?1h";
         } else if (data.contains("\u001B=")) {
             int position = data.indexOf("\u001B=");
             if (position == 0) {
@@ -484,7 +484,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 2));
             }
             data = data.mid(position + 2);
-            qDebug() << "添加\u001B=";
+            //qDebug() << "添加\u001B=";
         } else if (data.contains("\u001B[?12l")) {
             int position = data.indexOf("\u001B[?12l");
             if (position == 0) {
@@ -494,7 +494,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 6));
             }
             data = data.mid(position + 6);
-            qDebug() << "添加\u001B[?12l";
+            //qDebug() << "添加\u001B[?12l";
         } else if (data.contains("\u001B[?25h")) {
             int position = data.indexOf("\u001B[?25h");
             if (position == 0) {
@@ -504,7 +504,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 6));
             }
             data = data.mid(position + 6);
-            qDebug() << "添加\u001B[?25h";
+            //qDebug() << "添加\u001B[?25h";
         } else if (data.contains("\u001B[2J")) {
             int position = data.indexOf("\u001B[2J");
             if (position == 0) {

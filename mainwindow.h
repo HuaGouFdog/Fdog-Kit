@@ -103,7 +103,7 @@ private slots:
 
     void on_toolButton_newCreate_clicked();
 
-    void on_toolButton_newCreate_2_clicked();
+    //void on_toolButton_newCreate_2_clicked();
 
     void rece_toolButton_fullScreen_sign();
 

@@ -81,6 +81,30 @@ private:
     QString password;
 };
 
+class sshHandleSftp : public QObject {
+    Q_OBJECT
+public:
+    explicit sshHandleSftp(QObject *parent = nullptr);
+
+    //void getServerInfo();
+    //QString commondExec(QString commond);
+signals:
+    //void send_getServerInfo(ServerInfoStruct serverInfo);
+    void send_fileProgress_sgin(int64_t sum, int64_t filesize);
+public slots:
+    void init(int connrectType, QString host, QString port, QString username, QString password);
+    bool uploadFile(QString local_file_path, QString remote_file_path);
+private:
+    LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
+    LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp
+    LIBSSH2_SFTP_HANDLE *   handle_sftp = nullptr;        //sftp
+    int connrectType;
+    QString host;
+    QString port;
+    QString username;
+    QString password;
+};
+
 class sshhandle : public QObject
 {
     Q_OBJECT

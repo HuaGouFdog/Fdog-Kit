@@ -367,7 +367,7 @@ public:
 "	\n"
 "	\n"
 "	border-color: rgb(91, 91, 91);\n"
-"	border-radius: 0px; \n"
+"	border-radius: 2px; \n"
 "	\n"
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
@@ -377,13 +377,14 @@ public:
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
-"	border-radius:0px;\n"
+"	border-radius:2px;\n"
 "	\n"
 "	\n"
-"	background-color: rgb(134, 240, 118);\n"
+"	\n"
+"	background-color: rgb(87, 255, 92);\n"
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
-        progressBar_cpu->setValue(0);
+        progressBar_cpu->setValue(25);
         progressBar_cpu->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         progressBar_cpu->setInvertedAppearance(false);
 
@@ -420,20 +421,21 @@ public:
 "	\n"
 "	\n"
 "	border-color: rgb(91, 91, 91);\n"
-"	border-radius: 0px; \n"
+"	border-radius: 2px; \n"
 "	\n"
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:right; \n"
+"	text-align:right;\n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
-"	border-radius:0px;\n"
+"	border-radius:2px;\n"
 "	\n"
 "	\n"
-"	background-color: rgb(134, 240, 118);\n"
+"	\n"
+"	background-color: rgb(87, 255, 92);\n"
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
         progressBar_disk->setValue(0);
@@ -470,20 +472,21 @@ public:
 "	\n"
 "	\n"
 "	border-color: rgb(91, 91, 91);\n"
-"	border-radius: 0px; \n"
+"	border-radius: 2px; \n"
 "	\n"
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:right; \n"
+"	text-align:right;\n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
-"	border-radius:0px;\n"
+"	border-radius:2px;\n"
 "	\n"
 "	\n"
-"	background-color: rgb(134, 240, 118);\n"
+"	\n"
+"	background-color: rgb(87, 255, 92);\n"
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
         progressBar_mem->setValue(0);
@@ -520,20 +523,21 @@ public:
 "	\n"
 "	\n"
 "	border-color: rgb(91, 91, 91);\n"
-"	border-radius: 0px; \n"
+"	border-radius: 2px; \n"
 "	\n"
 "	\n"
 "	/*border-image: url(:/lib/jianbian1.png);*/\n"
 "	background-color: #FFFFFF;\n"
-"	text-align:right; \n"
+"	text-align:right;\n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
-"	border-radius:0px;\n"
+"	border-radius:2px;\n"
 "	\n"
 "	\n"
-"	background-color: rgb(134, 240, 118);\n"
+"	\n"
+"	background-color: rgb(87, 255, 92);\n"
 "	/*background-color: #FFFFFF;*/\n"
 "}"));
         progressBar_swap->setValue(0);
@@ -1146,7 +1150,7 @@ public:
         tab_4->setObjectName(QStringLiteral("tab_4"));
         progressBar_swap_2 = new QProgressBar(tab_4);
         progressBar_swap_2->setObjectName(QStringLiteral("progressBar_swap_2"));
-        progressBar_swap_2->setGeometry(QRect(160, 180, 120, 14));
+        progressBar_swap_2->setGeometry(QRect(30, 200, 120, 14));
         progressBar_swap_2->setMinimumSize(QSize(120, 14));
         progressBar_swap_2->setMaximumSize(QSize(120, 14));
         progressBar_swap_2->setFont(font3);
@@ -1169,7 +1173,7 @@ public:
         progressBar_swap_2->setTextDirection(QProgressBar::TopToBottom);
         progressBar_cpu_2 = new QProgressBar(tab_4);
         progressBar_cpu_2->setObjectName(QStringLiteral("progressBar_cpu_2"));
-        progressBar_cpu_2->setGeometry(QRect(160, 30, 120, 14));
+        progressBar_cpu_2->setGeometry(QRect(30, 50, 120, 14));
         progressBar_cpu_2->setMinimumSize(QSize(120, 14));
         progressBar_cpu_2->setMaximumSize(QSize(120, 14));
         progressBar_cpu_2->setFont(font1);
@@ -1194,15 +1198,15 @@ public:
         progressBar_cpu_2->setTextDirection(QProgressBar::TopToBottom);
         label_swap_2 = new QLabel(tab_4);
         label_swap_2->setObjectName(QStringLiteral("label_swap_2"));
-        label_swap_2->setGeometry(QRect(160, 150, 30, 20));
+        label_swap_2->setGeometry(QRect(30, 170, 30, 20));
         label_swap_2->setFont(font1);
         label_cpu_2 = new QLabel(tab_4);
         label_cpu_2->setObjectName(QStringLiteral("label_cpu_2"));
-        label_cpu_2->setGeometry(QRect(160, 0, 30, 20));
+        label_cpu_2->setGeometry(QRect(30, 20, 30, 20));
         label_cpu_2->setFont(font1);
         progressBar_mem_2 = new QProgressBar(tab_4);
         progressBar_mem_2->setObjectName(QStringLiteral("progressBar_mem_2"));
-        progressBar_mem_2->setGeometry(QRect(160, 130, 120, 14));
+        progressBar_mem_2->setGeometry(QRect(30, 150, 120, 14));
         progressBar_mem_2->setMinimumSize(QSize(120, 14));
         progressBar_mem_2->setMaximumSize(QSize(120, 14));
         progressBar_mem_2->setFont(font3);
@@ -1224,15 +1228,15 @@ public:
         progressBar_mem_2->setValue(0);
         label_disk_2 = new QLabel(tab_4);
         label_disk_2->setObjectName(QStringLiteral("label_disk_2"));
-        label_disk_2->setGeometry(QRect(160, 50, 30, 20));
+        label_disk_2->setGeometry(QRect(30, 70, 30, 20));
         label_disk_2->setFont(font1);
         label_mem_2 = new QLabel(tab_4);
         label_mem_2->setObjectName(QStringLiteral("label_mem_2"));
-        label_mem_2->setGeometry(QRect(160, 100, 30, 20));
+        label_mem_2->setGeometry(QRect(30, 120, 30, 20));
         label_mem_2->setFont(font1);
         progressBar_disk_2 = new QProgressBar(tab_4);
         progressBar_disk_2->setObjectName(QStringLiteral("progressBar_disk_2"));
-        progressBar_disk_2->setGeometry(QRect(160, 80, 120, 14));
+        progressBar_disk_2->setGeometry(QRect(30, 100, 120, 14));
         progressBar_disk_2->setMinimumSize(QSize(120, 14));
         progressBar_disk_2->setMaximumSize(QSize(120, 14));
         progressBar_disk_2->setFont(font3);
@@ -1254,8 +1258,10 @@ public:
         progressBar_disk_2->setValue(0);
         progressBar = new QProgressBar(tab_4);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(420, 70, 118, 23));
-        progressBar->setValue(24);
+        progressBar->setGeometry(QRect(190, 70, 581, 23));
+        progressBar->setFont(font);
+        progressBar->setMaximum(100);
+        progressBar->setValue(0);
         progressBar->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         progressBar->setInvertedAppearance(false);
         tabWidget->addTab(tab_4, QString());

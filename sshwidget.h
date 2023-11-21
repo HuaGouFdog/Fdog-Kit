@@ -199,6 +199,8 @@ private slots:
 
     void rece_getServerInfo(ServerInfoStruct serverInfo);
 
+    void rece_fileProgress_sgin(int64_t sum, int64_t filesize);
+
     void on_pushButton_clicked();
 
     void on_textEdit_selectionChanged();
@@ -246,8 +248,10 @@ private:
     int columnNumber;       //记录列数
     QThread * thread;
     QThread * threadExec;
+    QThread * threadSftp;
     sshhandle * m_sshhandle;
     sshHandleExec * sshExec;
+    sshHandleSftp * sshSftp;
     QThread * thread2;
     sshhandle * m_sshhandle2;
     KeyFilter *keyFilter;

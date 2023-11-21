@@ -19,7 +19,6 @@ signals:
     void send_toolButton_file_sgin();
 
 private slots:
-    void on_toolButton_file_clicked();
 
     void on_toolButton_close_clicked();
 

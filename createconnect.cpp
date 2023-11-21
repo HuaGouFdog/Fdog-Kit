@@ -46,7 +46,6 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
 {
     //创建选择的连接信息
     connnectInfoStruct cInfo;
-
     if (ui->tabWidget->currentIndex() == 0) {
         cInfo.connectType = 1;//this->connectType;
         cInfo.name = ui->widget_name_lineEdit_name_data->text();
@@ -81,7 +80,8 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
     }
 
     emit newCreate(cInfo);
-    this->close();
+    this->hide();
+    return;
 }
 
 void createconnect::on_widget_bottom_toolButton_close_clicked()
