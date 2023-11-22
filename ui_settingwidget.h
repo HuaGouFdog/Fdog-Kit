@@ -1786,7 +1786,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 832, 800));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 38, 800));
         scrollAreaWidgetContents_2->setMinimumSize(QSize(0, 800));
         verticalLayout_19 = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
@@ -2594,7 +2594,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -140, 832, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 825, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -3605,7 +3605,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(6);
+        stackedWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(settingwidget);

@@ -122,12 +122,10 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
     //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
     libssh2_channel_shell(channel_ssh);
     emit send_init();
-    qDebug() << "ssh初始化完成";
 
 //	connect(monitor_thread__, SIGNAL(started()), monitor_timer__, SLOT(start()));
 //	connect(monitor_thread__, SIGNAL(finished()), monitor_timer__, SLOT(stop()));
 
-    qDebug() << "ssh初始化完成";
     //getServerInfo();
 }
 
@@ -345,13 +343,13 @@ void sshhandle::getServerInfo()
 
     commond = "top -n 1 -b | head -n 5";
     QStringList dataList2 = commondExec(commond).split("\n");
-    qDebug() << "top =" << dataList2;
+    //qDebug() << "top =" << dataList2;
 
     QRegExp reTime("up ((\\d+) days,)?\\s*(\\d+:\\d+)*\\s*(min)*");
     if (reTime.indexIn(dataList2[0]) != -1) {
-        qDebug() << "运行时间:" << reTime.cap(2); //天
-        qDebug() << "运行时间:" << reTime.cap(3); //时间
-        qDebug() << "运行时间:" << reTime.cap(4); //小时或者分钟 没有就是小时
+        //qDebug() << "运行时间:" << reTime.cap(2); //天
+        //qDebug() << "运行时间:" << reTime.cap(3); //时间
+        //qDebug() << "运行时间:" << reTime.cap(4); //小时或者分钟 没有就是小时
         if (reTime.cap(2) != "") {
             serverInfo.runTime = "运行 " + reTime.cap(2) + "天";
         } else if (reTime.cap(3) != "" && reTime.cap(4) != "") {
@@ -367,7 +365,7 @@ void sshhandle::getServerInfo()
     QRegExp reUsers("(\\d+) user");
     if (reUsers.indexIn(dataList2[0]) != -1) {
         QString users = reUsers.cap(1);
-        qDebug() << "当前用户数:" << users;
+        //qDebug() << "当前用户数:" << users;
         serverInfo.loginCount = "终端用户 " + reUsers.cap(1);
     } else {
         qDebug() << "未找到当前用户数.";
@@ -379,7 +377,7 @@ void sshhandle::getServerInfo()
         QString load1 = reLoad.cap(1);
         QString load2 = reLoad.cap(2);
         QString load3 = reLoad.cap(3);
-        qDebug() << "负载:" << load1 << load2 << load3;
+        //qDebug() << "负载:" << load1 << load2 << load3;
         serverInfo.load = "负载 " + reLoad.cap(1) + ", " + reLoad.cap(2) + ", " + reLoad.cap(3);
     } else {
         qDebug() << "未找到负载.";
@@ -391,7 +389,7 @@ void sshhandle::getServerInfo()
     if (recpu.indexIn(dataList2[2]) != -1) {
         QString cpu1 = recpu.cap(1);
         serverInfo.cpuUseRate = QString::number((int)(100.00 - recpu.cap(1).toDouble()));
-        qDebug() << "cpu:" << serverInfo.cpuUseRate;
+        //qDebug() << "cpu:" << serverInfo.cpuUseRate;
     } else {
         qDebug() << "未找到cpu.";
     }
@@ -399,11 +397,11 @@ void sshhandle::getServerInfo()
     //核数
     commond = "grep 'physical id' /proc/cpuinfo | uniq | wc -l";
     QStringList phy = commondExec(commond).split("\n");
-    qDebug() << "核数 " << phy[0];
+    //qDebug() << "核数 " << phy[0];
     //线程数
     commond = "grep 'processor' /proc/cpuinfo | wc -l";
     QStringList pro = commondExec(commond).split("\n");
-    qDebug() << "线程数 " << pro[0];
+    //qDebug() << "线程数 " << pro[0];
 
     serverInfo.cpuInfo = "cpu信息 " + phy[0] + "核" + pro[0] + "线程";
 
@@ -413,7 +411,7 @@ void sshhandle::getServerInfo()
         QString io1 = reio.cap(1);
 
         serverInfo.diskUseRate = QString::number(((int)reio.cap(1).toDouble()));
-        qDebug() << "io:" << serverInfo.diskUseRate;
+        //qDebug() << "io:" << serverInfo.diskUseRate;
     } else {
         qDebug() << "未找到io.";
     }
@@ -424,9 +422,9 @@ void sshhandle::getServerInfo()
         QString mem2 = reMem.cap(2);
         QString mem3 = reMem.cap(3);
         QString mem4 = reMem.cap(4);
-        qDebug() << "内存:" << mem1 << " " << mem2 << " " << mem3 << " " << mem4;
+        //qDebug() << "内存:" << mem1 << " " << mem2 << " " << mem3 << " " << mem4;
         serverInfo.memUseRate = QString::number((int)(reMem.cap(2).toDouble() / reMem.cap(1).toDouble() * 100));
-        qDebug() << "内存:" << serverInfo.memUseRate;
+        //qDebug() << "内存:" << serverInfo.memUseRate;
 
         double mem_m = reMem.cap(1).toDouble() / 1024;
         double mem_g =0.0;
@@ -445,8 +443,8 @@ void sshhandle::getServerInfo()
         } else {
             serverInfo.memUse = QString::number(mem_mf, 'f', 1) + "M" + serverInfo.memUse;
         }
-        qDebug() << "内存总共" << mem_g << "G";
-        qDebug() << "当前可用" << mem_gf << "G";
+        //qDebug() << "内存总共" << mem_g << "G";
+        //qDebug() << "当前可用" << mem_gf << "G";
     } else {
         qDebug() << "未找到内存.";
     }
@@ -457,9 +455,9 @@ void sshhandle::getServerInfo()
         QString swap2 = reSwap.cap(2);
         QString swap3 = reSwap.cap(3);
         QString swap4 = reSwap.cap(4);
-        qDebug() << "交换:" << swap1 << " " << swap2 << " " << swap3 << " " << swap4;
+        //qDebug() << "交换:" << swap1 << " " << swap2 << " " << swap3 << " " << swap4;
         serverInfo.swapUseRate = QString::number(100 - (int)(reSwap.cap(2).toDouble() / reSwap.cap(1).toDouble() * 100));
-        qDebug() << "交换:" << serverInfo.swapUseRate;
+        //qDebug() << "交换:" << serverInfo.swapUseRate;
 
         double swap_m = reSwap.cap(1).toDouble() / 1024;
         double swap_g =0.0;
@@ -785,14 +783,12 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
 
     qDebug() << "文件大小为" << filesize;
     emit send_createNewFile_sgin(local_file_path, fileName, 2, filesize);
-    qDebug() << "创建进度条";
     int sum = 0;
 
     handle_sftp = NULL;
     handle_sftp = libssh2_sftp_open(session_sftp, remote_file_path.toStdString().c_str(),
                                                             LIBSSH2_FXF_WRITE | LIBSSH2_FXF_CREAT | LIBSSH2_FXF_TRUNC,
                                                             LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR);
-    qDebug() << "创建进度条 2";
     if (handle_sftp == NULL) {
         qDebug() << "sftp_handle失败";
         int error_code = libssh2_sftp_last_error(session_sftp);
@@ -807,10 +803,8 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
     } else {
         qDebug() << "sftp_handle成功";
     }
-    qDebug() << "创建进度条 3";
     // 读取本地文件内容并写入到远程文件
     char buffer[100000 * 2] = { 0 }; //100000 * 2
-    qDebug() << "准备" << 1;
 
     /* 上传数据 */
     QElapsedTimer timer;
@@ -836,7 +830,6 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
             nread -= len;
         }
     }
-    qDebug() << "创建进度条 4";
     qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
     qDebug() << "Elapsed Time:" << elapsedTime << "ms";
     qDebug() <<"上传完成";

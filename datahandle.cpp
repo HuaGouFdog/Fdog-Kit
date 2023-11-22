@@ -317,7 +317,7 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    //qDebug() << "processData修改前数据：" << data;
+    qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
@@ -432,7 +432,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 3));
             }
             data = data.mid(position + 3);
-            qDebug() << "添加k";
+            //qDebug() << "添加k";
         } else if (data.contains("\u001B[C")) {
             int position = data.indexOf("\u001B[C");
             if (position == 0) {
@@ -646,7 +646,7 @@ QStringList datahandle::processDataS(QString data)
             break;
         }
     }
-    qDebug() << "QStringList = " << dataS;
+    //qDebug() << "QStringList = " << dataS;
 
    return dataS;
 }

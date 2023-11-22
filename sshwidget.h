@@ -36,18 +36,19 @@ protected:
         } else if (event->button() == Qt::RightButton) {
             //如果有选中，则复制，无选中则粘贴
             QString copyData = this->textCursor().selectedText();
+            copyData.replace(QChar(0xA0), ' ');
             if (copyData == "") {
                 //粘贴
                 emit send_paste_sgin();
             } else {
                 //复制
-                qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
+                //qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
                 QClipboard *clipboard = QApplication::clipboard();
                 clipboard->setText(copyData);
                 QTextCursor cursor = this->textCursor();
                 cursor.clearSelection();
                 this->setTextCursor(cursor);
-                qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
+                //qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
             }
 
             emit send_mousePress_sign();
@@ -90,11 +91,11 @@ protected:
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 
             if (keyEvent->key() == Qt::Key_Up) {
-                qDebug() << "Up key pressed";
+                //qDebug() << "Up key pressed";
                 emit send_key_sign("\u001B[A");
                 return true;
             } else if (keyEvent->key() == Qt::Key_Down) {
-                qDebug() << "Down key pressed";
+                //qDebug() << "Down key pressed";
                 emit send_key_sign("\u001B[B");
                 return true;
             } else if (keyEvent->key() == Qt::Key_Left) {
@@ -108,7 +109,7 @@ protected:
             }
 
             QString key = keyEvent->text();
-            qDebug() << "Pressed key:" << key;
+            //qDebug() << "Pressed key:" << key;
             emit send_key_sign(key);
             return true;
         } else if (event->type() == QEvent::InputMethod) {
@@ -118,7 +119,7 @@ protected:
             if (strInput.length() == 0) {
                return true;
             }
-            qDebug() << "输入法事件:" << strInput;
+            //qDebug() << "输入法事件:" << strInput;
             emit send_key_sign(strInput);
             return true;
         }
@@ -138,12 +139,12 @@ signals:
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override
     {
-        qDebug() << "Mouse clicked inside QTextEdit!" << event->type();
+        //qDebug() << "Mouse clicked inside QTextEdit!" << event->type();
         if (event->type() == QEvent::MouseButtonPress) {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
-            qDebug("Mouse clicked inside QTextEdit! 1");
+            //qDebug("Mouse clicked inside QTextEdit! 1");
             if (mouseEvent->button() == Qt::LeftButton) {
-                qDebug("Mouse clicked inside QTextEdit!");
+                //qDebug("Mouse clicked inside QTextEdit!");
                 // 获取 QTextEdit 控件
                 QTextEdit *textEdit = qobject_cast<QTextEdit *>(obj);
 
@@ -152,7 +153,7 @@ protected:
 
                 // 判断鼠标点击是否在 QTextEdit 控件的范围内
                 if (textEditRect.contains(mouseEvent->pos())) {
-                    qDebug("Mouse clicked inside QTextEdit!");
+                    //qDebug("Mouse clicked inside QTextEdit!");
                 }
             }
         }
@@ -192,7 +193,6 @@ private slots:
 
     void rece_init();
     //接收命令
-    void rece_channel_read(QString data);
     void rece_channel_readS(QStringList data);
 
     void rece_key_sign(QString key);
@@ -301,6 +301,8 @@ private:
 
 
     bool isEnter = false;   //是否回车状态
+
+    bool isScrollBar = false; //是否显示滚动区
 
 };
 

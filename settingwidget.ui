@@ -491,7 +491,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>6</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -3060,7 +3060,7 @@ border-radius: 5px;}
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>832</width>
+               <width>38</width>
                <height>800</height>
               </rect>
              </property>
@@ -4910,8 +4910,8 @@ QScrollBar::up-arrow:vertical {
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-140</y>
-               <width>832</width>
+               <y>0</y>
+               <width>825</width>
                <height>830</height>
               </rect>
              </property>

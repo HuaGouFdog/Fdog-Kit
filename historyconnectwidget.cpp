@@ -140,7 +140,7 @@ historyconnectwidget::~historyconnectwidget()
 void historyconnectwidget::on_tableWidget_history_itemDoubleClicked(QTableWidgetItem *item)
 {
     int currentRow = ui->tableWidget_history->currentIndex().row();
-    qDebug() << ui->tableWidget_history->item(currentRow,0)->text();
-    qDebug() << ui->tableWidget_history->item(currentRow,1)->text();
-    qDebug() << ui->tableWidget_history->item(currentRow,2)->text();
+    // qDebug() << ui->tableWidget_history->item(currentRow,0)->text();
+    // qDebug() << ui->tableWidget_history->item(currentRow,1)->text();
+    // qDebug() << ui->tableWidget_history->item(currentRow,2)->text();
 }

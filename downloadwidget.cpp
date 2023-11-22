@@ -38,17 +38,15 @@ downloadwidget::downloadwidget(QWidget *parent) :
 //    ui->widget->layout()->addWidget(fwidget4->widget);
     //ui->widget->setLayout(vLayout);
     //默认只显示下载图标
-    //ui->widget_body->hide();
-    //this->setFixedSize(280,25);
+    ui->widget_body->hide();
+    this->setFixedSize(280,25);
 }
 
 void downloadwidget::createNewFile(QString filePath, QString fileName, int fileType, int64_t fileSize)
 {
-    qDebug() << "fwidget createNewFile start";
     fwidget = new fileProgressWidget(filePath, fileName, fileType, fileSize, ui->widget);
     QVBoxLayout * vLayout = qobject_cast<QVBoxLayout*>(ui->widget->layout());
     vLayout->insertWidget(0, fwidget->widget);
-    qDebug() << "fwidget createNewFile end";
 }
 
 void downloadwidget::updateFileProgress(int64_t sumSize, int64_t fileSize, bool status)
@@ -78,7 +76,6 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     //初始化进度条
     widget = new QWidget(parent);
     widgetFileFata = new QWidget();
-    qDebug() << "fileProgressWidget 0";
     widgetDatProgreessBarData = new QWidget();
     progressBar = new QProgressBar();
     labelName = new QLabel();
@@ -86,7 +83,6 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     labelName->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(45, 45, 45);font: 9pt \"OPPOSans B\";");
     labelIcon = new QLabel();
     labelData = new QLabel();
-    qDebug() << "fileProgressWidget 1";
     labelData->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(45, 45, 45);font: 9pt \"OPPOSans B\";");
     progressBar->setMaximumHeight(18);
     progressBar->setMaximumWidth(260);
@@ -94,7 +90,6 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     horizontalSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding);
     progressBar->setMaximum(fileSize);
     progressBar->setValue(0);
-    qDebug() << "fileProgressWidget 2";
     progressBar->setStyleSheet("QProgressBar {\
                                border: 1px solid;\
                                border-color: rgb(91, 91, 91);\
@@ -119,34 +114,30 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
         labelIcon->setStyleSheet("image: url(:/lib/peixu2.png);");
     }
     labelIcon->setFixedSize(12,12);
-    //labelData->setText("534M");
-    qDebug() << "fileProgressWidget 3";
     hLayout = new QHBoxLayout(); //水平
     hLayout->addWidget(labelIcon);
     hLayout->addItem(horizontalSpacer);
     //hLayout->addWidget(labelData);
-    hLayout->setContentsMargins(3, 1, 3, 1);
+    hLayout->setContentsMargins(0, 0, 0, 0);
     hLayout->setSpacing(0);
     widgetFileFata->setLayout(hLayout);
     widgetFileFata->setMaximumHeight(20);
     widgetFileFata->setMaximumWidth(260);
     sLayout = new QStackedLayout;
     sLayout->setStackingMode(QStackedLayout::StackAll);
-    sLayout->setContentsMargins(3, 1, 3, 1);
+    sLayout->setContentsMargins(0, 0, 0, 0);
     sLayout->setSpacing(0);
     sLayout->addWidget(progressBar);
     sLayout->addWidget(widgetFileFata);
     widgetDatProgreessBarData->setLayout(sLayout);
-    qDebug() << "fileProgressWidget 4";
     vLayout = new QVBoxLayout(); //垂直
     vLayout->addWidget(labelName);
     vLayout->addWidget(widgetDatProgreessBarData);
-    vLayout->setContentsMargins(3, 1, 3, 1);
+    vLayout->setContentsMargins(3, 0, 3, 0);
     vLayout->setSpacing(0);
     widget->setLayout(vLayout);
-    widget->setFixedSize(280,40);
+    widget->setFixedSize(268,40);
     widget->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
-    qDebug() << "fileProgressWidget 5";
 }
 
 void fileProgressWidget::rece_file_progress_sgin(int64_t sumSize, int64_t fileSize, bool status)

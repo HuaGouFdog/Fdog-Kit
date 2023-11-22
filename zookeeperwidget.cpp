@@ -71,7 +71,7 @@ void zookeeperwidget::rece_init(bool connected, int code, QString message, QStri
     topItem = new QTreeWidgetItem(ui->treeWidget);
     ui->treeWidget->addTopLevelItem(topItem);
     topItem->setText(0, path);
-    qDebug() << "rece_init";
+    //qDebug() << "rece_init";
     //判断是否有子节点
     if (stat.numChildren > 0) {
         //获取子节点
@@ -120,7 +120,7 @@ void zookeeperwidget::getNodeInfo(QString &path)
 
 void zookeeperwidget::rece_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path)
 {
-    qDebug() << "rece_getNodeInfo_2 数据 = " << data;
+    //qDebug() << "rece_getNodeInfo_2 数据 = " << data;
     showNodeInfo(data, varValue, path);
 }
 
@@ -225,7 +225,7 @@ void zookeeperwidget::deleteNode(QString &path)
 {
     QTreeWidgetItem * item = ui->treeWidget->currentItem();
     QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    qDebug() << "delete";
+    //qDebug() << "delete";
 }
 
 void zookeeperwidget::copyPath()
@@ -356,9 +356,9 @@ void zookeeperwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int
 
 void zookeeperwidget::on_textEdit_data_textChanged()
 {
-    qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
+    //qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
     if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == ui->treeWidget->currentItem()->text(0)) {
-        qDebug() << "显示修改按钮";
+        //qDebug() << "显示修改按钮";
         ui->toolButton_saveData->show();
         ui->toolButton_saveData->setEnabled(true);
     } else {
@@ -416,9 +416,9 @@ void zookeeperwidget::on_toolButton_saveData_clicked()
     int data_len = strlen(data.c_str());
     int ret = zoo_set(zh, path.c_str(), data.c_str(), data_len, -1);
     if (ret != ZOK) {
-        qDebug() <<"Failed to set node data. Error";
+        //qDebug() <<"Failed to set node data. Error";
     } else {
-        qDebug() <<"Node data set successfully.";
+        //qDebug() <<"Node data set successfully.";
         ui->toolButton_saveData->hide();
     }
 }
@@ -492,7 +492,7 @@ void zookeeperwidget::on_getAllChildren(QString path, const QVariant varValue, Q
 {
     String_vector children = varValue.value<String_vector>();
     for (int i = 0; i < children.count; ++i) {
-           qDebug() << "children.data[i] = " << children.data[i];
+           //qDebug() << "children.data[i] = " << children.data[i];
 //        QTreeWidgetItem *item2 = new QTreeWidgetItem(item);
 //        QString children_path;
 //        if (path != "/") {
