@@ -92,7 +92,8 @@ FORMS += \
     historycommondwidget.ui
 
 RESOURCES += \
-    lib.qrc
+    lib.qrc \
+    conf.qrc
 
 QT += network
 

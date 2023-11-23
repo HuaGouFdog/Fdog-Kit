@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1092</width>
-    <height>760</height>
+    <height>668</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -263,7 +263,7 @@ QToolButton:checked {
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_colorMatch">
+          <widget class="QToolButton" name="toolButton_colorSchemes">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>3</horstretch>
@@ -667,7 +667,7 @@ background-color: rgba(255, 255, 255, 0);</string>
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_9"/>
+              <layout class="QVBoxLayout" name="verticalLayout_selfStart"/>
              </item>
             </layout>
            </widget>
@@ -782,7 +782,7 @@ background-color: rgba(255, 255, 255, 0);</string>
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_29"/>
+              <layout class="QVBoxLayout" name="verticalLayout_trayDisplay"/>
              </item>
             </layout>
            </widget>
@@ -922,7 +922,7 @@ border-radius: 5px;}</string>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -946,9 +946,9 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
                </property>
@@ -1113,7 +1113,7 @@ border-radius: 5px;}</string>
                <property name="styleSheet">
                 <string notr="true">QSpinBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -1127,7 +1127,7 @@ QSpinBox::down-arrow:enabled{
 }
 QSpinBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#000000;
 	selection-background-color:#52DCFE;
@@ -1165,7 +1165,7 @@ QSpinBox QAbstractItemView{
                <property name="styleSheet">
                 <string notr="true">QSpinBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -1179,7 +1179,7 @@ QSpinBox::down-arrow:enabled{
 }
 QSpinBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#000000;
 	selection-background-color:#52DCFE;
@@ -1308,7 +1308,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_8"/>
+              <layout class="QVBoxLayout" name="verticalLayout_startCenter"/>
              </item>
             </layout>
            </widget>
@@ -1527,7 +1527,7 @@ border-radius: 5px;}</string>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -1551,9 +1551,9 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
                </property>
@@ -1713,7 +1713,7 @@ border-radius: 5px;}</string>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -1737,9 +1737,9 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
                </property>
@@ -1881,7 +1881,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_14"/>
+              <layout class="QVBoxLayout" name="verticalLayout_topDisplay"/>
              </item>
             </layout>
            </widget>
@@ -2021,7 +2021,7 @@ border-radius: 5px;}</string>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -2045,9 +2045,9 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
                </property>
@@ -2207,7 +2207,7 @@ border-radius: 5px;}</string>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -2231,9 +2231,9 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
                </property>
@@ -2282,7 +2282,7 @@ QComboBox QAbstractItemView{
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_25">
+         <layout class="QVBoxLayout" name="verticalLayout_9">
           <property name="spacing">
            <number>10</number>
           </property>
@@ -2343,143 +2343,214 @@ QComboBox QAbstractItemView{
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="verticalWidget_11" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
+           <widget class="QScrollArea" name="scrollArea_4">
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_11{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+             <string notr="true">QScrollArea{
+	border: none;
+}
+
+QScrollBar:vertical {
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_21">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_20" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_21">
-                <property name="spacing">
-                 <number>0</number>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>-20</y>
+               <width>832</width>
+               <height>750</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>750</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QWidget" name="verticalWidget_11" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="topMargin">
-                 <number>0</number>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_11{background-color: rgba(223, 223, 223,50);
+border-radius: 5px;}</string>
                 </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_54">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>字体大小</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_51">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
-                  </property>
-                  <property name="text">
-                   <string>设置终端字体大小</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_55">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="spinBox_3">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <bold>false</bold>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QSpinBox{
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_20" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_21">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_54">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>字体大小</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_51">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>设置终端字体大小</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_55">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinBox_3">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QSpinBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -2488,227 +2559,304 @@ QSpinBox:disabled{
 	color:gray;
 }
 
-QSpinBox::drop-down{
-	background:transparent;
-}
-
-
 QSpinBox::down-arrow:enabled{
 	color:#52DCFE;
 }
 QSpinBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#000000;
 	selection-background-color:#52DCFE;
 }</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_10" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>120</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>120</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_10{background-color: rgba(223, 223, 223,50);
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_10" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>150</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>150</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_10{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_22">
-             <item>
-              <widget class="QTextEdit" name="textEdit">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="html">
-                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_22">
+                 <property name="spacing">
+                  <number>6</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QTextEdit" name="textEdit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>80</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>80</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Cascadia Mono,OPPOSans B</family>
+                     <pointsize>12</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QTextEdit{
+	background-color: rgba(0, 41, 69, 0);
+	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
+	border: none;
+	padding-top:0px;
+    padding-bottom:0px;
+	padding-left:0px;
+    padding-right:0px;
+color: rgba(255, 255, 255, 255);
+border-radius: 5px;
+}
+
+QTextEdit::cursor {
+     background-color: red;
+}
+
+QScrollBar:vertical{
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+
+QScrollBar::handle:vertical{
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+                   </property>
+                   <property name="html">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:16pt;&quot;&gt;0123456789 ABCDEFGH&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:16pt;&quot;&gt;终端中文预览&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_75">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgba(223, 223, 223, 150);</string>
-               </property>
-               <property name="text">
-                <string>建议使用中英文等宽字体</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_32" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>400</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>400</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_32{background-color: rgba(223, 223, 223,50);
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:18pt;&quot;&gt;0123456789 ABCDEFGH&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:18pt;&quot;&gt;终端中文预览&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_75">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                   </property>
+                   <property name="text">
+                    <string>建议使用中英文等宽字体</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_32" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>500</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>500</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_32{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_41">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_30" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_39">
-                <item>
-                 <widget class="QWidget" name="horizontalWidget_21" native="true">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_23">
-                   <property name="spacing">
-                    <number>0</number>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_41">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_30" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
                    </property>
-                   <property name="leftMargin">
-                    <number>0</number>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
                    </property>
-                   <property name="topMargin">
-                    <number>0</number>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
-                   <property name="rightMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>0</number>
-                   </property>
-                   <item>
-                    <widget class="QLabel" name="label_52">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>OPPOSans B</family>
-                       <pointsize>10</pointsize>
-                       <stylestrategy>PreferAntialias</stylestrategy>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(255, 255, 255);</string>
-                     </property>
-                     <property name="text">
-                      <string>英文字体</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListWidget" name="listWidget_en">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QScrollBar:vertical {
+                   <layout class="QVBoxLayout" name="verticalLayout_39">
+                    <item>
+                     <widget class="QWidget" name="horizontalWidget_21" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_23">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_52">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>OPPOSans B</family>
+                           <pointsize>10</pointsize>
+                           <stylestrategy>PreferAntialias</stylestrategy>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>英文字体</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="listWidget_en">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QScrollBar:vertical {
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
@@ -2752,103 +2900,103 @@ QScrollBar::down-arrow:vertical {
 QScrollBar::up-arrow:vertical {
     border:none;
 }</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QWidget" name="horizontalWidget_31" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>1111111</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_40">
-                <item>
-                 <widget class="QWidget" name="horizontalWidget_32" native="true">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_38">
-                   <property name="spacing">
-                    <number>0</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_31" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
                    </property>
-                   <property name="leftMargin">
-                    <number>0</number>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>1111111</height>
+                    </size>
                    </property>
-                   <property name="topMargin">
-                    <number>0</number>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
-                   <property name="rightMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>0</number>
-                   </property>
-                   <item>
-                    <widget class="QLabel" name="label_62">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>OPPOSans B</family>
-                       <pointsize>10</pointsize>
-                       <stylestrategy>PreferAntialias</stylestrategy>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(255, 255, 255);</string>
-                     </property>
-                     <property name="text">
-                      <string>中文字体</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListWidget" name="listWidget_cn">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QScrollBar:vertical {
+                   <layout class="QVBoxLayout" name="verticalLayout_40">
+                    <item>
+                     <widget class="QWidget" name="horizontalWidget_32" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_38">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_62">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>OPPOSans B</family>
+                           <pointsize>10</pointsize>
+                           <stylestrategy>PreferAntialias</stylestrategy>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>中文字体</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="listWidget_cn">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QScrollBar:vertical {
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
@@ -2892,31 +3040,35 @@ QScrollBar::down-arrow:vertical {
 QScrollBar::up-arrow:vertical {
     border:none;
 }</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>171</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>178</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_colorMatch">
+        <widget class="QWidget" name="page_colorSchemes">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
@@ -2989,7 +3141,9 @@ QScrollBar::up-arrow:vertical {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">QScrollArea {border:0px solid #838486;  }
+             <string notr="true">QScrollArea{
+	border: none;
+}
 
 QScrollBar:vertical {
     width: 10px;
@@ -3060,7 +3214,7 @@ border-radius: 5px;}
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>38</width>
+               <width>832</width>
                <height>800</height>
               </rect>
              </property>
@@ -3071,6 +3225,18 @@ border-radius: 5px;}
               </size>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_19">
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
               <item>
                <widget class="QWidget" name="verticalWidget_15" native="true">
                 <property name="minimumSize">
@@ -3701,7 +3867,7 @@ border-radius: 5px;}
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_35">
+         <layout class="QVBoxLayout" name="verticalLayout_50">
           <property name="spacing">
            <number>10</number>
           </property>
@@ -3762,141 +3928,698 @@ border-radius: 5px;}
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="verticalWidget_14" native="true">
+           <widget class="QScrollArea" name="scrollArea_3">
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
+              <height>0</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#verticalWidget_14{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+             <string notr="true">QScrollArea{
+	border: none;
+}
+
+QScrollBar:vertical {
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_24">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_23" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_26">
-                <property name="spacing">
-                 <number>0</number>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_3">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>832</width>
+               <height>1081</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>1081</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_27">
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="verticalWidget_33" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="topMargin">
-                 <number>0</number>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_33{background-color: rgba(223, 223, 223,50);
+border-radius: 5px;}</string>
                 </property>
-                <property name="rightMargin">
-                 <number>0</number>
+                <layout class="QHBoxLayout" name="horizontalLayout_44">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_24" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_35">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_65">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>工具栏-信息</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_66">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>关闭后，终端将不显示服务器信息以及工具栏的信息</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_62">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_infoDisplay"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_35" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="bottomMargin">
-                 <number>0</number>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <item>
-                 <widget class="QLabel" name="label_59">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>鼠标右键单击</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_60">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
-                  </property>
-                  <property name="text">
-                   <string>设置鼠标右键单击行为</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_61">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBox_6">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QComboBox{
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_35{background-color: rgba(223, 223, 223,50);
+border-radius: 5px;}</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_46">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_34" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_42">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_86">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>工具栏-历史</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_87">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>关闭后，终端将不显示工具栏的历史</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_69">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_historyDisplay"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_34" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_34{background-color: rgba(223, 223, 223,50);
+border-radius: 5px;}</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_45">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_33" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_41">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_84">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>工具栏-命令</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_85">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>关闭后，终端将不显示工具栏的命令</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_64">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_commandDisplay"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_36" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_36{background-color: rgba(223, 223, 223,50);
+border-radius: 5px;}</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_47">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_35" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_43">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_88">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>工具栏-属性</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_89">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>关闭后，终端将不显示工具栏的属性</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_70">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_conectStatsDisplay"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_14" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_14{background-color: rgba(223, 223, 223,50);
+border-radius: 5px;}</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_24">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_23" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_26">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_59">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>鼠标右键单击</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_60">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>设置鼠标右键单击行为</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_61">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBox_6">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -3920,169 +4643,169 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <item>
-                <property name="text">
-                 <string>复制/粘贴</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>复制/粘贴</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>弹出菜单</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_26" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>弹出菜单</string>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_26" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_26{background-color: rgba(223, 223, 223,50);
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_26{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_35">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_25" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_30">
-                <property name="spacing">
-                 <number>0</number>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_63">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>鼠标滚轮单击</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_64">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
-                  </property>
-                  <property name="text">
-                   <string>设置鼠标滚轮单击行为</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_63">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBox_8">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QComboBox{
+                <layout class="QHBoxLayout" name="horizontalLayout_35">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_25" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_30">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_63">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>鼠标滚轮单击</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_64">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>设置鼠标滚轮单击行为</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_63">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBox_8">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -4106,169 +4829,169 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <item>
-                <property name="text">
-                 <string>复制/粘贴</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>复制/粘贴</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>弹出菜单</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_27" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>弹出菜单</string>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_27" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_27{background-color: rgba(223, 223, 223,50);
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_27{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_36">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_26" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_31">
-                <property name="spacing">
-                 <number>0</number>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_67">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>终端背景</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_68">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
-                  </property>
-                  <property name="text">
-                   <string>默认跟着主题，使用选中使用图片或纯色作为终端背景</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_65">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBox_9">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>25</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QComboBox{
+                <layout class="QHBoxLayout" name="horizontalLayout_36">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_26" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_31">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_67">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>终端背景</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_68">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>默认跟着主题，使用选中使用图片或纯色作为终端背景</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_65">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBox_9">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	border-radius:3px;
 	background:transparent;
 }
@@ -4292,134 +5015,134 @@ QComboBox::down-arrow:enabled{
 }
 QComboBox QAbstractItemView{
 	outline:0px solid gray;
-	border:1px solid #52DCFE;
+	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#000000;
+	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
 }</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <item>
-                <property name="text">
-                 <string>默认</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>默认</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>纯色</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>图片</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_28" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>纯色</string>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>图片</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_28" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_28{background-color: rgba(223, 223, 223,50);
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_28{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_37">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_27" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_32">
-                <property name="spacing">
-                 <number>0</number>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_69">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>当前背景</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_25"/>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_66">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_33">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QToolButton {
+                <layout class="QHBoxLayout" name="horizontalLayout_37">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_27" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_32">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_69">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>当前背景</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_25"/>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_66">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButton_33">
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QToolButton {
     qproperty-iconSize: 22px 22px;
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
@@ -4445,352 +5168,434 @@ QToolButton:checked {
 	background-color: rgba(255, 255, 255, 50);
 	border: none;
 }</string>
-               </property>
-               <property name="text">
-                <string>添加图片</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_29" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_29{background-color: rgba(223, 223, 223,50);
+                   </property>
+                   <property name="text">
+                    <string>添加图片</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_29" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_29{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_38">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_28" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_33">
-                <property name="spacing">
-                 <number>0</number>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
+                <layout class="QHBoxLayout" name="horizontalLayout_38">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_28" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_33">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_73">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>背景透明度</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_71">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
+                      </property>
+                      <property name="text">
+                       <string>使用图片或纯色作为终端背景时，可以调节透明度</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_67">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_24">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">
+QSlider::groove:horizontal {
+border: 0px solid #bbb;
+}
+QSlider::sub-page:horizontal {
+background: #1e2d36;
+border-radius: 3px;
+margin-top:7px;
+margin-bottom:7px;
+}
+QSlider::add-page:horizontal {
+background: rgb(255,255, 255);
+border: 0px solid #777;
+border-radius: 3px;
+margin-top:7px;
+margin-bottom:7px;
+}
+QSlider::handle:horizontal {
+background: #19252d;
+border: 0px solid rgba(102,102,102,102);
+border-radius: 3px;
+width: 10px;
+height:10px;
+margin-top:3px;
+margin-bottom:3px;
+}
+QSlider::handle:horizontal:hover {
+background: #19252d;
+border: 0px solid rgba(102,102,102,102);
+border-radius: 3px;
+}
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}
+</string>
+                   </property>
+                   <property name="value">
+                    <number>49</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_30" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="topMargin">
-                 <number>0</number>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>70</height>
+                 </size>
                 </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_73">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>背景透明度</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_71">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
-                  </property>
-                  <property name="text">
-                   <string>使用图片或纯色作为终端背景时，可以调节透明度</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_67">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QSlider" name="horizontalSlider">
-               <property name="minimumSize">
-                <size>
-                 <width>200</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>200</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_30" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_30{background-color: rgba(223, 223, 223,50);
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_30{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_39">
-             <item>
-              <widget class="QWidget" name="horizontalWidget_29" native="true">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_34">
-                <property name="spacing">
-                 <number>0</number>
                 </property>
-                <property name="leftMargin">
-                 <number>0</number>
+                <layout class="QHBoxLayout" name="horizontalLayout_39">
+                 <item>
+                  <widget class="QWidget" name="horizontalWidget_29" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_34">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_74">
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(255, 255, 255);</string>
+                   </property>
+                   <property name="text">
+                    <string>当前颜色</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_61">
+                   <property name="minimumSize">
+                    <size>
+                     <width>50</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>50</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(255, 51, 51);</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_68">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>352</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_26"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="verticalWidget_31" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>300</height>
+                 </size>
                 </property>
-                <property name="topMargin">
-                 <number>0</number>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
                 </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_74">
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                 <stylestrategy>PreferAntialias</stylestrategy>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
-               </property>
-               <property name="text">
-                <string>当前颜色</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_61">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 51, 51);</string>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_68">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>352</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_26"/>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="verticalWidget_31" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>200</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#verticalWidget_31{background-color: rgba(223, 223, 223,50);
+                <property name="styleSheet">
+                 <string notr="true">#verticalWidget_31{background-color: rgba(223, 223, 223,50);
 border-radius: 5px;}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_40" stretch="1,1">
-             <item>
-              <widget class="QWidget" name="widget_4" native="true">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 212, 158);</string>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_36">
-                <item>
-                 <widget class="QLabel" name="label_70">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>图片列表</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListView" name="listView"/>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QWidget" name="widget_3" native="true">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(142, 255, 170);</string>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_37">
-                <item>
-                 <widget class="QLabel" name="label_72">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>预览</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QWidget" name="widget_5" native="true">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(110, 154, 255);</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_40" stretch="1,1">
+                 <item>
+                  <widget class="QWidget" name="widget_4" native="true">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(255, 212, 158);</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_36">
+                    <item>
+                     <widget class="QLabel" name="label_70">
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>图片列表</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QListView" name="listView"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_3" native="true">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(142, 255, 170);</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_37">
+                    <item>
+                     <widget class="QLabel" name="label_72">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>预览</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="widget_5" native="true">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(110, 154, 255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>200</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>200</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
         <widget class="QWidget" name="page_shortcutKey">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <property name="spacing">
            <number>10</number>
@@ -4911,7 +5716,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>825</width>
+               <width>832</width>
                <height>830</height>
               </rect>
              </property>

@@ -7,8 +7,7 @@
 class AnimatedCheckBox : public QCheckBox
 {
 public:
-    AnimatedCheckBox(QWidget *parent = nullptr);
-
+    AnimatedCheckBox(bool isChecked = false, QWidget *parent = nullptr);
 protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;

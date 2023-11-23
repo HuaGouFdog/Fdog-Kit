@@ -3,6 +3,7 @@
 #include <QTest>
 #include <QMetaType>
 #include <QJsonParseError>
+
 zookeeperhandle::zookeeperhandle(QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<QVector<int>>("QVector<int>&");

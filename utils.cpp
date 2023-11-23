@@ -1,11 +1,13 @@
-﻿#include "utils.h"
+﻿#pragma execution_character_set("utf-8")
+#include "utils.h"
 #include <QStyle>
 #include <QLabel>
 #include <QMouseEvent>
 #include <QApplication>
 #include <QPropertyAnimation>
 #include <QGraphicsDropShadowEffect>
-AnimatedCheckBox::AnimatedCheckBox(QWidget *parent) : QCheckBox (parent)
+#include <QDebug>
+AnimatedCheckBox::AnimatedCheckBox(bool isChecked, QWidget *parent) : QCheckBox (parent)
 {
     indicator = new QLabel(this);
 
@@ -17,7 +19,7 @@ AnimatedCheckBox::AnimatedCheckBox(QWidget *parent) : QCheckBox (parent)
 
     this->setStyleSheet(".AnimatedCheckBox[checked=true ]\
     {\
-        background: #2d8cf0;\
+        background: #1e2d36;\
     }\
     .AnimatedCheckBox[checked=false]\
     {\
@@ -64,7 +66,7 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 
     this->setStyleSheet(QString(".AnimatedCheckBox[checked=true ]\
     {\
-        background: #2d8cf0;\
+        background: #1e2d36;\
         border-radius: %1px;\
     }\
     .AnimatedCheckBox[checked=false ]\
@@ -86,6 +88,7 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 /* 点击 AnimatedCheckBox 上的任何地方都切换选中状态，QCheckBox 默认只有点击它的 indicator 或者文字时才进行切换 */
 void AnimatedCheckBox::mousePressEvent(QMouseEvent *event)
 {
+    qDebug() << "点击";
     event->accept();
     setChecked(!isChecked());
 }

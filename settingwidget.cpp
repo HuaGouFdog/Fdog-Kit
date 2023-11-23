@@ -110,25 +110,49 @@ settingwidget::settingwidget(QWidget *parent) :
     ui(new Ui::settingwidget)
 {
     ui->setupUi(this);
-    AnimatedCheckBox * cb = new AnimatedCheckBox(this);
+    selfStart = new AnimatedCheckBox(this);
+    ui->verticalLayout_selfStart->addWidget(selfStart);
 
-    ui->verticalLayout_8->addWidget(cb);
-    cb->show();
+    trayDisplay = new AnimatedCheckBox(this);
+    ui->verticalLayout_trayDisplay->addWidget(trayDisplay);
 
-    AnimatedCheckBox * cb2 = new AnimatedCheckBox(this);
+    startCenter = new AnimatedCheckBox(this);
+    ui->verticalLayout_startCenter->addWidget(startCenter);
 
-    ui->verticalLayout_9->addWidget(cb2);
-    cb2->show();
+    topDisplay = new AnimatedCheckBox(this);
+    ui->verticalLayout_topDisplay->addWidget(topDisplay);
 
-    AnimatedCheckBox * cb3 = new AnimatedCheckBox(this);
+    infoDisplay = new AnimatedCheckBox(this);
+    ui->verticalLayout_infoDisplay->addWidget(infoDisplay);
 
-    ui->verticalLayout_14->addWidget(cb3);
-    cb3->show();
+    historyDisplay = new AnimatedCheckBox(this);
+    ui->verticalLayout_historyDisplay->addWidget(historyDisplay);
 
-    AnimatedCheckBox * cb4 = new AnimatedCheckBox(this);
+    commandDisplay = new AnimatedCheckBox(this);
+    ui->verticalLayout_commandDisplay->addWidget(commandDisplay);
 
-    ui->verticalLayout_29->addWidget(cb4);
-    cb4->show();
+    conectStatsDisplay = new AnimatedCheckBox(this);
+    ui->verticalLayout_conectStatsDisplay->addWidget(conectStatsDisplay);
+
+//    AnimatedCheckBox * cb = new AnimatedCheckBox(this);
+
+//    ui->verticalLayout_8->addWidget(cb);
+//    cb->show();
+
+//    AnimatedCheckBox * cb2 = new AnimatedCheckBox(this);
+
+//    ui->verticalLayout_9->addWidget(cb2);
+//    cb2->show();
+
+//    AnimatedCheckBox * cb3 = new AnimatedCheckBox(this);
+
+//    ui->verticalLayout_14->addWidget(cb3);
+//    cb3->show();
+
+//    AnimatedCheckBox * cb4 = new AnimatedCheckBox(this);
+
+//    ui->verticalLayout_29->addWidget(cb4);
+//    cb4->show();
 
     colormatch * cm_ = new colormatch("Campbell", campbell, this);
     ui->verticalWidget_15->layout()->addWidget(cm_);
@@ -174,13 +198,13 @@ settingwidget::settingwidget(QWidget *parent) :
     m_buttonGroup->addButton(ui->toolButton_activate, 0);
     m_buttonGroup->addButton(ui->toolButton_appearance, 1);
     m_buttonGroup->addButton(ui->toolButton_typeface, 2);
-    m_buttonGroup->addButton(ui->toolButton_colorMatch, 3);
+    m_buttonGroup->addButton(ui->toolButton_colorSchemes, 3);
     m_buttonGroup->addButton(ui->toolButton_theme, 4);
     m_buttonGroup->addButton(ui->toolButton_terminal, 5);
     m_buttonGroup->addButton(ui->toolButton_shortcutKey, 6);
     m_buttonGroup->button(0)->setChecked(true); //设置按钮组第一个按钮高亮显示
     m_buttonGroup->setExclusive(true);
-
+    ui->stackedWidget->setCurrentIndex(0);
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(on_Menu_clicked(int)));
 
     QFontDatabase fdb;
