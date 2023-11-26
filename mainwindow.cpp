@@ -494,7 +494,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {   //qDebug() << ui->widget
         m_endPoint = this->mapToGlobal(event->pos());
         //m_windowRectBeforeStretch = this->geometry();
         updateWindowSize();
-        qDebug() << "刷新m_windowRectBeforeStretch";
+        //qDebug() << "刷新m_windowRectBeforeStretch";
     }
 }
 

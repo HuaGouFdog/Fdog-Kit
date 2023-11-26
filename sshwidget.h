@@ -304,6 +304,9 @@ private:
 
     bool isScrollBar = false; //是否显示滚动区
 
+    int currentLine = -1;
+
+    bool isBuffer = false;
 };
 
 #endif // SSHWIDGET_H

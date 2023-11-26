@@ -395,6 +395,7 @@ QString datahandle::processData(QString data)
 QStringList datahandle::processDataS(QString data)
 {
     int sum = 0; //记录有多少连续的\b
+    //qDebug() << "processDataS data = " << data;
     QStringList dataS;
     //对内容进行分组
     while(1) {
@@ -514,7 +515,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 4));
             }
             data = data.mid(position + 4);
-            qDebug() << "添加\u001B[2J";
+            //qDebug() << "添加\u001B[2J";
         } else if (data.contains("\u001B[?25l")) {
             int position = data.indexOf("\u001B[?25l");
             if (position == 0) {
@@ -524,7 +525,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 6));
             }
             data = data.mid(position + 6);
-            qDebug() << "添加\u001B[?25l";
+            //qDebug() << "添加\u001B[?25l";
         } else if (data.contains("\u001B[?12;25h")) {
             int position = data.indexOf("\u001B[?12;25h");
             if (position == 0) {
@@ -534,7 +535,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 9));
             }
             data = data.mid(position + 9);
-            qDebug() << "添加\u001B[?12;25h";
+            //qDebug() << "添加\u001B[?12;25h";
         } else if (data.contains("\u001B[H")) {
             int position = data.indexOf("\u001B[H");
             if (position == 0) {
@@ -544,7 +545,7 @@ QStringList datahandle::processDataS(QString data)
                 dataS.append(data.mid(position, 3));
             }
             data = data.mid(position + 3);
-            qDebug() << "添加\u001B[H";
+            //qDebug() << "添加\u001B[H";
         } else {
             //参数不确定的需要在这里解析
             QRegExp regExp("\\x001B\\[(\\d+)*P");
@@ -561,14 +562,16 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加P" << match << " position = " << position;
+                //qDebug() << "添加P" << match << " position = " << position;
                 data = data.mid(position + match.length());
+                pos = 0;
                 //break;
             }
 
             QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
             pos = 0;
             while ((pos = regExp2.indexIn(data, pos)) != -1) {
+                //qDebug() << "regExp2 = " << data;
                 QString match = regExp2.cap(0); // 获取完整的匹配项
                 int position = data.indexOf(match);
                 if (position == 0) {
@@ -580,8 +583,10 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加H" << match << " position = " << position;
+                 //qDebug() << "添加H" << match << " position = " << position;
                 data = data.mid(position + match.length());
+                //qDebug() << "剩下数据 =" << data;
+                pos = 0;
                 //break;
             }
 
@@ -599,8 +604,9 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加d" << match << " position = " << position;
+                //qDebug() << "添加d" << match << " position = " << position;
                 data = data.mid(position + match.length());
+                pos = 0;
                 //break;
             }
 
@@ -618,8 +624,9 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加r" << match << " position = " << position;
+                //qDebug() << "添加r" << match << " position = " << position;
                 data = data.mid(position + match.length());
+                pos = 0;
                 //break;
             }
 
@@ -637,8 +644,9 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加G" << match << " position = " << position;
+                //qDebug() << "添加G" << match << " position = " << position;
                 data = data.mid(position + match.length());
+                pos = 0;
                 //break;
             }
 
