@@ -934,13 +934,13 @@ void sshwidget::rece_channel_readS(QStringList data)
                                 position2 = data[i].indexOf("<br>");
                                 sendData(data[i].mid(0, position2));
                                 //如果下面有空行，则直接下移，没有则创建
-                                qDebug() << "总行数为" << lineCount;
+                                qDebug() << "总行数为" << lineCount << " data[i].mid(0, position2) = " << data[i].mid(0, position2);
                                 QTextCursor tc = ui->textEdit->textCursor(); //当前光标
                                 QTextLayout *lay = tc.block().layout();
                                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                                 int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
-                                qDebug() << "sendData 当前光标所在行数 =" << currentLine - acurrentLine + 1 << " 起点行数=" << currentLine << " 共" << scrollZone << "行";
-                                if (currentLine - acurrentLine + 1 < scrollZone) {
+                                qDebug() << "sendData 当前光标所在行数 =" << acurrentLine - currentLine + 1 << " 起点行数=" << currentLine << " 共" << scrollZone << "行";
+                                if (acurrentLine - currentLine + 1 < scrollZone) {
                                     QTextCursor cursor = ui->textEdit->textCursor();
                                     cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, 1); // 将光标向下移动一行
                                     cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾

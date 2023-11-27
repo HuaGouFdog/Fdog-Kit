@@ -110,6 +110,7 @@ void datahandle::stringToHtmlFilter(QString &str)
     //qDebug() << "对数据进行替换:" << str;
     //这里有个问题，有些空格会被包含在里面，如果背景有颜色，空格也会有颜色
     //注意这几行代码的顺序不能乱，否则会造成多次替换
+    qDebug() << "stringToHtmlFilter 原数据 = " << str;
     str.replace("&","&amp;");
     str.replace(">","&gt;");
     str.replace("<","&lt;");
@@ -119,10 +120,13 @@ void datahandle::stringToHtmlFilter(QString &str)
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
+    qDebug() << "stringToHtmlFilter 替换后数据 = " << str;
 }
 
 void datahandle::stringToHtmlFilter2(QString &str)
 {
+    str.replace(">","&gt;");
+    str.replace("<","&lt;");
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
