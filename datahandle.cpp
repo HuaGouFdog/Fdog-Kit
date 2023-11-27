@@ -107,10 +107,9 @@ datahandle::datahandle(QObject *parent) : QObject(parent)
 
 void datahandle::stringToHtmlFilter(QString &str)
 {
-    //qDebug() << "对数据进行替换:" << str;
+    qDebug() << "对数据进行替换:" << str;
     //这里有个问题，有些空格会被包含在里面，如果背景有颜色，空格也会有颜色
     //注意这几行代码的顺序不能乱，否则会造成多次替换
-    qDebug() << "stringToHtmlFilter 原数据 = " << str;
     str.replace("&","&amp;");
     str.replace(">","&gt;");
     str.replace("<","&lt;");
@@ -120,13 +119,16 @@ void datahandle::stringToHtmlFilter(QString &str)
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
-    qDebug() << "stringToHtmlFilter 替换后数据 = " << str;
 }
 
 void datahandle::stringToHtmlFilter2(QString &str)
 {
-    str.replace(">","&gt;");
-    str.replace("<","&lt;");
+    // str.replace("&","&amp;");
+    // str.replace(">","&gt;");
+    // str.replace("<","&lt;");
+    // str.replace("\"","&quot;");
+    // str.replace("\'","&#39;");
+    // str.replace(" ","&nbsp;");
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
@@ -262,8 +264,13 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     //解析数据\u001B[34;42mjenkins_home\u001B[0m
     QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
     int pos = 0;
+    int lastPos = 0;
     //stringToHtmlFilter3(data);
+    bool isRegex = false;
     while ((pos = regex.indexIn(data, pos)) != -1) {
+        lastPos = pos;
+        qDebug() << "Pos = " << pos;
+        isRegex = true;
         QString match = regex.cap(0); // 获取完整的匹配项
         //qDebug() << "Matched email:" << match;
         //qDebug() << "Matched email 1:" << regex.cap(1);
@@ -304,12 +311,19 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
 
         //设置颜色
         QString cc = regex.cap(6) + regex.cap(8);
+        qDebug() << "cc = " << cc;
         stringToHtmlFilter(cc);
         stringToHtml(cc, fontCrl, backCrl);
         //替换
         data.replace(match, cc);
-        pos += regex.matchedLength();
+        //pos += regex.matchedLength();
+        pos += cc.length();
         //qDebug() << "pos = " << pos;
+    }
+    
+    if (!isRegex) {
+        data.replace(">","&gt;");
+        data.replace("<","&lt;");
     }
     //qDebug() << "data.length =" << data.length();
     //qDebug() << "pos = " << pos;
@@ -377,11 +391,15 @@ QString datahandle::processData(QString data)
     //\u001B[01;34mzx_test\u001B[0m
 
     //stringToHtmlFilter3(data);
+    
     //处理属性和颜色
+    data.replace(">","&gt;");
+    data.replace("<","&lt;");
+    
     data = processDataStatsAndColor(head, commond, data);
 
     stringToHtmlFilter2(data);
-
+    
     //处理默认属性
     stringToHtmlFilter4(data);
 
