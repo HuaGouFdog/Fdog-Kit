@@ -61,8 +61,6 @@ public:
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
-    QWidget *tab;
-    QWidget *tab_2;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
@@ -724,16 +722,6 @@ public:
         tabWidget->setDocumentMode(false);
         tabWidget->setTabsClosable(true);
         tabWidget->setMovable(true);
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/lib/XML-Local-hover.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab, icon4, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/lib/toolBox.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab_2, icon5, QString());
 
         verticalLayout_4->addWidget(tabWidget);
 
@@ -1894,9 +1882,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/lib/add3.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon6);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/lib/add3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon4);
         widget_welcome_body_widget2_newCreate_newTerminal->setIconSize(QSize(20, 20));
         widget_welcome_body_widget2_newCreate_newTerminal->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -1925,9 +1913,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/lib/tool2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_body_widget2_newCreate_newTool->setIcon(icon7);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/lib/tool2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        widget_welcome_body_widget2_newCreate_newTool->setIcon(icon5);
         widget_welcome_body_widget2_newCreate_newTool->setIconSize(QSize(20, 20));
         widget_welcome_body_widget2_newCreate_newTool->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -1955,9 +1943,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/lib/setiing2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_body_widget2_newCreate_setting->setIcon(icon8);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/lib/setiing2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        widget_welcome_body_widget2_newCreate_setting->setIcon(icon6);
         widget_welcome_body_widget2_newCreate_setting->setIconSize(QSize(20, 20));
         widget_welcome_body_widget2_newCreate_setting->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -2160,9 +2148,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon9;
-        icon9.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_bottom_toolButton_github->setIcon(icon9);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
+        widget_welcome_bottom_toolButton_github->setIcon(icon7);
         widget_welcome_bottom_toolButton_github->setIconSize(QSize(20, 20));
         widget_welcome_bottom_toolButton_github->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -2213,7 +2201,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(-1);
         stackedWidget_tool->setCurrentIndex(0);
 
 
@@ -2232,8 +2220,6 @@ public:
         toolButton_min->setText(QString());
         toolButton_max->setText(QString());
         toolButton_close->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "11", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "22", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\260\217\345\267\245\345\205\267\351\233\206\345\220\210", nullptr));
         comboBox_tool->setItemText(0, QApplication::translate("MainWindow", "\344\276\277\347\255\276", nullptr));
         comboBox_tool->setItemText(1, QApplication::translate("MainWindow", "\350\277\233\345\210\266\350\275\254\346\215\242", nullptr));

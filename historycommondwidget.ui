@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(162, 162, 162);
+   <string notr="true">background-color: rgb(255, 255, 255);
 /*padding:5px;*/
 border-radius:6px;
 border:2px solid rgb(108, 117, 125, 65); </string>

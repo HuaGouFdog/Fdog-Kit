@@ -31,7 +31,7 @@ public:
         if (historycommondwidget->objectName().isEmpty())
             historycommondwidget->setObjectName(QStringLiteral("historycommondwidget"));
         historycommondwidget->resize(339, 248);
-        historycommondwidget->setStyleSheet(QLatin1String("background-color: rgb(162, 162, 162);\n"
+        historycommondwidget->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
 "/*padding:5px;*/\n"
 "border-radius:6px;\n"
 "border:2px solid rgb(108, 117, 125, 65); "));

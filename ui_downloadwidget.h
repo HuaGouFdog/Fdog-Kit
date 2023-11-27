@@ -101,7 +101,7 @@ public:
         widget_body = new QWidget(downloadwidget);
         widget_body->setObjectName(QStringLiteral("widget_body"));
         widget_body->setStyleSheet(QLatin1String("#widget_body{\n"
-"background-color: rgb(162, 162, 162);\n"
+"background-color: rgb(255, 255, 255);\n"
 "/*padding:5px;*/\n"
 "border-radius:6px;\n"
 "border:2px solid rgb(108, 117, 125, 65); \n"
@@ -209,7 +209,7 @@ public:
         widget = new QWidget(scrollAreaWidgetContents);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(0, 200));
-        widget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        widget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         verticalLayout_4 = new QVBoxLayout(widget);
         verticalLayout_4->setSpacing(3);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));

@@ -30,30 +30,29 @@ signals:
 protected:
     void mousePressEvent(QMouseEvent *event) override
     {
-        if (event->button() == Qt::LeftButton) {
-            //qDebug() << "Mouse pressed inside QTextEdit!";
-            emit send_mousePress_sign();
-        } else if (event->button() == Qt::RightButton) {
-            //如果有选中，则复制，无选中则粘贴
-            QString copyData = this->textCursor().selectedText();
-            copyData.replace(QChar(0xA0), ' ');
-            if (copyData == "") {
-                //粘贴
-                emit send_paste_sgin();
-            } else {
-                //复制
-                //qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
-                QClipboard *clipboard = QApplication::clipboard();
-                clipboard->setText(copyData);
-                QTextCursor cursor = this->textCursor();
-                cursor.clearSelection();
-                this->setTextCursor(cursor);
-                //qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
-            }
+//        if (event->button() == Qt::LeftButton) {
+//            //qDebug() << "Mouse pressed inside QTextEdit!";
+//            emit send_mousePress_sign();
+//        } else if (event->button() == Qt::RightButton) {
+//            //如果有选中，则复制，无选中则粘贴
+//            QString copyData = this->textCursor().selectedText();
+//            copyData.replace(QChar(0xA0), ' ');
+//            if (copyData == "") {
+//                //粘贴
+//                emit send_paste_sgin();
+//            } else {
+//                //复制
+//                //qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
+//                QClipboard *clipboard = QApplication::clipboard();
+//                clipboard->setText(copyData);
+//                QTextCursor cursor = this->textCursor();
+//                cursor.clearSelection();
+//                this->setTextCursor(cursor);
+//                //qDebug() << "Mouse RightButton QTextEdit! = " << this->textCursor().selectedText();
+//            }
 
             emit send_mousePress_sign();
-        }
-
+//        }
         // 将事件传递给父类的实现
         QTextEdit::mousePressEvent(event);
     }
@@ -110,7 +109,9 @@ protected:
 
             QString key = keyEvent->text();
             //qDebug() << "Pressed key:" << key;
-            emit send_key_sign(key);
+            if (key != "") {
+                 emit send_key_sign(key);
+            }
             return true;
         } else if (event->type() == QEvent::InputMethod) {
             QInputMethodEvent *keyEvent = dynamic_cast<QInputMethodEvent *>(event);
@@ -120,7 +121,9 @@ protected:
                return true;
             }
             //qDebug() << "输入法事件:" << strInput;
-            emit send_key_sign(strInput);
+            if (strInput != "") {
+                 emit send_key_sign(strInput);
+            }
             return true;
         }
         return QObject::eventFilter(obj, event);
@@ -307,6 +310,8 @@ private:
     int currentLine = -1;
 
     bool isBuffer = false;
+
+    int scrollZone = 0;
 };
 
 #endif // SSHWIDGET_H

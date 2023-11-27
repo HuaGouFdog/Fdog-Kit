@@ -258,30 +258,51 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     connect(scrollBar_textEdit_s,SIGNAL(valueChanged(int)),this,
             SLOT(scrollBarValueChanged(int)));
 
-    textEdit_s->setContextMenuPolicy(Qt::NoContextMenu);
+    textEdit_s->setContextMenuPolicy(Qt::CustomContextMenu);
+    //textEdit_s->setContextMenuPolicy(Qt::NoContextMenu);
 
+    QAction *copyAction = new QAction(tr("复制"), textEdit_s);
+    copyAction->setShortcut(QKeySequence::Copy);
+    copyAction->setShortcutContext(Qt::WidgetShortcut);
 
-    //    QAction *copyAction = new QAction(tr("复制"), textEdit_s);
-    //    copyAction->setShortcut(QKeySequence::Copy);
-    //    copyAction->setShortcutContext(Qt::WidgetShortcut);
+    QAction *pasteAction = new QAction(tr("粘贴"), textEdit_s);
+    pasteAction->setShortcut(QKeySequence::Copy);
+    pasteAction->setShortcutContext(Qt::WidgetShortcut);
 
-    //    QAction *selectAllAction = new QAction(tr("选择全部"), textEdit_s);
-    //    selectAllAction->setShortcut(QKeySequence::SelectAll);
-    //    selectAllAction->setShortcutContext(Qt::WidgetShortcut);
+    QAction *uploadAction = new QAction(tr("上传"), textEdit_s);
+    uploadAction->setShortcut(QKeySequence::Copy);
+    uploadAction->setShortcutContext(Qt::WidgetShortcut);
 
-    //    QAction *clearAction = new QAction(tr("清除"), textEdit_s);
+    QAction *downloadAction = new QAction(tr("下载"), textEdit_s);
+    downloadAction->setShortcut(QKeySequence::Copy);
+    downloadAction->setShortcutContext(Qt::WidgetShortcut);
 
-    //    QMenu *contextMenu = new QMenu(textEdit_s);
-    //    contextMenu->addAction(copyAction);
-    //    contextMenu->addSeparator();
-    //    contextMenu->addAction(selectAllAction);
-    //    contextMenu->addSeparator();
-    //    contextMenu->addAction(clearAction);
+    QAction *selectAllAction = new QAction(tr("选择全部"), textEdit_s);
+    selectAllAction->setShortcut(QKeySequence::SelectAll);
+    selectAllAction->setShortcutContext(Qt::WidgetShortcut);
 
-    //    QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
-    //                         {
-    //                                                                contextMenu->move(cursor().pos());
-    //                                                                contextMenu->show(); });
+    QAction *clearAction = new QAction(tr("清除"), textEdit_s);
+
+    QMenu *contextMenu = new QMenu(textEdit_s);
+    contextMenu->setWindowFlags(contextMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    contextMenu->setAttribute(Qt::WA_TranslucentBackground);
+    contextMenu->addAction(copyAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(pasteAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(uploadAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(downloadAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(selectAllAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(clearAction);
+
+    QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
+    {
+        qDebug() << "点击";
+        contextMenu->move(cursor().pos());
+        contextMenu->show(); });
     //ui->widget->hide();
     //ui->widget_3->hide();
     //ui->widget_4->hide();
@@ -814,6 +835,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                     currentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
                     qDebug() << "R当前行数 =" << currentLine;
+                    scrollZone = regExp4.cap(2).toInt();
                 }
                 if (regExp4.cap(1) == "1") {
                     for (int i = 1; i <= regExp4.cap(2).toInt(); ++i) {
@@ -906,20 +928,39 @@ void sshwidget::rece_channel_readS(QStringList data)
                     if (position == 0) {
                         //dataS.append(data[i].mid(0, 3));
                     } else {
-                        sendData(data[i].mid(0, position));
-                        QTextCursor cursor = ui->textEdit->textCursor();
-                        cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, 1); // 将光标向下移动一行
-                        cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
-                        ui->textEdit->setTextCursor(cursor);
+                        while(1) {
+                            int position2 = 0;
+                            if (data[i].contains("<br>") && isBuffer == true) {
+                                position2 = data[i].indexOf("<br>");
+                                sendData(data[i].mid(0, position2));
+                                //如果下面有空行，则直接下移，没有则创建
+                                qDebug() << "总行数为" << lineCount;
+                                QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+                                QTextLayout *lay = tc.block().layout();
+                                int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+                                int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
+                                qDebug() << "sendData 当前光标所在行数 =" << currentLine - acurrentLine + 1 << " 起点行数=" << currentLine << " 共" << scrollZone << "行";
+                                if (currentLine - acurrentLine + 1 < scrollZone) {
+                                    QTextCursor cursor = ui->textEdit->textCursor();
+                                    cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, 1); // 将光标向下移动一行
+                                    cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
+                                    ui->textEdit->setTextCursor(cursor);
 
-                        QTextCursor cursor2 = textEdit_s->textCursor();
-                        cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, 1); // 将光标向下移动一行
-                        cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
-                        textEdit_s->setTextCursor(cursor2);
-                        sendData(data[i].mid(position + 4));
-                        //dataS.append(data.mid(position, 4));
+                                    QTextCursor cursor2 = textEdit_s->textCursor();
+                                    cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, 1); // 将光标向下移动一行
+                                    cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
+                                    textEdit_s->setTextCursor(cursor2);
+                                } else {
+                                    sendData("<br>");
+                                }
+                                data[i] = data[i].mid(position2 + 4);
+                            } else {
+                                sendData(data[i]);
+                                break;
+                            }
+
+                        }
                     }
-                    //data = data.mid(position + 3);
                 } else {
                     sendData(data[i]);
                 }
