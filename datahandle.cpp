@@ -391,11 +391,16 @@ QString datahandle::processData(QString data)
     //\u001B[01;34mzx_test\u001B[0m
 
     //stringToHtmlFilter3(data);
-    
-    //处理属性和颜色
-    data.replace(">","&gt;");
+    if (data.contains(">")) {
+        //光标左移动
+        int position = data.indexOf(">");
+        if (data.mid((position - 1), position) != "\u001B") {
+            data.replace(">","&gt;");
+        }
+    }
+    //data.replace(">","&gt;");
     data.replace("<","&lt;");
-    
+
     data = processDataStatsAndColor(head, commond, data);
 
     stringToHtmlFilter2(data);
@@ -500,6 +505,16 @@ QStringList datahandle::processDataS(QString data)
             //qDebug() << "添加\u001B[?1h";
         } else if (data.contains("\u001B=")) {
             int position = data.indexOf("\u001B=");
+            if (position == 0) {
+                dataS.append(data.mid(0, 2));
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 2));
+            }
+            data = data.mid(position + 2);
+            //qDebug() << "添加\u001B=";
+        } else if (data.contains("\u001B>")) {
+            int position = data.indexOf("\u001B>");
             if (position == 0) {
                 dataS.append(data.mid(0, 2));
             } else {

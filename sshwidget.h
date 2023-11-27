@@ -69,6 +69,7 @@ private:
     QPoint endPos;
 };
 
+static int mode = 1;  //1数字模式 2应用模式
 
 class KeyFilter : public QObject
 {
@@ -91,18 +92,35 @@ protected:
 
             if (keyEvent->key() == Qt::Key_Up) {
                 //qDebug() << "Up key pressed";
-                emit send_key_sign("\u001B[A");
+                if (mode == 2) {
+                    emit send_key_sign("\u001BOA");
+                } else {
+                    emit send_key_sign("\u001B[A");
+                }
                 return true;
             } else if (keyEvent->key() == Qt::Key_Down) {
                 //qDebug() << "Down key pressed";
-                emit send_key_sign("\u001B[B");
+                if (mode == 2) {
+                    emit send_key_sign("\u001BOB");
+                } else {
+                    emit send_key_sign("\u001B[B");
+                }
+                
                 return true;
             } else if (keyEvent->key() == Qt::Key_Left) {
-                emit send_key_sign("\u001B[D");
+                                if (mode == 2) {
+                    emit send_key_sign("\u001BOD");
+                } else {
+                    emit send_key_sign("\u001B[D");
+                }
                 //qDebug() << "Left key pressed";
                 return true;
             } else if (keyEvent->key() == Qt::Key_Right) {
-                emit send_key_sign("\u001B[C");
+                if (mode == 2) {
+                    emit send_key_sign("\u001BOC");
+                } else {
+                    emit send_key_sign("\u001B[C");
+                }
                 //qDebug() << "Right key pressed";
                 return true;
             }

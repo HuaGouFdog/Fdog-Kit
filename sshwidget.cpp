@@ -474,10 +474,11 @@ void sshwidget::rece_channel_readS(QStringList data)
     //data.append("");
     int sum = 0;
     int sum2 = 0;
-    qDebug() << "rece_channel_readS data  = " << data;
+    
     //第一条固定为工作路径
     ssh_path = data[0];
     data = data.mid(1);
+    qDebug() << "rece_channel_readS data  = " << data;
     //qDebug() << "rece_channel_readS data len2 = " << data.length();
     for(int i = 0; i < data.length(); i++) {
         //qDebug() << "获取数据1： " << data[i];
@@ -692,6 +693,11 @@ void sshwidget::rece_channel_readS(QStringList data)
             continue;
         } else if (data[i] == "\u001B=") {
             //切换到应用程序键盘模式
+            mode = 2;
+            continue;
+        } else if (data[i] == "\u001B>") {
+            //切换到数字模式模式
+            mode = 1;
             continue;
         } else if (data[i] == "\u001B[?12l") {
             //禁用光标闪烁
@@ -790,22 +796,26 @@ void sshwidget::rece_channel_readS(QStringList data)
                 if (moveCount >= 0) {
                     QTextCursor cursor = ui->textEdit->textCursor();
                     cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, moveCount); // 将光标向下移动一行
-                    cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
+                    cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                    cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     ui->textEdit->setTextCursor(cursor);
 
                     QTextCursor cursor2 = textEdit_s->textCursor();
                     cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, moveCount); // 将光标向下移动一行
-                    cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
+                    cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                    cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     textEdit_s->setTextCursor(cursor2);
                 } else {
                     QTextCursor cursor = ui->textEdit->textCursor();
                     cursor.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, -moveCount); // 将光标向上移动一行
-                    cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
+                    cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                    cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     ui->textEdit->setTextCursor(cursor);
 
                     QTextCursor cursor2 = textEdit_s->textCursor();
                     cursor2.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, -moveCount); // 将光标向上移动一行
-                    cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的末尾
+                    cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                    cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     textEdit_s->setTextCursor(cursor2);
                 }
 
@@ -841,7 +851,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     for (int i = 1; i <= regExp4.cap(2).toInt(); ++i) {
                         //qDebug() << "打印空行" << i;
                         //sendData(QString::number(i) + "=<br>");
-                        sendData("<br>");
+                        sendData("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
                         //textEdit->insertPlainText("\n");
                     }
                 }
@@ -1010,7 +1020,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
 void sshwidget::rece_key_sign(QString key)
 {
-    qDebug() << "触发rece_key_sign = " << key;
+    //qDebug() << "触发rece_key_sign = " << key;
     if (key == "") {
         return;
     }
@@ -1247,7 +1257,7 @@ void sshwidget::rece_resize_sign()
     // 输出行数和列数
     //qDebug() << "Visible Line count:" << visibleLines;
     //qDebug() << "Visible Column count:" << visibleColumns;
-    if (columnCount != visibleColumns - 10 || lineCount != visibleLines - 1) {
+    if (columnCount != visibleColumns - 5 || lineCount != visibleLines - 1) {
         // 检查垂直滚动条的可见性 是否有滚动条可见导致的大小变化 屏蔽由该变化导致的刷新
         if (!isScrollBar) {
             bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
@@ -1263,8 +1273,8 @@ void sshwidget::rece_resize_sign()
             }
         }
         //qDebug() << "终端大小被调用 visibleLines = " << visibleLines - 1 << " visibleColumns = " << visibleColumns - 10;
-       // setTerminalSize(visibleLines, visibleColumns - 10);
-        columnCount = visibleColumns - 10;
+        setTerminalSize(visibleLines - 1, visibleColumns - 5);
+        columnCount = visibleColumns - 5;
         lineCount = visibleLines - 1;
     }
 
