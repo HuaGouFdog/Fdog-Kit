@@ -105,18 +105,18 @@ QStringList vintage = {"#000000","#808080",
                        "#C0C0C0","#FFFFFF",
                        "#000000"};
 
-settingwidget::settingwidget(QWidget *parent) :
+settingwidget::settingwidget(config * confInfo, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::settingwidget)
 {
     ui->setupUi(this);
-    selfStart = new AnimatedCheckBox(this);
+    selfStart = new AnimatedCheckBox(confInfo->selfStart, this);
     ui->verticalLayout_selfStart->addWidget(selfStart);
-
-    trayDisplay = new AnimatedCheckBox(this);
+    
+    trayDisplay = new AnimatedCheckBox(confInfo->trayDisplay, this);
     ui->verticalLayout_trayDisplay->addWidget(trayDisplay);
 
-    startCenter = new AnimatedCheckBox(this);
+    startCenter = new AnimatedCheckBox(confInfo->startCenter, this);
     ui->verticalLayout_startCenter->addWidget(startCenter);
 
     topDisplay = new AnimatedCheckBox(this);
@@ -134,25 +134,10 @@ settingwidget::settingwidget(QWidget *parent) :
     conectStatsDisplay = new AnimatedCheckBox(this);
     ui->verticalLayout_conectStatsDisplay->addWidget(conectStatsDisplay);
 
-//    AnimatedCheckBox * cb = new AnimatedCheckBox(this);
 
-//    ui->verticalLayout_8->addWidget(cb);
-//    cb->show();
 
-//    AnimatedCheckBox * cb2 = new AnimatedCheckBox(this);
 
-//    ui->verticalLayout_9->addWidget(cb2);
-//    cb2->show();
 
-//    AnimatedCheckBox * cb3 = new AnimatedCheckBox(this);
-
-//    ui->verticalLayout_14->addWidget(cb3);
-//    cb3->show();
-
-//    AnimatedCheckBox * cb4 = new AnimatedCheckBox(this);
-
-//    ui->verticalLayout_29->addWidget(cb4);
-//    cb4->show();
 
     colormatch * cm_ = new colormatch("Campbell", campbell, this);
     ui->verticalWidget_15->layout()->addWidget(cm_);
@@ -211,6 +196,7 @@ settingwidget::settingwidget(QWidget *parent) :
     QStringList fontList = fdb.families();
     ui->listWidget_en->addItems(fontList);
     ui->listWidget_cn->addItems(fontList);
+
 }
 
 settingwidget::~settingwidget()

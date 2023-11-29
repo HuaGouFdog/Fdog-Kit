@@ -10,33 +10,47 @@
 AnimatedCheckBox::AnimatedCheckBox(bool isChecked, QWidget *parent) : QCheckBox (parent)
 {
     indicator = new QLabel(this);
-
     /* 设置样式 */
     this->setMinimumHeight(22);
     this->setAttribute(Qt::WA_StyledBackground, true);
     this->setProperty("class", "AnimatedCheckBox");
     indicator->setProperty("class", "AnimatedCheckBoxIndicator");
 
-    this->setStyleSheet(".AnimatedCheckBox[checked=true ]\
-    {\
-        background: #1e2d36;\
-    }\
-    .AnimatedCheckBox[checked=false]\
-    {\
-         background: #c5c8ce;\
-    }\
-    .AnimatedCheckBoxIndicator\
-    {\
-        background: white;\
-    }");
-
+    // this->setStyleSheet(QString(".AnimatedCheckBox[checked=true ]\
+    // {\
+    //     background: #1e2d36;\
+    //     border-radius: %1px;\
+    // }\
+    // .AnimatedCheckBox[checked=false ]\
+    // {\
+    //      background: #c5c8ce;\
+    //      border-radius: %1px;\
+    // }\
+    // .AnimatedCheckBoxIndicator\
+    // {\
+    //     background: white;\
+    //     border-radius: %2px;\
+    // }").arg(this->height() / 2).arg(indicator->height() / 2));
     this->setContentsMargins(3, 2, 3, 2);
+//    QPropertyAnimation *animation = new QPropertyAnimation(indicator, "pos", this);
+//    int b = this->contentsMargins().left();
+//    int x = this->isChecked() ? this->width() - indicator->width() - b : b;
+//    int y = b;
+//    animation->stop();
+//    animation->setDuration(200);
+//    animation->setEndValue(QPoint(x + 22, y));
+//    animation->setEasingCurve(QEasingCurve::InOutCubic);
+//    animation->start();
+
+//    this->style()->polish(this);
+
+
     QPropertyAnimation *animation = new QPropertyAnimation(indicator, "pos", this);
     connect(this, &QCheckBox::toggled, [=] {
+        qDebug() << "执行toggled";
         int b = this->contentsMargins().left();
         int x = this->isChecked() ? this->width() - indicator->width() - b : b;
         int y = b;
-
         animation->stop();
         animation->setDuration(200);
         animation->setEndValue(QPoint(x, y));
@@ -45,14 +59,32 @@ AnimatedCheckBox::AnimatedCheckBox(bool isChecked, QWidget *parent) : QCheckBox 
 
         this->style()->polish(this);
     });
+    if (isChecked) {
+        this->setChecked(isChecked);
+            //QPropertyAnimation *animation = new QPropertyAnimation(indicator, "pos", this);
+            int b = this->contentsMargins().left();
+            int x = this->isChecked() ? this->width() - indicator->width() - b : b;
+            int y = b;
+            animation->stop();
+            animation->setDuration(10);
+            animation->setEndValue(QPoint(x + 28, y));
+            animation->setEasingCurve(QEasingCurve::InOutCubic);
+            animation->start();
+
+            this->style()->polish(this);
+    }
+
 }
 
 /* 重写 paintEvent 方法，清除 QCheckBox 的默认样式 */
-void AnimatedCheckBox::paintEvent(QPaintEvent *) {}
+void AnimatedCheckBox::paintEvent(QPaintEvent *) {
+    qDebug() << "paintEvent";
+}
 
 /* AnimatedCheckBox 的大小改变时调整 indicator 的位置 */
 void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 {
+    qDebug() << "resizeEvent";
     /* 设置 AnimatedCheckBox 的最小宽度，避免太窄的时候效果不好 */
     this->setMinimumWidth(height() * 2);
 
@@ -62,6 +94,8 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
     int y = b;
     int w = height() - b - b;
     int h = w;
+    qDebug() << "x = " << x;
+
     indicator->setGeometry(x,y,w,h);
 
     this->setStyleSheet(QString(".AnimatedCheckBox[checked=true ]\
@@ -89,7 +123,7 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 void AnimatedCheckBox::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "点击";
-    event->accept();
+    //event->accept();
     setChecked(!isChecked());
 }
 

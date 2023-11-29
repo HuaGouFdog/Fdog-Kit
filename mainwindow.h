@@ -13,8 +13,11 @@
 #include "settingwidget.h"
 #include <QSystemTrayIcon>
 #include "aboutwidget.h"
+#include "config.h"
+
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
+
 
 enum WindowStretchRectState
 {
@@ -183,6 +186,8 @@ private:
     bool isMaxShow = false;    //是否最大化显示
 
     aboutwidget *awidget = nullptr;
+
+    config * confInfo = nullptr; //配置信息
 };
 
 #endif // MAINWINDOW_H

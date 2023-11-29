@@ -648,6 +648,54 @@ void sshwidget::rece_channel_readS(QStringList data)
                     }
                     //dataTempList.append(data.mid(0, 1));
                 }
+            } else {
+                int pos = 0;
+                QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
+                while ((pos = regExp2.indexIn(data[i], pos)) != -1) {
+                    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+                    QTextLayout *lay = tc.block().layout();
+                    int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+                    int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
+                    //qDebug() << "A当前光标所在行数 =" << acurrentLine;
+
+                    QTextCursor tc2 = textEdit_s->textCursor(); //当前光标
+                    QTextLayout *lay2 = tc2.block().layout();
+                    int iCurPos2= tc2.position() - tc2.block().position();//当前光标在本BLOCK内的相对位置
+                    int acurrentLine2 = lay2->lineForTextPosition(iCurPos2).lineNumber() + tc2.block().firstLineNumber();
+                    //qDebug() << "B当前光标所在行数 =" << acurrentLine2;
+                    //qDebug() << "检测到H" << regExp2.cap(0);
+                    int moveCount = regExp2.cap(1).toInt() + currentLine - 1;
+                    //qDebug() << "移动到" << moveCount << "行";
+                    moveCount = moveCount - acurrentLine;
+                    //moveCount = moveCount - currentLine;
+                    //qDebug() << "移动" << moveCount << "行";
+                    if (moveCount >= 0) {
+                        QTextCursor cursor = ui->textEdit->textCursor();
+                        cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, moveCount); // 将光标向下移动一行
+                        cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                        cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                        ui->textEdit->setTextCursor(cursor);
+
+                        QTextCursor cursor2 = textEdit_s->textCursor();
+                        cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, moveCount); // 将光标向下移动一行
+                        cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                        cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                        textEdit_s->setTextCursor(cursor2);
+                    } else {
+                        QTextCursor cursor = ui->textEdit->textCursor();
+                        cursor.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, -moveCount); // 将光标向上移动一行
+                        cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                        cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                        ui->textEdit->setTextCursor(cursor);
+
+                        QTextCursor cursor2 = textEdit_s->textCursor();
+                        cursor2.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, -moveCount); // 将光标向上移动一行
+                        cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头
+                        cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                        textEdit_s->setTextCursor(cursor2);
+                    }
+                    data[i].replace(regExp2.cap(0), "");
+                }
             }
             lastCommondS = "";
 
@@ -946,23 +994,19 @@ void sshwidget::rece_channel_readS(QStringList data)
                 QTextLayout *lay = tc.block().layout();
                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                 int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
-                qDebug() << "A当前光标所在行数 =" << acurrentLine;
+                //qDebug() << "A当前光标所在行数 =" << acurrentLine;
 
                 QTextCursor tc2 = textEdit_s->textCursor(); //当前光标
                 QTextLayout *lay2 = tc2.block().layout();
                 int iCurPos2= tc2.position() - tc2.block().position();//当前光标在本BLOCK内的相对位置
                 int acurrentLine2 = lay2->lineForTextPosition(iCurPos2).lineNumber() + tc2.block().firstLineNumber();
-                qDebug() << "B当前光标所在行数 =" << acurrentLine2;
-
-
-
-
-                qDebug() << "检测到H" << regExp2.cap(0);
+                //qDebug() << "B当前光标所在行数 =" << acurrentLine2;
+                //qDebug() << "检测到H" << regExp2.cap(0);
                 int moveCount = regExp2.cap(1).toInt() + currentLine - 1;
-                qDebug() << "移动到" << moveCount << "行";
+                //qDebug() << "移动到" << moveCount << "行";
                 moveCount = moveCount - acurrentLine;
                 //moveCount = moveCount - currentLine;
-                qDebug() << "移动" << moveCount << "行";
+                //qDebug() << "移动" << moveCount << "行";
                 if (moveCount >= 0) {
                     QTextCursor cursor = ui->textEdit->textCursor();
                     cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, moveCount); // 将光标向下移动一行
@@ -988,16 +1032,8 @@ void sshwidget::rece_channel_readS(QStringList data)
                     cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     textEdit_s->setTextCursor(cursor2);
                 }
-
-//                QTextCursor tc = ui->textEdit->textCursor(); //当前光标
-//                QTextLayout *lay = tc.block().layout();
-//                int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
-//                currentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
-//                qDebug() << "当前光标所在行" << currentLine;
                 data[i].replace(regExp2.cap(0), "");
-                //break;
             }
-            //qDebug() << "走到这里3";
             pos = 0;
             QRegExp regExp3("\\x001B\\[(\\d+)*m");
             while ((pos = regExp3.indexIn(data[i], pos)) != -1) {

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "utils.h"
+#include "config.h"
 
 namespace Ui {
 class settingwidget;
@@ -13,7 +14,7 @@ class settingwidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit settingwidget(QWidget *parent = 0);
+    explicit settingwidget(config * confInfo, QWidget *parent = 0);
     ~settingwidget();
 
 private slots:
