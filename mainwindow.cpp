@@ -19,12 +19,18 @@
 #include <Windows.h>
 #include <qt_windows.h>
 #include <QSystemTrayIcon>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     //setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
     ui->setupUi(this);
+
     //透明背景
     this->setAttribute(Qt::WA_TranslucentBackground);
 
@@ -130,20 +136,159 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_4->hide();
 
     // 创建系统托盘图标
-    trayIcon = new QSystemTrayIcon(QIcon(":lib/diann.png"), this);
+    trayIcon = new QSystemTrayIcon(QIcon(":lib/icon9.png"), this);
     trayIcon->show();
 
     // 创建一个菜单
     QMenu* menu = new QMenu();
-    QAction* restoreAction = new QAction("Restore");
-    menu->addAction(restoreAction);
-
+    QAction* openAction = new QAction("打开");
+    QAction* closeAction = new QAction("退出");
+    menu->addAction(openAction);
+    menu->addAction(closeAction);
     // 将菜单设置给系统托盘图标
     trayIcon->setContextMenu(menu);
 
     // 处理单击事件
-    QObject::connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::trayIconActivated);
-    QObject::connect(restoreAction, &QAction::triggered, this, &MainWindow::restoreWindow);
+    //QObject::connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::trayIconActivated);
+    //QObject::connect(restoreAction, &QAction::triggered, this, &MainWindow::restoreWindow);
+
+
+    //读取配置文件信息
+    confInfo = new config();
+    /*
+    int selfStart = 0;
+    int trayDisplay = 0;
+    int startMode = 0;
+    int startPosition = 0;
+    int startCenter = 0;
+    */
+    // 读取JSON文件
+    QFile file("conf//settings.json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file.";
+        return;
+    }
+
+    // 将JSON数据解析为QJsonDocument对象
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
+    if (error.error != QJsonParseError::NoError) {
+        qDebug() << "Failed to parse JSON:" << error.errorString();
+        //return -1;
+    }
+
+    if (doc.isObject()) {
+        QJsonObject obj = doc.object();
+        QJsonValue activateValue = obj.value("activate");
+        if (activateValue.isObject()) {
+            QJsonObject activateObj = activateValue.toObject();
+
+            // 获取"selfStart"属性值
+            QJsonValue selfStartValue = activateObj.value("selfStart");
+            if (selfStartValue.isDouble()) {
+                confInfo->selfStart = selfStartValue.toInt();
+                qDebug() << "selfStart:" << confInfo->selfStart;
+            }
+
+            // 获取"trayDisplay"属性值
+            QJsonValue trayDisplayValue = activateObj.value("trayDisplay");
+            if (trayDisplayValue.isDouble()) {
+                confInfo->trayDisplay = trayDisplayValue.toInt();
+                qDebug() << "trayDisplay:" << confInfo->trayDisplay;
+            }
+
+            // 获取"startMode"属性值
+            QJsonValue startModeValue = activateObj.value("startMode");
+            if (startModeValue.isDouble()) {
+                confInfo->startMode = startModeValue.toInt();
+                qDebug() << "startMode:" << confInfo->startMode;
+            }
+
+            // 获取"startPositionX"属性值
+            QJsonValue startPositionXValue = activateObj.value("startPositionX");
+            if (startPositionXValue.isDouble()) {
+                confInfo->startPositionX = startPositionXValue.toInt();
+                qDebug() << "startPositionX:" << confInfo->startPositionX;
+            }
+
+            // 获取"startPositionY"属性值
+            QJsonValue startPositionYValue = activateObj.value("startPositionY");
+            if (startPositionYValue.isDouble()) {
+                confInfo->startPositionY = startPositionYValue.toInt();
+                qDebug() << "startPositionY:" << confInfo->startPositionY;
+            }
+
+            // 获取"startCenter"属性值
+            QJsonValue startCenterValue = activateObj.value("startCenter");
+            if (startCenterValue.isDouble()) {
+                confInfo->startCenter = startCenterValue.toInt();
+                qDebug() << "startCenter:" << confInfo->startCenter;
+            }
+        }
+
+        QJsonValue terminalValue = obj.value("terminal");
+        if (terminalValue.isObject()) {
+            QJsonObject terminalObj = terminalValue.toObject();
+
+            // 获取"infoDisplay"属性值
+            QJsonValue infoDisplayValue = terminalObj.value("infoDisplay");
+            if (infoDisplayValue.isDouble()) {
+                confInfo->infoDisplay = infoDisplayValue.toInt();
+                qDebug() << "infoDisplay:" << confInfo->infoDisplay;
+            }
+
+            // 获取"historyDisplay"属性值
+            QJsonValue historyDisplayValue = terminalObj.value("historyDisplay");
+            if (historyDisplayValue.isDouble()) {
+                confInfo->historyDisplay = historyDisplayValue.toInt();
+                qDebug() << "historyDisplay:" << confInfo->historyDisplay;
+            }
+
+            // 获取"commandDisplay"属性值
+            QJsonValue commandDisplayValue = terminalObj.value("commandDisplay");
+            if (commandDisplayValue.isDouble()) {
+                confInfo->commandDisplay = commandDisplayValue.toInt();
+                qDebug() << "commandDisplay:" << confInfo->commandDisplay;
+            }
+
+            // 获取"conectStatsDisplay"属性值
+            QJsonValue conectStatsDisplayValue = terminalObj.value("conectStatsDisplay");
+            if (conectStatsDisplayValue.isDouble()) {
+                confInfo->conectStatsDisplay = conectStatsDisplayValue.toInt();
+                qDebug() << "conectStatsDisplay:" << confInfo->conectStatsDisplay;
+            }
+        }
+    }
+    if (confInfo->selfStart == 1) {
+
+    } else if (confInfo->selfStart == 2) {
+
+    }
+
+    if (confInfo->startMode == 1) {
+        //默认
+    } else if (confInfo->startMode == 2) {
+        //最大化
+        setContentsMargins(0, 0, 0, 0);
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        this->showMaximized();
+        isMaxShow = true;
+        showFlag = true;
+    } else if (confInfo->startMode == 3) {
+        //全屏
+        setContentsMargins(0, 0, 0, 0);
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        //this->showNormal();
+        ui->toolButton_min->hide();
+        ui->toolButton_max->hide();
+        ui->toolButton_close->hide();
+        this->showFullScreen();
+        isFullScreen = true;
+    }
+
+
 }
 
 MainWindow::~MainWindow()
@@ -803,7 +948,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     QSize iconSize(16, 16); // 设置图标的大小
 
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
-        sshwidget * sshWidget = new sshwidget(cInfoStruct);
+        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo);
         connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         sshWidgetList.push_back(sshWidget);
@@ -1093,7 +1238,7 @@ void MainWindow::rece_toolButton_fullScreen_sign()
 
 void MainWindow::on_toolButton_setting_clicked()
 {
-     stwidget = new settingwidget();
+     stwidget = new settingwidget(confInfo);
      QSize iconSize(16, 16); // 设置图标的大小
      ui->tabWidget->addTab(stwidget, QIcon(":lib/setting2.png").pixmap(iconSize), "设置");
      ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);

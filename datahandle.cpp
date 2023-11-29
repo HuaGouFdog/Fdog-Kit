@@ -523,6 +523,16 @@ QStringList datahandle::processDataS(QString data)
             }
             data = data.mid(position + 2);
             //qDebug() << "添加\u001B=";
+        } else if (data.contains("\u001B&gt;")) {
+            int position = data.indexOf("\u001B&gt;");
+            if (position == 0) {
+                dataS.append("\u001B>");
+            } else {
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append("\u001B>");
+            }
+            data = data.mid(position + 5);
+            //qDebug() << "添加\u001B=";
         } else if (data.contains("\u001B[?12l")) {
             int position = data.indexOf("\u001B[?12l");
             if (position == 0) {

@@ -16,7 +16,7 @@
 #include "downloadwidget.h"
 #include "mkdirfolderwidget.h"
 #include "addcommondwidget.h"
-
+#include "config.h"
 class CustomTextEdit : public QTextEdit {
     Q_OBJECT
 public:
@@ -192,7 +192,7 @@ class sshwidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit sshwidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);
+    explicit sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget *parent = 0);
     ~sshwidget();
 
     //发送命令
@@ -264,6 +264,8 @@ private slots:
     void on_toolButton_info_clicked();
 
     void on_toolButton_history_clicked();
+
+    void on_toolButton_conectStats_clicked();
 
 private:
     Ui::sshwidget *ui;
