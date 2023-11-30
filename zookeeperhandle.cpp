@@ -111,12 +111,10 @@ int zookeeperhandle::getNodeInfo(Stat &stat, QString &data, QString &path)
 
 void zookeeperhandle::getNodeInfo_2(QString path)
 {
-    //qDebug() << "返回数据1";
     Stat stat;
     QString data;
     getNodeInfo(stat, data, path);
     QVariant varValue = QVariant::fromValue(stat);
-    //qDebug() << "返回数据2";
     int code = 0;
     QString message;
     emit send_getNodeInfo_2(code, message, varValue, data, path);
@@ -181,7 +179,6 @@ void watcher(zhandle_t *zh, int type, int state, const char *path, void *watcher
 
 void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
 {
-    qDebug() << "connect ZooKeeper 1";
     int count = 0;
     //ZooKeeper服务器的地址和端口
     std::string host = host_.toStdString() + ":" + port_.toStdString();
@@ -212,7 +209,6 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
     getNodeInfo(stat, Data, rootPath);
 
     //返回给主界面
-    qDebug() << "connect ZooKeeper 2";
     QVariant varValue = QVariant::fromValue(stat);
     int code;
     QString message;

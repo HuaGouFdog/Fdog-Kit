@@ -47,7 +47,6 @@ AnimatedCheckBox::AnimatedCheckBox(bool isChecked, QWidget *parent) : QCheckBox 
 
     QPropertyAnimation *animation = new QPropertyAnimation(indicator, "pos", this);
     connect(this, &QCheckBox::toggled, [=] {
-        qDebug() << "执行toggled";
         int b = this->contentsMargins().left();
         int x = this->isChecked() ? this->width() - indicator->width() - b : b;
         int y = b;
@@ -78,13 +77,11 @@ AnimatedCheckBox::AnimatedCheckBox(bool isChecked, QWidget *parent) : QCheckBox 
 
 /* 重写 paintEvent 方法，清除 QCheckBox 的默认样式 */
 void AnimatedCheckBox::paintEvent(QPaintEvent *) {
-    qDebug() << "paintEvent";
 }
 
 /* AnimatedCheckBox 的大小改变时调整 indicator 的位置 */
 void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 {
-    qDebug() << "resizeEvent";
     /* 设置 AnimatedCheckBox 的最小宽度，避免太窄的时候效果不好 */
     this->setMinimumWidth(height() * 2);
 
@@ -122,7 +119,6 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 /* 点击 AnimatedCheckBox 上的任何地方都切换选中状态，QCheckBox 默认只有点击它的 indicator 或者文字时才进行切换 */
 void AnimatedCheckBox::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "点击";
     //event->accept();
     setChecked(!isChecked());
 }

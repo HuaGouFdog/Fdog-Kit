@@ -1488,8 +1488,8 @@ void sshwidget::rece_resize_sign()
 
     // 显示当前可显示的行数
     // 输出行数和列数
-    qDebug() << "Visible Line count:" << visibleLines;
-    qDebug() << "Visible Column count:" << visibleColumns;
+    //qDebug() << "Visible Line count:" << visibleLines;
+    //qDebug() << "Visible Column count:" << visibleColumns;
 
     //如果宽在2范围则不触发
 //    if (visibleColumns != columnCount && columnCount - 5 < visibleColumns && visibleColumns < columnCount + 5) {
@@ -1509,7 +1509,7 @@ void sshwidget::rece_resize_sign()
                 return;
             }
         }
-        qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns - 5;
+        //qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns - 5;
         setTerminalSize(visibleLines, visibleColumns);
         columnCount = visibleColumns;
         lineCount = visibleLines;
@@ -1670,9 +1670,9 @@ void sshwidget::rece_downloadFile_sgin(QString fileName)
     if (ssh_path.contains("~")) {
         ssh_path.replace("~","/root");
     }
-    qDebug() << "现在文件:" <<copyData;
-    qDebug() << "当前路径:" <<ssh_path;
-    qDebug() << "下载文件" <<ssh_path + "/" + copyData;
+    //qDebug() << "现在文件:" <<copyData;
+    //qDebug() << "当前路径:" <<ssh_path;
+    //qDebug() << "下载文件" <<ssh_path + "/" + copyData;
 
     //调子线程执行
     QString fileName2 = copyData;

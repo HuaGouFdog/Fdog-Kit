@@ -107,7 +107,7 @@ datahandle::datahandle(QObject *parent) : QObject(parent)
 
 void datahandle::stringToHtmlFilter(QString &str)
 {
-    qDebug() << "对数据进行替换:" << str;
+    //qDebug() << "对数据进行替换:" << str;
     //这里有个问题，有些空格会被包含在里面，如果背景有颜色，空格也会有颜色
     //注意这几行代码的顺序不能乱，否则会造成多次替换
     str.replace("&","&amp;");
@@ -269,7 +269,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     bool isRegex = false;
     while ((pos = regex.indexIn(data, pos)) != -1) {
         lastPos = pos;
-        qDebug() << "Pos = " << pos;
+        //qDebug() << "Pos = " << pos;
         isRegex = true;
         QString match = regex.cap(0); // 获取完整的匹配项
         //qDebug() << "Matched email:" << match;
@@ -311,7 +311,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
 
         //设置颜色
         QString cc = regex.cap(6) + regex.cap(8);
-        qDebug() << "cc = " << cc;
+        //qDebug() << "cc = " << cc;
         stringToHtmlFilter(cc);
         stringToHtml(cc, fontCrl, backCrl);
         //替换
@@ -335,7 +335,7 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    qDebug() << "processData修改前数据：" << data;
+    //qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
@@ -714,7 +714,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp1.indexIn(str, pos)) != -1) {
         QString match = regExp1.cap(0); // 获取完整的匹配项
         str.replace(regExp1.cap(0), "<br>~");
-        qDebug() << "切换到副缓存区:" << match;
+        //qDebug() << "切换到副缓存区:" << match;
         pos += regExp1.matchedLength();
     }
 
@@ -723,7 +723,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp2.indexIn(str, pos)) != -1) {
         QString match = regExp2.cap(0); // 获取完整的匹配项
         str.replace(regExp2.cap(0), "<br>~");
-        qDebug() << "设置光标为可见状态:" << match;
+        //qDebug() << "设置光标为可见状态:" << match;
         pos += regExp2.matchedLength();
     }
 
@@ -732,7 +732,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp3.indexIn(str, pos)) != -1) {
         QString match = regExp3.cap(0); // 获取完整的匹配项
         str.replace(regExp3.cap(0), "<br>~");
-        qDebug() << "切换到应用程序键盘模式:" << match;
+        //qDebug() << "切换到应用程序键盘模式:" << match;
         pos += regExp3.matchedLength();
     }
 
@@ -741,7 +741,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp4.indexIn(str, pos)) != -1) {
         QString match = regExp4.cap(0); // 获取完整的匹配项
         str.replace(regExp4.cap(0), "<br>~");
-        qDebug() << "设置终端的滚动区域为第1行到第24行:" << match;
+        //qDebug() << "设置终端的滚动区域为第1行到第24行:" << match;
         pos += regExp4.matchedLength();
     }
 
@@ -750,7 +750,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp5.indexIn(str, pos)) != -1) {
         QString match = regExp5.cap(0); // 获取完整的匹配项
         str.replace(regExp5.cap(0), "<br>~");
-        qDebug() << "启用光标闪烁:" << match;
+        //qDebug() << "启用光标闪烁:" << match;
         pos += regExp5.matchedLength();
     }
 
@@ -767,7 +767,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp6.indexIn(str, pos)) != -1) {
         QString match = regExp6.cap(0); // 获取完整的匹配项
         str.replace(regExp6.cap(0), "<br>~");
-        qDebug() << "禁用光标闪烁:" << match;
+        //qDebug() << "禁用光标闪烁:" << match;
         pos += regExp6.matchedLength();
     }
 
@@ -776,7 +776,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp7.indexIn(str, pos)) != -1) {
         QString match = regExp7.cap(0); // 获取完整的匹配项
         str.replace(regExp7.cap(0), "<br>~");
-        qDebug() << "显示光标:" << match;
+        //qDebug() << "显示光标:" << match;
         pos += regExp7.matchedLength();
     }
 
@@ -785,7 +785,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp8.indexIn(str, pos)) != -1) {
         QString match = regExp8.cap(0); // 获取完整的匹配项
         str.replace(regExp8.cap(0), "<br>~");
-        qDebug() << "显示光标:" << match;
+        //qDebug() << "显示光标:" << match;
         pos += regExp8.matchedLength();
     }
 
@@ -794,7 +794,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp9.indexIn(str, pos)) != -1) {
         QString match = regExp9.cap(0); // 获取完整的匹配项
         str.replace(regExp9.cap(0), "<br>~");
-        qDebug() << "重置终端的属性和颜色:" << match;
+        //qDebug() << "重置终端的属性和颜色:" << match;
         pos += regExp9.matchedLength();
     }
 
@@ -803,7 +803,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp10.indexIn(str, pos)) != -1) {
         QString match = regExp10.cap(0); // 获取完整的匹配项
         str.replace(regExp10.cap(0), "<br>~");
-        qDebug() << "将光标移动到终端的起始位置:" << match;
+        //qDebug() << "将光标移动到终端的起始位置:" << match;
         pos += regExp10.matchedLength();
     }
 
@@ -818,7 +818,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp11.indexIn(str, pos)) != -1) {
         QString match = regExp11.cap(0); // 获取完整的匹配项
         str.replace(regExp11.cap(0), "<br>~");
-        qDebug() << "清空终端屏幕:" << match;
+        //qDebug() << "清空终端屏幕:" << match;
         pos += regExp11.matchedLength();
     }
 
@@ -827,7 +827,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp12.indexIn(str, pos)) != -1) {
         QString match = regExp12.cap(0); // 获取完整的匹配项
         str.replace(regExp12.cap(0), "<br>~");
-        qDebug() << "隐藏光标:" << match;
+        //qDebug() << "隐藏光标:" << match;
         pos += regExp12.matchedLength();
     }
 
@@ -836,7 +836,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp13.indexIn(str, pos)) != -1) {
         QString match = regExp13.cap(0); // 获取完整的匹配项
         str.replace(regExp13.cap(0), "<br>~");
-        qDebug() << "将光标移动到第24行的起始位置:" << match;
+        //qDebug() << "将光标移动到第24行的起始位置:" << match;
         pos += regExp13.matchedLength();
     }
 
@@ -846,7 +846,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp14.indexIn(str, pos)) != -1) {
         QString match = regExp14.cap(0); // 获取完整的匹配项
         str.replace(regExp14.cap(0), "<br>~");
-        qDebug() << "将光标移动到第24行的起始位置:" << match;
+        //qDebug() << "将光标移动到第24行的起始位置:" << match;
         pos += regExp14.matchedLength();
     }
 
@@ -855,7 +855,7 @@ void datahandle::stringToHtmlFilter6(QString &str)
     while ((pos = regExp.indexIn(str, pos)) != -1) {
         QString match = regExp.cap(0); // 获取完整的匹配项
         str.replace(regExp.cap(0), "<br>");
-        qDebug() << "Matched stringToHtmlFilter6:" << match;
+        //qDebug() << "Matched stringToHtmlFilter6:" << match;
         pos += regExp.matchedLength();
     }
 }

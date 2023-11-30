@@ -846,6 +846,14 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
 
 bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_path, QString fileName)
 {
+    session_sftp = NULL;
+    session_sftp = libssh2_sftp_init(session_ssh_sftp);
+    if (session_sftp == NULL) {
+        qDebug() << "sftp初始化失败";
+        return false;
+    }
+    //qDebug() << " 执行sshHandleSftp init 完成";
+
     handle_sftp = NULL;
     handle_sftp = libssh2_sftp_open(session_sftp, remote_file_path.toStdString().c_str(), LIBSSH2_FXF_READ, 0);
     if (handle_sftp == NULL) {
@@ -862,17 +870,16 @@ bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_pa
     } else {
         qDebug() << "sftp_handle成功";
     }
-    qDebug() << "downloadFile";
-    LIBSSH2_SFTP_ATTRIBUTES * attrs = nullptr;
-    //int rc = libssh2_sftp_fstat(handle_sftp, attrs);
-    //qDebug() << "rc1 = " << rc;
-    //rc = libssh2_sftp_lstat(session_sftp, remote_file_path.toStdString().c_str(), attrs);
-    //qDebug() << "rc2 = " << rc;
-    //int filesize = attrs->filesize;
-    if (attrs != nullptr) {
-        qDebug() << "文件大小为" << attrs->filesize;
+    //qDebug() << "downloadFile";
+    LIBSSH2_SFTP_ATTRIBUTES attrs;
+    int rc = libssh2_sftp_fstat(handle_sftp, &attrs);
+    int filesize;
+    if (attrs.flags & LIBSSH2_SFTP_ATTR_SIZE) {
+        filesize = attrs.filesize;
+        //qDebug() << "文件大小为" << filesize;
+        emit send_createNewFile_sgin(local_file_path, fileName, 1, filesize);
+        //qDebug() << "rc = " << rc;
     }
-    //libssh2_sftp_close(handle_sftp);
 
     QTextCodec *code = QTextCodec::codecForName("GB2312");
     std::string name = code->fromUnicode(local_file_path.toStdString().c_str()).data();
@@ -891,43 +898,22 @@ bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_pa
         qDebug() << "打开文件成功";
     }
 
-    //emit send_createNewFile_sgin(local_file_path, fileName, 1, filesize);
-    //int sum = 0;
+    int sum = 0;
 
     //QElapsedTimer timer;
     //timer.start(); // 启动计时器
 
-//    int rc = 0;
-//    char mem[40960] = { 0 };
-//    while (0 < (rc = libssh2_sftp_read(handle_sftp, mem, sizeof(mem))))
-//    {
-//        qDebug() << "nread = " << rc;
-//        fwrite(mem, rc, 1, local_file);
-//        memset(mem, 0, sizeof(mem));
-//    }
-
-
-    char buffer[1024] = {0};
-    size_t nbytes;
-    while (TRUE) {
-        qDebug() << "调用libssh2_sftp_read";
-        int nread = libssh2_sftp_read(handle_sftp, buffer, sizeof(buffer));
-        qDebug() << "nread = " << nread;
-        if(nread <= 0) {
-            break;
-        }
-        for(char * ptr = buffer; nread;) {
-            int len = fwrite(buffer, 1, nbytes, local_file);
-            //sum = sum + len;
-            //emit send_fileProgress_sgin(sum, filesize);
-            if(len <= 0) {
-                break;
-            }
-            qDebug() << "len = " << len;
-            ptr += len;
-            nread -= len;
-        }
+    rc = 0;
+    char mem[40960] = { 0 };
+    while (0 < (rc = libssh2_sftp_read(handle_sftp, mem, sizeof(mem))))
+    {
+        //qDebug() << "nread = " << rc;
+        fwrite(mem, rc, 1, local_file);
+        sum = sum + rc;
+        emit send_fileProgress_sgin(sum, filesize);
+        memset(mem, 0, sizeof(mem));
     }
+
     //qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
     //qDebug() << "Elapsed Time:" << elapsedTime << "ms";
     qDebug() << "下载完成";
@@ -985,4 +971,12 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
         libssh2_session_free(session_ssh_sftp);
         return;
     }
+
+    session_sftp = NULL;
+    session_sftp = libssh2_sftp_init(session_ssh_sftp);
+    if (session_sftp == NULL) {
+        qDebug() << "sftp初始化失败";
+        return;
+    }
+    qDebug() << " 执行sshHandleSftp init 完成";
 }

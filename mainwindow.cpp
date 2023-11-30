@@ -823,7 +823,7 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger) {
         // 处理单击事件，例如还原窗口
-        qDebug() << "点击";
+        //qDebug() << "点击";
         //this->showMaximized();
         //restoreWindow();
     } else if (reason == QSystemTrayIcon::DoubleClick) {
@@ -847,7 +847,7 @@ void MainWindow::restoreWindow()
 
 void MainWindow::on_toolButton_max_clicked()
 {
-    qDebug() << "显示最大化";
+    //qDebug() << "显示最大化";
     //最大化
     if (!showFlag) {
         setContentsMargins(0, 0, 0, 0);
@@ -921,7 +921,7 @@ void MainWindow::on_newTool()
         //创建连接窗口
         tswidget = new toolswidget();
         QSize iconSize(16, 16); // 设置图标的大小
-        qDebug() <<"工具：" << actionText;
+        //qDebug() <<"工具：" << actionText;
         if (actionText == "小工具集合") {
             ui->stackedWidget->setCurrentIndex(0);
             ui->widget_4->show();
@@ -944,7 +944,7 @@ void MainWindow::on_newTool()
 
 void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 {
-    qDebug() << cInfoStruct.connectType;
+    //qDebug() << cInfoStruct.connectType;
     QSize iconSize(16, 16); // 设置图标的大小
 
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
@@ -970,12 +970,12 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
     //ui->widget_line->show();
-    qDebug() << "on_newConnnect调用结束";
+    //qDebug() << "on_newConnnect调用结束";
 }
 
 void MainWindow::on_newClose()
 {
-    qDebug() << "删除";
+    //qDebug() << "删除";
     delete(ccwidget);
     ccwidget = nullptr;
 }
@@ -1280,7 +1280,7 @@ void MainWindow::on_toolButton_manage_clicked()
 void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
 {
     if (ui->tabWidget->currentIndex() == ui->tabWidget->tabBar()->tabAt(pos)) {
-        qDebug() << "标签";
+        //qDebug() << "标签";
         QMenu *menu = new QMenu(ui->tabWidget);
         menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
         menu->setAttribute(Qt::WA_TranslucentBackground);
