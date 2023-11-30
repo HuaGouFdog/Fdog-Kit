@@ -6,114 +6,183 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>339</width>
-    <height>248</height>
+    <width>327</width>
+    <height>235</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);
-/*padding:5px;*/
-border-radius:6px;
-border:2px solid rgb(108, 117, 125, 65); </string>
+   <string notr="true">color: rgb(45, 45, 45);</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="leftMargin">
-    <number>9</number>
+    <number>5</number>
    </property>
    <property name="topMargin">
-    <number>9</number>
+    <number>5</number>
    </property>
    <property name="rightMargin">
-    <number>9</number>
+    <number>5</number>
    </property>
    <property name="bottomMargin">
-    <number>9</number>
+    <number>5</number>
    </property>
    <item>
-    <widget class="QListWidget" name="listWidget">
-     <property name="font">
-      <font>
-       <family>OPPOSans B</family>
-       <pointsize>10</pointsize>
-       <stylestrategy>PreferAntialias</stylestrategy>
-      </font>
-     </property>
+    <widget class="QWidget" name="widget_body" native="true">
      <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
+      <string notr="true">#widget_body{
+background-color: rgb(255, 255, 255);
+/*padding:5px;*/
+border-radius:6px;
+	border: 2px solid;
+	border-color: rgba(126, 126, 126, 50);
+}</string>
      </property>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="rightMargin">
+       <number>9</number>
       </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
+      <item>
+       <widget class="QListWidget" name="listWidget">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#listWidget{
+border: 0px solid;
+border-color: rgba(126, 126, 126, 50);
+background-color: rgb(255, 255, 255);
+color: rgb(45, 45, 45);
+}
+QScrollBar:vertical{
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+
+QScrollBar::handle:vertical{
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+
+QScrollBar::up-arrow:vertical {
+    border:none;
+}
+
+</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新建项目</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

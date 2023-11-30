@@ -267,6 +267,8 @@ private slots:
 
     void on_toolButton_conectStats_clicked();
 
+    void rece_downloadFile_sgin(QString fileName = "");
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号

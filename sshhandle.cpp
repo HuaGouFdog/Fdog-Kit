@@ -229,10 +229,7 @@ void sshhandle::initSFTP(int connrectType, QString host, QString port, QString u
         qDebug() << "sftp初始化失败";
         return;
     }
-
     qDebug() << "sftp初始化完成";
-
-
     //getServerInfo();
 }
 
@@ -803,6 +800,8 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
     } else {
         qDebug() << "sftp_handle成功";
     }
+
+
     // 读取本地文件内容并写入到远程文件
     char buffer[100000 * 2] = { 0 }; //100000 * 2
 
@@ -823,7 +822,7 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
             //发送进度条
             sum = sum + len;
             emit send_fileProgress_sgin(sum, filesize);
-            if(len < 0) {
+            if(len <= 0) {
                 break;
             }
             ptr += len;
@@ -840,6 +839,103 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
     // 断开 SSH 连接和释放会话
     //libssh2_sftp_shutdown(session_sftp);
     //        libssh2_session_disconnect(session, "Upload complete");
+    //libssh2_session_free(session_ssh_sftp);
+    //        libssh2_exit();
+    return true;
+}
+
+bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_path, QString fileName)
+{
+    handle_sftp = NULL;
+    handle_sftp = libssh2_sftp_open(session_sftp, remote_file_path.toStdString().c_str(), LIBSSH2_FXF_READ, 0);
+    if (handle_sftp == NULL) {
+        qDebug() << "sftp_handle失败";
+        int error_code = libssh2_sftp_last_error(session_sftp);
+        qDebug() << "Failed to open file: " << error_code;
+        // 处理远程文件创建失败的情况
+        //fclose(local_file);
+        libssh2_sftp_shutdown(session_sftp);
+        //            libssh2_session_disconnect(session, "Failed to create remote file");
+        //libssh2_session_free(session_ssh_sftp);
+        //            libssh2_exit();
+        return false;
+    } else {
+        qDebug() << "sftp_handle成功";
+    }
+    qDebug() << "downloadFile";
+    LIBSSH2_SFTP_ATTRIBUTES * attrs = nullptr;
+    //int rc = libssh2_sftp_fstat(handle_sftp, attrs);
+    //qDebug() << "rc1 = " << rc;
+    //rc = libssh2_sftp_lstat(session_sftp, remote_file_path.toStdString().c_str(), attrs);
+    //qDebug() << "rc2 = " << rc;
+    //int filesize = attrs->filesize;
+    if (attrs != nullptr) {
+        qDebug() << "文件大小为" << attrs->filesize;
+    }
+    //libssh2_sftp_close(handle_sftp);
+
+    QTextCodec *code = QTextCodec::codecForName("GB2312");
+    std::string name = code->fromUnicode(local_file_path.toStdString().c_str()).data();
+    // 打开本地文件
+    FILE *local_file = NULL;
+    local_file= fopen(name.c_str(), "wb");
+    if (local_file == NULL) {
+        qDebug() << "打开文件失败";
+        // 处理本地文件打开失败的情况
+        //libssh2_sftp_shutdown(sftp_session);
+        //libssh2_session_disconnect(session, "Failed to open local file");
+        //libssh2_session_free(session);
+        //libssh2_exit();
+        return false;
+    } else {
+        qDebug() << "打开文件成功";
+    }
+
+    //emit send_createNewFile_sgin(local_file_path, fileName, 1, filesize);
+    //int sum = 0;
+
+    //QElapsedTimer timer;
+    //timer.start(); // 启动计时器
+
+//    int rc = 0;
+//    char mem[40960] = { 0 };
+//    while (0 < (rc = libssh2_sftp_read(handle_sftp, mem, sizeof(mem))))
+//    {
+//        qDebug() << "nread = " << rc;
+//        fwrite(mem, rc, 1, local_file);
+//        memset(mem, 0, sizeof(mem));
+//    }
+
+
+    char buffer[1024] = {0};
+    size_t nbytes;
+    while (TRUE) {
+        qDebug() << "调用libssh2_sftp_read";
+        int nread = libssh2_sftp_read(handle_sftp, buffer, sizeof(buffer));
+        qDebug() << "nread = " << nread;
+        if(nread <= 0) {
+            break;
+        }
+        for(char * ptr = buffer; nread;) {
+            int len = fwrite(buffer, 1, nbytes, local_file);
+            //sum = sum + len;
+            //emit send_fileProgress_sgin(sum, filesize);
+            if(len <= 0) {
+                break;
+            }
+            qDebug() << "len = " << len;
+            ptr += len;
+            nread -= len;
+        }
+    }
+    //qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
+    //qDebug() << "Elapsed Time:" << elapsedTime << "ms";
+    qDebug() << "下载完成";
+    libssh2_sftp_close(handle_sftp);
+    fclose(local_file);
+    // 断开 SSH 连接和释放会话
+    //libssh2_sftp_shutdown(session_sftp);
+    //        libssh2_session_disconnect(session, "DownLaod complete");
     //libssh2_session_free(session_ssh_sftp);
     //        libssh2_exit();
     return true;
@@ -889,12 +985,4 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
         libssh2_session_free(session_ssh_sftp);
         return;
     }
-
-    session_sftp = NULL;
-    session_sftp = libssh2_sftp_init(session_ssh_sftp);
-    if (session_sftp == NULL) {
-        qDebug() << "sftp初始化失败";
-        return;
-    }
-    qDebug() << " 执行sshHandleSftp init 完成";
 }

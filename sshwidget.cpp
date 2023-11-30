@@ -270,13 +270,13 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     pasteAction->setShortcut(QKeySequence::Copy);
     pasteAction->setShortcutContext(Qt::WidgetShortcut);
 
-    QAction *uploadAction = new QAction(tr("上传"), textEdit_s);
-    uploadAction->setShortcut(QKeySequence::Copy);
-    uploadAction->setShortcutContext(Qt::WidgetShortcut);
-
     QAction *downloadAction = new QAction(tr("下载"), textEdit_s);
     downloadAction->setShortcut(QKeySequence::Copy);
     downloadAction->setShortcutContext(Qt::WidgetShortcut);
+
+    QAction *uploadAction = new QAction(tr("上传"), textEdit_s);
+    uploadAction->setShortcut(QKeySequence::Copy);
+    uploadAction->setShortcutContext(Qt::WidgetShortcut);
 
     QAction *selectAllAction = new QAction(tr("选择全部"), textEdit_s);
     selectAllAction->setShortcut(QKeySequence::SelectAll);
@@ -291,14 +291,15 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     contextMenu->addSeparator();
     contextMenu->addAction(pasteAction);
     contextMenu->addSeparator();
-    contextMenu->addAction(uploadAction);
-    contextMenu->addSeparator();
     contextMenu->addAction(downloadAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(uploadAction);
     contextMenu->addSeparator();
     contextMenu->addAction(selectAllAction);
     contextMenu->addSeparator();
     contextMenu->addAction(clearAction);
 
+    connect (downloadAction,SIGNAL(triggered()),this,SLOT(rece_downloadFile_sgin()));
     QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
     {
         qDebug() << "点击";
@@ -312,7 +313,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     ui->textEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     textEdit_s->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-
+    isScrollBar = false;
     /*
         "infoDisplay": 1,
         "historyDisplay": 1,
@@ -321,18 +322,22 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     */
     if (confInfo->infoDisplay == 0) {
         ui->widget->hide();
+        ui->toolButton_info->hide();
     }
 
     if (confInfo->historyDisplay == 0) {
-        hcwidget->hide();
+        //hcwidget->hide();
+        ui->toolButton_history->hide();
     }
 
     if (confInfo->commandDisplay == 0) {
         ui->widget_bottom->hide();
+        ui->toolButton_command->hide();
     }
 
     if (confInfo->conectStatsDisplay == 0) {
         ui->widget->hide();
+        ui->toolButton_conectStats->hide();
     }
 
 
@@ -508,7 +513,7 @@ void sshwidget::rece_channel_readS(QStringList data)
     qDebug() << "rece_channel_readS data  = " << data;
     //qDebug() << "rece_channel_readS data len2 = " << data.length();
     for(int i = 0; i < data.length(); i++) {
-        qDebug() << "lastCommondS =  " << lastCommondS;
+        //qDebug() << "lastCommondS =  " << lastCommondS;
         if (data[i] == "\b" && lastCommondS == "\u001B[D") {
             data[i] = "\u001B[D";
             lastCommondS = "";
@@ -925,6 +930,36 @@ void sshwidget::rece_channel_readS(QStringList data)
             continue;
         } else if (data[i] == "\u001B[2J") {
             //清空终端屏幕
+            //回到第一行清空下面所有
+            QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+            QTextLayout *lay = tc.block().layout();
+            int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+            int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
+            qDebug() << "A当前光标所在行数 =" << acurrentLine;
+            qDebug() << "R当前行数 =" << currentLine;
+            QTextCursor tc2 = textEdit_s->textCursor(); //当前光标
+            QTextLayout *lay2 = tc2.block().layout();
+            int iCurPos2= tc2.position() - tc2.block().position();//当前光标在本BLOCK内的相对位置
+            //int acurrentLine2 = lay2->lineForTextPosition(iCurPos2).lineNumber() + tc2.block().firstLineNumber();
+            int moveCount = acurrentLine - currentLine;
+            //移动开头并清除所有内容
+            if (moveCount >= 0) {
+                QTextCursor cursor = ui->textEdit->textCursor();
+                cursor.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, moveCount); // 将光标向上移动
+                cursor.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头，删除后面所有内容
+                cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+                // 删除当前光标后的内容
+                cursor.removeSelectedText();
+                ui->textEdit->setTextCursor(cursor);
+
+                QTextCursor cursor2 = textEdit_s->textCursor();
+                cursor2.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, moveCount); // 将光标向上移动
+                cursor2.movePosition(QTextCursor::StartOfLine); // 将光标移动到当前行的开头，删除后面所有内容
+                cursor2.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+                // 删除当前光标后的内容
+                cursor2.removeSelectedText();
+                textEdit_s->setTextCursor(cursor2);
+            }
             continue;
         } else if (data[i] == "\u001B[?25l") {
             //文本光标隐藏显示
@@ -995,7 +1030,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                 int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
                 //qDebug() << "A当前光标所在行数 =" << acurrentLine;
-
+                //qDebug() << "R当前行数 =" << currentLine;
                 QTextCursor tc2 = textEdit_s->textCursor(); //当前光标
                 QTextLayout *lay2 = tc2.block().layout();
                 int iCurPos2= tc2.position() - tc2.block().position();//当前光标在本BLOCK内的相对位置
@@ -1150,12 +1185,12 @@ void sshwidget::rece_channel_readS(QStringList data)
                                 position2 = data[i].indexOf("<br>");
                                 sendData(data[i].mid(0, position2));
                                 //如果下面有空行，则直接下移，没有则创建
-                                qDebug() << "总行数为" << lineCount << " data[i].mid(0, position2) = " << data[i].mid(0, position2);
+                                //qDebug() << "总行数为" << lineCount << " data[i].mid(0, position2) = " << data[i].mid(0, position2);
                                 QTextCursor tc = ui->textEdit->textCursor(); //当前光标
                                 QTextLayout *lay = tc.block().layout();
                                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                                 int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
-                                qDebug() << "sendData 当前光标所在行数 =" << acurrentLine - currentLine + 1 << " 起点行数=" << currentLine << " 共" << scrollZone << "行";
+                                //qDebug() << "sendData 当前光标所在行数 =" << acurrentLine - currentLine + 1 << " 起点行数=" << currentLine << " 共" << scrollZone << "行";
                                 if (acurrentLine - currentLine + 1 < scrollZone) {
                                     QTextCursor cursor = ui->textEdit->textCursor();
                                     cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, 1); // 将光标向下移动一行
@@ -1443,38 +1478,41 @@ void sshwidget::rece_resize_sign()
     // qDebug() << "视图 宽 = " << viewportSize.width();
 
 //    // 检查垂直滚动条的可见性
-//    bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
-//    isScrollBar = textEdit_s->verticalScrollBar()->isVisible();
+    //bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
     // 显示垂直滚动条的可见性状态
     //qDebug() << "Vertical Scrollbar Visible:" << isScrollBarVisible;
 
     // 计算可见行数和列数
-    int visibleLines = viewportSize.height() / lineHeight;
-    int visibleColumns = viewportSize.width() / charWidth;
+    int visibleLines = viewportSize.height() / lineHeight - 1;
+    int visibleColumns = viewportSize.width() / charWidth - 5;
 
     // 显示当前可显示的行数
     // 输出行数和列数
-    //qDebug() << "Visible Line count:" << visibleLines;
-    //qDebug() << "Visible Column count:" << visibleColumns;
-    if (columnCount != visibleColumns - 5 || lineCount != visibleLines - 1) {
+    qDebug() << "Visible Line count:" << visibleLines;
+    qDebug() << "Visible Column count:" << visibleColumns;
+
+    //如果宽在2范围则不触发
+//    if (visibleColumns != columnCount && columnCount - 5 < visibleColumns && visibleColumns < columnCount + 5) {
+//        return;
+//    }
+
+    if (columnCount != visibleColumns || lineCount != visibleLines) {
         // 检查垂直滚动条的可见性 是否有滚动条可见导致的大小变化 屏蔽由该变化导致的刷新
         if (!isScrollBar) {
-            bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
-            if (isScrollBarVisible) {
-                isScrollBar = isScrollBarVisible;
+            isScrollBar = textEdit_s->verticalScrollBar()->isVisible();
+            if (isScrollBar) {
                 return;
             }
         } else {
-            bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
-            if (!isScrollBarVisible) {
-                isScrollBar = isScrollBarVisible;
+            isScrollBar = textEdit_s->verticalScrollBar()->isHidden();
+            if (!isScrollBar) {
                 return;
             }
         }
-        //qDebug() << "终端大小被调用 visibleLines = " << visibleLines - 1 << " visibleColumns = " << visibleColumns - 10;
-        setTerminalSize(visibleLines - 1, visibleColumns - 5);
-        columnCount = visibleColumns - 5;
-        lineCount = visibleLines - 1;
+        qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns - 5;
+        setTerminalSize(visibleLines, visibleColumns);
+        columnCount = visibleColumns;
+        lineCount = visibleLines;
     }
 
 
@@ -1500,12 +1538,12 @@ void sshwidget::on_toolButton_upload_clicked()
         //qDebug() << "选择路径：" << fileList.at(i);
     }
     //获取当前服务器目录，然后上传
-    QString A = fileList.at(0);
+    QString path = fileList.at(0);
     QString fileName;
-    int colonIndex = A.lastIndexOf('/');
+    int colonIndex = path.lastIndexOf('/');
     if (colonIndex != 1) {
         //qDebug() << "上传文件 文件名" << A.mid(colonIndex + 1);
-        fileName = A.mid(colonIndex + 1);
+        fileName = path.mid(colonIndex + 1);
     }
 
     //sendUploadCommandData("C:\\Users\\张旭\\Desktop\\fsdownload\\apinfo.json", "/data/linkdood/im/apinfo.json");
@@ -1513,7 +1551,7 @@ void sshwidget::on_toolButton_upload_clicked()
     if (ssh_path.contains("~")) {
         ssh_path.replace("~","/root");
     }
-    sendUploadCommandData(A, ssh_path + "/" + fileName, fileName);
+    sendUploadCommandData(path, ssh_path + "/" + fileName, fileName);
 }
 
 void sshwidget::on_toolButton_fullScreen_clicked()
@@ -1622,4 +1660,24 @@ void sshwidget::on_toolButton_history_clicked()
 void sshwidget::on_toolButton_conectStats_clicked()
 {
 
+}
+
+void sshwidget::rece_downloadFile_sgin(QString fileName)
+{
+    //下载文件
+    QString copyData = textEdit_s->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    if (ssh_path.contains("~")) {
+        ssh_path.replace("~","/root");
+    }
+    qDebug() << "现在文件:" <<copyData;
+    qDebug() << "当前路径:" <<ssh_path;
+    qDebug() << "下载文件" <<ssh_path + "/" + copyData;
+
+    //调子线程执行
+    QString fileName2 = copyData;
+    QString remote_file_path = ssh_path + "/" + copyData;
+    QString local_file_path = "C:\\Users\\张旭\\Desktop\\fsdownload\\" + copyData;
+
+    QMetaObject::invokeMethod(sshSftp,"downloadFile", Qt::QueuedConnection, Q_ARG(QString, remote_file_path), Q_ARG(QString,local_file_path), Q_ARG(QString,fileName2));
 }

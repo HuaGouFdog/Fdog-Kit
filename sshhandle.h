@@ -95,6 +95,7 @@ signals:
 public slots:
     void init(int connrectType, QString host, QString port, QString username, QString password);
     bool uploadFile(QString local_file_path, QString remote_file_path, QString fileName);
+    bool downloadFile(QString remote_file_path, QString local_file_path, QString fileName);
 private:
     LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
     LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp

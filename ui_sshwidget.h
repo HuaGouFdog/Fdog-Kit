@@ -770,13 +770,14 @@ public:
 
         widget_toolbar_s = new QWidget(widget_toolbar);
         widget_toolbar_s->setObjectName(QStringLiteral("widget_toolbar_s"));
-        widget_toolbar_s->setMinimumSize(QSize(450, 30));
+        widget_toolbar_s->setMinimumSize(QSize(0, 30));
         widget_toolbar_s->setMaximumSize(QSize(450, 30));
         widget_toolbar_s->setStyleSheet(QLatin1String("background-color: rgba(11, 11, 11,150);\n"
 "border-radius: 10px;"));
         horizontalLayout_6 = new QHBoxLayout(widget_toolbar_s);
+        horizontalLayout_6->setSpacing(10);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_6->setContentsMargins(10, 0, 10, 0);
         toolButton_info = new QToolButton(widget_toolbar_s);
         toolButton_info->setObjectName(QStringLiteral("toolButton_info"));
         toolButton_info->setFont(font);
@@ -1306,7 +1307,7 @@ public:
         progressBar->setInvertedAppearance(false);
         textEdit_4 = new QTextEdit(tab_4);
         textEdit_4->setObjectName(QStringLiteral("textEdit_4"));
-        textEdit_4->setGeometry(QRect(420, 10, 681, 211));
+        textEdit_4->setGeometry(QRect(630, 10, 471, 211));
         textEdit_4->setFont(font);
         tabWidget->addTab(tab_4, QString());
 
@@ -1460,34 +1461,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:9pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">processData\344\277\256\346\224\271\345\211\215\346\225\260\346\215\256\357\274\232 &quot;\\r\\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#0"
-                        "00000;\">QStringList =  (&quot;&lt;br&gt;&quot;)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">processData\344\277\256\346\224\271\345\211\215\346\225\260\346\215\256\357\274\232 &quot;\\u001B[?1049h\\u001B[?1h\\u001B=\\u001B[1;26r\\u001B[?12;25h\\u001B[?12l\\u001B[?25h\\u001B[27m\\u001B[m\\u001B[H\\u001B[2J\\u001B[?25l\\u001B[26;1H\\&quot;c.txt\\&quot; 5L, 17C\\u001B[1;1Haaaa\\r\\ncc\\r\\ncc\\r\\ncc\\r\\ncc\\r\\n\\u001B[1m\\u001B[34m~                                                                                                                                                                                                                 \\u001B[7;1H~                                                                                                                                                                                                             "
-                        "    \\u001B[8;1H~                                                                                                                                                                                                                 \\u001B[9;1H~                                                                                                                                                                                                                 \\u001B[10;1H~                                                                                                                                                                                                                 \\u001B[11;1H~                                                                                                                                                                                                                 \\u001B[12;1H~                                                                                                                     "
-                        "                                                                                            \\u001B[13;1H~                                                                                                                                                                                                                 \\u001B[14;1H~                                                                                                                                                                                                                 \\u001B[15;1H~                                                                                                                                                                                                                 \\u001B[16;1H~                                                                                                                                                                                                                 \\u001B[17;1H~                           "
-                        "                                                                                                                                                                                      \\u001B[18;1H~                                                                                                                                                                                                                 \\u001B[19;1H~                                                                                                                                                                                                                 \\u001B[20;1H~                                                                                                                                                                                                                 \\u001B[21;1H~                                                                                                                                                                "
-                        "                                                 \\u001B[22;1H~                                                                                                                                                                                                                 \\u001B[23;1H~                                                                                                                                                                                                                 \\u001B[24;1H~                                                                    &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\240r &quot;\\u001B[1;26r&quot;  position =  0</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSu"
-                        "n'; font-size:9pt; color:#000000;\">QStringList =  (&quot;\\u001B[1;26r&quot;, &quot;&quot;)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\24012;25h</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">QStringList =  (&quot;\\u001B[1;26r&quot;, &quot;&quot;, &quot;\\u001B[?12;25h&quot;, &quot;&quot;)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\240</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-famil"
-                        "y:'SimSun'; font-size:9pt; color:#000000;\">QStringList =  (&quot;\\u001B[H&quot;, &quot;&quot;)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\240</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\24025l</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\240H &quot;\\u001B[26;1H&quot;  position =  0</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color"
-                        ":#000000;\">QStringList =  (&quot;\\&quot;c.txt\\&quot;&amp;nbsp;5L,&amp;nbsp;17C&quot;)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">\346\267\273\345\212\240H &quot;\\u001B[1;1H&quot;  position =  25</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; color:#000000;\">QStringList =  </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; font-weight:600; color:#aa0000;\">\347\250\213\345\272\217\345\274\202\345\270\270\347\273\223\346\235\237\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
-                        "<span style=\" font-family:'SimSun'; font-size:9pt; font-weight:600; color:#0000aa;\">The process was ended forcefully.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SimSun'; font-size:9pt; font-weight:600; color:#0000aa;\">E:/ProjectB/FdogShell/release/FdogShell.exe crashed.</span></p></body></html>", nullptr));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">#include&amp;nbsp;&lt;iostream&gt;</span></p></body></html>", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("sshwidget", "\346\211\223\345\214\205", nullptr));
         label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
         label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));
