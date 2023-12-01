@@ -29,6 +29,7 @@
 #include <QTextEdit>
 #include <QTextLayout>
 #include <QTextBlock>
+#include <QShortcut>
 QString a = "";
 
 //    // 关闭 SSH 连接
@@ -83,6 +84,18 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     QString password = cInfoStruct.password;
 
 
+    //快捷键 ctrl + shift + F 查找
+    QShortcut *shortcutF = new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_F), this);
+    connect(shortcutF, SIGNAL(activated()), this, SLOT(rece_toolButton_find_clicked()));
+
+    //快捷键 ctrl + shift + c 复制
+    QShortcut *shortcutC = new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_C), this);
+    connect(shortcutC, SIGNAL(activated()), this, SLOT(rece_copy_sgin()));
+
+    //快捷键 ctrl + shift + v 粘贴
+    QShortcut *shortcutV = new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_V), this);
+    connect(shortcutV, SIGNAL(activated()), this, SLOT(rece_paste_sgin()));
+
     //初始化
     int connrectType = 1;
     thread = new QThread();
@@ -117,9 +130,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
             SLOT(rece_getServerInfo(ServerInfoStruct)));
     threadExec->start();
-    qDebug("执行1");
     QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-    qDebug("执行2");
     //QThread::msleep(1000);
     //sftp
     sshSftp = new sshHandleSftp();
@@ -133,7 +144,6 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     threadSftp->start();
     qDebug("执行3");
     QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-    qDebug("执行4");
     textEdit_s = new CustomTextEdit(this);
     textEdit_s->setReadOnly(true);
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
@@ -262,6 +272,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     textEdit_s->setContextMenuPolicy(Qt::CustomContextMenu);
     //textEdit_s->setContextMenuPolicy(Qt::NoContextMenu);
 
+    QAction *findAction = new QAction(tr("查找"), textEdit_s);
+    findAction->setShortcut(QKeySequence::Copy);
+    findAction->setShortcutContext(Qt::WidgetShortcut);
+
     QAction *copyAction = new QAction(tr("复制"), textEdit_s);
     copyAction->setShortcut(QKeySequence::Copy);
     copyAction->setShortcutContext(Qt::WidgetShortcut);
@@ -287,6 +301,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     QMenu *contextMenu = new QMenu(textEdit_s);
     contextMenu->setWindowFlags(contextMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     contextMenu->setAttribute(Qt::WA_TranslucentBackground);
+    contextMenu->addAction(findAction);
+    contextMenu->addSeparator();
     contextMenu->addAction(copyAction);
     contextMenu->addSeparator();
     contextMenu->addAction(pasteAction);
@@ -299,7 +315,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     contextMenu->addSeparator();
     contextMenu->addAction(clearAction);
 
+    connect (findAction,SIGNAL(triggered()),this,SLOT(rece_find_sgin()));
+    connect (copyAction,SIGNAL(triggered()),this,SLOT(rece_copy_sgin()));
+    connect (pasteAction,SIGNAL(triggered()),this,SLOT(rece_paste_sgin()));
     connect (downloadAction,SIGNAL(triggered()),this,SLOT(rece_downloadFile_sgin()));
+    connect (uploadAction,SIGNAL(triggered()),this,SLOT(on_toolButton_upload_clicked()));
     QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
     {
         qDebug() << "点击";
@@ -1438,6 +1458,25 @@ void sshwidget::rece_send_mousePress_sign()
     //qDebug() << "textEdit_s_cursorPositionChanged设置焦点";
 }
 
+void sshwidget::rece_find_sgin()
+{
+    QString copyData = textEdit_s->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    fwidget->show();
+    fwidget->setFindText(copyData);
+}
+
+void sshwidget::rece_copy_sgin()
+{
+    QString copyData = textEdit_s->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(copyData);
+    QTextCursor cursor = textEdit_s->textCursor();
+    cursor.clearSelection();
+    textEdit_s->setTextCursor(cursor);
+}
+
 void sshwidget::rece_paste_sgin()
 {
     QClipboard *clipboard = QGuiApplication::clipboard();
@@ -1565,6 +1604,16 @@ void sshwidget::on_toolButton_find_clicked()
         fwidget->show();
     } else {
         fwidget->hide();
+    }
+}
+
+void sshwidget::rece_toolButton_find_clicked()
+{
+    QString copyData = textEdit_s->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    fwidget->setFindText(copyData);
+    if (fwidget->isHidden()) {
+        fwidget->show();
     }
 }
 

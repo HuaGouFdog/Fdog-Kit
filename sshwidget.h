@@ -239,6 +239,10 @@ private slots:
 
     void rece_send_mousePress_sign();
 
+    void rece_find_sgin();
+
+    void rece_copy_sgin();
+
     void rece_paste_sgin();
 
     void rece_resize_sign();
@@ -250,6 +254,8 @@ private slots:
     void on_toolButton_fullScreen_clicked();
 
     void on_toolButton_find_clicked();
+
+    void rece_toolButton_find_clicked();
 
     void on_tabWidget_customContextMenuRequested(const QPoint &pos);
 
@@ -268,6 +274,7 @@ private slots:
     void on_toolButton_conectStats_clicked();
 
     void rece_downloadFile_sgin(QString fileName = "");
+
 
 private:
     Ui::sshwidget *ui;

@@ -13,6 +13,7 @@ class findwidget : public QWidget
 
 public:
     explicit findwidget(QWidget *parent = 0);
+    void setFindText(QString data);
     ~findwidget();
 
 signals:

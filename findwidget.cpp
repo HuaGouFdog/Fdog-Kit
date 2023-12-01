@@ -1,4 +1,5 @@
-﻿#include "findwidget.h"
+﻿#pragma execution_character_set("utf-8")
+#include "findwidget.h"
 #include "ui_findwidget.h"
 
 findwidget::findwidget(QWidget *parent) :
@@ -16,6 +17,11 @@ findwidget::findwidget(QWidget *parent) :
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
     ui->lineEdit_search->addAction(action,QLineEdit::LeadingPosition);
+}
+
+void findwidget::setFindText(QString data)
+{
+    ui->lineEdit_search->setText(data);
 }
 
 findwidget::~findwidget()
