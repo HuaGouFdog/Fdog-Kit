@@ -148,7 +148,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     textEdit_s->setReadOnly(true);
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
     textEdit_s->setLineWrapMode(QTextEdit::NoWrap); //不自动换行
-    textEdit_s->setStyleSheet("QTextEdit{ \
+    textEdit_s->setStyleSheet("CustomTextEdit{ \
                                 background-color: rgb(0, 41, 169, 0);\
                                 selection-background-color: rgb(50, 130, 190);\
                                 font: 12pt \"Cascadia Mono,OPPOSans B\";\
@@ -158,7 +158,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
                                     padding-left:0px;\
                                     padding-right:0px;\
                                     border-radius: 5px;\
-                                color: rgba(255, 255, 255, 0);\
+                                color: rgba(255, 255, 255, 255);\
                                 }\
                                 QScrollBar:vertical {\
                                 width: 10px;\
@@ -237,14 +237,16 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     //    QTextCursor cursor = ui->textEdit->textCursor();
     //ui->textEdit->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
-    QStackedLayout * Layout = new QStackedLayout;
-    Layout->setStackingMode(QStackedLayout::StackAll);
-    Layout->setContentsMargins(0,0,0,0);
+
     dlwidget = new downloadwidget(textEdit_s);
     fwidget = new findwidget(textEdit_s);
     fwidget->hide();
     hcwidget = new historycommondwidget(textEdit_s);
     hcwidget->hide();
+
+    QStackedLayout * Layout = new QStackedLayout;
+    Layout->setStackingMode(QStackedLayout::StackAll);
+    Layout->setContentsMargins(0,0,0,0);
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
 
@@ -409,8 +411,16 @@ void sshwidget::sendData(QString data)
     cursor_s.setPosition(currentPosition);
     textEdit_s->setTextCursor(cursor_s);
 
-    ui->textEdit->insertHtml(data);
+
     textEdit_s->insertHtml(data);
+    QString data2 =data;
+    //qDebug()<< "data = " << data;
+    //data2.replace("opacity: 1;","opacity: 0;");
+    ui->textEdit->insertHtml(data2);
+    //qDebug()<< "data2 = " << data2;
+    QPalette palette = ui->textEdit->palette();
+    palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
+    ui->textEdit->setPalette(palette);
 }
 
 void sshwidget::setData(QString data)
@@ -532,12 +542,20 @@ void sshwidget::rece_channel_readS(QStringList data)
     data = data.mid(1);
     qDebug() << "rece_channel_readS data  = " << data;
     //qDebug() << "rece_channel_readS data len2 = " << data.length();
-    for(int i = 0; i < data.length(); i++) {
+    int i = 0;
+    for(i = 0; i < data.length(); i++) {
         //qDebug() << "lastCommondS =  " << lastCommondS;
         if (data[i] == "\b" && lastCommondS == "\u001B[D") {
             data[i] = "\u001B[D";
             lastCommondS = "";
         }
+
+        lastData = data[i];
+        if (lastData == "\u001B[D" || lastData == "\b") {
+            backspaceSum++;
+        }
+        qDebug() << "lastData = " << lastData;
+
         if (lastCommondS == "\u001BOC") {
             //data[i].length() 可能不是1
             int pos = 0;
@@ -1181,7 +1199,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     QTextCursor cursor = ui->textEdit->textCursor();
                     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, data[i].length());
                     // 删除当前光标后的内容
-                    QString previousChar = cursor.selectedText();
+                    //QString previousChar = cursor.selectedText();
                     //qDebug() << "删除字符为" << previousChar;
 
                     cursor.removeSelectedText();
@@ -1234,6 +1252,31 @@ void sshwidget::rece_channel_readS(QStringList data)
                     }
                 } else {
                     sendData(data[i]);
+                    qDebug() << "backspaceSum1 =" << backspaceSum;
+                    qDebug() << "删除数据";
+                    if (backspaceSum > 0) {
+                        //lastData == "\u001B[D" || lastData == "\b"
+                        //光标删除后面一位
+                        lastData = "";
+                        int sum = 0;
+                        if (backspaceSum >= data[i].length()) {
+                            backspaceSum = backspaceSum - data[i].length();
+                            sum = data[i].length();
+                        } else {
+                            sum = backspaceSum;
+                            backspaceSum = 0;
+                        }
+                        qDebug() << "backspaceSum2 =" << backspaceSum;
+                        QTextCursor cursor = ui->textEdit->textCursor();
+                        cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
+                        cursor.removeSelectedText();
+                        ui->textEdit->setTextCursor(cursor);
+
+                        QTextCursor cursor2 = textEdit_s->textCursor();
+                        cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
+                        cursor2.removeSelectedText();
+                        textEdit_s->setTextCursor(cursor2);
+                    }
                 }
 
 
@@ -1264,7 +1307,6 @@ void sshwidget::rece_channel_readS(QStringList data)
             }
         }
     }
-
     if (scrollBar_textEdit && scrollBar_textEdit_s) {
         //qDebug() << "设置滑动条 read " << scrollBar_textEdit->value();
         scrollBar_textEdit->setValue(scrollBar_textEdit->maximum());

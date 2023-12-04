@@ -307,6 +307,8 @@ private:
     historycommondwidget * hcwidget = NULL;
 
     QString lastCommondS; //上一条命令
+    QString lastData;  //上一条返回的数据
+    int backspaceSum = 0; //记录退格数
     QString ssh_path; //当前工作目录
     QString ZData;    //主缓存区数据
     QString BData;    //备缓存区数据
