@@ -57,6 +57,37 @@ protected:
         QTextEdit::mousePressEvent(event);
     }
 
+    void mouseDoubleClickEvent(QMouseEvent *event) override {
+        qDebug() << "双击";
+        if (event->button() == Qt::LeftButton) {
+            QTextCursor cursor = textCursor();
+
+            QString text = document()->toPlainText();
+                int start, end;
+
+                // 向前查找空格字符或行首
+                for (start = cursor.position() - 1; start >= 0 && text.mid(start, 1) != " " && text.mid(end, 1) != "\n"; start--)
+                {
+                }
+
+                // 向后查找空格字符或行尾
+                for (end = cursor.position(); end < text.length() && text.mid(end, 1) != " " && text.mid(end, 1) != "\n"; end++)
+                {
+                }
+
+                // 设置光标选中范围
+                cursor.setPosition(start + 1);
+                cursor.setPosition(end, QTextCursor::KeepAnchor);
+                setTextCursor(cursor);
+                qDebug() << textCursor().selectedText();
+
+            return;
+        }
+
+           // 如果没有找到非空字符，则继续默认的双击事件处理
+           QTextEdit::mouseDoubleClickEvent(event);
+    }
+
     void resizeEvent(QResizeEvent *event) override
     {
         QTextEdit::resizeEvent(event);
