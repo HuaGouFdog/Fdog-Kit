@@ -290,7 +290,6 @@ void sshhandle::init_poll()
                     }
                     dataList.insert(0, ac.ssh_path);
                     emit send_channel_readS(dataList);
-
                     //emit send_channel_read(ac.processData(buffer));
                     // 处理输出数据
                     // 例如，将输出数据打印到控制台
@@ -306,11 +305,11 @@ void sshhandle::init_poll()
         } else if (rc == 0) {
             // 超时，没有事件发生
             //qDebug() << "循环";
-            QTest::qSleep(100);
+            //QTest::qSleep(100);
         } else {
             // 发生错误，处理错误
             break;
-            QTest::qSleep(100);
+            //QTest::qSleep(100);
         }
     }
 }

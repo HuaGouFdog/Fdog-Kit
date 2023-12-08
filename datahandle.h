@@ -72,6 +72,7 @@ public:
     QString processData(QString data);
     QStringList processDataS(QString data);
 
+
     int isDTab = 0;
     QString ssh_path; //当前工作目录
 signals:

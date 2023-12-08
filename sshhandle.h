@@ -40,27 +40,6 @@ struct ServerInfoStruct {
 
 Q_DECLARE_METATYPE(ServerInfoStruct);
 
-//class sshHandleThreadEXEC : public QThread {
-//    Q_OBJECT
-//public:
-//    explicit sshHandleThreadEXEC(int connrectType = 0, QString host = "", QString port = "", QString username = "", QString password = "", QObject *parent = nullptr);
-//    void run();
-
-//    QString commondExec(QString commond);
-//signals:
-//    void send_getServerInfo(ServerInfoStruct serverInfo);
-//private:
-//    LIBSSH2_SESSION *session_exec = nullptr; //exec session
-//    LIBSSH2_CHANNEL *channel_exec = nullptr; //exec channel
-//    int connrectType;
-//    QString host;
-//    QString port;
-//    QString username;
-//    QString password;
-//public slots:
-//    void getServerInfo();
-//};
-
 class sshHandleExec : public QObject {
     Q_OBJECT
 public:
@@ -145,7 +124,7 @@ public slots:
     QString commondExec(QString commond);
 
 private:
-
+    QVector<QStringList> messageList;
 };
 
 #endif // SSHHANDLE_H

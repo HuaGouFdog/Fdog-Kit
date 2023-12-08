@@ -11,6 +11,7 @@
 #include <QScrollBar>
 #include <QTextEdit>
 #include <QClipboard>
+#include <QTextCursor>
 #include <QInputMethodEvent>
 #include "findwidget.h"
 #include "downloadwidget.h"
@@ -226,6 +227,11 @@ public:
     explicit sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget *parent = 0);
     ~sshwidget();
 
+    enum MoveMode {
+        MoveAnchor,
+        KeepAnchor
+    };
+
     //发送命令
     void sendCommandData(QString data);
     //发送上传命令
@@ -236,6 +242,29 @@ public:
     void sendData(QString data);
 
     void setData(QString data);
+
+    //向上移动
+    void movePositionUp(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //向下移动
+    void movePositionDown(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //向左移动
+    void movePositionLeft(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //向右移动
+    void movePositionRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //行开始
+    void movePositionStartLine(sshwidget::MoveMode mode = sshwidget::MoveAnchor);
+    //行结尾
+    void movePositionEndLine(sshwidget::MoveMode mode = sshwidget::MoveAnchor);
+    //文本尾
+    void movePositionEnd(sshwidget::MoveMode mode = sshwidget::MoveAnchor);
+    //选中文本
+    QString movePositionLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //删除文本
+    void movePositionRemoveLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //删除文本
+    void movePositionRemoveEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //删除文本
+    void movePositionRemoveRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
 signals:
     void send_toolButton_toolkit_sign();
