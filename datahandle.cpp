@@ -240,21 +240,21 @@ void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
         array2.append(backCrl->blue());
         QString strC2(array2.toHex());
         //qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
-        str = QString("<span style=\" color:#%1; background-color:#%2;\">%3</span>").arg(strC).arg(strC2).arg(str);
+        str = QString("<span style=\" color:#%1; background-color:#%2;opacity: 1;\">%3</span>").arg(strC).arg(strC2).arg(str);
     } else if (fontCrl != NULL) {
         QByteArray array;
         array.append(fontCrl->red());
         array.append(fontCrl->green());
         array.append(fontCrl->blue());
         QString strC(array.toHex());
-        str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
+        str = QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
     } else if (backCrl != NULL) {
         QByteArray array;
         array.append(backCrl->red());
         array.append(backCrl->green());
         array.append(backCrl->blue());
         QString strC(array.toHex());
-        str = QString("<span style=\" background-color:#%1;\">%2</span>").arg(strC).arg(str);
+        str = QString("<span style=\" background-color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
     }
 }
 
@@ -335,7 +335,7 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    //qDebug() << "processData修改前数据：" << data;
+    qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
@@ -451,6 +451,19 @@ QStringList datahandle::processDataS(QString data)
             }
             data = data.mid(position + 1);
             //qDebug() << "添加b";
+        } else if (data.contains("<br>")) {
+            //光标左移动
+            int position = data.indexOf("<br>");
+            if (position == 0) {
+                dataS.append(data.mid(0, 4));
+            } else {
+                //qDebug() << "processDataS 进入 " << data.mid(0, position);
+                sum++;
+                dataS.append(processDataS(data.mid(0, position)));
+                dataS.append(data.mid(position, 4));
+            }
+            data = data.mid(position + 4);
+            //qDebug() << "添加<br>";
         } else if (data.contains("\u001B[K")) {
             int position = data.indexOf("\u001B[K");
             if (position == 0) {

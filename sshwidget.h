@@ -66,7 +66,7 @@ protected:
                 int start, end;
 
                 // 向前查找空格字符或行首
-                for (start = cursor.position() - 1; start >= 0 && text.mid(start, 1) != " " && text.mid(end, 1) != "\n"; start--)
+                for (start = cursor.position() - 1; start >= 0 && text.mid(start, 1) != " " && text.mid(end, 1) != "\r\n" && text.mid(end, 1) != "\n"; start--)
                 {
                 }
 
@@ -371,9 +371,14 @@ private:
 
     int currentLine = -1;
 
+    int currentLineC = -1;
+
     bool isBuffer = false;
 
     int scrollZone = 0;
+
+    int clearPos = 0;
+    int clearSPos = 0;
 };
 
 #endif // SSHWIDGET_H
