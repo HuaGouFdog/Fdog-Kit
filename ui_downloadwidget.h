@@ -104,15 +104,16 @@ public:
 "background-color: rgb(255, 255, 255);\n"
 "/*padding:5px;*/\n"
 "border-radius:6px;\n"
-"border:2px solid rgb(108, 117, 125, 65); \n"
+"	border: 2px solid;\n"
+"	border-color: rgba(126, 126, 126, 50);\n"
 "}"));
         verticalLayout_2 = new QVBoxLayout(widget_body);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(5, 0, 5, 5);
+        verticalLayout_2->setContentsMargins(5, 2, 5, 5);
         widget_3 = new QWidget(widget_body);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setStyleSheet(QStringLiteral("background-color: rgba(125, 125, 125, 0);"));
+        widget_3->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         horizontalLayout_2 = new QHBoxLayout(widget_3);
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -137,7 +138,7 @@ public:
         toolButton_file_3->setMaximumSize(QSize(22, 25));
         toolButton_file_3->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	background-color: rgb(255, 255, 255);\n"
 "	border: none;\n"
 "}\n"
 "\n"
@@ -148,7 +149,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	background-color: rgb(255, 255, 255);\n"
 "	border: none;\n"
 "}"));
         QIcon icon1;
@@ -164,7 +165,7 @@ public:
         toolButton_file_2->setMaximumSize(QSize(22, 25));
         toolButton_file_2->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	background-color: rgb(255, 255, 255);\n"
 "	border: none;\n"
 "}\n"
 "\n"
@@ -175,7 +176,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	background-color: rgb(255, 255, 255);\n"
 "	border: none;\n"
 "}"));
         QIcon icon2;
@@ -193,13 +194,14 @@ public:
         scrollArea->setMinimumSize(QSize(0, 0));
         scrollArea->setStyleSheet(QLatin1String("#scrollArea{\n"
 "	border: 1px solid;\n"
-"	background-color: rgb(29, 29, 29);\n"
+"	border-color: rgba(126, 126, 126, 50);\n"
+"	background-color: rgba(29, 29, 29, 50);\n"
 "}\n"
 ""));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 268, 238));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 268, 236));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 200));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 150);"));
         verticalLayout_3 = new QVBoxLayout(scrollAreaWidgetContents);
@@ -209,7 +211,7 @@ public:
         widget = new QWidget(scrollAreaWidgetContents);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(0, 200));
-        widget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        widget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 50);"));
         verticalLayout_4 = new QVBoxLayout(widget);
         verticalLayout_4->setSpacing(3);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));

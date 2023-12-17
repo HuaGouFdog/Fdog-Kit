@@ -587,7 +587,7 @@ padding-left:10px;
 padding-right:10px;</string>
             </property>
             <property name="text">
-             <string>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</string>
+             <string>嘻嘻嘻嘻嘻嘻嘻嘻嘻dsadasdsddsadsadsa嘻嘻嘻嘻</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1147,7 +1147,7 @@ QTabBar QToolButton:hover {
 }</string>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="tab_passowrd">
             <attribute name="title">
@@ -1354,6 +1354,9 @@ padding-right:10px;</string>
              </property>
              <property name="text">
               <string>******</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
              </property>
             </widget>
             <widget class="QToolButton" name="toolButton_browse">
@@ -1562,6 +1565,9 @@ padding-right:10px;</string>
              </property>
              <property name="text">
               <string>******</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
              </property>
             </widget>
             <widget class="QLabel" name="label_password_2">

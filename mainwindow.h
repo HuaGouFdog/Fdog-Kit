@@ -14,6 +14,7 @@
 #include <QSystemTrayIcon>
 #include "aboutwidget.h"
 #include "config.h"
+#include "thriftwidget.h"
 
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
@@ -132,6 +133,8 @@ private slots:
 
     void on_tabWidget_customContextMenuRequested(const QPoint &pos);
 
+
+
 private:
     Ui::MainWindow *ui;
 
@@ -166,6 +169,7 @@ private:
     QAction * jsonFormat;   //json格式化
     QAction * xmlFormat;    //xml格式化
     QAction * textDiff;     //url文本对比
+    QAction * textTest;     //接口测试
     QAction * toolAssemble; //小工具集合
 
 
@@ -177,6 +181,7 @@ private:
     historyconnectwidget * hcwidget = nullptr; //快速连接
     toolswidget * tswidget = nullptr; //创建工具窗口
     settingwidget * stwidget = nullptr; //创建设置窗口
+    thriftwidget * twidget = nullptr;  //测试工具窗口
 
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;

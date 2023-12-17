@@ -90,5 +90,10 @@
         <file>lib/xml (2).png</file>
         <file>lib/XML-Local-hover.png</file>
         <file>lib/toolBox.png</file>
+        <file>lib/delete.png</file>
+        <file>lib/tuodong.png</file>
+        <file>lib/history2.png</file>
+        <file>lib/test.png</file>
+        <file>lib/file2.png</file>
     </qresource>
 </RCC>

@@ -110,6 +110,9 @@ MainWindow::MainWindow(QWidget *parent) :
     textDiff = new QAction(QIcon(":lib/XML-Local-hover.png"), "文本对比");
     men_tool->addAction(textDiff);
     men_tool->addSeparator();
+    textTest = new QAction(QIcon(":lib/test.png"), "接口测试");
+    men_tool->addAction(textTest);
+    men_tool->addSeparator();
     toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具集合");
     men_tool->addAction(toolAssemble);
     men_tool->addSeparator();
@@ -118,6 +121,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(textTest, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
 
     ui->widget_line->hide();
@@ -1107,6 +1111,13 @@ void MainWindow::on_newTool()
             toolName = "文本对比";
             tswidget = new toolswidget(3);
             ui->tabWidget->addTab(tswidget, QIcon(":lib/XML-Local-hover.png").pixmap(iconSize), toolName);
+        } else if (actionText == "接口测试") {
+            toolName = "接口测试";
+            twidget = new thriftwidget(this);
+            ui->tabWidget->addTab(twidget, QIcon(":lib/test.png").pixmap(iconSize), toolName);
+            ui->stackedWidget->setCurrentIndex(0);
+            twidget->show();
+            return;
         }
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         tswidget->show();

@@ -702,6 +702,7 @@ public:
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
+        lineEdit_zk_port_8->setEchoMode(QLineEdit::Password);
         toolButton_browse = new QToolButton(tab_secretkey);
         toolButton_browse->setObjectName(QStringLiteral("toolButton_browse"));
         toolButton_browse->setGeometry(QRect(350, 40, 70, 30));
@@ -780,6 +781,7 @@ public:
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
+        lineEdit_password_data_2->setEchoMode(QLineEdit::Password);
         label_password_2 = new QLabel(tab_keyboard);
         label_password_2->setObjectName(QStringLiteral("label_password_2"));
         label_password_2->setGeometry(QRect(0, 10, 39, 30));
@@ -1036,7 +1038,7 @@ public:
         retranslateUi(createconnect);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(1);
+        tabWidget_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(createconnect);
@@ -1055,7 +1057,7 @@ public:
         widget_group_lineEdit_group_data->setText(QString());
         widget_group_lineEdit_group_data->setPlaceholderText(QApplication::translate("createconnect", "\345\205\250\351\203\250", nullptr));
         widget_group_label_group_2->setText(QApplication::translate("createconnect", "\345\244\207\346\263\250", nullptr));
-        widget_group_lineEdit_group_data_2->setText(QApplication::translate("createconnect", "\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273", nullptr));
+        widget_group_lineEdit_group_data_2->setText(QApplication::translate("createconnect", "\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273\345\230\273dsadasdsddsadsadsa\345\230\273\345\230\273\345\230\273\345\230\273", nullptr));
         widget_group_lineEdit_group_data_2->setPlaceholderText(QApplication::translate("createconnect", "\345\205\250\351\203\250", nullptr));
         widget_color_label_color->setText(QApplication::translate("createconnect", "\346\240\207\351\242\230\351\242\234\350\211\262", nullptr));
         widget_color_toolButton_color_data->setText(QApplication::translate("createconnect", "#000000", nullptr));

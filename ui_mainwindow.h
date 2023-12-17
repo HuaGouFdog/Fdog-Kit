@@ -200,7 +200,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1077, 672);
+        MainWindow->resize(1100, 700);
         MainWindow->setMinimumSize(QSize(600, 600));
         MainWindow->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
@@ -278,7 +278,7 @@ public:
         horizontalLayout->setSpacing(4);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 1, 0, 2);
+        horizontalLayout->setContentsMargins(0, 1, 5, 2);
         toolButton = new QToolButton(widget_title);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         toolButton->setMinimumSize(QSize(20, 20));
