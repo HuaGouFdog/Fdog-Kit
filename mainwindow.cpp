@@ -1117,6 +1117,7 @@ void MainWindow::on_newTool()
             ui->tabWidget->addTab(twidget, QIcon(":lib/test.png").pixmap(iconSize), toolName);
             ui->stackedWidget->setCurrentIndex(0);
             twidget->show();
+            ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
             return;
         }
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);

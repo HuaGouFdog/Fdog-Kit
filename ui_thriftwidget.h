@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -37,7 +38,7 @@ public:
     QVBoxLayout *verticalLayout_5;
     QWidget *widget_9;
     QVBoxLayout *verticalLayout_3;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_find;
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *tab_2;
@@ -51,7 +52,7 @@ public:
     QLabel *label;
     QLineEdit *lineEdit_port;
     QSpacerItem *horizontalSpacer_4;
-    QToolButton *toolButton_2;
+    QToolButton *toolButton_test;
     QSpacerItem *horizontalSpacer_2;
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout;
@@ -71,13 +72,22 @@ public:
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_6;
-    QTreeWidget *treeWidget_2;
+    QTextEdit *textEdit_2;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_6;
-    QLabel *label_7;
     QWidget *widget_5;
     QVBoxLayout *verticalLayout_7;
+    QWidget *widget_8;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_7;
+    QSpacerItem *horizontalSpacer_5;
     QTextEdit *textEdit;
+    QWidget *widget_10;
+    QHBoxLayout *horizontalLayout_6;
+    QCheckBox *checkBox_2;
+    QSpacerItem *horizontalSpacer_7;
+    QLabel *label_time;
+    QSpacerItem *horizontalSpacer_6;
 
     void setupUi(QWidget *thriftwidget)
     {
@@ -162,13 +172,13 @@ public:
         verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 5, 0, 5);
-        lineEdit = new QLineEdit(widget_9);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMinimumSize(QSize(0, 30));
-        lineEdit->setMaximumSize(QSize(16777215, 30));
-        lineEdit->setFont(font);
-        lineEdit->setStyleSheet(QLatin1String("QLineEdit{\n"
-"color:#ced4da;\n"
+        lineEdit_find = new QLineEdit(widget_9);
+        lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
+        lineEdit_find->setMinimumSize(QSize(0, 30));
+        lineEdit_find->setMaximumSize(QSize(16777215, 30));
+        lineEdit_find->setFont(font);
+        lineEdit_find->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(231, 238, 244);\n"
 "border-radius: 14px;\n"
 "background-color: rgb(25, 25, 25, 155);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
@@ -177,7 +187,7 @@ public:
 "padding-right:10px;\n"
 "}"));
 
-        verticalLayout_3->addWidget(lineEdit);
+        verticalLayout_3->addWidget(lineEdit_find);
 
 
         verticalLayout_5->addWidget(widget_9);
@@ -418,15 +428,15 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_4);
 
-        toolButton_2 = new QToolButton(widget_6);
-        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
-        toolButton_2->setMinimumSize(QSize(68, 30));
+        toolButton_test = new QToolButton(widget_6);
+        toolButton_test->setObjectName(QStringLiteral("toolButton_test"));
+        toolButton_test->setMinimumSize(QSize(68, 30));
         QFont font2;
         font2.setFamily(QStringLiteral("OPPOSans"));
         font2.setPointSize(10);
         font2.setStyleStrategy(QFont::PreferAntialias);
-        toolButton_2->setFont(font2);
-        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_test->setFont(font2);
+        toolButton_test->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(250, 118, 0);\n"
 "	border-radius: 5px;\n"
@@ -442,11 +452,11 @@ public:
 "	background-color: rgb(250, 118, 0);\n"
 "}"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/node.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_2->setIcon(icon2);
-        toolButton_2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        icon2.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_test->setIcon(icon2);
+        toolButton_test->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-        horizontalLayout_2->addWidget(toolButton_2);
+        horizontalLayout_2->addWidget(toolButton_test);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -476,10 +486,15 @@ public:
         comboBox->setFont(font);
         comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
 "	color:#ffffff;\n"
-"	border:1px solid #8a8a8a;\n"
+"	border:2px solid #8a8a8a;\n"
 "	color: rgb(138, 138, 138);\n"
-"	border-radius:3px;\n"
+"	border-radius:5px;\n"
 "	background:transparent;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"height:28px;\n"
 "}\n"
 "QComboBox:disabled{\n"
 "	border:1px solid gray;\n"
@@ -505,7 +520,9 @@ public:
 "	color:#ffffff;\n"
 "	background-color:#1e2d36;\n"
 "	selection-background-color:#52DCFE;\n"
-"}"));
+"}\n"
+"\n"
+""));
 
         horizontalLayout->addWidget(comboBox);
 
@@ -557,6 +574,7 @@ public:
         splitter_2 = new QSplitter(widget_7);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Vertical);
+        splitter_2->setHandleWidth(0);
         widget_4 = new QWidget(splitter_2);
         widget_4->setObjectName(QStringLiteral("widget_4"));
         horizontalLayout_3 = new QHBoxLayout(widget_4);
@@ -566,9 +584,23 @@ public:
         splitter = new QSplitter(widget_4);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
-        splitter->setHandleWidth(1);
+        splitter->setHandleWidth(0);
         widget = new QWidget(splitter);
         widget->setObjectName(QStringLiteral("widget"));
+        widget->setStyleSheet(QLatin1String("QComboBox{\n"
+"font: 10pt \"OPPOSans B\";\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView{\n"
+"font: 10pt \"OPPOSans B\";\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item{\n"
+"\n"
+"height:28px; \n"
+"width:50px;\n"
+"\n"
+"}"));
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -587,7 +619,6 @@ public:
 
         treeWidget = new QTreeWidget(widget);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-        __qtreewidgetitem->setFont(3, font);
         __qtreewidgetitem->setFont(2, font);
         __qtreewidgetitem->setFont(1, font);
         __qtreewidgetitem->setFont(0, font);
@@ -610,13 +641,9 @@ public:
 "}\n"
 "\n"
 "QTreeWidget {\n"
-"	border:0px solid #242424;\n"
+"	border:2px solid rgb(54, 81, 97);\n"
 "	\n"
 "	color: rgb(0, 0, 0);\n"
-"}\n"
-"\n"
-"QComboBox{\n"
-"font: 10pt \"OPPOSans B\";\n"
 "}"));
         treeWidget->setIndentation(20);
         treeWidget->setUniformRowHeights(true);
@@ -632,6 +659,7 @@ public:
         splitter->addWidget(widget);
         widget_3 = new QWidget(splitter);
         widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
         verticalLayout_4 = new QVBoxLayout(widget_3);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -648,43 +676,19 @@ public:
 
         verticalLayout_4->addWidget(label_6);
 
-        treeWidget_2 = new QTreeWidget(widget_3);
-        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem();
-        __qtreewidgetitem1->setFont(3, font);
-        __qtreewidgetitem1->setFont(2, font);
-        __qtreewidgetitem1->setFont(1, font);
-        __qtreewidgetitem1->setFont(0, font);
-        treeWidget_2->setHeaderItem(__qtreewidgetitem1);
-        treeWidget_2->setObjectName(QStringLiteral("treeWidget_2"));
-        treeWidget_2->setFont(font);
-        treeWidget_2->setStyleSheet(QLatin1String("QLineEdit{\n"
+        textEdit_2 = new QTextEdit(widget_3);
+        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
+        textEdit_2->setFont(font);
+        textEdit_2->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        textEdit_2->setStyleSheet(QLatin1String("QTextEdit{\n"
 "color: rgb(0, 0, 0);\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"border: 1px solid rgba(255, 255, 255, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
 "border-radius: 0px;\n"
-"padding-left:0px;\n"
-"padding-right:0px;\n"
-"}\n"
-"\n"
-"QToolButton {\n"
-"	background-color: rgba(255, 255, 255,0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QTreeWidget {\n"
-"	border:0px solid #242424;\n"
-"}\n"
-""));
-        treeWidget_2->setIndentation(20);
-        treeWidget_2->setUniformRowHeights(true);
-        treeWidget_2->setSortingEnabled(false);
-        treeWidget_2->setAnimated(false);
-        treeWidget_2->header()->setVisible(true);
-        treeWidget_2->header()->setDefaultSectionSize(100);
-        treeWidget_2->header()->setMinimumSectionSize(20);
-        treeWidget_2->header()->setStretchLastSection(true);
+"border:2px solid rgb(54, 81, 97);\n"
+"}"));
+        textEdit_2->setReadOnly(true);
 
-        verticalLayout_4->addWidget(treeWidget_2);
+        verticalLayout_4->addWidget(textEdit_2);
 
         splitter->addWidget(widget_3);
 
@@ -697,7 +701,24 @@ public:
         verticalLayout_6->setSpacing(0);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(widget_2);
+        widget_5 = new QWidget(widget_2);
+        widget_5->setObjectName(QStringLiteral("widget_5"));
+        widget_5->setMinimumSize(QSize(0, 100));
+        QFont font3;
+        font3.setStyleStrategy(QFont::PreferDefault);
+        widget_5->setFont(font3);
+        verticalLayout_7 = new QVBoxLayout(widget_5);
+        verticalLayout_7->setSpacing(0);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        widget_8 = new QWidget(widget_5);
+        widget_8->setObjectName(QStringLiteral("widget_8"));
+        widget_8->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
+        horizontalLayout_5 = new QHBoxLayout(widget_8);
+        horizontalLayout_5->setSpacing(0);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        label_7 = new QLabel(widget_8);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setMinimumSize(QSize(0, 30));
         label_7->setMaximumSize(QSize(16777215, 30));
@@ -707,31 +728,71 @@ public:
 "padding-left:2px;\n"
 "padding-right:10px;"));
 
-        verticalLayout_6->addWidget(label_7);
+        horizontalLayout_5->addWidget(label_7);
 
-        widget_5 = new QWidget(widget_2);
-        widget_5->setObjectName(QStringLiteral("widget_5"));
-        widget_5->setMinimumSize(QSize(0, 100));
-        QFont font3;
-        font3.setStyleStrategy(QFont::PreferDefault);
-        widget_5->setFont(font3);
-        verticalLayout_7 = new QVBoxLayout(widget_5);
-        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_5);
+
+
+        verticalLayout_7->addWidget(widget_8);
+
         textEdit = new QTextEdit(widget_5);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setFont(font);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("QTextEdit{\n"
-"color: rgb(0, 0, 0);\n"
-"	background-color: rgb(255, 255, 255);\n"
+"color: rgb(80, 80, 80);\n"
+"background-color: rgb(255, 255, 255);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 0px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;\n"
 "}"));
+        textEdit->setReadOnly(true);
 
         verticalLayout_7->addWidget(textEdit);
+
+        widget_10 = new QWidget(widget_5);
+        widget_10->setObjectName(QStringLiteral("widget_10"));
+        widget_10->setMinimumSize(QSize(0, 28));
+        widget_10->setFont(font);
+        widget_10->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
+        horizontalLayout_6 = new QHBoxLayout(widget_10);
+        horizontalLayout_6->setSpacing(0);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        checkBox_2 = new QCheckBox(widget_10);
+        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
+        checkBox_2->setMaximumSize(QSize(16777215, 20));
+        checkBox_2->setFont(font);
+        checkBox_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        checkBox_2->setChecked(true);
+
+        horizontalLayout_6->addWidget(checkBox_2);
+
+        horizontalSpacer_7 = new QSpacerItem(300, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_7);
+
+        label_time = new QLabel(widget_10);
+        label_time->setObjectName(QStringLiteral("label_time"));
+        label_time->setMinimumSize(QSize(0, 0));
+        label_time->setMaximumSize(QSize(16777215, 20));
+        label_time->setFont(font);
+        label_time->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
+"color: rgb(255, 255, 255);\n"
+"padding-left:2px;\n"
+"padding-right:10px;"));
+
+        horizontalLayout_6->addWidget(label_time);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_6);
+
+
+        verticalLayout_7->addWidget(widget_10);
 
 
         verticalLayout_6->addWidget(widget_5);
@@ -755,7 +816,7 @@ public:
     void retranslateUi(QWidget *thriftwidget)
     {
         thriftwidget->setWindowTitle(QApplication::translate("thriftwidget", "Form", nullptr));
-        lineEdit->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
+        lineEdit_find->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
@@ -764,7 +825,7 @@ public:
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
         lineEdit_port->setText(QApplication::translate("thriftwidget", "9090", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
-        toolButton_2->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200\345\217\257\350\276\276", nullptr));
+        toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
         comboBox->setItemText(0, QApplication::translate("thriftwidget", "TBinaryProtocol", nullptr));
 
@@ -773,17 +834,82 @@ public:
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
-        ___qtreewidgetitem->setText(3, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\346\217\217\350\277\260", nullptr));
         ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));
         ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
-        label_6->setText(QApplication::translate("thriftwidget", "\345\207\272\345\217\202", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem1 = treeWidget_2->headerItem();
-        ___qtreewidgetitem1->setText(3, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\346\217\217\350\277\260", nullptr));
-        ___qtreewidgetitem1->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));
-        ___qtreewidgetitem1->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
-        ___qtreewidgetitem1->setText(0, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
+        label_6->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\345\200\274\350\257\264\346\230\216", nullptr));
+        textEdit_2->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\200. \346\266\210\346\201\257\347\261\273\345\236\213\357\274\2104\345\255\227\350\212\202\357\274\211\357\274\232</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    1. CALL\357\274\21080010001\357\274\211\357\274\214\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\345\270\214\346\234\233\350\216\267\345\217\226\350\277\224\345\233\236\346\266\210\346\201\257</span></p>\n"
+"<p "
+                        "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    2. REPLY\357\274\21080010002\357\274\211\357\274\214\346\235\245\350\207\252\346\234\215\345\212\241\347\253\257\350\277\224\345\233\236\347\232\204\346\266\210\346\201\257</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. EXCEPTION\357\274\21080010003\357\274\211\357\274\214\346\234\215\345\212\241\345\231\250\345\244\204\347\220\206\350\257\267\346\261\202\346\227\266\345\207\272\347\216\260\345\274\202\345\270\270</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    4. ONEWAY\357\274\21080010004\357\274\211\357\274\214\345\215\225\345\220\221\350\257\267\346\261\202\357\274\214\344\270\215\351\234\200\350\246\201\350"
+                        "\277\224\345\233\236\346\225\260\346\215\256</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\214. \346\226\271\346\263\225\345\220\215\351\225\277\345\272\246\357\274\2104\345\255\227\350\212\202\357\274\211</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\211. \346\226\271\346\263\225\345\220\215\357\274\210\344\270\215\345\233\272\345\256\232\345\255\227\350\212\202\357\274\214\346\240\271\346\215\256\346\226\271"
+                        "\346\263\225\345\220\215\351\225\277\345\272\246\350\216\267\345\217\226\357\274\211</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345\233\233. \346\265\201\346\260\264\345\217\267\357\274\2104\345\255\227\350\212\202\357\274\211</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\224. \345\237\272\347\241\200\346\225\260\346\215\256\347\261\273\345\236\213\357\274\214\347\261\273\345\236\213\357\274\2101\345\255\227\350\212"
+                        "\202\357\274\211\357\274\214\346\225\260\346\215\256\345\272\217\345\217\267\357\274\2102\345\255\227\350\212\202\357\274\211\357\274\214\346\225\260\346\215\256\345\200\274\357\274\210\346\240\271\346\215\256\346\225\260\346\215\256\347\261\273\345\236\213\350\200\214\345\256\232\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    1. bool\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2132\357\274\214\345\200\274\344\270\2721\344\270\252\345\255\227\350\212\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    2. byte\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2133\357\274\214\345\200\274\344\270\2721\344\270\252\345\255\227\350\212\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bl"
+                        "ock-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. i16\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2136\357\274\214\345\200\274\344\270\2722\344\270\252\345\255\227\350\212\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. i32\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2138\357\274\214\345\200\274\344\270\2724\344\270\252\345\255\227\350\212\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    4. i64\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21310\357\274\214\345\200\274\344\270\2728\344\270\252\345\255\227\350\212\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    5. double\347\261"
+                        "\273\345\236\213\357\274\214\347\261\273\345\236\2134\357\274\214\345\200\274\344\270\2728\344\270\252\345\255\227\350\212\202</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345\205\255. \345\244\215\346\235\202\346\225\260\346\215\256\347\261\273\345\236\213\357\274\214\347\261\273\345\236\213\357\274\2101\345\255\227\350\212\202\357\274\211\357\274\214\346\225\260\346\215\256\345\272\217\345\217\267\357\274\2102\345\255\227\350\212\202\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    1. string\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21311\357\274\214\345\272\217\345\217"
+                        "\267\345\220\216\346\234\211\344\270\200\344\270\252\345\233\233\345\255\227\350\212\202\347\232\204\346\225\260\346\215\256\351\225\277\345\272\246\357\274\214\346\225\260\346\215\256\347\232\204\345\200\274\346\240\271\346\215\256\351\225\277\345\272\246\350\216\267\345\217\226</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    2. struct\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21312\357\274\214\346\214\211\347\205\247\346\255\243\345\270\270\350\247\243\346\236\220\357\274\214\351\201\207\345\210\26000\350\241\250\347\244\272\347\273\223\346\235\237struct</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. map\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21313\357\274\214\345\272\217\345\217\267\345\220\216\347\254\254\344\270\200\344\270\252"
+                        "\345\255\227\350\212\202\344\270\272\351\224\256\347\261\273\345\236\213\357\274\214\347\254\254\344\272\214\344\270\252\345\255\227\350\212\202\344\270\272\345\200\274\347\261\273\345\236\213\357\274\214\344\270\200\344\270\252\345\233\233\345\255\227\350\212\202\347\232\204\346\225\260\346\215\256\351\225\277\345\272\246\357\274\214\346\225\260\346\215\256\347\232\204\345\200\274\346\240\271\346\215\256\351\225\277\345\272\246\350\216\267\345\217\226</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    4. set\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21314\357\274\214\345\272\217\345\217\267\345\220\216\347\254\254\344\270\200\344\270\252\345\255\227\350\212\202\344\270\272\345\200\274\347\261\273\345\236\213\357\274\214\344\270\200\344\270\252\345\233\233\345\255\227\350\212\202\347\232\204\346\225\260\346\215\256\351\225\277\345\272\246\357\274\214\346\225\260\346\215\256\347"
+                        "\232\204\345\200\274\346\240\271\346\215\256\351\225\277\345\272\246\350\216\267\345\217\226</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    5. list\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21315\357\274\214\345\272\217\345\217\267\345\220\216\347\254\254\344\270\200\344\270\252\345\255\227\350\212\202\344\270\272\345\200\274\347\261\273\345\236\213\357\274\214\344\270\200\344\270\252\345\233\233\345\255\227\350\212\202\347\232\204\346\225\260\346\215\256\351\225\277\345\272\246\357\274\214\346\225\260\346\215\256\347\232\204\345\200\274\346\240\271\346\215\256\351\225\277\345\272\246\350\216\267\345\217\226</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0p"
+                        "x; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">--------------------------------------------------------</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\273\245 i32 yourMethod(1: i32 param) \346\216\245\345\217\243\344\270\272\344\276\213</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\350\257\267\346\261\202\345\216\237\346\225\260\346\215\256\344\270\272\357\274\232</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">80 01 00 01</span> <span style=\" colo"
+                        "r:#3a9d33;\">00 00 00 0a</span> <span style=\" color:#3e58ff;\">79 6f 75 72 4d 65 74 68 6f 64</span> <span style=\" color:#c23134;\">00 00 00 00</span> <span style=\" color:#408876;\">08</span> <span style=\" color:#7c5390;\">00 01</span> <span style=\" color:#8f6f55;\">00 00 00 01</span> <span style=\" color:#a10000;\">00</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">80 01 00 01 \350\241\250\347\244\272CALL\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\346\234\237\346\234\233\350\277\224\345\233\236\345\200\274</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p styl"
+                        "e=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 00 00 0a \350\241\250\347\244\272\346\226\271\346\263\225\345\220\215\351\225\277\345\272\246\344\270\27210</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">79 6f 75 72 4d 65 74 68 6f 64 \344\270\272\346\226\271\346\263\225\345\220\215</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">0"
+                        "0 00 00 00 \350\241\250\347\244\272\346\265\201\346\260\264\345\217\267</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">08 \350\241\250\347\244\272\346\225\260\346\215\256\347\261\273\345\236\213\344\270\272i32</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 01 \350\241\250\347\244\272\345\272\217\345\217\267\344\270\2721</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; ma"
+                        "rgin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 00 00 01 \350\241\250\347\244\272\345\200\274\344\270\2721</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 \350\241\250\347\244\272\347\273\223\346\235\237</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" co"
+                        "lor:#505050;\">--------------------------------------------------------</span></p></body></html>", nullptr));
         label_7->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\347\273\223\346\236\234", nullptr));
+        checkBox_2->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+        label_time->setText(QApplication::translate("thriftwidget", "\345\223\215\345\272\224\346\227\266\351\227\264\357\274\232", nullptr));
     } // retranslateUi
 
 };

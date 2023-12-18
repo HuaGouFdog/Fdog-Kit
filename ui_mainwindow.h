@@ -2241,7 +2241,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(-1);
         stackedWidget_tool->setCurrentIndex(0);
 

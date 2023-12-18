@@ -61,7 +61,7 @@ class thriftwidget;
 
       QLineEdit* lineEditParamName;       //参数名
       QLineEdit* lineEditParamValue;      //参数值
-      QLineEdit* lineEditParamDescribe;   //参数描述
+      //QLineEdit* lineEditParamDescribe;   //参数描述
 
       QToolButton* deleteButton;          //删除按钮
       QToolButton* moveButton;          //删除按钮
@@ -70,8 +70,8 @@ class thriftwidget;
       QWidget* widgetParamName;
       QHBoxLayout* layoutParamType;
       QWidget* widgetParamType;
-      QHBoxLayout* layoutParamDescribe;
-      QWidget* widgetParamDescribe;
+      QHBoxLayout* layoutParamValue;
+      QWidget* widgetParamValue;
 
       QLabel* label;
       QCheckBox* checkBox;
@@ -79,6 +79,7 @@ class thriftwidget;
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);
       void send_onTextChanged(QString data, QTreeWidgetItem * item);
+      void send_currentIndexChanged(QString data, QTreeWidgetItem * item);
  };
 
 class thriftwidget : public QWidget
@@ -104,10 +105,13 @@ private slots:
     void on_toolButton_clicked();
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void read_data();
-    void on_toolButton_2_clicked();
-
     void rece_deleteItem(QTreeWidgetItem * item);
     void rece_TextChanged(QString data, QTreeWidgetItem * item);
+    void rece_currentIndexChanged(QString data, QTreeWidgetItem * item);
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void on_toolButton_test_clicked();
+
 private:
     QVector<QString> dataList;
     Ui::thriftwidget *ui;

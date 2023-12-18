@@ -145,7 +145,7 @@ QScrollBar::up-arrow:vertical {
           <number>5</number>
          </property>
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="lineEdit_find">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -167,7 +167,7 @@ QScrollBar::up-arrow:vertical {
            </property>
            <property name="styleSheet">
             <string notr="true">QLineEdit{
-color:#ced4da;
+color: rgb(231, 238, 244);
 border-radius: 14px;
 background-color: rgb(25, 25, 25, 155);
 border: 0px solid rgba(255, 255, 255, 0);
@@ -563,7 +563,7 @@ padding-right:10px;
           </spacer>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_2">
+          <widget class="QToolButton" name="toolButton_test">
            <property name="minimumSize">
             <size>
              <width>68</width>
@@ -595,11 +595,11 @@ QToolButton:hover {
 }</string>
            </property>
            <property name="text">
-            <string>测试地址可达</string>
+            <string>测试地址</string>
            </property>
            <property name="icon">
             <iconset resource="lib.qrc">
-             <normaloff>:/lib/node.png</normaloff>:/lib/node.png</iconset>
+             <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -678,10 +678,15 @@ QToolButton:hover {
            <property name="styleSheet">
             <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #8a8a8a;
+	border:2px solid #8a8a8a;
 	color: rgb(138, 138, 138);
-	border-radius:3px;
+	border-radius:5px;
 	background:transparent;
+}
+
+QComboBox QAbstractItemView::item
+{
+height:28px;
 }
 QComboBox:disabled{
 	border:1px solid gray;
@@ -707,7 +712,9 @@ QComboBox QAbstractItemView{
 	color:#ffffff;
 	background-color:#1e2d36;
 	selection-background-color:#52DCFE;
-}</string>
+}
+
+</string>
            </property>
            <item>
             <property name="text">
@@ -811,6 +818,9 @@ QToolButton:hover {
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
+        <property name="handleWidth">
+         <number>0</number>
+        </property>
         <widget class="QWidget" name="widget_4" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <property name="spacing">
@@ -834,9 +844,25 @@ QToolButton:hover {
              <enum>Qt::Horizontal</enum>
             </property>
             <property name="handleWidth">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">QComboBox{
+font: 10pt &quot;OPPOSans B&quot;;
+}
+
+QComboBox QAbstractItemView{
+font: 10pt &quot;OPPOSans B&quot;;
+}
+
+QComboBox QAbstractItemView::item{
+
+height:28px; 
+width:50px;
+
+}</string>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <property name="spacing">
                <number>0</number>
@@ -911,13 +937,9 @@ QToolButton {
 }
 
 QTreeWidget {
-	border:0px solid #242424;
+	border:2px solid rgb(54, 81, 97);
 	
 	color: rgb(0, 0, 0);
-}
-
-QComboBox{
-font: 10pt &quot;OPPOSans B&quot;;
 }</string>
                 </property>
                 <property name="indentation">
@@ -980,23 +1002,14 @@ font: 10pt &quot;OPPOSans B&quot;;
                   </font>
                  </property>
                 </column>
-                <column>
-                 <property name="text">
-                  <string>参数描述</string>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                </column>
                </widget>
               </item>
              </layout>
             </widget>
             <widget class="QWidget" name="widget_3" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(54, 81, 97);</string>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <property name="spacing">
                <number>0</number>
@@ -1041,12 +1054,12 @@ padding-left:2px;
 padding-right:10px;</string>
                 </property>
                 <property name="text">
-                 <string>出参</string>
+                 <string>thrift协议值说明</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QTreeWidget" name="treeWidget_2">
+               <widget class="QTextEdit" name="textEdit_2">
                 <property name="font">
                  <font>
                   <family>OPPOSans B</family>
@@ -1054,98 +1067,76 @@ padding-right:10px;</string>
                   <stylestrategy>PreferAntialias</stylestrategy>
                  </font>
                 </property>
+                <property name="cursor" stdset="0">
+                 <cursorShape>ArrowCursor</cursorShape>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">QLineEdit{
+                 <string notr="true">QTextEdit{
 color: rgb(0, 0, 0);
-background-color: rgba(255, 255, 255, 0);
-border: 1px solid rgba(255, 255, 255, 0);
+background-color: rgb(255, 255, 255);
 border-radius: 0px;
-padding-left:0px;
-padding-right:0px;
-}
-
-QToolButton {
-	background-color: rgba(255, 255, 255,0);
-	border: none;
-}
-
-QTreeWidget {
-	border:0px solid #242424;
-}
-</string>
+border:2px solid rgb(54, 81, 97);
+}</string>
                 </property>
-                <property name="indentation">
-                 <number>20</number>
-                </property>
-                <property name="uniformRowHeights">
+                <property name="readOnly">
                  <bool>true</bool>
                 </property>
-                <property name="sortingEnabled">
-                 <bool>false</bool>
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;一. 消息类型（4字节）：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    1. CALL（80010001），调用方法，并希望获取返回消息&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    2. REPLY（80010002），来自服务端返回的消息&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    3. EXCEPTION（80010003），服务器处理请求时出现异常&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    4. ONEWAY（80010004），单向请求，不需要返回数据&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;二. 方法名长度（4字节）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;三. 方法名（不固定字节，根据方法名长度获取）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;四. 流水号（4字节）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;五. 基础数据类型，类型（1字节），数据序号（2字节），数据值（根据数据类型而定）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    1. bool类型，类型2，值为1个字节&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    2. byte类型，类型3，值为1个字节&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    3. i16类型，类型6，值为2个字节&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    3. i32类型，类型8，值为4个字节&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    4. i64类型，类型10，值为8个字节&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    5. double类型，类型4，值为8个字节&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;六. 复杂数据类型，类型（1字节），数据序号（2字节）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    1. string类型，类型11，序号后有一个四字节的数据长度，数据的值根据长度获取&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    2. struct类型，类型12，按照正常解析，遇到00表示结束struct&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    3. map类型，类型13，序号后第一个字节为键类型，第二个字节为值类型，一个四字节的数据长度，数据的值根据长度获取&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    4. set类型，类型14，序号后第一个字节为值类型，一个四字节的数据长度，数据的值根据长度获取&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    5. list类型，类型15，序号后第一个字节为值类型，一个四字节的数据长度，数据的值根据长度获取&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;--------------------------------------------------------&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;以 i32 yourMethod(1: i32 param) 接口为例&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;请求原数据为：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;80 01 00 01&lt;/span&gt; &lt;span style=&quot; color:#3a9d33;&quot;&gt;00 00 00 0a&lt;/span&gt; &lt;span style=&quot; color:#3e58ff;&quot;&gt;79 6f 75 72 4d 65 74 68 6f 64&lt;/span&gt; &lt;span style=&quot; color:#c23134;&quot;&gt;00 00 00 00&lt;/span&gt; &lt;span style=&quot; color:#408876;&quot;&gt;08&lt;/span&gt; &lt;span style=&quot; color:#7c5390;&quot;&gt;00 01&lt;/span&gt; &lt;span style=&quot; color:#8f6f55;&quot;&gt;00 00 00 01&lt;/span&gt; &lt;span style=&quot; color:#a10000;&quot;&gt;00&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;80 01 00 01 表示CALL调用方法，并期望返回值&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;00 00 00 0a 表示方法名长度为10&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;79 6f 75 72 4d 65 74 68 6f 64 为方法名&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;00 00 00 00 表示流水号&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;08 表示数据类型为i32&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;00 01 表示序号为1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;00 00 00 01 表示值为1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;00 表示结束&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;--------------------------------------------------------&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
-                <property name="animated">
-                 <bool>false</bool>
-                </property>
-                <attribute name="headerVisible">
-                 <bool>true</bool>
-                </attribute>
-                <attribute name="headerDefaultSectionSize">
-                 <number>100</number>
-                </attribute>
-                <attribute name="headerMinimumSectionSize">
-                 <number>20</number>
-                </attribute>
-                <attribute name="headerStretchLastSection">
-                 <bool>true</bool>
-                </attribute>
-                <column>
-                 <property name="text">
-                  <string>参数名</string>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>参数类型</string>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>参数值</string>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>参数描述</string>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                </column>
                </widget>
               </item>
              </layout>
@@ -1172,38 +1163,6 @@ QTreeWidget {
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_7">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(54, 81, 97);
-color: rgb(255, 255, 255);
-padding-left:2px;
-padding-right:10px;</string>
-            </property>
-            <property name="text">
-             <string>请求结果</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QWidget" name="widget_5" native="true">
             <property name="minimumSize">
              <size>
@@ -1217,6 +1176,9 @@ padding-right:10px;</string>
              </font>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_7">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <property name="leftMargin">
               <number>0</number>
              </property>
@@ -1229,6 +1191,75 @@ padding-right:10px;</string>
              <property name="bottomMargin">
               <number>0</number>
              </property>
+             <item>
+              <widget class="QWidget" name="widget_8" native="true">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(54, 81, 97);</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_7">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(54, 81, 97);
+color: rgb(255, 255, 255);
+padding-left:2px;
+padding-right:10px;</string>
+                  </property>
+                  <property name="text">
+                   <string>请求结果</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
              <item>
               <widget class="QTextEdit" name="textEdit">
                <property name="font">
@@ -1243,14 +1274,141 @@ padding-right:10px;</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">QTextEdit{
-color: rgb(0, 0, 0);
-	background-color: rgb(255, 255, 255);
+color: rgb(80, 80, 80);
+background-color: rgb(255, 255, 255);
 border: 1px solid rgba(255, 255, 255, 0);
 border-radius: 0px;
 padding-left:10px;
 padding-right:10px;
 }</string>
                </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="widget_10" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>28</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                 <stylestrategy>PreferAntialias</stylestrategy>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(54, 81, 97);</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QCheckBox" name="checkBox_2">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(255, 255, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>显示请求源数据/结果源数据</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>300</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_time">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(54, 81, 97);
+color: rgb(255, 255, 255);
+padding-left:2px;
+padding-right:10px;</string>
+                  </property>
+                  <property name="text">
+                   <string>响应时间：</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_6">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
