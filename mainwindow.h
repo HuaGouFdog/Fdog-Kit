@@ -135,6 +135,8 @@ private slots:
 
 
 
+    void on_widget_welcome_bottom_toolButton_github_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -169,7 +171,8 @@ private:
     QAction * jsonFormat;   //json格式化
     QAction * xmlFormat;    //xml格式化
     QAction * textDiff;     //url文本对比
-    QAction * textTest;     //接口测试
+    QAction * textTest;     //thrift接口测试
+    QAction * zkVisual;     //zk可视化
     QAction * toolAssemble; //小工具集合
 
 

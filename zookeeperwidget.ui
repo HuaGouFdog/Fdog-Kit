@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>966</width>
+    <width>1141</width>
     <height>561</height>
    </rect>
   </property>
@@ -36,21 +36,50 @@
     border-style:outset
 }
 
-QMenu
-{
-    background-color: rgb(67, 77, 88);
-    font: 10pt &quot;OPPOSans B&quot;;
-    color: rgb(255, 255, 255);
-	border:1px solid rgb(255, 255, 255,200);
+QMenu {
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 3px 0px 3px 0px;
+border-radius:6px;
+border:2px solid rgb(108, 117, 125, 65); 
 }
-        
-QMenu::item:selected
-{
-    background-color: #0B0E11;
+QMenu::item {
+	font-size: 10pt;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+	
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 25px 5px 25px;
+    /*margin: 2px 2px 2px 2px;*/
 }
-</string>
+QMenu::item:selected {
+    background-color : rgb(236,236,237);
+}
+QMenu::icon:checked {
+    background: rgb(253,253,254);
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+}
+QMenu::icon:checked:selected {
+    background-color : rgb(236,236,237);
+    background-image: url(:/space_selected.png);
+}
+QMenu::separator {
+    height: 2px;
+    background: rgb(235,235,236);
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+}</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
+  <layout class="QHBoxLayout" name="horizontalLayout_5">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -63,6 +92,254 @@ QMenu::item:selected
    <property name="bottomMargin">
     <number>0</number>
    </property>
+   <item>
+    <widget class="QWidget" name="widget_left" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>OPPOSans B</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget_left{
+border-right:2px solid rgba(108, 117, 125, 65); 
+}
+QScrollBar:vertical{
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+
+QScrollBar::handle:vertical{
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <property name="spacing">
+       <number>9</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="widget_9" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_find">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 15px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="placeholderText">
+            <string>搜索服务器</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+ QTabWidget::tab-bar {
+         left:0px;       
+}
+	
+
+/*设置TabWidget中tab_1的样式*/
+#tab_1.QWidget{
+	background-color: rgb(108, 117, 125, 0);
+}
+ 
+/*设置TabWidget中tab_2的样式*/
+#tab_2.QWidget{
+	background-color: rgb(108, 117, 125, 0);
+}
+ 
+/*设置TabWidget中QTabBar的样式*/
+QTabBar::tab{
+    background-color: rgb(108, 117, 125, 0);
+	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
+	font-size:10pt;
+	color:#ced4da;    /*设置tab中的文本的颜色*/
+	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
+	width:80px;
+	padding: 4px;
+	margin-right:0px;
+	margin-left: 0px;
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+	/*background-color: #0B0E11;*/
+	background-color: rgb(108, 117, 125, 0);
+	border-bottom: 2px solid rgb(54, 81, 97)
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+	/*background-color: rgb(100, 117, 125, 125);*/
+}
+ 
+/*设置TabWidget的边框的样式*/
+QTabWidget::pane {
+    border: 0px solid rgb(108, 117, 125, 65);
+}
+ 
+
+QTabBar::close-button{ 
+	/*border-image: url(:lib/Kafka.png);*/
+}
+QTabBar::close-button:hover{
+	/*border-image: url(:/Resources/image/close_hover.png);*/
+}
+
+
+/*当打开多个tab，右侧出现，点击后，可以向前向后的按钮的样式*/
+QTabBar QToolButton {
+    border: none;
+	color: rgb(255, 206, 6);
+    background-color: #0b0e11;
+}
+ 
+QTabBar QToolButton:hover {
+	background-color: #161a1e; 
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string>历史记录</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/file2.png</normaloff>:/lib/file2.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string>接口列表</string>
+         </attribute>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item>
     <widget class="QSplitter" name="splitter">
      <property name="font">
@@ -158,6 +435,12 @@ color: rgb(255, 255, 255);</string>
           </item>
           <item>
            <widget class="QLineEdit" name="lineEdit_node">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
               <family>OPPOSans B</family>
@@ -418,7 +701,7 @@ QToolButton:hover {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>25</height>
+           <height>32</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -445,6 +728,12 @@ QToolButton:hover {
           </property>
           <item>
            <widget class="QLineEdit" name="lineEdit_search">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <family>OPPOSans B</family>
@@ -597,11 +886,26 @@ QScrollBar::up-arrow:vertical {
             <property name="midLineWidth">
              <number>0</number>
             </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAsNeeded</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAsNeeded</enum>
+            </property>
             <property name="autoScrollMargin">
              <number>20</number>
             </property>
+            <property name="verticalScrollMode">
+             <enum>QAbstractItemView::ScrollPerItem</enum>
+            </property>
+            <property name="horizontalScrollMode">
+             <enum>QAbstractItemView::ScrollPerPixel</enum>
+            </property>
             <property name="indentation">
              <number>20</number>
+            </property>
+            <property name="uniformRowHeights">
+             <bool>true</bool>
             </property>
             <property name="allColumnsShowFocus">
              <bool>false</bool>

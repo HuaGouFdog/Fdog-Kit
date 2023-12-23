@@ -169,14 +169,22 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->treeWidget->setColumnWidth(0, 120);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(1, 120);
+    ui->treeWidget->setColumnWidth(1, 270);
 
     // 设置第四列的宽度为 150 像素
 //    ui->treeWidget->setColumnWidth(2, 100);
 
     // 计算第五列的宽度，使其占满剩余空间
-    int lastColumnWidth = ui->treeWidget->viewport()->width() - 120 - 120;
+    int lastColumnWidth = ui->treeWidget->viewport()->width() - 120 - 270;
     ui->treeWidget->setColumnWidth(2, lastColumnWidth);
+
+    QHeaderView* header = ui->treeWidget->header();
+
+    // 设置所有列的大小调整模式为 Interactive
+    header->setSectionResizeMode(QHeaderView::Interactive);
+
+    // 设置默认的列高度为 30 像素
+    header->setDefaultSectionSize(200);
 
     // 创建一个树节点
     ItemWidget* item = new ItemWidget(ui->treeWidget);
@@ -492,7 +500,15 @@ void thriftwidget::on_toolButton_clicked()
         } else if (item->comboBoxBase->currentText() == "set") {
 
         } else if (item->comboBoxBase->currentText() == "list") {
-
+            //设置类型
+            QString type = QString("%1").arg(THRIFT_LIST_TYPE, 2, 16, QLatin1Char('0'));
+            string2stringList(type);
+            //设置序号
+            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
+            string2stringList(type2);
+            //设置值类型
+            QString type3 = QString("%1").arg(sum + 1, 2, 16, QLatin1Char('0'));
+            string2stringList(type3);
         }
     }
 
@@ -601,6 +617,16 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+    } else if (item_->comboBoxBase->currentText() == "map") {
+        item_->comboBoxKey->show();
+        item_->comboBoxValue->show();
+    } else if (item_->comboBoxBase->currentText() == "set") {
+        item_->comboBoxValue->show();
+    } else if (item_->comboBoxBase->currentText() == "list") {
+        item_->comboBoxValue->show();
+    } else {
+        item_->comboBoxKey->hide();
+        item_->comboBoxValue->hide();
     }
 }
 

@@ -25,6 +25,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QShortcut>
+#include <QDesktopServices>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -101,20 +102,23 @@ MainWindow::MainWindow(QWidget *parent) :
     //                   "QMenu::item:selected {background-color: #0B0E11;}");
     men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     men_tool->setAttribute(Qt::WA_TranslucentBackground);
-    jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
-    men_tool->addAction(jsonFormat);
-    men_tool->addSeparator();
-    xmlFormat = new QAction(QIcon(":lib/xml (2).png"), "XML格式化");
-    men_tool->addAction(xmlFormat);
+        toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具");
+    men_tool->addAction(toolAssemble);
     men_tool->addSeparator();
     textDiff = new QAction(QIcon(":lib/XML-Local-hover.png"), "文本对比");
     men_tool->addAction(textDiff);
     men_tool->addSeparator();
-    textTest = new QAction(QIcon(":lib/test.png"), "接口测试");
-    men_tool->addAction(textTest);
+    xmlFormat = new QAction(QIcon(":lib/xml (2).png"), "XML格式化");
+    men_tool->addAction(xmlFormat);
     men_tool->addSeparator();
-    toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具集合");
-    men_tool->addAction(toolAssemble);
+    jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
+    men_tool->addAction(jsonFormat);
+    men_tool->addSeparator();
+    zkVisual = new QAction(QIcon(":lib/Zookeeper2.png"), "zk可视化连接");
+    men_tool->addAction(zkVisual);
+    men_tool->addSeparator();
+    textTest = new QAction(QIcon(":lib/test.png"), "Thrift接口测试");
+    men_tool->addAction(textTest);
     men_tool->addSeparator();
     ui->toolButton_tool->setMenu(men_tool);
 
@@ -122,6 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(textTest, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    connect(zkVisual, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
 
     ui->widget_line->hide();
@@ -1111,8 +1116,8 @@ void MainWindow::on_newTool()
             toolName = "文本对比";
             tswidget = new toolswidget(3);
             ui->tabWidget->addTab(tswidget, QIcon(":lib/XML-Local-hover.png").pixmap(iconSize), toolName);
-        } else if (actionText == "接口测试") {
-            toolName = "接口测试";
+        } else if (actionText == "Thrift接口测试") {
+            toolName = "Thrift接口测试";
             twidget = new thriftwidget(this);
             ui->tabWidget->addTab(twidget, QIcon(":lib/test.png").pixmap(iconSize), toolName);
             ui->stackedWidget->setCurrentIndex(0);
@@ -1141,7 +1146,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
         zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
         zkWidgetList.push_back(zkWidget);
-        ui->tabWidget->addTab(zkWidget, QIcon(":lib/Zookeeper.png").pixmap(iconSize), cInfoStruct.name);
+        ui->tabWidget->addTab(zkWidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), cInfoStruct.name);
     } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
     } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {
@@ -1483,4 +1488,9 @@ void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         menu->move(cursor().pos());
         menu->show();
     }
+}
+
+void MainWindow::on_widget_welcome_bottom_toolButton_github_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
 }

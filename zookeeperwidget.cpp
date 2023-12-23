@@ -381,6 +381,8 @@ void zookeeperwidget::on_treeWidget_customContextMenuRequested(const QPoint &pos
 
     //定义右键弹出菜单
     popMenu = new QMenu(this);
+    popMenu->setWindowFlags(popMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    popMenu->setAttribute(Qt::WA_TranslucentBackground);
     popMenu->addAction(m_action_add);
     popMenu->addAction(m_action_refresh);
     popMenu->addAction(m_action_delete);

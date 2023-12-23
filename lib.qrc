@@ -95,5 +95,6 @@
         <file>lib/history2.png</file>
         <file>lib/test.png</file>
         <file>lib/file2.png</file>
+        <file>lib/Zookeeper2.png</file>
     </qresource>
 </RCC>

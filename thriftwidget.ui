@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
+    <width>1137</width>
     <height>640</height>
    </rect>
   </property>
@@ -405,7 +405,7 @@ QScrollBar::up-arrow:vertical {
           <number>3</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>0</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -637,6 +637,9 @@ QToolButton:hover {
          <property name="topMargin">
           <number>0</number>
          </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
          <property name="bottomMargin">
           <number>0</number>
          </property>
@@ -678,7 +681,7 @@ QToolButton:hover {
            <property name="styleSheet">
             <string notr="true">QComboBox{
 	color:#ffffff;
-	border:2px solid #8a8a8a;
+	border:1px solid #8a8a8a;
 	color: rgb(138, 138, 138);
 	border-radius:5px;
 	background:transparent;
@@ -794,22 +797,6 @@ QToolButton:hover {
            </property>
           </widget>
          </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
         </layout>
        </widget>
       </item>
@@ -858,7 +845,7 @@ font: 10pt &quot;OPPOSans B&quot;;
 
 QComboBox QAbstractItemView::item{
 
-height:28px; 
+height:30px; 
 width:50px;
 
 }</string>
@@ -1353,7 +1340,7 @@ padding-right:10px;
                    <enum>Qt::Horizontal</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
+                   <enum>QSizePolicy::Expanding</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>

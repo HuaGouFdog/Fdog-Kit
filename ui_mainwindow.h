@@ -182,10 +182,9 @@ public:
     QLabel *widget_welcome_body_widget2_nearestConnectionInfo_nearest;
     QWidget *widget_welcome_body_widget2_nearestConnectionInfo_list;
     QVBoxLayout *verticalLayout_17;
-    QToolButton *toolButton_20;
     QToolButton *toolButton_21;
+    QToolButton *toolButton_20;
     QToolButton *toolButton_25;
-    QToolButton *widget_welcome_body_widget2_nearestConnectionInfo_more;
     QSpacerItem *widget_welcome_body_widget2_verticalSpacer_bottom;
     QSpacerItem *widget_welcome_body_horizontalSpacer_right;
     QWidget *widget_welcome_bottom;
@@ -1889,7 +1888,7 @@ public:
         widget_welcome_body_widget2_newCreate->setObjectName(QStringLiteral("widget_welcome_body_widget2_newCreate"));
         widget_welcome_body_widget2_newCreate->setMinimumSize(QSize(260, 120));
         widget_welcome_body_widget2_newCreate->setMaximumSize(QSize(260, 120));
-        widget_welcome_body_widget2_newCreate->setStyleSheet(QLatin1String("background-color: rgba(217, 236, 237, 10);\n"
+        widget_welcome_body_widget2_newCreate->setStyleSheet(QLatin1String("background-color: rgba(217, 236, 237, 20);\n"
 "border-radius: 10px;"));
         verticalLayout_10 = new QVBoxLayout(widget_welcome_body_widget2_newCreate);
         verticalLayout_10->setSpacing(3);
@@ -2020,40 +2019,13 @@ public:
         widget_welcome_body_widget2_nearestConnectionInfo_list->setObjectName(QStringLiteral("widget_welcome_body_widget2_nearestConnectionInfo_list"));
         widget_welcome_body_widget2_nearestConnectionInfo_list->setMinimumSize(QSize(260, 0));
         widget_welcome_body_widget2_nearestConnectionInfo_list->setMaximumSize(QSize(260, 16777215));
-        widget_welcome_body_widget2_nearestConnectionInfo_list->setStyleSheet(QLatin1String("background-color: rgba(217, 236, 237, 10);\n"
+        widget_welcome_body_widget2_nearestConnectionInfo_list->setStyleSheet(QLatin1String("background-color: rgba(217, 236, 237, 20);\n"
 "border-radius: 10px;\n"
 "color: rgb(217, 236, 237);"));
         verticalLayout_17 = new QVBoxLayout(widget_welcome_body_widget2_nearestConnectionInfo_list);
         verticalLayout_17->setSpacing(8);
         verticalLayout_17->setContentsMargins(11, 11, 11, 11);
         verticalLayout_17->setObjectName(QStringLiteral("verticalLayout_17"));
-        toolButton_20 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
-        toolButton_20->setObjectName(QStringLiteral("toolButton_20"));
-        sizePolicy3.setHeightForWidth(toolButton_20->sizePolicy().hasHeightForWidth());
-        toolButton_20->setSizePolicy(sizePolicy3);
-        toolButton_20->setFont(font1);
-        toolButton_20->setLayoutDirection(Qt::LeftToRight);
-        toolButton_20->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(217, 236, 237);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-        toolButton_20->setIconSize(QSize(20, 20));
-        toolButton_20->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        verticalLayout_17->addWidget(toolButton_20);
-
         toolButton_21 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
         toolButton_21->setObjectName(QStringLiteral("toolButton_21"));
         sizePolicy3.setHeightForWidth(toolButton_21->sizePolicy().hasHeightForWidth());
@@ -2076,10 +2048,43 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        toolButton_21->setIconSize(QSize(20, 20));
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/lib/toolBox.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_21->setIcon(icon7);
+        toolButton_21->setIconSize(QSize(16, 16));
         toolButton_21->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout_17->addWidget(toolButton_21);
+
+        toolButton_20 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
+        toolButton_20->setObjectName(QStringLiteral("toolButton_20"));
+        sizePolicy3.setHeightForWidth(toolButton_20->sizePolicy().hasHeightForWidth());
+        toolButton_20->setSizePolicy(sizePolicy3);
+        toolButton_20->setFont(font1);
+        toolButton_20->setLayoutDirection(Qt::LeftToRight);
+        toolButton_20->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(217, 236, 237);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/lib/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_20->setIcon(icon8);
+        toolButton_20->setIconSize(QSize(16, 16));
+        toolButton_20->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        verticalLayout_17->addWidget(toolButton_20);
 
         toolButton_25 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
         toolButton_25->setObjectName(QStringLiteral("toolButton_25"));
@@ -2103,40 +2108,16 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        toolButton_25->setIconSize(QSize(20, 20));
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/lib/json (2).png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_25->setIcon(icon9);
+        toolButton_25->setIconSize(QSize(16, 16));
         toolButton_25->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout_17->addWidget(toolButton_25);
 
 
         verticalLayout_16->addWidget(widget_welcome_body_widget2_nearestConnectionInfo_list);
-
-        widget_welcome_body_widget2_nearestConnectionInfo_more = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo);
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setObjectName(QStringLiteral("widget_welcome_body_widget2_nearestConnectionInfo_more"));
-        sizePolicy3.setHeightForWidth(widget_welcome_body_widget2_nearestConnectionInfo_more->sizePolicy().hasHeightForWidth());
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setSizePolicy(sizePolicy3);
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setFont(font1);
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setLayoutDirection(Qt::LeftToRight);
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(217, 236, 237);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setIconSize(QSize(20, 20));
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        verticalLayout_16->addWidget(widget_welcome_body_widget2_nearestConnectionInfo_more);
 
 
         verticalLayout_8->addWidget(widget_welcome_body_widget2_nearestConnectionInfo);
@@ -2189,9 +2170,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_bottom_toolButton_github->setIcon(icon7);
+        QIcon icon10;
+        icon10.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
+        widget_welcome_bottom_toolButton_github->setIcon(icon10);
         widget_welcome_bottom_toolButton_github->setIconSize(QSize(20, 20));
         widget_welcome_bottom_toolButton_github->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -2253,8 +2234,8 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fdog-Kit", nullptr));
         toolButton->setText(QApplication::translate("MainWindow", "...", nullptr));
-        toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272(&N)", nullptr));
-        toolButton_manage->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206(&H)", nullptr));
+        toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272SSH(&N)", nullptr));
+        toolButton_manage->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206SSH(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));
@@ -2309,11 +2290,10 @@ public:
         widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
         widget_welcome_body_widget2_newCreate_newTool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267\351\233\206", nullptr));
         widget_welcome_body_widget2_newCreate_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));
-        widget_welcome_body_widget2_nearestConnectionInfo_nearest->setText(QApplication::translate("MainWindow", "\346\234\200\350\277\221\350\277\236\346\216\245\357\274\232", nullptr));
-        toolButton_20->setText(QApplication::translate("MainWindow", "172.16.8.156", nullptr));
-        toolButton_21->setText(QApplication::translate("MainWindow", "172.16.8.156", nullptr));
-        toolButton_25->setText(QApplication::translate("MainWindow", "172.16.8.156", nullptr));
-        widget_welcome_body_widget2_nearestConnectionInfo_more->setText(QApplication::translate("MainWindow", "\346\233\264\345\244\232", nullptr));
+        widget_welcome_body_widget2_nearestConnectionInfo_nearest->setText(QApplication::translate("MainWindow", "\346\234\200\350\277\221\344\275\277\347\224\250\357\274\232", nullptr));
+        toolButton_21->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267\351\233\206", nullptr));
+        toolButton_20->setText(QApplication::translate("MainWindow", "Thrift\346\216\245\345\217\243\346\265\213\350\257\225\345\267\245\345\205\267", nullptr));
+        toolButton_25->setText(QApplication::translate("MainWindow", "JSON\346\240\274\345\274\217\345\214\226\345\267\245\345\205\267", nullptr));
         widget_welcome_bottom_toolButton_github->setText(QApplication::translate("MainWindow", "GitHub", nullptr));
         widget_welcome_bottom_showWelcome->setText(QApplication::translate("MainWindow", "\345\220\257\345\212\250\346\227\266\346\230\276\347\244\272\346\254\242\350\277\216\351\241\265", nullptr));
         widget_welcome_page_bottom_label_version->setText(QApplication::translate("MainWindow", "Version\357\274\2321.0.0", nullptr));

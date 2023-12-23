@@ -233,7 +233,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>新建(&amp;N)</string>
+          <string>新建SSH(&amp;N)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -290,7 +290,7 @@ QToolButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string>管理(&amp;H)</string>
+          <string>管理SSH(&amp;H)</string>
          </property>
          <property name="iconSize">
           <size>
@@ -3340,7 +3340,7 @@ color: rgb(242, 245, 255);</string>
                              </size>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">background-color: rgba(217, 236, 237, 10);
+                             <string notr="true">background-color: rgba(217, 236, 237, 20);
 border-radius: 10px;</string>
                             </property>
                             <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -3600,7 +3600,7 @@ padding-left:2px;
 padding-right:3px;</string>
                                </property>
                                <property name="text">
-                                <string>最近连接：</string>
+                                <string>最近使用：</string>
                                </property>
                               </widget>
                              </item>
@@ -3619,7 +3619,7 @@ padding-right:3px;</string>
                                 </size>
                                </property>
                                <property name="styleSheet">
-                                <string notr="true">background-color: rgba(217, 236, 237, 10);
+                                <string notr="true">background-color: rgba(217, 236, 237, 20);
 border-radius: 10px;
 color: rgb(217, 236, 237);</string>
                                </property>
@@ -3627,56 +3627,6 @@ color: rgb(217, 236, 237);</string>
                                 <property name="spacing">
                                  <number>8</number>
                                 </property>
-                                <item>
-                                 <widget class="QToolButton" name="toolButton_20">
-                                  <property name="sizePolicy">
-                                   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                    <horstretch>50</horstretch>
-                                    <verstretch>50</verstretch>
-                                   </sizepolicy>
-                                  </property>
-                                  <property name="font">
-                                   <font>
-                                    <family>OPPOSans B</family>
-                                    <pointsize>10</pointsize>
-                                    <stylestrategy>PreferAntialias</stylestrategy>
-                                   </font>
-                                  </property>
-                                  <property name="layoutDirection">
-                                   <enum>Qt::LeftToRight</enum>
-                                  </property>
-                                  <property name="styleSheet">
-                                   <string notr="true">QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
-                                  </property>
-                                  <property name="text">
-                                   <string>172.16.8.156</string>
-                                  </property>
-                                  <property name="iconSize">
-                                   <size>
-                                    <width>20</width>
-                                    <height>20</height>
-                                   </size>
-                                  </property>
-                                  <property name="toolButtonStyle">
-                                   <enum>Qt::ToolButtonTextBesideIcon</enum>
-                                  </property>
-                                 </widget>
-                                </item>
                                 <item>
                                  <widget class="QToolButton" name="toolButton_21">
                                   <property name="sizePolicy">
@@ -3714,12 +3664,70 @@ QToolButton:hover {
 }</string>
                                   </property>
                                   <property name="text">
-                                   <string>172.16.8.156</string>
+                                   <string>工具集</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="lib.qrc">
+                                    <normaloff>:/lib/toolBox.png</normaloff>:/lib/toolBox.png</iconset>
                                   </property>
                                   <property name="iconSize">
                                    <size>
-                                    <width>20</width>
-                                    <height>20</height>
+                                    <width>16</width>
+                                    <height>16</height>
+                                   </size>
+                                  </property>
+                                  <property name="toolButtonStyle">
+                                   <enum>Qt::ToolButtonTextBesideIcon</enum>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QToolButton" name="toolButton_20">
+                                  <property name="sizePolicy">
+                                   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                                    <horstretch>50</horstretch>
+                                    <verstretch>50</verstretch>
+                                   </sizepolicy>
+                                  </property>
+                                  <property name="font">
+                                   <font>
+                                    <family>OPPOSans B</family>
+                                    <pointsize>10</pointsize>
+                                    <stylestrategy>PreferAntialias</stylestrategy>
+                                   </font>
+                                  </property>
+                                  <property name="layoutDirection">
+                                   <enum>Qt::LeftToRight</enum>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">QToolButton {
+	color: rgb(217, 236, 237);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>Thrift接口测试工具</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="lib.qrc">
+                                    <normaloff>:/lib/test.png</normaloff>:/lib/test.png</iconset>
+                                  </property>
+                                  <property name="iconSize">
+                                   <size>
+                                    <width>16</width>
+                                    <height>16</height>
                                    </size>
                                   </property>
                                   <property name="toolButtonStyle">
@@ -3764,12 +3772,16 @@ QToolButton:hover {
 }</string>
                                   </property>
                                   <property name="text">
-                                   <string>172.16.8.156</string>
+                                   <string>JSON格式化工具</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="lib.qrc">
+                                    <normaloff>:/lib/json (2).png</normaloff>:/lib/json (2).png</iconset>
                                   </property>
                                   <property name="iconSize">
                                    <size>
-                                    <width>20</width>
-                                    <height>20</height>
+                                    <width>16</width>
+                                    <height>16</height>
                                    </size>
                                   </property>
                                   <property name="toolButtonStyle">
@@ -3778,56 +3790,6 @@ QToolButton:hover {
                                  </widget>
                                 </item>
                                </layout>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QToolButton" name="widget_welcome_body_widget2_nearestConnectionInfo_more">
-                               <property name="sizePolicy">
-                                <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                                 <horstretch>50</horstretch>
-                                 <verstretch>50</verstretch>
-                                </sizepolicy>
-                               </property>
-                               <property name="font">
-                                <font>
-                                 <family>OPPOSans B</family>
-                                 <pointsize>10</pointsize>
-                                 <stylestrategy>PreferAntialias</stylestrategy>
-                                </font>
-                               </property>
-                               <property name="layoutDirection">
-                                <enum>Qt::LeftToRight</enum>
-                               </property>
-                               <property name="styleSheet">
-                                <string notr="true">QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
-                               </property>
-                               <property name="text">
-                                <string>更多</string>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>20</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                               <property name="toolButtonStyle">
-                                <enum>Qt::ToolButtonTextBesideIcon</enum>
-                               </property>
                               </widget>
                              </item>
                             </layout>

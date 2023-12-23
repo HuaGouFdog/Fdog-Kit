@@ -60,7 +60,6 @@ public:
     QComboBox *comboBox;
     QLineEdit *lineEdit_funcName;
     QToolButton *toolButton;
-    QSpacerItem *horizontalSpacer;
     QSplitter *splitter_2;
     QWidget *widget_4;
     QHBoxLayout *horizontalLayout_3;
@@ -93,7 +92,7 @@ public:
     {
         if (thriftwidget->objectName().isEmpty())
             thriftwidget->setObjectName(QStringLiteral("thriftwidget"));
-        thriftwidget->resize(944, 640);
+        thriftwidget->resize(1137, 640);
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -371,7 +370,7 @@ public:
         widget_6->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout_2 = new QHBoxLayout(widget_6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(9, 3, 9, 0);
+        horizontalLayout_2->setContentsMargins(9, 3, 0, 0);
         label_2 = new QLabel(widget_6);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMaximumSize(QSize(40, 16777215));
@@ -471,7 +470,7 @@ public:
         horizontalWidget->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 0, -1, 0);
+        horizontalLayout->setContentsMargins(-1, 0, 0, 0);
         label_3 = new QLabel(horizontalWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setMaximumSize(QSize(40, 16777215));
@@ -486,7 +485,7 @@ public:
         comboBox->setFont(font);
         comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
 "	color:#ffffff;\n"
-"	border:2px solid #8a8a8a;\n"
+"	border:1px solid #8a8a8a;\n"
 "	color: rgb(138, 138, 138);\n"
 "	border-radius:5px;\n"
 "	background:transparent;\n"
@@ -564,10 +563,6 @@ public:
 
         horizontalLayout->addWidget(toolButton);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
 
         verticalLayout->addWidget(horizontalWidget);
 
@@ -597,7 +592,7 @@ public:
 "\n"
 "QComboBox QAbstractItemView::item{\n"
 "\n"
-"height:28px; \n"
+"height:30px; \n"
 "width:50px;\n"
 "\n"
 "}"));
@@ -771,7 +766,7 @@ public:
 
         horizontalLayout_6->addWidget(checkBox_2);
 
-        horizontalSpacer_7 = new QSpacerItem(300, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_7 = new QSpacerItem(300, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_7);
 

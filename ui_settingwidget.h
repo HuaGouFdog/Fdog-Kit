@@ -231,6 +231,14 @@ public:
     QScrollArea *scrollArea_3;
     QWidget *scrollAreaWidgetContents_3;
     QVBoxLayout *verticalLayout_27;
+    QWidget *verticalWidget_37;
+    QHBoxLayout *horizontalLayout_48;
+    QWidget *horizontalWidget_36;
+    QVBoxLayout *verticalLayout_44;
+    QLabel *label_90;
+    QLineEdit *lineEdit_27;
+    QSpacerItem *horizontalSpacer_71;
+    QToolButton *toolButton_4;
     QWidget *verticalWidget_33;
     QHBoxLayout *horizontalLayout_44;
     QWidget *horizontalWidget_24;
@@ -1506,7 +1514,9 @@ public:
         scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 832, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents_4);
+        verticalLayout_8->setSpacing(6);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
         verticalWidget_11 = new QWidget(scrollAreaWidgetContents_4);
         verticalWidget_11->setObjectName(QStringLiteral("verticalWidget_11"));
         verticalWidget_11->setMinimumSize(QSize(0, 70));
@@ -2196,7 +2206,17 @@ public:
         stackedWidget->addWidget(page_theme);
         page_terminal = new QWidget();
         page_terminal->setObjectName(QStringLiteral("page_terminal"));
-        page_terminal->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        page_terminal->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
+"\n"
+"QLineEdit{\n"
+"color:#ced4da;\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
+"}"));
         verticalLayout_50 = new QVBoxLayout(page_terminal);
         verticalLayout_50->setSpacing(10);
         verticalLayout_50->setObjectName(QStringLiteral("verticalLayout_50"));
@@ -2273,11 +2293,64 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 832, 1081));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, -338, 832, 1081));
         scrollAreaWidgetContents_3->setMinimumSize(QSize(0, 1081));
         verticalLayout_27 = new QVBoxLayout(scrollAreaWidgetContents_3);
+        verticalLayout_27->setSpacing(6);
         verticalLayout_27->setObjectName(QStringLiteral("verticalLayout_27"));
-        verticalLayout_27->setContentsMargins(10, 10, 10, 10);
+        verticalLayout_27->setContentsMargins(0, 0, 0, 0);
+        verticalWidget_37 = new QWidget(scrollAreaWidgetContents_3);
+        verticalWidget_37->setObjectName(QStringLiteral("verticalWidget_37"));
+        verticalWidget_37->setMinimumSize(QSize(0, 70));
+        verticalWidget_37->setMaximumSize(QSize(16777215, 70));
+        verticalWidget_37->setStyleSheet(QLatin1String("#verticalWidget_37{background-color: rgba(223, 223, 223,50);\n"
+"border-radius: 5px;}"));
+        horizontalLayout_48 = new QHBoxLayout(verticalWidget_37);
+        horizontalLayout_48->setObjectName(QStringLiteral("horizontalLayout_48"));
+        horizontalWidget_36 = new QWidget(verticalWidget_37);
+        horizontalWidget_36->setObjectName(QStringLiteral("horizontalWidget_36"));
+        horizontalWidget_36->setMinimumSize(QSize(0, 40));
+        horizontalWidget_36->setMaximumSize(QSize(16777215, 40));
+        verticalLayout_44 = new QVBoxLayout(horizontalWidget_36);
+        verticalLayout_44->setSpacing(0);
+        verticalLayout_44->setObjectName(QStringLiteral("verticalLayout_44"));
+        verticalLayout_44->setContentsMargins(0, 0, 0, 0);
+        label_90 = new QLabel(horizontalWidget_36);
+        label_90->setObjectName(QStringLiteral("label_90"));
+        label_90->setFont(font);
+        label_90->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        verticalLayout_44->addWidget(label_90);
+
+
+        horizontalLayout_48->addWidget(horizontalWidget_36);
+
+        lineEdit_27 = new QLineEdit(verticalWidget_37);
+        lineEdit_27->setObjectName(QStringLiteral("lineEdit_27"));
+        lineEdit_27->setFont(font);
+        lineEdit_27->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 14px;\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"}"));
+        lineEdit_27->setReadOnly(true);
+
+        horizontalLayout_48->addWidget(lineEdit_27);
+
+        horizontalSpacer_71 = new QSpacerItem(352, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_48->addItem(horizontalSpacer_71);
+
+        toolButton_4 = new QToolButton(verticalWidget_37);
+        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
+        toolButton_4->setMinimumSize(QSize(60, 25));
+        toolButton_4->setFont(font);
+
+        horizontalLayout_48->addWidget(toolButton_4);
+
+
+        verticalLayout_27->addWidget(verticalWidget_37);
+
         verticalWidget_33 = new QWidget(scrollAreaWidgetContents_3);
         verticalWidget_33->setObjectName(QStringLiteral("verticalWidget_33"));
         verticalWidget_33->setMinimumSize(QSize(0, 70));
@@ -2747,6 +2820,13 @@ public:
 
         lineEdit_25 = new QLineEdit(verticalWidget_28);
         lineEdit_25->setObjectName(QStringLiteral("lineEdit_25"));
+        lineEdit_25->setFont(font);
+        lineEdit_25->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 14px;\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"}"));
+        lineEdit_25->setReadOnly(true);
 
         horizontalLayout_37->addWidget(lineEdit_25);
 
@@ -2830,6 +2910,12 @@ public:
 
         lineEdit_24 = new QLineEdit(verticalWidget_29);
         lineEdit_24->setObjectName(QStringLiteral("lineEdit_24"));
+        lineEdit_24->setFont(font);
+        lineEdit_24->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 14px;\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"}"));
         lineEdit_24->setReadOnly(true);
 
         horizontalLayout_38->addWidget(lineEdit_24);
@@ -2937,6 +3023,13 @@ public:
 
         lineEdit_26 = new QLineEdit(verticalWidget_30);
         lineEdit_26->setObjectName(QStringLiteral("lineEdit_26"));
+        lineEdit_26->setFont(font);
+        lineEdit_26->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 14px;\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"}"));
+        lineEdit_26->setReadOnly(true);
 
         horizontalLayout_39->addWidget(lineEdit_26);
 
@@ -4195,7 +4288,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(settingwidget);
@@ -4276,6 +4369,9 @@ public:
         label_82->setText(QApplication::translate("settingwidget", "\345\271\275\347\273\277", nullptr));
         label_83->setText(QApplication::translate("settingwidget", "\347\262\211\351\233\250", nullptr));
         label_14->setText(QApplication::translate("settingwidget", "\347\273\210\347\253\257", nullptr));
+        label_90->setText(QApplication::translate("settingwidget", "\351\273\230\350\256\244\344\270\213\350\275\275\350\267\257\345\276\204", nullptr));
+        lineEdit_27->setText(QApplication::translate("settingwidget", "E:\\ProjectA\\vrv-badword", nullptr));
+        toolButton_4->setText(QApplication::translate("settingwidget", "\351\200\211\346\213\251", nullptr));
         label_65->setText(QApplication::translate("settingwidget", "\345\267\245\345\205\267\346\240\217-\344\277\241\346\201\257", nullptr));
         label_66->setText(QApplication::translate("settingwidget", "\345\205\263\351\227\255\345\220\216\357\274\214\347\273\210\347\253\257\345\260\206\344\270\215\346\230\276\347\244\272\346\234\215\345\212\241\345\231\250\344\277\241\346\201\257\344\273\245\345\217\212\345\267\245\345\205\267\346\240\217\347\232\204\344\277\241\346\201\257", nullptr));
         label_86->setText(QApplication::translate("settingwidget", "\345\267\245\345\205\267\346\240\217-\345\216\206\345\217\262", nullptr));
@@ -4301,11 +4397,14 @@ public:
         comboBox_9->setItemText(2, QApplication::translate("settingwidget", "\345\233\276\347\211\207", nullptr));
 
         label_69->setText(QApplication::translate("settingwidget", "\345\275\223\345\211\215\350\203\214\346\231\257", nullptr));
+        lineEdit_25->setText(QApplication::translate("settingwidget", "xxxxxxxxxxxxxxx", nullptr));
         toolButton_33->setText(QApplication::translate("settingwidget", "\346\267\273\345\212\240\345\233\276\347\211\207", nullptr));
         label_73->setText(QApplication::translate("settingwidget", "\350\203\214\346\231\257\351\200\217\346\230\216\345\272\246", nullptr));
         label_71->setText(QApplication::translate("settingwidget", "\344\275\277\347\224\250\345\233\276\347\211\207\346\210\226\347\272\257\350\211\262\344\275\234\344\270\272\347\273\210\347\253\257\350\203\214\346\231\257\346\227\266\357\274\214\345\217\257\344\273\245\350\260\203\350\212\202\351\200\217\346\230\216\345\272\246", nullptr));
+        lineEdit_24->setText(QApplication::translate("settingwidget", "xx", nullptr));
         label_74->setText(QApplication::translate("settingwidget", "\345\275\223\345\211\215\351\242\234\350\211\262", nullptr));
         label_61->setText(QString());
+        lineEdit_26->setText(QApplication::translate("settingwidget", "xxxxxxxxxxxxxxx", nullptr));
         label_70->setText(QApplication::translate("settingwidget", "\345\233\276\347\211\207\345\210\227\350\241\250", nullptr));
         label_72->setText(QApplication::translate("settingwidget", "\351\242\204\350\247\210", nullptr));
         label_15->setText(QApplication::translate("settingwidget", "\345\277\253\346\215\267\351\224\256", nullptr));
