@@ -1371,6 +1371,10 @@ void MainWindow::on_toolButton_newCreate_clicked()
     int8_t connectType = 0;
     ccwidget = new createconnect(connectType);
     connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+    int x = globalPos.x() + (this->width() - ccwidget->width()) / 2;//x坐标
+    int y = globalPos.y() + (this->height() - ccwidget->height()) / 2;//y坐标
+    ccwidget->move(x, y);//窗口移动
     ccwidget->show();
 }
 
