@@ -66,10 +66,16 @@ public:
     QSplitter *splitter;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
+    QWidget *widget_12;
+    QHBoxLayout *horizontalLayout_8;
     QLabel *label_4;
+    QSpacerItem *horizontalSpacer;
+    QToolButton *toolButton_show_thrift_info;
     QTreeWidget *treeWidget;
-    QWidget *widget_3;
+    QWidget *widget_thrift;
     QVBoxLayout *verticalLayout_4;
+    QWidget *widget_11;
+    QHBoxLayout *horizontalLayout_7;
     QLabel *label_6;
     QTextEdit *textEdit_2;
     QWidget *widget_2;
@@ -175,7 +181,11 @@ public:
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
         lineEdit_find->setMinimumSize(QSize(0, 30));
         lineEdit_find->setMaximumSize(QSize(16777215, 30));
-        lineEdit_find->setFont(font);
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans"));
+        font2.setPointSize(10);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        lineEdit_find->setFont(font2);
         lineEdit_find->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color: rgb(231, 238, 244);\n"
 "border-radius: 14px;\n"
@@ -430,10 +440,6 @@ public:
         toolButton_test = new QToolButton(widget_6);
         toolButton_test->setObjectName(QStringLiteral("toolButton_test"));
         toolButton_test->setMinimumSize(QSize(68, 30));
-        QFont font2;
-        font2.setFamily(QStringLiteral("OPPOSans"));
-        font2.setPointSize(10);
-        font2.setStyleStrategy(QFont::PreferAntialias);
         toolButton_test->setFont(font2);
         toolButton_test->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -600,7 +606,15 @@ public:
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_4 = new QLabel(widget);
+        widget_12 = new QWidget(widget);
+        widget_12->setObjectName(QStringLiteral("widget_12"));
+        widget_12->setMinimumSize(QSize(0, 30));
+        widget_12->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
+        horizontalLayout_8 = new QHBoxLayout(widget_12);
+        horizontalLayout_8->setSpacing(0);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        label_4 = new QLabel(widget_12);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setMinimumSize(QSize(0, 30));
         label_4->setMaximumSize(QSize(16777215, 30));
@@ -610,7 +624,36 @@ public:
 "padding-left:2px;\n"
 "padding-right:10px;"));
 
-        verticalLayout_2->addWidget(label_4);
+        horizontalLayout_8->addWidget(label_4);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer);
+
+        toolButton_show_thrift_info = new QToolButton(widget_12);
+        toolButton_show_thrift_info->setObjectName(QStringLiteral("toolButton_show_thrift_info"));
+        toolButton_show_thrift_info->setMinimumSize(QSize(0, 0));
+        toolButton_show_thrift_info->setFont(font);
+        toolButton_show_thrift_info->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(54, 81, 97);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(54, 81, 97);\n"
+"}"));
+
+        horizontalLayout_8->addWidget(toolButton_show_thrift_info);
+
+
+        verticalLayout_2->addWidget(widget_12);
 
         treeWidget = new QTreeWidget(widget);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
@@ -644,7 +687,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -652,14 +695,21 @@ public:
         verticalLayout_2->addWidget(treeWidget);
 
         splitter->addWidget(widget);
-        widget_3 = new QWidget(splitter);
-        widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
-        verticalLayout_4 = new QVBoxLayout(widget_3);
+        widget_thrift = new QWidget(splitter);
+        widget_thrift->setObjectName(QStringLiteral("widget_thrift"));
+        widget_thrift->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
+        verticalLayout_4 = new QVBoxLayout(widget_thrift);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget_3);
+        widget_11 = new QWidget(widget_thrift);
+        widget_11->setObjectName(QStringLiteral("widget_11"));
+        widget_11->setMinimumSize(QSize(0, 30));
+        horizontalLayout_7 = new QHBoxLayout(widget_11);
+        horizontalLayout_7->setSpacing(0);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
+        label_6 = new QLabel(widget_11);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setMinimumSize(QSize(0, 30));
         label_6->setMaximumSize(QSize(16777215, 30));
@@ -669,9 +719,12 @@ public:
 "padding-left:2px;\n"
 "padding-right:10px;"));
 
-        verticalLayout_4->addWidget(label_6);
+        horizontalLayout_7->addWidget(label_6);
 
-        textEdit_2 = new QTextEdit(widget_3);
+
+        verticalLayout_4->addWidget(widget_11);
+
+        textEdit_2 = new QTextEdit(widget_thrift);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setFont(font);
         textEdit_2->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
@@ -685,7 +738,7 @@ public:
 
         verticalLayout_4->addWidget(textEdit_2);
 
-        splitter->addWidget(widget_3);
+        splitter->addWidget(widget_thrift);
 
         horizontalLayout_3->addWidget(splitter);
 
@@ -828,11 +881,12 @@ public:
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
+        toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "\346\237\245\347\234\213thrift\345\215\217\350\256\256\350\257\264\346\230\216", nullptr));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));
         ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
-        label_6->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\345\200\274\350\257\264\346\230\216", nullptr));
+        label_6->setText(QString());
         textEdit_2->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

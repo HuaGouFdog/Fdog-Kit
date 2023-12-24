@@ -21,7 +21,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
-#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QTreeWidget>
@@ -37,11 +36,19 @@ public:
     QWidget *widget_left;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget_9;
-    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *horizontalLayout_6;
     QLineEdit *lineEdit_find;
-    QTabWidget *tabWidget;
-    QWidget *tab;
-    QWidget *tab_2;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_8;
+    QWidget *widget_2;
+    QHBoxLayout *horizontalLayout_11;
+    QLabel *label;
+    QToolButton *toolButton_3;
+    QToolButton *toolButton_2;
+    QToolButton *toolButton_4;
+    QToolButton *toolButton_5;
+    QToolButton *toolButton_6;
+    QSpacerItem *verticalSpacer;
     QSplitter *splitter;
     QWidget *verticalWidget_1_l;
     QVBoxLayout *verticalLayout_9;
@@ -71,25 +78,25 @@ public:
     QLineEdit *lineEdit_mzxid;
     QLineEdit *lineEdit_aversion;
     QLineEdit *lineEdit_version;
-    QLabel *label_ephemeralOwner;
     QLabel *label_aversion;
-    QLabel *label_pzxid;
-    QLabel *label_cversion;
-    QLabel *label_mtime;
     QLineEdit *lineEdit_cversion;
-    QLabel *label_numChildren;
-    QLabel *label_version;
+    QLabel *label_cversion;
+    QLabel *label_pzxid;
     QLabel *label_mzxid;
+    QLabel *label_version;
+    QLineEdit *lineEdit_czxid;
     QLabel *label_dataLength;
     QLabel *label_czxid;
-    QLineEdit *lineEdit_czxid;
-    QLineEdit *lineEdit_ctime;
-    QLineEdit *lineEdit_ephemeralOwner;
     QLineEdit *lineEdit_dataLength;
-    QLabel *label_ctime;
-    QLineEdit *lineEdit_numChildren;
-    QLineEdit *lineEdit_mtime;
     QSpacerItem *horizontalSpacer_3;
+    QLabel *label_numChildren;
+    QLabel *label_mtime;
+    QLineEdit *lineEdit_mtime;
+    QLineEdit *lineEdit_numChildren;
+    QLabel *label_ctime;
+    QLineEdit *lineEdit_ctime;
+    QLabel *label_ephemeralOwner;
+    QLineEdit *lineEdit_ephemeralOwner;
     QWidget *widget_1_2_r;
     QVBoxLayout *verticalLayout_7;
     QWidget *horizontalWidget_1_2_1_r;
@@ -239,15 +246,15 @@ public:
 "    border:none;\n"
 "}"));
         verticalLayout_6 = new QVBoxLayout(widget_left);
-        verticalLayout_6->setSpacing(9);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(10, 5, 10, 0);
+        verticalLayout_6->setContentsMargins(9, 9, 9, 0);
         widget_9 = new QWidget(widget_left);
         widget_9->setObjectName(QStringLiteral("widget_9"));
-        verticalLayout_3 = new QVBoxLayout(widget_9);
-        verticalLayout_3->setSpacing(0);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 5, 0, 5);
+        widget_9->setMaximumSize(QSize(16777215, 40));
+        horizontalLayout_6 = new QHBoxLayout(widget_9);
+        horizontalLayout_6->setSpacing(0);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(0, 5, 0, 5);
         lineEdit_find = new QLineEdit(widget_9);
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
         lineEdit_find->setMinimumSize(QSize(0, 30));
@@ -267,94 +274,163 @@ public:
 "padding-right:10px;\n"
 "}"));
 
-        verticalLayout_3->addWidget(lineEdit_find);
+        horizontalLayout_6->addWidget(lineEdit_find);
 
 
         verticalLayout_6->addWidget(widget_9);
 
-        tabWidget = new QTabWidget(widget_left);
-        tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setFont(font2);
-        tabWidget->setStyleSheet(QString::fromUtf8("\n"
-" QTabWidget::tab-bar {\n"
-"         left:0px;       \n"
-"}\n"
-"	\n"
-"\n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
-"#tab_1.QWidget{\n"
-"	background-color: rgb(108, 117, 125, 0);\n"
-"}\n"
-" \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255tab_2\347\232\204\346\240\267\345\274\217*/\n"
-"#tab_2.QWidget{\n"
-"	background-color: rgb(108, 117, 125, 0);\n"
-"}\n"
-" \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
-"QTabBar::tab{\n"
-"    background-color: rgb(108, 117, 125, 0);\n"
-"	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
-"	font-size:10pt;\n"
-"	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
-                        "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	width:80px;\n"
-"	padding: 4px;\n"
-"	margin-right:0px;\n"
-"	margin-left: 0px;\n"
-"}\n"
-" \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
-"QTabBar::tab:selected{\n"
-"	/*background-color: #0B0E11;*/\n"
-"	background-color: rgb(108, 117, 125, 0);\n"
-"	border-bottom: 2px solid rgb(54, 81, 97)\n"
-"}\n"
-" \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
-"QTabBar::tab:hover:!selected {\n"
-"	/*backgr"
-                        "ound-color: rgb(100, 117, 125, 125);*/\n"
-"}\n"
-" \n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
-"QTabWidget::pane {\n"
-"    border: 0px solid rgb(108, 117, 125, 65);\n"
-"}\n"
-" \n"
-"\n"
-"QTabBar::close-button{ \n"
-"	/*border-image: url(:lib/Kafka.png);*/\n"
-"}\n"
-"QTabBar::close-button:hover{\n"
-"	/*border-image: url(:/Resources/image/close_hover.png);*/\n"
-"}\n"
-"\n"
-"\n"
-"/*\345\275\223\346\211\223\345\274\200\345\244\232\344\270\252tab\357\274\214\345\217\263\344\276\247\345\207\272\347\216\260\357\274\214\347\202\271\345\207\273\345\220\216\357\274\214\345\217\257\344\273\245\345\220\221\345\211\215\345\220\221\345\220\216\347\232\204\346\214\211\351\222\256\347\232\204\346\240\267\345\274\217*/\n"
-"QTabBar QToolButton {\n"
-"    border: none;\n"
-"	color: rgb(255, 206, 6);\n"
-"    background-color: #0b0e11;\n"
-"}\n"
-" \n"
-"QTabBar QToolButton:hover {\n"
-"	background-color: #161a1e; \n"
-"}"));
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/history2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab, icon, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab_2, icon1, QString());
+        widget = new QWidget(widget_left);
+        widget->setObjectName(QStringLiteral("widget"));
+        verticalLayout_8 = new QVBoxLayout(widget);
+        verticalLayout_8->setSpacing(6);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        widget_2 = new QWidget(widget);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setMinimumSize(QSize(0, 20));
+        horizontalLayout_11 = new QHBoxLayout(widget_2);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        horizontalLayout_11->setContentsMargins(9, 2, 9, 2);
+        label = new QLabel(widget_2);
+        label->setObjectName(QStringLiteral("label"));
+        label->setFont(font2);
 
-        verticalLayout_6->addWidget(tabWidget);
+        horizontalLayout_11->addWidget(label);
+
+        toolButton_3 = new QToolButton(widget_2);
+        toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
+        toolButton_3->setMinimumSize(QSize(0, 15));
+        toolButton_3->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_3->setIcon(icon);
+
+        horizontalLayout_11->addWidget(toolButton_3);
+
+
+        verticalLayout_8->addWidget(widget_2);
+
+        toolButton_2 = new QToolButton(widget);
+        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setMinimumSize(QSize(180, 40));
+        toolButton_2->setFont(font2);
+        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/node.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_2->setIcon(icon1);
+        toolButton_2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        verticalLayout_8->addWidget(toolButton_2);
+
+        toolButton_4 = new QToolButton(widget);
+        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
+        toolButton_4->setMinimumSize(QSize(180, 40));
+        toolButton_4->setFont(font2);
+        toolButton_4->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_4->setIcon(icon2);
+        toolButton_4->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        verticalLayout_8->addWidget(toolButton_4);
+
+        toolButton_5 = new QToolButton(widget);
+        toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
+        toolButton_5->setMinimumSize(QSize(180, 40));
+        toolButton_5->setFont(font2);
+        toolButton_5->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        toolButton_5->setIcon(icon2);
+        toolButton_5->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        verticalLayout_8->addWidget(toolButton_5);
+
+        toolButton_6 = new QToolButton(widget);
+        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
+        toolButton_6->setMinimumSize(QSize(180, 40));
+        toolButton_6->setFont(font2);
+        toolButton_6->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        toolButton_6->setIcon(icon2);
+        toolButton_6->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        verticalLayout_8->addWidget(toolButton_6);
+
+        verticalSpacer = new QSpacerItem(20, 290, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_8->addItem(verticalSpacer);
+
+
+        verticalLayout_6->addWidget(widget);
 
 
         horizontalLayout_5->addWidget(widget_left);
@@ -401,7 +477,7 @@ public:
 
         lineEdit_node = new QLineEdit(horizontalWidget_1_2_l);
         lineEdit_node->setObjectName(QStringLiteral("lineEdit_node"));
-        QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(lineEdit_node->sizePolicy().hasHeightForWidth());
@@ -411,7 +487,7 @@ public:
 
         horizontalLayout->addWidget(lineEdit_node);
 
-        horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
@@ -435,9 +511,7 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_add->setIcon(icon2);
+        toolButton_add->setIcon(icon);
         toolButton_add->setIconSize(QSize(12, 12));
         toolButton_add->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -532,7 +606,7 @@ public:
         horizontalWidget_1_3_l->setObjectName(QStringLiteral("horizontalWidget_1_3_l"));
         horizontalWidget_1_3_l->setMinimumSize(QSize(0, 32));
         horizontalWidget_1_3_l->setStyleSheet(QLatin1String("#horizontalWidget_1_3_l{\n"
-"	border: 1px solid rgba(255, 255, 255, 150);\n"
+"	border: 1px solid rgb(197, 197, 197);\n"
 "	border-radius: 5px;\n"
 "}"));
         horizontalLayout_3 = new QHBoxLayout(horizontalWidget_1_3_l);
@@ -541,7 +615,7 @@ public:
         horizontalLayout_3->setContentsMargins(5, 0, 5, 0);
         lineEdit_search = new QLineEdit(horizontalWidget_1_3_l);
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
-        lineEdit_search->setMinimumSize(QSize(0, 30));
+        lineEdit_search->setMinimumSize(QSize(0, 27));
         QFont font5;
         font5.setFamily(QStringLiteral("OPPOSans B"));
         font5.setPointSize(10);
@@ -594,24 +668,57 @@ public:
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        QFont font6;
-        font6.setFamily(QStringLiteral("OPPOSans B"));
-        font6.setPointSize(10);
-        font6.setBold(false);
-        font6.setWeight(50);
-        font6.setStyleStrategy(QFont::PreferAntialias);
-        treeWidget->setFont(font6);
+        treeWidget->setFont(font5);
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-        treeWidget->setStyleSheet(QString::fromUtf8("QTreeWidget::item{\n"
-"	border-bottom:1px solid rgb(255, 255, 255,100);\n"
-"	height: 30px; /*\350\256\276\347\275\256\346\257\217\344\270\252\350\212\202\347\202\271\347\232\204\351\253\230\345\272\246*/\n"
-"	padding: -1;\n"
+        treeWidget->setStyleSheet(QString::fromUtf8("QTreeWidget#treeWidget {\n"
+"	border: 0px solid #D3D6DD;\n"
+"	outline: none;\n"
+"}\n"
+"QTreeWidget::item {\n"
+"	height: 28px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	border: 1px;\n"
+"	outline: 0px;\n"
 "}\n"
 "\n"
-"QTreeWidget::item:selected {\n"
-"        background-color: rgb(26, 26, 26);\n"
-"		border: none; /*\345\216\273\351\231\244\350\276\271\346\241\206*/\n"
-"		padding: -1;\n"
+"QTreeWidget::item:hover {\n"
+"	border: 0px;\n"
+"	outline: 0px;\n"
+"    color: rgb(255, 255, 255);\n"
+"	background-color: rgba(209, 209, 209, 20);\n"
+"}\n"
+"QTreeWidget::item:selected{\n"
+"    border: 0px;\n"
+"	outline: 0px;\n"
+"    color: #45B2FF;\n"
+"	background-color: rgba(209, 209, 209, 20);\n"
+"}\n"
+"QTreeWidget::item:selected:active{\n"
+"    border: 0px;\n"
+"	outline: 0px;\n"
+"    color: #45B2FF;\n"
+"}\n"
+" \n"
+"QTreeWidget::item:selected:!active {\n"
+"    border: 0px;\n"
+"	outline: 0px;\n"
+"    color: #45B2FF;\n"
+"}\n"
+"QTreeWidget::branch {\n"
+"	height: 28px;\n"
+"	width: 28px;\n"
+"}\n"
+"QTreeWidget::branch:closed:has-children:!has-siblings,\n"
+"QTreeWidget::branch:closed:has-children:has-siblings {\n"
+"	border-image: none;\n"
+"    image: url(:/lib/tree_close.png);\n"
+"}\n"
+" \n"
+"QTreeWidget::bran"
+                        "ch:open:has-children:!has-siblings,\n"
+"QTreeWidget::branch:open:has-children:has-siblings  {\n"
+"	border-image: none;\n"
+"    image: url(:/lib/tree_open.png);\n"
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
@@ -633,8 +740,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar::sub-page:vertical {\n"
-""
-                        "    \n"
+"    \n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "QScrollBar::add-page:vertical \n"
@@ -645,7 +751,8 @@ public:
 "QScrollBar::add-line:vertical {\n"
 "	border: none;\n"
 "    height: 0px;\n"
-"    subcontrol-position: bottom;\n"
+"    s"
+                        "ubcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
@@ -660,6 +767,46 @@ public:
 "}\n"
 "QScrollBar::up-arrow:vertical {\n"
 "    border:none;\n"
+"}\n"
+"QMenu {\n"
+"\n"
+"background-color:rgb(253,253,254);\n"
+"/*padding:5px;*/\n"
+"padding: 3px 0px 3px 0px;\n"
+"border-radius:6px;\n"
+"border:2px solid rgb(108, 117, 125, 65); \n"
+"}\n"
+"QMenu::item {\n"
+"	font-size: 10pt;\n"
+"	\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	\n"
+"	color: rgb(63, 63, 63);\n"
+"    background-color:rgb(253,253,254);\n"
+"    padding: 5px 25px 5px 25px;\n"
+"    /*margin: 2px 2px 2px 2px;*/\n"
+"}\n"
+"QMenu::item:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"}\n"
+"QMenu::icon:checked {\n"
+"    background: rgb(253,253,254);\n"
+"    position: absolute;\n"
+"    top: 1px;\n"
+"    right: 1px;\n"
+"    bottom: 1px;\n"
+"    left: 1px;\n"
+""
+                        "}\n"
+"QMenu::icon:checked:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"    background-image: url(:/space_selected.png);\n"
+"}\n"
+"QMenu::separator {\n"
+"    height: 2px;\n"
+"    background: rgb(235,235,236);\n"
+"    /*margin-left: 10px;*/\n"
+"    /*margin-right: 10px;*/\n"
 "}"));
         treeWidget->setLineWidth(1);
         treeWidget->setMidLineWidth(0);
@@ -740,35 +887,11 @@ public:
 
         gridLayout->addWidget(lineEdit_version, 5, 1, 1, 1);
 
-        label_ephemeralOwner = new QLabel(gridWidget_1_1_r);
-        label_ephemeralOwner->setObjectName(QStringLiteral("label_ephemeralOwner"));
-        label_ephemeralOwner->setFont(font2);
-
-        gridLayout->addWidget(label_ephemeralOwner, 10, 0, 1, 1);
-
         label_aversion = new QLabel(gridWidget_1_1_r);
         label_aversion->setObjectName(QStringLiteral("label_aversion"));
         label_aversion->setFont(font2);
 
         gridLayout->addWidget(label_aversion, 6, 0, 1, 1);
-
-        label_pzxid = new QLabel(gridWidget_1_1_r);
-        label_pzxid->setObjectName(QStringLiteral("label_pzxid"));
-        label_pzxid->setFont(font2);
-
-        gridLayout->addWidget(label_pzxid, 4, 0, 1, 1);
-
-        label_cversion = new QLabel(gridWidget_1_1_r);
-        label_cversion->setObjectName(QStringLiteral("label_cversion"));
-        label_cversion->setFont(font2);
-
-        gridLayout->addWidget(label_cversion, 7, 0, 1, 1);
-
-        label_mtime = new QLabel(gridWidget_1_1_r);
-        label_mtime->setObjectName(QStringLiteral("label_mtime"));
-        label_mtime->setFont(font2);
-
-        gridLayout->addWidget(label_mtime, 1, 0, 1, 1);
 
         lineEdit_cversion = new QLineEdit(gridWidget_1_1_r);
         lineEdit_cversion->setObjectName(QStringLiteral("lineEdit_cversion"));
@@ -779,11 +902,23 @@ public:
 
         gridLayout->addWidget(lineEdit_cversion, 7, 1, 1, 1);
 
-        label_numChildren = new QLabel(gridWidget_1_1_r);
-        label_numChildren->setObjectName(QStringLiteral("label_numChildren"));
-        label_numChildren->setFont(font2);
+        label_cversion = new QLabel(gridWidget_1_1_r);
+        label_cversion->setObjectName(QStringLiteral("label_cversion"));
+        label_cversion->setFont(font2);
 
-        gridLayout->addWidget(label_numChildren, 9, 0, 1, 1);
+        gridLayout->addWidget(label_cversion, 7, 0, 1, 1);
+
+        label_pzxid = new QLabel(gridWidget_1_1_r);
+        label_pzxid->setObjectName(QStringLiteral("label_pzxid"));
+        label_pzxid->setFont(font2);
+
+        gridLayout->addWidget(label_pzxid, 4, 0, 1, 1);
+
+        label_mzxid = new QLabel(gridWidget_1_1_r);
+        label_mzxid->setObjectName(QStringLiteral("label_mzxid"));
+        label_mzxid->setFont(font2);
+
+        gridLayout->addWidget(label_mzxid, 3, 0, 1, 1);
 
         label_version = new QLabel(gridWidget_1_1_r);
         label_version->setObjectName(QStringLiteral("label_version"));
@@ -791,11 +926,14 @@ public:
 
         gridLayout->addWidget(label_version, 5, 0, 1, 1);
 
-        label_mzxid = new QLabel(gridWidget_1_1_r);
-        label_mzxid->setObjectName(QStringLiteral("label_mzxid"));
-        label_mzxid->setFont(font2);
+        lineEdit_czxid = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_czxid->setObjectName(QStringLiteral("lineEdit_czxid"));
+        lineEdit_czxid->setMinimumSize(QSize(60, 0));
+        lineEdit_czxid->setMaximumSize(QSize(60, 16777215));
+        lineEdit_czxid->setFont(font2);
+        lineEdit_czxid->setReadOnly(true);
 
-        gridLayout->addWidget(label_mzxid, 3, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_czxid, 2, 1, 1, 1);
 
         label_dataLength = new QLabel(gridWidget_1_1_r);
         label_dataLength->setObjectName(QStringLiteral("label_dataLength"));
@@ -809,33 +947,6 @@ public:
 
         gridLayout->addWidget(label_czxid, 2, 0, 1, 1);
 
-        lineEdit_czxid = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_czxid->setObjectName(QStringLiteral("lineEdit_czxid"));
-        lineEdit_czxid->setMinimumSize(QSize(60, 0));
-        lineEdit_czxid->setMaximumSize(QSize(60, 16777215));
-        lineEdit_czxid->setFont(font2);
-        lineEdit_czxid->setReadOnly(true);
-
-        gridLayout->addWidget(lineEdit_czxid, 2, 1, 1, 1);
-
-        lineEdit_ctime = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_ctime->setObjectName(QStringLiteral("lineEdit_ctime"));
-        lineEdit_ctime->setMinimumSize(QSize(155, 0));
-        lineEdit_ctime->setMaximumSize(QSize(155, 16777215));
-        lineEdit_ctime->setFont(font2);
-        lineEdit_ctime->setReadOnly(true);
-
-        gridLayout->addWidget(lineEdit_ctime, 0, 1, 1, 1);
-
-        lineEdit_ephemeralOwner = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_ephemeralOwner->setObjectName(QStringLiteral("lineEdit_ephemeralOwner"));
-        lineEdit_ephemeralOwner->setMinimumSize(QSize(155, 0));
-        lineEdit_ephemeralOwner->setMaximumSize(QSize(60, 16777215));
-        lineEdit_ephemeralOwner->setFont(font2);
-        lineEdit_ephemeralOwner->setReadOnly(true);
-
-        gridLayout->addWidget(lineEdit_ephemeralOwner, 10, 1, 1, 1);
-
         lineEdit_dataLength = new QLineEdit(gridWidget_1_1_r);
         lineEdit_dataLength->setObjectName(QStringLiteral("lineEdit_dataLength"));
         lineEdit_dataLength->setMinimumSize(QSize(60, 0));
@@ -845,20 +956,21 @@ public:
 
         gridLayout->addWidget(lineEdit_dataLength, 8, 1, 1, 1);
 
-        label_ctime = new QLabel(gridWidget_1_1_r);
-        label_ctime->setObjectName(QStringLiteral("label_ctime"));
-        label_ctime->setFont(font2);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addWidget(label_ctime, 0, 0, 1, 1);
+        gridLayout->addItem(horizontalSpacer_3, 5, 2, 1, 1);
 
-        lineEdit_numChildren = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_numChildren->setObjectName(QStringLiteral("lineEdit_numChildren"));
-        lineEdit_numChildren->setMinimumSize(QSize(60, 0));
-        lineEdit_numChildren->setMaximumSize(QSize(60, 16777215));
-        lineEdit_numChildren->setFont(font2);
-        lineEdit_numChildren->setReadOnly(true);
+        label_numChildren = new QLabel(gridWidget_1_1_r);
+        label_numChildren->setObjectName(QStringLiteral("label_numChildren"));
+        label_numChildren->setFont(font2);
 
-        gridLayout->addWidget(lineEdit_numChildren, 9, 1, 1, 1);
+        gridLayout->addWidget(label_numChildren, 13, 0, 1, 1);
+
+        label_mtime = new QLabel(gridWidget_1_1_r);
+        label_mtime->setObjectName(QStringLiteral("label_mtime"));
+        label_mtime->setFont(font2);
+
+        gridLayout->addWidget(label_mtime, 12, 0, 1, 1);
 
         lineEdit_mtime = new QLineEdit(gridWidget_1_1_r);
         lineEdit_mtime->setObjectName(QStringLiteral("lineEdit_mtime"));
@@ -867,11 +979,46 @@ public:
         lineEdit_mtime->setFont(font2);
         lineEdit_mtime->setReadOnly(true);
 
-        gridLayout->addWidget(lineEdit_mtime, 1, 1, 1, 1);
+        gridLayout->addWidget(lineEdit_mtime, 12, 1, 1, 1);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        lineEdit_numChildren = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_numChildren->setObjectName(QStringLiteral("lineEdit_numChildren"));
+        lineEdit_numChildren->setMinimumSize(QSize(60, 0));
+        lineEdit_numChildren->setMaximumSize(QSize(60, 16777215));
+        lineEdit_numChildren->setFont(font2);
+        lineEdit_numChildren->setReadOnly(true);
 
-        gridLayout->addItem(horizontalSpacer_3, 5, 2, 1, 1);
+        gridLayout->addWidget(lineEdit_numChildren, 13, 1, 1, 1);
+
+        label_ctime = new QLabel(gridWidget_1_1_r);
+        label_ctime->setObjectName(QStringLiteral("label_ctime"));
+        label_ctime->setFont(font2);
+
+        gridLayout->addWidget(label_ctime, 11, 0, 1, 1);
+
+        lineEdit_ctime = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_ctime->setObjectName(QStringLiteral("lineEdit_ctime"));
+        lineEdit_ctime->setMinimumSize(QSize(155, 0));
+        lineEdit_ctime->setMaximumSize(QSize(155, 16777215));
+        lineEdit_ctime->setFont(font2);
+        lineEdit_ctime->setReadOnly(true);
+
+        gridLayout->addWidget(lineEdit_ctime, 11, 1, 1, 1);
+
+        label_ephemeralOwner = new QLabel(gridWidget_1_1_r);
+        label_ephemeralOwner->setObjectName(QStringLiteral("label_ephemeralOwner"));
+        label_ephemeralOwner->setFont(font2);
+
+        gridLayout->addWidget(label_ephemeralOwner, 14, 0, 1, 1);
+
+        lineEdit_ephemeralOwner = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_ephemeralOwner->setObjectName(QStringLiteral("lineEdit_ephemeralOwner"));
+        lineEdit_ephemeralOwner->setMinimumSize(QSize(155, 0));
+        lineEdit_ephemeralOwner->setMaximumSize(QSize(60, 16777215));
+        lineEdit_ephemeralOwner->setFont(font2);
+        lineEdit_ephemeralOwner->setReadOnly(true);
+
+        gridLayout->addWidget(lineEdit_ephemeralOwner, 14, 1, 1, 1);
 
 
         verticalLayout->addWidget(gridWidget_1_1_r);
@@ -1016,8 +1163,9 @@ public:
         textEdit_data->setSizePolicy(sizePolicy1);
         textEdit_data->setMinimumSize(QSize(0, 0));
         textEdit_data->setFont(font2);
-        textEdit_data->setStyleSheet(QLatin1String("border-radius: 10px;\n"
-"border: 2px solid rgba(255, 255, 255, 100);"));
+        textEdit_data->setStyleSheet(QLatin1String("\n"
+"	border: 1px solid rgb(197, 197, 197);\n"
+"	border-radius: 10px;"));
 
         verticalLayout_4->addWidget(textEdit_data);
 
@@ -1040,10 +1188,10 @@ public:
 
         toolButton_copy_data = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_copy_data->setObjectName(QStringLiteral("toolButton_copy_data"));
-        QFont font7;
-        font7.setPointSize(10);
-        font7.setStyleStrategy(QFont::PreferAntialias);
-        toolButton_copy_data->setFont(font7);
+        QFont font6;
+        font6.setPointSize(10);
+        font6.setStyleStrategy(QFont::PreferAntialias);
+        toolButton_copy_data->setFont(font6);
         toolButton_copy_data->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -1137,18 +1285,19 @@ public:
 
         retranslateUi(zookeeperwidget);
 
-        tabWidget->setCurrentIndex(1);
-
-
         QMetaObject::connectSlotsByName(zookeeperwidget);
     } // setupUi
 
     void retranslateUi(QWidget *zookeeperwidget)
     {
         zookeeperwidget->setWindowTitle(QApplication::translate("zookeeperwidget", "Form", nullptr));
-        lineEdit_find->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242\346\234\215\345\212\241\345\231\250", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("zookeeperwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("zookeeperwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
+        lineEdit_find->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242\350\277\236\346\216\245", nullptr));
+        label->setText(QApplication::translate("zookeeperwidget", "\345\277\253\351\200\237\350\277\236\346\216\245", nullptr));
+        toolButton_3->setText(QString());
+        toolButton_2->setText(QApplication::translate("zookeeperwidget", "172.16.8.153:11100", nullptr));
+        toolButton_4->setText(QApplication::translate("zookeeperwidget", "172.16.8.156:11100", nullptr));
+        toolButton_5->setText(QApplication::translate("zookeeperwidget", "172.16.8.159:11100", nullptr));
+        toolButton_6->setText(QApplication::translate("zookeeperwidget", "172.16.18.153:11100", nullptr));
         label_node->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\357\274\232", nullptr));
         lineEdit_node->setText(QApplication::translate("zookeeperwidget", "/", nullptr));
         toolButton_add->setText(QApplication::translate("zookeeperwidget", "\346\267\273\345\212\240", nullptr));
@@ -1161,24 +1310,24 @@ public:
         lineEdit_mzxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         lineEdit_aversion->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         lineEdit_version->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        label_ephemeralOwner->setText(QApplication::translate("zookeeperwidget", "ephemeralOwner\357\274\232", nullptr));
         label_aversion->setText(QApplication::translate("zookeeperwidget", "aversion\357\274\232", nullptr));
-        label_pzxid->setText(QApplication::translate("zookeeperwidget", "pzxid\357\274\232", nullptr));
-        label_cversion->setText(QApplication::translate("zookeeperwidget", "cversion\357\274\232", nullptr));
-        label_mtime->setText(QApplication::translate("zookeeperwidget", "mtime\357\274\232", nullptr));
         lineEdit_cversion->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        label_numChildren->setText(QApplication::translate("zookeeperwidget", "numChildren\357\274\232", nullptr));
-        label_version->setText(QApplication::translate("zookeeperwidget", "version\357\274\232", nullptr));
+        label_cversion->setText(QApplication::translate("zookeeperwidget", "cversion\357\274\232", nullptr));
+        label_pzxid->setText(QApplication::translate("zookeeperwidget", "pzxid\357\274\232", nullptr));
         label_mzxid->setText(QApplication::translate("zookeeperwidget", "mzxid\357\274\232", nullptr));
+        label_version->setText(QApplication::translate("zookeeperwidget", "version\357\274\232", nullptr));
+        lineEdit_czxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         label_dataLength->setText(QApplication::translate("zookeeperwidget", "dataLength\357\274\232", nullptr));
         label_czxid->setText(QApplication::translate("zookeeperwidget", "czxid\357\274\232", nullptr));
-        lineEdit_czxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        lineEdit_ctime->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        lineEdit_ephemeralOwner->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         lineEdit_dataLength->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        label_ctime->setText(QApplication::translate("zookeeperwidget", "ctime\357\274\232", nullptr));
-        lineEdit_numChildren->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_numChildren->setText(QApplication::translate("zookeeperwidget", "numChildren\357\274\232", nullptr));
+        label_mtime->setText(QApplication::translate("zookeeperwidget", "mtime\357\274\232", nullptr));
         lineEdit_mtime->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        lineEdit_numChildren->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_ctime->setText(QApplication::translate("zookeeperwidget", "ctime\357\274\232", nullptr));
+        lineEdit_ctime->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_ephemeralOwner->setText(QApplication::translate("zookeeperwidget", "ephemeralOwner\357\274\232", nullptr));
+        lineEdit_ephemeralOwner->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         label_node_create->setText(QApplication::translate("zookeeperwidget", "createNode\357\274\232", nullptr));
         label_node_type->setText(QApplication::translate("zookeeperwidget", "nodeType\357\274\232", nullptr));
         comboBox_node_type->setItemText(0, QApplication::translate("zookeeperwidget", "\346\214\201\344\271\205\350\212\202\347\202\271", nullptr));

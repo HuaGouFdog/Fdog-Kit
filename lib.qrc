@@ -96,5 +96,7 @@
         <file>lib/test.png</file>
         <file>lib/file2.png</file>
         <file>lib/Zookeeper2.png</file>
+        <file>lib/tree_open.png</file>
+        <file>lib/tree_close.png</file>
     </qresource>
 </RCC>

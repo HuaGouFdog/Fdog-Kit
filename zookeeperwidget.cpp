@@ -25,6 +25,13 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     //ui->treeWidget->setStyle((QStyleFactory::create("windows")));
     init(cInfoStruct.host, cInfoStruct.port);
     setMouseTracking(true);
+
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    QAction *action2 = new QAction(this);
+    action2->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_search->addAction(action2,QLineEdit::LeadingPosition);
 }
 
 zookeeperwidget::~zookeeperwidget()
@@ -453,6 +460,8 @@ void zookeeperwidget::on_treeWidget_customContextMenuRequested(const QPoint &pos
 
     //定义右键弹出菜单
     popMenu = new QMenu(this);
+    popMenu->setWindowFlags(popMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    popMenu->setAttribute(Qt::WA_TranslucentBackground);
     popMenu->addAction(m_action_add);
     popMenu->addAction(m_action_refresh);
     popMenu->addAction(m_action_delete);
