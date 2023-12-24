@@ -5,14 +5,85 @@
 //#include <QWidget>
 #include "zookeeper.h"
 #include <QTreeWidgetItem>
+#include <QThread>
 #include "createconnect.h"
+#include <QDebug>
 Q_DECLARE_METATYPE(String_vector);
 Q_DECLARE_METATYPE(Stat);
 Q_DECLARE_METATYPE(QTreeWidgetItem*);
 Q_DECLARE_METATYPE(QVector<int>);
 Q_DECLARE_METATYPE(QVector<QString>);
+
 #define ZK_MAX_CONNECT_TIMES 5 //连接最大尝试次数
 static bool g_connected = false;  // 是否连接上zk
+
+
+//class Counter : public QRunnable
+//{
+//   public:
+//    Counter(zhandle_t *zh = NULL, QString path, QTreeWidgetItem *item) {
+//        this->zh = zh;
+//        this->path = path;
+//        this->item = item;
+//    }
+//private:
+//    void run() {
+//        qDebug() << "Children path" << path << " Thread ID:" << QThread::currentThreadId();
+//        int count = path.count("/");
+//        if (count >= 4) {
+//            return;
+//        }
+//        String_vector children;
+//        int rc = zoo_get_children(zh, path.toStdString().c_str(), 0, &children);
+//        QVector<int> childrenList;
+//        QVector<QString> dataList;
+//        if (rc != ZOK) {
+//            return;
+//        }
+
+//        for (int i = 0; i < children.count; ++i) {
+//            QString children_path;
+//            if (path != "/") {
+//                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+
+//            } else {
+//                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+//            }
+//    //        String_vector children2;
+//    //        int rc = zoo_get_children(zh, children_path.toStdString().c_str(), 0, &children2);
+//    //        if (rc != ZOK) {
+//    //            return;
+//    //        }
+
+////            QTreeWidgetItem *item2 = new QTreeWidgetItem(item);
+////            item2->setText(0, children_path);
+////            zookeeperhandle * zookhandle2 = new zookeeperhandle(this->zh);
+////            // 将对象移动到线程中
+////            QThread * thread = new QThread();
+////            zookhandle2->moveToThread(thread);
+////            thread->start();
+//            //getChildren(children_path, item2);
+//            //QMetaObject::invokeMethod(zookhandle2,"getChildren",Qt::QueuedConnection, Q_ARG(QString,children_path), Q_ARG(QTreeWidgetItem*, item2));
+//            //qDebug() << "getChildren children_path = " << children_path;
+//            //QString path = children.data[i];
+//            Stat stat;
+//            QString data;
+//            //getNodeInfo(stat, data, children_path);
+//            childrenList.push_back(children.count);
+//            dataList.push_back(data);
+//        }
+
+//        QVariant varValue = QVariant::fromValue(children);
+//        int code = 0;
+//        QString message;
+//        emit send_getChildren(code, message, path, varValue, dataList, childrenList, item);
+//        return;
+//    }
+
+//    zhandle_t *zh;
+//    QString path;
+//    QTreeWidgetItem *item;
+//};
 
 class zookeeperhandle : public QObject
 {
@@ -20,7 +91,7 @@ class zookeeperhandle : public QObject
 public:
     explicit zookeeperhandle(QObject *parent);
 
-    zookeeperhandle();
+    explicit zookeeperhandle(zhandle_t *zh = NULL);
 
 
 //    zhandle_t *getZh() const;
@@ -49,7 +120,7 @@ public slots:
     void getNodeInfo_2(QString path);
     void createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item);
     void deleteNode(QString path, QTreeWidgetItem *item);
-private:
+public:
     QString host;
     QString port;
     zhandle_t *zh;
@@ -57,4 +128,89 @@ private:
     //QTreeWidgetItem *item;
 };
 
+
+
+
+class NodeWorker : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit NodeWorker(const std::string& path, zhandle_t* zh, QObject* parent = nullptr)
+        : QObject(parent), path_(path), zh_(zh)
+    {
+    }
+
+public slots:
+    void process()
+    {
+        qDebug() << "开始获取节点";
+        std::vector<std::string> nodes;
+        getChildrenRecursive(zh_, path_, nodes);
+
+        // 发送节点列表信号
+        //emit nodesReady(nodes);
+    }
+
+signals:
+    void nodesReady(const std::vector<std::string>& nodes);
+
+private:
+    void getChildrenRecursive(zhandle_t* zh, const std::string& path, std::vector<std::string>& nodes)
+    {
+
+        qDebug() << "getChildrenRecursive path = " << QString::fromStdString(path);
+        struct String_vector childNodes;
+        int ret = zoo_get_children(zh, path.c_str(), 0, &childNodes);
+        if (ret != ZOK) {
+            qDebug() << "Failed to get children nodes for path";
+            return;
+        }
+
+        for (int i = 0; i < childNodes.count; ++i) {
+            std::string path2 = path;
+            qDebug() << "childPath = " << childNodes.count;
+            //std::string childPath = path + "/" + childNodes.data[i];
+            //nodes.push_back(childPath);
+            //getChildrenRecursive(zh, childPath, nodes);
+        }
+
+        // 释放子节点列表资源
+        //deallocate_String_vector(&childNodes);
+    }
+
+    std::string path_;
+    zhandle_t* zh_;
+};
+
+class NodeWorkerThread : public QThread
+{
+    Q_OBJECT
+
+public:
+    explicit NodeWorkerThread(const std::string& path, zhandle_t* zh, QObject* parent = nullptr)
+        : QThread(parent), path_(path), zh_(zh)
+    {
+    }
+
+    void run() override
+    {
+        NodeWorker worker(path_, zh_);
+        connect(&worker, &NodeWorker::nodesReady, this, &NodeWorkerThread::handleNodesReady);
+        worker.process();
+    }
+
+signals:
+    void nodesReady(const std::vector<std::string>& nodes);
+
+private slots:
+    void handleNodesReady(const std::vector<std::string>& nodes)
+    {
+        emit nodesReady(nodes);
+    }
+
+private:
+    std::string path_;
+    zhandle_t* zh_;
+};
 #endif // ZOOKEEPERHANDER_H

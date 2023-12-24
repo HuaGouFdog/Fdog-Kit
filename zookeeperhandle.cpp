@@ -10,8 +10,9 @@ zookeeperhandle::zookeeperhandle(QObject *parent) : QObject(parent)
     qRegisterMetaType<QVector<QString>>("QVector<QString>&");
 }
 
-zookeeperhandle::zookeeperhandle()
+zookeeperhandle::zookeeperhandle(zhandle_t *zh)
 {
+    this->zh = zh;
     qRegisterMetaType<QVector<int>>("QVector<int>&");
     qRegisterMetaType<QVector<QString>>("QVector<QString>&");
 }
@@ -31,6 +32,11 @@ zookeeperhandle::zookeeperhandle()
 
 void zookeeperhandle::getChildren(QString path, QTreeWidgetItem *item)
 {
+    qDebug() << "Children path" << path << " Thread ID:" << QThread::currentThreadId();
+    int count = path.count("/");
+//    if (count >= 2) {
+//        return;
+//    }
     String_vector children;
     int rc = zoo_get_children(zh, path.toStdString().c_str(), 0, &children);
     QVector<int> childrenList;
@@ -47,12 +53,27 @@ void zookeeperhandle::getChildren(QString path, QTreeWidgetItem *item)
         } else {
             children_path = QString::fromStdString(path.toStdString() + children.data[i]);
         }
-        //qDebug() << "getChildren children_path = " << children_path;
+//        String_vector children2;
+//        int rc = zoo_get_children(zh, children_path.toStdString().c_str(), 0, &children2);
+//        if (rc != ZOK) {
+//            return;
+//        }
+
+        //QTreeWidgetItem *item2 = new QTreeWidgetItem(item);
+        //item2->setText(0, children_path);
+        //zookeeperhandle * zookhandle2 = new zookeeperhandle(this->zh);
+        // 将对象移动到线程中
+        //QThread * thread = new QThread();
+        //zookhandle2->moveToThread(thread);
+        //thread->start();
+        //getChildren(children_path, item2);
+        //QMetaObject::invokeMethod(zookhandle2,"getChildren",Qt::QueuedConnection, Q_ARG(QString,children_path), Q_ARG(QTreeWidgetItem*, item2));
+        qDebug() << "getChildren children_path = " << children_path;
         //QString path = children.data[i];
         Stat stat;
         QString data;
-        getNodeInfo(stat, data, children_path);
-        childrenList.push_back(stat.numChildren);
+        //getNodeInfo(stat, data, children_path);
+        childrenList.push_back(children.count);
         dataList.push_back(data);
     }
 
@@ -111,6 +132,7 @@ int zookeeperhandle::getNodeInfo(Stat &stat, QString &data, QString &path)
 
 void zookeeperhandle::getNodeInfo_2(QString path)
 {
+    qDebug() << "getNodeInfo_2" << path << " Thread ID:" << QThread::currentThreadId();
     Stat stat;
     QString data;
     getNodeInfo(stat, data, path);

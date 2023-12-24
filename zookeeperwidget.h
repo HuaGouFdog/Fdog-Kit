@@ -8,7 +8,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QThread>
-
+#include <QThreadPool>
 
 namespace Ui {
 class zookeeperwidget;
@@ -51,9 +51,9 @@ public:
     void showItem(const QString& strText);
 
     //展开/折叠所有节点
-    void expandAllItems(QTreeWidget* treeWidget, bool isexpand);
+    void expandAllItems(QTreeWidget* treeWidget, bool isexpand, int sum);
 
-    void expandItemAndChildren(QTreeWidgetItem* item, bool isexpand);
+    void expandItemAndChildren(QTreeWidgetItem* item, bool isexpand, int sum);
 
 private slots:
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
@@ -111,8 +111,17 @@ private:
     QAction * m_action_copy;
 
     zookeeperhandle * zookhandle;
+    zookeeperhandle * zookhandle2;
+    zookeeperhandle * zookhandle3;
+    zookeeperhandle * zookhandle4;
+    zookeeperhandle * zookhandle5;
 
     QThread * thread;
+    QThread * thread2;
+    QThread * thread3;
+    QThread * thread4;
+    QThread * thread5;
+    int threadSum = 1;
     bool isUnfold;
 };
 
