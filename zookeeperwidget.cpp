@@ -235,7 +235,6 @@ void zookeeperwidget::addNode(QString &path)
     } else {
         ui->lineEdit_node_create->setText(rootPath + "/newNode");
     }
-
     ui->lineEdit_node_create->setFocus();
     showCreateWidget();
     hideNodeInfoWidget();
@@ -243,9 +242,10 @@ void zookeeperwidget::addNode(QString &path)
 
 void zookeeperwidget::deleteNode(QString &path)
 {
-    QTreeWidgetItem * item = ui->treeWidget->currentItem();
-    QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    //qDebug() << "delete";
+    qDebug() << "delete " << path;
+    deleteTreeItem(ui->treeWidget->currentItem());
+    //QTreeWidgetItem * item = ui->treeWidget->currentItem();
+    //QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
 }
 
 void zookeeperwidget::copyPath()
@@ -333,23 +333,49 @@ void zookeeperwidget::expandItemAndChildren(QTreeWidgetItem *item, bool isexpand
 //    for (int i = 0; i < childCount; ++i) {
 //        QTreeWidgetItem* childItem = item->child(i);
 //        expandItemAndChildren(childItem, isexpand, sum);
-//    }
+    //    }
+}
+
+void zookeeperwidget::deleteTreeItem(QTreeWidgetItem *item)
+{
+    if (!item) {
+        return;
+    }
+    // 递归删除子节点
+    while (item->childCount() > 0) {
+        deleteTreeItem(item->child(0));
+    }
+    QString path = item->text(0);
+    // 从父节点中移除该子节点
+    QTreeWidgetItem* parent = NULL;
+    parent= item->parent();
+    if (parent != NULL) {
+        parent->removeChild(item);
+        ui->treeWidget->setCurrentItem(parent);
+        //显示父节点数据
+        getNodeInfo(parent->text(0));
+    } else {
+        delete item;
+    }
+    QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
 }
 
 void zookeeperwidget::rece_deleteNode(int code, QString message, QTreeWidgetItem *item)
 {
-    if (code == 0) {
-        QTreeWidgetItem *parentItem = item->parent();
-        // 从父节点中删除子节点
-        parentItem->removeChild(item);
-        // 释放子节点的内存
-        delete item;
-        //指向当前父节点
-        ui->treeWidget->setCurrentItem(parentItem);
-        //显示父节点数据
-        getNodeInfo(parentItem->text(0));
-    }
-
+//    if (code == 0) {
+//        QTreeWidgetItem *parentItem = NULL;
+//        parentItem = item->parent();
+//        if (parentItem != NULL) {
+//            // 从父节点中删除子节点
+//            parentItem->removeChild(item);
+//            //指向当前父节点
+//            ui->treeWidget->setCurrentItem(parentItem);
+//            //显示父节点数据
+//            getNodeInfo(parentItem->text(0));
+//        } else {
+//            delete item;
+//        }
+//    }
 }
 
 void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
@@ -458,21 +484,8 @@ void zookeeperwidget::on_toolButton_createData_clicked()
 
     QString nodePath = ui->lineEdit_node_create->text();
     QString nodeData = ui->textEdit_data->toPlainText();
-
+    qDebug() << "addNode " << nodePath;
     QMetaObject::invokeMethod(zookhandle,"createNode",Qt::QueuedConnection, Q_ARG(QString,nodePath), Q_ARG(QString,nodeData), Q_ARG(QTreeWidgetItem*, item));
-
-//    int nodeDataLen = strlen(nodeData_children.c_str());
-//    // 创建节点
-//    int rc = zoo_create(zh, nodePath_children.c_str(), nodeData_children.c_str(), nodeDataLen, &ZOO_OPEN_ACL_UNSAFE, 0, NULL, 0);
-//    if (rc == ZOK) {
-//        qDebug() << "add " << item->text(0) << " success";
-//    } else {
-//        qDebug() << "zoo_create rc = " << rc;
-//    }
-
-//    //隐藏创建控件
-//    hideCreateWidget();
-//    showNodeInfoWidget();
 }
 
 void zookeeperwidget::rece_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item)

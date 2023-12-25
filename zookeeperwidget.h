@@ -55,6 +55,7 @@ public:
 
     void expandItemAndChildren(QTreeWidgetItem* item, bool isexpand, int sum);
 
+    void deleteTreeItem (QTreeWidgetItem* item);
 private slots:
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
 
