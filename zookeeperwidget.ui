@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1141</width>
-    <height>561</height>
+    <height>654</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -515,7 +515,7 @@ QToolButton:hover {
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>290</height>
+             <height>383</height>
             </size>
            </property>
           </spacer>
@@ -542,8 +542,11 @@ QToolButton:hover {
      </property>
      <widget class="QWidget" name="verticalWidget_1_l" native="true">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(30, 45, 54);
-color: rgb(255, 255, 255);</string>
+       <string notr="true">#verticalWidget_1_l{
+background-color: rgb(30, 45, 54);
+color: rgb(255, 255, 255);
+border-right:2px solid rgba(108, 117, 125, 65); 
+}</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <property name="sizeConstraint">
@@ -553,10 +556,10 @@ color: rgb(255, 255, 255);</string>
         <number>9</number>
        </property>
        <property name="rightMargin">
-        <number>5</number>
+        <number>9</number>
        </property>
        <property name="bottomMargin">
-        <number>20</number>
+        <number>9</number>
        </property>
        <item>
         <widget class="QWidget" name="horizontalWidget_1_1_l" native="true">
@@ -1204,6 +1207,31 @@ QMenu::separator {
             </column>
            </widget>
           </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+	border: 1px solid rgb(197, 197, 197);
+	border-radius: 5px;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1212,7 +1240,7 @@ QMenu::separator {
      <widget class="QWidget" name="verticalWidget_1_r" native="true">
       <property name="maximumSize">
        <size>
-        <width>320</width>
+        <width>333</width>
         <height>99999</height>
        </size>
       </property>
@@ -1243,13 +1271,13 @@ color: rgb(255, 255, 255);</string>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>260</height>
+           <height>300</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>260</height>
+           <height>300</height>
           </size>
          </property>
          <layout class="QGridLayout" name="gridLayout">
@@ -1269,7 +1297,7 @@ color: rgb(255, 255, 255);</string>
            <number>9</number>
           </property>
           <property name="verticalSpacing">
-           <number>5</number>
+           <number>15</number>
           </property>
           <item row="4" column="1">
            <widget class="QLineEdit" name="lineEdit_pzxid">
@@ -1771,12 +1799,12 @@ color: rgb(255, 255, 255);</string>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>55555</height>
+           <height>55561</height>
           </size>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <property name="spacing">
-           <number>0</number>
+           <number>5</number>
           </property>
           <property name="leftMargin">
            <number>9</number>
@@ -1795,13 +1823,13 @@ color: rgb(255, 255, 255);</string>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>25</height>
+              <height>35</height>
              </size>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -1848,6 +1876,18 @@ color: rgb(255, 255, 255);</string>
              </item>
              <item>
               <widget class="QLineEdit" name="lineEdit_node_create">
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>28</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -1855,7 +1895,31 @@ color: rgb(255, 255, 255);</string>
                  <stylestrategy>PreferAntialias</stylestrategy>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+               </property>
               </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </widget>
@@ -1865,13 +1929,13 @@ color: rgb(255, 255, 255);</string>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>25</height>
+              <height>35</height>
              </size>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1891,7 +1955,7 @@ color: rgb(255, 255, 255);</string>
               <widget class="QLabel" name="label_node_type">
                <property name="minimumSize">
                 <size>
-                 <width>80</width>
+                 <width>100</width>
                  <height>0</height>
                 </size>
                </property>
@@ -1918,7 +1982,7 @@ color: rgb(255, 255, 255);</string>
                <property name="minimumSize">
                 <size>
                  <width>200</width>
-                 <height>0</height>
+                 <height>28</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -1933,6 +1997,47 @@ color: rgb(255, 255, 255);</string>
                  <pointsize>10</pointsize>
                  <stylestrategy>PreferAntialias</stylestrategy>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background:transparent;
+}
+
+QComboBox QAbstractItemView::item
+{
+height:28px;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+</string>
                </property>
                <item>
                 <property name="text">
@@ -1977,13 +2082,13 @@ color: rgb(255, 255, 255);</string>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>25</height>
+              <height>35</height>
              </size>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -2003,7 +2108,7 @@ color: rgb(255, 255, 255);</string>
               <widget class="QLabel" name="label_node_acl">
                <property name="minimumSize">
                 <size>
-                 <width>80</width>
+                 <width>100</width>
                  <height>0</height>
                 </size>
                </property>
@@ -2030,7 +2135,7 @@ color: rgb(255, 255, 255);</string>
                <property name="minimumSize">
                 <size>
                  <width>200</width>
-                 <height>0</height>
+                 <height>28</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -2045,6 +2150,47 @@ color: rgb(255, 255, 255);</string>
                  <pointsize>10</pointsize>
                  <stylestrategy>PreferAntialias</stylestrategy>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background:transparent;
+}
+
+QComboBox QAbstractItemView::item
+{
+height:28px;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+</string>
                </property>
                <item>
                 <property name="text">
@@ -2138,7 +2284,7 @@ color: rgb(255, 255, 255);</string>
            <widget class="QWidget" name="verticalWidget_1_2_5_r" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <property name="spacing">
-              <number>0</number>
+              <number>6</number>
              </property>
              <property name="leftMargin">
               <number>0</number>
@@ -2165,13 +2311,13 @@ color: rgb(255, 255, 255);</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <property name="leftMargin">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <property name="topMargin">
                  <number>0</number>
                 </property>
                 <property name="rightMargin">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <property name="bottomMargin">
                  <number>0</number>
@@ -2227,13 +2373,13 @@ p, li { white-space: pre-wrap; }
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <property name="leftMargin">
-                 <number>3</number>
+                 <number>5</number>
                 </property>
                 <property name="topMargin">
-                 <number>0</number>
+                 <number>6</number>
                 </property>
                 <property name="rightMargin">
-                 <number>0</number>
+                 <number>5</number>
                 </property>
                 <property name="bottomMargin">
                  <number>0</number>

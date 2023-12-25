@@ -8,6 +8,7 @@
 #include <QThread>
 #include "createconnect.h"
 #include <QDebug>
+#include <QRunnable>
 Q_DECLARE_METATYPE(String_vector);
 Q_DECLARE_METATYPE(Stat);
 Q_DECLARE_METATYPE(QTreeWidgetItem*);
@@ -17,6 +18,55 @@ Q_DECLARE_METATYPE(QVector<QString>);
 #define ZK_MAX_CONNECT_TIMES 5 //连接最大尝试次数
 static bool g_connected = false;  // 是否连接上zk
 
+class ZkRunnable : public QObject, public QRunnable {
+    Q_OBJECT
+public:
+    ZkRunnable(QObject * obj_ = NULL, zhandle_t *zh_ = NULL, QString path_ = "", QTreeWidgetItem *item_ = NULL) {
+        obj = obj_;
+        zh = zh_;
+        path = path_;
+        item = item_;
+    }
+    void run() override {
+        //qDebug() << "Running in thread: " << QThread::currentThread() << " path = " << path;
+        String_vector children;
+        int rc = zoo_get_children(zh, path.toStdString().c_str(), 0, &children);
+        QVector<int> childrenList;
+        QVector<QString> dataList;
+        if (rc != ZOK) {
+            return;
+        }
+
+        for (int i = 0; i < children.count; ++i) {
+            QString children_path;
+            if (path != "/") {
+                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+
+            } else {
+                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+            }
+            //qDebug() << "getChildren children_path = " << children_path;
+
+            QString data;
+            childrenList.push_back(children.count);
+            dataList.push_back(data);
+        }
+
+        QVariant varValue = QVariant::fromValue(children);
+        int code = 0;
+        QString message;
+
+        QMetaObject::invokeMethod(obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int,code), Q_ARG(QString,message),
+                                  Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QVector<QString>,dataList),
+                                  Q_ARG(QVector<int>, childrenList), Q_ARG(QTreeWidgetItem*, item));
+        return;
+    }
+
+    QObject * obj;
+    zhandle_t *zh;
+    QString path;
+    QTreeWidgetItem *item;
+};
 
 //class Counter : public QRunnable
 //{

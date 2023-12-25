@@ -1511,7 +1511,7 @@ public:
         scrollArea_4->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 832, 750));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 825, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents_4);
         verticalLayout_8->setSpacing(6);
@@ -1973,7 +1973,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 832, 800));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 40, 800));
         scrollAreaWidgetContents_2->setMinimumSize(QSize(0, 800));
         verticalLayout_19 = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
@@ -2293,7 +2293,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, -338, 832, 1081));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 543, 1081));
         scrollAreaWidgetContents_3->setMinimumSize(QSize(0, 1081));
         verticalLayout_27 = new QVBoxLayout(scrollAreaWidgetContents_3);
         verticalLayout_27->setSpacing(6);
@@ -3178,7 +3178,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 832, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 391, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -4243,8 +4243,8 @@ public:
         font4.setStyleStrategy(QFont::PreferAntialias);
         toolButton_2->setFont(font4);
         toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 214, 103);\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -4254,8 +4254,8 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 214, 103);\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
 "}"));
 
         horizontalLayout_17->addWidget(toolButton_2);
@@ -4266,7 +4266,8 @@ public:
         toolButton_3->setFont(font4);
         toolButton_3->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 214, 103);\n"
+"	\n"
+"	background-color: rgb(67, 67, 67);\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -4277,7 +4278,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 214, 103);\n"
+"	background-color: rgb(67, 67, 67);\n"
 "}"));
 
         horizontalLayout_17->addWidget(toolButton_3);
@@ -4288,7 +4289,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(settingwidget);

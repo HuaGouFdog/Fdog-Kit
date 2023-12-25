@@ -32,6 +32,11 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     QAction *action2 = new QAction(this);
     action2->setIcon(QIcon(":/lib/soucuo.png"));
     ui->lineEdit_search->addAction(action2,QLineEdit::LeadingPosition);
+
+    threadpool.setMaxThreadCount(16);
+    ui->toolButton_add->hide();
+    ui->toolButton__delete->hide();
+    ui->toolButton_refresh->hide();
 }
 
 zookeeperwidget::~zookeeperwidget()
@@ -71,44 +76,6 @@ void zookeeperwidget::init(QString host, QString port)
 void zookeeperwidget::rece_init(bool connected, int code, QString message, QString path, const QVariant varValue, QString data)
 {
     //将数据回写ui
-    thread2 = new QThread();
-    zookhandle2 = new zookeeperhandle(zookhandle->zh);
-    connect(zookhandle2,SIGNAL(send_getNodeInfo_2(int,QString,QVariant,QString,QString)),this,
-                            SLOT(rece_getNodeInfo_2(int,QString,QVariant,QString,QString)));
-    connect(zookhandle2,SIGNAL(send_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)),this,
-                            SLOT(rece_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)));
-    zookhandle2->moveToThread(thread2);
-    thread2->start();
-
-    thread3 = new QThread();
-    zookhandle3 = new zookeeperhandle(zookhandle->zh);
-    connect(zookhandle3,SIGNAL(send_getNodeInfo_2(int,QString,QVariant,QString,QString)),this,
-                            SLOT(rece_getNodeInfo_2(int,QString,QVariant,QString,QString)));
-    connect(zookhandle3,SIGNAL(send_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)),this,
-                            SLOT(rece_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)));
-    zookhandle3->moveToThread(thread3);
-    thread3->start();
-
-    thread4 = new QThread();
-    zookhandle4 = new zookeeperhandle(zookhandle->zh);
-    connect(zookhandle4,SIGNAL(send_getNodeInfo_2(int,QString,QVariant,QString,QString)),this,
-                            SLOT(rece_getNodeInfo_2(int,QString,QVariant,QString,QString)));
-
-    connect(zookhandle4,SIGNAL(send_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)),this,
-                            SLOT(rece_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)));
-    zookhandle4->moveToThread(thread4);
-    thread4->start();
-
-    thread5 = new QThread();
-    zookhandle5 = new zookeeperhandle(zookhandle->zh);
-    connect(zookhandle5,SIGNAL(send_getNodeInfo_2(int,QString,QVariant,QString,QString)),this,
-                            SLOT(rece_getNodeInfo_2(int,QString,QVariant,QString,QString)));
-
-    connect(zookhandle5,SIGNAL(send_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)),this,
-                            SLOT(rece_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)));
-    zookhandle5->moveToThread(thread5);
-    thread5->start();
-
     ui->lineEdit_node->setText(path);
     //ui显示数据
     //showNodeInfo(data, varValue, path);
@@ -120,36 +87,15 @@ void zookeeperwidget::rece_init(bool connected, int code, QString message, QStri
     //判断是否有子节点
     if (stat.numChildren > 0) {
         //获取子节点
-        //auto pool = QThreadPool::globalInstance();
-        //pool->setMaxThreadCount(8);					//设置最多8个线程
-        //a->setAutoDelete(true);	//执行完后自动释放
         getChildren(path, topItem);
-        //pool->start(a);
     }
 }
 
 void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
 {
     qDebug() << "Main Thread ID:" << QThread::currentThreadId();
-    if (threadSum %5 == 1) {
-        qDebug() << "走1";
-        QMetaObject::invokeMethod(zookhandle,"getChildren",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    } else if (threadSum %5 == 2){
-        qDebug() << "走2";
-        QMetaObject::invokeMethod(zookhandle2,"getChildren",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    } else if (threadSum %5 == 3){
-        qDebug() << "走3";
-        QMetaObject::invokeMethod(zookhandle3,"getChildren",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    } else if (threadSum %5 == 4){
-        qDebug() << "走4";
-        QMetaObject::invokeMethod(zookhandle4,"getChildren",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    } else if (threadSum %5 == 0){
-        qDebug() << "走5";
-        QMetaObject::invokeMethod(zookhandle5,"getChildren",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
-    }
-    qDebug() << "threadSum = " << threadSum;
-    threadSum++;
-    //QMetaObject::invokeMethod(zookhandle,"getChildren",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
+    ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, path, item);
+    threadpool.start(m_pRunnable);
 }
 
 void zookeeperwidget::rece_getChildren(int code, QString message, QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item)
@@ -176,7 +122,9 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
         //如果有子节点继续请求
         if (childrenList[i] > 0) {
             //qDebug() << "getChildren children.data[i] = " << children_path;
-            getChildren(children_path, item2);
+            //getChildren(children_path, item2);
+            ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, children_path, item2);
+            threadpool.start(m_pRunnable);
         }
     }
     //展开
@@ -409,8 +357,8 @@ void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colum
     ui->lineEdit_node->setText(item->text(column));
     QString path = item->text(column);
     qDebug() << "获取节点信息";
-    //getNodeInfo(path);
-    QMetaObject::invokeMethod(zookhandle2,"getNodeInfo_2",Qt::QueuedConnection, Q_ARG(QString,path));
+    getNodeInfo(path);
+    //QMetaObject::invokeMethod(zookhandle2,"getNodeInfo_2",Qt::QueuedConnection, Q_ARG(QString,path));
     //getChildren(path, item);
     //单击
 //    ui->lineEdit_node->setText(item->text(column));
@@ -533,11 +481,11 @@ void zookeeperwidget::rece_createNode(int code, QString message, QString path, Q
         //成功获取数据，创建子节点
         QTreeWidgetItem *item_children = new QTreeWidgetItem(item);
         item_children->setText(0, path);
-        if (data.length() > 0) {
-            item_children->setIcon(0, QIcon(":lib/node.png"));
-        } else {
-            item_children->setIcon(0, QIcon(":lib/node2.png"));
-        }
+//        if (data.length() > 0) {
+//            item_children->setIcon(0, QIcon(":lib/node.png"));
+//        } else {
+//            item_children->setIcon(0, QIcon(":lib/node2.png"));
+//        }
         ui->treeWidget->setCurrentItem(item_children);
         //显示数据
         showNodeInfo(data, varValue, path);

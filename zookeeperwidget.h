@@ -111,18 +111,20 @@ private:
     QAction * m_action_copy;
 
     zookeeperhandle * zookhandle;
-    zookeeperhandle * zookhandle2;
-    zookeeperhandle * zookhandle3;
-    zookeeperhandle * zookhandle4;
-    zookeeperhandle * zookhandle5;
+//    zookeeperhandle * zookhandle2;
+//    zookeeperhandle * zookhandle3;
+//    zookeeperhandle * zookhandle4;
+//    zookeeperhandle * zookhandle5;
 
     QThread * thread;
-    QThread * thread2;
-    QThread * thread3;
-    QThread * thread4;
-    QThread * thread5;
+//    QThread * thread2;
+//    QThread * thread3;
+//    QThread * thread4;
+//    QThread * thread5;
     int threadSum = 1;
     bool isUnfold;
+
+    QThreadPool threadpool;
 };
 
 #endif // ZOOKEEPERWIDGET_H

@@ -70,6 +70,7 @@ public:
     QWidget *verticalWidget_1_4_l;
     QVBoxLayout *verticalLayout_2;
     QTreeWidget *treeWidget;
+    QLineEdit *lineEdit;
     QWidget *verticalWidget_1_r;
     QVBoxLayout *verticalLayout;
     QWidget *gridWidget_1_1_r;
@@ -103,6 +104,7 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_node_create;
     QLineEdit *lineEdit_node_create;
+    QSpacerItem *horizontalSpacer_6;
     QWidget *horizontalWidget_1_2_2_r;
     QHBoxLayout *horizontalLayout_8;
     QLabel *label_node_type;
@@ -133,7 +135,7 @@ public:
     {
         if (zookeeperwidget->objectName().isEmpty())
             zookeeperwidget->setObjectName(QStringLiteral("zookeeperwidget"));
-        zookeeperwidget->resize(1141, 561);
+        zookeeperwidget->resize(1141, 654);
         zookeeperwidget->setMinimumSize(QSize(0, 0));
         zookeeperwidget->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
@@ -425,7 +427,7 @@ public:
 
         verticalLayout_8->addWidget(toolButton_6);
 
-        verticalSpacer = new QSpacerItem(20, 290, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 383, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_8->addItem(verticalSpacer);
 
@@ -445,12 +447,15 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         verticalWidget_1_l = new QWidget(splitter);
         verticalWidget_1_l->setObjectName(QStringLiteral("verticalWidget_1_l"));
-        verticalWidget_1_l->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
-"color: rgb(255, 255, 255);"));
+        verticalWidget_1_l->setStyleSheet(QLatin1String("#verticalWidget_1_l{\n"
+"background-color: rgb(30, 45, 54);\n"
+"color: rgb(255, 255, 255);\n"
+"border-right:2px solid rgba(108, 117, 125, 65); \n"
+"}"));
         verticalLayout_9 = new QVBoxLayout(verticalWidget_1_l);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         verticalLayout_9->setSizeConstraint(QLayout::SetDefaultConstraint);
-        verticalLayout_9->setContentsMargins(-1, 9, 5, 20);
+        verticalLayout_9->setContentsMargins(-1, 9, 9, 9);
         horizontalWidget_1_1_l = new QWidget(verticalWidget_1_l);
         horizontalWidget_1_1_l->setObjectName(QStringLiteral("horizontalWidget_1_1_l"));
         QFont font4;
@@ -829,13 +834,24 @@ public:
 
         verticalLayout_2->addWidget(treeWidget);
 
+        lineEdit = new QLineEdit(verticalWidget_1_4_l);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setMinimumSize(QSize(0, 100));
+        lineEdit->setFont(font2);
+        lineEdit->setStyleSheet(QLatin1String("\n"
+"	border: 1px solid rgb(197, 197, 197);\n"
+"	border-radius: 5px;"));
+        lineEdit->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+
+        verticalLayout_2->addWidget(lineEdit);
+
 
         verticalLayout_9->addWidget(verticalWidget_1_4_l);
 
         splitter->addWidget(verticalWidget_1_l);
         verticalWidget_1_r = new QWidget(splitter);
         verticalWidget_1_r->setObjectName(QStringLiteral("verticalWidget_1_r"));
-        verticalWidget_1_r->setMaximumSize(QSize(320, 99999));
+        verticalWidget_1_r->setMaximumSize(QSize(333, 99999));
         verticalWidget_1_r->setFont(font4);
         verticalWidget_1_r->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
@@ -844,12 +860,12 @@ public:
         verticalLayout->setContentsMargins(0, 9, 0, 19);
         gridWidget_1_1_r = new QWidget(verticalWidget_1_r);
         gridWidget_1_1_r->setObjectName(QStringLiteral("gridWidget_1_1_r"));
-        gridWidget_1_1_r->setMinimumSize(QSize(0, 260));
-        gridWidget_1_1_r->setMaximumSize(QSize(16777215, 260));
+        gridWidget_1_1_r->setMinimumSize(QSize(0, 300));
+        gridWidget_1_1_r->setMaximumSize(QSize(16777215, 300));
         gridLayout = new QGridLayout(gridWidget_1_1_r);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setHorizontalSpacing(9);
-        gridLayout->setVerticalSpacing(5);
+        gridLayout->setVerticalSpacing(15);
         gridLayout->setContentsMargins(9, 0, 9, 0);
         lineEdit_pzxid = new QLineEdit(gridWidget_1_1_r);
         lineEdit_pzxid->setObjectName(QStringLiteral("lineEdit_pzxid"));
@@ -1026,15 +1042,15 @@ public:
         widget_1_2_r = new QWidget(verticalWidget_1_r);
         widget_1_2_r->setObjectName(QStringLiteral("widget_1_2_r"));
         widget_1_2_r->setMinimumSize(QSize(0, 0));
-        widget_1_2_r->setMaximumSize(QSize(16777215, 55555));
+        widget_1_2_r->setMaximumSize(QSize(16777215, 55561));
         verticalLayout_7 = new QVBoxLayout(widget_1_2_r);
-        verticalLayout_7->setSpacing(0);
+        verticalLayout_7->setSpacing(5);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(9, 5, 9, 0);
         horizontalWidget_1_2_1_r = new QWidget(widget_1_2_r);
         horizontalWidget_1_2_1_r->setObjectName(QStringLiteral("horizontalWidget_1_2_1_r"));
-        horizontalWidget_1_2_1_r->setMinimumSize(QSize(0, 25));
-        horizontalWidget_1_2_1_r->setMaximumSize(QSize(16777215, 25));
+        horizontalWidget_1_2_1_r->setMinimumSize(QSize(0, 35));
+        horizontalWidget_1_2_1_r->setMaximumSize(QSize(16777215, 35));
         horizontalLayout_7 = new QHBoxLayout(horizontalWidget_1_2_1_r);
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
@@ -1049,23 +1065,38 @@ public:
 
         lineEdit_node_create = new QLineEdit(horizontalWidget_1_2_1_r);
         lineEdit_node_create->setObjectName(QStringLiteral("lineEdit_node_create"));
+        lineEdit_node_create->setMinimumSize(QSize(200, 28));
+        lineEdit_node_create->setMaximumSize(QSize(200, 16777215));
         lineEdit_node_create->setFont(font2);
+        lineEdit_node_create->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color:#ced4da;\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
+"}"));
 
         horizontalLayout_7->addWidget(lineEdit_node_create);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_6);
 
 
         verticalLayout_7->addWidget(horizontalWidget_1_2_1_r);
 
         horizontalWidget_1_2_2_r = new QWidget(widget_1_2_r);
         horizontalWidget_1_2_2_r->setObjectName(QStringLiteral("horizontalWidget_1_2_2_r"));
-        horizontalWidget_1_2_2_r->setMinimumSize(QSize(0, 25));
-        horizontalWidget_1_2_2_r->setMaximumSize(QSize(16777215, 25));
+        horizontalWidget_1_2_2_r->setMinimumSize(QSize(0, 35));
+        horizontalWidget_1_2_2_r->setMaximumSize(QSize(16777215, 35));
         horizontalLayout_8 = new QHBoxLayout(horizontalWidget_1_2_2_r);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
         label_node_type = new QLabel(horizontalWidget_1_2_2_r);
         label_node_type->setObjectName(QStringLiteral("label_node_type"));
-        label_node_type->setMinimumSize(QSize(80, 0));
+        label_node_type->setMinimumSize(QSize(100, 0));
         label_node_type->setMaximumSize(QSize(100, 16777215));
         label_node_type->setFont(font2);
 
@@ -1077,9 +1108,48 @@ public:
         comboBox_node_type->addItem(QString());
         comboBox_node_type->addItem(QString());
         comboBox_node_type->setObjectName(QStringLiteral("comboBox_node_type"));
-        comboBox_node_type->setMinimumSize(QSize(200, 0));
+        comboBox_node_type->setMinimumSize(QSize(200, 28));
         comboBox_node_type->setMaximumSize(QSize(200, 16777215));
         comboBox_node_type->setFont(font2);
+        comboBox_node_type->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:1px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
+"	border-radius:5px;\n"
+"	background:transparent;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"height:28px;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	border-image: url(:/lib/up.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"}\n"
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}\n"
+"\n"
+""));
 
         horizontalLayout_8->addWidget(comboBox_node_type);
 
@@ -1092,14 +1162,14 @@ public:
 
         horizontalWidget_1_2_3_r = new QWidget(widget_1_2_r);
         horizontalWidget_1_2_3_r->setObjectName(QStringLiteral("horizontalWidget_1_2_3_r"));
-        horizontalWidget_1_2_3_r->setMinimumSize(QSize(0, 25));
-        horizontalWidget_1_2_3_r->setMaximumSize(QSize(16777215, 25));
+        horizontalWidget_1_2_3_r->setMinimumSize(QSize(0, 35));
+        horizontalWidget_1_2_3_r->setMaximumSize(QSize(16777215, 35));
         horizontalLayout_9 = new QHBoxLayout(horizontalWidget_1_2_3_r);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
         label_node_acl = new QLabel(horizontalWidget_1_2_3_r);
         label_node_acl->setObjectName(QStringLiteral("label_node_acl"));
-        label_node_acl->setMinimumSize(QSize(80, 0));
+        label_node_acl->setMinimumSize(QSize(100, 0));
         label_node_acl->setMaximumSize(QSize(100, 16777215));
         label_node_acl->setFont(font2);
 
@@ -1111,9 +1181,48 @@ public:
         comboBox_node_acl->addItem(QString());
         comboBox_node_acl->addItem(QString());
         comboBox_node_acl->setObjectName(QStringLiteral("comboBox_node_acl"));
-        comboBox_node_acl->setMinimumSize(QSize(200, 0));
+        comboBox_node_acl->setMinimumSize(QSize(200, 28));
         comboBox_node_acl->setMaximumSize(QSize(200, 16777215));
         comboBox_node_acl->setFont(font2);
+        comboBox_node_acl->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:1px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
+"	border-radius:5px;\n"
+"	background:transparent;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"height:28px;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	border-image: url(:/lib/up.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"}\n"
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}\n"
+"\n"
+""));
 
         horizontalLayout_9->addWidget(comboBox_node_acl);
 
@@ -1144,7 +1253,7 @@ public:
         verticalWidget_1_2_5_r = new QWidget(widget_1_2_r);
         verticalWidget_1_2_5_r->setObjectName(QStringLiteral("verticalWidget_1_2_5_r"));
         verticalLayout_5 = new QVBoxLayout(verticalWidget_1_2_5_r);
-        verticalLayout_5->setSpacing(0);
+        verticalLayout_5->setSpacing(6);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         verticalWidget_1_2_5_2_r = new QWidget(verticalWidget_1_2_5_r);
@@ -1153,7 +1262,7 @@ public:
         verticalWidget_1_2_5_2_r->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(verticalWidget_1_2_5_2_r);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_4->setContentsMargins(2, 0, 2, 0);
         textEdit_data = new QTextEdit(verticalWidget_1_2_5_2_r);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Maximum);
@@ -1178,7 +1287,7 @@ public:
         horizontalWidget_1_2_5_1r->setStyleSheet(QStringLiteral(""));
         horizontalLayout_4 = new QHBoxLayout(horizontalWidget_1_2_5_1r);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(3, 0, 0, 0);
+        horizontalLayout_4->setContentsMargins(5, 6, 5, 0);
         label_data_type = new QLabel(horizontalWidget_1_2_5_1r);
         label_data_type->setObjectName(QStringLiteral("label_data_type"));
         label_data_type->setFont(font2);
