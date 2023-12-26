@@ -79,11 +79,13 @@ private slots:
 
     void on_getAllChildren(QString path, const QVariant varValue, QTreeWidgetItem *item);
 
-    void rece_init(bool connected, int code, QString message, QString path, const QVariant varValue, QString data);
+    void rece_init(bool connected, int code, QString message, QString path, int count);
 
     void rece_getChildren(int code, QString message, QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
 
-    void rece_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path);
+    void rece_getNodeInfo(int code, QString message, QVariant varValue, QString data, QString path);
+
+    void rece_setNodeData(int code, QString message);
 
     void rece_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item);
 

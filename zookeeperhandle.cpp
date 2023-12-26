@@ -32,57 +32,44 @@ zookeeperhandle::zookeeperhandle(QObject * obj_, zhandle_t *zh_)
 //    return;
 //}
 
-void zookeeperhandle::getChildren(QString path, QTreeWidgetItem *item)
+void zookeeperhandle::getChildren(int &code, int &count, QString path)
 {
-    qDebug() << "Children path" << path << " Thread ID:" << QThread::currentThreadId();
-    int count = path.count("/");
-//    if (count >= 2) {
-//        return;
-//    }
+    qDebug() << "获取" << path;
     String_vector children;
     int rc = zoo_wget_children(zh, path.toStdString().c_str(), watcher2, 0, &children);
-    QVector<int> childrenList;
-    QVector<QString> dataList;
-    if (rc != ZOK) {
-        return;
+    if (rc == ZOK) {
+        code = rc;
+        count = children.count;
+        qDebug() << "孩子数为" << count;
+    } else {
+        qDebug() << "rc = " << rc;
     }
+//    QVector<int> childrenList;
+//    QVector<QString> dataList;
+//    if (rc != ZOK) {
+//        return;
+//    }
 
-    for (int i = 0; i < children.count; ++i) {
-        QString children_path;
-        if (path != "/") {
-            children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+//    for (int i = 0; i < children.count; ++i) {
+//        QString children_path;
+//        if (path != "/") {
+//            children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
 
-        } else {
-            children_path = QString::fromStdString(path.toStdString() + children.data[i]);
-        }
-//        String_vector children2;
-//        int rc = zoo_get_children(zh, children_path.toStdString().c_str(), 0, &children2);
-//        if (rc != ZOK) {
-//            return;
+//        } else {
+//            children_path = QString::fromStdString(path.toStdString() + children.data[i]);
 //        }
 
-        //QTreeWidgetItem *item2 = new QTreeWidgetItem(item);
-        //item2->setText(0, children_path);
-        //zookeeperhandle * zookhandle2 = new zookeeperhandle(this->zh);
-        // 将对象移动到线程中
-        //QThread * thread = new QThread();
-        //zookhandle2->moveToThread(thread);
-        //thread->start();
-        //getChildren(children_path, item2);
-        //QMetaObject::invokeMethod(zookhandle2,"getChildren",Qt::QueuedConnection, Q_ARG(QString,children_path), Q_ARG(QTreeWidgetItem*, item2));
-        qDebug() << "getChildren children_path = " << children_path;
-        //QString path = children.data[i];
-        Stat stat;
-        QString data;
-        //getNodeInfo(stat, data, children_path);
-        childrenList.push_back(children.count);
-        dataList.push_back(data);
-    }
+//        Stat stat;
+//        QString data;
+//        //getNodeInfo(stat, data, children_path);
+//        childrenList.push_back(children.count);
+//        dataList.push_back(data);
+//    }
 
-    QVariant varValue = QVariant::fromValue(children);
-    int code = 0;
-    QString message;
-    emit send_getChildren(code, message, path, varValue, dataList, childrenList, item);
+//    QVariant varValue = QVariant::fromValue(children);
+//    int code = 0;
+//    QString message;
+//    emit send_getChildren(code, message, path, varValue, dataList, childrenList, item);
     return;
 }
 
@@ -116,32 +103,17 @@ void zookeeperhandle::getChildren(QString path, QTreeWidgetItem *item)
 //    item = value;
 //}
 
-int zookeeperhandle::getNodeInfo(Stat &stat, QString &data, QString &path)
+void zookeeperhandle::getNodeInfo(QString path)
 {
-    // 获取节点的信息
-    int code = 0;
+    qDebug() << "getNodeInfo" << path << " Thread ID:" << QThread::currentThreadId();
+    QString message;
+    Stat stat;
+    QString data;
     char buffer[1024]  = {0}; //不写0 会乱码
     int buffer_len = sizeof(buffer);
     int rc = zoo_get(zh, path.toStdString().c_str(), 0, buffer, &buffer_len, &stat);
-    if (rc == ZOK) {
-        data = QString::fromUtf8(buffer);
-        //qDebug() << "str = " << data;
-    } else if (rc == ZNONODE) {
-        qDebug() << "Node does not exist";
-    }
-    return code;
-}
-
-void zookeeperhandle::getNodeInfo_2(QString path)
-{
-    qDebug() << "getNodeInfo_2" << path << " Thread ID:" << QThread::currentThreadId();
-    Stat stat;
-    QString data;
-    getNodeInfo(stat, data, path);
     QVariant varValue = QVariant::fromValue(stat);
-    int code = 0;
-    QString message;
-    emit send_getNodeInfo_2(code, message, varValue, data, path);
+    emit send_getNodeInfo(rc, message, varValue, data, path);
     return;
 }
 
@@ -154,34 +126,44 @@ void zookeeperhandle::createNode(QString nodePath, QString nodeData, QTreeWidget
     int nodeDataLen = strlen(nodeData.toStdString().c_str());
     // 创建节点
     //qDebug() << "node = " << nodePath;
-    int rc = zoo_create(zh, nodePath.toStdString().c_str(), nodeData.toStdString().c_str(), nodeDataLen, &ZOO_OPEN_ACL_UNSAFE, 0, NULL, 0);
-    if (rc != ZOK) {
-        code = -1;
-        emit send_createNode(code, message, nodePath, varValue, data, item);
-        qDebug() << "add " << nodePath << " fail rc = " << rc;
-        return;
-    }
-
     Stat stat;
-    rc = getNodeInfo(stat, data, nodePath);
-    if (rc != ZOK) {
-        code = -2;
-        emit send_createNode(code, message, nodePath, varValue, data, item);
-    }
+    int rc = zoo_create(zh, nodePath.toStdString().c_str(), nodeData.toStdString().c_str(), nodeDataLen, &ZOO_OPEN_ACL_UNSAFE, 0, NULL, 0);
+//    if (rc != ZOK) {
+//        code = -1;
+//        emit send_createNode(code, message, nodePath, varValue, data, item);
+//        qDebug() << "add " << nodePath << " fail rc = " << rc;
+//        return;
+//    }
+//    rc = getNodeInfo(nodePath);
+//    if (rc != ZOK) {
+//        code = -2;
+//        emit send_createNode(code, message, nodePath, varValue, data, item);
+//    }
     varValue = QVariant::fromValue(stat);
-    emit send_createNode(code, message, nodePath, varValue, data, item);
+    emit send_createNode(rc, message, nodePath, varValue, data, item);
+    return;
+}
+
+void zookeeperhandle::setNodeData(QString nodePath, QString nodeData)
+{
+    QString message;
+    std::string path = nodePath.toStdString();
+    //修改节点数据
+    std::string data = nodeData.toStdString();
+    int data_len = strlen(data.c_str());
+    int ret = zoo_set(zh, path.c_str(), data.c_str(), data_len, -1);
+    emit send_setNodeData(ret, message);
     return;
 }
 
 void zookeeperhandle::deleteNode(QString path, QTreeWidgetItem *item)
 {
-    int code = 0;
     QString message;
     int ret = zoo_delete(zh, path.toStdString().c_str(), -1);
-    if (ret != ZOK) {
-        qDebug() << "Failed to delete node. Error";
-    }
-    emit send_deleteNode(code, message, item);
+//    if (ret != ZOK) {
+//        qDebug() << "Failed to delete node. Error";
+//    }
+    emit send_deleteNode(ret, message, item);
     return;
 }
 
@@ -224,24 +206,22 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
     if (!g_connected) {
         qDebug() << "connect ZooKeeper fail";
         //退出
-        Stat stat;
-        QString Data;
-        QVariant varValue = QVariant::fromValue(stat);
+        //Stat stat;
+        //QString Data;
+        //QVariant varValue = QVariant::fromValue(stat);
         int code;
         QString message;
-        emit send_init(g_connected, code, message, rootPath, varValue, Data);
+        emit send_init(g_connected, code, message, rootPath, 0);
         return;
     }
-
-    Stat stat;
-    QString Data;
-    getNodeInfo(stat, Data, rootPath);
+    int code;
+    int childrenCount;
+    QString message;
+    getChildren(code, childrenCount, rootPath);
 
     //返回给主界面
-    QVariant varValue = QVariant::fromValue(stat);
-    int code;
-    QString message;
-    emit send_init(g_connected, code, message, rootPath, varValue, Data);
+    //QVariant varValue = QVariant::fromValue(stat);
+    emit send_init(g_connected, code, message, rootPath, childrenCount);
     return;
 }
 

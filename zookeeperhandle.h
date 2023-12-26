@@ -82,30 +82,25 @@ public:
     explicit zookeeperhandle(QObject * obj_ = NULL, zhandle_t *zh_ = NULL);
 
 signals:
-    //只是触发
-    //void sendAllChildren(QString path, const QVariant varValue, QTreeWidgetItem *item);
     void send_getChildren(int code, QString message, QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
-    void send_init(bool connected,int code, QString message, QString path, const QVariant varValue, QString data);
-    void send_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path);
+    void send_init(bool connected,int code, QString message, QString path, int count);
+    void send_getNodeInfo(int code, QString message, QVariant varValue, QString data, QString path);
     void send_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item);
     void send_deleteNode(int code, QString message, QTreeWidgetItem *item);
-
+    void send_setNodeData(int code, QString message);
 
 public slots:
     void init(QString rootPath, QString host, QString port);
-    //void getAllChildren();
-    void getChildren(QString path, QTreeWidgetItem *item);
-    int getNodeInfo(Stat &stat, QString &data, QString &path);
-    void getNodeInfo_2(QString path);
+    void getChildren(int &code, int &count, QString path); //获取节点太费时，使用线程池获取节点，只有获取根节点时才走这里
+    void getNodeInfo(QString path);
     void createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item);
+    void setNodeData(QString nodePath, QString nodeData);
     void deleteNode(QString path, QTreeWidgetItem *item);
 public:
     QString host;
     QString port;
     zhandle_t *zh;
     QObject * obj;
-    //QString path;
-    //QTreeWidgetItem *item;
 };
 
 

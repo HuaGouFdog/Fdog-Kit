@@ -55,37 +55,39 @@ void zookeeperwidget::init(QString host, QString port)
     zookhandle->moveToThread(thread);
 
     //初始化连接
-    connect(zookhandle,SIGNAL(send_init(bool,int,QString,QString,QVariant,QString)),this,
-                            SLOT(rece_init(bool,int,QString,QString,QVariant,QString)));
+    connect(zookhandle,SIGNAL(send_init(bool,int,QString,QString,int)),this,
+                            SLOT(rece_init(bool,int,QString,QString,int)));
 
     connect(zookhandle,SIGNAL(send_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)),this,
                             SLOT(rece_getChildren(int,QString,QString,QVariant,QVector<QString>,QVector<int>,QTreeWidgetItem*)));
 
-    connect(zookhandle,SIGNAL(send_getNodeInfo_2(int,QString,QVariant,QString,QString)),this,
-                            SLOT(rece_getNodeInfo_2(int,QString,QVariant,QString,QString)));
+    connect(zookhandle,SIGNAL(send_getNodeInfo(int,QString,QVariant,QString,QString)),this,
+                            SLOT(rece_getNodeInfo(int,QString,QVariant,QString,QString)));
 
     connect(zookhandle,SIGNAL(send_createNode(int,QString,QString,QVariant,QString,QTreeWidgetItem*)),this,
                             SLOT(rece_createNode(int,QString,QString,QVariant,QString,QTreeWidgetItem*)));
 
     connect(zookhandle,SIGNAL(send_deleteNode(int,QString,QTreeWidgetItem*)),this,
                             SLOT(rece_deleteNode(int,QString,QTreeWidgetItem*)));
+    connect(zookhandle,SIGNAL(send_setNodeData(int,QString)),this,
+                            SLOT(rece_setNodeData(int,QString)));
     thread->start();
     QMetaObject::invokeMethod(zookhandle,"init",Qt::QueuedConnection, Q_ARG(QString, rootPath), Q_ARG(QString,host), Q_ARG(QString,port));
 }
 
-void zookeeperwidget::rece_init(bool connected, int code, QString message, QString path, const QVariant varValue, QString data)
+void zookeeperwidget::rece_init(bool connected, int code, QString message, QString path, int count)
 {
     //将数据回写ui
     ui->lineEdit_node->setText(path);
     //ui显示数据
     //showNodeInfo(data, varValue, path);
-    Stat stat = varValue.value<Stat>();
+    //Stat stat = varValue.value<Stat>();
     topItem = new QTreeWidgetItem(ui->treeWidget);
     ui->treeWidget->addTopLevelItem(topItem);
     topItem->setText(0, path);
-    qDebug() << "rece_init stat.numChildren = " << stat.numChildren;
+    qDebug() << "rece_init numChildren count= " << count;
     //判断是否有子节点
-    if (stat.numChildren > 0) {
+    if (count > 0) {
         //获取子节点
         getChildren(path, topItem);
     }
@@ -135,13 +137,23 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
 
 void zookeeperwidget::getNodeInfo(QString &path)
 {
-    QMetaObject::invokeMethod(zookhandle,"getNodeInfo_2",Qt::QueuedConnection, Q_ARG(QString,path));
+    QMetaObject::invokeMethod(zookhandle,"getNodeInfo",Qt::QueuedConnection, Q_ARG(QString,path));
 }
 
-void zookeeperwidget::rece_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path)
+void zookeeperwidget::rece_getNodeInfo(int code, QString message, QVariant varValue, QString data, QString path)
 {
-    //qDebug() << "rece_getNodeInfo_2 数据 = " << data;
+    //qDebug() << "rece_getNodeInfo 数据 = " << data;
     showNodeInfo(data, varValue, path);
+}
+
+void zookeeperwidget::rece_setNodeData(int code, QString message)
+{
+    if (code != ZOK) {
+        qDebug() <<"Failed to set node data. Error";
+    } else {
+        qDebug() <<"Node data set successfully.";
+        ui->toolButton_saveData->hide();
+    }
 }
 
 
@@ -465,17 +477,9 @@ void zookeeperwidget::on_nodeAction()
 
 void zookeeperwidget::on_toolButton_saveData_clicked()
 {
-    std::string path = ui->treeWidget->currentItem()->text(0).toStdString();
-    //修改节点数据
-    std::string data = ui->textEdit_data->toPlainText().toStdString();
-    int data_len = strlen(data.c_str());
-    int ret = zoo_set(zookhandle->zh, path.c_str(), data.c_str(), data_len, -1);
-    if (ret != ZOK) {
-        qDebug() <<"Failed to set node data. Error" << ret << " path = " << ui->treeWidget->currentItem()->text(0) << " data = " << ui->textEdit_data->toPlainText();
-    } else {
-        qDebug() <<"Node data set successfully.";
-        ui->toolButton_saveData->hide();
-    }
+    QString nodePath = ui->treeWidget->currentItem()->text(0);
+    QString nodeData = ui->textEdit_data->toPlainText();
+    QMetaObject::invokeMethod(zookhandle,"setNodeData",Qt::QueuedConnection, Q_ARG(QString, nodePath), Q_ARG(QString, nodeData));
 }
 
 void zookeeperwidget::on_toolButton_createData_clicked()
@@ -501,7 +505,7 @@ void zookeeperwidget::rece_createNode(int code, QString message, QString path, Q
 //        }
         ui->treeWidget->setCurrentItem(item_children);
         //显示数据
-        showNodeInfo(data, varValue, path);
+        //showNodeInfo(data, varValue, path);
 
         hideCreateWidget();
         showNodeInfoWidget();
