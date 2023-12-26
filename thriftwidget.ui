@@ -664,6 +664,40 @@ QToolButton:hover {
           </widget>
          </item>
          <item>
+          <widget class="QLineEdit" name="lineEdit_funcName">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="text">
+            <string>yourMethod2</string>
+           </property>
+           <property name="placeholderText">
+            <string>yourMethod2</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QComboBox" name="comboBox">
            <property name="minimumSize">
             <size>
@@ -681,7 +715,7 @@ QToolButton:hover {
            <property name="styleSheet">
             <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #8a8a8a;
+	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
 	border-radius:5px;
 	background:transparent;
@@ -727,38 +761,20 @@ QComboBox QAbstractItemView{
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_funcName">
-           <property name="minimumSize">
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>0</width>
-             <height>30</height>
+             <width>20</width>
+             <height>20</height>
             </size>
            </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLineEdit{
-color:#ced4da;
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-           </property>
-           <property name="text">
-            <string>yourMethod2</string>
-           </property>
-           <property name="placeholderText">
-            <string>yourMethod2</string>
-           </property>
-          </widget>
+          </spacer>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton">
@@ -942,8 +958,14 @@ padding-right:10px;</string>
                   <widget class="QToolButton" name="toolButton_show_thrift_info">
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
-                     <height>0</height>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
                     </size>
                    </property>
                    <property name="font">
@@ -971,7 +993,20 @@ QToolButton:hover {
 }</string>
                    </property>
                    <property name="text">
-                    <string>查看thrift协议说明</string>
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="lib.qrc">
+                     <normaloff>:/lib/wenhao.png</normaloff>:/lib/wenhao.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>18</width>
+                     <height>18</height>
+                    </size>
+                   </property>
+                   <property name="toolButtonStyle">
+                    <enum>Qt::ToolButtonTextBesideIcon</enum>
                    </property>
                   </widget>
                  </item>
@@ -1007,6 +1042,56 @@ QTreeWidget {
 	border:2px solid rgb(54, 81, 97);
 	
 	color: rgb(0, 0, 0);
+}
+
+QTreeWidget#treeWidget {
+	border: 0px solid #D3D6DD;
+	outline: none;
+}
+QTreeWidget::item {
+	height: 28px;
+	color: rgb(255, 255, 255);
+	border: 1px;
+	outline: 0px;
+}
+
+QTreeWidget::item:hover {
+	border: 0px;
+	outline: 0px;
+    color: rgb(255, 255, 255);
+	background-color: rgba(209, 209, 209, 20);
+}
+QTreeWidget::item:selected{
+    border: 0px;
+	outline: 0px;
+    color: #45B2FF;
+	background-color: rgba(209, 209, 209, 20);
+}
+QTreeWidget::item:selected:active{
+    border: 0px;
+	outline: 0px;
+    color: #45B2FF;
+}
+ 
+QTreeWidget::item:selected:!active {
+    border: 0px;
+	outline: 0px;
+    color: #45B2FF;
+}
+QTreeWidget::branch {
+	height: 28px;
+	width: 28px;
+}
+QTreeWidget::branch:closed:has-children:!has-siblings,
+QTreeWidget::branch:closed:has-children:has-siblings {
+	border-image: none;
+    image: url(:/lib/tree_close.png);
+}
+ 
+QTreeWidget::branch:open:has-children:!has-siblings,
+QTreeWidget::branch:open:has-children:has-siblings  {
+	border-image: none;
+    image: url(:/lib/tree_open.png);
 }</string>
                 </property>
                 <property name="indentation">
@@ -1022,7 +1107,7 @@ QTreeWidget {
                  <bool>false</bool>
                 </property>
                 <attribute name="headerVisible">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </attribute>
                 <attribute name="headerDefaultSectionSize">
                  <number>100</number>
@@ -1098,7 +1183,13 @@ QTreeWidget {
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>30</height>
+                  <height>28</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>28</height>
                  </size>
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -1122,13 +1213,13 @@ QTreeWidget {
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>30</height>
+                     <height>28</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>30</height>
+                     <height>28</height>
                     </size>
                    </property>
                    <property name="font">
@@ -1180,6 +1271,8 @@ border:2px solid rgb(54, 81, 97);
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt; thrift协议值说明&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;一. 消息类型（4字节）：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    1. CALL（80010001），调用方法，并希望获取返回消息&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;    2. REPLY（80010002），来自服务端返回的消息&lt;/span&gt;&lt;/p&gt;

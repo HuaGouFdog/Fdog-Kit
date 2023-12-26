@@ -97,6 +97,14 @@ private slots:
 
     void on_lineEdit_search_returnPressed();
 
+    void rece_children_event(QString path);
+
+    void rece_create_event(QString path);
+
+    void rece_delete_event(QString path);
+
+    void rece_chanage_event(QString path);
+
 private:
     Ui::zookeeperwidget *ui;
     zhandle_t* zh; //zk连接句柄

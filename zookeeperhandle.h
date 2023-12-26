@@ -18,6 +18,9 @@ Q_DECLARE_METATYPE(QVector<QString>);
 #define ZK_MAX_CONNECT_TIMES 5 //连接最大尝试次数
 static bool g_connected = false;  // 是否连接上zk
 
+void watcher2(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx);
+void NodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx);
+
 class ZkRunnable : public QObject, public QRunnable {
     Q_OBJECT
 public:
@@ -30,7 +33,7 @@ public:
     void run() override {
         //qDebug() << "Running in thread: " << QThread::currentThread() << " path = " << path;
         String_vector children;
-        int rc = zoo_get_children(zh, path.toStdString().c_str(), 0, &children);
+        int rc = zoo_wget_children(zh, path.toStdString().c_str(), watcher2, obj, &children);
         QVector<int> childrenList;
         QVector<QString> dataList;
         if (rc != ZOK) {
@@ -68,72 +71,7 @@ public:
     QTreeWidgetItem *item;
 };
 
-//class Counter : public QRunnable
-//{
-//   public:
-//    Counter(zhandle_t *zh = NULL, QString path, QTreeWidgetItem *item) {
-//        this->zh = zh;
-//        this->path = path;
-//        this->item = item;
-//    }
-//private:
-//    void run() {
-//        qDebug() << "Children path" << path << " Thread ID:" << QThread::currentThreadId();
-//        int count = path.count("/");
-//        if (count >= 4) {
-//            return;
-//        }
-//        String_vector children;
-//        int rc = zoo_get_children(zh, path.toStdString().c_str(), 0, &children);
-//        QVector<int> childrenList;
-//        QVector<QString> dataList;
-//        if (rc != ZOK) {
-//            return;
-//        }
 
-//        for (int i = 0; i < children.count; ++i) {
-//            QString children_path;
-//            if (path != "/") {
-//                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
-
-//            } else {
-//                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
-//            }
-//    //        String_vector children2;
-//    //        int rc = zoo_get_children(zh, children_path.toStdString().c_str(), 0, &children2);
-//    //        if (rc != ZOK) {
-//    //            return;
-//    //        }
-
-////            QTreeWidgetItem *item2 = new QTreeWidgetItem(item);
-////            item2->setText(0, children_path);
-////            zookeeperhandle * zookhandle2 = new zookeeperhandle(this->zh);
-////            // 将对象移动到线程中
-////            QThread * thread = new QThread();
-////            zookhandle2->moveToThread(thread);
-////            thread->start();
-//            //getChildren(children_path, item2);
-//            //QMetaObject::invokeMethod(zookhandle2,"getChildren",Qt::QueuedConnection, Q_ARG(QString,children_path), Q_ARG(QTreeWidgetItem*, item2));
-//            //qDebug() << "getChildren children_path = " << children_path;
-//            //QString path = children.data[i];
-//            Stat stat;
-//            QString data;
-//            //getNodeInfo(stat, data, children_path);
-//            childrenList.push_back(children.count);
-//            dataList.push_back(data);
-//        }
-
-//        QVariant varValue = QVariant::fromValue(children);
-//        int code = 0;
-//        QString message;
-//        emit send_getChildren(code, message, path, varValue, dataList, childrenList, item);
-//        return;
-//    }
-
-//    zhandle_t *zh;
-//    QString path;
-//    QTreeWidgetItem *item;
-//};
 
 class zookeeperhandle : public QObject
 {
@@ -141,17 +79,7 @@ class zookeeperhandle : public QObject
 public:
     explicit zookeeperhandle(QObject *parent);
 
-    explicit zookeeperhandle(zhandle_t *zh = NULL);
-
-
-//    zhandle_t *getZh() const;
-//    void setZh(zhandle_t *value);
-
-//    QString getPath() const;
-//    void setPath(const QString &value);
-
-//    QTreeWidgetItem *getItem() const;
-//    void setItem(QTreeWidgetItem *value);
+    explicit zookeeperhandle(QObject * obj_ = NULL, zhandle_t *zh_ = NULL);
 
 signals:
     //只是触发
@@ -161,6 +89,7 @@ signals:
     void send_getNodeInfo_2(int code, QString message, QVariant varValue, QString data, QString path);
     void send_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item);
     void send_deleteNode(int code, QString message, QTreeWidgetItem *item);
+
 
 public slots:
     void init(QString rootPath, QString host, QString port);
@@ -174,6 +103,7 @@ public:
     QString host;
     QString port;
     zhandle_t *zh;
+    QObject * obj;
     //QString path;
     //QTreeWidgetItem *item;
 };

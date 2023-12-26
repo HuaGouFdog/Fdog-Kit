@@ -469,11 +469,11 @@ void zookeeperwidget::on_toolButton_saveData_clicked()
     //修改节点数据
     std::string data = ui->textEdit_data->toPlainText().toStdString();
     int data_len = strlen(data.c_str());
-    int ret = zoo_set(zh, path.c_str(), data.c_str(), data_len, -1);
+    int ret = zoo_set(zookhandle->zh, path.c_str(), data.c_str(), data_len, -1);
     if (ret != ZOK) {
-        //qDebug() <<"Failed to set node data. Error";
+        qDebug() <<"Failed to set node data. Error" << ret << " path = " << ui->treeWidget->currentItem()->text(0) << " data = " << ui->textEdit_data->toPlainText();
     } else {
-        //qDebug() <<"Node data set successfully.";
+        qDebug() <<"Node data set successfully.";
         ui->toolButton_saveData->hide();
     }
 }
@@ -585,4 +585,25 @@ void zookeeperwidget::on_lineEdit_search_returnPressed()
     //回车也重新获取
     showItem(ui->lineEdit_search->text());
     expandAllItems(ui->treeWidget, true, 0);
+}
+
+void zookeeperwidget::rece_children_event(QString path)
+{
+    //孩子节点数据发生变化
+    qDebug() << "rece_children_event 接收到数据" << path;
+}
+
+void zookeeperwidget::rece_create_event(QString path)
+{
+    //节点被创建
+}
+
+void zookeeperwidget::rece_delete_event(QString path)
+{
+    //节点被删除
+}
+
+void zookeeperwidget::rece_chanage_event(QString path)
+{
+    //节点数据被改变
 }

@@ -49,7 +49,7 @@ void ItemWidget::init()
     comboBoxBase->addItem("set");
     comboBoxBase->addItem("list");
     comboBoxBase->setCurrentIndex(3);
-    //comboBoxBase->setMinimumWidth(90);
+    comboBoxBase->setMinimumHeight(20);
     //comboBoxBase->setMaximumWidth(90);
 
     comboBoxBase->setView(new QListView());  //必须设置
@@ -212,6 +212,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
      ui->splitter_2->setStretchFactor(0, 2);  // 第一个子控件占 1/3 的显示空间
      ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
+
+     ui->widget_thrift->hide();
 }
 
 void thriftwidget::sendData()
@@ -651,4 +653,15 @@ void thriftwidget::on_toolButton_test_clicked()
         clientSocket->close();
     }
     return;
+}
+
+void thriftwidget::on_toolButton_show_thrift_info_clicked()
+{
+    if(ui->widget_thrift->isHidden()) {
+        ui->widget_thrift->show();
+        //ui->toolButton_show_thrift_info->setText("关闭thrift协议说明");
+    } else {
+        ui->widget_thrift->hide();
+        //ui->toolButton_show_thrift_info->setText("查看thrift协议说明");
+    }
 }
