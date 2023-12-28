@@ -27,35 +27,42 @@ void initWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
 
 void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx)
 {
-    {
-        qDebug() << "nodeWatcher ...";
-        //监听事件回调函数
-        if (type == ZOO_CHILD_EVENT) {
-            // 子节点发生变化
-            // 在这里处理子节点变化的逻辑
-            qDebug() << "子节点发生变化" << path;
-            QString path_str(path);
-            QObject * obj_ = (QObject*)watcherCtx;
-            QMetaObject::invokeMethod(obj_,"rece_children_event",Qt::QueuedConnection, Q_ARG(QString, path_str));
-
-        } else if (type == ZOO_CHANGED_EVENT) {
-            qDebug() << "节点数据发生变化";
-            // 节点数据发生变化
-            // 在这里处理节点数据变化的逻辑
-        } else if (type == ZOO_DELETED_EVENT) {
-            // 节点被删除
-            // 在这里处理节点被删除的逻辑
-            qDebug() << "节点被删除";
-        } else if (type == ZOO_CREATED_EVENT) {
-            qDebug() << "节点被创建";
-            // 节点被创建
-            // 在这里处理节点被创建的逻辑
-        } else {
-            qDebug() << "其他事件";
-            // 其他类型的事件
-            // 在这里处理其他类型的事件
+    //监听事件回调函数
+    QObject * obj_ = (QObject*)watcherCtx;
+    QString path_str(path);
+    QString message;
+    if (type == ZOO_CHILD_EVENT) {
+        // 子节点发生变化
+        qDebug() << "子节点发生变化" << path;
+        //再次监听
+        String_vector children;
+        int rc = zoo_wget_children(zh, path, nodeWatcher, obj_, &children);
+        QVariant varValue = QVariant::fromValue(children);
+        QString message;
+        if (rc != ZOK) {
+            qDebug() << "出错";
         }
+        QMetaObject::invokeMethod(obj_,"rece_children_event",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
+                                        Q_ARG(QString,path_str), Q_ARG(QVariant, varValue));
+
+    } else if (type == ZOO_CHANGED_EVENT) {
+        qDebug() << "节点数据发生变化" << path;
+        // 节点数据发生变化
+        // 在这里处理节点数据变化的逻辑
+    } else if (type == ZOO_DELETED_EVENT) {
+        // 节点被删除
+        // 在这里处理节点被删除的逻辑
+        qDebug() << "节点被删除" << path;
+    } else if (type == ZOO_CREATED_EVENT) {
+        qDebug() << "节点被创建" << path;
+        // 节点被创建
+        // 在这里处理节点被创建的逻辑
+    } else {
+        qDebug() << "其他事件";
+        // 其他类型的事件
+        // 在这里处理其他类型的事件
     }
+    //QMetaObject::invokeMethod(obj_,"rece_children_event",Qt::QueuedConnection, Q_ARG(QString, path_str));
 }
 
 zookeeperhandle::zookeeperhandle(QObject *parent) : QObject(parent)
@@ -103,10 +110,20 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
 void zookeeperhandle::getChildren(int &code, int &count, QString path)
 {
     String_vector children;
-    int rc = zoo_wget_children(zh, path.toStdString().c_str(), nodeWatcher, 0, &children);
+    int rc = zoo_get_children(zh, path.toStdString().c_str(), NULL, &children);
     if (rc == ZOK) {
         code = rc;
         count = children.count;
+    }
+    return;
+}
+
+void zookeeperhandle::getSingleChildren(QString path)
+{
+    qDebug() << "getSingleChildren 对" << path << "监听";
+    String_vector children;
+    int rc = zoo_wget_children(zh, path.toStdString().c_str(), nodeWatcher, NULL, &children);
+    if (rc == ZOK) {
     }
     return;
 }
@@ -146,6 +163,8 @@ void zookeeperhandle::createNode(QString nodePath, QString nodeData, QTreeWidget
     int nodeDataLen = strlen(nodeData.toStdString().c_str());
     Stat stat;
     int rc = zoo_create(zh, nodePath.toStdString().c_str(), nodeData.toStdString().c_str(), nodeDataLen, &ZOO_OPEN_ACL_UNSAFE, 0, NULL, 0);
+    String_vector children;
+    rc = zoo_wget_children(zh, nodePath.toStdString().c_str(), nodeWatcher, obj, &children);
     varValue = QVariant::fromValue(stat);
     emit send_createNode(rc, message, nodePath, varValue, data, item);
     return;

@@ -88,6 +88,11 @@ void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
     threadpool.start(m_pRunnable);
 }
 
+//void zookeeperwidget::getSingleChildren(QString path)
+//{
+//    QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path));
+//}
+
 void zookeeperwidget::rece_getChildren(int code, QString message, QString path, const QVariant varValue, QTreeWidgetItem *item)
 {
     if (code != ZOK) {
@@ -384,7 +389,7 @@ void zookeeperwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int
 
 void zookeeperwidget::on_textEdit_data_textChanged()
 {
-    qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
+    //qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
     if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == ui->treeWidget->currentItem()->text(0)) {
         //qDebug() << "显示修改按钮";
         ui->toolButton_saveData->show();
@@ -508,10 +513,36 @@ void zookeeperwidget::on_lineEdit_search_returnPressed()
     expandAllItems(ui->treeWidget, true, 0);
 }
 
-void zookeeperwidget::rece_children_event(QString path)
+void zookeeperwidget::rece_children_event(int code, QString message, QString path, const QVariant varValue)
 {
     //孩子节点数据发生变化
     qDebug() << "rece_children_event 接收到数据" << path;
+    //遍历treewidget 查找 path 的子节点，有没有没存在的
+    //获取节点层级
+    QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path, Qt::MatchExactly|Qt::MatchRecursive, 0);
+    if (!items.isEmpty()) {
+        qDebug() << " 长度为" << items.length();
+        QTreeWidgetItem * item = items.first();
+        String_vector children = varValue.value<String_vector>();
+        //QVector<QString> children_path_list;
+        for (int i = 0; i < children.count; ++i) {
+            QString children_path;
+            if (path != "/") {
+                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+                //children_path_list.push_back(children_path);
+            } else {
+                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+                //children_path_list.push_back(children_path);
+            }
+            qDebug() << "节点" << children_path;
+            QList<QTreeWidgetItem*> items_c = ui->treeWidget->findItems(children_path, Qt::MatchExactly|Qt::MatchRecursive, 0);
+            if (items_c.isEmpty()) {
+                qDebug() << "未找到，创建这个值" << children_path;
+            }
+        }
+    } else{
+        qDebug() << "输错";
+    }
 }
 
 void zookeeperwidget::rece_create_event(QString path)

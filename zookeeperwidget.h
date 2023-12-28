@@ -67,6 +67,8 @@ private slots:
 
     void rece_getChildren(int code, QString message, QString path, const QVariant varValue, QTreeWidgetItem *item);
 
+//    void rece_getSingleChildren(int code, QString message, QString path, const QVariant varValue);
+
     void rece_getNodeInfo(int code, QString message, QVariant varValue, QString data, QString path);
 
     void rece_setNodeData(int code, QString message);
@@ -75,7 +77,7 @@ private slots:
 
     void rece_deleteNode(int code, QString message, QTreeWidgetItem *item);
 
-    void rece_children_event(QString path);
+    void rece_children_event(int code, QString message, QString path, const QVariant varValue);
 
     void rece_create_event(QString path);
 

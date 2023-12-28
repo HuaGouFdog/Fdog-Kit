@@ -47,16 +47,14 @@ public:
                                         Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, item));
             return;
         }
-
-        for (int i = 0; i < children.count; ++i) {
-            QString children_path;
-            if (path != "/") {
-                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
-            } else {
-                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
-            }
-        }
-
+//        for (int i = 0; i < children.count; ++i) {
+//            QString children_path;
+//            if (path != "/") {
+//                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+//            } else {
+//                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+//            }
+//        }
         QMetaObject::invokeMethod(obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
                                     Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, item));
         return;
@@ -79,7 +77,7 @@ public:
 
 signals:
     void send_init(int connectState,int code, QString message, QString path, int count);
-    void send_getChildren(int code, QString message, QString path, const QVariant varValue, QVector<QString> dataList, QVector<int> childrenList, QTreeWidgetItem *item);
+    void send_getChildren(int code, QString message, QString path, const QVariant varValue, QTreeWidgetItem *item);
     void send_setNodeData(int code, QString message);
     void send_getNodeInfo(int code, QString message, QVariant varValue, QString data, QString path);
     void send_createNode(int code, QString message, QString path, QVariant varValue, QString data, QTreeWidgetItem *item);
@@ -88,6 +86,7 @@ signals:
 public slots:
     void init(QString rootPath, QString host, QString port);
     void getChildren(int &code, int &count, QString path); //获取节点太费时，使用线程池获取节点，只有获取根节点时才走这里
+    void getSingleChildren(QString path);
     void setNodeData(QString nodePath, QString nodeData);
     void getNodeInfo(QString path);
     void createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item);
