@@ -59,6 +59,8 @@ public:
     void hideCreateWidget();//隐藏创建节点控件
     void showCreateWidget();//显示创建节点控件
     void hideButton();
+
+    void showMessage(QString message, bool isSuccess = true); //显示操作信息
     
 private slots:
     void rece_init(int connectState, int code, QString message, QString path, int count);
@@ -108,6 +110,8 @@ private slots:
     void on_toolButton_unfold_clicked();
 
     void on_lineEdit_search_returnPressed();
+
+    void on_toolButton_6_clicked();
 
 private:
     Ui::zookeeperwidget *ui;
