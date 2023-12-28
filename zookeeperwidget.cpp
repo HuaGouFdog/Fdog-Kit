@@ -152,9 +152,12 @@ void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path
     ui->lineEdit_pzxid->setText(QString::number(stat.pzxid));
 
     ui->textEdit_data->clear();
+    nodeData = "";
+    nodeDataPath = "";
     if (data.length() <= 0) {
         ui->label_data_type->setText("数据类型：NULL");
         ui->toolButton_copy_data->hide();
+        nodeDataPath = path;
         return;
     }
     ui->toolButton_copy_data->show();
@@ -381,7 +384,7 @@ void zookeeperwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int
 
 void zookeeperwidget::on_textEdit_data_textChanged()
 {
-    //qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
+    qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
     if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == ui->treeWidget->currentItem()->text(0)) {
         //qDebug() << "显示修改按钮";
         ui->toolButton_saveData->show();
