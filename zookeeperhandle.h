@@ -86,7 +86,7 @@ signals:
 public slots:
     void init(QString rootPath, QString host, QString port);
     void getChildren(int &code, int &count, QString path); //获取节点太费时，使用线程池获取节点，只有获取根节点时才走这里
-    void getSingleChildren(QString path);
+    void getSingleChildren(QString path, void * obj_);
     void setNodeData(QString nodePath, QString nodeData);
     void getNodeInfo(QString path);
     void createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item);

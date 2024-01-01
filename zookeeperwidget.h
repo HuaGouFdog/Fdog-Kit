@@ -49,6 +49,7 @@ public:
 
     void expandItemAndChildren(QTreeWidgetItem* item, bool isexpand, int sum);
 
+    void deleteTreeNode (QTreeWidgetItem* item);
     void deleteTreeItem (QTreeWidgetItem* item);
 
     void copyPath();
@@ -81,7 +82,7 @@ private slots:
 
     void rece_create_event(QString path);
 
-    void rece_delete_event(QString path);
+    void rece_delete_event(int code, QString message, QString path);
 
     void rece_chanage_event(QString path);
 

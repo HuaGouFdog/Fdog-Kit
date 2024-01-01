@@ -52,7 +52,8 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
     } else if (type == ZOO_DELETED_EVENT) {
         // 节点被删除
         // 在这里处理节点被删除的逻辑
-        qDebug() << "节点被删除" << path;
+        qDebug() << "节点被删除1" << path;
+        QMetaObject::invokeMethod(obj_,"rece_delete_event",Qt::QueuedConnection, Q_ARG(int,0), Q_ARG(QString,message), Q_ARG(QString,path_str));
     } else if (type == ZOO_CREATED_EVENT) {
         qDebug() << "节点被创建" << path;
         // 节点被创建
@@ -118,11 +119,11 @@ void zookeeperhandle::getChildren(int &code, int &count, QString path)
     return;
 }
 
-void zookeeperhandle::getSingleChildren(QString path)
+void zookeeperhandle::getSingleChildren(QString path, void * obj_)
 {
     qDebug() << "getSingleChildren 对" << path << "监听";
     String_vector children;
-    int rc = zoo_wget_children(zh, path.toStdString().c_str(), nodeWatcher, NULL, &children);
+    int rc = zoo_wget_children(zh, path.toStdString().c_str(), nodeWatcher, obj_, &children);
     if (rc == ZOK) {
     }
     return;
@@ -174,6 +175,7 @@ void zookeeperhandle::deleteNode(QString path, QTreeWidgetItem *item)
 {
     QString message;
     int ret = zoo_delete(zh, path.toStdString().c_str(), -1);
+    qDebug() << "删除成功，开始调槽函数" << path;
     emit send_deleteNode(ret, message, item);
     return;
 }

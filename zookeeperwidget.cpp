@@ -88,10 +88,6 @@ void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
     threadpool.start(m_pRunnable);
 }
 
-//void zookeeperwidget::getSingleChildren(QString path)
-//{
-//    QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path));
-//}
 
 void zookeeperwidget::rece_getChildren(int code, QString message, QString path, const QVariant varValue, QTreeWidgetItem *item)
 {
@@ -216,14 +212,14 @@ void zookeeperwidget::rece_createNode(int code, QString message, QString path, Q
     if (code == 0) {
         showMessage("创建节点成功", true);
         //成功获取数据，创建子节点
-        QTreeWidgetItem *item_children = new QTreeWidgetItem(item);
-        item_children->setText(0, path);
+        //QTreeWidgetItem *item_children = new QTreeWidgetItem(item);
+        //item_children->setText(0, path);
 //        if (data.length() > 0) {
 //            item_children->setIcon(0, QIcon(":lib/node.png"));
 //        } else {
 //            item_children->setIcon(0, QIcon(":lib/node2.png"));
 //        }
-        ui->treeWidget->setCurrentItem(item_children);
+        //ui->treeWidget->setCurrentItem(item_children);
         //显示数据
         //showNodeInfo(data, varValue, path);
 
@@ -238,26 +234,21 @@ void zookeeperwidget::rece_createNode(int code, QString message, QString path, Q
 void zookeeperwidget::deleteNode(QString &path)
 {
     qDebug() << "delete " << path;
-    deleteTreeItem(ui->treeWidget->currentItem());
+    //先删除zk，再处理本地
+    QTreeWidgetItem* item = ui->treeWidget->currentItem();
+    //循环删除
+    deleteTreeNode(item);
 }
 
 void zookeeperwidget::rece_deleteNode(int code, QString message, QTreeWidgetItem *item)
 {
-    showMessage("删除节点成功", true);
-//    if (code == 0) {
-//        QTreeWidgetItem *parentItem = NULL;
-//        parentItem = item->parent();
-//        if (parentItem != NULL) {
-//            // 从父节点中删除子节点
-//            parentItem->removeChild(item);
-//            //指向当前父节点
-//            ui->treeWidget->setCurrentItem(parentItem);
-//            //显示父节点数据
-//            getNodeInfo(parentItem->text(0));
-//        } else {
-//            delete item;
-//        }
-//    }
+    qDebug() << "调用rece_deleteNode";
+    if (code == ZOK) {
+        showMessage("删除节点成功", true);
+        //deleteTreeItem(item);
+    } else {
+        qDebug() << "删除失败";
+    }
 }
 
 void zookeeperwidget::copyPath()
@@ -346,6 +337,30 @@ void zookeeperwidget::expandItemAndChildren(QTreeWidgetItem *item, bool isexpand
     //    }
 }
 
+void zookeeperwidget::deleteTreeNode(QTreeWidgetItem* item)
+{
+    if (!item) {
+        return;
+    }
+    // 递归删除子节点
+    while (item->childCount() > 0) {
+        deleteTreeNode(item->child(0));
+    }
+    QString path = item->text(0);
+    QTreeWidgetItem* parent = NULL;
+    parent= item->parent();
+    if (parent != NULL) {
+        parent->removeChild(item);
+        ui->treeWidget->setCurrentItem(parent);
+        //显示父节点数据
+        getNodeInfo(parent->text(0));
+    } else {
+        delete item;
+    }
+    qDebug() << "调用deleteNode" << path;
+    QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
+}
+
 void zookeeperwidget::deleteTreeItem(QTreeWidgetItem *item)
 {
     if (!item) {
@@ -367,7 +382,6 @@ void zookeeperwidget::deleteTreeItem(QTreeWidgetItem *item)
     } else {
         delete item;
     }
-    QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
 }
 
 void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
@@ -534,10 +548,13 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
                 children_path = QString::fromStdString(path.toStdString() + children.data[i]);
                 //children_path_list.push_back(children_path);
             }
-            qDebug() << "节点" << children_path;
+            //qDebug() << "节点" << children_path;
             QList<QTreeWidgetItem*> items_c = ui->treeWidget->findItems(children_path, Qt::MatchExactly|Qt::MatchRecursive, 0);
             if (items_c.isEmpty()) {
                 qDebug() << "未找到，创建这个值" << children_path;
+                QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
+                itemChild->setText(0, children_path);
+                QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,children_path),Q_ARG(void*,this));
             }
         }
     } else{
@@ -550,9 +567,24 @@ void zookeeperwidget::rece_create_event(QString path)
     //节点被创建
 }
 
-void zookeeperwidget::rece_delete_event(QString path)
+void zookeeperwidget::rece_delete_event(int code, QString message, QString path)
 {
     //节点被删除
+    qDebug() << "删除事件，删除" << path;
+    QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path, Qt::MatchExactly|Qt::MatchRecursive, 0);
+    if (!items.isEmpty()) {
+        qDebug() << "删除" << path;
+        QTreeWidgetItem* parent = NULL;
+        parent= items.first()->parent();
+        if (parent != NULL) {
+            parent->removeChild(items.first());
+            ui->treeWidget->setCurrentItem(parent);
+            //显示父节点数据
+            getNodeInfo(parent->text(0));
+        } else {
+            delete items.first();
+        }
+    }
 }
 
 void zookeeperwidget::rece_chanage_event(QString path)
