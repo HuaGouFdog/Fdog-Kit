@@ -7,7 +7,9 @@ zookeepertipswidget::zookeepertipswidget(QWidget *parent, QString message, bool 
     ui(new Ui::zookeepertipswidget)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Popup | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    setFocusPolicy(Qt::NoFocus);
+    this->setParent(parent);
     if (isSuccess) {
         ui->label_icon->setStyleSheet("image: url(:/lib/node.png);");
     } else {

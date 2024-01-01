@@ -37,7 +37,9 @@ public:
     {
         if (zookeepertipswidget->objectName().isEmpty())
             zookeepertipswidget->setObjectName(QStringLiteral("zookeepertipswidget"));
-        zookeepertipswidget->resize(169, 40);
+        zookeepertipswidget->resize(150, 40);
+        zookeepertipswidget->setMinimumSize(QSize(150, 40));
+        zookeepertipswidget->setMaximumSize(QSize(150, 40));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -46,6 +48,7 @@ public:
         zookeepertipswidget->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
         verticalLayout = new QVBoxLayout(zookeepertipswidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
         widget = new QWidget(zookeepertipswidget);
         widget->setObjectName(QStringLiteral("widget"));
         horizontalLayout = new QHBoxLayout(widget);

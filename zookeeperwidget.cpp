@@ -597,10 +597,10 @@ void zookeeperwidget::hideButton()
 
 void zookeeperwidget::showMessage(QString message, bool isSuccess)
 {
-    zookeepertipswidget * a = new zookeepertipswidget(NULL, message, isSuccess);
-    QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-    int x = globalPos.x() + (ui->treeWidget->width() - a->width()) / 2;//x坐标
-    int y = globalPos.y() + ui->treeWidget->height() - a->height() - 20;//y坐标
+    zookeepertipswidget * a = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
+    //QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+    int x = (ui->treeWidget->width() - a->width()) / 2;//x坐标
+    int y = ui->treeWidget->height() - a->height();//y坐标
     a->move(x, y);//窗口移动
     a->show();
     QPropertyAnimation *pAnimation = new QPropertyAnimation(a, "windowOpacity");

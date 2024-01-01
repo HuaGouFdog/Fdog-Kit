@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>169</width>
+    <width>150</width>
     <height>40</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>150</width>
+    <height>40</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>150</width>
+    <height>40</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -24,6 +36,18 @@
    <string notr="true">background-color: rgb(0, 0, 0);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QWidget" name="widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
