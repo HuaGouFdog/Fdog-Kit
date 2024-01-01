@@ -40,7 +40,9 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
         QVariant varValue = QVariant::fromValue(children);
         QString message;
         if (rc != ZOK) {
-            qDebug() << "出错";
+            qDebug() << "出错" << rc << " " << path;
+            QMetaObject::invokeMethod(obj_,"rece_delete_event",Qt::QueuedConnection, Q_ARG(int,0), Q_ARG(QString,message), Q_ARG(QString,path_str));
+            return;
         }
         QMetaObject::invokeMethod(obj_,"rece_children_event",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
                                         Q_ARG(QString,path_str), Q_ARG(QVariant, varValue));

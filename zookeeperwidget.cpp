@@ -535,7 +535,7 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
     //获取节点层级
     QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path, Qt::MatchExactly|Qt::MatchRecursive, 0);
     if (!items.isEmpty()) {
-        qDebug() << " 长度为" << items.length();
+        //qDebug() << " 长度为" << items.length();
         QTreeWidgetItem * item = items.first();
         String_vector children = varValue.value<String_vector>();
         //QVector<QString> children_path_list;
