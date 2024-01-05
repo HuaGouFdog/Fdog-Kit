@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include <QTest>
+#include <QToolTip>
 #include <QStyleFactory>
 #include <QThreadPool>
 #include <QPropertyAnimation>
@@ -31,13 +32,20 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
 
     hideButton();
     hideCreateWidget(); //隐藏修改按钮
-
+    hideCreateZkWidget(); //隐藏创建zk
     setMouseTracking(true);
 
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     threadpool.setMaxThreadCount(16);
     init(cInfoStruct.host, cInfoStruct.port);
+
+    //设置水平滑动条
+    QHeaderView *pHeader=ui->treeWidget->header();
+    pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
+    pHeader->setStretchLastSection(false);
+
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 zookeeperwidget::~zookeeperwidget()
@@ -74,6 +82,7 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
         QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->treeWidget);
         ui->treeWidget->addTopLevelItem(topItem);
         topItem->setText(0, path);
+        topItem->setToolTip(0, path);
         qDebug() << "rece_init numChildren count= " << count;
         if (count > 0) {
             getChildren(path, topItem);
@@ -105,7 +114,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
                 children_path = QString::fromStdString(path.toStdString() + children.data[i]);
             }
             itemChild->setText(0, children_path);
-
+            itemChild->setToolTip(0, children_path);
             ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, children_path, itemChild);
             threadpool.start(m_pRunnable);
         }
@@ -430,13 +439,15 @@ void zookeeperwidget::on_treeWidget_customContextMenuRequested(const QPoint &pos
     popMenu = new QMenu(this);
     popMenu->setWindowFlags(popMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     popMenu->setAttribute(Qt::WA_TranslucentBackground);
-    popMenu->addAction(m_action_add);
-    popMenu->addAction(m_action_refresh);
-    popMenu->addAction(m_action_delete);
     popMenu->addAction(m_action_copy);
+    popMenu->addSeparator();
+    popMenu->addAction(m_action_add);
+    popMenu->addSeparator();
+    //popMenu->addAction(m_action_refresh);
+    popMenu->addAction(m_action_delete);
 
     connect(m_action_add, SIGNAL(triggered()), this, SLOT(on_nodeAction()));
-    connect(m_action_refresh, SIGNAL(triggered()), this, SLOT(on_nodeAction()));
+    //connect(m_action_refresh, SIGNAL(triggered()), this, SLOT(on_nodeAction()));
     connect(m_action_delete, SIGNAL(triggered()), this, SLOT(on_nodeAction()));
     connect(m_action_copy, SIGNAL(triggered()), this, SLOT(on_nodeAction()));
     popMenu->exec(QCursor::pos());//弹出右键菜单，菜单位置为光标位置
@@ -448,8 +459,6 @@ void zookeeperwidget::on_nodeAction()
     QString node = ui->treeWidget->currentItem()->text(0);
     if (actionText == "添加") {
         addNode(node);
-    } else if (actionText == "刷新") {
-        getNodeInfo(node);
     } else if (actionText == "删除") {
         deleteNode(node);
     } else if (actionText == "复制") {
@@ -554,6 +563,7 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
                 qDebug() << "未找到，创建这个值" << children_path;
                 QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
                 itemChild->setText(0, children_path);
+                itemChild->setToolTip(0, children_path);
                 QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,children_path),Q_ARG(void*,this));
             }
         }
@@ -620,6 +630,16 @@ void zookeeperwidget::showCreateWidget()
     ui->toolButton_saveData->hide();
 }
 
+void zookeeperwidget::hideCreateZkWidget()
+{
+    ui->widget_create_zk->hide();
+}
+
+void zookeeperwidget::showCreateZkWidget()
+{
+    ui->widget_create_zk->show();
+}
+
 void zookeeperwidget::hideButton()
 {
     ui->toolButton_add->hide();
@@ -667,4 +687,32 @@ void zookeeperwidget::on_toolButton_6_clicked()
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
     pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+void zookeeperwidget::on_treeWidget_itemEntered(QTreeWidgetItem *item, int column)
+{
+//    if (item->toolTip(column).isEmpty()){
+//        return; // 如果该项没有设置Tooltip，则不显示
+//    }
+//    QToolTip::showText(QCursor::pos(), item->toolTip(column));
+}
+
+void zookeeperwidget::on_toolButton_3_clicked()
+{
+    showCreateZkWidget();
+}
+
+void zookeeperwidget::on_toolButton_save_clicked()
+{
+    //创建信息
+    QString data = ui->lineEdit_host_zk_data->text() + ":" + ui->lineEdit_port_zk_data->text();
+    QToolButton * qbutton = new QToolButton(this);
+    qbutton->setIcon(QIcon(":lib/node2.png"));
+    qbutton->setText(data);
+    qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    qbutton->setMinimumHeight(30);
+    qbutton->setMinimumWidth(180);
+    QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
+    layout->insertWidget(layout->count()-1, qbutton);
+    hideCreateZkWidget();
 }

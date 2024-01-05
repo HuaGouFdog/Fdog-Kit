@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTextEdit>
@@ -39,11 +40,21 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLineEdit *lineEdit_find;
     QWidget *widget;
-    QVBoxLayout *verticalLayout_8;
+    QVBoxLayout *verticalLayout_3;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_11;
     QLabel *label;
     QToolButton *toolButton_3;
+    QWidget *widget_create_zk;
+    QGridLayout *gridLayout_2;
+    QLabel *label_host_zk;
+    QLineEdit *lineEdit_host_zk_data;
+    QLabel *label_port_zk;
+    QLineEdit *lineEdit_port_zk_data;
+    QToolButton *toolButton_save;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_8;
     QToolButton *toolButton_2;
     QToolButton *toolButton_4;
     QToolButton *toolButton_5;
@@ -70,7 +81,6 @@ public:
     QWidget *verticalWidget_1_4_l;
     QVBoxLayout *verticalLayout_2;
     QTreeWidget *treeWidget;
-    QLineEdit *lineEdit;
     QWidget *verticalWidget_1_r;
     QVBoxLayout *verticalLayout;
     QWidget *gridWidget_1_1_r;
@@ -283,16 +293,15 @@ public:
 
         widget = new QWidget(widget_left);
         widget->setObjectName(QStringLiteral("widget"));
-        verticalLayout_8 = new QVBoxLayout(widget);
-        verticalLayout_8->setSpacing(6);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_3 = new QVBoxLayout(widget);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         widget_2 = new QWidget(widget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setMinimumSize(QSize(0, 20));
         horizontalLayout_11 = new QHBoxLayout(widget_2);
         horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        horizontalLayout_11->setContentsMargins(9, 2, 9, 2);
+        horizontalLayout_11->setContentsMargins(0, 2, 0, 2);
         label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font2);
@@ -319,19 +328,75 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "}"));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/lib/add1.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_3->setIcon(icon);
+        toolButton_3->setIconSize(QSize(13, 13));
 
         horizontalLayout_11->addWidget(toolButton_3);
 
 
-        verticalLayout_8->addWidget(widget_2);
+        verticalLayout_3->addWidget(widget_2);
 
-        toolButton_2 = new QToolButton(widget);
-        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
-        toolButton_2->setMinimumSize(QSize(180, 40));
-        toolButton_2->setFont(font2);
-        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        widget_create_zk = new QWidget(widget);
+        widget_create_zk->setObjectName(QStringLiteral("widget_create_zk"));
+        widget_create_zk->setMinimumSize(QSize(0, 110));
+        widget_create_zk->setMaximumSize(QSize(16777215, 110));
+        widget_create_zk->setStyleSheet(QLatin1String("#widget_create_zk{\n"
+"border-top:2px solid rgba(108, 117, 125, 65); \n"
+"border-bottom:2px solid rgba(108, 117, 125, 65); \n"
+"}"));
+        gridLayout_2 = new QGridLayout(widget_create_zk);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setHorizontalSpacing(9);
+        gridLayout_2->setVerticalSpacing(4);
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_host_zk = new QLabel(widget_create_zk);
+        label_host_zk->setObjectName(QStringLiteral("label_host_zk"));
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(10);
+        label_host_zk->setFont(font3);
+
+        gridLayout_2->addWidget(label_host_zk, 0, 0, 1, 1);
+
+        lineEdit_host_zk_data = new QLineEdit(widget_create_zk);
+        lineEdit_host_zk_data->setObjectName(QStringLiteral("lineEdit_host_zk_data"));
+        lineEdit_host_zk_data->setMinimumSize(QSize(0, 28));
+        lineEdit_host_zk_data->setMaximumSize(QSize(16777215, 28));
+        lineEdit_host_zk_data->setFont(font3);
+        lineEdit_host_zk_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;"));
+
+        gridLayout_2->addWidget(lineEdit_host_zk_data, 0, 1, 1, 2);
+
+        label_port_zk = new QLabel(widget_create_zk);
+        label_port_zk->setObjectName(QStringLiteral("label_port_zk"));
+        label_port_zk->setFont(font3);
+
+        gridLayout_2->addWidget(label_port_zk, 2, 0, 1, 1);
+
+        lineEdit_port_zk_data = new QLineEdit(widget_create_zk);
+        lineEdit_port_zk_data->setObjectName(QStringLiteral("lineEdit_port_zk_data"));
+        lineEdit_port_zk_data->setMinimumSize(QSize(0, 28));
+        lineEdit_port_zk_data->setMaximumSize(QSize(16777215, 28));
+        lineEdit_port_zk_data->setFont(font3);
+        lineEdit_port_zk_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;"));
+
+        gridLayout_2->addWidget(lineEdit_port_zk_data, 2, 1, 1, 2);
+
+        toolButton_save = new QToolButton(widget_create_zk);
+        toolButton_save->setObjectName(QStringLiteral("toolButton_save"));
+        toolButton_save->setMinimumSize(QSize(50, 28));
+        toolButton_save->setMaximumSize(QSize(50, 28));
+        toolButton_save->setFont(font2);
+        toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "	border-radius: 5px;\n"
@@ -346,6 +411,102 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
+
+        gridLayout_2->addWidget(toolButton_save, 3, 2, 1, 1);
+
+
+        verticalLayout_3->addWidget(widget_create_zk);
+
+        scrollArea = new QScrollArea(widget);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setStyleSheet(QString::fromUtf8("QScrollArea{\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    width: 10px;\n"
+"	background-color: rgba(0, 41, 69, 0);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 10px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"  "
+                        "  height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 182, 456));
+        scrollAreaWidgetContents->setStyleSheet(QLatin1String("QToolButton {\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"    qproperty-iconSize: 22px 22px;\n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	border: none;\n"
+"	border-radius:3px;\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+"QToolButton:hover {\n"
+"	border-radius:3px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(21, 21, 21);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:checked {\n"
+"	border-radius:3px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(21, 21, 21);\n"
+"	border: none;\n"
+"}"));
+        verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        toolButton_2 = new QToolButton(scrollAreaWidgetContents);
+        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setMinimumSize(QSize(180, 30));
+        toolButton_2->setFont(font2);
+        toolButton_2->setStyleSheet(QStringLiteral(""));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/node.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_2->setIcon(icon1);
@@ -353,25 +514,11 @@ public:
 
         verticalLayout_8->addWidget(toolButton_2);
 
-        toolButton_4 = new QToolButton(widget);
+        toolButton_4 = new QToolButton(scrollAreaWidgetContents);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
-        toolButton_4->setMinimumSize(QSize(180, 40));
+        toolButton_4->setMinimumSize(QSize(180, 30));
         toolButton_4->setFont(font2);
-        toolButton_4->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
+        toolButton_4->setStyleSheet(QStringLiteral(""));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_4->setIcon(icon2);
@@ -379,57 +526,34 @@ public:
 
         verticalLayout_8->addWidget(toolButton_4);
 
-        toolButton_5 = new QToolButton(widget);
+        toolButton_5 = new QToolButton(scrollAreaWidgetContents);
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
-        toolButton_5->setMinimumSize(QSize(180, 40));
+        toolButton_5->setMinimumSize(QSize(180, 30));
         toolButton_5->setFont(font2);
-        toolButton_5->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
+        toolButton_5->setStyleSheet(QStringLiteral(""));
         toolButton_5->setIcon(icon2);
         toolButton_5->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout_8->addWidget(toolButton_5);
 
-        toolButton_6 = new QToolButton(widget);
+        toolButton_6 = new QToolButton(scrollAreaWidgetContents);
         toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
-        toolButton_6->setMinimumSize(QSize(180, 40));
+        toolButton_6->setMinimumSize(QSize(180, 30));
+        toolButton_6->setMaximumSize(QSize(180, 16777215));
         toolButton_6->setFont(font2);
-        toolButton_6->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
+        toolButton_6->setStyleSheet(QStringLiteral(""));
         toolButton_6->setIcon(icon2);
         toolButton_6->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout_8->addWidget(toolButton_6);
 
-        verticalSpacer = new QSpacerItem(20, 383, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 309, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_8->addItem(verticalSpacer);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_3->addWidget(scrollArea);
 
 
         verticalLayout_6->addWidget(widget);
@@ -439,10 +563,10 @@ public:
 
         splitter = new QSplitter(zookeeperwidget);
         splitter->setObjectName(QStringLiteral("splitter"));
-        QFont font3;
-        font3.setFamily(QStringLiteral("Arial"));
-        font3.setPointSize(10);
-        splitter->setFont(font3);
+        QFont font4;
+        font4.setFamily(QStringLiteral("Arial"));
+        font4.setPointSize(10);
+        splitter->setFont(font4);
         splitter->setLineWidth(2);
         splitter->setOrientation(Qt::Horizontal);
         verticalWidget_1_l = new QWidget(splitter);
@@ -458,9 +582,9 @@ public:
         verticalLayout_9->setContentsMargins(-1, 9, 9, 9);
         horizontalWidget_1_1_l = new QWidget(verticalWidget_1_l);
         horizontalWidget_1_1_l->setObjectName(QStringLiteral("horizontalWidget_1_1_l"));
-        QFont font4;
-        font4.setPointSize(10);
-        horizontalWidget_1_1_l->setFont(font4);
+        QFont font5;
+        font5.setPointSize(10);
+        horizontalWidget_1_1_l->setFont(font5);
         horizontalLayout_2 = new QHBoxLayout(horizontalWidget_1_1_l);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -516,7 +640,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        toolButton_add->setIcon(icon);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_add->setIcon(icon3);
         toolButton_add->setIconSize(QSize(12, 12));
         toolButton_add->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -542,9 +668,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/lib/delete2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton__delete->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/lib/delete2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton__delete->setIcon(icon4);
         toolButton__delete->setIconSize(QSize(14, 14));
         toolButton__delete->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -570,9 +696,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/lib/update2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_refresh->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/lib/update2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_refresh->setIcon(icon5);
         toolButton_refresh->setIconSize(QSize(14, 14));
         toolButton_refresh->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -580,8 +706,8 @@ public:
 
         toolButton_unfold = new QToolButton(horizontalWidget_1_2_l);
         toolButton_unfold->setObjectName(QStringLiteral("toolButton_unfold"));
-        toolButton_unfold->setMinimumSize(QSize(85, 30));
-        toolButton_unfold->setMaximumSize(QSize(85, 30));
+        toolButton_unfold->setMinimumSize(QSize(85, 28));
+        toolButton_unfold->setMaximumSize(QSize(85, 28));
         toolButton_unfold->setFont(font2);
         toolButton_unfold->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -598,8 +724,10 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        toolButton_unfold->setIcon(icon4);
-        toolButton_unfold->setIconSize(QSize(14, 14));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/lib/zhedie.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_unfold->setIcon(icon6);
+        toolButton_unfold->setIconSize(QSize(18, 18));
         toolButton_unfold->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         horizontalLayout->addWidget(toolButton_unfold);
@@ -611,8 +739,13 @@ public:
         horizontalWidget_1_3_l->setObjectName(QStringLiteral("horizontalWidget_1_3_l"));
         horizontalWidget_1_3_l->setMinimumSize(QSize(0, 32));
         horizontalWidget_1_3_l->setStyleSheet(QLatin1String("#horizontalWidget_1_3_l{\n"
-"	border: 1px solid rgb(197, 197, 197);\n"
-"	border-radius: 5px;\n"
+"color: rgb(231, 238, 244);\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 15px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
 "}"));
         horizontalLayout_3 = new QHBoxLayout(horizontalWidget_1_3_l);
         horizontalLayout_3->setSpacing(0);
@@ -621,11 +754,9 @@ public:
         lineEdit_search = new QLineEdit(horizontalWidget_1_3_l);
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
         lineEdit_search->setMinimumSize(QSize(0, 27));
-        QFont font5;
-        font5.setFamily(QStringLiteral("OPPOSans B"));
-        font5.setPointSize(10);
-        lineEdit_search->setFont(font5);
-        lineEdit_search->setStyleSheet(QStringLiteral(""));
+        lineEdit_search->setFont(font3);
+        lineEdit_search->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
+"color: rgb(255, 255, 255);"));
 
         horizontalLayout_3->addWidget(lineEdit_search);
 
@@ -652,9 +783,9 @@ public:
 "	border-radius: 2px;\n"
 "	border: 1px solid rgba(255, 255, 255, 80);\n"
 "}"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/lib/daxiao.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton->setIcon(icon5);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/lib/daxiao.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton->setIcon(icon7);
         toolButton->setCheckable(true);
         toolButton->setChecked(false);
 
@@ -673,9 +804,18 @@ public:
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        treeWidget->setFont(font5);
+        treeWidget->setFont(font3);
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-        treeWidget->setStyleSheet(QString::fromUtf8("QTreeWidget#treeWidget {\n"
+        treeWidget->setStyleSheet(QString::fromUtf8("QToolTip{\n"
+"	\n"
+"	color: rgb(43, 43, 43);\n"
+"    font-size:12px;\n"
+"	width:1024;\n"
+"	height:40;\n"
+"}\n"
+"\n"
+"\n"
+"QTreeWidget#treeWidget {\n"
 "	border: 0px solid #D3D6DD;\n"
 "	outline: none;\n"
 "}\n"
@@ -714,20 +854,20 @@ public:
 "	width: 28px;\n"
 "}\n"
 "QTreeWidget::branch:closed:has-children:!has-siblings,\n"
-"QTreeWidget::branch:closed:has-children:has-siblings {\n"
+"QTreeWidget::branch:closed:has-ch"
+                        "ildren:has-siblings {\n"
 "	border-image: none;\n"
 "    image: url(:/lib/tree_close.png);\n"
 "}\n"
 " \n"
-"QTreeWidget::bran"
-                        "ch:open:has-children:!has-siblings,\n"
+"QTreeWidget::branch:open:has-children:!has-siblings,\n"
 "QTreeWidget::branch:open:has-children:has-siblings  {\n"
 "	border-image: none;\n"
 "    image: url(:/lib/tree_open.png);\n"
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
-"    width: 9px;\n"
+"    width: 12px;\n"
 "	\n"
 "	background-color: rgb(67, 77, 88);\n"
 "    margin: 0px,0px,0px,0px;\n"
@@ -736,7 +876,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    width: 9px;\n"
+"    width: 12px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
@@ -750,14 +890,14 @@ public:
 "}\n"
 "QScrollBar::add-page:vertical \n"
 "{\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
+"    background-col"
+                        "or: rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
 "	border: none;\n"
 "    height: 0px;\n"
-"    s"
-                        "ubcontrol-position: bottom;\n"
+"    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
@@ -773,11 +913,58 @@ public:
 "QScrollBar::up-arrow:vertical {\n"
 "    border:none;\n"
 "}\n"
+"\n"
+"\n"
+"QScrollBar::horizontal{\n"
+"    height: 12px;\n"
+"	background-color: rgb(67, 77, 88);\n"
+"	margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    height: 12px;\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"  "
+                        "  min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:horizontal {\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:horizontal \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:horizontal {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:horizontal {\n"
+"    border:none;\n"
+"}\n"
+"\n"
 "QMenu {\n"
 "\n"
 "background-color:rgb(253,253,254);\n"
 "/*padding:5px;*/\n"
-"padding: 3px 0px 3px 0px;\n"
+"padding: 5px 0px 5px 0px;\n"
 "border-radius:6px;\n"
 "border:2px solid rgb(108, 117, 125, 65); \n"
 "}\n"
@@ -788,7 +975,8 @@ public:
 "	\n"
 "	color: rgb(63, 63, 63);\n"
 "    background-color:rgb(253,253,254);\n"
-"    padding: 5px 25px 5px 25px;\n"
+"    pa"
+                        "dding: 5px 25px 5px 25px;\n"
 "    /*margin: 2px 2px 2px 2px;*/\n"
 "}\n"
 "QMenu::item:selected {\n"
@@ -801,8 +989,7 @@ public:
 "    right: 1px;\n"
 "    bottom: 1px;\n"
 "    left: 1px;\n"
-""
-                        "}\n"
+"}\n"
 "QMenu::icon:checked:selected {\n"
 "    background-color : rgb(236,236,237);\n"
 "    background-image: url(:/space_selected.png);\n"
@@ -834,17 +1021,6 @@ public:
 
         verticalLayout_2->addWidget(treeWidget);
 
-        lineEdit = new QLineEdit(verticalWidget_1_4_l);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMinimumSize(QSize(0, 100));
-        lineEdit->setFont(font2);
-        lineEdit->setStyleSheet(QLatin1String("\n"
-"	border: 1px solid rgb(197, 197, 197);\n"
-"	border-radius: 5px;"));
-        lineEdit->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-
-        verticalLayout_2->addWidget(lineEdit);
-
 
         verticalLayout_9->addWidget(verticalWidget_1_4_l);
 
@@ -852,7 +1028,7 @@ public:
         verticalWidget_1_r = new QWidget(splitter);
         verticalWidget_1_r->setObjectName(QStringLiteral("verticalWidget_1_r"));
         verticalWidget_1_r->setMaximumSize(QSize(333, 99999));
-        verticalWidget_1_r->setFont(font4);
+        verticalWidget_1_r->setFont(font5);
         verticalWidget_1_r->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(verticalWidget_1_r);
@@ -1235,11 +1411,11 @@ public:
 
         horizontalWidget_1_2_4_r = new QWidget(widget_1_2_r);
         horizontalWidget_1_2_4_r->setObjectName(QStringLiteral("horizontalWidget_1_2_4_r"));
-        horizontalWidget_1_2_4_r->setMinimumSize(QSize(0, 30));
-        horizontalWidget_1_2_4_r->setMaximumSize(QSize(16777215, 30));
+        horizontalWidget_1_2_4_r->setMinimumSize(QSize(0, 40));
+        horizontalWidget_1_2_4_r->setMaximumSize(QSize(16777215, 40));
         horizontalLayout_10 = new QHBoxLayout(horizontalWidget_1_2_4_r);
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_10->setContentsMargins(0, 15, 0, 0);
         label_data = new QLabel(horizontalWidget_1_2_4_r);
         label_data->setObjectName(QStringLiteral("label_data"));
         label_data->setMaximumSize(QSize(16777215, 77));
@@ -1258,7 +1434,7 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         verticalWidget_1_2_5_2_r = new QWidget(verticalWidget_1_2_5_r);
         verticalWidget_1_2_5_2_r->setObjectName(QStringLiteral("verticalWidget_1_2_5_2_r"));
-        verticalWidget_1_2_5_2_r->setFont(font5);
+        verticalWidget_1_2_5_2_r->setFont(font3);
         verticalWidget_1_2_5_2_r->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(verticalWidget_1_2_5_2_r);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -1274,7 +1450,7 @@ public:
         textEdit_data->setFont(font2);
         textEdit_data->setStyleSheet(QLatin1String("\n"
 "	border: 1px solid rgb(197, 197, 197);\n"
-"	border-radius: 10px;"));
+"	border-radius: 0px;"));
 
         verticalLayout_4->addWidget(textEdit_data);
 
@@ -1317,9 +1493,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/lib/copy.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_copy_data->setIcon(icon6);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/lib/copy.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_copy_data->setIcon(icon8);
         toolButton_copy_data->setIconSize(QSize(15, 15));
 
         horizontalLayout_4->addWidget(toolButton_copy_data);
@@ -1330,8 +1506,8 @@ public:
 
         toolButton_createData = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_createData->setObjectName(QStringLiteral("toolButton_createData"));
-        toolButton_createData->setMinimumSize(QSize(60, 30));
-        toolButton_createData->setMaximumSize(QSize(60, 30));
+        toolButton_createData->setMinimumSize(QSize(60, 28));
+        toolButton_createData->setMaximumSize(QSize(60, 28));
         toolButton_createData->setFont(font2);
         toolButton_createData->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1355,8 +1531,8 @@ public:
 
         toolButton_saveData = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_saveData->setObjectName(QStringLiteral("toolButton_saveData"));
-        toolButton_saveData->setMinimumSize(QSize(60, 30));
-        toolButton_saveData->setMaximumSize(QSize(60, 30));
+        toolButton_saveData->setMinimumSize(QSize(60, 28));
+        toolButton_saveData->setMaximumSize(QSize(60, 28));
         toolButton_saveData->setFont(font2);
         toolButton_saveData->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1403,6 +1579,13 @@ public:
         lineEdit_find->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242\350\277\236\346\216\245", nullptr));
         label->setText(QApplication::translate("zookeeperwidget", "\345\277\253\351\200\237\350\277\236\346\216\245", nullptr));
         toolButton_3->setText(QString());
+        label_host_zk->setText(QApplication::translate("zookeeperwidget", "\344\270\273\346\234\272", nullptr));
+        lineEdit_host_zk_data->setText(QApplication::translate("zookeeperwidget", "172.16.8.153", nullptr));
+        lineEdit_host_zk_data->setPlaceholderText(QApplication::translate("zookeeperwidget", "127.0.0.1", nullptr));
+        label_port_zk->setText(QApplication::translate("zookeeperwidget", "\347\253\257\345\217\243", nullptr));
+        lineEdit_port_zk_data->setText(QApplication::translate("zookeeperwidget", "11100", nullptr));
+        lineEdit_port_zk_data->setPlaceholderText(QApplication::translate("zookeeperwidget", "22", nullptr));
+        toolButton_save->setText(QApplication::translate("zookeeperwidget", "\344\277\235\345\255\230", nullptr));
         toolButton_2->setText(QApplication::translate("zookeeperwidget", "172.16.8.153:11100", nullptr));
         toolButton_4->setText(QApplication::translate("zookeeperwidget", "172.16.8.156:11100", nullptr));
         toolButton_5->setText(QApplication::translate("zookeeperwidget", "172.16.8.159:11100", nullptr));

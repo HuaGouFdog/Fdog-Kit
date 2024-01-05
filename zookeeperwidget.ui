@@ -242,10 +242,7 @@ padding-right:10px;
       </item>
       <item>
        <widget class="QWidget" name="widget" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <property name="spacing">
-          <number>6</number>
-         </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="leftMargin">
           <number>0</number>
          </property>
@@ -268,13 +265,13 @@ padding-right:10px;
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_11">
             <property name="leftMargin">
-             <number>9</number>
+             <number>0</number>
             </property>
             <property name="topMargin">
              <number>2</number>
             </property>
             <property name="rightMargin">
-             <number>9</number>
+             <number>0</number>
             </property>
             <property name="bottomMargin">
              <number>2</number>
@@ -324,7 +321,13 @@ QToolButton:hover {
               </property>
               <property name="icon">
                <iconset resource="lib.qrc">
-                <normaloff>:/lib/add2.png</normaloff>:/lib/add2.png</iconset>
+                <normaloff>:/lib/add1.png</normaloff>:/lib/add1.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>13</width>
+                <height>13</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -332,22 +335,163 @@ QToolButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_2">
+          <widget class="QWidget" name="widget_create_zk" native="true">
            <property name="minimumSize">
             <size>
-             <width>180</width>
-             <height>40</height>
+             <width>0</width>
+             <height>110</height>
             </size>
            </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>110</height>
+            </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">QToolButton {
+            <string notr="true">#widget_create_zk{
+border-top:2px solid rgba(108, 117, 125, 65); 
+border-bottom:2px solid rgba(108, 117, 125, 65); 
+}</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="horizontalSpacing">
+             <number>9</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>4</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_host_zk">
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>主机</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+             <widget class="QLineEdit" name="lineEdit_host_zk_data">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>28</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>28</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+              </property>
+              <property name="text">
+               <string>172.16.8.153</string>
+              </property>
+              <property name="placeholderText">
+               <string>127.0.0.1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_port_zk">
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>端口</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1" colspan="2">
+             <widget class="QLineEdit" name="lineEdit_port_zk_data">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>28</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>28</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+              </property>
+              <property name="text">
+               <string>11100</string>
+              </property>
+              <property name="placeholderText">
+               <string>22</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QToolButton" name="toolButton_save">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>28</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>28</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>OPPOSans B</family>
+                <pointsize>10</pointsize>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
 	background-color: rgb(255, 95, 95);
 	border-radius: 5px;
@@ -362,163 +506,263 @@ QToolButton:hover {
 	color: rgb(255, 255, 255);
 	background-color: rgb(255, 95, 95);
 }</string>
-           </property>
-           <property name="text">
-            <string>172.16.8.153:11100</string>
-           </property>
-           <property name="icon">
-            <iconset resource="lib.qrc">
-             <normaloff>:/lib/node.png</normaloff>:/lib/node.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
+              </property>
+              <property name="text">
+               <string>保存</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_4">
-           <property name="minimumSize">
-            <size>
-             <width>180</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
+          <widget class="QScrollArea" name="scrollArea">
            <property name="styleSheet">
-            <string notr="true">QToolButton {
+            <string notr="true">QScrollArea{
+	border: none;
+}
+
+QScrollBar:vertical {
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>182</width>
+              <height>456</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	font: 10pt &quot;OPPOSans B&quot;;
+    qproperty-iconSize: 22px 22px;
+	background-color: rgba(255, 255, 255, 50);
+	border: none;
+	border-radius:3px;
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
 }
 
 QToolButton::menu-indicator { 
 	image: None;
 }
 
- 
 QToolButton:hover {
+	border-radius:3px;
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-}</string>
-           </property>
-           <property name="text">
-            <string>172.16.8.156:11100</string>
-           </property>
-           <property name="icon">
-            <iconset resource="lib.qrc">
-             <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButton_5">
-           <property name="minimumSize">
-            <size>
-             <width>180</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
+	background-color: rgb(21, 21, 21);
+	border: none;
 }
 
  
-QToolButton:hover {
+QToolButton:checked {
+	border-radius:3px;
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	background-color: rgb(21, 21, 21);
+	border: none;
 }</string>
-           </property>
-           <property name="text">
-            <string>172.16.8.159:11100</string>
-           </property>
-           <property name="icon">
-            <iconset resource="lib.qrc">
-             <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QToolButton" name="toolButton_2">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                 <stylestrategy>PreferAntialias</stylestrategy>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>172.16.8.153:11100</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/node.png</normaloff>:/lib/node.png</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextBesideIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_4">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                 <stylestrategy>PreferAntialias</stylestrategy>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>172.16.8.156:11100</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextBesideIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_5">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                 <stylestrategy>PreferAntialias</stylestrategy>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>172.16.8.159:11100</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextBesideIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_6">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                 <stylestrategy>PreferAntialias</stylestrategy>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>172.16.18.153:11100</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextBesideIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>309</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
           </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButton_6">
-           <property name="minimumSize">
-            <size>
-             <width>180</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-}</string>
-           </property>
-           <property name="text">
-            <string>172.16.18.153:11100</string>
-           </property>
-           <property name="icon">
-            <iconset resource="lib.qrc">
-             <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>383</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
@@ -834,13 +1078,13 @@ QToolButton:hover {
             <property name="minimumSize">
              <size>
               <width>85</width>
-              <height>30</height>
+              <height>28</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>85</width>
-              <height>30</height>
+              <height>28</height>
              </size>
             </property>
             <property name="font">
@@ -872,12 +1116,12 @@ QToolButton:hover {
             </property>
             <property name="icon">
              <iconset resource="lib.qrc">
-              <normaloff>:/lib/update2.png</normaloff>:/lib/update2.png</iconset>
+              <normaloff>:/lib/zhedie.png</normaloff>:/lib/zhedie.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>14</width>
-              <height>14</height>
+              <width>18</width>
+              <height>18</height>
              </size>
             </property>
             <property name="toolButtonStyle">
@@ -898,8 +1142,13 @@ QToolButton:hover {
          </property>
          <property name="styleSheet">
           <string notr="true">#horizontalWidget_1_3_l{
-	border: 1px solid rgb(197, 197, 197);
-	border-radius: 5px;
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 15px;
+padding-left:10px;
+padding-right:10px;
 }</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -933,7 +1182,8 @@ QToolButton:hover {
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
             </property>
             <property name="placeholderText">
              <string>搜索</string>
@@ -1010,7 +1260,16 @@ QToolButton::checked{
              <enum>Qt::CustomContextMenu</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">QTreeWidget#treeWidget {
+             <string notr="true">QToolTip{
+	
+	color: rgb(43, 43, 43);
+    font-size:12px;
+	width:1024;
+	height:40;
+}
+
+
+QTreeWidget#treeWidget {
 	border: 0px solid #D3D6DD;
 	outline: none;
 }
@@ -1061,7 +1320,7 @@ QTreeWidget::branch:open:has-children:has-siblings  {
 }
 
 QScrollBar:vertical{
-    width: 9px;
+    width: 12px;
 	
 	background-color: rgb(67, 77, 88);
     margin: 0px,0px,0px,0px;
@@ -1070,7 +1329,7 @@ QScrollBar:vertical{
 }
 
 QScrollBar::handle:vertical {
-    width: 9px;
+    width: 12px;
 	
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
@@ -1106,11 +1365,57 @@ QScrollBar::down-arrow:vertical {
 QScrollBar::up-arrow:vertical {
     border:none;
 }
+
+
+QScrollBar::horizontal{
+    height: 12px;
+	background-color: rgb(67, 77, 88);
+	margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    height: 12px;
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:horizontal {
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:horizontal 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:horizontal {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:horizontal {
+    border:none;
+}
+QScrollBar::up-arrow:horizontal {
+    border:none;
+}
+
 QMenu {
 
 background-color:rgb(253,253,254);
 /*padding:5px;*/
-padding: 3px 0px 3px 0px;
+padding: 5px 0px 5px 0px;
 border-radius:6px;
 border:2px solid rgb(108, 117, 125, 65); 
 }
@@ -1205,31 +1510,6 @@ QMenu::separator {
               <string notr="true">1</string>
              </property>
             </column>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">
-	border: 1px solid rgb(197, 197, 197);
-	border-radius: 5px;</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
            </widget>
           </item>
          </layout>
@@ -2235,13 +2515,13 @@ QComboBox QAbstractItemView{
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>30</height>
+              <height>40</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>30</height>
+              <height>40</height>
              </size>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -2249,7 +2529,7 @@ QComboBox QAbstractItemView{
               <number>0</number>
              </property>
              <property name="topMargin">
-              <number>0</number>
+              <number>15</number>
              </property>
              <property name="rightMargin">
               <number>0</number>
@@ -2346,7 +2626,7 @@ QComboBox QAbstractItemView{
                   <property name="styleSheet">
                    <string notr="true">
 	border: 1px solid rgb(197, 197, 197);
-	border-radius: 10px;</string>
+	border-radius: 0px;</string>
                   </property>
                   <property name="html">
                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2460,13 +2740,13 @@ QToolButton:hover {
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>30</height>
+                    <height>28</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>30</height>
+                    <height>28</height>
                    </size>
                   </property>
                   <property name="font">
@@ -2512,13 +2792,13 @@ QToolButton:hover {
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>30</height>
+                    <height>28</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>30</height>
+                    <height>28</height>
                    </size>
                   </property>
                   <property name="font">
