@@ -42,7 +42,7 @@
   <property name="styleSheet">
    <string notr="true">QMainWindow,QWidget#centralWidget {
 background-color: rgb(67, 77, 88);
-border-radius:6px;
+border-radius:10px;
 }
 
 QMenu {
@@ -789,7 +789,7 @@ color: rgb(255, 255, 255);</string>
           <number>1</number>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">
@@ -911,7 +911,7 @@ QTabBar::tab{
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
-	padding: 3px;
+	padding: 4px;
 	/*margin-right:0px;
 	margin-left: 0px;*/
 }

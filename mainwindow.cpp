@@ -842,7 +842,7 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
         showFlag = true;
     } else if (ui->widget_title->underMouse() && showFlag) {
         setContentsMargins(10, 10, 10, 10);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
         this->showNormal();
         showFlag = false;
@@ -1036,7 +1036,7 @@ void MainWindow::on_toolButton_max_clicked()
         showFlag = true;
     } else {
         setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
         this->showNormal();
         isMaxShow = false;
@@ -1413,7 +1413,7 @@ void MainWindow::rece_toolButton_fullScreen_sign()
         ui->toolButton_max->show();
         ui->toolButton_close->show();
         setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:6px;}");
+        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
         if (showFlag) {
             ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
@@ -1442,6 +1442,10 @@ void MainWindow::on_toolButton_setting_clicked()
 void MainWindow::on_toolButton_about_clicked()
 {
      awidget = new aboutwidget();
+     QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+     int x = globalPos.x() + (this->width() - awidget->width()) / 2;//x坐标
+     int y = globalPos.y() + (this->height() - awidget->height()) / 2;//y坐标
+     awidget->move(x, y);//窗口移动
      awidget->show();
 }
 

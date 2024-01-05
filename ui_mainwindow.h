@@ -213,7 +213,7 @@ public:
         MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QLatin1String("QMainWindow,QWidget#centralWidget {\n"
 "background-color: rgb(67, 77, 88);\n"
-"border-radius:6px;\n"
+"border-radius:10px;\n"
 "}\n"
 "\n"
 "QMenu {\n"
@@ -252,8 +252,8 @@ public:
 "QMenu::separator {\n"
 "    height: 2px;\n"
 "    background: rgb(235,235,236);\n"
-"    /*margin-left: 1"
-                        "0px;*/\n"
+"    /*margin-left: "
+                        "10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
@@ -712,7 +712,7 @@ public:
                         "\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	/*width:120px;*/\n"
-"	padding: 3px;\n"
+"	padding: 4px;\n"
 "	/*margin-right:0px;\n"
 "	margin-left: 0px;*/\n"
 "}\n"
@@ -2222,7 +2222,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(-1);
         stackedWidget_tool->setCurrentIndex(0);
 

@@ -59,6 +59,7 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_funcName;
     QComboBox *comboBox;
+    QComboBox *comboBox_reqType;
     QSpacerItem *horizontalSpacer_8;
     QToolButton *toolButton;
     QSplitter *splitter_2;
@@ -324,7 +325,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
-"    width: 10px;\n"
+"    width: 12px;\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
@@ -333,7 +334,7 @@ public:
 "\n"
 "\n"
 "QScrollBar::handle:vertical{\n"
-"    width: 10px;\n"
+"    width: 12px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);"
                         "\n"
@@ -548,6 +549,54 @@ public:
 
         horizontalLayout->addWidget(comboBox);
 
+        comboBox_reqType = new QComboBox(horizontalWidget);
+        comboBox_reqType->addItem(QString());
+        comboBox_reqType->addItem(QString());
+        comboBox_reqType->setObjectName(QStringLiteral("comboBox_reqType"));
+        comboBox_reqType->setMinimumSize(QSize(150, 30));
+        comboBox_reqType->setFont(font);
+        comboBox_reqType->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:0px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
+"	border-radius:5px;\n"
+"	background:transparent;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"height:28px;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	border-image: url(:/lib/up.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"}\n"
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}\n"
+"\n"
+""));
+
+        horizontalLayout->addWidget(comboBox_reqType);
+
         horizontalSpacer_8 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_8);
@@ -674,7 +723,7 @@ public:
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         treeWidget->setFont(font);
-        treeWidget->setStyleSheet(QLatin1String("QLineEdit{\n"
+        treeWidget->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "font: 10pt \"OPPOSans B\";\n"
 "color:#ced4da;\n"
 "background-color: rgba(255, 255, 255, 0);\n"
@@ -744,12 +793,58 @@ public:
 "QTreeWidget::branch:open:has-children:has-siblings  {\n"
 "	border-image: none;\n"
 "    image: url(:/lib/tree_open.png);\n"
+"}\n"
+"\n"
+"\n"
+"QScrollBar::horizontal{\n"
+"    height: 12px;\n"
+"	background-color: rgb(67, 77, 88);\n"
+"	margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    height: 12px;\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235"
+                        "\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:horizontal {\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:horizontal \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:horizontal {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:horizontal {\n"
+"    border:none;\n"
 "}"));
         treeWidget->setIndentation(20);
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -941,6 +1036,9 @@ public:
         lineEdit_funcName->setText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         comboBox->setItemText(0, QApplication::translate("thriftwidget", "TBinaryProtocol", nullptr));
+
+        comboBox_reqType->setItemText(0, QApplication::translate("thriftwidget", "CALL", nullptr));
+        comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
 
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));

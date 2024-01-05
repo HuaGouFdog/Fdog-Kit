@@ -412,7 +412,7 @@ void thriftwidget::buildData()
     dataList.resize(0);
     //添加请求类型
     QString reqType = ui->comboBox_reqType->currentText();
-    string2stringList(mapReqType(reqType));
+    string2stringList(mapReqType.value(reqType));
     //添加接口长度
     int funcLen = ui->lineEdit_funcName->text().length();
     QString funcLenData = QString("%1").arg(funcLen, 8, 16, QLatin1Char('0'));
@@ -434,96 +434,112 @@ void thriftwidget::buildData()
         }
 
         QString valueType = item->comboBoxBase->currentText();
-        if (valueType == "bool" || valueType == "byte" || valueType == "i16" || valueType == "i32"
-                || valueType == "i64" || valueType == "double") {
-
-        }
-
-        if (item->comboBoxBase->currentText() == "bool") {
+        if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
+                valueType == "i32" || valueType == "i64" || valueType == "double") {
             //设置类型
-            QString type = QString("%1").arg(THRIFT_BOOL_TYPE, 2, 16, QLatin1Char('0'));
+            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
             string2stringList(type);
             //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
+            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
+            string2stringList(serialNumber);
             QString value = item->lineEditParamValue->text();
             //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-            QString hexString3 = QString("%1").arg(value, 2, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "byte") {
-            QString type = QString("%1").arg(THRIFT_BYTE_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toInt();
-            QString hexString3 = QString("%1").arg(value, 2, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "i16") {
-            QString type = QString("%1").arg(THRIFT_I16_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toInt();
-            QString hexString3 = QString("%1").arg(value, 4, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "i32") {
-            QString type = QString("%1").arg(THRIFT_I32_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toInt();
-            QString hexString3 = QString("%1").arg(value, 8, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "i64") {
+            QString valueData = QString("%1").arg(value, mapSize.value(valueType), QLatin1Char('0'));
+            string2stringList(valueData);
+        } else if (valueType == "string") {
             //设置类型
-            QString type = QString("%1").arg(THRIFT_I64_TYPE, 2, 16, QLatin1Char('0'));
+            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
             string2stringList(type);
             //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int64_t value = (int64_t)item->lineEditParamValue->text().toDouble();
-            //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-            QString hexString3 = QString("%1").arg(value, 16, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "double") {
-            QString type = QString("%1").arg(THRIFT_DOUBLE_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toDouble();
-            QString hexString3 = QString("%1").arg(value, 16, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "string") {
-            //设置类型
-            QString type = QString("%1").arg(THRIFT_STRING_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
+            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
+            string2stringList(serialNumber);
             //设置字符串长度
             int len = item->lineEditParamValue->text().length();
-            QString hexString3 = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-            QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
-            QString hexString4 = byteArray.toHex(); // 将字节数组转换为十六进制字符串
-            string2stringList(hexString4);
+            QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
+            string2stringList(lenData);
             //设置字符串值
-        } else if (item->comboBoxBase->currentText() == "struct") {
+            QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
+            QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+            string2stringList(valueData);
+        } else if (valueType == "struct") {
 
-        } else if (item->comboBoxBase->currentText() == "map") {
-
-        } else if (item->comboBoxBase->currentText() == "set") {
-
-        } else if (item->comboBoxBase->currentText() == "list") {
+        } else if (valueType == "set" || valueType == "list") {
             //设置类型
-            QString type = QString("%1").arg(THRIFT_LIST_TYPE, 2, 16, QLatin1Char('0'));
+            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
             string2stringList(type);
             //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
+            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
+            string2stringList(serialNumber);
+            //获取值类型
+            QString key_Type = item->comboBoxKey->currentText();
             //设置值类型
-            QString type3 = QString("%1").arg(sum + 1, 2, 16, QLatin1Char('0'));
+            QString type2 = QString("%1").arg(mapType.value(key_Type), 2, 16, QLatin1Char('0'));
+            string2stringList(type2);
+            //设置元素个数
+            QString data = item->lineEditParamValue->text().mid(1, item->lineEditParamValue->text().length() - 2);
+            QStringList dataList = data.split(",");
+            QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+            string2stringList(lenData);
+            //设置值 获取数值型
+            for (const QString &str : dataList) {
+                QString strData = QString("%1").arg(str, mapSize.value(key_Type), QLatin1Char('0'));
+                string2stringList(strData);
+            }
+        } else if (valueType == "map") {
+            //设置类型
+            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+            string2stringList(type);
+            //设置序号
+            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
+            string2stringList(serialNumber);
+            //获取key类型
+            QString key_Type = item->comboBoxKey->currentText();
+            //设置key类型
+            QString type2 = QString("%1").arg(mapType.value(key_Type), 2, 16, QLatin1Char('0'));
+            string2stringList(type2);
+            //获取value类型
+            QString value_Type = item->comboBoxValue->currentText();
+            //设置value类型
+            QString type3 = QString("%1").arg(mapType.value(value_Type), 2, 16, QLatin1Char('0'));
             string2stringList(type3);
+            //设置元素个数
+            QString data = item->lineEditParamValue->text();
+            QStringList dataList;
+            int sum = 0;
+            int first = 0;
+            int end = 0;
+            int len = data.length();
+            for (int i = 0; i <= len; i++) {
+                if (data[i] == '{') {
+                    sum++;
+                    if (sum == 1) {
+                        first = i;
+                    }
+                }
+                if (data[i] == '}') {
+                    sum--;
+                    if (sum == 0) {
+                        end = i;
+                        QString da = data.mid(first, end - first + 1);
+                        dataList.push_back(da);
+                    }
+                }
+            }
+            QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+            string2stringList(lenData);
+            //设置元素值
+            for (const QString &str : dataList) {
+                //根据:获取key和value
+                int index = str.indexOf(":");
+                //设置key值
+                QString strData = QString("%1").arg(str.mid(0, index), mapSize.value(key_Type), QLatin1Char('0'));
+                string2stringList(strData);
+                //设置value值
+                QString strData2 = QString("%1").arg(str.mid(index+1), mapSize.value(value_Type), QLatin1Char('0'));
+                string2stringList(strData2);
+            }
+        } else {
+
         }
     }
 

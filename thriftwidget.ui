@@ -323,7 +323,7 @@ QComboBox QAbstractItemView{
 }
 
 QScrollBar:vertical{
-    width: 10px;
+    width: 12px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
@@ -332,7 +332,7 @@ QScrollBar:vertical{
 
 
 QScrollBar::handle:vertical{
-    width: 10px;
+    width: 12px;
 	
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
@@ -761,6 +761,74 @@ QComboBox QAbstractItemView{
           </widget>
          </item>
          <item>
+          <widget class="QComboBox" name="comboBox_reqType">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox{
+	color:#ffffff;
+	border:0px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background:transparent;
+}
+
+QComboBox QAbstractItemView::item
+{
+height:28px;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>CALL</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ONEWAY</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_8">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -1092,6 +1160,51 @@ QTreeWidget::branch:open:has-children:!has-siblings,
 QTreeWidget::branch:open:has-children:has-siblings  {
 	border-image: none;
     image: url(:/lib/tree_open.png);
+}
+
+
+QScrollBar::horizontal{
+    height: 12px;
+	background-color: rgb(67, 77, 88);
+	margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    height: 12px;
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:horizontal {
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:horizontal 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:horizontal {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:horizontal {
+    border:none;
+}
+QScrollBar::up-arrow:horizontal {
+    border:none;
 }</string>
                 </property>
                 <property name="indentation">
@@ -1107,7 +1220,7 @@ QTreeWidget::branch:open:has-children:has-siblings  {
                  <bool>false</bool>
                 </property>
                 <attribute name="headerVisible">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </attribute>
                 <attribute name="headerDefaultSectionSize">
                  <number>100</number>
