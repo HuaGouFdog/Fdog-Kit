@@ -139,6 +139,7 @@ void zookeeperwidget::rece_getNodeInfo(int code, QString message, QVariant varVa
 
 void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path)
 {
+    qDebug() << " 数据=" << data.toUtf8();
     Stat stat = varValue.value<Stat>();
     // 获取节点的创建时间（以毫秒为单位）
     long long createTime = stat.ctime;
