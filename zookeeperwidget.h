@@ -89,7 +89,7 @@ private slots:
 
     void rece_delete_event(int code, QString message, QString path);
 
-    void rece_chanage_event(QString path);
+    void rece_chanage_event(int code, QString message, QString path);
 
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
 
@@ -126,6 +126,8 @@ private slots:
     void on_toolButton_3_clicked();
 
     void on_toolButton_save_clicked();
+
+    void on_toolButton_close_clicked();
 
 private:
     Ui::zookeeperwidget *ui;

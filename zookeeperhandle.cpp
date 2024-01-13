@@ -51,6 +51,16 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
         qDebug() << "节点数据发生变化" << path;
         // 节点数据发生变化
         // 在这里处理节点数据变化的逻辑
+        Stat stat;
+        char buffer[1024]  = {0}; //不写0 会乱码
+        int buffer_len = sizeof(buffer);
+        int rc = zoo_wget(zh, path, nodeWatcher, obj_, buffer, &buffer_len, &stat);
+        if (rc == ZOK) {
+            //data = QString::fromUtf8(buffer);
+        } 
+        QString message;
+        QMetaObject::invokeMethod(obj_,"rece_chanage_event",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message), Q_ARG(QString,path_str));
+        qDebug() << "节点数据发生变化2" << path;
     } else if (type == ZOO_DELETED_EVENT) {
         // 节点被删除
         // 在这里处理节点被删除的逻辑
@@ -59,13 +69,12 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
     } else if (type == ZOO_CREATED_EVENT) {
         qDebug() << "节点被创建" << path;
         // 节点被创建
-        // 在这里处理节点被创建的逻辑
+        // 在这里处理节点被创建的逻辑  
     } else {
         qDebug() << "其他事件";
         // 其他类型的事件
         // 在这里处理其他类型的事件
     }
-    //QMetaObject::invokeMethod(obj_,"rece_children_event",Qt::QueuedConnection, Q_ARG(QString, path_str));
 }
 
 zookeeperhandle::zookeeperhandle(QObject *parent) : QObject(parent)
@@ -149,7 +158,7 @@ void zookeeperhandle::getNodeInfo(QString path)
     QString data;
     char buffer[1024]  = {0}; //不写0 会乱码
     int buffer_len = sizeof(buffer);
-    int rc = zoo_get(zh, path.toStdString().c_str(), 0, buffer, &buffer_len, &stat);
+    int rc = zoo_wget(zh, path.toStdString().c_str(), nodeWatcher, obj, buffer, &buffer_len, &stat);
     if (rc == ZOK) {
         data = QString::fromUtf8(buffer);
     } 

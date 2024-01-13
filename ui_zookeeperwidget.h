@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -86,31 +87,35 @@ public:
     QTreeWidget *treeWidget;
     QWidget *verticalWidget_1_r;
     QVBoxLayout *verticalLayout;
+    QWidget *horizontalWidget_1_2_4_r;
+    QHBoxLayout *horizontalLayout_10;
+    QLabel *label_data;
+    QCheckBox *checkBox_auto;
     QWidget *gridWidget_1_1_r;
     QGridLayout *gridLayout;
-    QLineEdit *lineEdit_pzxid;
     QLineEdit *lineEdit_mzxid;
-    QLineEdit *lineEdit_aversion;
+    QLineEdit *lineEdit_pzxid;
     QLineEdit *lineEdit_version;
+    QLineEdit *lineEdit_aversion;
+    QLabel *label_cversion;
     QLabel *label_aversion;
     QLineEdit *lineEdit_cversion;
-    QLabel *label_cversion;
     QLabel *label_pzxid;
-    QLabel *label_mzxid;
     QLabel *label_version;
     QLineEdit *lineEdit_czxid;
+    QLabel *label_mzxid;
     QLabel *label_dataLength;
-    QLabel *label_czxid;
     QLineEdit *lineEdit_dataLength;
-    QSpacerItem *horizontalSpacer_3;
-    QLabel *label_numChildren;
+    QLabel *label_czxid;
     QLabel *label_mtime;
     QLineEdit *lineEdit_mtime;
-    QLineEdit *lineEdit_numChildren;
+    QLabel *label_numChildren;
     QLabel *label_ctime;
     QLineEdit *lineEdit_ctime;
     QLabel *label_ephemeralOwner;
+    QLineEdit *lineEdit_numChildren;
     QLineEdit *lineEdit_ephemeralOwner;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *widget_1_2_r;
     QVBoxLayout *verticalLayout_7;
     QWidget *horizontalWidget_1_2_1_r;
@@ -128,9 +133,6 @@ public:
     QLabel *label_node_acl;
     QComboBox *comboBox_node_acl;
     QSpacerItem *horizontalSpacer_5;
-    QWidget *horizontalWidget_1_2_4_r;
-    QHBoxLayout *horizontalLayout_10;
-    QLabel *label_data;
     QWidget *verticalWidget_1_2_5_r;
     QVBoxLayout *verticalLayout_5;
     QWidget *verticalWidget_1_2_5_2_r;
@@ -396,8 +398,10 @@ public:
 
         widget_3 = new QWidget(widget_create_zk);
         widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setMaximumSize(QSize(16777215, 35));
         horizontalLayout_12 = new QHBoxLayout(widget_3);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
         toolButton_save = new QToolButton(widget_3);
         toolButton_save->setObjectName(QStringLiteral("toolButton_save"));
         toolButton_save->setMinimumSize(QSize(50, 28));
@@ -1067,6 +1071,34 @@ public:
         verticalLayout = new QVBoxLayout(verticalWidget_1_r);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 9, 0, 19);
+        horizontalWidget_1_2_4_r = new QWidget(verticalWidget_1_r);
+        horizontalWidget_1_2_4_r->setObjectName(QStringLiteral("horizontalWidget_1_2_4_r"));
+        horizontalWidget_1_2_4_r->setMinimumSize(QSize(0, 40));
+        horizontalWidget_1_2_4_r->setMaximumSize(QSize(16777215, 40));
+        horizontalLayout_10 = new QHBoxLayout(horizontalWidget_1_2_4_r);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        horizontalLayout_10->setContentsMargins(9, 0, 0, 0);
+        label_data = new QLabel(horizontalWidget_1_2_4_r);
+        label_data->setObjectName(QStringLiteral("label_data"));
+        label_data->setMaximumSize(QSize(70, 77));
+        QFont font6;
+        font6.setFamily(QStringLiteral("OPPOSans B"));
+        font6.setPointSize(11);
+        font6.setStyleStrategy(QFont::PreferAntialias);
+        label_data->setFont(font6);
+
+        horizontalLayout_10->addWidget(label_data);
+
+        checkBox_auto = new QCheckBox(horizontalWidget_1_2_4_r);
+        checkBox_auto->setObjectName(QStringLiteral("checkBox_auto"));
+        checkBox_auto->setFont(font2);
+        checkBox_auto->setChecked(true);
+
+        horizontalLayout_10->addWidget(checkBox_auto);
+
+
+        verticalLayout->addWidget(horizontalWidget_1_2_4_r);
+
         gridWidget_1_1_r = new QWidget(verticalWidget_1_r);
         gridWidget_1_1_r->setObjectName(QStringLiteral("gridWidget_1_1_r"));
         gridWidget_1_1_r->setMinimumSize(QSize(0, 300));
@@ -1076,6 +1108,15 @@ public:
         gridLayout->setHorizontalSpacing(9);
         gridLayout->setVerticalSpacing(15);
         gridLayout->setContentsMargins(9, 0, 9, 0);
+        lineEdit_mzxid = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_mzxid->setObjectName(QStringLiteral("lineEdit_mzxid"));
+        lineEdit_mzxid->setMinimumSize(QSize(60, 0));
+        lineEdit_mzxid->setMaximumSize(QSize(60, 16777215));
+        lineEdit_mzxid->setFont(font2);
+        lineEdit_mzxid->setReadOnly(true);
+
+        gridLayout->addWidget(lineEdit_mzxid, 3, 1, 1, 1);
+
         lineEdit_pzxid = new QLineEdit(gridWidget_1_1_r);
         lineEdit_pzxid->setObjectName(QStringLiteral("lineEdit_pzxid"));
         lineEdit_pzxid->setMinimumSize(QSize(60, 0));
@@ -1085,14 +1126,14 @@ public:
 
         gridLayout->addWidget(lineEdit_pzxid, 4, 1, 1, 1);
 
-        lineEdit_mzxid = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_mzxid->setObjectName(QStringLiteral("lineEdit_mzxid"));
-        lineEdit_mzxid->setMinimumSize(QSize(60, 0));
-        lineEdit_mzxid->setMaximumSize(QSize(60, 16777215));
-        lineEdit_mzxid->setFont(font2);
-        lineEdit_mzxid->setReadOnly(true);
+        lineEdit_version = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_version->setObjectName(QStringLiteral("lineEdit_version"));
+        lineEdit_version->setMinimumSize(QSize(60, 0));
+        lineEdit_version->setMaximumSize(QSize(60, 16777215));
+        lineEdit_version->setFont(font2);
+        lineEdit_version->setReadOnly(true);
 
-        gridLayout->addWidget(lineEdit_mzxid, 3, 1, 1, 1);
+        gridLayout->addWidget(lineEdit_version, 5, 1, 1, 1);
 
         lineEdit_aversion = new QLineEdit(gridWidget_1_1_r);
         lineEdit_aversion->setObjectName(QStringLiteral("lineEdit_aversion"));
@@ -1103,14 +1144,11 @@ public:
 
         gridLayout->addWidget(lineEdit_aversion, 6, 1, 1, 1);
 
-        lineEdit_version = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_version->setObjectName(QStringLiteral("lineEdit_version"));
-        lineEdit_version->setMinimumSize(QSize(60, 0));
-        lineEdit_version->setMaximumSize(QSize(60, 16777215));
-        lineEdit_version->setFont(font2);
-        lineEdit_version->setReadOnly(true);
+        label_cversion = new QLabel(gridWidget_1_1_r);
+        label_cversion->setObjectName(QStringLiteral("label_cversion"));
+        label_cversion->setFont(font2);
 
-        gridLayout->addWidget(lineEdit_version, 5, 1, 1, 1);
+        gridLayout->addWidget(label_cversion, 7, 0, 1, 1);
 
         label_aversion = new QLabel(gridWidget_1_1_r);
         label_aversion->setObjectName(QStringLiteral("label_aversion"));
@@ -1127,23 +1165,11 @@ public:
 
         gridLayout->addWidget(lineEdit_cversion, 7, 1, 1, 1);
 
-        label_cversion = new QLabel(gridWidget_1_1_r);
-        label_cversion->setObjectName(QStringLiteral("label_cversion"));
-        label_cversion->setFont(font2);
-
-        gridLayout->addWidget(label_cversion, 7, 0, 1, 1);
-
         label_pzxid = new QLabel(gridWidget_1_1_r);
         label_pzxid->setObjectName(QStringLiteral("label_pzxid"));
         label_pzxid->setFont(font2);
 
         gridLayout->addWidget(label_pzxid, 4, 0, 1, 1);
-
-        label_mzxid = new QLabel(gridWidget_1_1_r);
-        label_mzxid->setObjectName(QStringLiteral("label_mzxid"));
-        label_mzxid->setFont(font2);
-
-        gridLayout->addWidget(label_mzxid, 3, 0, 1, 1);
 
         label_version = new QLabel(gridWidget_1_1_r);
         label_version->setObjectName(QStringLiteral("label_version"));
@@ -1160,17 +1186,17 @@ public:
 
         gridLayout->addWidget(lineEdit_czxid, 2, 1, 1, 1);
 
+        label_mzxid = new QLabel(gridWidget_1_1_r);
+        label_mzxid->setObjectName(QStringLiteral("label_mzxid"));
+        label_mzxid->setFont(font2);
+
+        gridLayout->addWidget(label_mzxid, 3, 0, 1, 1);
+
         label_dataLength = new QLabel(gridWidget_1_1_r);
         label_dataLength->setObjectName(QStringLiteral("label_dataLength"));
         label_dataLength->setFont(font2);
 
         gridLayout->addWidget(label_dataLength, 8, 0, 1, 1);
-
-        label_czxid = new QLabel(gridWidget_1_1_r);
-        label_czxid->setObjectName(QStringLiteral("label_czxid"));
-        label_czxid->setFont(font2);
-
-        gridLayout->addWidget(label_czxid, 2, 0, 1, 1);
 
         lineEdit_dataLength = new QLineEdit(gridWidget_1_1_r);
         lineEdit_dataLength->setObjectName(QStringLiteral("lineEdit_dataLength"));
@@ -1181,15 +1207,11 @@ public:
 
         gridLayout->addWidget(lineEdit_dataLength, 8, 1, 1, 1);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        label_czxid = new QLabel(gridWidget_1_1_r);
+        label_czxid->setObjectName(QStringLiteral("label_czxid"));
+        label_czxid->setFont(font2);
 
-        gridLayout->addItem(horizontalSpacer_3, 5, 2, 1, 1);
-
-        label_numChildren = new QLabel(gridWidget_1_1_r);
-        label_numChildren->setObjectName(QStringLiteral("label_numChildren"));
-        label_numChildren->setFont(font2);
-
-        gridLayout->addWidget(label_numChildren, 13, 0, 1, 1);
+        gridLayout->addWidget(label_czxid, 2, 0, 1, 1);
 
         label_mtime = new QLabel(gridWidget_1_1_r);
         label_mtime->setObjectName(QStringLiteral("label_mtime"));
@@ -1206,14 +1228,11 @@ public:
 
         gridLayout->addWidget(lineEdit_mtime, 12, 1, 1, 1);
 
-        lineEdit_numChildren = new QLineEdit(gridWidget_1_1_r);
-        lineEdit_numChildren->setObjectName(QStringLiteral("lineEdit_numChildren"));
-        lineEdit_numChildren->setMinimumSize(QSize(60, 0));
-        lineEdit_numChildren->setMaximumSize(QSize(60, 16777215));
-        lineEdit_numChildren->setFont(font2);
-        lineEdit_numChildren->setReadOnly(true);
+        label_numChildren = new QLabel(gridWidget_1_1_r);
+        label_numChildren->setObjectName(QStringLiteral("label_numChildren"));
+        label_numChildren->setFont(font2);
 
-        gridLayout->addWidget(lineEdit_numChildren, 13, 1, 1, 1);
+        gridLayout->addWidget(label_numChildren, 13, 0, 1, 1);
 
         label_ctime = new QLabel(gridWidget_1_1_r);
         label_ctime->setObjectName(QStringLiteral("label_ctime"));
@@ -1236,6 +1255,15 @@ public:
 
         gridLayout->addWidget(label_ephemeralOwner, 14, 0, 1, 1);
 
+        lineEdit_numChildren = new QLineEdit(gridWidget_1_1_r);
+        lineEdit_numChildren->setObjectName(QStringLiteral("lineEdit_numChildren"));
+        lineEdit_numChildren->setMinimumSize(QSize(60, 0));
+        lineEdit_numChildren->setMaximumSize(QSize(60, 16777215));
+        lineEdit_numChildren->setFont(font2);
+        lineEdit_numChildren->setReadOnly(true);
+
+        gridLayout->addWidget(lineEdit_numChildren, 13, 1, 1, 1);
+
         lineEdit_ephemeralOwner = new QLineEdit(gridWidget_1_1_r);
         lineEdit_ephemeralOwner->setObjectName(QStringLiteral("lineEdit_ephemeralOwner"));
         lineEdit_ephemeralOwner->setMinimumSize(QSize(155, 0));
@@ -1244,6 +1272,10 @@ public:
         lineEdit_ephemeralOwner->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_ephemeralOwner, 14, 1, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 5, 2, 1, 1);
 
 
         verticalLayout->addWidget(gridWidget_1_1_r);
@@ -1442,23 +1474,6 @@ public:
 
         verticalLayout_7->addWidget(horizontalWidget_1_2_3_r);
 
-        horizontalWidget_1_2_4_r = new QWidget(widget_1_2_r);
-        horizontalWidget_1_2_4_r->setObjectName(QStringLiteral("horizontalWidget_1_2_4_r"));
-        horizontalWidget_1_2_4_r->setMinimumSize(QSize(0, 40));
-        horizontalWidget_1_2_4_r->setMaximumSize(QSize(16777215, 40));
-        horizontalLayout_10 = new QHBoxLayout(horizontalWidget_1_2_4_r);
-        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        horizontalLayout_10->setContentsMargins(0, 15, 0, 0);
-        label_data = new QLabel(horizontalWidget_1_2_4_r);
-        label_data->setObjectName(QStringLiteral("label_data"));
-        label_data->setMaximumSize(QSize(16777215, 77));
-        label_data->setFont(font2);
-
-        horizontalLayout_10->addWidget(label_data);
-
-
-        verticalLayout_7->addWidget(horizontalWidget_1_2_4_r);
-
         verticalWidget_1_2_5_r = new QWidget(widget_1_2_r);
         verticalWidget_1_2_5_r->setObjectName(QStringLiteral("verticalWidget_1_2_5_r"));
         verticalLayout_5 = new QVBoxLayout(verticalWidget_1_2_5_r);
@@ -1471,7 +1486,7 @@ public:
         verticalWidget_1_2_5_2_r->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(verticalWidget_1_2_5_2_r);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(2, 0, 2, 0);
+        verticalLayout_4->setContentsMargins(2, 10, 2, 0);
         textEdit_data = new QTextEdit(verticalWidget_1_2_5_2_r);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Maximum);
@@ -1555,10 +1570,10 @@ public:
 
         toolButton_copy_data = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_copy_data->setObjectName(QStringLiteral("toolButton_copy_data"));
-        QFont font6;
-        font6.setPointSize(10);
-        font6.setStyleStrategy(QFont::PreferAntialias);
-        toolButton_copy_data->setFont(font6);
+        QFont font7;
+        font7.setPointSize(10);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        toolButton_copy_data->setFont(font7);
         toolButton_copy_data->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -1681,27 +1696,29 @@ public:
         toolButton_unfold->setText(QApplication::translate("zookeeperwidget", "\345\205\250\351\203\250\345\261\225\345\274\200", nullptr));
         lineEdit_search->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242", nullptr));
         toolButton->setText(QString());
-        lineEdit_pzxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_data->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\346\225\260\346\215\256", nullptr));
+        checkBox_auto->setText(QApplication::translate("zookeeperwidget", "\350\207\252\345\212\250\345\210\267\346\226\260", nullptr));
         lineEdit_mzxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        lineEdit_aversion->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        lineEdit_pzxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         lineEdit_version->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        lineEdit_aversion->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_cversion->setText(QApplication::translate("zookeeperwidget", "cversion\357\274\232", nullptr));
         label_aversion->setText(QApplication::translate("zookeeperwidget", "aversion\357\274\232", nullptr));
         lineEdit_cversion->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        label_cversion->setText(QApplication::translate("zookeeperwidget", "cversion\357\274\232", nullptr));
         label_pzxid->setText(QApplication::translate("zookeeperwidget", "pzxid\357\274\232", nullptr));
-        label_mzxid->setText(QApplication::translate("zookeeperwidget", "mzxid\357\274\232", nullptr));
         label_version->setText(QApplication::translate("zookeeperwidget", "version\357\274\232", nullptr));
         lineEdit_czxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_mzxid->setText(QApplication::translate("zookeeperwidget", "mzxid\357\274\232", nullptr));
         label_dataLength->setText(QApplication::translate("zookeeperwidget", "dataLength\357\274\232", nullptr));
-        label_czxid->setText(QApplication::translate("zookeeperwidget", "czxid\357\274\232", nullptr));
         lineEdit_dataLength->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        label_numChildren->setText(QApplication::translate("zookeeperwidget", "numChildren\357\274\232", nullptr));
+        label_czxid->setText(QApplication::translate("zookeeperwidget", "czxid\357\274\232", nullptr));
         label_mtime->setText(QApplication::translate("zookeeperwidget", "mtime\357\274\232", nullptr));
         lineEdit_mtime->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
-        lineEdit_numChildren->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
+        label_numChildren->setText(QApplication::translate("zookeeperwidget", "numChildren\357\274\232", nullptr));
         label_ctime->setText(QApplication::translate("zookeeperwidget", "ctime\357\274\232", nullptr));
         lineEdit_ctime->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         label_ephemeralOwner->setText(QApplication::translate("zookeeperwidget", "ephemeralOwner\357\274\232", nullptr));
+        lineEdit_numChildren->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         lineEdit_ephemeralOwner->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
         label_node_create->setText(QApplication::translate("zookeeperwidget", "createNode\357\274\232", nullptr));
         label_node_type->setText(QApplication::translate("zookeeperwidget", "nodeType\357\274\232", nullptr));
@@ -1716,7 +1733,6 @@ public:
         comboBox_node_acl->setItemText(2, QApplication::translate("zookeeperwidget", "ZOO_READ_ACL_UNSAFE", nullptr));
         comboBox_node_acl->setItemText(3, QApplication::translate("zookeeperwidget", "ZOO_READ_ACL", nullptr));
 
-        label_data->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\346\225\260\346\215\256:", nullptr));
         textEdit_data->setHtml(QApplication::translate("zookeeperwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

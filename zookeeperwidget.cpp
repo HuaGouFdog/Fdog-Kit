@@ -48,7 +48,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     ui->splitter->setStretchFactor(0, 5);
-    ui->splitter->setStretchFactor(1, 2);
+    ui->splitter->setStretchFactor(1, 1);
 }
 
 zookeeperwidget::~zookeeperwidget()
@@ -59,7 +59,7 @@ zookeeperwidget::~zookeeperwidget()
 void zookeeperwidget::init(QString host, QString port)
 {
     QString rootPath = "/";
-    zookhandle = new zookeeperhandle();
+    zookhandle = new zookeeperhandle(this, NULL);
     //初始化连接
     connect(zookhandle,SIGNAL(send_init(int,int,QString,QString,int)),this, SLOT(rece_init(int,int,QString,QString,int)));
     connect(zookhandle,SIGNAL(send_getChildren(int,QString,QString,QVariant,QTreeWidgetItem*)),this, SLOT(rece_getChildren(int,QString,QString,QVariant,QTreeWidgetItem*)));
@@ -611,9 +611,17 @@ void zookeeperwidget::rece_delete_event(int code, QString message, QString path)
     }
 }
 
-void zookeeperwidget::rece_chanage_event(QString path)
+void zookeeperwidget::rece_chanage_event(int code, QString message, QString path)
 {
+    qDebug() << "节点变化" << path;
     //节点数据被改变
+    //判断当前数据变化的节点是否属于当前展示节点，若不是，则忽略
+    QString path_ = ui->treeWidget->currentItem()->text(0);
+    qDebug() << "节点变化" << path << " "<<  path_;
+    if (path_ == path && ui->checkBox_auto->isChecked()) {
+        //获取节点信息
+        getNodeInfo(path);
+    }
 }
 
 void zookeeperwidget::showNodeInfoWidget()
@@ -675,7 +683,7 @@ void zookeeperwidget::showMessage(QString message, bool isSuccess)
     {
         a->close();
     });
-    pAnimation->setDuration(2000);
+    pAnimation->setDuration(1000);
     pAnimation->setStartValue(1);
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -696,7 +704,7 @@ void zookeeperwidget::on_toolButton_6_clicked()
     {
         a->close();
     });
-    pAnimation->setDuration(2000);
+    pAnimation->setDuration(1000);
     pAnimation->setStartValue(1);
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -728,5 +736,10 @@ void zookeeperwidget::on_toolButton_save_clicked()
     qbutton->setMinimumWidth(180);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
     layout->insertWidget(layout->count()-1, qbutton);
+    hideCreateZkWidget();
+}
+
+void zookeeperwidget::on_toolButton_close_clicked()
+{
     hideCreateZkWidget();
 }
