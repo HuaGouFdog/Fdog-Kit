@@ -1098,15 +1098,16 @@ void MainWindow::on_newTool()
         int8_t connectType = 0;
         //创建连接窗口 
         QSize iconSize(16, 16); // 设置图标的大小
-        //qDebug() <<"工具：" << actionText;
-        if (actionText == "小工具集合") {
-            ui->stackedWidget->setCurrentIndex(0);
+        qDebug() <<"工具：" << actionText;
+        if (actionText == "小工具") {
             ui->widget_4->show();
+            ui->stackedWidget->setCurrentIndex(0);
             return;
             //ui->tabWidget->addTab(tswidget, QIcon(":lib/toolBox.png").pixmap(iconSize), toolName);
         } else if (actionText == "JSON格式化") {
             toolName = "JSON格式化";
             tswidget = new toolswidget(1);
+            //内存泄漏 后面记得释放
             ui->tabWidget->addTab(tswidget, QIcon(":lib/json (2).png").pixmap(iconSize), toolName);
         } else if (actionText == "XML格式化") {
             toolName = "XML格式化";
@@ -1116,6 +1117,22 @@ void MainWindow::on_newTool()
             toolName = "文本对比";
             tswidget = new toolswidget(3);
             ui->tabWidget->addTab(tswidget, QIcon(":lib/XML-Local-hover.png").pixmap(iconSize), toolName);
+        } else if (actionText == "zk可视化连接") {
+            toolName = "zookeeper";
+            if(zmanagewidget == NULL) {
+                zmanagewidget = new zookeepermanagewidget();
+                ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), toolName);
+                ui->stackedWidget->setCurrentIndex(0);
+            } else {
+                //切换到zookeeper tabWidget
+                for(int i = 0; i < ui->tabWidget->count(); i ++) {
+                    if (ui->tabWidget->tabText(i) == "zookeeper") {
+                        ui->tabWidget->setCurrentIndex(i);
+                        break;
+                    }
+                }
+            }
+            return;
         } else if (actionText == "Thrift接口测试") {
             toolName = "Thrift接口测试";
             twidget = new thriftwidget(this);
@@ -1123,6 +1140,8 @@ void MainWindow::on_newTool()
             ui->stackedWidget->setCurrentIndex(0);
             twidget->show();
             ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+            return;
+        } else {
             return;
         }
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
@@ -1144,9 +1163,17 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
 
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
-        zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
-        zkWidgetList.push_back(zkWidget);
-        ui->tabWidget->addTab(zkWidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), cInfoStruct.name);
+        if(zmanagewidget == NULL) {
+            zmanagewidget = new zookeepermanagewidget(cInfoStruct);
+            ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
+            ui->stackedWidget->setCurrentIndex(0);
+        } else {
+            //创建+连接
+            zmanagewidget->newCreate(cInfoStruct);
+        }
+        //zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
+        //zkWidgetList.push_back(zkWidget);
+        ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
     } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
     } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {

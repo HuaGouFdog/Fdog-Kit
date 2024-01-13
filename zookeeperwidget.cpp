@@ -16,6 +16,28 @@
 #include "zookeepertipswidget.h"
 #include "ui_zookeeperwidget.h"
 
+zookeeperwidget::zookeeperwidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::zookeeperwidget), isUnfold(false)
+{
+    ui->setupUi(this);
+
+    hideButton();
+    hideCreateWidget(); //隐藏修改按钮
+    setMouseTracking(true);
+
+    ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    threadpool.setMaxThreadCount(16);
+
+    //设置水平滑动条
+    QHeaderView *pHeader=ui->treeWidget->header();
+    pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
+    pHeader->setStretchLastSection(false);
+
+    ui->splitter->setStretchFactor(0, 5);
+    ui->splitter->setStretchFactor(1, 1);
+}
 
 zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *parent) :
     QWidget(parent),
@@ -23,16 +45,15 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
 {
     ui->setupUi(this);
 
-    QAction *action = new QAction(this);
-    action->setIcon(QIcon(":/lib/soucuo.png"));
-    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
-    QAction *action2 = new QAction(this);
-    action2->setIcon(QIcon(":/lib/soucuo.png"));
-    ui->lineEdit_search->addAction(action2,QLineEdit::LeadingPosition);
+    //QAction *action = new QAction(this);
+    //action->setIcon(QIcon(":/lib/soucuo.png"));
+    //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    //QAction *action2 = new QAction(this);
+    //action2->setIcon(QIcon(":/lib/soucuo.png"));
+    //ui->lineEdit_search->addAction(action2,QLineEdit::LeadingPosition);
 
     hideButton();
     hideCreateWidget(); //隐藏修改按钮
-    hideCreateZkWidget(); //隐藏创建zk
     setMouseTracking(true);
 
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -45,7 +66,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
     pHeader->setStretchLastSection(false);
 
-    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     ui->splitter->setStretchFactor(0, 5);
     ui->splitter->setStretchFactor(1, 1);
@@ -139,7 +160,6 @@ void zookeeperwidget::rece_getNodeInfo(int code, QString message, QVariant varVa
 
 void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path)
 {
-    qDebug() << " 数据=" << data.toUtf8();
     Stat stat = varValue.value<Stat>();
     // 获取节点的创建时间（以毫秒为单位）
     long long createTime = stat.ctime;
@@ -653,15 +673,15 @@ void zookeeperwidget::showCreateWidget()
     ui->toolButton_saveData->hide();
 }
 
-void zookeeperwidget::hideCreateZkWidget()
-{
-    ui->widget_create_zk->hide();
-}
+//void zookeeperwidget::hideCreateZkWidget()
+//{
+//    ui->widget_create_zk->hide();
+//}
 
-void zookeeperwidget::showCreateZkWidget()
-{
-    ui->widget_create_zk->show();
-}
+//void zookeeperwidget::showCreateZkWidget()
+//{
+//    ui->widget_create_zk->show();
+//}
 
 void zookeeperwidget::hideButton()
 {
@@ -684,7 +704,7 @@ void zookeeperwidget::showMessage(QString message, bool isSuccess)
     {
         a->close();
     });
-    pAnimation->setDuration(1000);
+    pAnimation->setDuration(2000);
     pAnimation->setStartValue(1);
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -705,7 +725,7 @@ void zookeeperwidget::on_toolButton_6_clicked()
     {
         a->close();
     });
-    pAnimation->setDuration(1000);
+    pAnimation->setDuration(2000);
     pAnimation->setStartValue(1);
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -720,27 +740,21 @@ void zookeeperwidget::on_treeWidget_itemEntered(QTreeWidgetItem *item, int colum
 //    QToolTip::showText(QCursor::pos(), item->toolTip(column));
 }
 
-void zookeeperwidget::on_toolButton_3_clicked()
-{
-    showCreateZkWidget();
-}
+//void zookeeperwidget::on_toolButton_3_clicked()
+//{
+//    showCreateZkWidget();
+//}
 
-void zookeeperwidget::on_toolButton_save_clicked()
-{
-    //创建信息
-    QString data = ui->lineEdit_host_zk_data->text() + ":" + ui->lineEdit_port_zk_data->text();
-    QToolButton * qbutton = new QToolButton(this);
-    qbutton->setIcon(QIcon(":lib/node2.png"));
-    qbutton->setText(data);
-    qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    qbutton->setMinimumHeight(30);
-    qbutton->setMinimumWidth(180);
-    QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
-    layout->insertWidget(layout->count()-1, qbutton);
-    hideCreateZkWidget();
-}
-
-void zookeeperwidget::on_toolButton_close_clicked()
-{
-    hideCreateZkWidget();
-}
+//void zookeeperwidget::on_toolButton_save_clicked()
+//{
+//    //创建信息
+//    QString data = ui->lineEdit_host_zk_data->text() + ":" + ui->lineEdit_port_zk_data->text();
+//    QToolButton * qbutton = new QToolButton(this);
+//    qbutton->setIcon(QIcon(":lib/node2.png"));
+//    qbutton->setText(data);
+//    qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+//    qbutton->setMinimumHeight(30);
+//    qbutton->setMinimumWidth(180);
+//    QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
+//    layout->insertWidget(layout->count()-1, qbutton);
+//}

@@ -20,6 +20,7 @@ class zookeeperwidget : public QWidget
     Q_OBJECT
 
 public:
+    explicit zookeeperwidget(QWidget *parent = 0);
     explicit zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);
     ~zookeeperwidget();
 
@@ -62,8 +63,8 @@ public:
     void hideCreateWidget();//隐藏创建节点控件
     void showCreateWidget();//显示创建节点控件
 
-    void hideCreateZkWidget();
-    void showCreateZkWidget();
+//    void hideCreateZkWidget();
+//    void showCreateZkWidget();
     void hideButton();
 
     void showMessage(QString message, bool isSuccess = true); //显示操作信息
@@ -123,11 +124,11 @@ private slots:
 
     void on_treeWidget_itemEntered(QTreeWidgetItem *item, int column);
 
-    void on_toolButton_3_clicked();
+    //void on_toolButton_3_clicked();
 
-    void on_toolButton_save_clicked();
+    //void on_toolButton_save_clicked();
 
-    void on_toolButton_close_clicked();
+    //void on_toolButton_close_clicked();
 
 private:
     Ui::zookeeperwidget *ui;

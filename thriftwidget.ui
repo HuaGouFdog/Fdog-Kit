@@ -287,8 +287,20 @@ QTabBar QToolButton:hover {
             <x>0</x>
             <y>10</y>
             <width>181</width>
-            <height>21</height>
+            <height>28</height>
            </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>28</height>
+           </size>
           </property>
           <property name="font">
            <font>
@@ -296,6 +308,24 @@ QTabBar QToolButton:hover {
             <pointsize>10</pointsize>
             <stylestrategy>PreferAntialias</stylestrategy>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(20, 20, 20);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(20, 20, 20);
+}</string>
           </property>
           <property name="text">
            <string>导入thrift文件</string>

@@ -284,8 +284,26 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         toolButton_2 = new QToolButton(tab_2);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
-        toolButton_2->setGeometry(QRect(0, 10, 181, 21));
+        toolButton_2->setGeometry(QRect(0, 10, 181, 28));
+        toolButton_2->setMinimumSize(QSize(0, 28));
+        toolButton_2->setMaximumSize(QSize(16777215, 28));
         toolButton_2->setFont(font);
+        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(20, 20, 20);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(20, 20, 20);\n"
+"}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidget->addTab(tab_2, icon1, QString());
