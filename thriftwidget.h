@@ -94,6 +94,14 @@ signals:
       void send_currentIndexChanged(QString data, QTreeWidgetItem * item);
  };
 
+enum ObjectType {
+	OBJECT_BASE = 1,
+	OBJECT_STRUCT,
+	OBJECT_LIST,
+	OBJECT_SET,
+    OBJECT_MAP,
+};
+
 class thriftwidget : public QWidget
 {
     Q_OBJECT
@@ -116,6 +124,14 @@ public:
 
     //组装数据
     void buildData();
+
+    //void baseSerialize();
+
+    //void objectSerialize();
+
+    //处理
+    //void serialize();
+
     //解析数据
     void parseData();
 

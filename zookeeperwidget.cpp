@@ -46,6 +46,9 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     pHeader->setStretchLastSection(false);
 
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    ui->splitter->setStretchFactor(0, 5);
+    ui->splitter->setStretchFactor(1, 2);
 }
 
 zookeeperwidget::~zookeeperwidget()
@@ -119,8 +122,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
             threadpool.start(m_pRunnable);
         }
         isUnfold = true;
-        ui->toolButton_unfold->setText("全部折叠");
-        expandAllItems(ui->treeWidget, isUnfold, 0);
+        expandAllItemsOne(ui->treeWidget, isUnfold, 0);
     }
 }
 
@@ -334,16 +336,36 @@ void zookeeperwidget::expandAllItems(QTreeWidget *treeWidget, bool isexpand, int
 
 void zookeeperwidget::expandItemAndChildren(QTreeWidgetItem *item, bool isexpand, int sum)
 {
+    sum++;
+    item->setExpanded(isexpand);
+    int childCount = item->childCount();
+   for (int i = 0; i < childCount; ++i) {
+       QTreeWidgetItem* childItem = item->child(i);
+       expandItemAndChildren(childItem, isexpand, sum);
+   }
+}
+
+void zookeeperwidget::expandAllItemsOne(QTreeWidget *treeWidget, bool isexpand, int sum)
+{
+    int topLevelItemCount = treeWidget->topLevelItemCount();
+    for (int i = 0; i < topLevelItemCount; ++i) {
+        QTreeWidgetItem* item = treeWidget->topLevelItem(i);
+        expandItemAndChildrenOne(item, isexpand, sum);
+    }
+}
+
+void zookeeperwidget::expandItemAndChildrenOne(QTreeWidgetItem *item, bool isexpand, int sum)
+{
     if (sum >= 1) {
         return;
     }
     sum++;
     item->setExpanded(isexpand);
     int childCount = item->childCount();
-//    for (int i = 0; i < childCount; ++i) {
-//        QTreeWidgetItem* childItem = item->child(i);
-//        expandItemAndChildren(childItem, isexpand, sum);
-    //    }
+   for (int i = 0; i < childCount; ++i) {
+       QTreeWidgetItem* childItem = item->child(i);
+       expandItemAndChildrenOne(childItem, isexpand, sum);
+   }
 }
 
 void zookeeperwidget::deleteTreeNode(QTreeWidgetItem* item)
@@ -516,17 +538,9 @@ void zookeeperwidget::on_lineEdit_search_textChanged(const QString &arg1)
 
 void zookeeperwidget::on_toolButton_unfold_clicked()
 {
-    if (isUnfold) {
-        //全部折叠
-        isUnfold = false;
-        ui->toolButton_unfold->setText("全部展开");
-        expandAllItems(ui->treeWidget, isUnfold, 0);
-    } else {
-        //全部展开
-        isUnfold = true;
-        ui->toolButton_unfold->setText("全部折叠");
-        expandAllItems(ui->treeWidget, isUnfold, 0);
-    }
+    isUnfold = false;
+    ui->toolButton_unfold->setText("全部折叠");
+    expandAllItems(ui->treeWidget, isUnfold, 0);
 }
 
 void zookeeperwidget::on_lineEdit_search_returnPressed()

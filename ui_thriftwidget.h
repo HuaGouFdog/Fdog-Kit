@@ -42,6 +42,7 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *tab_2;
+    QToolButton *toolButton_2;
     QWidget *widget_7;
     QVBoxLayout *verticalLayout;
     QWidget *widget_6;
@@ -281,6 +282,10 @@ public:
         tabWidget->addTab(tab, icon, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        toolButton_2 = new QToolButton(tab_2);
+        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setGeometry(QRect(0, 10, 181, 21));
+        toolButton_2->setFont(font);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidget->addTab(tab_2, icon1, QString());
@@ -652,7 +657,7 @@ public:
 "\n"
 "QComboBox QAbstractItemView::item{\n"
 "\n"
-"height:30px; \n"
+"height:40px; \n"
 "width:50px;\n"
 "\n"
 "}"));
@@ -844,7 +849,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(false);
+        treeWidget->header()->setVisible(true);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1024,6 +1029,7 @@ public:
         thriftwidget->setWindowTitle(QApplication::translate("thriftwidget", "Form", nullptr));
         lineEdit_find->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
+        toolButton_2->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
         lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));

@@ -909,33 +909,40 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setMinimumSize(QSize(60, 28));
+        comboBox->setMinimumSize(QSize(0, 28));
         comboBox->setMaximumSize(QSize(120, 28));
         comboBox->setFont(font1);
-        comboBox->setStyleSheet(QLatin1String("\n"
-"\n"
-"QComboBox{ border:1px solid gray;  border-radius:3px;  padding: 5px; min-width:4em;}\n"
+        comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:1px solid rgb(13, 13, 13);\n"
+"	border-radius:3px;\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
 "\n"
 "QComboBox::drop-down{\n"
-"subcontrol-origin:padding; \n"
-"subcontrol-position:top right; \n"
-"width:20px; \n"
-"/*border-left-width:1px;*/\n"
-"border-left-color:darkgray;\n"
-"border-left-style:solid; \n"
-"border-top-right-radius:3px; \n"
-"border-bottom-right-radius:3px;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"border: 2px solid #4E6D8C;\n"
+"	background:transparent;\n"
 "}\n"
 "QComboBox::down-arrow{\n"
-"border-image: url(:/lib/up.png);\n"
+"	border-image: url(:/lib/up.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
-"\n"
 "}\n"
-""));
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}"));
 
         horizontalLayout_4->addWidget(comboBox);
 
@@ -1037,7 +1044,7 @@ public:
 
         retranslateUi(createconnect);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(0);
 
 

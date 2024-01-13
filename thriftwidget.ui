@@ -281,6 +281,26 @@ QTabBar QToolButton:hover {
          <attribute name="title">
           <string>接口列表</string>
          </attribute>
+         <widget class="QToolButton" name="toolButton_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>10</y>
+            <width>181</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OPPOSans B</family>
+            <pointsize>10</pointsize>
+            <stylestrategy>PreferAntialias</stylestrategy>
+           </font>
+          </property>
+          <property name="text">
+           <string>导入thrift文件</string>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -929,7 +949,7 @@ font: 10pt &quot;OPPOSans B&quot;;
 
 QComboBox QAbstractItemView::item{
 
-height:30px; 
+height:40px; 
 width:50px;
 
 }</string>
@@ -1220,7 +1240,7 @@ QScrollBar::up-arrow:horizontal {
                  <bool>false</bool>
                 </property>
                 <attribute name="headerVisible">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </attribute>
                 <attribute name="headerDefaultSectionSize">
                  <number>100</number>

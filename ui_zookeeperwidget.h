@@ -51,7 +51,10 @@ public:
     QLineEdit *lineEdit_host_zk_data;
     QLabel *label_port_zk;
     QLineEdit *lineEdit_port_zk_data;
+    QWidget *widget_3;
+    QHBoxLayout *horizontalLayout_12;
     QToolButton *toolButton_save;
+    QToolButton *toolButton_close;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_8;
@@ -391,7 +394,11 @@ public:
 
         gridLayout_2->addWidget(lineEdit_port_zk_data, 2, 1, 1, 2);
 
-        toolButton_save = new QToolButton(widget_create_zk);
+        widget_3 = new QWidget(widget_create_zk);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        horizontalLayout_12 = new QHBoxLayout(widget_3);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        toolButton_save = new QToolButton(widget_3);
         toolButton_save->setObjectName(QStringLiteral("toolButton_save"));
         toolButton_save->setMinimumSize(QSize(50, 28));
         toolButton_save->setMaximumSize(QSize(50, 28));
@@ -412,7 +419,33 @@ public:
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
 
-        gridLayout_2->addWidget(toolButton_save, 3, 2, 1, 1);
+        horizontalLayout_12->addWidget(toolButton_save);
+
+        toolButton_close = new QToolButton(widget_3);
+        toolButton_close->setObjectName(QStringLiteral("toolButton_close"));
+        toolButton_close->setMinimumSize(QSize(50, 28));
+        toolButton_close->setMaximumSize(QSize(50, 28));
+        toolButton_close->setFont(font2);
+        toolButton_close->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+
+        horizontalLayout_12->addWidget(toolButton_close);
+
+
+        gridLayout_2->addWidget(widget_3, 3, 2, 1, 1);
 
 
         verticalLayout_3->addWidget(widget_create_zk);
@@ -1027,7 +1060,7 @@ public:
         splitter->addWidget(verticalWidget_1_l);
         verticalWidget_1_r = new QWidget(splitter);
         verticalWidget_1_r->setObjectName(QStringLiteral("verticalWidget_1_r"));
-        verticalWidget_1_r->setMaximumSize(QSize(333, 99999));
+        verticalWidget_1_r->setMaximumSize(QSize(16777215, 99999));
         verticalWidget_1_r->setFont(font5);
         verticalWidget_1_r->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
@@ -1448,9 +1481,58 @@ public:
         textEdit_data->setSizePolicy(sizePolicy1);
         textEdit_data->setMinimumSize(QSize(0, 0));
         textEdit_data->setFont(font2);
-        textEdit_data->setStyleSheet(QLatin1String("\n"
-"	border: 1px solid rgb(197, 197, 197);\n"
-"	border-radius: 0px;"));
+        textEdit_data->setStyleSheet(QString::fromUtf8("#textEdit_data{\n"
+"	border: 1px solid rgba(197, 197, 197,50);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical{\n"
+"    width: 12px;\n"
+"	\n"
+"	background-color: rgb(67, 77, 88);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    width: 12px;\n"
+"	\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+""
+                        "QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
 
         verticalLayout_4->addWidget(textEdit_data);
 
@@ -1586,6 +1668,7 @@ public:
         lineEdit_port_zk_data->setText(QApplication::translate("zookeeperwidget", "11100", nullptr));
         lineEdit_port_zk_data->setPlaceholderText(QApplication::translate("zookeeperwidget", "22", nullptr));
         toolButton_save->setText(QApplication::translate("zookeeperwidget", "\344\277\235\345\255\230", nullptr));
+        toolButton_close->setText(QApplication::translate("zookeeperwidget", "\345\217\226\346\266\210", nullptr));
         toolButton_2->setText(QApplication::translate("zookeeperwidget", "172.16.8.153:11100", nullptr));
         toolButton_4->setText(QApplication::translate("zookeeperwidget", "172.16.8.156:11100", nullptr));
         toolButton_5->setText(QApplication::translate("zookeeperwidget", "172.16.8.159:11100", nullptr));

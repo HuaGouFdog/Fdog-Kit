@@ -893,7 +893,7 @@ QTabBar QToolButton:hover {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <property name="tabBarAutoHide">
           <bool>false</bool>
@@ -1948,7 +1948,7 @@ padding-right:10px;</string>
              <widget class="QComboBox" name="comboBox">
               <property name="minimumSize">
                <size>
-                <width>60</width>
+                <width>0</width>
                 <height>28</height>
                </size>
               </property>
@@ -1966,30 +1966,37 @@ padding-right:10px;</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-
-QComboBox{ border:1px solid gray;  border-radius:3px;  padding: 5px; min-width:4em;}
+               <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid rgb(13, 13, 13);
+	border-radius:3px;
+	background:transparent;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
 
 QComboBox::drop-down{
-subcontrol-origin:padding; 
-subcontrol-position:top right; 
-width:20px; 
-/*border-left-width:1px;*/
-border-left-color:darkgray;
-border-left-style:solid; 
-border-top-right-radius:3px; 
-border-bottom-right-radius:3px;
-}
-QComboBox QAbstractItemView{
-border: 2px solid #4E6D8C;
+	background:transparent;
 }
 QComboBox::down-arrow{
-border-image: url(:/lib/up.png);
+	border-image: url(:/lib/up.png);
     width:20px;
 	height:20px;
-
 }
-</string>
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}</string>
               </property>
               <item>
                <property name="text">

@@ -46,8 +46,10 @@ public:
 
     //展开/折叠所有节点
     void expandAllItems(QTreeWidget* treeWidget, bool isexpand, int sum);
-
     void expandItemAndChildren(QTreeWidgetItem* item, bool isexpand, int sum);
+
+    void expandAllItemsOne(QTreeWidget* treeWidget, bool isexpand, int sum);
+    void expandItemAndChildrenOne(QTreeWidgetItem* item, bool isexpand, int sum);
 
     void deleteTreeNode (QTreeWidgetItem* item);
     void deleteTreeItem (QTreeWidgetItem* item);

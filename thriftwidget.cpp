@@ -49,7 +49,7 @@ void ItemWidget::init()
     comboBoxBase->addItem("set");
     comboBoxBase->addItem("list");
     comboBoxBase->setCurrentIndex(3);
-    comboBoxBase->setMinimumHeight(20);
+    comboBoxBase->setMinimumHeight(25);
     //comboBoxBase->setMaximumWidth(90);
 
     comboBoxBase->setView(new QListView());  //必须设置
@@ -71,11 +71,15 @@ void ItemWidget::init()
     comboBoxKey->addItem("set");
     comboBoxKey->addItem("list");
     comboBoxKey->setCurrentIndex(0);
-    //comboBoxKey->setMinimumWidth(90);
+    comboBoxKey->setMinimumHeight(25);
     //comboBoxKey->setMaximumWidth(90);
     comboBoxKey->hide();
 
     comboBoxKey->setView(new QListView());  //必须设置
+
+    connect(comboBoxKey, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),[=]{
+        emit send_currentIndexChanged(comboBoxKey->currentText(), this);
+    });
 
     comboBoxValue = new QComboBox();
     comboBoxValue->addItem("bool");
@@ -90,12 +94,17 @@ void ItemWidget::init()
     comboBoxValue->addItem("set");
     comboBoxValue->addItem("list");
     comboBoxValue->setCurrentIndex(0);
-    //comboBoxValue->setMinimumWidth(90);
+    comboBoxKey->setMinimumHeight(25);
     //comboBoxValue->setMaximumWidth(90);
 
     comboBoxValue->hide();
 
     comboBoxValue->setView(new QListView());  //必须设置
+
+    connect(comboBoxValue, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),[=]{
+        emit send_currentIndexChanged(comboBoxValue->currentText(), this);
+    });
+
     //comboBoxValue->setStyleSheet("QComboBox QAbstractItemView::item{height:28px;font: 10pt \"OPPOSans B\";}");
 
     lineEditParamName = new QLineEdit();
@@ -363,7 +372,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
         //没有可读的数据就返回
         qDebug() << "接收到的数据（十六进制字符串）：";
-        std::array<uint32_t, 8> receivedDataArray{0};
+        std::array<uint32_t, 20> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                   receivedDataArray.size() * sizeof(uint32_t));
         // 将数据转换为主机字节序
@@ -545,6 +554,59 @@ void thriftwidget::buildData()
 
 }
 
+//void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString value)
+//{
+//    //设置类型
+//    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+//    string2stringList(type);
+//    //设置序号
+//    QString serialNumber = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
+//    string2stringList(serialNumber);
+
+//    if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
+//            valueType == "i32" || valueType == "i64" || valueType == "double") {
+//        QString value = item->lineEditParamValue->text();
+//        //设置值16个长度 8个长度为4个字节  1字节 = 2长度
+//        QString valueData = QString("%1").arg(value, mapSize.value(valueType), QLatin1Char('0'));
+//        string2stringList(valueData);
+//    } else if (valueType == "string") {
+//        //设置字符串长度
+//        int len = item->lineEditParamValue->text().length();
+//        QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
+//        string2stringList(lenData);
+//        //设置字符串值
+//        QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
+//        QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+//        string2stringList(valueData);
+//    } else {
+        
+//    }
+//}
+
+//void thriftwidget::objectSerialize()
+//{
+
+//}
+
+//void thriftwidget::serialize(int serialNumber, QString valueType, QString value)
+//{
+//    //获取到类型
+//    int objectType = 0;
+//    switch (objectType) {
+//        case OBJECT_BASE:
+//        //基础类型
+//        baseSerialize()
+//        break;
+//        case OBJECT_STRUCT:
+        
+//        //复杂类型
+//        break;
+//    }
+    
+
+    
+//}
+
 void thriftwidget::parseData()
 {
 
@@ -569,6 +631,12 @@ void thriftwidget::on_toolButton_clicked()
     for(int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
         ItemWidget * item = dynamic_cast<ItemWidget*>(ui->treeWidget->topLevelItem(i));
         qDebug() << "参数类型为" << item->comboBoxBase->currentText() << " 参数值为" << item->lineEditParamValue->text();
+//        if (item->childCount() > 0) {
+//            for(int i = 0; i < item->childCount(); i++) {
+//                ItemWidget * item2 = dynamic_cast<ItemWidget*>(item->child(i));
+//                qDebug() << "参数类型为" << item2->comboBoxBase->currentText() << " 参数值为" << item2->lineEditParamValue->text();
+//            }
+//        }
         if (item->checkBox->isChecked()) {
             sum++;
         } else {
@@ -689,6 +757,8 @@ void thriftwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int co
     ItemWidget* items = new ItemWidget(item);
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+
 }
 
 void thriftwidget::read_data()
@@ -757,8 +827,11 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
 
 void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 {
+    
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
-    if (item_->comboBoxBase->currentText() == "struct") {
+    qDebug() << "进入1 " << item_->comboBoxBase->currentText();
+    qDebug() << "进入2 " << item_->comboBoxKey->currentText();
+    if (item_->comboBoxBase->currentText() == "struct" || item_->comboBoxKey->currentText() == "struct") {
         qDebug() << "选择struct";
         ItemWidget* item2 = new ItemWidget(item);
         connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -766,17 +839,18 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         item2->setText(0, "");
 
-        ItemWidget* items = new ItemWidget(ui->treeWidget);
-        connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
-        connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
-        connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        // ItemWidget* items = new ItemWidget(ui->treeWidget);
+        // connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        // connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+        // connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        item_->setExpanded(true);
     } else if (item_->comboBoxBase->currentText() == "map") {
         item_->comboBoxKey->show();
         item_->comboBoxValue->show();
     } else if (item_->comboBoxBase->currentText() == "set") {
-        item_->comboBoxValue->show();
+        item_->comboBoxKey->show();
     } else if (item_->comboBoxBase->currentText() == "list") {
-        item_->comboBoxValue->show();
+        item_->comboBoxKey->show();
     } else {
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
