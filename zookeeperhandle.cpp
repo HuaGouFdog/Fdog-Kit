@@ -14,9 +14,13 @@ void initWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
           *connectState = ZOO_CONNECTED_STATE;
           qDebug() << "connectState success";
         } else if (state == ZOO_AUTH_FAILED_STATE) {
+            qDebug() << "connectState ZOO_AUTH_FAILED_STATE";
         } else if (state == ZOO_EXPIRED_SESSION_STATE) {
+            qDebug() << "connectState ZOO_EXPIRED_SESSION_STATE";
         } else if (state == ZOO_CONNECTING_STATE) {
+            qDebug() << "connectState ZOO_CONNECTING_STATE";
         } else if (state == ZOO_ASSOCIATING_STATE) {
+            qDebug() << "connectState ZOO_ASSOCIATING_STATE";
         }
     } else {
         qDebug() << "其他事件";
@@ -91,30 +95,42 @@ zookeeperhandle::zookeeperhandle(QObject * obj_, zhandle_t *zh_)
     qRegisterMetaType<QVector<QString>>("QVector<QString>&");
 }
 
-void zookeeperhandle::init(QString rootPath, QString host_, QString port_)
+void zookeeperhandle::init(QString rootPath, QString host_, QString port_, int timeout)
 {
-    int count = 0;
     QString message;
     std::string host = host_.toStdString() + ":" + port_.toStdString();
-    //连接超时时间（毫秒）
-    int timeout = 3000;
-    do {
-        count++;
-        // 创建ZooKeeper句柄
-        zh = zookeeper_init(host.c_str(), initWatcher, timeout, 0, &connectState, 0);
+    zoo_set_debug_level(ZOO_LOG_LEVEL_ERROR);
+    connectState = -1;
+    // 创建ZooKeeper句柄
+    qDebug() << " timeout = " << timeout;
+    if (timeout == 0) {
+        timeout = 5000;
+    }
+    zh = zookeeper_init(host.c_str(), initWatcher, timeout, 0, &connectState, 0);
+    QElapsedTimer timer;
+    timer.start();
+    while(1) {
         QTest::qSleep(100);
-    } while(!connectState && count < ZK_MAX_CONNECT_TIMES);
-
+        qint64 elapsedMilliseconds = timer.elapsed();
+        if (elapsedMilliseconds > timeout) {
+            break;
+        } else if (connectState == ZOO_CONNECTED_STATE) {
+            break;
+        }
+    }
+    
     int code = 0;
     int childrenCount;
     if (connectState != ZOO_CONNECTED_STATE) {
+        zookeeper_close(zh);
+        zh = NULL;
         qDebug() << "connect ZooKeeper fail";
         QString message;
+        code = -1;
         emit send_init(connectState, code, message, rootPath, 0);
         return;
-    } else {
-        getChildren(code, childrenCount, rootPath);
     }
+    getChildren(code, childrenCount, rootPath);
     emit send_init(connectState, code, message, rootPath, childrenCount);
     return;
 }
@@ -156,7 +172,7 @@ void zookeeperhandle::getNodeInfo(QString path)
     QString message;
     Stat stat;
     QString data;
-    char buffer[4096]  = {0}; //不写0 会乱码
+    char buffer[4096*4]  = {0}; //不写0 会乱码
     int buffer_len = sizeof(buffer);
     int rc = zoo_wget(zh, path.toStdString().c_str(), nodeWatcher, obj, buffer, &buffer_len, &stat);
     if (rc == ZOK) {

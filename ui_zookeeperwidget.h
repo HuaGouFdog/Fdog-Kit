@@ -360,14 +360,14 @@ public:
 "border-radius: 14px;\n"
 "background-color: rgb(25, 25, 25, 155);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 15px;\n"
+"border-radius: 10px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;\n"
 "}"));
         horizontalLayout_3 = new QHBoxLayout(horizontalWidget_1_3_l);
         horizontalLayout_3->setSpacing(0);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(5, 0, 5, 0);
+        horizontalLayout_3->setContentsMargins(10, 0, 10, 0);
         lineEdit_search = new QLineEdit(horizontalWidget_1_3_l);
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
         lineEdit_search->setMinimumSize(QSize(0, 27));
@@ -401,7 +401,7 @@ public:
 "QToolButton::checked{\n"
 "	color: rgb(255, 255, 255);\n"
 "	border-radius: 2px;\n"
-"	border: 1px solid rgba(255, 255, 255, 80);\n"
+"	border: 2px solid rgba(255, 255, 255, 80);\n"
 "}"));
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/lib/daxiao.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -487,7 +487,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
-"    width: 12px;\n"
+"    width: 8px;\n"
 "	\n"
 "	background-color: rgb(67, 77, 88);\n"
 "    margin: 0px,0px,0px,0px;\n"
@@ -496,7 +496,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    width: 12px;\n"
+"    width: 8px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
@@ -510,8 +510,8 @@ public:
 "}\n"
 "QScrollBar::add-page:vertical \n"
 "{\n"
-"    background-col"
-                        "or: rgba(255, 255, 255, 0);\n"
+"    background-color"
+                        ": rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
@@ -536,7 +536,7 @@ public:
 "\n"
 "\n"
 "QScrollBar::horizontal{\n"
-"    height: 12px;\n"
+"    height: 8px;\n"
 "	background-color: rgb(67, 77, 88);\n"
 "	margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
@@ -544,12 +544,12 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    height: 12px;\n"
+"    height: 8px;\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
-"  "
-                        "  min-height: 0;\n"
+"    mi"
+                        "n-height: 0;\n"
 "}\n"
 "\n"
 "QScrollBar::sub-page:horizontal {\n"
@@ -595,8 +595,8 @@ public:
 "	\n"
 "	color: rgb(63, 63, 63);\n"
 "    background-color:rgb(253,253,254);\n"
-"    pa"
-                        "dding: 5px 25px 5px 25px;\n"
+"    paddin"
+                        "g: 5px 25px 5px 25px;\n"
 "    /*margin: 2px 2px 2px 2px;*/\n"
 "}\n"
 "QMenu::item:selected {\n"
@@ -1085,7 +1085,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
-"    width: 12px;\n"
+"    width: 8px;\n"
 "	\n"
 "	background-color: rgb(67, 77, 88);\n"
 "    margin: 0px,0px,0px,0px;\n"
@@ -1094,7 +1094,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    width: 12px;\n"
+"    width: 8px;\n"
 "	\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
@@ -1261,7 +1261,7 @@ public:
         toolButton_add->setText(QApplication::translate("zookeeperwidget", "\346\267\273\345\212\240", nullptr));
         toolButton__delete->setText(QApplication::translate("zookeeperwidget", "\345\210\240\351\231\244", nullptr));
         toolButton_refresh->setText(QApplication::translate("zookeeperwidget", "\345\210\267\346\226\260", nullptr));
-        toolButton_unfold->setText(QApplication::translate("zookeeperwidget", "\345\205\250\351\203\250\345\261\225\345\274\200", nullptr));
+        toolButton_unfold->setText(QApplication::translate("zookeeperwidget", "\345\205\250\351\203\250\346\212\230\345\217\240", nullptr));
         lineEdit_search->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242", nullptr));
         toolButton->setText(QString());
         label_data->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\346\225\260\346\215\256", nullptr));

@@ -84,7 +84,7 @@ signals:
     void send_deleteNode(int code, QString message, QTreeWidgetItem *item);
 
 public slots:
-    void init(QString rootPath, QString host, QString port);
+    void init(QString rootPath, QString host, QString port, int timeout);
     void getChildren(int &code, int &count, QString path); //获取节点太费时，使用线程池获取节点，只有获取根节点时才走这里
     void getSingleChildren(QString path, void * obj_);
     void setNodeData(QString nodePath, QString nodeData);
@@ -97,7 +97,7 @@ public:
     QString port;
     zhandle_t *zh;
     QObject * obj;
-    int connectState = false;  // 是否连接上zk
+    int connectState;  // 是否连接上zk
 };
 
 #endif // ZOOKEEPERHANDLE_H

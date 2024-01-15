@@ -59,7 +59,8 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     threadpool.setMaxThreadCount(16);
-    init(cInfoStruct.host, cInfoStruct.port);
+    buttonSid = cInfoStruct.buttonSid;
+    init(cInfoStruct.host, cInfoStruct.port, cInfoStruct.timeout);
 
     //设置水平滑动条
     QHeaderView *pHeader=ui->treeWidget->header();
@@ -77,7 +78,7 @@ zookeeperwidget::~zookeeperwidget()
     delete ui;
 }
 
-void zookeeperwidget::init(QString host, QString port)
+void zookeeperwidget::init(QString host, QString port, int timeout)
 {
     QString rootPath = "/";
     zookhandle = new zookeeperhandle(this, NULL);
@@ -93,15 +94,17 @@ void zookeeperwidget::init(QString host, QString port)
     // 将对象移动到线程中
     zookhandle->moveToThread(thread);
     thread->start();
-    QMetaObject::invokeMethod(zookhandle,"init",Qt::QueuedConnection, Q_ARG(QString, rootPath), Q_ARG(QString,host), Q_ARG(QString,port));
+    QMetaObject::invokeMethod(zookhandle,"init",Qt::QueuedConnection, Q_ARG(QString, rootPath), Q_ARG(QString,host), Q_ARG(QString,port),Q_ARG(int, timeout));
 }
 
 void zookeeperwidget::rece_init(int connectState, int code, QString message, QString path, int count)
 {
     if (connectState != ZOO_CONNECTED_STATE && code != ZOK) {
-
+        showMessage("连接失败", true);
+        emit send_init(buttonSid, code);
     } else {
         showMessage("连接成功", true);
+        emit send_init(buttonSid, code);
         ui->lineEdit_node->setText(path);
         QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->treeWidget);
         ui->treeWidget->addTopLevelItem(topItem);

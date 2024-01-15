@@ -20,6 +20,8 @@ struct connnectInfoStruct
     QString userName;
     QString password;
     bool isSavePassword;
+    int8_t buttonSid;
+    int timeout;
 };
 
 namespace Ui {

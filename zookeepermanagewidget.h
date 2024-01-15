@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "zookeeperwidget.h"
+#include <QButtonGroup>
+#include <QMap>
 namespace Ui {
 class zookeepermanagewidget;
 }
@@ -24,8 +26,21 @@ private slots:
 
     void on_toolButton_close_clicked();
 
+    void on_toolButton_clicked();
+
+    void on_toolButton_connect_clicked();
+
+    void rece_buttonClicked(int index);
+
+    void rece_init(int buttonSid, int code);
+
 private:
     Ui::zookeepermanagewidget *ui;
+    QButtonGroup * m_buttonGroup;
+    
+    int count; //连接总数
+    int lastIndex;
+    QMap<int,int> connectManager;
 };
 
 #endif // ZOOKEEPERMANAGEWIDGET_H

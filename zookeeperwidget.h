@@ -24,7 +24,7 @@ public:
     explicit zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);
     ~zookeeperwidget();
 
-    void init(QString host, QString port);
+    void init(QString host, QString port, int timeout);
 
     void getChildren(QString path, QTreeWidgetItem *item);
 
@@ -68,7 +68,8 @@ public:
     void hideButton();
 
     void showMessage(QString message, bool isSuccess = true); //显示操作信息
-    
+signals:
+    void send_init(int buttonSid, int code);
 private slots:
     void rece_init(int connectState, int code, QString message, QString path, int count);
 
@@ -147,6 +148,8 @@ private:
 
     QString nodeData;     //节点原数据
     QString nodeDataPath; //节点原数据对应的节点
+
+    int8_t buttonSid;
 
 };
 
