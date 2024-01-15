@@ -44,6 +44,7 @@ public:
     QToolButton *toolButton_newCreate;
     QToolButton *toolButton_manage;
     QToolButton *toolButton_tool;
+    QToolButton *toolButton_plugIn;
     QToolButton *toolButton_setting;
     QToolButton *toolButton_about;
     QSpacerItem *horizontalSpacer;
@@ -431,6 +432,73 @@ public:
 
         horizontalLayout->addWidget(toolButton_tool);
 
+        toolButton_plugIn = new QToolButton(widget_title);
+        toolButton_plugIn->setObjectName(QStringLiteral("toolButton_plugIn"));
+        toolButton_plugIn->setMinimumSize(QSize(0, 20));
+        toolButton_plugIn->setMaximumSize(QSize(111111, 16777215));
+        toolButton_plugIn->setFont(font1);
+        toolButton_plugIn->setStyleSheet(QLatin1String("QToolButton {\n"
+"	\n"
+"	color: rgb(217, 236, 237);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QMenu {\n"
+"\n"
+"background-color:rgb(253,253,254);\n"
+"/*padding:5px;*/\n"
+"padding: 3px 0px 3px 0px;\n"
+"border-radius:4px;\n"
+"border:2px solid rgb(108, 117, 125, 65); \n"
+"}\n"
+"QMenu::item {\n"
+"	font: 9pt \"OPPOSans B\";\n"
+"	\n"
+"	color: rgb(63, 63, 63);\n"
+"    background-color:rgb(253,253,254);\n"
+"    padding: 5px 20px 5px 20px;\n"
+"    /*margin: 2px 2px 2px 2px;*/\n"
+"}\n"
+"QMenu::item:selected {\n"
+"    background-color : rgb(236,236,237);\n"
+"}\n"
+"QMenu::icon:checked {\n"
+"    background: rgb(253,253,254);\n"
+"    position: absolute;\n"
+"    top: 1px;\n"
+"    right: 1px;\n"
+"    bottom: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"QMenu::icon:checked:selected {\n"
+"    backgrou"
+                        "nd-color : rgb(236,236,237);\n"
+"    background-image: url(:/space_selected.png);\n"
+"}\n"
+"QMenu::separator {\n"
+"    height: 2px;\n"
+"    background: rgb(235,235,236);\n"
+"    /*margin-left: 10px;*/\n"
+"    /*margin-right: 10px;*/\n"
+"}"));
+        toolButton_plugIn->setIconSize(QSize(14, 14));
+        toolButton_plugIn->setPopupMode(QToolButton::InstantPopup);
+        toolButton_plugIn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout->addWidget(toolButton_plugIn);
+
         toolButton_setting = new QToolButton(widget_title);
         toolButton_setting->setObjectName(QStringLiteral("toolButton_setting"));
         toolButton_setting->setMinimumSize(QSize(0, 20));
@@ -704,12 +772,12 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab{\n"
-"    background-color: rgba(108, 117, 125, 0);\n"
+"    background-color: rgba(108, 117, 125, 55);\n"
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222"
-                        "\357\274\211*/\n"
+"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247"
+                        "\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	/*width:120px;*/\n"
 "	padding: 4px;\n"
@@ -727,8 +795,8 @@ public:
 "    /*border-right: 2px solid rgb(255, 255, 255);*/\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345"
-                        "\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267"
+                        "\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
 "	background-color: rgb(100, 117, 125, 255);\n"
 "}\n"
@@ -740,10 +808,17 @@ public:
 " \n"
 "\n"
 "QTabBar::close-button{ \n"
-"	/*border-image: url(:lib/Kafka.png);*/\n"
+"	\n"
+"	border-image: url(:/lib/icon-close4.png);\n"
 "}\n"
+"\n"
+"QTabBar::close-button:selected{\n"
+"	border-image: url(:/lib/icon-close4.png);\n"
+"}\n"
+"\n"
+"\n"
 "QTabBar::close-button:hover{\n"
-"	/*border-image: url(:/Resources/image/close_hover.png);*/\n"
+"	border-image: url(:/lib/icon-close42.png);\n"
 "}\n"
 "\n"
 "\n"
@@ -751,12 +826,12 @@ public:
 "QTabBar QToolButton {\n"
 "    border: none;\n"
 "	color: rgb(255, 206, 6);\n"
-"    background-color: rgba(100, 117, 125, 0);\n"
+" "
+                        "   background-color: rgba(100, 117, 125, 0);\n"
 "}\n"
 " \n"
 "QTabBar QToolButton:hover {\n"
-"	backgrou"
-                        "nd-color: rgba(100, 117, 125, 0);\n"
+"	background-color: rgba(100, 117, 125, 0);\n"
 "}"));
         tabWidget->setIconSize(QSize(16, 16));
         tabWidget->setDocumentMode(false);
@@ -2224,7 +2299,7 @@ public:
 
         stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(-1);
-        stackedWidget_tool->setCurrentIndex(0);
+        stackedWidget_tool->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2237,6 +2312,7 @@ public:
         toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272SSH(&N)", nullptr));
         toolButton_manage->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206SSH(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));
+        toolButton_plugIn->setText(QApplication::translate("MainWindow", "\346\217\222\344\273\266(&P)", nullptr));
         toolButton_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256(&S)", nullptr));
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));
         toolButton_min->setText(QString());

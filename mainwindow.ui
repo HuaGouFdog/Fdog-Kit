@@ -402,6 +402,101 @@ QMenu::separator {
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="toolButton_plugIn">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111111</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	
+	color: rgb(217, 236, 237);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QMenu {
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 3px 0px 3px 0px;
+border-radius:4px;
+border:2px solid rgb(108, 117, 125, 65); 
+}
+QMenu::item {
+	font: 9pt &quot;OPPOSans B&quot;;
+	
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 20px 5px 20px;
+    /*margin: 2px 2px 2px 2px;*/
+}
+QMenu::item:selected {
+    background-color : rgb(236,236,237);
+}
+QMenu::icon:checked {
+    background: rgb(253,253,254);
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+}
+QMenu::icon:checked:selected {
+    background-color : rgb(236,236,237);
+    background-image: url(:/space_selected.png);
+}
+QMenu::separator {
+    height: 2px;
+    background: rgb(235,235,236);
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+}</string>
+         </property>
+         <property name="text">
+          <string>插件(&amp;P)</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>14</width>
+           <height>14</height>
+          </size>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::InstantPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="toolButton_setting">
          <property name="minimumSize">
           <size>
@@ -904,7 +999,7 @@ QMenu::separator {
  
 /*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
-    background-color: rgba(108, 117, 125, 0);
+    background-color: rgba(108, 117, 125, 55);
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
@@ -938,10 +1033,17 @@ QTabWidget::pane {
  
 
 QTabBar::close-button{ 
-	/*border-image: url(:lib/Kafka.png);*/
+	
+	border-image: url(:/lib/icon-close4.png);
 }
+
+QTabBar::close-button:selected{
+	border-image: url(:/lib/icon-close4.png);
+}
+
+
 QTabBar::close-button:hover{
-	/*border-image: url(:/Resources/image/close_hover.png);*/
+	border-image: url(:/lib/icon-close42.png);
 }
 
 
@@ -1195,7 +1297,7 @@ QComboBox QAbstractItemView{
 color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="page_4">
                  <layout class="QVBoxLayout" name="verticalLayout_22">

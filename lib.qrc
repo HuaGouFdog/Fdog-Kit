@@ -98,5 +98,11 @@
         <file>lib/Zookeeper2.png</file>
         <file>lib/tree_open.png</file>
         <file>lib/tree_close.png</file>
+        <file>lib/zhedie.png</file>
+        <file>lib/add1.png</file>
+        <file>lib/wenhao.png</file>
+        <file>lib/zookpeer_back.jpg</file>
+        <file>lib/icon500.png</file>
+        <file>lib/icon-close42.png</file>
     </qresource>
 </RCC>
