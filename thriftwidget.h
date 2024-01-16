@@ -53,7 +53,8 @@ static QMap<QString, int> mapSize = {{"bool", THRIFT_BOOL_SIZE}, {"byte", THRIFT
                 {"i64", THRIFT_I64_SIZE}, {"double", THRIFT_DOUBLE_SIZE}, {"string", THRIFT_STRING_SIZE}, {"struct", THRIFT_STRUCT_SIZE}, 
                 {"map", THRIFT_MAP_SIZE}, {"set", THRIFT_SET_SIZE}, {"list", THRIFT_LIST_SIZE}};
 
-
+static QSet<QString> baseType = {"bool", "byte", "i16","i32", "i64", "double", "string"};
+static QSet<QString> containerType = {"map", "set", "list"};
 
 namespace Ui {
 class thriftwidget;
@@ -125,8 +126,11 @@ public:
     //组装数据
     void buildData();
 
-    //void baseSerialize();
+    void baseSerialize(int serialNumber, QString valueType, QString value);
+    void containerSerialize(int serialNumber, QString valueType, QString value, QString keyType_, QString valyeType_ = "");
+    void structSerialize(int serialNumber, QString valueType, QString value);
 
+    void map2List(QStringList &dataList, QString data);
     //void objectSerialize();
 
     //处理

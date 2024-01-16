@@ -104,5 +104,8 @@
         <file>lib/zookpeer_back.jpg</file>
         <file>lib/icon500.png</file>
         <file>lib/icon-close42.png</file>
+        <file>lib/node3.png</file>
+        <file>lib/setting4.png</file>
+        <file>lib/inport.png</file>
     </qresource>
 </RCC>

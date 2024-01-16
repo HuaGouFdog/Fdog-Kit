@@ -1459,7 +1459,7 @@ void MainWindow::on_toolButton_setting_clicked()
 {
      stwidget = new settingwidget(confInfo);
      QSize iconSize(16, 16); // 设置图标的大小
-     ui->tabWidget->addTab(stwidget, QIcon(":lib/setting2.png").pixmap(iconSize), "设置");
+     ui->tabWidget->addTab(stwidget, QIcon(":lib/setting4.png").pixmap(iconSize), "设置");
      ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
      ui->stackedWidget->setCurrentIndex(0);
      stwidget->show();

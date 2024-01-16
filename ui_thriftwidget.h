@@ -55,12 +55,21 @@ public:
     QSpacerItem *horizontalSpacer_4;
     QToolButton *toolButton_test;
     QSpacerItem *horizontalSpacer_2;
+    QWidget *horizontalWidget_2;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_5;
+    QComboBox *comboBox_transport;
+    QSpacerItem *horizontalSpacer_10;
+    QLabel *label_8;
+    QComboBox *comboBox_protocol;
+    QSpacerItem *horizontalSpacer_11;
+    QLabel *label_9;
+    QComboBox *comboBox_reqType;
+    QSpacerItem *horizontalSpacer_9;
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_3;
     QLineEdit *lineEdit_funcName;
-    QComboBox *comboBox;
-    QComboBox *comboBox_reqType;
     QSpacerItem *horizontalSpacer_8;
     QToolButton *toolButton;
     QSplitter *splitter_2;
@@ -72,6 +81,7 @@ public:
     QWidget *widget_12;
     QHBoxLayout *horizontalLayout_8;
     QLabel *label_4;
+    QCheckBox *checkBox_3;
     QSpacerItem *horizontalSpacer;
     QToolButton *toolButton_show_thrift_info;
     QTreeWidget *treeWidget;
@@ -88,12 +98,11 @@ public:
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_7;
+    QCheckBox *checkBox_2;
     QSpacerItem *horizontalSpacer_5;
     QTextEdit *textEdit;
     QWidget *widget_10;
     QHBoxLayout *horizontalLayout_6;
-    QCheckBox *checkBox_2;
-    QSpacerItem *horizontalSpacer_7;
     QLabel *label_time;
     QSpacerItem *horizontalSpacer_6;
 
@@ -194,7 +203,7 @@ public:
 "border-radius: 14px;\n"
 "background-color: rgb(25, 25, 25, 155);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 15px;\n"
+"border-radius: 10px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;\n"
 "}"));
@@ -290,7 +299,7 @@ public:
         toolButton_2->setFont(font);
         toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	\n"
+"	padding-left:26px;\n"
 "	\n"
 "	background-color: rgb(20, 20, 20);\n"
 "	border-radius: 5px;\n"
@@ -305,8 +314,13 @@ public:
 "	background-color: rgb(20, 20, 20);\n"
 "}"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab_2, icon1, QString());
+        icon1.addFile(QStringLiteral(":/lib/inport.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_2->setIcon(icon1);
+        toolButton_2->setIconSize(QSize(14, 14));
+        toolButton_2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(tab_2, icon2, QString());
 
         verticalLayout_5->addWidget(tabWidget);
 
@@ -315,7 +329,8 @@ public:
 
         widget_7 = new QWidget(thriftwidget);
         widget_7->setObjectName(QStringLiteral("widget_7"));
-        widget_7->setStyleSheet(QString::fromUtf8("QComboBox{\n"
+        widget_7->setStyleSheet(QString::fromUtf8("\n"
+"QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:1px solid #1e2d36;\n"
 "	border-radius:3px;\n"
@@ -359,8 +374,8 @@ public:
 "QScrollBar::handle:vertical{\n"
 "    width: 12px;\n"
 "	\n"
-"	background-color: rgb(239, 239, 239);"
-                        "\n"
+"	background-color: rgb(239, 239, "
+                        "239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
@@ -405,9 +420,10 @@ public:
         widget_6->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout_2 = new QHBoxLayout(widget_6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(9, 3, 0, 0);
+        horizontalLayout_2->setContentsMargins(0, 3, 0, 0);
         label_2 = new QLabel(widget_6);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMinimumSize(QSize(40, 0));
         label_2->setMaximumSize(QSize(40, 16777215));
         label_2->setFont(font);
 
@@ -481,9 +497,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(250, 118, 0);\n"
 "}"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_test->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_test->setIcon(icon3);
         toolButton_test->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         horizontalLayout_2->addWidget(toolButton_test);
@@ -495,15 +511,130 @@ public:
 
         verticalLayout->addWidget(widget_6);
 
+        horizontalWidget_2 = new QWidget(widget_7);
+        horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
+        horizontalWidget_2->setMaximumSize(QSize(16777215, 33));
+        horizontalWidget_2->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:0px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
+"	border-radius:5px;\n"
+"	background-color: rgb(25, 25, 25, 155);\n"
+"	padding-left:10px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"height:28px;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	image: url(:/lib/tree_open.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"}\n"
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}\n"
+"\n"
+""));
+        horizontalLayout_9 = new QHBoxLayout(horizontalWidget_2);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
+        label_5 = new QLabel(horizontalWidget_2);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setMinimumSize(QSize(40, 0));
+        label_5->setMaximumSize(QSize(40, 16777215));
+        label_5->setFont(font);
+        label_5->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(label_5);
+
+        comboBox_transport = new QComboBox(horizontalWidget_2);
+        comboBox_transport->addItem(QString());
+        comboBox_transport->setObjectName(QStringLiteral("comboBox_transport"));
+        comboBox_transport->setMinimumSize(QSize(160, 30));
+        comboBox_transport->setFont(font);
+        comboBox_transport->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(comboBox_transport);
+
+        horizontalSpacer_10 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_10);
+
+        label_8 = new QLabel(horizontalWidget_2);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setMaximumSize(QSize(40, 16777215));
+        label_8->setFont(font);
+        label_8->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(label_8);
+
+        comboBox_protocol = new QComboBox(horizontalWidget_2);
+        comboBox_protocol->addItem(QString());
+        comboBox_protocol->setObjectName(QStringLiteral("comboBox_protocol"));
+        comboBox_protocol->setMinimumSize(QSize(150, 30));
+        comboBox_protocol->setFont(font);
+        comboBox_protocol->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(comboBox_protocol);
+
+        horizontalSpacer_11 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_11);
+
+        label_9 = new QLabel(horizontalWidget_2);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setMaximumSize(QSize(555555, 16777215));
+        label_9->setFont(font);
+        label_9->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(label_9);
+
+        comboBox_reqType = new QComboBox(horizontalWidget_2);
+        comboBox_reqType->addItem(QString());
+        comboBox_reqType->addItem(QString());
+        comboBox_reqType->setObjectName(QStringLiteral("comboBox_reqType"));
+        comboBox_reqType->setMinimumSize(QSize(160, 30));
+        comboBox_reqType->setFont(font);
+        comboBox_reqType->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(comboBox_reqType);
+
+        horizontalSpacer_9 = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_9);
+
+
+        verticalLayout->addWidget(horizontalWidget_2);
+
         horizontalWidget = new QWidget(widget_7);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
         horizontalWidget->setMaximumSize(QSize(16777215, 33));
         horizontalWidget->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 0, 0, 0);
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(horizontalWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMinimumSize(QSize(40, 0));
         label_3->setMaximumSize(QSize(40, 16777215));
         label_3->setFont(font);
 
@@ -524,101 +655,6 @@ public:
 "}"));
 
         horizontalLayout->addWidget(lineEdit_funcName);
-
-        comboBox = new QComboBox(horizontalWidget);
-        comboBox->addItem(QString());
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setMinimumSize(QSize(150, 30));
-        comboBox->setFont(font);
-        comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:0px solid #8a8a8a;\n"
-"	color: rgb(138, 138, 138);\n"
-"	border-radius:5px;\n"
-"	background:transparent;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView::item\n"
-"{\n"
-"height:28px;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}\n"
-"\n"
-""));
-
-        horizontalLayout->addWidget(comboBox);
-
-        comboBox_reqType = new QComboBox(horizontalWidget);
-        comboBox_reqType->addItem(QString());
-        comboBox_reqType->addItem(QString());
-        comboBox_reqType->setObjectName(QStringLiteral("comboBox_reqType"));
-        comboBox_reqType->setMinimumSize(QSize(150, 30));
-        comboBox_reqType->setFont(font);
-        comboBox_reqType->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:0px solid #8a8a8a;\n"
-"	color: rgb(138, 138, 138);\n"
-"	border-radius:5px;\n"
-"	background:transparent;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView::item\n"
-"{\n"
-"height:28px;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}\n"
-"\n"
-""));
-
-        horizontalLayout->addWidget(comboBox_reqType);
 
         horizontalSpacer_8 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
@@ -655,6 +691,57 @@ public:
         splitter_2->setHandleWidth(0);
         widget_4 = new QWidget(splitter_2);
         widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setStyleSheet(QLatin1String("QComboBox{\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	color:#ffffff;\n"
+"	border:0px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
+"	border-radius:5px;\n"
+"	background:transparent;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView{\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	color:#ffffff;\n"
+"	border:0px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
+"	border-radius:0px;\n"
+"	background:transparent;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"height:28px;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	\n"
+"	\n"
+"	image: url(:/lib/tree_open.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"}\n"
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}\n"
+"\n"
+""));
         horizontalLayout_3 = new QHBoxLayout(widget_4);
         horizontalLayout_3->setSpacing(0);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -665,20 +752,7 @@ public:
         splitter->setHandleWidth(0);
         widget = new QWidget(splitter);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setStyleSheet(QLatin1String("QComboBox{\n"
-"font: 10pt \"OPPOSans B\";\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView{\n"
-"font: 10pt \"OPPOSans B\";\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView::item{\n"
-"\n"
-"height:40px; \n"
-"width:50px;\n"
-"\n"
-"}"));
+        widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -702,6 +776,15 @@ public:
 "padding-right:10px;"));
 
         horizontalLayout_8->addWidget(label_4);
+
+        checkBox_3 = new QCheckBox(widget_12);
+        checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
+        checkBox_3->setMaximumSize(QSize(16777215, 20));
+        checkBox_3->setFont(font);
+        checkBox_3->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        checkBox_3->setChecked(true);
+
+        horizontalLayout_8->addWidget(checkBox_3);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -727,9 +810,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(54, 81, 97);\n"
 "}"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/lib/wenhao.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_show_thrift_info->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/lib/wenhao.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_show_thrift_info->setIcon(icon4);
         toolButton_show_thrift_info->setIconSize(QSize(18, 18));
         toolButton_show_thrift_info->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -763,7 +846,6 @@ public:
 "\n"
 "QTreeWidget {\n"
 "	border:2px solid rgb(54, 81, 97);\n"
-"	\n"
 "	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
@@ -774,31 +856,27 @@ public:
 "QTreeWidget::item {\n"
 "	height: 28px;\n"
 "	color: rgb(255, 255, 255);\n"
-"	border: 1px;\n"
 "	outline: 0px;\n"
+"	border-bottom: 1px solid rgba(207, 207, 207,50);\n"
 "}\n"
 "\n"
 "QTreeWidget::item:hover {\n"
-"	border: 0px;\n"
 "	outline: 0px;\n"
 "    color: rgb(255, 255, 255);\n"
 "	background-color: rgba(209, 209, 209, 20);\n"
 "}\n"
 "QTreeWidget::item:selected{\n"
-"    border: 0px;\n"
 "	outline: 0px;\n"
 "    color: #45B2FF;\n"
 "	background-color: rgba(209, 209, 209, 20);\n"
 "}\n"
 "QTreeWidget::item:selected:active{\n"
-"    border: 0px;\n"
 "	outline: 0px;\n"
-""
-                        "    color: #45B2FF;\n"
+"    color: #45B2FF;\n"
 "}\n"
-" \n"
+""
+                        " \n"
 "QTreeWidget::item:selected:!active {\n"
-"    border: 0px;\n"
 "	outline: 0px;\n"
 "    color: #45B2FF;\n"
 "}\n"
@@ -830,8 +908,8 @@ public:
 "QScrollBar::handle:horizontal {\n"
 "    height: 12px;\n"
 "	background-color: rgb(239, 239, 239);\n"
-"    /*\346\273\232\345\212\250\346\235"
-                        "\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220"
+                        "\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
 "}\n"
@@ -959,6 +1037,15 @@ public:
 
         horizontalLayout_5->addWidget(label_7);
 
+        checkBox_2 = new QCheckBox(widget_8);
+        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
+        checkBox_2->setMaximumSize(QSize(16777215, 20));
+        checkBox_2->setFont(font);
+        checkBox_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        checkBox_2->setChecked(true);
+
+        horizontalLayout_5->addWidget(checkBox_2);
+
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_5);
@@ -991,19 +1078,6 @@ public:
         horizontalLayout_6->setSpacing(0);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        checkBox_2 = new QCheckBox(widget_10);
-        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
-        checkBox_2->setMaximumSize(QSize(16777215, 20));
-        checkBox_2->setFont(font);
-        checkBox_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-        checkBox_2->setChecked(true);
-
-        horizontalLayout_6->addWidget(checkBox_2);
-
-        horizontalSpacer_7 = new QSpacerItem(300, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer_7);
-
         label_time = new QLabel(widget_10);
         label_time->setObjectName(QStringLiteral("label_time"));
         label_time->setMinimumSize(QSize(0, 0));
@@ -1056,16 +1130,22 @@ public:
         lineEdit_port->setText(QApplication::translate("thriftwidget", "9090", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
         toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));
-        label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
-        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
-        lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
-        comboBox->setItemText(0, QApplication::translate("thriftwidget", "TBinaryProtocol", nullptr));
+        label_5->setText(QApplication::translate("thriftwidget", "\344\274\240\350\276\223\345\261\202", nullptr));
+        comboBox_transport->setItemText(0, QApplication::translate("thriftwidget", "TFramedTransport", nullptr));
 
+        label_8->setText(QApplication::translate("thriftwidget", "\345\215\217\350\256\256\345\261\202", nullptr));
+        comboBox_protocol->setItemText(0, QApplication::translate("thriftwidget", "TBinaryProtocol", nullptr));
+
+        label_9->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\347\261\273\345\236\213", nullptr));
         comboBox_reqType->setItemText(0, QApplication::translate("thriftwidget", "CALL", nullptr));
         comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
 
+        label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
+        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
+        lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
+        checkBox_3->setText(QApplication::translate("thriftwidget", "\346\240\271\346\215\256\346\225\260\346\215\256\347\261\273\345\236\213\347\224\237\346\210\220\346\265\213\350\257\225\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QString());
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));

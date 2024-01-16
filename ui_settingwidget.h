@@ -475,6 +475,38 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         widget_2 = new QWidget(settingwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setStyleSheet(QLatin1String("QComboBox{\n"
+"	color:#ffffff;\n"
+"	border:1px solid #1e2d36;\n"
+"	border-radius:3px;\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox:disabled{\n"
+"	border:1px solid gray;\n"
+"	color:gray;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"	background:transparent;\n"
+"}\n"
+"QComboBox::down-arrow{\n"
+"	\n"
+"	image: url(:/lib/tree_open.png);\n"
+"    width:20px;\n"
+"	height:20px;\n"
+"}\n"
+"\n"
+"\n"
+"QComboBox::down-arrow:enabled{\n"
+"	color:#52DCFE;\n"
+"}\n"
+"QComboBox QAbstractItemView{\n"
+"	outline:0px solid gray;\n"
+"	border:1px solid #1e2d36;\n"
+"	color:#ffffff;\n"
+"	background-color:#1e2d36;\n"
+"	selection-background-color:#52DCFE;\n"
+"}"));
         horizontalLayout = new QHBoxLayout(widget_2);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -825,37 +857,7 @@ public:
         comboBox->setMinimumSize(QSize(100, 25));
         comboBox->setMaximumSize(QSize(100, 25));
         comboBox->setFont(font);
-        comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox->setStyleSheet(QStringLiteral(""));
         comboBox->setIconSize(QSize(20, 20));
 
         horizontalLayout_4->addWidget(comboBox);
@@ -1089,37 +1091,7 @@ public:
         comboBox_2->setMinimumSize(QSize(100, 25));
         comboBox_2->setMaximumSize(QSize(100, 25));
         comboBox_2->setFont(font);
-        comboBox_2->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_2->setStyleSheet(QStringLiteral(""));
         comboBox_2->setIconSize(QSize(20, 20));
 
         horizontalLayout_13->addWidget(comboBox_2);
@@ -1174,37 +1146,7 @@ public:
         comboBox_7->setMinimumSize(QSize(100, 25));
         comboBox_7->setMaximumSize(QSize(100, 25));
         comboBox_7->setFont(font);
-        comboBox_7->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_7->setStyleSheet(QStringLiteral(""));
         comboBox_7->setIconSize(QSize(20, 20));
 
         horizontalLayout_19->addWidget(comboBox_7);
@@ -1305,37 +1247,7 @@ public:
         comboBox_3->setMinimumSize(QSize(160, 25));
         comboBox_3->setMaximumSize(QSize(160, 25));
         comboBox_3->setFont(font);
-        comboBox_3->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_3->setStyleSheet(QStringLiteral(""));
         comboBox_3->setIconSize(QSize(20, 20));
 
         horizontalLayout_15->addWidget(comboBox_3);
@@ -1390,37 +1302,7 @@ public:
         comboBox_4->setMinimumSize(QSize(100, 25));
         comboBox_4->setMaximumSize(QSize(100, 25));
         comboBox_4->setFont(font);
-        comboBox_4->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_4->setStyleSheet(QStringLiteral(""));
         comboBox_4->setIconSize(QSize(20, 20));
 
         horizontalLayout_16->addWidget(comboBox_4);
@@ -1511,7 +1393,7 @@ public:
         scrollArea_4->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 825, 750));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 832, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents_4);
         verticalLayout_8->setSpacing(6);
@@ -1973,7 +1855,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 40, 800));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 832, 800));
         scrollAreaWidgetContents_2->setMinimumSize(QSize(0, 800));
         verticalLayout_19 = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
@@ -2293,7 +2175,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 543, 1081));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, -296, 832, 1081));
         scrollAreaWidgetContents_3->setMinimumSize(QSize(0, 1081));
         verticalLayout_27 = new QVBoxLayout(scrollAreaWidgetContents_3);
         verticalLayout_27->setSpacing(6);
@@ -2585,37 +2467,7 @@ public:
         comboBox_6->setMinimumSize(QSize(100, 25));
         comboBox_6->setMaximumSize(QSize(100, 25));
         comboBox_6->setFont(font);
-        comboBox_6->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_6->setStyleSheet(QStringLiteral(""));
         comboBox_6->setIconSize(QSize(20, 20));
 
         horizontalLayout_24->addWidget(comboBox_6);
@@ -2669,37 +2521,7 @@ public:
         comboBox_8->setMinimumSize(QSize(100, 25));
         comboBox_8->setMaximumSize(QSize(100, 25));
         comboBox_8->setFont(font);
-        comboBox_8->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_8->setStyleSheet(QStringLiteral(""));
         comboBox_8->setIconSize(QSize(20, 20));
 
         horizontalLayout_35->addWidget(comboBox_8);
@@ -2754,37 +2576,7 @@ public:
         comboBox_9->setMinimumSize(QSize(100, 25));
         comboBox_9->setMaximumSize(QSize(100, 25));
         comboBox_9->setFont(font);
-        comboBox_9->setStyleSheet(QLatin1String("QComboBox{\n"
-"	color:#ffffff;\n"
-"	border:1px solid #1e2d36;\n"
-"	border-radius:3px;\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
-"	color:gray;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"	background:transparent;\n"
-"}\n"
-"QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
-"    width:20px;\n"
-"	height:20px;\n"
-"}\n"
-"\n"
-"\n"
-"QComboBox::down-arrow:enabled{\n"
-"	color:#52DCFE;\n"
-"}\n"
-"QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
-"	border:1px solid #1e2d36;\n"
-"	color:#ffffff;\n"
-"	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
-"}"));
+        comboBox_9->setStyleSheet(QStringLiteral(""));
         comboBox_9->setIconSize(QSize(20, 20));
 
         horizontalLayout_36->addWidget(comboBox_9);
@@ -3178,7 +2970,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 391, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 832, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -4289,7 +4081,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(settingwidget);

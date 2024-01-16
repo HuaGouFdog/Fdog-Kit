@@ -34,6 +34,40 @@
    </property>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
+     <property name="styleSheet">
+      <string notr="true">QComboBox{
+	color:#ffffff;
+	border:1px solid #1e2d36;
+	border-radius:3px;
+	background:transparent;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	
+	image: url(:/lib/tree_open.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}</string>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
        <number>0</number>
@@ -491,7 +525,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -920,37 +954,7 @@ border-radius: 5px;}</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="iconSize">
                 <size>
@@ -1525,37 +1529,7 @@ border-radius: 5px;}</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="iconSize">
                 <size>
@@ -1711,37 +1685,7 @@ border-radius: 5px;}</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="iconSize">
                 <size>
@@ -2019,37 +1963,7 @@ border-radius: 5px;}</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="iconSize">
                 <size>
@@ -2205,37 +2119,7 @@ border-radius: 5px;}</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="iconSize">
                 <size>
@@ -2402,7 +2286,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>825</width>
+               <width>832</width>
                <height>750</height>
               </rect>
              </property>
@@ -3229,7 +3113,7 @@ border-radius: 5px;}
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>40</width>
+               <width>832</width>
                <height>800</height>
               </rect>
              </property>
@@ -4017,8 +3901,8 @@ QScrollBar::up-arrow:vertical {
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>543</width>
+               <y>-296</y>
+               <width>832</width>
                <height>1081</height>
               </rect>
              </property>
@@ -4774,37 +4658,7 @@ border-radius: 5px;}</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                    <string notr="true"/>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -4960,37 +4814,7 @@ border-radius: 5px;}</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                    <string notr="true"/>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -5146,37 +4970,7 @@ border-radius: 5px;}</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+                    <string notr="true"/>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -5932,7 +5726,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>391</width>
+               <width>832</width>
                <height>830</height>
               </rect>
              </property>

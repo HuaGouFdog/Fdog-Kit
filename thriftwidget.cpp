@@ -49,7 +49,7 @@ void ItemWidget::init()
     comboBoxBase->addItem("set");
     comboBoxBase->addItem("list");
     comboBoxBase->setCurrentIndex(3);
-    comboBoxBase->setMinimumHeight(25);
+    comboBoxBase->setMinimumHeight(30);
     //comboBoxBase->setMaximumWidth(90);
 
     comboBoxBase->setView(new QListView());  //必须设置
@@ -71,7 +71,7 @@ void ItemWidget::init()
     comboBoxKey->addItem("set");
     comboBoxKey->addItem("list");
     comboBoxKey->setCurrentIndex(0);
-    comboBoxKey->setMinimumHeight(25);
+    comboBoxKey->setMinimumHeight(30);
     //comboBoxKey->setMaximumWidth(90);
     comboBoxKey->hide();
 
@@ -94,7 +94,7 @@ void ItemWidget::init()
     comboBoxValue->addItem("set");
     comboBoxValue->addItem("list");
     comboBoxValue->setCurrentIndex(0);
-    comboBoxKey->setMinimumHeight(25);
+    comboBoxKey->setMinimumHeight(30);
     //comboBoxValue->setMaximumWidth(90);
 
     comboBoxValue->hide();
@@ -213,7 +213,9 @@ thriftwidget::thriftwidget(QWidget *parent) :
      action->setIcon(QIcon(":/lib/soucuo.png"));
      ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
 
-     ui->comboBox->setView(new QListView());
+     ui->comboBox_protocol->setView(new QListView());
+     ui->comboBox_transport->setView(new QListView());
+     ui->comboBox_reqType->setView(new QListView());
 
      //设置水平滑动条
 //     QHeaderView *pHeader=ui->treeWidget->header();
@@ -441,112 +443,13 @@ void thriftwidget::buildData()
         } else {
             continue;
         }
-
         QString valueType = item->comboBoxBase->currentText();
-        if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
-                valueType == "i32" || valueType == "i64" || valueType == "double") {
-            //设置类型
-            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(serialNumber);
-            QString value = item->lineEditParamValue->text();
-            //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-            QString valueData = QString("%1").arg(value, mapSize.value(valueType), QLatin1Char('0'));
-            string2stringList(valueData);
-        } else if (valueType == "string") {
-            //设置类型
-            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(serialNumber);
-            //设置字符串长度
-            int len = item->lineEditParamValue->text().length();
-            QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
-            string2stringList(lenData);
-            //设置字符串值
-            QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
-            QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
-            string2stringList(valueData);
+        if (baseType.contains(valueType)) {
+            baseSerialize(sum + 1, valueType, item->lineEditParamValue->text());
+        } else if (containerType.contains(valueType)) {
+            containerSerialize(sum + 1, valueType, item->lineEditParamValue->text(), item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
         } else if (valueType == "struct") {
 
-        } else if (valueType == "set" || valueType == "list") {
-            //设置类型
-            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(serialNumber);
-            //获取值类型
-            QString key_Type = item->comboBoxKey->currentText();
-            //设置值类型
-            QString type2 = QString("%1").arg(mapType.value(key_Type), 2, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            //设置元素个数
-            QString data = item->lineEditParamValue->text().mid(1, item->lineEditParamValue->text().length() - 2);
-            QStringList dataList = data.split(",");
-            QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
-            string2stringList(lenData);
-            //设置值 获取数值型
-            for (const QString &str : dataList) {
-                QString strData = QString("%1").arg(str, mapSize.value(key_Type), QLatin1Char('0'));
-                string2stringList(strData);
-            }
-        } else if (valueType == "map") {
-            //设置类型
-            QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString serialNumber = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(serialNumber);
-            //获取key类型
-            QString key_Type = item->comboBoxKey->currentText();
-            //设置key类型
-            QString type2 = QString("%1").arg(mapType.value(key_Type), 2, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            //获取value类型
-            QString value_Type = item->comboBoxValue->currentText();
-            //设置value类型
-            QString type3 = QString("%1").arg(mapType.value(value_Type), 2, 16, QLatin1Char('0'));
-            string2stringList(type3);
-            //设置元素个数
-            QString data = item->lineEditParamValue->text();
-            QStringList dataList;
-            int sum = 0;
-            int first = 0;
-            int end = 0;
-            int len = data.length();
-            for (int i = 0; i <= len; i++) {
-                if (data[i] == '{') {
-                    sum++;
-                    if (sum == 1) {
-                        first = i;
-                    }
-                }
-                if (data[i] == '}') {
-                    sum--;
-                    if (sum == 0) {
-                        end = i;
-                        QString da = data.mid(first, end - first + 1);
-                        dataList.push_back(da);
-                    }
-                }
-            }
-            QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
-            string2stringList(lenData);
-            //设置元素值
-            for (const QString &str : dataList) {
-                //根据:获取key和value
-                int index = str.indexOf(":");
-                //设置key值
-                QString strData = QString("%1").arg(str.mid(0, index), mapSize.value(key_Type), QLatin1Char('0'));
-                string2stringList(strData);
-                //设置value值
-                QString strData2 = QString("%1").arg(str.mid(index+1), mapSize.value(value_Type), QLatin1Char('0'));
-                string2stringList(strData2);
-            }
         } else {
 
         }
@@ -554,34 +457,120 @@ void thriftwidget::buildData()
 
 }
 
-//void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString value)
-//{
-//    //设置类型
-//    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-//    string2stringList(type);
-//    //设置序号
-//    QString serialNumber = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
-//    string2stringList(serialNumber);
+void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString value)
+{
+   //设置类型
+   QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+   string2stringList(type);
+   //设置序号
+   QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
+   string2stringList(serialNumberStr);
 
-//    if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
-//            valueType == "i32" || valueType == "i64" || valueType == "double") {
-//        QString value = item->lineEditParamValue->text();
-//        //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-//        QString valueData = QString("%1").arg(value, mapSize.value(valueType), QLatin1Char('0'));
-//        string2stringList(valueData);
-//    } else if (valueType == "string") {
-//        //设置字符串长度
-//        int len = item->lineEditParamValue->text().length();
-//        QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
-//        string2stringList(lenData);
-//        //设置字符串值
-//        QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
-//        QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
-//        string2stringList(valueData);
-//    } else {
-        
-//    }
-//}
+   if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
+        valueType == "i32" || valueType == "i64" || valueType == "double") {
+       //设置值16个长度 8个长度为4个字节  1字节 = 2长度
+       QString valueData = QString("%1").arg(value, mapSize.value(valueType), QLatin1Char('0'));
+       string2stringList(valueData);
+   } else if (valueType == "string") {
+       //设置字符串长度
+       int len = value.length();
+       QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
+       string2stringList(lenData);
+       //设置字符串值
+       QByteArray byteArray = value.toUtf8(); // 将字符串转换为字节数组
+       QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+       string2stringList(valueData);
+   } else {
+        qDebug() << "出错";
+   }
+}
+
+void thriftwidget::containerSerialize(int serialNumber, QString valueType, QString value, QString keyType_, QString valyeType_)
+{
+    //设置类型
+    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+    string2stringList(type);
+    //设置序号
+    QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
+    string2stringList(serialNumberStr);
+    if (valueType == "set" || valueType == "list") {
+        //获取value类型
+        QString key_Type = keyType_;
+        //设置value类型
+        QString type2 = QString("%1").arg(mapType.value(key_Type), 2, 16, QLatin1Char('0'));
+        string2stringList(type2);
+        //设置元素个数
+        QString data = value.mid(1, value.length() - 2);
+        QStringList dataList = data.split(",");
+        QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+        string2stringList(lenData);
+        //设置值 获取数值型
+        for (const QString &str : dataList) {
+            QString strData = QString("%1").arg(str, mapSize.value(key_Type), QLatin1Char('0'));
+            string2stringList(strData);
+        }
+    } else if (valueType == "map") {
+        //获取key类型
+        QString key_Type = keyType_;
+        //设置key类型
+        QString type2 = QString("%1").arg(mapType.value(key_Type), 2, 16, QLatin1Char('0'));
+        string2stringList(type2);
+        //获取value类型
+        QString value_Type = valyeType_;
+        //设置value类型
+        QString type3 = QString("%1").arg(mapType.value(value_Type), 2, 16, QLatin1Char('0'));
+        string2stringList(type3);
+        //设置元素个数
+        QString data = value.mid(1, value.length() - 2);
+        QStringList dataList;
+        map2List(dataList, data);
+        QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+        string2stringList(lenData);
+        //设置元素值
+        for (const QString &str : dataList) {
+            //根据:获取key和value
+            int index = str.indexOf(":");
+            //设置key值
+            QString strData = QString("%1").arg(str.mid(0, index), mapSize.value(key_Type), QLatin1Char('0'));
+            string2stringList(strData);
+            //设置value值
+            QString strData2 = QString("%1").arg(str.mid(index+1), mapSize.value(value_Type), QLatin1Char('0'));
+            string2stringList(strData2);
+        }
+    } else {
+        qDebug() << "出错";
+    }
+}
+
+void thriftwidget::structSerialize(int serialNumber, QString valueType, QString value)
+{
+    //组合结构体
+}
+
+void thriftwidget::map2List(QStringList &dataList, QString data)
+{
+    int sum = 0;
+    int first = 0;
+    int end = 0;
+    int len = data.length();
+    for (int i = 0; i <= len; i++) {
+        if (data[i] == '{') {
+            sum++;
+            if (sum == 1) {
+                first = i;
+            }
+        }
+        if (data[i] == '}') {
+            sum--;
+            if (sum == 0) {
+                end = i;
+                QString da = data.mid(first, end - first + 1);
+                dataList.push_back(da);
+            }
+        }
+    }
+}
+
 
 //void thriftwidget::objectSerialize()
 //{
@@ -737,10 +726,14 @@ void thriftwidget::on_toolButton_clicked()
     ui->textEdit->clear();
     ui->textEdit->append("请求源数据：");
     QString dataTemp;
+    QString a2;
     for (const QString& value : dataList) {
         dataTemp = dataTemp + " " + value;  // 在控制台输出元素值
+        a2 = a2 + value;
     }
+    qDebug() << "数据长度" << a2.length()/2;
     ui->textEdit->append(dataTemp);
+    ui->textEdit->append(a2);
     ui->textEdit->append("----------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
     //qDebug() << "dataList = " << dataList;

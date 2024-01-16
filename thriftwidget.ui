@@ -171,7 +171,7 @@ color: rgb(231, 238, 244);
 border-radius: 14px;
 background-color: rgb(25, 25, 25, 155);
 border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 15px;
+border-radius: 10px;
 padding-left:10px;
 padding-right:10px;
 }</string>
@@ -312,7 +312,7 @@ QTabBar QToolButton:hover {
           <property name="styleSheet">
            <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	
+	padding-left:26px;
 	
 	background-color: rgb(20, 20, 20);
 	border-radius: 5px;
@@ -330,6 +330,19 @@ QToolButton:hover {
           <property name="text">
            <string>导入thrift文件</string>
           </property>
+          <property name="icon">
+           <iconset resource="lib.qrc">
+            <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>14</width>
+            <height>14</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
          </widget>
         </widget>
        </widget>
@@ -340,7 +353,8 @@ QToolButton:hover {
    <item>
     <widget class="QWidget" name="widget_7" native="true">
      <property name="styleSheet">
-      <string notr="true">QComboBox{
+      <string notr="true">
+QComboBox{
 	color:#ffffff;
 	border:1px solid #1e2d36;
 	border-radius:3px;
@@ -449,7 +463,7 @@ QScrollBar::up-arrow:vertical {
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="leftMargin">
-          <number>9</number>
+          <number>0</number>
          </property>
          <property name="topMargin">
           <number>3</number>
@@ -462,6 +476,12 @@ QScrollBar::up-arrow:vertical {
          </property>
          <item>
           <widget class="QLabel" name="label_2">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
@@ -673,6 +693,275 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
+       <widget class="QWidget" name="horizontalWidget_2" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>33</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
+	color:#ffffff;
+	border:0px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+}
+
+QComboBox QAbstractItemView::item
+{
+height:28px;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	image: url(:/lib/tree_open.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>传输层</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_transport">
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>TFramedTransport</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>协议层</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_protocol">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>TBinaryProtocol</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_11">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="maximumSize">
+            <size>
+             <width>555555</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>请求类型</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_reqType">
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>CALL</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ONEWAY</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <widget class="QWidget" name="horizontalWidget" native="true">
         <property name="maximumSize">
          <size>
@@ -684,6 +973,9 @@ QToolButton:hover {
          <string notr="true">color:#ced4da;</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
          <property name="topMargin">
           <number>0</number>
          </property>
@@ -695,6 +987,12 @@ QToolButton:hover {
          </property>
          <item>
           <widget class="QLabel" name="label_3">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
@@ -745,137 +1043,6 @@ padding-right:10px;
            <property name="placeholderText">
             <string>yourMethod2</string>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox">
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QComboBox{
-	color:#ffffff;
-	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
-	border-radius:5px;
-	background:transparent;
-}
-
-QComboBox QAbstractItemView::item
-{
-height:28px;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}
-
-</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>TBinaryProtocol</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_reqType">
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QComboBox{
-	color:#ffffff;
-	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
-	border-radius:5px;
-	background:transparent;
-}
-
-QComboBox QAbstractItemView::item
-{
-height:28px;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}
-
-</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>CALL</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ONEWAY</string>
-            </property>
-           </item>
           </widget>
          </item>
          <item>
@@ -943,6 +1110,59 @@ QToolButton:hover {
          <number>0</number>
         </property>
         <widget class="QWidget" name="widget_4" native="true">
+         <property name="styleSheet">
+          <string notr="true">QComboBox{
+	font: 10pt &quot;OPPOSans B&quot;;
+	color:#ffffff;
+	border:0px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background:transparent;
+}
+
+QComboBox QAbstractItemView{
+	font: 10pt &quot;OPPOSans B&quot;;
+	color:#ffffff;
+	border:0px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:0px;
+	background:transparent;
+}
+
+QComboBox QAbstractItemView::item
+{
+height:28px;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	
+	
+	image: url(:/lib/tree_open.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+</string>
+         </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <property name="spacing">
            <number>0</number>
@@ -969,20 +1189,7 @@ QToolButton:hover {
             </property>
             <widget class="QWidget" name="widget" native="true">
              <property name="styleSheet">
-              <string notr="true">QComboBox{
-font: 10pt &quot;OPPOSans B&quot;;
-}
-
-QComboBox QAbstractItemView{
-font: 10pt &quot;OPPOSans B&quot;;
-}
-
-QComboBox QAbstractItemView::item{
-
-height:40px; 
-width:50px;
-
-}</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <property name="spacing">
@@ -1056,6 +1263,32 @@ padding-right:10px;</string>
                    </property>
                    <property name="text">
                     <string>入参</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="checkBox_3">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                     <stylestrategy>PreferAntialias</stylestrategy>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(255, 255, 255);</string>
+                   </property>
+                   <property name="text">
+                    <string>根据数据类型生成测试数据</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -1158,7 +1391,6 @@ QToolButton {
 
 QTreeWidget {
 	border:2px solid rgb(54, 81, 97);
-	
 	color: rgb(0, 0, 0);
 }
 
@@ -1169,30 +1401,26 @@ QTreeWidget#treeWidget {
 QTreeWidget::item {
 	height: 28px;
 	color: rgb(255, 255, 255);
-	border: 1px;
 	outline: 0px;
+	border-bottom: 1px solid rgba(207, 207, 207,50);
 }
 
 QTreeWidget::item:hover {
-	border: 0px;
 	outline: 0px;
     color: rgb(255, 255, 255);
 	background-color: rgba(209, 209, 209, 20);
 }
 QTreeWidget::item:selected{
-    border: 0px;
 	outline: 0px;
     color: #45B2FF;
 	background-color: rgba(209, 209, 209, 20);
 }
 QTreeWidget::item:selected:active{
-    border: 0px;
 	outline: 0px;
     color: #45B2FF;
 }
  
 QTreeWidget::item:selected:!active {
-    border: 0px;
 	outline: 0px;
     color: #45B2FF;
 }
@@ -1595,6 +1823,32 @@ padding-right:10px;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QCheckBox" name="checkBox_2">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(255, 255, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>显示请求源数据/结果源数据</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="horizontalSpacer_5">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -1671,48 +1925,6 @@ padding-right:10px;
                 <property name="bottomMargin">
                  <number>0</number>
                 </property>
-                <item>
-                 <widget class="QCheckBox" name="checkBox_2">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>显示请求源数据/结果源数据</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_7">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>300</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
                 <item>
                  <widget class="QLabel" name="label_time">
                   <property name="minimumSize">
