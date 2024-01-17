@@ -38,7 +38,7 @@ void ItemWidget::init()
 {
     comboBoxBase = new QComboBox();
     comboBoxBase->addItem("bool");
-    comboBoxBase->addItem("btye");
+    comboBoxBase->addItem("byte");
     comboBoxBase->addItem("i16");
     comboBoxBase->addItem("i32");
     comboBoxBase->addItem("i64");
@@ -60,7 +60,7 @@ void ItemWidget::init()
 
     comboBoxKey = new QComboBox();
     comboBoxKey->addItem("bool");
-    comboBoxKey->addItem("btye");
+    comboBoxKey->addItem("byte");
     comboBoxKey->addItem("i16");
     comboBoxKey->addItem("i32");
     comboBoxKey->addItem("i64");
@@ -83,7 +83,7 @@ void ItemWidget::init()
 
     comboBoxValue = new QComboBox();
     comboBoxValue->addItem("bool");
-    comboBoxValue->addItem("btye");
+    comboBoxValue->addItem("byte");
     comboBoxValue->addItem("i16");
     comboBoxValue->addItem("i32");
     comboBoxValue->addItem("i64");
@@ -322,7 +322,7 @@ QVector<uint32_t> thriftwidget::string2Uint32List(QVector<QString> & data)
     if (dataList.length() > 1) {
         lastValue = dataList.last();
         if (lastValue.length() < 8) {
-            lastValue = lastValue.leftJustified(8, '0');
+            //lastValue = lastValue.leftJustified(8, '0');
             dataList.replace(dataList.size() - 1, lastValue);
         }
     }
@@ -673,7 +673,8 @@ void thriftwidget::on_toolButton_clicked()
             //设置序号
             QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
             string2stringList(type2);
-            int64_t value = (int64_t)item->lineEditParamValue->text().toDouble();
+            int64_t value = (int64_t)item->lineEditParamValue->text().toULongLong();
+            qDebug() << "int64 = " << value;
             //设置值16个长度 8个长度为4个字节  1字节 = 2长度
             QString hexString3 = QString("%1").arg(value, 16, 16, QLatin1Char('0'));
             string2stringList(hexString3);
@@ -696,8 +697,10 @@ void thriftwidget::on_toolButton_clicked()
             int len = item->lineEditParamValue->text().length();
             QString hexString3 = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
             string2stringList(hexString3);
-            QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
+            QByteArray byteArray = item->lineEditParamValue->text().toUtf8(); // 将字符串转换为字节数组
             QString hexString4 = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+            qDebug() << "byteArray = " << byteArray;
+            qDebug() << "hexString4 = " << hexString4;
             string2stringList(hexString4);
             //设置字符串值
         } else if (item->comboBoxBase->currentText() == "struct") {
@@ -721,22 +724,29 @@ void thriftwidget::on_toolButton_clicked()
             string2stringList(type3);
         }
     }
+    QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
+    dataList.append(stop);
+    QString a2;
+    for (const QString& value : dataList) {
+        a2 = a2 + value;
+    }
+    qDebug() << "数据长度" << a2.length()/2;
+    QString dataLength = QString("%1").arg(a2.length()/2, 8, 16, QLatin1Char('0'));
+    
+    dataList.insert(0, dataLength);
 
     QVector<uint32_t> a = string2Uint32List(dataList);
     ui->textEdit->clear();
     ui->textEdit->append("请求源数据：");
     QString dataTemp;
-    QString a2;
     for (const QString& value : dataList) {
         dataTemp = dataTemp + " " + value;  // 在控制台输出元素值
-        a2 = a2 + value;
     }
-    qDebug() << "数据长度" << a2.length()/2;
     ui->textEdit->append(dataTemp);
     ui->textEdit->append(a2);
     ui->textEdit->append("----------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
-    //qDebug() << "dataList = " << dataList;
+    qDebug() << "dataList = " << dataList;
     QElapsedTimer timer;
     timer.start();
     sendThriftRequest(a);

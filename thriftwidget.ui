@@ -387,7 +387,7 @@ QComboBox QAbstractItemView{
 }
 
 QScrollBar:vertical{
-    width: 12px;
+    width: 8px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
@@ -396,7 +396,7 @@ QScrollBar:vertical{
 
 
 QScrollBar::handle:vertical{
-    width: 12px;
+    width: 8px;
 	
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
@@ -807,6 +807,11 @@ QComboBox QAbstractItemView{
              <string>TFramedTransport</string>
             </property>
            </item>
+           <item>
+            <property name="text">
+             <string>TBufferedTransport</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
@@ -1127,11 +1132,12 @@ QComboBox QAbstractItemView{
 	color: rgb(138, 138, 138);
 	border-radius:0px;
 	background:transparent;
+    outline:0px;
 }
 
 QComboBox QAbstractItemView::item
 {
-height:28px;
+	height:28px;
 }
 QComboBox:disabled{
 	border:1px solid gray;
@@ -1442,7 +1448,7 @@ QTreeWidget::branch:open:has-children:has-siblings  {
 
 
 QScrollBar::horizontal{
-    height: 12px;
+    height: 8px;
 	background-color: rgb(67, 77, 88);
 	margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
@@ -1450,7 +1456,7 @@ QScrollBar::horizontal{
 }
 
 QScrollBar::handle:horizontal {
-    height: 12px;
+    height: 8px;
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
     border-radius: 2px;

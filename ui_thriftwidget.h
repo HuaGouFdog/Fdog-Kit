@@ -363,7 +363,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
-"    width: 12px;\n"
+"    width: 8px;\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
@@ -372,10 +372,10 @@ public:
 "\n"
 "\n"
 "QScrollBar::handle:vertical{\n"
-"    width: 12px;\n"
+"    width: 8px;\n"
 "	\n"
-"	background-color: rgb(239, 239, "
-                        "239);\n"
+"	background-color: rgb(239, 239, 23"
+                        "9);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
@@ -568,6 +568,7 @@ public:
 
         comboBox_transport = new QComboBox(horizontalWidget_2);
         comboBox_transport->addItem(QString());
+        comboBox_transport->addItem(QString());
         comboBox_transport->setObjectName(QStringLiteral("comboBox_transport"));
         comboBox_transport->setMinimumSize(QSize(160, 30));
         comboBox_transport->setFont(font);
@@ -707,11 +708,12 @@ public:
 "	color: rgb(138, 138, 138);\n"
 "	border-radius:0px;\n"
 "	background:transparent;\n"
+"    outline:0px;\n"
 "}\n"
 "\n"
 "QComboBox QAbstractItemView::item\n"
 "{\n"
-"height:28px;\n"
+"	height:28px;\n"
 "}\n"
 "QComboBox:disabled{\n"
 "	border:1px solid gray;\n"
@@ -898,7 +900,7 @@ public:
 "\n"
 "\n"
 "QScrollBar::horizontal{\n"
-"    height: 12px;\n"
+"    height: 8px;\n"
 "	background-color: rgb(67, 77, 88);\n"
 "	margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
@@ -906,7 +908,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    height: 12px;\n"
+"    height: 8px;\n"
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220"
                         "\346\244\255\345\234\206 */\n"
@@ -1132,6 +1134,7 @@ public:
         toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));
         label_5->setText(QApplication::translate("thriftwidget", "\344\274\240\350\276\223\345\261\202", nullptr));
         comboBox_transport->setItemText(0, QApplication::translate("thriftwidget", "TFramedTransport", nullptr));
+        comboBox_transport->setItemText(1, QApplication::translate("thriftwidget", "TBufferedTransport", nullptr));
 
         label_8->setText(QApplication::translate("thriftwidget", "\345\215\217\350\256\256\345\261\202", nullptr));
         comboBox_protocol->setItemText(0, QApplication::translate("thriftwidget", "TBinaryProtocol", nullptr));
