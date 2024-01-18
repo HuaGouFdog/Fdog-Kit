@@ -103,6 +103,8 @@ public:
     QTextEdit *textEdit;
     QWidget *widget_10;
     QHBoxLayout *horizontalLayout_6;
+    QLabel *label_req;
+    QSpacerItem *horizontalSpacer_7;
     QLabel *label_time;
     QSpacerItem *horizontalSpacer_6;
 
@@ -1079,7 +1081,18 @@ public:
         horizontalLayout_6 = new QHBoxLayout(widget_10);
         horizontalLayout_6->setSpacing(0);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_6->setContentsMargins(3, 3, 0, 3);
+        label_req = new QLabel(widget_10);
+        label_req->setObjectName(QStringLiteral("label_req"));
+        label_req->setFont(font);
+        label_req->setStyleSheet(QStringLiteral(""));
+
+        horizontalLayout_6->addWidget(label_req);
+
+        horizontalSpacer_7 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_7);
+
         label_time = new QLabel(widget_10);
         label_time->setObjectName(QStringLiteral("label_time"));
         label_time->setMinimumSize(QSize(0, 0));
@@ -1126,10 +1139,10 @@ public:
         toolButton_2->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
-        lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
+        lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.153", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
-        lineEdit_port->setText(QApplication::translate("thriftwidget", "9090", nullptr));
+        lineEdit_port->setText(QApplication::translate("thriftwidget", "11237", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
         toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));
         label_5->setText(QApplication::translate("thriftwidget", "\344\274\240\350\276\223\345\261\202", nullptr));
@@ -1144,7 +1157,7 @@ public:
         comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
 
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
-        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
+        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateClientSearchSetting ", nullptr));
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
@@ -1228,6 +1241,7 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">--------------------------------------------------------</span></p></body></html>", nullptr));
         label_7->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\347\273\223\346\236\234", nullptr));
         checkBox_2->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+        label_req->setText(QString());
         label_time->setText(QApplication::translate("thriftwidget", "\345\223\215\345\272\224\346\227\266\351\227\264\357\274\232", nullptr));
     } // retranslateUi
 

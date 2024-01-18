@@ -43,6 +43,11 @@
 #define THRIFT_SET_SIZE         0
 #define THRIFT_LIST_SIZE        0
 
+#define TFramedTransport_   "TFramedTransport"
+#define TBufferedTransport_ "TFramedTransport"
+
+#define TBinaryProtocol_ "TBinaryProtocol"
+
 static QMap<QString, QString> mapReqType = {{"CALL", THRIFT_CALL}, {"ONEWAY", THRIFT_ONEWAY}};
 
 static QMap<QString, int> mapType = {{"bool", THRIFT_BOOL_TYPE}, {"byte", THRIFT_BYTE_TYPE}, {"i16", THRIFT_I16_TYPE}, {"i32", THRIFT_I32_TYPE},

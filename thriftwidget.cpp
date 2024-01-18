@@ -378,15 +378,28 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                   receivedDataArray.size() * sizeof(uint32_t));
         // 将数据转换为主机字节序
+        QStringList dataList2;
         QString dataTemp;
         for (uint32_t data : receivedDataArray) {
             data = qFromBigEndian(data);
             std::stringstream stream;
             stream << std::hex << std::setw(8) << std::setfill('0') << data;
+            dataList2.append(QString::fromStdString(stream.str()));
             dataTemp = dataTemp + " " + QString::fromStdString(stream.str());
         }
         ui->textEdit->append(dataTemp);
         ui->textEdit->append("----------------------------------------------------------------------");
+        if (dataList2[1] == "80010002") {
+            //结果
+            ui->label_req->setText("REPLY");
+            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+        } else if (dataList2[1] == "80010003") {
+            //异常
+            ui->label_req->setText("EXCEPTION");
+            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+        } else {
+            ui->label_req->setText("");
+        }
         clientSocket->close();
     });
     //qDebug() << "ui->lineEdit_host->text() = " << ui->lineEdit_host->text() << " ui->lineEdit_port->text().toInt() = " << ui->lineEdit_port->text().toInt();
@@ -421,7 +434,7 @@ void thriftwidget::buildData()
 {
     dataList.clear();
     dataList.resize(0);
-    //添加请求类型
+    //设置请求类型
     QString reqType = ui->comboBox_reqType->currentText();
     string2stringList(mapReqType.value(reqType));
     //添加接口长度
@@ -454,11 +467,24 @@ void thriftwidget::buildData()
 
         }
     }
+    //添加结束符号
+    QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
+    dataList.append(stop);
 
+    //TFramedTransport需要设置数据长度
+    if (ui->comboBox_transport->currentText() == TFramedTransport_) {
+        QString data;
+        for (const QString& value : dataList) {
+            data = data + value;
+        }
+        QString dataLength = QString("%1").arg(data.length()/2, 8, 16, QLatin1Char('0'));
+        dataList.insert(0, dataLength);
+    }
 }
 
 void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString value)
 {
+    qDebug() << "serialNumber = " << serialNumber << " valueType = " << valueType << " value = " << value;
    //设置类型
    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
    string2stringList(type);
@@ -467,10 +493,21 @@ void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString va
    string2stringList(serialNumberStr);
 
    if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
-        valueType == "i32" || valueType == "i64" || valueType == "double") {
+        valueType == "i32") {
        //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-       QString valueData = QString("%1").arg(value, mapSize.value(valueType), QLatin1Char('0'));
+       int value_i = value.toInt();
+       QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
        string2stringList(valueData);
+   } else if (valueType == "i64") { 
+        int64_t value_i = value.toULongLong();
+        qDebug() << "int64 = " << value;
+        QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
+        string2stringList(valueData);
+   } else if (valueType == "double") {
+        //这里要处理
+        int value_i = value.toDouble();
+        QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
+        string2stringList(valueData);
    } else if (valueType == "string") {
        //设置字符串长度
        int len = value.length();
@@ -604,137 +641,9 @@ void thriftwidget::parseData()
 
 void thriftwidget::on_toolButton_clicked()
 {
-    dataList.clear();
-    dataList.resize(0);
-    string2stringList("80010001");
+    buildData();
 
-    int funcLen = ui->lineEdit_funcName->text().length();
-    QString hexString = QString("%1").arg(funcLen, 8, 16, QLatin1Char('0'));
-    string2stringList(hexString);
-
-    QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
-    QString hexString2 = byteArray.toHex(); // 将字节数组转换为十六进制字符串
-    string2stringList(hexString2);
-    string2stringList("00000000");
-    int sum = -1;
-    for(int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
-        ItemWidget * item = dynamic_cast<ItemWidget*>(ui->treeWidget->topLevelItem(i));
-        qDebug() << "参数类型为" << item->comboBoxBase->currentText() << " 参数值为" << item->lineEditParamValue->text();
-//        if (item->childCount() > 0) {
-//            for(int i = 0; i < item->childCount(); i++) {
-//                ItemWidget * item2 = dynamic_cast<ItemWidget*>(item->child(i));
-//                qDebug() << "参数类型为" << item2->comboBoxBase->currentText() << " 参数值为" << item2->lineEditParamValue->text();
-//            }
-//        }
-        if (item->checkBox->isChecked()) {
-            sum++;
-        } else {
-            continue;
-        }
-        if (item->comboBoxBase->currentText() == "bool") {
-            //设置类型
-            QString type = QString("%1").arg(THRIFT_BOOL_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            QString value = item->lineEditParamValue->text();
-            //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-            QString hexString3 = QString("%1").arg(value, 2, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "byte") {
-            QString type = QString("%1").arg(THRIFT_BYTE_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toInt();
-            QString hexString3 = QString("%1").arg(value, 2, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "i16") {
-            QString type = QString("%1").arg(THRIFT_I16_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toInt();
-            QString hexString3 = QString("%1").arg(value, 4, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "i32") {
-            QString type = QString("%1").arg(THRIFT_I32_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toInt();
-            QString hexString3 = QString("%1").arg(value, 8, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "i64") {
-            //设置类型
-            QString type = QString("%1").arg(THRIFT_I64_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int64_t value = (int64_t)item->lineEditParamValue->text().toULongLong();
-            qDebug() << "int64 = " << value;
-            //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-            QString hexString3 = QString("%1").arg(value, 16, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "double") {
-            QString type = QString("%1").arg(THRIFT_DOUBLE_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            int value = item->lineEditParamValue->text().toDouble();
-            QString hexString3 = QString("%1").arg(value, 16, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-        } else if (item->comboBoxBase->currentText() == "string") {
-            //设置类型
-            QString type = QString("%1").arg(THRIFT_STRING_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            //设置字符串长度
-            int len = item->lineEditParamValue->text().length();
-            QString hexString3 = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
-            string2stringList(hexString3);
-            QByteArray byteArray = item->lineEditParamValue->text().toUtf8(); // 将字符串转换为字节数组
-            QString hexString4 = byteArray.toHex(); // 将字节数组转换为十六进制字符串
-            qDebug() << "byteArray = " << byteArray;
-            qDebug() << "hexString4 = " << hexString4;
-            string2stringList(hexString4);
-            //设置字符串值
-        } else if (item->comboBoxBase->currentText() == "struct") {
-
-        } else if (item->comboBoxBase->currentText() == "map") {
-
-        } else if (item->comboBoxBase->currentText() == "set") {
-
-        } else if (item->comboBoxBase->currentText() == "list") {
-            //设置类型
-            QString type = QString("%1").arg(THRIFT_LIST_TYPE, 2, 16, QLatin1Char('0'));
-            string2stringList(type);
-            //设置序号
-            QString type2 = QString("%1").arg(sum + 1, 4, 16, QLatin1Char('0'));
-            string2stringList(type2);
-            //设置值类型
-            QString type3 = QString("%1").arg(THRIFT_LIST_TYPE, 2, 16, QLatin1Char('0'));
-            //设置值长度
-            int len = item->lineEditParamValue->text().length();
-            QString type4 = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
-            string2stringList(type3);
-        }
-    }
-    QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
-    dataList.append(stop);
-    QString a2;
-    for (const QString& value : dataList) {
-        a2 = a2 + value;
-    }
-    qDebug() << "数据长度" << a2.length()/2;
-    QString dataLength = QString("%1").arg(a2.length()/2, 8, 16, QLatin1Char('0'));
-    
-    dataList.insert(0, dataLength);
-
+    //请求数据
     QVector<uint32_t> a = string2Uint32List(dataList);
     ui->textEdit->clear();
     ui->textEdit->append("请求源数据：");
@@ -743,7 +652,6 @@ void thriftwidget::on_toolButton_clicked()
         dataTemp = dataTemp + " " + value;  // 在控制台输出元素值
     }
     ui->textEdit->append(dataTemp);
-    ui->textEdit->append(a2);
     ui->textEdit->append("----------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
     qDebug() << "dataList = " << dataList;
