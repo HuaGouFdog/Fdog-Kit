@@ -1,4 +1,4 @@
-﻿/********************************************************************************
+/********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.10.0
@@ -2299,7 +2299,7 @@ public:
 
         stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(-1);
-        stackedWidget_tool->setCurrentIndex(1);
+        stackedWidget_tool->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

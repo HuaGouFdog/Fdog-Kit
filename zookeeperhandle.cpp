@@ -56,7 +56,7 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
         // 节点数据发生变化
         // 在这里处理节点数据变化的逻辑
         Stat stat;
-        char buffer[1024]  = {0}; //不写0 会乱码
+        char buffer[1024*6]  = {0}; //不写0 会乱码
         int buffer_len = sizeof(buffer);
         int rc = zoo_wget(zh, path, nodeWatcher, obj_, buffer, &buffer_len, &stat);
         if (rc == ZOK) {
@@ -172,7 +172,7 @@ void zookeeperhandle::getNodeInfo(QString path)
     QString message;
     Stat stat;
     QString data;
-    char buffer[4096*4]  = {0}; //不写0 会乱码
+    char buffer[4096*10]  = {0}; //不写0 会乱码
     int buffer_len = sizeof(buffer);
     int rc = zoo_wget(zh, path.toStdString().c_str(), nodeWatcher, obj, buffer, &buffer_len, &stat);
     if (rc == ZOK) {

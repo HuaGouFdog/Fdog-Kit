@@ -131,6 +131,12 @@ private slots:
 
     //void on_toolButton_close_clicked();
 
+    void on_checkBox_auto_url_clicked();
+
+    void on_toolButton_clear_clicked();
+
+    void on_toolButton_sensitive_clicked();
+
 private:
     Ui::zookeeperwidget *ui;
 

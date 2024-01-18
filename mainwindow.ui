@@ -1297,7 +1297,7 @@ QComboBox QAbstractItemView{
 color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>4</number>
                 </property>
                 <widget class="QWidget" name="page_4">
                  <layout class="QVBoxLayout" name="verticalLayout_22">

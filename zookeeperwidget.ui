@@ -175,7 +175,13 @@ border-right:2px solid rgba(108, 117, 125, 65);
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_node">
+           <widget class="QLabel" name="label_node_head">
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <family>OPPOSans B</family>
@@ -189,13 +195,7 @@ border-right:2px solid rgba(108, 117, 125, 65);
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_node">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
+           <widget class="QLabel" name="label_node">
             <property name="font">
              <font>
               <family>OPPOSans B</family>
@@ -206,8 +206,8 @@ border-right:2px solid rgba(108, 117, 125, 65);
             <property name="text">
              <string>/</string>
             </property>
-            <property name="readOnly">
-             <bool>true</bool>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -217,7 +217,7 @@ border-right:2px solid rgba(108, 117, 125, 65);
              <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeType">
-             <enum>QSizePolicy::Minimum</enum>
+             <enum>QSizePolicy::Expanding</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -226,6 +226,23 @@ border-right:2px solid rgba(108, 117, 125, 65);
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_auto_url">
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="text">
+             <string>自动url解码</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QToolButton" name="toolButton_add">
@@ -395,6 +412,175 @@ QToolButton:hover {
             </property>
            </widget>
           </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="horizontalWidget_1_3_l" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget_1_3_l_1" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>68</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#widget_1_3_l_1{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 10px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_search">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>27</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="placeholderText">
+                <string>搜索</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_clear">
+               <property name="styleSheet">
+                <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 95, 95, 0);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 95, 95, 0);
+}</string>
+               </property>
+               <property name="text">
+                <string>清除</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>18</width>
+                 <height>18</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_sensitive">
+               <property name="styleSheet">
+                <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+QToolButton::checked{
+	color: rgb(255, 255, 255);
+	border-radius: 2px;
+	
+	border: 1px solid rgb(143, 143, 143);
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QToolButton" name="toolButton_unfold">
             <property name="minimumSize">
@@ -448,107 +634,6 @@ QToolButton:hover {
             </property>
             <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextBesideIcon</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QWidget" name="horizontalWidget_1_3_l" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">#horizontalWidget_1_3_l{
-color: rgb(231, 238, 244);
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 10px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <property name="spacing">
-           <number>0</number>
-          </property>
-          <property name="leftMargin">
-           <number>10</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>10</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_search">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>27</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255, 0);
-color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="placeholderText">
-             <string>搜索</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="toolButton">
-            <property name="styleSheet">
-             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-QToolButton::checked{
-	color: rgb(255, 255, 255);
-	border-radius: 2px;
-	border: 2px solid rgba(255, 255, 255, 80);
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="lib.qrc">
-              <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-            <property name="checked">
-             <bool>false</bool>
             </property>
            </widget>
           </item>

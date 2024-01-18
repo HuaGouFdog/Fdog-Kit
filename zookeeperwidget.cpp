@@ -105,7 +105,9 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
     } else {
         showMessage("连接成功", true);
         emit send_init(buttonSid, code);
-        ui->lineEdit_node->setText(path);
+        //ui->lineEdit_node->setText(path);
+        ui->label_node->setText(path);
+        ui->label_node->setWordWrap(true);
         QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->treeWidget);
         ui->treeWidget->addTopLevelItem(topItem);
         topItem->setText(0, path);
@@ -323,7 +325,7 @@ void zookeeperwidget::searchItem(QTreeWidgetItem *tableItem, const QString &strT
             QTreeWidgetItem* pTreeItem = tableItem->child(i);
             if (pTreeItem != nullptr) {
                 //如何索引项字段部分匹配于输入框字段则设置该项及其父子项显示且展开
-                if (pTreeItem->text(0).contains(strText)) {
+                if (pTreeItem->text(0).contains(strText, ui->toolButton_sensitive->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive)) {
                     pTreeItem->setHidden(false);
                     pTreeItem->setExpanded(true);
                     showSon(pTreeItem);
@@ -340,7 +342,7 @@ void zookeeperwidget::searchItem(QTreeWidgetItem *tableItem, const QString &strT
 void zookeeperwidget::showItem(const QString &strText)
 {
     for (int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i) {
-        if (ui->treeWidget->topLevelItem(i)->text(0).contains(strText)) {
+        if (ui->treeWidget->topLevelItem(i)->text(0).contains(strText, ui->toolButton_sensitive->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive)) {
             ui->treeWidget->topLevelItem(i)->setHidden(false);
         }else {
             ui->treeWidget->topLevelItem(i)->setHidden(true);
@@ -441,7 +443,15 @@ void zookeeperwidget::deleteTreeItem(QTreeWidgetItem *item)
 
 void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
-    ui->lineEdit_node->setText(item->text(column));
+    //ui->lineEdit_node->setText(item->text(column));
+    if (ui->checkBox_auto_url->isChecked()) {
+        QString url = item->text(column);
+        QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+        ui->label_node->setText(decodedUrl);
+    } else {
+        ui->label_node->setText(item->text(column));
+    }
+    ui->label_node->setWordWrap(true);
     QString path = item->text(column);
     getNodeInfo(path);
 }
@@ -556,8 +566,14 @@ void zookeeperwidget::on_toolButton_copy_data_clicked()
 
 void zookeeperwidget::on_lineEdit_search_textChanged(const QString &arg1)
 {
-    showItem(arg1);
-    expandAllItems(ui->treeWidget, true, 0);
+    if (arg1 != "") {
+        showItem(arg1);
+        expandAllItems(ui->treeWidget, true, 0);
+    } else {
+        isUnfold = false;
+        expandAllItems(ui->treeWidget, false, 0);
+        expandAllItemsOne(ui->treeWidget, true, 0);
+    }
 }
 
 void zookeeperwidget::on_toolButton_unfold_clicked()
@@ -570,8 +586,15 @@ void zookeeperwidget::on_toolButton_unfold_clicked()
 void zookeeperwidget::on_lineEdit_search_returnPressed()
 {
     //回车也重新获取
-    showItem(ui->lineEdit_search->text());
-    expandAllItems(ui->treeWidget, true, 0);
+    if(ui->lineEdit_search->text() == "") {
+    isUnfold = false;
+    expandAllItems(ui->treeWidget, false, 0);
+    expandAllItemsOne(ui->treeWidget, true, 0);
+    } else {
+        showItem(ui->lineEdit_search->text());
+        expandAllItems(ui->treeWidget, true, 0);
+    }
+
 }
 
 void zookeeperwidget::rece_children_event(int code, QString message, QString path, const QVariant varValue)
@@ -761,3 +784,22 @@ void zookeeperwidget::on_treeWidget_itemEntered(QTreeWidgetItem *item, int colum
 //    QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
 //    layout->insertWidget(layout->count()-1, qbutton);
 //}
+
+void zookeeperwidget::on_checkBox_auto_url_clicked()
+{
+    if (ui->checkBox_auto_url->isChecked()) {
+        QString url = ui->label_node->text();
+        QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+        ui->label_node->setText(decodedUrl);
+    }
+}
+
+void zookeeperwidget::on_toolButton_clear_clicked()
+{
+    ui->lineEdit_search->clear();
+}
+
+void zookeeperwidget::on_toolButton_sensitive_clicked()
+{
+
+}
