@@ -115,7 +115,6 @@ class thriftwidget : public QWidget
 public:
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
-    void sendData();
     QString getType(int index);
     QString getType(QString data);
     QString getValue(QString data);
@@ -152,7 +151,6 @@ private slots:
     void rece_deleteItem(QTreeWidgetItem * item);
     void rece_TextChanged(QString data, QTreeWidgetItem * item);
     void rece_currentIndexChanged(QString data, QTreeWidgetItem * item);
-    void on_comboBox_currentIndexChanged(const QString &arg1);
 
     void on_toolButton_test_clicked();
 

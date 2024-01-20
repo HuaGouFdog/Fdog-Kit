@@ -1157,7 +1157,7 @@ public:
         comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
 
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
-        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateClientSearchSetting ", nullptr));
+        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateClientSearchSetting", nullptr));
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));

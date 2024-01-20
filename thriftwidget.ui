@@ -1043,7 +1043,7 @@ padding-right:10px;
 }</string>
            </property>
            <property name="text">
-            <string>updateClientSearchSetting </string>
+            <string>updateClientSearchSetting</string>
            </property>
            <property name="placeholderText">
             <string>yourMethod2</string>
