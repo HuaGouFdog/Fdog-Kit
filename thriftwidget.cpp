@@ -208,9 +208,9 @@ thriftwidget::thriftwidget(QWidget *parent) :
      ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
 
      ui->widget_thrift->hide();
-     QMenu *menu = ui->textEdit->createStandardContextMenu();
-     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
-     menu->setAttribute(Qt::WA_TranslucentBackground);
+     ui->label_req->hide();
+
+     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 QString thriftwidget::getType(int index)
@@ -329,13 +329,16 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         ui->textEdit->append("----------------------------------------------------------------------");
         if (dataList2[1] == "80010002") {
             //结果
+            ui->label_req->show();
             ui->label_req->setText("REPLY");
             ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
         } else if (dataList2[1] == "80010003") {
             //异常
+            ui->label_req->show();
             ui->label_req->setText("EXCEPTION");
             ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
         } else {
+            ui->label_req->hide();
             ui->label_req->setText("");
         }
         clientSocket->close();
@@ -395,12 +398,15 @@ void thriftwidget::buildData()
             continue;
         }
         QString valueType = item->comboBoxBase->currentText();
+        qDebug() << "valueType = " << valueType;
         if (baseType.contains(valueType)) {
             baseSerialize(sum + 1, valueType, item->lineEditParamValue->text());
         } else if (containerType.contains(valueType)) {
             containerSerialize(sum + 1, valueType, item->lineEditParamValue->text(), item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
         } else if (valueType == "struct") {
-
+            //
+            qDebug() << "struct类型";
+            structSerialize(sum + 1, valueType, item);
         } else {
 
         }
@@ -443,9 +449,17 @@ void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString va
         string2stringList(valueData);
    } else if (valueType == "double") {
         //这里要处理
-        int value_i = value.toDouble();
-        QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
-        string2stringList(valueData);
+       double d = value.toDouble();//4334.55;
+       qulonglong d_long = *(qulonglong*)&d;
+       QString d_hex = QString("%1").arg(d_long, mapSize.value(valueType), 16, QLatin1Char('0'));
+       //转换
+       QString reversedString;
+       while (d_hex.length()!=0) {
+          qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
+          reversedString = reversedString + d_hex.mid(d_hex.length()-2);
+          d_hex = d_hex.mid(0, d_hex.length()-2);
+       }
+       string2stringList(reversedString);
    } else if (valueType == "string") {
        //设置字符串长度
        int len = value.length();
@@ -567,9 +581,68 @@ void thriftwidget::containerSerialize(int serialNumber, QString valueType, QStri
     }
 }
 
-void thriftwidget::structSerialize(int serialNumber, QString valueType, QString value)
+void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidget * item)
 {
-    //组合结构体
+   //设置类型
+   QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+   string2stringList(type);
+   //设置序号
+   QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
+   string2stringList(serialNumberStr);
+   //遍历item，获取所有子节点，暂时不考虑孙节点
+   for(int i = 0; i < item->childCount(); i++) {
+       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(i));
+       //暂不考虑孙节点
+       valueType = itemChild->comboBoxBase->currentText();
+       QString value = itemChild->lineEditParamValue->text();
+       qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
+       //设置类型 设置序号
+       //设置类型
+       QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+       string2stringList(type);
+       //设置序号
+       QString serialNumberStr = QString("%1").arg(i+1, 4, 16, QLatin1Char('0'));
+       string2stringList(serialNumberStr);
+
+       if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
+            valueType == "i32") {
+           //设置值16个长度 8个长度为4个字节  1字节 = 2长度
+           int value_i = value.toInt();
+           QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
+           string2stringList(valueData);
+       } else if (valueType == "i64") {
+            int64_t value_i = value.toULongLong();
+            qDebug() << "int64 = " << value;
+            QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
+            string2stringList(valueData);
+       } else if (valueType == "double") {
+            //这里要处理
+           double d = value.toDouble();
+           qulonglong d_long = *(qulonglong*)&d;
+           QString d_hex = QString("%1").arg(d_long, mapSize.value(valueType), 16, QLatin1Char('0'));
+           //转换
+           QString reversedString;
+           while (d_hex.length()!=0) {
+              qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
+              reversedString = reversedString + d_hex.mid(d_hex.length()-2);
+              d_hex = d_hex.mid(0, d_hex.length()-2);
+           }
+           string2stringList(reversedString);
+       } else if (valueType == "string") {
+           //设置字符串长度
+           int len = value.length();
+           QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
+           string2stringList(lenData);
+           //设置字符串值
+           QByteArray byteArray = value.toUtf8(); // 将字符串转换为字节数组
+           QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+           string2stringList(valueData);
+       } else {
+            qDebug() << "出错";
+       }
+
+   }
+
 }
 
 void thriftwidget::map2List(QStringList &dataList, QString data)
@@ -783,4 +856,21 @@ void thriftwidget::on_toolButton_show_thrift_info_clicked()
         ui->widget_thrift->hide();
         //ui->toolButton_show_thrift_info->setText("查看thrift协议说明");
     }
+}
+
+void thriftwidget::on_textEdit_customContextMenuRequested(const QPoint &pos)
+{
+    //定义右键弹出菜单
+    QMenu *menu = new QMenu(ui->textEdit);
+    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    menu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction *pnew = new QAction("复制", ui->textEdit);
+    QAction *pnew1 = new QAction("选择全部", ui->textEdit);
+    //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+    //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
+    menu->addAction(pnew);
+    menu->addSeparator();
+    menu->addAction(pnew1);
+    menu->move(cursor().pos());
+    menu->show();
 }

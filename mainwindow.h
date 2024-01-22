@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "zookeepermanagewidget.h"
 #include "zookeeperwidget.h"
 #include "createconnect.h"
 #include "historyconnectwidget.h"
@@ -127,7 +128,7 @@ private slots:
 
 
 
-    void on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked();
+    //void on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked();
 
     void on_toolButton_manage_clicked();
 
@@ -184,7 +185,8 @@ private:
     historyconnectwidget * hcwidget = nullptr; //快速连接
     toolswidget * tswidget = nullptr; //创建工具窗口
     settingwidget * stwidget = nullptr; //创建设置窗口
-    thriftwidget * twidget = nullptr;  //测试工具窗口
+    zookeepermanagewidget * zmanagewidget = nullptr; //zk窗口
+    thriftwidget * twidget = nullptr;  //thrift测试工具窗口
 
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;

@@ -546,11 +546,11 @@ void zookeeperwidget::on_toolButton_add_clicked()
     addNode(node);
 }
 
-void zookeeperwidget::on_toolButton_delete_clicked()
-{
-    QString node = ui->treeWidget->currentItem()->text(0);
-    deleteNode(node);
-}
+// void zookeeperwidget::on_toolButton_delete_clicked()
+// {
+//     QString node = ui->treeWidget->currentItem()->text(0);
+//     deleteNode(node);
+// }
 
 void zookeeperwidget::on_toolButton_refresh_clicked()
 {
@@ -737,26 +737,26 @@ void zookeeperwidget::showMessage(QString message, bool isSuccess)
     pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
-void zookeeperwidget::on_toolButton_6_clicked()
-{
-    zookeepertipswidget * a = new zookeepertipswidget(NULL, "1", true);
-    QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-    int x = globalPos.x() + (ui->treeWidget->width() - a->width()) / 2;//x坐标
-    int y = globalPos.y() + ui->treeWidget->height() - a->height() - 20;//y坐标
-    a->move(x, y);//窗口移动
-    a->show();
-    QPropertyAnimation *pAnimation = new QPropertyAnimation(a, "windowOpacity");
+// void zookeeperwidget::on_toolButton_6_clicked()
+// {
+//     zookeepertipswidget * a = new zookeepertipswidget(NULL, "1", true);
+//     QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+//     int x = globalPos.x() + (ui->treeWidget->width() - a->width()) / 2;//x坐标
+//     int y = globalPos.y() + ui->treeWidget->height() - a->height() - 20;//y坐标
+//     a->move(x, y);//窗口移动
+//     a->show();
+//     QPropertyAnimation *pAnimation = new QPropertyAnimation(a, "windowOpacity");
 
-    QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
-    {
-        a->close();
-    });
-    pAnimation->setDuration(2000);
-    pAnimation->setStartValue(1);
-    pAnimation->setEndValue(0);
-    pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
-    pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
-}
+//     QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
+//     {
+//         a->close();
+//     });
+//     pAnimation->setDuration(2000);
+//     pAnimation->setStartValue(1);
+//     pAnimation->setEndValue(0);
+//     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
+//     pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+// }
 
 void zookeeperwidget::on_treeWidget_itemEntered(QTreeWidgetItem *item, int column)
 {

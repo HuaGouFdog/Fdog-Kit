@@ -109,7 +109,7 @@ private slots:
 
     void on_toolButton_add_clicked();
 
-    void on_toolButton_delete_clicked();
+    //void on_toolButton_delete_clicked();
 
     void on_toolButton_refresh_clicked();
 
@@ -121,7 +121,7 @@ private slots:
 
     void on_lineEdit_search_returnPressed();
 
-    void on_toolButton_6_clicked();
+    //void on_toolButton_6_clicked();
 
     void on_treeWidget_itemEntered(QTreeWidgetItem *item, int column);
 

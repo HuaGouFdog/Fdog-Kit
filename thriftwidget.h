@@ -132,7 +132,7 @@ public:
 
     void baseSerialize(int serialNumber, QString valueType, QString value);
     void containerSerialize(int serialNumber, QString valueType, QString value, QString keyType_, QString valyeType_ = "");
-    void structSerialize(int serialNumber, QString valueType, QString value);
+    void structSerialize(int serialNumber, QString valueType, ItemWidget * item);
 
     void map2List(QStringList &dataList, QString data);
     //void objectSerialize();
@@ -155,6 +155,8 @@ private slots:
     void on_toolButton_test_clicked();
 
     void on_toolButton_show_thrift_info_clicked();
+
+    void on_textEdit_customContextMenuRequested(const QPoint &pos);
 
 private:
     QVector<QString> dataList;

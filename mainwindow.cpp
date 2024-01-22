@@ -117,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
     zkVisual = new QAction(QIcon(":lib/Zookeeper2.png"), "zk可视化连接");
     men_tool->addAction(zkVisual);
     men_tool->addSeparator();
-    textTest = new QAction(QIcon(":lib/test.png"), "Thrift接口测试");
+    textTest = new QAction(QIcon(":lib/icon_test.png"), "Thrift接口测试");
     men_tool->addAction(textTest);
     men_tool->addSeparator();
     ui->toolButton_tool->setMenu(men_tool);
@@ -203,7 +203,7 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue selfStartValue = activateObj.value("selfStart");
             if (selfStartValue.isDouble()) {
                 confInfo->selfStart = selfStartValue.toInt();
-                qDebug() << "selfStart:" << confInfo->selfStart;
+                //qDebug() << "selfStart:" << confInfo->selfStart;
             }
 
             // 获取"trayDisplay"属性值
@@ -217,28 +217,28 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue startModeValue = activateObj.value("startMode");
             if (startModeValue.isDouble()) {
                 confInfo->startMode = startModeValue.toInt();
-                qDebug() << "startMode:" << confInfo->startMode;
+                //qDebug() << "startMode:" << confInfo->startMode;
             }
 
             // 获取"startPositionX"属性值
             QJsonValue startPositionXValue = activateObj.value("startPositionX");
             if (startPositionXValue.isDouble()) {
                 confInfo->startPositionX = startPositionXValue.toInt();
-                qDebug() << "startPositionX:" << confInfo->startPositionX;
+                //qDebug() << "startPositionX:" << confInfo->startPositionX;
             }
 
             // 获取"startPositionY"属性值
             QJsonValue startPositionYValue = activateObj.value("startPositionY");
             if (startPositionYValue.isDouble()) {
                 confInfo->startPositionY = startPositionYValue.toInt();
-                qDebug() << "startPositionY:" << confInfo->startPositionY;
+                //qDebug() << "startPositionY:" << confInfo->startPositionY;
             }
 
             // 获取"startCenter"属性值
             QJsonValue startCenterValue = activateObj.value("startCenter");
             if (startCenterValue.isDouble()) {
                 confInfo->startCenter = startCenterValue.toInt();
-                qDebug() << "startCenter:" << confInfo->startCenter;
+                //qDebug() << "startCenter:" << confInfo->startCenter;
             }
         }
 
@@ -250,25 +250,25 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue languageValue = appearanceObj.value("language");
             if (languageValue.isString()) {
                 confInfo->language = languageValue.toString();
-                qDebug() << "language:" << confInfo->language;
+                //qDebug() << "language:" << confInfo->language;
             }
 
             QJsonValue topDisplayValue = appearanceObj.value("topDisplay");
             if (topDisplayValue.isDouble()) {
                 confInfo->topDisplay = topDisplayValue.toInt();
-                qDebug() << "topDisplay:" << confInfo->topDisplay;
+                //qDebug() << "topDisplay:" << confInfo->topDisplay;
             }
 
             QJsonValue newLabelLocationValue = appearanceObj.value("newLabelLocation");
             if (newLabelLocationValue.isDouble()) {
                 confInfo->newLabelLocation = newLabelLocationValue.toInt();
-                qDebug() << "newLabelLocation:" << confInfo->newLabelLocation;
+                //qDebug() << "newLabelLocation:" << confInfo->newLabelLocation;
             }
 
             QJsonValue labelWidthValue = appearanceObj.value("labelWidth");
             if (labelWidthValue.isDouble()) {
                 confInfo->labelWidth = labelWidthValue.toInt();
-                qDebug() << "labelWidth:" << confInfo->labelWidth;
+                //qDebug() << "labelWidth:" << confInfo->labelWidth;
             }
         }
 
@@ -280,19 +280,19 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue fontSizeValue = typefaceObj.value("fontSize");
             if (fontSizeValue.isDouble()) {
                 confInfo->fontSize = fontSizeValue.toInt();
-                qDebug() << "fontSize:" << confInfo->fontSize;
+                //qDebug() << "fontSize:" << confInfo->fontSize;
             }
 
             QJsonValue fontEnglishValue = typefaceObj.value("fontEnglish");
             if (fontEnglishValue.isString()) {
                 confInfo->fontEnglish = fontEnglishValue.toString();
-                qDebug() << "fontEnglish:" << confInfo->fontEnglish;
+                //qDebug() << "fontEnglish:" << confInfo->fontEnglish;
             }
 
             QJsonValue fontChineseValue = typefaceObj.value("fontChinese");
             if (fontChineseValue.isString()) {
                 confInfo->fontChinese = fontChineseValue.toString();
-                qDebug() << "fontChinese:" << confInfo->fontChinese;
+                //qDebug() << "fontChinese:" << confInfo->fontChinese;
             }
         }
 
@@ -303,64 +303,64 @@ MainWindow::MainWindow(QWidget *parent) :
                 QJsonObject colorSchemeObj = colorSchemesArray[i].toObject();
                 ColorScheme cs;
                 cs.name = colorSchemeObj["name"].toString();
-                qDebug() << "name: " << colorSchemeObj["name"].toString();
+                //qDebug() << "name: " << colorSchemeObj["name"].toString();
 
                 cs.background = colorSchemeObj["background"].toString();
-                qDebug() << "background: " << colorSchemeObj["background"].toString();
+                //qDebug() << "background: " << colorSchemeObj["background"].toString();
 
                 cs.foreground = colorSchemeObj["foreground"].toString();
-                qDebug() << "foreground: " << colorSchemeObj["foreground"].toString();
+                //qDebug() << "foreground: " << colorSchemeObj["foreground"].toString();
 
                 cs.selectionBackground = colorSchemeObj["selectionBackground"].toString();
-                qDebug() << "selectionBackground: " << colorSchemeObj["selectionBackground"].toString();
+                //qDebug() << "selectionBackground: " << colorSchemeObj["selectionBackground"].toString();
 
                 cs.cursorColor = colorSchemeObj["cursorColor"].toString();
-                qDebug() << "cursorColor: " << colorSchemeObj["cursorColor"].toString();
+                //qDebug() << "cursorColor: " << colorSchemeObj["cursorColor"].toString();
 
                 cs.black = colorSchemeObj["black"].toString();
-                qDebug() << "black: " << colorSchemeObj["black"].toString();
+                //qDebug() << "black: " << colorSchemeObj["black"].toString();
 
                 cs.blue = colorSchemeObj["blue"].toString();
-                qDebug() << "blue: " << colorSchemeObj["blue"].toString();
+                //qDebug() << "blue: " << colorSchemeObj["blue"].toString();
 
                 cs.cyan = colorSchemeObj["cyan"].toString();
-                qDebug() << "cyan: " << colorSchemeObj["cyan"].toString();
+                //qDebug() << "cyan: " << colorSchemeObj["cyan"].toString();
 
                 cs.green = colorSchemeObj["green"].toString();
-                qDebug() << "green: " << colorSchemeObj["green"].toString();
+                //qDebug() << "green: " << colorSchemeObj["green"].toString();
 
                 cs.purple = colorSchemeObj["purple"].toString();
-                qDebug() << "purple: " << colorSchemeObj["purple"].toString();
+                //qDebug() << "purple: " << colorSchemeObj["purple"].toString();
 
                 cs.red = colorSchemeObj["red"].toString();
-                qDebug() << "red: " << colorSchemeObj["red"].toString();
+                //qDebug() << "red: " << colorSchemeObj["red"].toString();
 
                 cs.white = colorSchemeObj["white"].toString();
-                qDebug() << "white: " << colorSchemeObj["white"].toString();
+                //qDebug() << "white: " << colorSchemeObj["white"].toString();
 
                 cs.brightBlack = colorSchemeObj["brightBlack"].toString();
-                qDebug() << "brightBlack: " << colorSchemeObj["brightBlack"].toString();
+                //qDebug() << "brightBlack: " << colorSchemeObj["brightBlack"].toString();
 
                 cs.brightBlue = colorSchemeObj["brightBlue"].toString();
-                qDebug() << "brightBlue: " << colorSchemeObj["brightBlue"].toString();
+                //qDebug() << "brightBlue: " << colorSchemeObj["brightBlue"].toString();
 
                 cs.brightCyan = colorSchemeObj["brightCyan"].toString();
-                qDebug() << "brightCyan: " << colorSchemeObj["brightCyan"].toString();
+                //qDebug() << "brightCyan: " << colorSchemeObj["brightCyan"].toString();
 
                 cs.brightGreen = colorSchemeObj["brightGreen"].toString();
-                qDebug() << "brightGreen: " << colorSchemeObj["brightGreen"].toString();
+                //qDebug() << "brightGreen: " << colorSchemeObj["brightGreen"].toString();
 
                 cs.brightPurple = colorSchemeObj["brightPurple"].toString();
-                qDebug() << "brightPurple: " << colorSchemeObj["brightPurple"].toString();
+                //qDebug() << "brightPurple: " << colorSchemeObj["brightPurple"].toString();
 
                 cs.brightRed = colorSchemeObj["brightRed"].toString();
-                qDebug() << "brightRed: " << colorSchemeObj["brightRed"].toString();
+                //qDebug() << "brightRed: " << colorSchemeObj["brightRed"].toString();
 
                 cs.brightWhite = colorSchemeObj["brightWhite"].toString();
-                qDebug() << "brightWhite: " << colorSchemeObj["brightWhite"].toString();
+                //qDebug() << "brightWhite: " << colorSchemeObj["brightWhite"].toString();
 
                 cs.brightYellow = colorSchemeObj["brightYellow"].toString();
-                qDebug() << "brightYellow: " << colorSchemeObj["brightYellow"].toString();
+                //qDebug() << "brightYellow: " << colorSchemeObj["brightYellow"].toString();
                 confInfo->colorSchemeList.append(cs);
             }
         }
@@ -374,14 +374,14 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue infoDisplayValue = terminalObj.value("infoDisplay");
             if (infoDisplayValue.isDouble()) {
                 confInfo->infoDisplay = infoDisplayValue.toInt();
-                qDebug() << "infoDisplay:" << confInfo->infoDisplay;
+                //qDebug() << "infoDisplay:" << confInfo->infoDisplay;
             }
 
             // 获取"historyDisplay"属性值
             QJsonValue historyDisplayValue = terminalObj.value("historyDisplay");
             if (historyDisplayValue.isDouble()) {
                 confInfo->historyDisplay = historyDisplayValue.toInt();
-                qDebug() << "historyDisplay:" << confInfo->historyDisplay;
+                //qDebug() << "historyDisplay:" << confInfo->historyDisplay;
             }
 
             // 获取"commandDisplay"属性值
@@ -395,37 +395,37 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue conectStatsDisplayValue = terminalObj.value("conectStatsDisplay");
             if (conectStatsDisplayValue.isDouble()) {
                 confInfo->conectStatsDisplay = conectStatsDisplayValue.toInt();
-                qDebug() << "conectStatsDisplay:" << confInfo->conectStatsDisplay;
+                //qDebug() << "conectStatsDisplay:" << confInfo->conectStatsDisplay;
             }
 
             QJsonValue mouseRightClickValue = terminalObj.value("mouseRightClick");
             if (mouseRightClickValue.isDouble()) {
                 confInfo->mouseRightClick = mouseRightClickValue.toInt();
-                qDebug() << "mouseRightClick:" << confInfo->mouseRightClick;
+                //qDebug() << "mouseRightClick:" << confInfo->mouseRightClick;
             }
 
             QJsonValue mouseWheelClickValue = terminalObj.value("mouseWheelClick");
             if (mouseWheelClickValue.isDouble()) {
                 confInfo->mouseWheelClick = mouseWheelClickValue.toInt();
-                qDebug() << "mouseWheelClick:" << confInfo->mouseWheelClick;
+                //qDebug() << "mouseWheelClick:" << confInfo->mouseWheelClick;
             }
 
             QJsonValue backgroundValue = terminalObj.value("background");
             if (backgroundValue.isDouble()) {
                 confInfo->background = backgroundValue.toInt();
-                qDebug() << "background:" << confInfo->background;
+                //qDebug() << "background:" << confInfo->background;
             }
 
             QJsonValue currentBackgroundValue = terminalObj.value("currentBackground");
             if (currentBackgroundValue.isDouble()) {
                 confInfo->currentBackground = currentBackgroundValue.toInt();
-                qDebug() << "currentBackground:" << confInfo->currentBackground;
+                //qDebug() << "currentBackground:" << confInfo->currentBackground;
             }
 
             QJsonValue backgroundTransparencyValue = terminalObj.value("backgroundTransparency");
             if (backgroundTransparencyValue.isDouble()) {
                 confInfo->backgroundTransparency = backgroundTransparencyValue.toInt();
-                qDebug() << "backgroundTransparency:" << confInfo->backgroundTransparency;
+                //qDebug() << "backgroundTransparency:" << confInfo->backgroundTransparency;
             }
 
             QJsonValue pictureListValue = terminalObj.value("pictureList");
@@ -433,7 +433,7 @@ MainWindow::MainWindow(QWidget *parent) :
                 for(int i = 0; i < pictureListValue.toArray().size(); i++) {
                     confInfo->pictureList.append(pictureListValue.toArray()[i].toString());
                 }
-                qDebug() << "pictureList:" << confInfo->pictureList;
+                //qDebug() << "pictureList:" << confInfo->pictureList;
             }
         }
     }
@@ -1123,6 +1123,7 @@ void MainWindow::on_newTool()
                 zmanagewidget = new zookeepermanagewidget();
                 ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), toolName);
                 ui->stackedWidget->setCurrentIndex(0);
+                ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
             } else {
                 //切换到zookeeper tabWidget
                 for(int i = 0; i < ui->tabWidget->count(); i ++) {
@@ -1136,7 +1137,7 @@ void MainWindow::on_newTool()
         } else if (actionText == "Thrift接口测试") {
             toolName = "Thrift接口测试";
             twidget = new thriftwidget(this);
-            ui->tabWidget->addTab(twidget, QIcon(":lib/test.png").pixmap(iconSize), toolName);
+            ui->tabWidget->addTab(twidget, QIcon(":lib/icon_test.png").pixmap(iconSize), toolName);
             ui->stackedWidget->setCurrentIndex(0);
             twidget->show();
             ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
@@ -1476,17 +1477,17 @@ void MainWindow::on_toolButton_about_clicked()
      awidget->show();
 }
 
-void MainWindow::on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked()
-{
-    int8_t connectType = 0;
-    //创建连接窗口
-    hcwidget = new historyconnectwidget(connectType);
-    //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-    ui->tabWidget->addTab(hcwidget, "快速连接");
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-    ui->stackedWidget->setCurrentIndex(0);
-    hcwidget->show();
-}
+// void MainWindow::on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked()
+// {
+//     int8_t connectType = 0;
+//     //创建连接窗口
+//     hcwidget = new historyconnectwidget(connectType);
+//     //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+//     ui->tabWidget->addTab(hcwidget, "快速连接");
+//     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+//     ui->stackedWidget->setCurrentIndex(0);
+//     hcwidget->show();
+// }
 
 void MainWindow::on_toolButton_manage_clicked()
 {
