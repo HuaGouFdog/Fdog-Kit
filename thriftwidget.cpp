@@ -428,7 +428,7 @@ void thriftwidget::buildData()
 
 void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString value)
 {
-    qDebug() << "serialNumber = " << serialNumber << " valueType = " << valueType << " value = " << value;
+   qDebug() << "serialNumber = " << serialNumber << " valueType = " << valueType << " value = " << value;
    //设置类型
    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
    string2stringList(type);
@@ -669,30 +669,146 @@ void thriftwidget::map2List(QStringList &dataList, QString data)
     }
 }
 
+void thriftwidget::cleanMessage()
+{
+    dataList.clear();
+    dataList.resize(0);
+}
 
-//void thriftwidget::objectSerialize()
-//{
-
-//}
-
-//void thriftwidget::serialize(int serialNumber, QString valueType, QString value)
-//{
-//    //获取到类型
-//    int objectType = 0;
-//    switch (objectType) {
-//        case OBJECT_BASE:
-//        //基础类型
-//        baseSerialize()
-//        break;
-//        case OBJECT_STRUCT:
-        
-//        //复杂类型
-//        break;
-//    }
+void thriftwidget::assembleTBinaryMessage()
+{
+    //清除老数据
+    cleanMessage();
     
+}
 
-    
-//}
+void thriftwidget::writeTBinaryHeadMessage(QString serialNumber)
+{
+    //设置请求类型
+    QString reqType = ui->comboBox_reqType->currentText();
+    string2stringList(mapReqType.value(reqType));
+    //添加接口长度
+    int funcLen = ui->lineEdit_funcName->text().length();
+    QString funcLenData = QString("%1").arg(funcLen, 8, 16, QLatin1Char('0'));
+    string2stringList(funcLenData);
+    //添加接口名
+    QByteArray byteArray = ui->lineEdit_funcName->text().toUtf8(); // 将字符串转换为字节数组
+    QString funcNameData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+    string2stringList(funcNameData);
+    //添加流水号
+    string2stringList(serialNumber);
+}
+
+void thriftwidget::writeTBinaryTypeAndSerialNumber(QString valueType, int serialNumber)
+{
+    //设置参数类型
+    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+    string2stringList(type);
+    //设置参数序号
+    QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
+    string2stringList(serialNumberStr);
+}
+
+void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
+{
+    if (valueType == "bool" || valueType == "byte" || valueType == "i16" || valueType == "i32") {
+        writeTBinaryFormatData(value.toInt(), valueType);
+    } else if (valueType == "i64") { 
+        writeTBinaryFormatData(value.toULongLong(), valueType);
+    } else if (valueType == "double") {
+        writeTBinaryFormatData(value.toDouble(), valueType);
+    } else if (valueType == "string") {
+        writeTBinaryFormatData(value, valueType);
+    } else {
+        qDebug() << "出错";
+    }
+}
+
+void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString value, QString paramKeyType, QString paramValueType)
+{
+    if (valueType == "set" || valueType == "list") {
+        //设置key类型
+        QString type2 = QString("%1").arg(mapType.value(paramKeyType), 2, 16, QLatin1Char('0'));
+        string2stringList(type2);
+        //设置元素个数
+        QString data = value.mid(1, value.length() - 2);
+        QStringList dataList = data.split(",");
+        QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+        string2stringList(lenData);
+        //暂时分三种情况1. key为基础类型，value为基础类型 2. key为基础类型，value为集合类型 3. key为基础类型，value为复杂类型
+        if (baseType.contains(paramKeyType)) {
+            //key为基础类型
+            for (const QString &str : dataList) {
+                writeTBinaryBaseMessage(paramKeyType, str);
+            }
+        } else if (containerType.contains(paramKeyType)) {
+            //key为集合
+        } else {
+            //key为struct
+        }
+    } else if (valueType == "map") {
+        //设置key类型
+        QString type2 = QString("%1").arg(mapType.value(paramKeyType), 2, 16, QLatin1Char('0'));
+        string2stringList(type2);
+        //设置value类型
+        QString type3 = QString("%1").arg(mapType.value(paramValueType), 2, 16, QLatin1Char('0'));
+        string2stringList(type3);
+        //设置元素个数
+        QString data = value.mid(1, value.length() - 2);
+        QStringList dataList;
+        map2List(dataList, data);
+        qDebug() << "map dataList = " << dataList;
+        QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+        string2stringList(lenData);
+        if (baseType.contains(paramKeyType)) {
+            //设置元素值
+            for (const QString &str : dataList) {
+                int index = str.indexOf(":");
+                //设置key值
+                writeTBinaryBaseMessage(paramKeyType, str.mid(0, index));
+                if (baseType.contains(paramValueType)) {
+                    writeTBinaryBaseMessage(paramValueType, str.mid(index+1));
+                } else if (containerType.contains(paramValueType)) {
+                    //集合
+                } else {
+                    //struct
+                }
+            }
+        } else {
+            //key如果不是基础类型，不支持
+        }
+    } else {
+        qDebug() << "出错";
+    }
+}
+
+void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item)
+{
+   //遍历item，获取所有子节点，暂时不考虑孙节点
+   for(int i = 0; i < item->childCount(); i++) {
+       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(i));
+       //暂不考虑孙节点
+       valueType = itemChild->comboBoxBase->currentText();
+       QString value = itemChild->lineEditParamValue->text();
+       qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
+       //设置类型
+       QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+       string2stringList(type);
+       //设置序号
+       QString serialNumberStr = QString("%1").arg(i+1, 4, 16, QLatin1Char('0'));
+       string2stringList(serialNumberStr);
+       if (baseType.contains(valueType)) {
+           writeTBinaryBaseMessage(valueType, value);
+       } else if (containerType.contains(valueType)) {
+           //集合
+       } else {
+           //struct
+       }
+   }
+}
+
+
+
 
 void thriftwidget::parseData()
 {

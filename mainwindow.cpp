@@ -210,7 +210,7 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue trayDisplayValue = activateObj.value("trayDisplay");
             if (trayDisplayValue.isDouble()) {
                 confInfo->trayDisplay = trayDisplayValue.toInt();
-                qDebug() << "trayDisplay:" << confInfo->trayDisplay;
+                //qDebug() << "trayDisplay:" << confInfo->trayDisplay;
             }
 
             // 获取"startMode"属性值
@@ -388,7 +388,7 @@ MainWindow::MainWindow(QWidget *parent) :
             QJsonValue commandDisplayValue = terminalObj.value("commandDisplay");
             if (commandDisplayValue.isDouble()) {
                 confInfo->commandDisplay = commandDisplayValue.toInt();
-                qDebug() << "commandDisplay:" << confInfo->commandDisplay;
+                //qDebug() << "commandDisplay:" << confInfo->commandDisplay;
             }
 
             // 获取"conectStatsDisplay"属性值

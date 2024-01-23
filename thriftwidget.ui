@@ -21,7 +21,45 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: rgb(86, 86, 86);</string>
+   <string notr="true">QMenu {
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 5px 0px 5px 0px;
+border-radius:6px;
+border:2px solid rgb(108, 117, 125, 65); 
+}
+QMenu::item {
+	font-size: 10pt;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+	
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 25px 5px 25px;
+    /*margin: 2px 2px 2px 2px;*/
+}
+QMenu::item:selected {
+    background-color : rgb(236,236,237);
+}
+QMenu::icon:checked {
+    background: rgb(253,253,254);
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+}
+QMenu::icon:checked:selected {
+    background-color : rgb(236,236,237);
+    background-image: url(:/space_selected.png);
+}
+QMenu::separator {
+    height: 2px;
+    background: rgb(235,235,236);
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+}</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_4">
    <property name="spacing">
@@ -1398,6 +1436,13 @@ QToolButton {
 QTreeWidget {
 	border:2px solid rgb(54, 81, 97);
 	color: rgb(0, 0, 0);
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+}
+
+QHeaderView {
+font: 10pt &quot;OPPOSans B&quot;;
+color: rgb(56, 56, 56);
 }
 
 QTreeWidget#treeWidget {

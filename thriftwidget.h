@@ -135,6 +135,56 @@ public:
     void structSerialize(int serialNumber, QString valueType, ItemWidget * item);
 
     void map2List(QStringList &dataList, QString data);
+
+    //清空消息
+    void cleanMessage();
+
+    //组装二进制协议消息
+    void assembleTBinaryMessage();
+
+    //设置二进制请求类型，接口长度，接口名，流水号
+    void writeTBinaryHeadMessage(QString serialNumber = "00000000");
+
+    //设置类型序号
+    void writeTBinaryTypeAndSerialNumber(QString valueType, int serialNumber);
+
+    //组装基础类型数据
+    void writeTBinaryBaseMessage(QString valueType, QString value);
+
+    //组装集合类型数据
+    void writeTBinaryCollectionMessage(QString valueType, QString value, QString paramKeyType, QString paramValueType);
+
+    //组装结构体数据
+    void writeTBinaryStructMessage(QString valueType, ItemWidget * item);
+
+    //写入数据
+    template<class T>
+    void writeTBinaryFormatData(T value, QString valueType) {
+       QString fromatData = QString("%1").arg(value, mapSize.value(valueType), 16, QLatin1Char('0'));
+       string2stringList(fromatData);
+    }
+
+    template<>
+    void writeTBinaryFormatData(double value, QString valueType) {
+        qulonglong d_long = *(qulonglong*)&value;
+        QString fromatData = QString("%1").arg(d_long, mapSize.value(valueType), 16, QLatin1Char('0'));
+        QString reversedString;
+        while (fromatData.length()!=0) {
+            reversedString = reversedString + fromatData.mid(fromatData.length()-2);
+            fromatData = fromatData.mid(0, fromatData.length()-2);
+        }
+        string2stringList(reversedString);
+    }
+
+    template<>
+    void writeTBinaryFormatData(QString value, QString valueType) {
+        int len = value.length();
+        QString lenData = QString("%1").arg(len, mapSize.value("i32"), 16, QLatin1Char('0'));
+        string2stringList(lenData);
+        QString valueData = value.toUtf8().toHex();
+        string2stringList(valueData);
+    }
+    //
     //void objectSerialize();
 
     //处理
