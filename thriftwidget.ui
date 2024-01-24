@@ -483,7 +483,7 @@ QScrollBar::up-arrow:vertical {
        <number>7</number>
       </property>
       <property name="rightMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -1023,7 +1023,7 @@ QComboBox QAbstractItemView{
           <number>0</number>
          </property>
          <property name="rightMargin">
-          <number>0</number>
+          <number>10</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -1157,11 +1157,19 @@ QToolButton:hover {
           <string notr="true">QComboBox{
 	font: 10pt &quot;OPPOSans B&quot;;
 	color:#ffffff;
-	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
-	border-radius:5px;
 	background:transparent;
+	border-radius: 0px;
 }
+
+QComboBox::focus {
+border: 1px solid rgb(255, 104, 17);
+}
+
+QComboBox::hover {
+border: 1px solid rgb(255, 104, 17);
+}
+
 
 QComboBox QAbstractItemView{
 	font: 10pt &quot;OPPOSans B&quot;;
@@ -1422,10 +1430,19 @@ QToolButton:hover {
 font: 10pt &quot;OPPOSans B&quot;;
 color:#ced4da;
 background-color: rgba(255, 255, 255, 0);
-border: 1px solid rgba(255, 255, 255, 0);
 border-radius: 0px;
 padding-left:0px;
 padding-right:0px;
+
+}
+
+
+QLineEdit::focus {
+border: 1px solid rgb(255, 104, 17);
+}
+
+QLineEdit::hover {
+border: 1px solid rgb(255, 104, 17);
 }
 
 QToolButton {
@@ -1453,7 +1470,7 @@ QTreeWidget::item {
 	height: 28px;
 	color: rgb(255, 255, 255);
 	outline: 0px;
-	border-bottom: 1px solid rgba(207, 207, 207,50);
+	border-bottom: 1px solid rgba(197, 197, 197, 50);
 }
 
 QTreeWidget::item:hover {
@@ -1602,7 +1619,7 @@ QScrollBar::up-arrow:horizontal {
             </widget>
             <widget class="QWidget" name="widget_thrift" native="true">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(54, 81, 97);</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <property name="spacing">
@@ -1633,6 +1650,9 @@ QScrollBar::up-arrow:horizontal {
                   <width>16777215</width>
                   <height>28</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <property name="spacing">
@@ -1674,8 +1694,8 @@ QScrollBar::up-arrow:horizontal {
                    <property name="styleSheet">
                     <string notr="true">background-color: rgb(54, 81, 97);
 color: rgb(255, 255, 255);
-padding-left:2px;
-padding-right:10px;</string>
+padding-left:0px;
+padding-right:px;</string>
                    </property>
                    <property name="text">
                     <string/>

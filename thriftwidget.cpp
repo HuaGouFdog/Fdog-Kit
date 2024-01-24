@@ -49,7 +49,7 @@ void ItemWidget::init()
     comboBoxBase->addItem("set");
     comboBoxBase->addItem("list");
     comboBoxBase->setCurrentIndex(3);
-    comboBoxBase->setMinimumHeight(30);
+    comboBoxBase->setMinimumHeight(29);
 
     comboBoxBase->setView(new QListView());  //必须设置
 
@@ -70,7 +70,7 @@ void ItemWidget::init()
     comboBoxKey->addItem("set");
     comboBoxKey->addItem("list");
     comboBoxKey->setCurrentIndex(0);
-    comboBoxKey->setMinimumHeight(30);
+    comboBoxKey->setMinimumHeight(29);
     comboBoxKey->hide();
 
     comboBoxKey->setView(new QListView());  //必须设置
@@ -92,7 +92,7 @@ void ItemWidget::init()
     comboBoxValue->addItem("set");
     comboBoxValue->addItem("list");
     comboBoxValue->setCurrentIndex(0);
-    comboBoxValue->setMinimumHeight(30);
+    comboBoxValue->setMinimumHeight(29);
 
     comboBoxValue->hide();
 
@@ -104,10 +104,11 @@ void ItemWidget::init()
 
     lineEditParamName = new QLineEdit();
     lineEditParamName->setPlaceholderText("参数名");
-    //lineEditParamValue->setMinimumHeight(30);
+    lineEditParamName->setMinimumHeight(29);
+
     lineEditParamValue = new QLineEdit();
     lineEditParamValue->setPlaceholderText("参数值");
-    //lineEditParamValue->setMinimumHeight(30);
+    lineEditParamValue->setMinimumHeight(29);
     connect(lineEditParamValue,&QLineEdit::textChanged,[=]{
         emit send_onTextChanged(lineEditParamValue->text(), this);
     });
@@ -121,7 +122,7 @@ void ItemWidget::init()
     });
     checkBox = new QCheckBox("");
     checkBox->setChecked(false);
-
+    checkBox->setMinimumHeight(30);
     moveButton = new QToolButton();
     moveButton->setIcon(QIcon(":lib/tuodong.png"));
     moveButton->setIconSize(QSize(20, 20));
@@ -785,24 +786,18 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
 void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item)
 {
    //遍历item，获取所有子节点，暂时不考虑孙节点
-   for(int i = 0; i < item->childCount(); i++) {
-       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(i));
-       //暂不考虑孙节点
+   for(int serialNumber = 1; serialNumber <= item->childCount(); serialNumber++) {
+       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(serialNumber-1));
        valueType = itemChild->comboBoxBase->currentText();
        QString value = itemChild->lineEditParamValue->text();
-       qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
-       //设置类型
-       QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-       string2stringList(type);
-       //设置序号
-       QString serialNumberStr = QString("%1").arg(i+1, 4, 16, QLatin1Char('0'));
-       string2stringList(serialNumberStr);
+       writeTBinaryTypeAndSerialNumber(valueType, serialNumber);
        if (baseType.contains(valueType)) {
            writeTBinaryBaseMessage(valueType, value);
        } else if (containerType.contains(valueType)) {
            //集合
        } else {
            //struct
+           //暂不考虑孙节点
        }
    }
 }
@@ -859,7 +854,7 @@ void thriftwidget::rece_deleteItem(QTreeWidgetItem *item)
     qDebug() << "删除";
     QTreeWidgetItem* parent = item->parent();
     if (NULL==parent) {
-        if (ui->treeWidget->topLevelItemCount() > 2) {
+        if (ui->treeWidget->topLevelItemCount() > 1) {
             int index = ui->treeWidget->indexOfTopLevelItem(item);
             ui->treeWidget->takeTopLevelItem(index);
             delete item;
@@ -910,38 +905,52 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
     } else if (data == "") {
         //删除gai
     }
-
+    ui->treeWidget->style()->polish(ui->treeWidget);
+    // ui->treeWidget->hide();
+    // ui->treeWidget->show();
 }
 
 void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 {
     
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
-    qDebug() << "进入1 " << item_->comboBoxBase->currentText();
-    qDebug() << "进入2 " << item_->comboBoxKey->currentText();
-    if (item_->comboBoxBase->currentText() == "struct" || item_->comboBoxKey->currentText() == "struct") {
-        qDebug() << "选择struct";
+    // || item_->comboBoxKey->currentText() == "struct" || item_->comboBoxValue->currentText() == "struct"
+    if (item_->comboBoxBase->currentText() == "struct") {
+        //创建子节点
+        item_->comboBoxKey->hide();
+        item_->comboBoxValue->hide();
+        item_->checkBox->setChecked(true);
         ItemWidget* item2 = new ItemWidget(item);
         connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         item2->setText(0, "");
-
-        // ItemWidget* items = new ItemWidget(ui->treeWidget);
-        // connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
-        // connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
-        // connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         item_->setExpanded(true);
+        //向下创建同级节点
+        ItemWidget* items = new ItemWidget(ui->treeWidget);
+        connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
     } else if (item_->comboBoxBase->currentText() == "map") {
         item_->comboBoxKey->show();
         item_->comboBoxValue->show();
     } else if (item_->comboBoxBase->currentText() == "set") {
         item_->comboBoxKey->show();
+        item_->comboBoxValue->hide();
     } else if (item_->comboBoxBase->currentText() == "list") {
         item_->comboBoxKey->show();
+        item_->comboBoxValue->hide();
     } else {
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
+    }
+    if (item_->comboBoxBase->currentText() != "struct") {
+        //删除下面所有节点
+        int childCount = item_->childCount();
+        for (int i = childCount - 1; i >= 0; --i) {
+            ItemWidget* childItem = dynamic_cast<ItemWidget*>(item_->takeChild(i));
+            delete childItem;
+        }
     }
 }
 
