@@ -579,6 +579,7 @@ public:
 "	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
+"	margin-right: 10px;\n"
 "}\n"
 "\n"
 "\n"
@@ -1012,7 +1013,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);

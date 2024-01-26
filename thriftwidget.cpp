@@ -680,7 +680,36 @@ void thriftwidget::assembleTBinaryMessage()
 {
     //清除老数据
     cleanMessage();
-    
+    //添加数据头 serialNumber为流水号 默认00000000
+    writeTBinaryHeadMessage();
+    //遍历节点写入数据
+    for(int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
+        ItemWidget * item = dynamic_cast<ItemWidget*>(ui->treeWidget->topLevelItem(i));
+        if (!item->checkBox->isChecked()) {
+            //未勾选跳过
+            continue;
+        }
+        QString valueType = item->comboBoxBase->currentText();
+        QString value = item->lineEditParamValue->text();
+        //设置类型和序号
+        writeTBinaryTypeAndSerialNumber(valueType, i + 1);
+        if (baseType.contains(valueType)) {
+            //构建基础类型
+            writeTBinaryBaseMessage(valueType, value);
+        } else if (containerType.contains(valueType)) {
+            //构建集合类型
+            writeTBinaryCollectionMessage(valueType, value, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
+        } else {
+            //构建struct
+            writeTBinaryStructMessage(valueType, item);
+        }
+    }
+    //写入结束,添加结束符号
+    writeTBinaryEndMessage();
+
+    if (ui->comboBox_transport->currentText() == TFramedTransport_) {
+        writeTBinarySizeMessage();
+    }
 }
 
 void thriftwidget::writeTBinaryHeadMessage(QString serialNumber)
@@ -725,18 +754,15 @@ void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
     }
 }
 
-void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString value, QString paramKeyType, QString paramValueType)
+void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString value, ItemWidget *item, QString paramKeyType, QString paramValueType)
 {
     if (valueType == "set" || valueType == "list") {
         //设置key类型
-        QString type2 = QString("%1").arg(mapType.value(paramKeyType), 2, 16, QLatin1Char('0'));
-        string2stringList(type2);
+        writeTBinaryTypeMessage(paramKeyType);
         //设置元素个数
-        QString data = value.mid(1, value.length() - 2);
-        QStringList dataList = data.split(",");
-        QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
-        string2stringList(lenData);
-        //暂时分三种情况1. key为基础类型，value为基础类型 2. key为基础类型，value为集合类型 3. key为基础类型，value为复杂类型
+        QStringList dataList;
+        writeTBinaryKeySize(dataList, value);
+
         if (baseType.contains(paramKeyType)) {
             //key为基础类型
             for (const QString &str : dataList) {
@@ -744,23 +770,26 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
             }
         } else if (containerType.contains(paramKeyType)) {
             //key为集合
+            for (const QString &str : dataList) {
+                writeTBinaryCollectionMessage(paramKeyType, str, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
+            }
         } else {
             //key为struct
+            for (const QString &str : dataList) {
+                if (item->childCount() > 0) {
+                    writeTBinaryStructMessage(paramKeyType, item);
+                }
+            }
         }
     } else if (valueType == "map") {
         //设置key类型
-        QString type2 = QString("%1").arg(mapType.value(paramKeyType), 2, 16, QLatin1Char('0'));
-        string2stringList(type2);
+        writeTBinaryTypeMessage(paramKeyType);
         //设置value类型
-        QString type3 = QString("%1").arg(mapType.value(paramValueType), 2, 16, QLatin1Char('0'));
-        string2stringList(type3);
+        writeTBinaryTypeMessage(paramValueType);
         //设置元素个数
-        QString data = value.mid(1, value.length() - 2);
         QStringList dataList;
-        map2List(dataList, data);
-        qDebug() << "map dataList = " << dataList;
-        QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
-        string2stringList(lenData);
+        writeTBinaryValueSize(dataList, value);
+
         if (baseType.contains(paramKeyType)) {
             //设置元素值
             for (const QString &str : dataList) {
@@ -771,8 +800,10 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
                     writeTBinaryBaseMessage(paramValueType, str.mid(index+1));
                 } else if (containerType.contains(paramValueType)) {
                     //集合
+                    writeTBinaryCollectionMessage(paramValueType, str.mid(index+1), item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
                 } else {
                     //struct
+                    writeTBinaryStructMessage(paramValueType, item);
                 }
             }
         } else {
@@ -785,21 +816,61 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
 
 void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item)
 {
-   //遍历item，获取所有子节点，暂时不考虑孙节点
-   for(int serialNumber = 1; serialNumber <= item->childCount(); serialNumber++) {
-       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(serialNumber-1));
-       valueType = itemChild->comboBoxBase->currentText();
-       QString value = itemChild->lineEditParamValue->text();
-       writeTBinaryTypeAndSerialNumber(valueType, serialNumber);
-       if (baseType.contains(valueType)) {
-           writeTBinaryBaseMessage(valueType, value);
-       } else if (containerType.contains(valueType)) {
+    //遍历item
+   for(int serialNumber = 0; serialNumber < item->childCount(); serialNumber++) {
+       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(serialNumber));
+       //设置类型和序号
+       QString valueType_ = itemChild->comboBoxBase->currentText();
+       QString value_ = itemChild->lineEditParamValue->text();
+       writeTBinaryTypeAndSerialNumber(valueType, serialNumber + 1);
+       if (baseType.contains(valueType_)) {
+           writeTBinaryBaseMessage(valueType_, value_);
+       } else if (containerType.contains(valueType_)) {
            //集合
+           writeTBinaryCollectionMessage(valueType_, value_, itemChild, itemChild->comboBoxKey->currentText(), itemChild->comboBoxValue->currentText());
        } else {
            //struct
-           //暂不考虑孙节点
+           writeTBinaryStructMessage(valueType_, itemChild);
        }
    }
+}
+
+void thriftwidget::writeTBinaryEndMessage()
+{
+    QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
+    dataList.append(stop);
+}
+
+void thriftwidget::writeTBinarySizeMessage()
+{
+    QString data;
+    for (const QString& value : dataList) {
+        data = data + value;
+    }
+    QString dataLength = QString("%1").arg(data.length()/2, 8, 16, QLatin1Char('0'));
+    dataList.insert(0, dataLength);
+}
+
+void thriftwidget::writeTBinaryTypeMessage(QString type_)
+{
+    QString type = QString("%1").arg(mapType.value(type_), 2, 16, QLatin1Char('0'));
+    string2stringList(type);
+}
+
+void thriftwidget::writeTBinaryKeySize(QStringList &dataList, QString value)
+{
+    QString data = value.mid(1, value.length() - 2);
+    dataList = data.split(",");
+    QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+    string2stringList(lenData);
+}
+
+void thriftwidget::writeTBinaryValueSize(QStringList &dataList, QString value)
+{
+    QString data = value.mid(1, value.length() - 2);
+    map2List(dataList, data);
+    QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+    string2stringList(lenData);
 }
 
 

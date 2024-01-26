@@ -152,10 +152,25 @@ public:
     void writeTBinaryBaseMessage(QString valueType, QString value);
 
     //组装集合类型数据
-    void writeTBinaryCollectionMessage(QString valueType, QString value, QString paramKeyType, QString paramValueType);
+    void writeTBinaryCollectionMessage(QString valueType, QString value, ItemWidget *item, QString paramKeyType, QString paramValueType);
 
     //组装结构体数据
     void writeTBinaryStructMessage(QString valueType, ItemWidget * item);
+
+    //写入结束
+    void writeTBinaryEndMessage();
+
+    //数据头写入数据长度
+    void writeTBinarySizeMessage();
+
+    //写入类型
+    void writeTBinaryTypeMessage(QString type_);
+
+    //写入元素数量
+    void writeTBinaryKeySize(QStringList &dataList, QString value);
+
+    //写入元素数量2
+    void writeTBinaryValueSize(QStringList &dataList, QString value);
 
     //写入数据
     template<class T>
@@ -184,6 +199,7 @@ public:
         QString valueData = value.toUtf8().toHex();
         string2stringList(valueData);
     }
+
     //
     //void objectSerialize();
 

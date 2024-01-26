@@ -494,6 +494,7 @@ public:
 "	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
+"	margin-right: 10px;\n"
 "}\n"
 "\n"
 "\n"
@@ -1393,7 +1394,7 @@ public:
         scrollArea_4->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 832, 750));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 234, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents_4);
         verticalLayout_8->setSpacing(6);
@@ -2175,7 +2176,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, -296, 832, 1081));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 543, 1081));
         scrollAreaWidgetContents_3->setMinimumSize(QSize(0, 1081));
         verticalLayout_27 = new QVBoxLayout(scrollAreaWidgetContents_3);
         verticalLayout_27->setSpacing(6);
@@ -2970,7 +2971,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 832, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 391, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -4081,7 +4082,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(settingwidget);

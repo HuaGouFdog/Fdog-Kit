@@ -54,6 +54,7 @@ QComboBox::down-arrow{
 	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
+	margin-right: 10px;
 }
 
 
@@ -525,7 +526,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -2286,7 +2287,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>832</width>
+               <width>234</width>
                <height>750</height>
               </rect>
              </property>
@@ -3901,8 +3902,8 @@ QScrollBar::up-arrow:vertical {
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-296</y>
-               <width>832</width>
+               <y>0</y>
+               <width>543</width>
                <height>1081</height>
               </rect>
              </property>
@@ -5726,7 +5727,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>832</width>
+               <width>391</width>
                <height>830</height>
               </rect>
              </property>

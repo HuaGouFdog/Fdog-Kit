@@ -764,6 +764,7 @@ QComboBox::down-arrow{
 	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
+	margin-right: 10px;
 }
 
 
@@ -1566,7 +1567,7 @@ QScrollBar::up-arrow:horizontal {
                  <bool>false</bool>
                 </property>
                 <attribute name="headerVisible">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </attribute>
                 <attribute name="headerDefaultSectionSize">
                  <number>100</number>
