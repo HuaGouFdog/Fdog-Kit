@@ -46,7 +46,11 @@ SOURCES += \
     downloadwidget.cpp \
     mkdirfolderwidget.cpp \
     addcommondwidget.cpp \
-    historycommondwidget.cpp
+    historycommondwidget.cpp \
+    config.cpp \
+    thriftwidget.cpp \
+    zookeepertipswidget.cpp \
+    zookeepermanagewidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -70,7 +74,11 @@ HEADERS += \
     downloadwidget.h \
     mkdirfolderwidget.h \
     addcommondwidget.h \
-    historycommondwidget.h
+    historycommondwidget.h \
+    config.h \
+    thriftwidget.h \
+    zookeepertipswidget.h \
+    zookeepermanagewidget.h
 
 FORMS += \
         mainwindow.ui \
@@ -89,11 +97,15 @@ FORMS += \
     downloadwidget.ui \
     mkdirfolderwidget.ui \
     addcommondwidget.ui \
-    historycommondwidget.ui
+    historycommondwidget.ui \
+    thriftwidget.ui \
+    zookeepertipswidget.ui \
+    zookeepermanagewidget.ui
 
 RESOURCES += \
     lib.qrc \
-    conf.qrc
+    conf.qrc \
+    qss/qss.qrc
 
 QT += network
 
@@ -110,3 +122,5 @@ DEPENDPATH += $$PWD/../libssh2.11.0/include
 LIBS += -luser32
 
 DISTFILES +=
+
+QT.testlib.CONFIG -= console

@@ -26,6 +26,9 @@
 #include <QJsonArray>
 #include <QShortcut>
 #include <QDesktopServices>
+#include <QFile>
+
+#include "utils.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -151,24 +154,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->widget_4->hide();
 
-    // 创建系统托盘图标
-    trayIcon = new QSystemTrayIcon(QIcon(":lib/icon9.png"), this);
-    trayIcon->show();
-
-    // 创建一个菜单
-    QMenu* menu = new QMenu();
-    QAction* openAction = new QAction("打开");
-    QAction* closeAction = new QAction("退出");
-    menu->addAction(openAction);
-    menu->addAction(closeAction);
-    // 将菜单设置给系统托盘图标
-    trayIcon->setContextMenu(menu);
-
-    // 处理单击事件
-    //QObject::connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::trayIconActivated);
-    //QObject::connect(restoreAction, &QAction::triggered, this, &MainWindow::restoreWindow);
-
-
+    //设置系统托盘
+    createSystemTray();
     //读取配置文件信息
     confInfo = new config();
     /*
@@ -888,6 +875,29 @@ void MainWindow::newConnectZk(QString name, QString host, QString port)
 
 }
 
+void MainWindow::createSystemTray()
+{
+    // 创建系统托盘图标
+    trayIcon = new QSystemTrayIcon(QIcon(":lib/icon9.png"), this);
+    trayIcon->setToolTip("Fdog-Kit");
+    trayIcon->show();
+
+    // 创建一个菜单
+    QMenu* menu = new QMenu();
+    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    menu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction* openAction = new QAction("打开");
+    QAction* closeAction = new QAction("退出");
+    menu->addAction(openAction);
+    menu->addAction(closeAction);
+    menu->setStyleSheet(getStyleFile("qss//menu.qss"));
+    // 将菜单设置给系统托盘图标
+    trayIcon->setContextMenu(menu);
+
+    connect(openAction, SIGNAL(triggered()), this, SLOT(rece_systemTrayMenu()));
+    connect(closeAction, SIGNAL(triggered()), this, SLOT(rece_systemTrayMenu()));
+}
+
 void MainWindow::on_toolButton_close_clicked()
 {
     //关闭
@@ -1529,4 +1539,20 @@ void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
 void MainWindow::on_widget_welcome_bottom_toolButton_github_clicked()
 {
     QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
+}
+
+void MainWindow::rece_systemTrayMenu()
+{
+    //获取发送者
+    QString toolName;
+    QString actionText = qobject_cast<QAction*>(sender())->text();
+    int8_t connectType = 0;
+    //创建连接窗口
+    if (actionText == "打开") {
+        //打开
+        this->showNormal();
+    } else {
+        //退出
+        qApp->quit();
+    }
 }

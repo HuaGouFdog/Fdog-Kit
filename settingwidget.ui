@@ -526,7 +526,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -2287,7 +2287,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>234</width>
+               <width>832</width>
                <height>750</height>
               </rect>
              </property>

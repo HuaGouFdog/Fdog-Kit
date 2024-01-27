@@ -1394,7 +1394,7 @@ public:
         scrollArea_4->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 234, 750));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 832, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents_4);
         verticalLayout_8->setSpacing(6);
@@ -4082,7 +4082,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(settingwidget);

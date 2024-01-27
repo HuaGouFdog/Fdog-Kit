@@ -30,4 +30,6 @@ signals:
 public slots:
 };
 
+    QString getStyleFile(QString path);
+
 #endif // UTILS_H

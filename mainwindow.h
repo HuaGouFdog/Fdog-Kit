@@ -63,6 +63,8 @@ public:
 
     void newConnectZk(QString name, QString host, QString port);
 
+    void createSystemTray();
+
 private slots:
     void on_toolButton_close_clicked();
 
@@ -137,6 +139,9 @@ private slots:
 
 
     void on_widget_welcome_bottom_toolButton_github_clicked();
+
+    //托盘菜单
+    void rece_systemTrayMenu();
 
 private:
     Ui::MainWindow *ui;

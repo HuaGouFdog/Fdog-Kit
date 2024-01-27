@@ -127,3 +127,21 @@ utils::utils(QWidget *parent) : QWidget(parent)
 {
 
 }
+
+QString getStyleFile(QString path)
+{
+    qDebug() << "getStyleFile";
+    QFile file(path);
+    QString styleSheet;
+    /* 判断文件是否存在 */
+    if (file.exists() ) {
+        /* 以只读的方式打开 */
+        file.open(QFile::ReadOnly);
+        /* 以字符串的方式保存读出的结果 */
+        styleSheet = QLatin1String(file.readAll());
+        /* 关闭文件 */
+        file.close();
+    }
+    qDebug() << styleSheet;
+    return styleSheet;
+}
