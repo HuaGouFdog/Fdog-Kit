@@ -65,6 +65,11 @@ public:
 
     QStringList pictureList;        //图片列表
 
+    //读取设置
+    void readSettingConf();
+    //写入设置
+    void writeSettingConf();
+
 public slots:
 
 private:

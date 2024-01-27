@@ -452,7 +452,7 @@ MainWindow::MainWindow(QWidget *parent) :
         this->showFullScreen();
         isFullScreen = true;
     }
-
+    confInfo->writeSettingConf();
 
 }
 
