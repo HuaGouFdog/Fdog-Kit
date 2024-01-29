@@ -293,7 +293,7 @@ void config::writeSettingConf()
     
     QJsonDocument jDoc(jObj);
     //打开存放json串的文件
-    QFile file("conf//jsonTest2.json");
+    QFile file("conf//settings.json");
     if(!file.open(QIODevice::WriteOnly))
         return ;
     //使用QJsonDocument的toJson方法获取json串并保存到数组

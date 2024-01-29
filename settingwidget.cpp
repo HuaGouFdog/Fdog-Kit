@@ -344,4 +344,115 @@ void settingwidget::on_toolButton_save_clicked()
 void settingwidget::on_toolButton_recover_clicked()
 {
     //恢复读取confInfo
+    //启动选项
+    if (confInfo->selfStart == 1) {
+        selfStart->setChecked(true);
+    } else {
+        selfStart->setChecked(false);
+    }
+    
+    if (confInfo->trayDisplay == 1) {
+        trayDisplay->setChecked(true);
+    } else {
+        trayDisplay->setChecked(false);
+    }
+
+    if (confInfo->startMode == 0) {
+        ui->comboBox_startMode->setCurrentIndex(0);
+    } else if (confInfo->startMode == 1) {
+        ui->comboBox_startMode->setCurrentIndex(1);
+    } else if (confInfo->startMode == 2) {
+        ui->comboBox_startMode->setCurrentIndex(2);
+    }
+
+    ui->spinBox_startPositionX->setValue(confInfo->startPositionX);
+    ui->spinBox_startPositionY->setValue(confInfo->startPositionY);
+
+    if (confInfo->startCenter == 1) {
+        startCenter->setChecked(true);
+    } else {
+        startCenter->setChecked(false);
+    }
+
+    //外观选项
+    if (confInfo->language == "cn") {
+        ui->comboBox_language->setCurrentIndex(0);
+    } else if (confInfo->language == "zn") {
+        ui->comboBox_language->setCurrentIndex(1);
+    }
+
+    if (confInfo->topDisplay == 1) {
+        topDisplay->setChecked(true);
+    } else {
+        topDisplay->setChecked(false);
+    }
+
+    if (confInfo->newLabelLocation == 0) {
+        ui->newLabelLocation->setCurrentIndex(0);
+    } else {
+        ui->newLabelLocation->setCurrentIndex(1);
+    }
+
+    if (confInfo->labelWidth == 0) {
+        ui->labelWidth->setCurrentIndex(0);
+    } else if (confInfo->labelWidth == 1) {
+        ui->labelWidth->setCurrentIndex(1);
+    } else if (confInfo->labelWidth == 2) {
+        ui->labelWidth->setCurrentIndex(2);
+    }
+
+    //字体选项
+    ui->spinBox_fontSize->setValue(confInfo->fontSize);
+    ui->label_fontEnglish->setValue(confInfo->fontEnglish);
+    ui->label_fontChinese->setValue(confInfo->fontChinese);
+
+    //配色选项 只支持选择
+
+    //终端选项
+    if (confInfo->infoDisplay == 1) {
+        infoDisplay->setChecked(true);
+    } else {
+        infoDisplay->setChecked(false);
+    }
+
+    if (confInfo->historyDisplay == 1) {
+        historyDisplay->setChecked(true);
+    } else {
+        historyDisplay->setChecked(false);
+    }
+
+    if (confInfo->commandDisplay == 1) {
+        commandDisplay->setChecked(true);
+    } else {
+        commandDisplay->setChecked(false);
+    }
+
+    if (confInfo->conectStatsDisplay == 1) {
+        conectStatsDisplay->setChecked(true);
+    } else {
+        conectStatsDisplay->setChecked(false);
+    }
+
+    if (confInfo->mouseRightClick == 0) {
+        ui->mouseRightClick->setCurrentIndex(0);
+    } else if (confInfo->mouseRightClick == 1) {
+        ui->mouseRightClick->setCurrentIndex(1);
+    }
+
+    if (confInfo->mouseWheelClick == 0) {
+        ui->mouseWheelClick->setCurrentIndex(0);
+    } else if (confInfo->mouseWheelClick == 1) {
+        ui->mouseWheelClick->setCurrentIndex(1);
+    }
+
+    if (confInfo->comboBox_background == 0) {
+        ui->comboBox_background->setCurrentIndex(0);
+    } else if (confInfo->comboBox_background == 1) {
+        ui->comboBox_background->setCurrentIndex(1);
+    } else if (confInfo->comboBox_background == 2) {
+        ui->comboBox_background->setCurrentIndex(2);
+    }
+
+    ui->lineEdit_currentBackground->setText(confInfo->currentBackground);
+
 }
