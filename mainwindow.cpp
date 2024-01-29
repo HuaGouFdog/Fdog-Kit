@@ -45,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
+    this->setStyleSheet(getStyleFile("qss//mainStyle.qss"));
+
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
@@ -75,30 +77,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //快捷键 F11 全屏
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(rece_toolButton_fullScreen_sign()));
-    //创建菜单栏及相关菜单
-//    men = new QMenu();
-//    men->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
-//                       "QMenu::item:selected {background-color: #0B0E11;}");
-//    ssh = new QAction(QIcon(":lib/powershell.png"), "ssh连接");
-//    men->addAction(ssh);
-//    zk = new QAction(QIcon(":lib/Zookeeper.png"), "zk连接");
-//    men->addAction(zk);
-//    kafka = new QAction(QIcon(":lib/Kafka.png"), "kafka连接");
-//    men->addAction(kafka);
-//    redis = new QAction(QIcon(":lib/Redis.png"), "redis连接");
-//    men->addAction(redis);
-//    db = new QAction(QIcon(":lib/db.png"), "database连接");
-//    men->addAction(db);
-//    //将选项添加到新建按钮下
-//    ui->toolButton_newCreate->setMenu(men);
-
-    //添加信号
-//    connect(ssh, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-//    connect(zk, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-//    connect(kafka, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-//    connect(redis, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-//    connect(db, SIGNAL(triggered()), this, SLOT(on_newCreate()));
-
 
     men_tool = new QMenu(ui->toolButton_tool);
     //men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "

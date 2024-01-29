@@ -83,7 +83,9 @@ QMenu::separator {
     background: rgb(235,235,236);
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
-}</string>
+}
+
+</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>

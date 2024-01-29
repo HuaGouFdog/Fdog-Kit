@@ -256,7 +256,9 @@ public:
 "    /*margin-left: "
                         "10px;*/\n"
 "    /*margin-right: 10px;*/\n"
-"}"));
+"}\n"
+"\n"
+""));
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));

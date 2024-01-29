@@ -14,11 +14,15 @@ class settingwidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit settingwidget(config * confInfo, QWidget *parent = 0);
+    explicit settingwidget(config * confInfo_, QWidget *parent = 0);
     ~settingwidget();
 
 private slots:
     void on_Menu_clicked(int index);
+
+    void on_toolButton_save_clicked();
+
+    void on_toolButton_recover_clicked();
 
 private:
     Ui::settingwidget *ui;
@@ -36,6 +40,7 @@ private:
     AnimatedCheckBox * commandDisplay;      //工具栏-命令显示
     AnimatedCheckBox * conectStatsDisplay;  //工具栏-连接属性显示
 
+    config * confInfo;
 };
 
 #endif // SETTINGWIDGET_H

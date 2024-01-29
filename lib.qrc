@@ -107,5 +107,7 @@
         <file>lib/node3.png</file>
         <file>lib/setting4.png</file>
         <file>lib/inport.png</file>
+        <file>lib/icon_test.png</file>
+        <file>lib/tree_open2.png</file>
     </qresource>
 </RCC>

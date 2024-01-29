@@ -58,12 +58,13 @@ public:
     int conectStatsDisplay = 0; //工具栏属性
     int mouseRightClick = 0;    //鼠标滚轮单击行为
     int mouseWheelClick = 0;    //鼠标右键单击行为
+    int colorScheme = 0;        //颜色主题
     int background = 0;         //终端背景 1默认 2纯色 3图片
     QString currentBackground = "";  //当前背景
-    QString currentColor = "";      //当前颜色
-    int backgroundTransparency = 1; //背景透明度
+    QString currentColor = "";       //当前颜色
+    int backgroundTransparency = 1;  //背景透明度
 
-    QStringList pictureList;        //图片列表
+    QStringList pictureList;         //图片列表
 
     //读取设置
     void readSettingConf();

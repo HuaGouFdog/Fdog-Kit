@@ -526,7 +526,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -573,7 +573,7 @@ QToolButton:checked {
               <number>9</number>
              </property>
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="label_activate">
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -645,7 +645,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_5">
+                 <widget class="QLabel" name="label_selfStart">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -663,7 +663,7 @@ background-color: rgba(255, 255, 255, 0);</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_6">
+                 <widget class="QLabel" name="label_selfStart_tip">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -760,7 +760,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_47">
+                 <widget class="QLabel" name="label_trayDisplay">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -778,7 +778,7 @@ background-color: rgba(255, 255, 255, 0);</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_48">
+                 <widget class="QLabel" name="label_trayDisplay_tip">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -872,7 +872,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_2">
+                 <widget class="QLabel" name="label_startMode">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -889,7 +889,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_7">
+                 <widget class="QLabel" name="label_startMode_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -934,7 +934,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox">
+              <widget class="QComboBox" name="comboBox_startMode">
                <property name="minimumSize">
                 <size>
                  <width>100</width>
@@ -1033,7 +1033,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_4">
+                 <widget class="QLabel" name="label_startCenter">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -1050,7 +1050,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_9">
+                 <widget class="QLabel" name="label_startCenter_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1150,7 +1150,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_3">
+                 <widget class="QLabel" name="label_startPosition">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -1167,7 +1167,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_8">
+                 <widget class="QLabel" name="label_startPosition_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1212,7 +1212,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox">
+              <widget class="QSpinBox" name="spinBox_startPositionX">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -1233,27 +1233,7 @@ border-radius: 5px;}</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QSpinBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QSpinBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QSpinBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QSpinBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#000000;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="maximum">
                 <number>300</number>
@@ -1264,7 +1244,7 @@ QSpinBox QAbstractItemView{
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_2">
+              <widget class="QSpinBox" name="spinBox_startPositionY">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -1285,27 +1265,7 @@ QSpinBox QAbstractItemView{
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QSpinBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QSpinBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QSpinBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QSpinBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#000000;
-	selection-background-color:#52DCFE;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="maximum">
                 <number>300</number>
@@ -1378,7 +1338,7 @@ QSpinBox QAbstractItemView{
               <number>9</number>
              </property>
              <item>
-              <widget class="QLabel" name="label_10">
+              <widget class="QLabel" name="label_appearance">
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -1447,7 +1407,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_37">
+                 <widget class="QLabel" name="label_language">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -1464,7 +1424,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_38">
+                 <widget class="QLabel" name="label_language_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1509,7 +1469,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_2">
+              <widget class="QComboBox" name="comboBox_language">
                <property name="minimumSize">
                 <size>
                  <width>100</width>
@@ -1603,7 +1563,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_49">
+                 <widget class="QLabel" name="label_topDisplay1">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -1764,7 +1724,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_39">
+                 <widget class="QLabel" name="label_topDisplay">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -1781,7 +1741,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_40">
+                 <widget class="QLabel" name="label_topDisplay_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1881,7 +1841,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_41">
+                 <widget class="QLabel" name="label_newLabelLocation">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -1898,7 +1858,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_42">
+                 <widget class="QLabel" name="label_newLabelLocation_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1943,7 +1903,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_3">
+              <widget class="QComboBox" name="comboBox_newLabelLocation">
                <property name="minimumSize">
                 <size>
                  <width>160</width>
@@ -2037,7 +1997,7 @@ border-radius: 5px;}</string>
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_43">
+                 <widget class="QLabel" name="label_labelWidth">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -2054,7 +2014,7 @@ border-radius: 5px;}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_44">
+                 <widget class="QLabel" name="label_labelWidth_tip">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -2099,7 +2059,7 @@ border-radius: 5px;}</string>
               </spacer>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_4">
+              <widget class="QComboBox" name="comboBox_labelWidth">
                <property name="minimumSize">
                 <size>
                  <width>100</width>
@@ -2208,7 +2168,7 @@ border-radius: 5px;}</string>
               <number>9</number>
              </property>
              <item>
-              <widget class="QLabel" name="label_11">
+              <widget class="QLabel" name="label_typeface">
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -2363,7 +2323,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_54">
+                     <widget class="QLabel" name="label_fontSize">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -2380,7 +2340,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_51">
+                     <widget class="QLabel" name="label_fontSize_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -2425,7 +2385,7 @@ border-radius: 5px;}</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_3">
+                  <widget class="QSpinBox" name="spinBox_fontSize">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -2448,27 +2408,7 @@ border-radius: 5px;}</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QSpinBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QSpinBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QSpinBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QSpinBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#000000;
-	selection-background-color:#52DCFE;
-}</string>
+                    <string notr="true"/>
                    </property>
                   </widget>
                  </item>
@@ -2514,7 +2454,7 @@ border-radius: 5px;}</string>
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QTextEdit" name="textEdit">
+                  <widget class="QTextEdit" name="textEdit_show">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -2715,7 +2655,7 @@ border-radius: 5px;}</string>
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QLabel" name="label_52">
+                        <widget class="QLabel" name="label_fontEnglish">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -2855,7 +2795,7 @@ QScrollBar::up-arrow:vertical {
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QLabel" name="label_62">
+                        <widget class="QLabel" name="label_fontChinese">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -3013,7 +2953,7 @@ QScrollBar::up-arrow:vertical {
               <number>9</number>
              </property>
              <item>
-              <widget class="QLabel" name="label_12">
+              <widget class="QLabel" name="label_colorSchemes">
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -3818,7 +3758,7 @@ padding-right:10px;
               <number>9</number>
              </property>
              <item>
-              <widget class="QLabel" name="label_14">
+              <widget class="QLabel" name="label_terminal">
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
@@ -3902,8 +3842,8 @@ QScrollBar::up-arrow:vertical {
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>543</width>
+               <y>-247</y>
+               <width>832</width>
                <height>1081</height>
               </rect>
              </property>
@@ -3979,7 +3919,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_90">
+                     <widget class="QLabel" name="label_downloadPath">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -3999,7 +3939,7 @@ border-radius: 5px;}</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_27">
+                  <widget class="QLineEdit" name="lineEdit_downloadPath">
                    <property name="font">
                     <font>
                      <family>OPPOSans B</family>
@@ -4036,7 +3976,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QToolButton" name="toolButton_4">
+                  <widget class="QToolButton" name="toolButton_downloadPath">
                    <property name="minimumSize">
                     <size>
                      <width>60</width>
@@ -4108,7 +4048,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_65">
+                     <widget class="QLabel" name="label_infoDisplay">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4125,7 +4065,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_66">
+                     <widget class="QLabel" name="label_infoDisplay_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4225,7 +4165,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_86">
+                     <widget class="QLabel" name="label_historyDisplay">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4242,7 +4182,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_87">
+                     <widget class="QLabel" name="label_historyDisplay_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4342,7 +4282,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_84">
+                     <widget class="QLabel" name="label_commandDisplay">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4359,7 +4299,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_85">
+                     <widget class="QLabel" name="label_commandDisplay_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4459,7 +4399,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_88">
+                     <widget class="QLabel" name="label_conectStatsDisplay">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4476,7 +4416,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_89">
+                     <widget class="QLabel" name="label_conectStatsDisplay_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4576,7 +4516,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_59">
+                     <widget class="QLabel" name="label_mouseRightClick">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4593,7 +4533,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_60">
+                     <widget class="QLabel" name="label_mouseRightClick_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4638,7 +4578,7 @@ border-radius: 5px;}</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboBox_6">
+                  <widget class="QComboBox" name="comboBox_mouseRightClick">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -4732,7 +4672,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_63">
+                     <widget class="QLabel" name="label_mouseWheelClick">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4749,7 +4689,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_64">
+                     <widget class="QLabel" name="label_mouseWheelClick_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4794,7 +4734,7 @@ border-radius: 5px;}</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboBox_8">
+                  <widget class="QComboBox" name="comboBox_mouseWheelClick">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -4888,7 +4828,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_67">
+                     <widget class="QLabel" name="label_background">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -4905,7 +4845,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_68">
+                     <widget class="QLabel" name="label_background_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -4950,7 +4890,7 @@ border-radius: 5px;}</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboBox_9">
+                  <widget class="QComboBox" name="comboBox_background">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -5049,7 +4989,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_69">
+                     <widget class="QLabel" name="label_currentBackground">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -5069,7 +5009,7 @@ border-radius: 5px;}</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_25">
+                  <widget class="QLineEdit" name="lineEdit_currentBackground">
                    <property name="font">
                     <font>
                      <family>OPPOSans B</family>
@@ -5106,7 +5046,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QToolButton" name="toolButton_33">
+                  <widget class="QToolButton" name="toolButton_currentBackground">
                    <property name="font">
                     <font>
                      <family>OPPOSans B</family>
@@ -5200,7 +5140,7 @@ border-radius: 5px;}</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_73">
+                     <widget class="QLabel" name="label_backgroundTransparency">
                       <property name="font">
                        <font>
                         <family>OPPOSans B</family>
@@ -5217,7 +5157,7 @@ border-radius: 5px;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_71">
+                     <widget class="QLabel" name="label_backgroundTransparency_tip">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -5262,7 +5202,7 @@ border-radius: 5px;}</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_24">
+                  <widget class="QLineEdit" name="lineEdit_backgroundTransparency">
                    <property name="font">
                     <font>
                      <family>OPPOSans B</family>
@@ -5286,7 +5226,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSlider" name="horizontalSlider">
+                  <widget class="QSlider" name="horizontalSlider_backgroundTransparency">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -5727,7 +5667,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>391</width>
+               <width>832</width>
                <height>830</height>
               </rect>
              </property>
@@ -8806,7 +8746,7 @@ QToolButton:checked {
        <number>50</number>
       </property>
       <item>
-       <widget class="QToolButton" name="toolButton">
+       <widget class="QToolButton" name="toolButton_json">
         <property name="minimumSize">
          <size>
           <width>200</width>
@@ -8875,7 +8815,7 @@ QToolButton:checked {
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton_2">
+       <widget class="QToolButton" name="toolButton_save">
         <property name="minimumSize">
          <size>
           <width>70</width>
@@ -8912,7 +8852,7 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton_3">
+       <widget class="QToolButton" name="toolButton_recover">
         <property name="minimumSize">
          <size>
           <width>70</width>

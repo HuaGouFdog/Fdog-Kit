@@ -105,33 +105,35 @@ QStringList vintage = {"#000000","#808080",
                        "#C0C0C0","#FFFFFF",
                        "#000000"};
 
-settingwidget::settingwidget(config * confInfo, QWidget *parent) :
+settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::settingwidget)
 {
     ui->setupUi(this);
-    selfStart = new AnimatedCheckBox(confInfo->selfStart, this);
+
+    confInfo = confInfo_;
+    selfStart = new AnimatedCheckBox(confInfo_->selfStart, this);
     ui->verticalLayout_selfStart->addWidget(selfStart);
     
-    trayDisplay = new AnimatedCheckBox(confInfo->trayDisplay, this);
+    trayDisplay = new AnimatedCheckBox(confInfo_->trayDisplay, this);
     ui->verticalLayout_trayDisplay->addWidget(trayDisplay);
 
-    startCenter = new AnimatedCheckBox(confInfo->startCenter, this);
+    startCenter = new AnimatedCheckBox(confInfo_->startCenter, this);
     ui->verticalLayout_startCenter->addWidget(startCenter);
 
-    topDisplay = new AnimatedCheckBox(this);
+    topDisplay = new AnimatedCheckBox(confInfo_->topDisplay, this);
     ui->verticalLayout_topDisplay->addWidget(topDisplay);
 
-    infoDisplay = new AnimatedCheckBox(this);
+    infoDisplay = new AnimatedCheckBox(confInfo_->infoDisplay, this);
     ui->verticalLayout_infoDisplay->addWidget(infoDisplay);
 
-    historyDisplay = new AnimatedCheckBox(this);
+    historyDisplay = new AnimatedCheckBox(confInfo_->historyDisplay, this);
     ui->verticalLayout_historyDisplay->addWidget(historyDisplay);
 
-    commandDisplay = new AnimatedCheckBox(this);
+    commandDisplay = new AnimatedCheckBox(confInfo_->commandDisplay, this);
     ui->verticalLayout_commandDisplay->addWidget(commandDisplay);
 
-    conectStatsDisplay = new AnimatedCheckBox(this);
+    conectStatsDisplay = new AnimatedCheckBox(confInfo_->conectStatsDisplay, this);
     ui->verticalLayout_conectStatsDisplay->addWidget(conectStatsDisplay);
 
 
@@ -219,3 +221,127 @@ void settingwidget::on_Menu_clicked(int index)
 ////    animation->setEasingCurve(QEasingCurve::InCubic); // 使用缓动效果
 //    ui->stackedWidget->setCurrentIndex((ui->stackedWidget->currentIndex() + 1)%7);
 //}
+
+
+void settingwidget::on_toolButton_save_clicked()
+{
+    //保存写入confInfo
+    //启动选项
+    if (selfStart->isChecked()) {
+        confInfo->selfStart = 1;
+    } else {
+        confInfo->selfStart = 0;
+    }
+
+    if (trayDisplay->isChecked()) {
+        confInfo->trayDisplay = 1;
+    } else {
+        confInfo->trayDisplay = 0;
+    }
+
+    if (ui->comboBox_startMode->currentIndex() == 0) {
+        confInfo->startMode = 0;
+    } else if (ui->comboBox_startMode->currentIndex() == 1) {
+        confInfo->startMode = 1;
+    } else if (ui->comboBox_startMode->currentIndex() == 2) {
+        confInfo->startMode = 2;
+    }
+
+    confInfo->startPositionX = ui->spinBox_startPositionX->value();
+    confInfo->startPositionY = ui->spinBox_startPositionY->value();
+
+    if (startCenter->isChecked()) {
+        confInfo->startCenter = 1;
+    } else {
+        confInfo->startCenter = 0;
+    }
+
+    //外观选项
+    if (ui->comboBox_language->currentIndex() == 0) {
+        confInfo->language = "cn";
+    } else if (ui->comboBox_language->currentIndex() == 1) {
+        confInfo->language = "zn";
+    }
+
+    if (topDisplay->isChecked()) {
+        confInfo->topDisplay = 1;
+    } else {
+        confInfo->topDisplay = 0;
+    }
+
+    if (ui->comboBox_newLabelLocation->currentIndex() == 0) {
+        confInfo->newLabelLocation = 0;
+    } else if (ui->comboBox_newLabelLocation->currentIndex() == 1) {
+        confInfo->newLabelLocation = 1;
+    }
+
+    if (ui->comboBox_labelWidth->currentIndex() == 0) {
+        confInfo->labelWidth = 0;
+    } else if (ui->comboBox_labelWidth->currentIndex() == 1) {
+        confInfo->labelWidth = 1;
+    } else if (ui->comboBox_labelWidth->currentIndex() == 2) {
+        confInfo->labelWidth = 2;
+    }
+
+    //字体选项
+    confInfo->fontSize = ui->spinBox_fontSize->value();
+    confInfo->fontEnglish = ui->label_fontEnglish->text();
+    confInfo->fontChinese = ui->label_fontChinese->text();
+    //配色选项
+    //目前只支持选择
+    //终端
+    if (infoDisplay->isChecked()) {
+        confInfo->infoDisplay = 1;
+    } else {
+        confInfo->infoDisplay = 0;
+    }
+
+    if (historyDisplay->isChecked()) {
+        confInfo->historyDisplay = 1;
+    } else {
+        confInfo->historyDisplay = 0;
+    }
+
+    if (commandDisplay->isChecked()) {
+        confInfo->commandDisplay = 1;
+    } else {
+        confInfo->commandDisplay = 0;
+    }
+
+    if (conectStatsDisplay->isChecked()) {
+        confInfo->conectStatsDisplay = 1;
+    } else {
+        confInfo->conectStatsDisplay = 0;
+    }
+
+    if (ui->comboBox_mouseRightClick->currentIndex() == 0) {
+        confInfo->mouseRightClick = 0;
+    } else if (ui->comboBox_mouseRightClick->currentIndex() == 1) {
+        confInfo->mouseRightClick = 1;
+    }
+
+    if (ui->comboBox_mouseWheelClick->currentIndex() == 0) {
+        confInfo->mouseWheelClick = 0;
+    } else if (ui->comboBox_mouseWheelClick->currentIndex() == 1) {
+        confInfo->mouseWheelClick = 1;
+    }
+
+    if (ui->comboBox_background->currentIndex() == 0) {
+        confInfo->background = 0;
+    } else if (ui->comboBox_background->currentIndex() == 1) {
+        confInfo->background = 1;
+    } else if (ui->comboBox_background->currentIndex() == 2) {
+        confInfo->background = 2;
+    }
+
+    confInfo->currentBackground = ui->lineEdit_currentBackground->text();
+    // confInfo.currentColor
+    // confInfo.backgroundTransparency
+    // confInfo.pictureList
+    confInfo->writeSettingConf();
+}
+
+void settingwidget::on_toolButton_recover_clicked()
+{
+    //恢复读取confInfo
+}
