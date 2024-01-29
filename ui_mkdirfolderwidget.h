@@ -35,6 +35,8 @@ public:
             mkdirfolderwidget->setObjectName(QStringLiteral("mkdirfolderwidget"));
         mkdirfolderwidget->resize(252, 104);
         QFont font;
+        font.setFamily(QStringLiteral("OPPOSans B"));
+        font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         mkdirfolderwidget->setFont(font);
         QIcon icon;
@@ -45,23 +47,59 @@ public:
         label = new QLabel(mkdirfolderwidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 10, 54, 31));
-        QFont font1;
-        font1.setFamily(QStringLiteral("OPPOSans R"));
-        font1.setPointSize(10);
-        font1.setStyleStrategy(QFont::PreferAntialias);
-        label->setFont(font1);
+        label->setFont(font);
         lineEdit = new QLineEdit(mkdirfolderwidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(60, 10, 171, 31));
-        lineEdit->setFont(font1);
+        lineEdit->setFont(font);
+        lineEdit->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color:#ced4da;\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
+"}"));
         toolButton = new QToolButton(mkdirfolderwidget);
         toolButton->setObjectName(QStringLiteral("toolButton"));
         toolButton->setGeometry(QRect(90, 60, 61, 31));
-        toolButton->setFont(font1);
+        toolButton->setFont(font);
+        toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
+"}"));
         toolButton_2 = new QToolButton(mkdirfolderwidget);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setGeometry(QRect(170, 60, 61, 31));
-        toolButton_2->setFont(font1);
+        toolButton_2->setFont(font);
+        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(67, 67, 67);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(67, 67, 67);\n"
+"}"));
 
         retranslateUi(mkdirfolderwidget);
 

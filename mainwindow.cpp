@@ -27,7 +27,7 @@
 #include <QShortcut>
 #include <QDesktopServices>
 #include <QFile>
-
+#include <QListView>
 #include "utils.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -73,7 +73,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setSupportStretch(true);
 
-
+    ui->splitter->setStretchFactor(0,20);
+    ui->splitter->setStretchFactor(1,2);
     //快捷键 F11 全屏
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(rece_toolButton_fullScreen_sign()));
@@ -113,6 +114,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(2);
 
+    ui->comboBox_tool->setView(new QListView());
+
     //ui->widget_welcome_body_widget2_info_text->hide();
 
     //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
@@ -130,7 +133,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // 启动定时器
     timer->start();
 
-    ui->widget_4->hide();
+    ui->widget_tool->hide();
 
     //设置系统托盘
     createSystemTray();
@@ -1088,7 +1091,7 @@ void MainWindow::on_newTool()
         QSize iconSize(16, 16); // 设置图标的大小
         qDebug() <<"工具：" << actionText;
         if (actionText == "小工具") {
-            ui->widget_4->show();
+            ui->widget_tool->show();
             ui->stackedWidget->setCurrentIndex(0);
             return;
             //ui->tabWidget->addTab(tswidget, QIcon(":lib/toolBox.png").pixmap(iconSize), toolName);
@@ -1114,21 +1117,26 @@ void MainWindow::on_newTool()
                 ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
             } else {
                 //切换到zookeeper tabWidget
-                for(int i = 0; i < ui->tabWidget->count(); i ++) {
-                    if (ui->tabWidget->tabText(i) == "zookeeper") {
-                        ui->tabWidget->setCurrentIndex(i);
-                        break;
-                    }
+                int index = ui->tabWidget->indexOf(zmanagewidget);
+                if (index != -1) {
+                    ui->tabWidget->setCurrentIndex(index);
                 }
             }
             return;
         } else if (actionText == "Thrift接口测试") {
-            toolName = "Thrift接口测试";
-            twidget = new thriftwidget(this);
-            ui->tabWidget->addTab(twidget, QIcon(":lib/icon_test.png").pixmap(iconSize), toolName);
-            ui->stackedWidget->setCurrentIndex(0);
-            twidget->show();
-            ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+            if (twidget == NULL) {
+                toolName = "Thrift接口测试";
+                twidget = new thriftwidget(this);
+                ui->tabWidget->addTab(twidget, QIcon(":lib/icon_test.png").pixmap(iconSize), toolName);
+                ui->stackedWidget->setCurrentIndex(0);
+                twidget->show();
+                ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+            } else {
+                int index = ui->tabWidget->indexOf(twidget);
+                if (index != -1) {
+                    ui->tabWidget->setCurrentIndex(index);
+                }
+            }
             return;
         } else {
             return;
@@ -1198,10 +1206,10 @@ void MainWindow::on_widget_welcome_body_widget2_newCreate_newTool_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     //显示工具栏窗口
     if (!isShowToolKit) {
-        ui->widget_4->show();
+        ui->widget_tool->show();
         isShowToolKit = true;
     } else {
-        ui->widget_4->hide();
+        ui->widget_tool->hide();
         isShowToolKit = false;
     }
 }
@@ -1367,7 +1375,7 @@ void MainWindow::on_toolButton_timestamp_copy_clicked()
 
 void MainWindow::on_toolButton_closetool_clicked()
 {
-    ui->widget_4->hide();
+    ui->widget_tool->hide();
     isShowToolKit = false;
 }
 
@@ -1446,12 +1454,22 @@ void MainWindow::rece_toolButton_fullScreen_sign()
 
 void MainWindow::on_toolButton_setting_clicked()
 {
-     stwidget = new settingwidget(confInfo);
-     QSize iconSize(16, 16); // 设置图标的大小
-     ui->tabWidget->addTab(stwidget, QIcon(":lib/setting4.png").pixmap(iconSize), "设置");
-     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-     ui->stackedWidget->setCurrentIndex(0);
-     stwidget->show();
+    if (stwidget == NULL) {
+        stwidget = new settingwidget(confInfo);
+        QSize iconSize(16, 16); // 设置图标的大小
+        ui->tabWidget->addTab(stwidget, QIcon(":lib/setting4.png").pixmap(iconSize), "设置");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        ui->stackedWidget->setCurrentIndex(0);
+        stwidget->show();
+    } else {
+        //从当前标签里面查找
+        int index = ui->tabWidget->indexOf(stwidget);
+        if (index != -1) {
+            ui->tabWidget->setCurrentIndex(index);
+        } else {
+            //出错
+        }
+    }
 }
 
 

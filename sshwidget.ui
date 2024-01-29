@@ -618,26 +618,19 @@ QToolButton:hover {
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 1px solid;
+	border: 0px solid;
 	
-	
-	border-color: rgb(91, 91, 91);
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
-	
-	
-	/*border-image: url(:/lib/jianbian1.png);*/
-	background-color: #FFFFFF;
-	text-align:right;
+	background-color: #FFFFFF; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
 	border-radius:2px;
 	
-	
-	
-	background-color: rgb(87, 255, 92);
-	/*background-color: #FFFFFF;*/
+	background-color: rgb(0, 255, 0);
 }</string>
            </property>
            <property name="value">
@@ -726,26 +719,19 @@ QProgressBar:chunk{
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 1px solid;
+	border: 0px solid;
 	
-	
-	border-color: rgb(91, 91, 91);
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
-	
-	
-	/*border-image: url(:/lib/jianbian1.png);*/
-	background-color: #FFFFFF;
-	text-align:right;
+	background-color: #FFFFFF; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
 	border-radius:2px;
 	
-	
-	
-	background-color: rgb(87, 255, 92);
-	/*background-color: #FFFFFF;*/
+	background-color: rgb(0, 255, 0);
 }</string>
            </property>
            <property name="value">
@@ -834,26 +820,19 @@ QProgressBar:chunk{
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 1px solid;
+	border: 0px solid;
 	
-	
-	border-color: rgb(91, 91, 91);
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
-	
-	
-	/*border-image: url(:/lib/jianbian1.png);*/
-	background-color: #FFFFFF;
-	text-align:right;
+	background-color: #FFFFFF; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
 	border-radius:2px;
 	
-	
-	
-	background-color: rgb(87, 255, 92);
-	/*background-color: #FFFFFF;*/
+	background-color: rgb(0, 255, 0);
 }</string>
            </property>
            <property name="value">
@@ -942,26 +921,19 @@ QProgressBar:chunk{
            </property>
            <property name="styleSheet">
             <string notr="true">QProgressBar {
-	border: 1px solid;
+	border: 0px solid;
 	
-	
-	border-color: rgb(91, 91, 91);
+	border-color: rgb(180, 180, 180);
 	border-radius: 2px; 
-	
-	
-	/*border-image: url(:/lib/jianbian1.png);*/
-	background-color: #FFFFFF;
-	text-align:right;
+	background-color: #FFFFFF; 
+	text-align:right; 
 	color: rgba(0, 0, 0, 200);
 }
 
 QProgressBar:chunk{
 	border-radius:2px;
 	
-	
-	
-	background-color: rgb(87, 255, 92);
-	/*background-color: #FFFFFF;*/
+	background-color: rgb(0, 255, 0);
 }</string>
            </property>
            <property name="value">
@@ -996,6 +968,26 @@ QProgressBar:chunk{
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_infoTip">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgba(223, 223, 223, 150);</string>
+        </property>
+        <property name="text">
+         <string>可在设置中关闭显示</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

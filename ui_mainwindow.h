@@ -24,6 +24,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
@@ -59,10 +60,11 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *page;
     QHBoxLayout *horizontalLayout_2;
-    QWidget *widget_3;
+    QSplitter *splitter;
+    QWidget *widget_main;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
-    QWidget *widget_4;
+    QWidget *widget_tool;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
     QHBoxLayout *horizontalLayout_10;
@@ -148,7 +150,7 @@ public:
     QLabel *label_match_result;
     QLineEdit *lineEdit_match_result;
     QWidget *widget_7;
-    QVBoxLayout *verticalLayout_12;
+    QHBoxLayout *horizontalLayout_9;
     QToolButton *toolButton_closetool;
     QWidget *page_2;
     QVBoxLayout *verticalLayout_6;
@@ -256,9 +258,7 @@ public:
 "    /*margin-left: "
                         "10px;*/\n"
 "    /*margin-right: 10px;*/\n"
-"}\n"
-"\n"
-""));
+"}"));
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -701,9 +701,13 @@ public:
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        widget_3 = new QWidget(page);
-        widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setStyleSheet(QLatin1String("QMenu {\n"
+        splitter = new QSplitter(page);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        splitter->setHandleWidth(0);
+        widget_main = new QWidget(splitter);
+        widget_main->setObjectName(QStringLiteral("widget_main"));
+        widget_main->setStyleSheet(QLatin1String("QMenu {\n"
 "\n"
 "background-color:rgb(253,253,254);\n"
 "/*padding:5px;*/\n"
@@ -742,12 +746,12 @@ public:
 "    /*margin-left: 10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
-        verticalLayout_4 = new QVBoxLayout(widget_3);
+        verticalLayout_4 = new QVBoxLayout(widget_main);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        tabWidget = new QTabWidget(widget_3);
+        tabWidget = new QTabWidget(widget_main);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
@@ -774,7 +778,7 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab{\n"
-"    background-color: rgba(108, 117, 125, 55);\n"
+"    background-color: rgb(100, 117, 125, 255);\n"
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
@@ -789,21 +793,16 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:selected{\n"
-"	/*background-color: #0B0E11;*/\n"
-"    /*background-color: rgb(100, 117, 125, 255);*/\n"
-"	\n"
 "	background-color: rgb(15, 15, 15);\n"
-"    /*border-left: 2px solid rgb(255, 255, 255);*/\n"
-"    /*border-right: 2px solid rgb(255, 255, 255);*/\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267"
-                        "\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
 "	background-color: rgb(100, 117, 125, 255);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267"
+                        "\345\274\217*/\n"
 "QTabWidget::pane {\n"
 "    border-top:2px solid rgb(108, 117, 125, 65); \n"
 "}\n"
@@ -828,8 +827,7 @@ public:
 "QTabBar QToolButton {\n"
 "    border: none;\n"
 "	color: rgb(255, 206, 6);\n"
-" "
-                        "   background-color: rgba(100, 117, 125, 0);\n"
+"    background-color: rgba(100, 117, 125, 0);\n"
 "}\n"
 " \n"
 "QTabBar QToolButton:hover {\n"
@@ -842,23 +840,21 @@ public:
 
         verticalLayout_4->addWidget(tabWidget);
 
-
-        horizontalLayout_2->addWidget(widget_3);
-
-        widget_4 = new QWidget(page);
-        widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setMinimumSize(QSize(260, 0));
-        widget_4->setMaximumSize(QSize(260, 16777215));
-        widget_4->setStyleSheet(QLatin1String("#widget_4 {\n"
+        splitter->addWidget(widget_main);
+        widget_tool = new QWidget(splitter);
+        widget_tool->setObjectName(QStringLiteral("widget_tool"));
+        widget_tool->setMinimumSize(QSize(260, 0));
+        widget_tool->setMaximumSize(QSize(16777215, 16777215));
+        widget_tool->setFont(font1);
+        widget_tool->setStyleSheet(QLatin1String("#widget_tool {\n"
 "border-left:2px solid rgb(108, 117, 125, 65); \n"
-"\n"
 "}"));
-        verticalLayout_21 = new QVBoxLayout(widget_4);
+        verticalLayout_21 = new QVBoxLayout(widget_tool);
         verticalLayout_21->setSpacing(6);
         verticalLayout_21->setContentsMargins(11, 11, 11, 11);
         verticalLayout_21->setObjectName(QStringLiteral("verticalLayout_21"));
         verticalLayout_21->setContentsMargins(2, 0, 0, 10);
-        widget_6 = new QWidget(widget_4);
+        widget_6 = new QWidget(widget_tool);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         horizontalLayout_10 = new QHBoxLayout(widget_6);
         horizontalLayout_10->setSpacing(0);
@@ -868,7 +864,7 @@ public:
 
         verticalLayout_21->addWidget(widget_6);
 
-        widget_5 = new QWidget(widget_4);
+        widget_5 = new QWidget(widget_tool);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(0, 28));
         verticalLayout_5 = new QVBoxLayout(widget_5);
@@ -898,9 +894,17 @@ public:
         comboBox_tool->setLayoutDirection(Qt::LeftToRight);
         comboBox_tool->setStyleSheet(QLatin1String("QComboBox{\n"
 "	color:#ffffff;\n"
-"	border:1px solid #52DCFE;\n"
+"	border:0px solid #8a8a8a;\n"
+"	color: rgb(138, 138, 138);\n"
 "	border-radius:5px;\n"
-"	background:transparent;\n"
+"	background-color: rgb(25, 25, 25, 155);\n"
+"	padding-left:10px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item\n"
+"{\n"
+"font: 10pt \"OPPOSans B\";\n"
+"height:28px;\n"
 "}\n"
 "QComboBox:disabled{\n"
 "	border:1px solid gray;\n"
@@ -911,9 +915,10 @@ public:
 "	background:transparent;\n"
 "}\n"
 "QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
+"	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
+"	margin-right: 10px;\n"
 "}\n"
 "\n"
 "\n"
@@ -921,10 +926,11 @@ public:
 "	color:#52DCFE;\n"
 "}\n"
 "QComboBox QAbstractItemView{\n"
+"	font: 10pt \"OPPOSans B\";\n"
 "	outline:0px solid gray;\n"
-"	border:1px solid #52DCFE;\n"
+"	border:1px solid #1e2d36;\n"
 "	color:#ffffff;\n"
-"	background-color:#000000;\n"
+"	background-color:#1e2d36;\n"
 "	selection-background-color:#52DCFE;\n"
 "}"));
         comboBox_tool->setInputMethodHints(Qt::ImhDate);
@@ -939,7 +945,7 @@ public:
 
         verticalLayout_21->addItem(verticalSpacer_3);
 
-        stackedWidget_tool = new QStackedWidget(widget_4);
+        stackedWidget_tool = new QStackedWidget(widget_tool);
         stackedWidget_tool->setObjectName(QStringLiteral("stackedWidget_tool"));
         stackedWidget_tool->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
@@ -1794,13 +1800,13 @@ public:
 
         verticalLayout_21->addWidget(stackedWidget_tool);
 
-        widget_7 = new QWidget(widget_4);
+        widget_7 = new QWidget(widget_tool);
         widget_7->setObjectName(QStringLiteral("widget_7"));
-        verticalLayout_12 = new QVBoxLayout(widget_7);
-        verticalLayout_12->setSpacing(6);
-        verticalLayout_12->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        verticalLayout_12->setContentsMargins(110, 0, 90, 0);
+        horizontalLayout_9 = new QHBoxLayout(widget_7);
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(110, 0, 90, 0);
         toolButton_closetool = new QToolButton(widget_7);
         toolButton_closetool->setObjectName(QStringLiteral("toolButton_closetool"));
         toolButton_closetool->setMinimumSize(QSize(0, 20));
@@ -1823,13 +1829,14 @@ public:
 "}"));
         toolButton_closetool->setIconSize(QSize(16, 10));
 
-        verticalLayout_12->addWidget(toolButton_closetool);
+        horizontalLayout_9->addWidget(toolButton_closetool);
 
 
         verticalLayout_21->addWidget(widget_7);
 
+        splitter->addWidget(widget_tool);
 
-        horizontalLayout_2->addWidget(widget_4);
+        horizontalLayout_2->addWidget(splitter);
 
         stackedWidget->addWidget(page);
         page_2 = new QWidget();

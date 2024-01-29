@@ -12,6 +12,8 @@
   </property>
   <property name="font">
    <font>
+    <family>OPPOSans B</family>
+    <pointsize>10</pointsize>
     <stylestrategy>PreferAntialias</stylestrategy>
    </font>
   </property>
@@ -37,7 +39,7 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="font">
     <font>
-     <family>OPPOSans R</family>
+     <family>OPPOSans B</family>
      <pointsize>10</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
@@ -57,10 +59,21 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="font">
     <font>
-     <family>OPPOSans R</family>
+     <family>OPPOSans B</family>
      <pointsize>10</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
    </property>
   </widget>
   <widget class="QToolButton" name="toolButton">
@@ -74,10 +87,27 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="font">
     <font>
-     <family>OPPOSans R</family>
+     <family>OPPOSans B</family>
      <pointsize>10</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	color: rgb(26, 26, 26);
+	background-color: rgb(113, 212, 219);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(26, 26, 26);
+	background-color: rgb(113, 212, 219);
+}</string>
    </property>
    <property name="text">
     <string>确定</string>
@@ -94,10 +124,28 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="font">
     <font>
-     <family>OPPOSans R</family>
+     <family>OPPOSans B</family>
      <pointsize>10</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(67, 67, 67);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(67, 67, 67);
+}</string>
    </property>
    <property name="text">
     <string>取消</string>

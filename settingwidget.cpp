@@ -388,23 +388,23 @@ void settingwidget::on_toolButton_recover_clicked()
     }
 
     if (confInfo->newLabelLocation == 0) {
-        ui->newLabelLocation->setCurrentIndex(0);
+        ui->comboBox_newLabelLocation->setCurrentIndex(0);
     } else {
-        ui->newLabelLocation->setCurrentIndex(1);
+        ui->comboBox_newLabelLocation->setCurrentIndex(1);
     }
 
     if (confInfo->labelWidth == 0) {
-        ui->labelWidth->setCurrentIndex(0);
+        ui->comboBox_labelWidth->setCurrentIndex(0);
     } else if (confInfo->labelWidth == 1) {
-        ui->labelWidth->setCurrentIndex(1);
+        ui->comboBox_labelWidth->setCurrentIndex(1);
     } else if (confInfo->labelWidth == 2) {
-        ui->labelWidth->setCurrentIndex(2);
+        ui->comboBox_labelWidth->setCurrentIndex(2);
     }
 
     //字体选项
     ui->spinBox_fontSize->setValue(confInfo->fontSize);
-    ui->label_fontEnglish->setValue(confInfo->fontEnglish);
-    ui->label_fontChinese->setValue(confInfo->fontChinese);
+    ui->label_fontEnglish->setText(confInfo->fontEnglish);
+    ui->label_fontChinese->setText(confInfo->fontChinese);
 
     //配色选项 只支持选择
 
@@ -434,22 +434,22 @@ void settingwidget::on_toolButton_recover_clicked()
     }
 
     if (confInfo->mouseRightClick == 0) {
-        ui->mouseRightClick->setCurrentIndex(0);
+        ui->comboBox_mouseRightClick->setCurrentIndex(0);
     } else if (confInfo->mouseRightClick == 1) {
-        ui->mouseRightClick->setCurrentIndex(1);
+        ui->comboBox_mouseRightClick->setCurrentIndex(1);
     }
 
     if (confInfo->mouseWheelClick == 0) {
-        ui->mouseWheelClick->setCurrentIndex(0);
+        ui->comboBox_mouseWheelClick->setCurrentIndex(0);
     } else if (confInfo->mouseWheelClick == 1) {
-        ui->mouseWheelClick->setCurrentIndex(1);
+        ui->comboBox_mouseWheelClick->setCurrentIndex(1);
     }
 
-    if (confInfo->comboBox_background == 0) {
+    if (confInfo->background == 0) {
         ui->comboBox_background->setCurrentIndex(0);
-    } else if (confInfo->comboBox_background == 1) {
+    } else if (confInfo->background == 1) {
         ui->comboBox_background->setCurrentIndex(1);
-    } else if (confInfo->comboBox_background == 2) {
+    } else if (confInfo->background == 2) {
         ui->comboBox_background->setCurrentIndex(2);
     }
 

@@ -78,6 +78,7 @@ public:
     QLabel *label_swap;
     QProgressBar *progressBar_swap;
     QSpacerItem *verticalSpacer;
+    QLabel *label_infoTip;
     QWidget *widget_26;
     QVBoxLayout *verticalLayout_6;
     QSplitter *splitter_2;
@@ -364,26 +365,19 @@ public:
         progressBar_cpu->setMaximumSize(QSize(130, 18));
         progressBar_cpu->setFont(font1);
         progressBar_cpu->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
-"	\n"
-"	border-color: rgb(91, 91, 91);\n"
+"	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
-"	\n"
-"	\n"
-"	/*border-image: url(:/lib/jianbian1.png);*/\n"
-"	background-color: #FFFFFF;\n"
-"	text-align:right;\n"
+"	background-color: #FFFFFF; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
 "	border-radius:2px;\n"
 "	\n"
-"	\n"
-"	\n"
-"	background-color: rgb(87, 255, 92);\n"
-"	/*background-color: #FFFFFF;*/\n"
+"	background-color: rgb(0, 255, 0);\n"
 "}"));
         progressBar_cpu->setValue(25);
         progressBar_cpu->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
@@ -418,26 +412,19 @@ public:
         progressBar_disk->setFont(font3);
         progressBar_disk->setLayoutDirection(Qt::LeftToRight);
         progressBar_disk->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
-"	\n"
-"	border-color: rgb(91, 91, 91);\n"
+"	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
-"	\n"
-"	\n"
-"	/*border-image: url(:/lib/jianbian1.png);*/\n"
-"	background-color: #FFFFFF;\n"
-"	text-align:right;\n"
+"	background-color: #FFFFFF; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
 "	border-radius:2px;\n"
 "	\n"
-"	\n"
-"	\n"
-"	background-color: rgb(87, 255, 92);\n"
-"	/*background-color: #FFFFFF;*/\n"
+"	background-color: rgb(0, 255, 0);\n"
 "}"));
         progressBar_disk->setValue(0);
         progressBar_disk->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
@@ -469,26 +456,19 @@ public:
         progressBar_mem->setFont(font3);
         progressBar_mem->setLayoutDirection(Qt::LeftToRight);
         progressBar_mem->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
-"	\n"
-"	border-color: rgb(91, 91, 91);\n"
+"	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
-"	\n"
-"	\n"
-"	/*border-image: url(:/lib/jianbian1.png);*/\n"
-"	background-color: #FFFFFF;\n"
-"	text-align:right;\n"
+"	background-color: #FFFFFF; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
 "	border-radius:2px;\n"
 "	\n"
-"	\n"
-"	\n"
-"	background-color: rgb(87, 255, 92);\n"
-"	/*background-color: #FFFFFF;*/\n"
+"	background-color: rgb(0, 255, 0);\n"
 "}"));
         progressBar_mem->setValue(0);
         progressBar_mem->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
@@ -520,26 +500,19 @@ public:
         progressBar_swap->setFont(font3);
         progressBar_swap->setLayoutDirection(Qt::LeftToRight);
         progressBar_swap->setStyleSheet(QLatin1String("QProgressBar {\n"
-"	border: 1px solid;\n"
+"	border: 0px solid;\n"
 "	\n"
-"	\n"
-"	border-color: rgb(91, 91, 91);\n"
+"	border-color: rgb(180, 180, 180);\n"
 "	border-radius: 2px; \n"
-"	\n"
-"	\n"
-"	/*border-image: url(:/lib/jianbian1.png);*/\n"
-"	background-color: #FFFFFF;\n"
-"	text-align:right;\n"
+"	background-color: #FFFFFF; \n"
+"	text-align:right; \n"
 "	color: rgba(0, 0, 0, 200);\n"
 "}\n"
 "\n"
 "QProgressBar:chunk{\n"
 "	border-radius:2px;\n"
 "	\n"
-"	\n"
-"	\n"
-"	background-color: rgb(87, 255, 92);\n"
-"	/*background-color: #FFFFFF;*/\n"
+"	background-color: rgb(0, 255, 0);\n"
 "}"));
         progressBar_swap->setValue(0);
         progressBar_swap->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
@@ -554,6 +527,14 @@ public:
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer);
+
+        label_infoTip = new QLabel(widget);
+        label_infoTip->setObjectName(QStringLiteral("label_infoTip"));
+        label_infoTip->setFont(font);
+        label_infoTip->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
+        label_infoTip->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_3->addWidget(label_infoTip);
 
 
         horizontalLayout_19->addWidget(widget);
@@ -1407,6 +1388,7 @@ public:
         progressBar_mem->setFormat(QApplication::translate("sshwidget", "%p% ", nullptr));
         label_swap->setText(QApplication::translate("sshwidget", "\344\272\244\346\215\242", nullptr));
         progressBar_swap->setFormat(QApplication::translate("sshwidget", "%p% ", nullptr));
+        label_infoTip->setText(QApplication::translate("sshwidget", "\345\217\257\345\234\250\350\256\276\347\275\256\344\270\255\345\205\263\351\227\255\346\230\276\347\244\272", nullptr));
         textEdit->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
