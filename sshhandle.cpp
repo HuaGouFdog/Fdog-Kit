@@ -237,15 +237,6 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
 {
     qDebug() << "执行initSSH";
     initSSH(connrectType, host, port, username, password);
-    //initEXEC(connrectType, host, port, username, password);
-    //initSFTP(connrectType, host, port, username, password);
-    //qDebug() << "全部初始化完成";
-//    sshExec = new sshHandleThreadEXEC(connrectType, host, port, username, password);
-//    connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
-//                                SLOT(rece_getServerInfo(ServerInfoStruct)));
-//    sshExec->start();
-
-    //getServerInfo();
     qDebug() << "执行initSSH init 完成";
     return;
 }
@@ -537,7 +528,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
         qWarning() << "Failed to create SSH session";
         return;
     }
-
+    qDebug() << "执行sshHandleExec init2";
     // 设置会话选项
     libssh2_session_set_blocking(session_exec, 1);
     libssh2_session_set_timeout(session_exec, 10000);
@@ -559,6 +550,8 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
         return;
     }
 
+    qDebug() << "执行sshHandleExec init3";
+
     channel_exec = libssh2_channel_open_session(session_exec);
     while(1) {
         getServerInfo();
@@ -566,6 +559,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
     }
 
     qDebug() << "执行sshHandleExec init 完成";
+    emit send_init();
 }
 
 void sshHandleExec::getServerInfo()
@@ -950,6 +944,8 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
         return;
     }
 
+    qDebug() << " 执行sshHandleSftp init2";
+
     // 设置会话选项
     libssh2_session_set_blocking(session_ssh_sftp, 1);
     libssh2_session_set_timeout(session_ssh_sftp, 10000);
@@ -970,7 +966,7 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
         libssh2_session_free(session_ssh_sftp);
         return;
     }
-
+    qDebug() << " 执行sshHandleSftp init3";
     session_sftp = NULL;
     session_sftp = libssh2_sftp_init(session_ssh_sftp);
     if (session_sftp == NULL) {

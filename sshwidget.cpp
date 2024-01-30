@@ -68,6 +68,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 {
     ui->setupUi(this);
 
+    this->cInfoStruct = cInfoStruct;
 
     ui->textEdit_2->setOverwriteMode(true);
 
@@ -110,7 +111,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(m_sshhandle,SIGNAL(send_channel_readS(QStringList)),this,
             SLOT(rece_channel_readS(QStringList)), Qt::QueuedConnection);
     connect(m_sshhandle,SIGNAL(send_init()),this,
-            SLOT(rece_init()));
+            SLOT(rece_ssh_init()));
     connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
             SLOT(rece_getServerInfo(ServerInfoStruct)));
     thread->start();
@@ -118,18 +119,20 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     //这里设置初始化方式
     //密码
     //密钥 Path name of the public key file. (e.g. /etc/ssh/hostkey.pub). If libssh2 is built against OpenSSL, this option can be set to NULL.
-    QMetaObject::invokeMethod(m_sshhandle,"init",Qt::BlockingQueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
     qDebug("执行01");
-    //QThread::msleep(100);
+
     //exec
     threadExec = new QThread();
     sshExec = new sshHandleExec();
     sshExec->moveToThread(threadExec);
     connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
             SLOT(rece_getServerInfo(ServerInfoStruct)));
+    connect(sshExec,SIGNAL(send_init()),this,
+            SLOT(rece_ssh_exec_init()));
     threadExec->start();
-    QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-    //QThread::msleep(1000);
+    //QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+
     //sftp
     sshSftp = new sshHandleSftp();
     threadSftp = new QThread();
@@ -141,7 +144,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
             SLOT(rece_createNewFile_sgin(QString,QString,int,int64_t)));
     threadSftp->start();
     qDebug("执行3");
-    QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    //QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
     textEdit_s = new CustomTextEdit(this);
     textEdit_s->setReadOnly(true);
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
@@ -493,26 +496,26 @@ void sshwidget::movePositionEnd(sshwidget::MoveMode mode)
 QString sshwidget::movePositionLeftSelect(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = textEdit_s->textCursor();
-    cursor.movePosition(QTextCursor::Right, mode, n);
+    cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
 
 QString sshwidget::movePositionRightSelect(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = textEdit_s->textCursor();
-    cursor.movePosition(QTextCursor::Left, mode, n);
+    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
 
 void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = ui->textEdit->textCursor();
-    cursor.movePosition(QTextCursor::Right, mode, n);
+    cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
     cursor.removeSelectedText();
     ui->textEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
-    cursor2.movePosition(QTextCursor::Right, mode, n);
+    cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
     cursor2.removeSelectedText();
     textEdit_s->setTextCursor(cursor2);
 }
@@ -520,11 +523,11 @@ void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = ui->textEdit->textCursor();
-    cursor.movePosition(QTextCursor::EndOfLine, mode);
+    cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     cursor.removeSelectedText();
     ui->textEdit->setTextCursor(cursor);
     QTextCursor cursor2 = textEdit_s->textCursor();
-    cursor2.movePosition(QTextCursor::EndOfLine, mode);
+    cursor2.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     cursor2.removeSelectedText();
     textEdit_s->setTextCursor(cursor2);
 }
@@ -532,12 +535,12 @@ void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 void sshwidget::movePositionRemoveRight(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = ui->textEdit->textCursor();
-    cursor.movePosition(QTextCursor::Left, mode, n);
+    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     cursor.deletePreviousChar();
     ui->textEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
-    cursor2.movePosition(QTextCursor::Left, mode, n);
+    cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     cursor2.deletePreviousChar();
     textEdit_s->setTextCursor(cursor2);
 }
@@ -642,11 +645,11 @@ void sshwidget::rece_channel_readS(QStringList data)
                     if (moveCount >= 0) {
                         movePositionDown(sshwidget::MoveAnchor, moveCount);
                         movePositionStartLine(sshwidget::MoveAnchor);
-                        movePositionLeft(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1)
+                        movePositionLeft(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     } else {
                         movePositionDown(sshwidget::MoveAnchor, -moveCount);
                         movePositionStartLine(sshwidget::MoveAnchor);
-                        movePositionLeft(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1)
+                        movePositionLeft(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1);
                     }
                     data[i].replace(regExp2.cap(0), "");
                 }
@@ -1493,4 +1496,44 @@ void sshwidget::rece_downloadFile_sgin(QString fileName)
     QString local_file_path = "C:\\Users\\张旭\\Desktop\\fsdownload\\" + copyData;
 
     QMetaObject::invokeMethod(sshSftp,"downloadFile", Qt::QueuedConnection, Q_ARG(QString, remote_file_path), Q_ARG(QString,local_file_path), Q_ARG(QString,fileName2));
+}
+
+void sshwidget::rece_ssh_init()
+{
+    // 设置焦点策略为强制获取焦点
+    ui->textEdit->setFocusPolicy(Qt::NoFocus);
+    ui->textEdit->setFocus();
+    qDebug("开始调用init_poll");
+    QString cc = "主机连接成功<br>";
+    ui->textEdit->insertHtml(cc);
+    movePositionEnd();
+
+    textEdit_s->insertHtml(cc);
+
+    //初始化完成调用
+    QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
+    //通知页面，连接成功，可以使用
+    qDebug("开始调用init_poll完成");
+
+    QString host = cInfoStruct.host;
+    QString port = cInfoStruct.port;
+    QString username = cInfoStruct.userName;
+    QString password = cInfoStruct.password;
+    int connrectType = 1;
+    QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+}
+
+void sshwidget::rece_ssh_exec_init()
+{
+    QString host = cInfoStruct.host;
+    QString port = cInfoStruct.port;
+    QString username = cInfoStruct.userName;
+    QString password = cInfoStruct.password;
+    int connrectType = 1;
+    QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+}
+
+void sshwidget::rece_ssh_sftp_init()
+{
+    //初始化完成
 }

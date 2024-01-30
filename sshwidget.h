@@ -258,6 +258,7 @@ public:
     //文本尾
     void movePositionEnd(sshwidget::MoveMode mode = sshwidget::MoveAnchor);
     //选中文本
+    QString movePositionRightSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     QString movePositionLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //删除文本
     void movePositionRemoveLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
@@ -335,6 +336,11 @@ private slots:
 
     void rece_downloadFile_sgin(QString fileName = "");
 
+    void rece_ssh_init();
+
+    void rece_ssh_exec_init();
+
+    void rece_ssh_sftp_init();
 
 private:
     Ui::sshwidget *ui;
@@ -408,6 +414,8 @@ private:
 
     int clearPos = 0;
     int clearSPos = 0;
+
+    connnectInfoStruct cInfoStruct;
 };
 
 #endif // SSHWIDGET_H

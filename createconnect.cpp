@@ -2,12 +2,13 @@
 #include "createconnect.h"
 #include "ui_createconnect.h"
 #include "secretkeywidget.h"
-
+#include <QMovie>
 createconnect::createconnect(int8_t connectType, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::createconnect)
 {
     ui->setupUi(this);
+    //ui->label->hide();
     //只显示关闭按钮
     setWindowFlags(Qt::WindowCloseButtonHint);
     //选择显示的连接类型
@@ -78,6 +79,18 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         cInfo.host = ui->lineEdit_host_zk_data->text();
         cInfo.port = ui->lineEdit_port_zk_data->text();
     }
+
+//    QHBoxLayout* layoutButton = new QHBoxLayout(ui->widget_bottom_toolButton_connect);
+//    layoutButton->addStretch(1);
+//    layoutButton->setContentsMargins(0,0,0,0);
+//    QLabel* label = new QLabel();
+//    label->setAlignment(Qt::AlignCenter);
+//    QMovie* movie = new QMovie(":/lib/jiazai5.gif");
+//    movie->setObjectName("movieLoading");
+//    movie->setScaledSize(QSize(20, 20));
+//    ui->label->show();
+//    ui->label->setMovie(movie);
+//    movie->start();
 
     emit newCreate(cInfo);
     this->hide();

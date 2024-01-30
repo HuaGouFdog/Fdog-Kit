@@ -48,6 +48,7 @@ public:
     QString commondExec(QString commond);
 signals:
     void send_getServerInfo(ServerInfoStruct serverInfo);
+    void send_init();
 public slots:
     void init(int connrectType, QString host, QString port, QString username, QString password);
 private:
