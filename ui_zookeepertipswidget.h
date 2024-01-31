@@ -71,7 +71,13 @@ public:
 
         label_message = new QLabel(widget);
         label_message->setObjectName(QStringLiteral("label_message"));
-        label_message->setFont(font);
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans B"));
+        font2.setPointSize(10);
+        font2.setBold(false);
+        font2.setWeight(50);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        label_message->setFont(font2);
         label_message->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         horizontalLayout->addWidget(label_message);

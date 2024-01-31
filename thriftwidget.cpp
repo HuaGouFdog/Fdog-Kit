@@ -50,7 +50,6 @@ void ItemWidget::init()
     comboBoxBase->addItem("list");
     comboBoxBase->setCurrentIndex(3);
     comboBoxBase->setMinimumHeight(29);
-
     comboBoxBase->setView(new QListView());  //必须设置
 
     connect(comboBoxBase, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),[=]{
@@ -93,7 +92,6 @@ void ItemWidget::init()
     comboBoxValue->addItem("list");
     comboBoxValue->setCurrentIndex(0);
     comboBoxValue->setMinimumHeight(29);
-
     comboBoxValue->hide();
 
     comboBoxValue->setView(new QListView());  //必须设置
@@ -127,6 +125,28 @@ void ItemWidget::init()
     moveButton->setIcon(QIcon(":lib/tuodong.png"));
     moveButton->setIconSize(QSize(20, 20));
 
+
+    addNode = new QToolButton();
+    connect(addNode,&QToolButton::clicked,[=]{
+        emit send_buttonClicked_add(this);
+    });
+    addNode->setText("添加元素");
+    addNode->setToolTip("将根据已有的struct格式快速生成");
+    addNode->setStyleSheet("QToolButton {\
+                           font: 10pt \"OPPOSans B\";\
+                           color: rgb(255, 255, 255);\
+                           background-color: rgb(250, 118, 0);\
+                           border-radius: 0px;\
+                       }\
+                       QToolButton::menu-indicator { \
+                           image: None;\
+                       }\
+                       QToolButton:hover {\
+                           color: rgb(255, 255, 255);\
+                           background-color: rgb(250, 118, 0);\
+                       }");
+    addNode->setMinimumHeight(29);
+    addNode->hide();
     layoutParamName = new QHBoxLayout();
     layoutParamName->setContentsMargins(0, 0, 0, 0);
     layoutParamName->addWidget(checkBox);
@@ -136,20 +156,55 @@ void ItemWidget::init()
 
     layoutParamType = new QHBoxLayout();
     layoutParamType->setContentsMargins(0, 0, 0, 0);
+    layoutParamType->setSpacing(0);
     layoutParamType->addWidget(comboBoxBase);
     layoutParamType->addWidget(comboBoxKey);
     layoutParamType->addWidget(comboBoxValue);
+    layoutParamType->addWidget(addNode);
     widgetParamType = new QWidget();
     widgetParamType->setLayout(layoutParamType);
 
     layoutParamValue = new QHBoxLayout();
-    layoutParamValue->setContentsMargins(0, 0, 0, 0);
+    layoutParamValue->setContentsMargins(5, 0, 0, 0);
+    keyLabel = new QLabel();
+    keyLabel->setAlignment(Qt::AlignCenter);
+    keyLabel->setText("KEY");
+    keyLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 214, 103);border-radius: 3px;");
+    keyLabel->setMinimumWidth(34);
+    keyLabel->setMaximumWidth(34);
+    keyLabel->setMaximumHeight(15);
+
+
+    valueLabel = new QLabel();
+    valueLabel->setAlignment(Qt::AlignCenter);
+    valueLabel->setText("VALUE");
+    valueLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 95, 95);border-radius: 3px;");
+    valueLabel->setMinimumWidth(50);
+    valueLabel->setMaximumWidth(50);
+    valueLabel->setMaximumHeight(15);
+
+    classLabel = new QLabel();
+    classLabel->setAlignment(Qt::AlignCenter);
+    classLabel->setText("OBJECT");
+    classLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(7, 143, 255);border-radius: 3px;");
+    classLabel->setMinimumWidth(55);
+    classLabel->setMaximumWidth(55);
+    classLabel->setMaximumHeight(15);
+
+
+    layoutParamValue->addWidget(keyLabel);
+    layoutParamValue->addWidget(valueLabel);
+    layoutParamValue->addWidget(classLabel);
     layoutParamValue->addWidget(lineEditParamValue);
     layoutParamValue->addWidget(deleteButton);
     widgetParamValue = new QWidget();
     widgetParamValue->setLayout(layoutParamValue);
 
     label = new QLabel("xxxxxxx");
+
+    keyLabel->hide();
+    valueLabel->show();
+    classLabel->hide();
 
 }
 
@@ -170,10 +225,10 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->treeWidget->setColumnWidth(0, 120);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(1, 270);
+    ui->treeWidget->setColumnWidth(1, 150);
 
     // 计算第五列的宽度，使其占满剩余空间
-    int lastColumnWidth = ui->treeWidget->viewport()->width() - 120 - 270;
+    int lastColumnWidth = ui->treeWidget->viewport()->width() - 120 - 150;
     ui->treeWidget->setColumnWidth(2, lastColumnWidth);
 
     QHeaderView* header = ui->treeWidget->header();
@@ -183,10 +238,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     // 设置默认的列高度为 30 像素
     header->setDefaultSectionSize(200);
-
+    ui->treeWidget->header()->resizeSection(1, 150);
     // 创建一个树节点
     ItemWidget* item = new ItemWidget(ui->treeWidget);
     connect(item, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+    connect(item, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(item, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(item, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
@@ -301,14 +357,14 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
     //收到数据，触发readyRead
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
         //没有可读的数据就返回
-        qDebug() << "接收到的数据（十六进制字符串）：";
+        qDebug() << "接收到的数据（十六进制字符串）:";
         std::array<uint32_t, 2000> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                   receivedDataArray.size() * sizeof(uint32_t));
         // 将数据转换为主机字节序
         QStringList dataList2;
         QString dataTemp;
-        int countLength = 4; //设置数据长度，到达后不再读取 加上开头长度数据
+        int countLength = -1; //设置数据长度，到达后不再读取 加上开头长度数据
         int nowLength = 0; //设置数据长度，到达后不再读取
         for (uint32_t data : receivedDataArray) {
             data = qFromBigEndian(data);
@@ -317,7 +373,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             dataList2.append(QString::fromStdString(stream.str()));
             dataTemp = dataTemp + " " + QString::fromStdString(stream.str());
             if (countLength == -1) {
-                countLength = strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
+                countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
                 qDebug() << "countLength = " << countLength;
             }
             nowLength = nowLength + 4;
@@ -938,6 +994,25 @@ void thriftwidget::rece_deleteItem(QTreeWidgetItem *item)
 
 }
 
+void thriftwidget::rece_addItem(QTreeWidgetItem *item)
+{
+    //复制倒数第一个结构体
+    //查找最后一个结构体
+    ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
+    int count = item_->childCount();
+    ItemWidget* items = new ItemWidget(item_);
+    connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+    ItemWidget* items2 = new ItemWidget(item_);
+    delete items2;
+    //复制数据
+    //首先child() 是struct
+    
+
+}
+
 void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
 {
     qDebug() << "修改";
@@ -950,10 +1025,10 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
     int count = ui->treeWidget->topLevelItemCount() - 1;
     int index = ui->treeWidget->indexOfTopLevelItem(item);
     bool isChild = false;
-    QTreeWidgetItem* parentItem;
+    ItemWidget * parentItem;
     if (index == -1) {
         //不是顶层节点，向上查找
-        parentItem = item->parent();
+        parentItem = dynamic_cast<ItemWidget*>(item->parent());
         if (parentItem) {
             qDebug() << "找到上层";
             count = parentItem->childCount() - 1;
@@ -968,28 +1043,102 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        ItemWidget* items2 = new ItemWidget(ui->treeWidget);
+        delete items2;
     } else if (isChild && index >= count) {
         ItemWidget* items = new ItemWidget(parentItem);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        ItemWidget* items2 = new ItemWidget(parentItem);
+        delete items2;
     } else if (data == "") {
         //删除gai
     }
-    ui->treeWidget->style()->polish(ui->treeWidget);
-    // ui->treeWidget->hide();
-    // ui->treeWidget->show();
+
+
+    //获取当前焦点
+    //QWidget *previousFocusedWidget = this->focusWidget();
+//    ui->treeWidget->hide();
+//    ui->treeWidget->show();
+//    ui->treeWidget->style()->polish(ui->treeWidget);
+    //previousFocusedWidget->setFocus();
 }
 
 void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 {
     
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
-    // || item_->comboBoxKey->currentText() == "struct" || item_->comboBoxValue->currentText() == "struct"
-    if (item_->comboBoxBase->currentText() == "struct") {
+    if (item_->comboBoxBase->currentText() == "map") {
+        item_->lineEditParamValue->setReadOnly(false);
+        item_->lineEditParamValue->setPlaceholderText("参数值");
+        item_->comboBoxKey->show();
+        item_->comboBoxValue->show();
+        ui->treeWidget->header()->resizeSection(1, 450);  // 设置第二列宽度为500
+        if (item_->comboBoxValue->currentText() == "struct") {
+            //添加子节点
+            item_->addNode->show();
+            item_->keyLabel->hide();
+            item_->valueLabel->hide();
+            item_->classLabel->hide();
+            item_->setExpanded(true);
+            item_->lineEditParamValue->setReadOnly(true);
+            item_->lineEditParamValue->setPlaceholderText("");
+            ItemWidget* item2 = new ItemWidget(item_);
+            connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+            //item2->setText(0, "");
+            //子节点应为struct
+            qDebug() << "走这里";
+            item2->comboBoxBase->setCurrentIndex(7);
+            item2->keyLabel->show();
+            item2->valueLabel->hide();
+            item2->classLabel->hide();
+
+            item2->lineEditParamValue->setPlaceholderText("key");
+            item2->lineEditParamValue->setReadOnly(false);
+        }
+    } else if (item_->comboBoxBase->currentText() == "set" || item_->comboBoxBase->currentText() == "list") {
+        item_->lineEditParamValue->setReadOnly(false);
+        item_->lineEditParamValue->setPlaceholderText("参数值");
+        item_->comboBoxKey->show();
+        item_->comboBoxValue->hide();
+        ui->treeWidget->header()->resizeSection(1, 300);  // 设置第二列宽度为500
+        qDebug() << "创建1" << item_->comboBoxKey->currentText();
+        if (item_->comboBoxKey->currentText() == "struct") {
+            qDebug() << "创建2";
+            //添加子节点
+            ItemWidget* item2 = new ItemWidget(item_);
+            connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+            item2->setText(0, "");
+            //子节点应为struct
+            item_->addNode->show();
+            item_->keyLabel->hide();
+            item_->valueLabel->hide();
+            item_->classLabel->hide();
+            item2->comboBoxBase->setCurrentIndex(7);
+            item2->keyLabel->hide();
+            item2->valueLabel->hide();
+            item2->classLabel->show();
+            item_->setExpanded(true);
+
+            item_->lineEditParamValue->setReadOnly(true);
+            item_->lineEditParamValue->setPlaceholderText("");
+            //item_->lineEditParamValue->hide();
+            //item2->lineEditParamValue->hide();
+        }
+    } else if (item_->comboBoxBase->currentText() == "struct") {
         //创建子节点
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
+
+        item_->keyLabel->hide();
+        item_->valueLabel->hide();
+        item_->classLabel->show();
+
         item_->checkBox->setChecked(true);
         ItemWidget* item2 = new ItemWidget(item);
         connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -1002,20 +1151,25 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
-    } else if (item_->comboBoxBase->currentText() == "map") {
-        item_->comboBoxKey->show();
-        item_->comboBoxValue->show();
-    } else if (item_->comboBoxBase->currentText() == "set") {
-        item_->comboBoxKey->show();
-        item_->comboBoxValue->hide();
-    } else if (item_->comboBoxBase->currentText() == "list") {
-        item_->comboBoxKey->show();
-        item_->comboBoxValue->hide();
+        ItemWidget* items2 = new ItemWidget(ui->treeWidget);
+        delete items2;
+        item_->lineEditParamValue->setReadOnly(true);
+        item_->lineEditParamValue->setPlaceholderText("");
+
     } else {
+        item_->lineEditParamValue->setReadOnly(false);
+        item_->lineEditParamValue->setPlaceholderText("参数值");
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
+        item_->keyLabel->hide();
+        item_->valueLabel->show();
+        item_->classLabel->hide();
+        //ui->treeWidget->header()->resizeSection(1, 150);  // 设置第二列宽度为500
     }
-    if (item_->comboBoxBase->currentText() != "struct") {
+    if (item_->comboBoxBase->currentText() != "struct" &&
+            ((item_->comboBoxBase->currentText() == "list" || item_->comboBoxBase->currentText() == "set")
+            && item_->comboBoxKey->currentText() != "struct") &&
+            (item_->comboBoxBase->currentText() == "map" && item_->comboBoxKey->currentText() != "struct")) {
         //删除下面所有节点
         int childCount = item_->childCount();
         for (int i = childCount - 1; i >= 0; --i) {

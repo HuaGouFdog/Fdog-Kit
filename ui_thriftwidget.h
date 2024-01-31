@@ -521,8 +521,15 @@ public:
         toolButton_test = new QToolButton(widget_6);
         toolButton_test->setObjectName(QStringLiteral("toolButton_test"));
         toolButton_test->setMinimumSize(QSize(68, 30));
-        toolButton_test->setFont(font2);
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(10);
+        font3.setBold(false);
+        font3.setItalic(false);
+        font3.setWeight(50);
+        toolButton_test->setFont(font3);
         toolButton_test->setStyleSheet(QLatin1String("QToolButton {\n"
+"	font: 10pt \"OPPOSans B\";\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(250, 118, 0);\n"
 "	border-radius: 5px;\n"
@@ -792,6 +799,19 @@ public:
 "	selection-background-color:#52DCFE;\n"
 "}\n"
 "\n"
+"QToolButton {\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(250, 118, 0);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(250, 118, 0);\n"
+"}\n"
 ""));
         horizontalLayout_3 = new QHBoxLayout(widget_4);
         horizontalLayout_3->setSpacing(0);
@@ -1079,9 +1099,9 @@ public:
         widget_5 = new QWidget(widget_2);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(0, 100));
-        QFont font3;
-        font3.setStyleStrategy(QFont::PreferDefault);
-        widget_5->setFont(font3);
+        QFont font4;
+        font4.setStyleStrategy(QFont::PreferDefault);
+        widget_5->setFont(font4);
         verticalLayout_7 = new QVBoxLayout(widget_5);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));

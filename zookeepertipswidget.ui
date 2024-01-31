@@ -109,6 +109,8 @@
          <font>
           <family>OPPOSans B</family>
           <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>

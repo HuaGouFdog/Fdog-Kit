@@ -63,7 +63,9 @@ public:
 "}"));
         toolButton = new QToolButton(mkdirfolderwidget);
         toolButton->setObjectName(QStringLiteral("toolButton"));
-        toolButton->setGeometry(QRect(90, 60, 61, 31));
+        toolButton->setGeometry(QRect(90, 60, 61, 30));
+        toolButton->setMinimumSize(QSize(0, 30));
+        toolButton->setMaximumSize(QSize(16777215, 30));
         toolButton->setFont(font);
         toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(26, 26, 26);\n"

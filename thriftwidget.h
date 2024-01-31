@@ -82,7 +82,12 @@ class thriftwidget;
       //QLineEdit* lineEditParamDescribe;   //参数描述
 
       QToolButton* deleteButton;          //删除按钮
-      QToolButton* moveButton;          //删除按钮
+      QToolButton* moveButton;            //删除按钮
+      QToolButton* addNode;               //添加元素
+
+      QLabel * keyLabel;    //key元素
+      QLabel * valueLabel;  //value元素
+      QLabel * classLabel;  //类元素
 
       QHBoxLayout* layoutParamName;
       QWidget* widgetParamName;
@@ -98,6 +103,7 @@ signals:
       void send_buttonClicked(QTreeWidgetItem * item);
       void send_onTextChanged(QString data, QTreeWidgetItem * item);
       void send_currentIndexChanged(QString data, QTreeWidgetItem * item);
+      void send_buttonClicked_add(QTreeWidgetItem * t1);
  };
 
 enum ObjectType {
@@ -210,11 +216,13 @@ public:
     void parseData();
 
     //QVector<ItemWidget*> ItemWidgetList;
+
 private slots:
     void on_toolButton_clicked();
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void read_data();
     void rece_deleteItem(QTreeWidgetItem * item);
+    void rece_addItem(QTreeWidgetItem * item);
     void rece_TextChanged(QString data, QTreeWidgetItem * item);
     void rece_currentIndexChanged(QString data, QTreeWidgetItem * item);
 
