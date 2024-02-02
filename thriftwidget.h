@@ -99,6 +99,10 @@ class thriftwidget;
       QLabel* label;
       QCheckBox* checkBox;
 
+      
+
+      void copyItem(ItemWidget * item_p, ItemWidget * item_);
+
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);
       void send_onTextChanged(QString data, QTreeWidgetItem * item);
@@ -119,6 +123,8 @@ class thriftwidget : public QWidget
     Q_OBJECT
 
 public:
+    bool isAddNode = false;
+
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
     QString getType(int index);

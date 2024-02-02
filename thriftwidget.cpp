@@ -169,7 +169,7 @@ void ItemWidget::init()
     keyLabel = new QLabel();
     keyLabel->setAlignment(Qt::AlignCenter);
     keyLabel->setText("KEY");
-    keyLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 214, 103);border-radius: 3px;");
+    keyLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 234, 93);border-radius: 3px;");
     keyLabel->setMinimumWidth(34);
     keyLabel->setMaximumWidth(34);
     keyLabel->setMaximumHeight(15);
@@ -178,7 +178,7 @@ void ItemWidget::init()
     valueLabel = new QLabel();
     valueLabel->setAlignment(Qt::AlignCenter);
     valueLabel->setText("VALUE");
-    valueLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 95, 95);border-radius: 3px;");
+    valueLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 80, 95);border-radius: 3px;");
     valueLabel->setMinimumWidth(50);
     valueLabel->setMaximumWidth(50);
     valueLabel->setMaximumHeight(15);
@@ -211,6 +211,33 @@ void ItemWidget::init()
 ItemWidget::~ItemWidget()
 {
 
+}
+
+void ItemWidget::copyItem(ItemWidget *item_p, ItemWidget *item_)
+{
+    //将item_的格式复制到自身 传进来的是一个struct
+    this->comboBoxBase->setCurrentIndex(item_->comboBoxBase->currentIndex());
+    this->keyLabel->show();
+    this->valueLabel->hide();
+    this->classLabel->hide();
+    this->lineEditParamValue->setPlaceholderText("key");
+    this->lineEditParamValue->setReadOnly(false);
+    this->setExpanded(true);
+    //然后判断item_下面是否有子节点
+    if (item_->childCount() > 0) {
+        for(int i = 0; i < 1; i++) {
+            //创建子节点
+            ItemWidget* items = new ItemWidget(this);
+            connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+            //复制子节点数据
+            ItemWidget* item_c = dynamic_cast<ItemWidget*>(item_->child(0));
+            items->comboBoxBase->setCurrentIndex(item_c->comboBoxBase->currentIndex());
+
+        }
+    }
 }
 
 thriftwidget::thriftwidget(QWidget *parent) :
@@ -998,6 +1025,7 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
 {
     //复制倒数第一个结构体
     //查找最后一个结构体
+    isAddNode = true;
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
     int count = item_->childCount();
     ItemWidget* items = new ItemWidget(item_);
@@ -1005,6 +1033,9 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+
+    items->copyItem(item_, dynamic_cast<ItemWidget*>(item_->child(0)));
+
     ItemWidget* items2 = new ItemWidget(item_);
     delete items2;
     //复制数据
@@ -1130,7 +1161,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             //item_->lineEditParamValue->hide();
             //item2->lineEditParamValue->hide();
         }
-    } else if (item_->comboBoxBase->currentText() == "struct") {
+    } else if (item_->comboBoxBase->currentText() == "struct" && isAddNode != true) {
         //创建子节点
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
@@ -1176,6 +1207,10 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             ItemWidget* childItem = dynamic_cast<ItemWidget*>(item_->takeChild(i));
             delete childItem;
         }
+    }
+
+    if (isAddNode == true) {
+        isAddNode = false;
     }
 }
 
