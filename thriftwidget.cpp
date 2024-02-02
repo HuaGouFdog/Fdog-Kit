@@ -213,10 +213,13 @@ ItemWidget::~ItemWidget()
 
 }
 
-void ItemWidget::copyItem(ItemWidget *item_p, ItemWidget *item_)
+void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item_)
 {
     //将item_的格式复制到自身 传进来的是一个struct
     this->comboBoxBase->setCurrentIndex(item_->comboBoxBase->currentIndex());
+    if (item_->checkBox->isChecked()) {
+        this->checkBox->setChecked(true);
+    }
     this->keyLabel->show();
     this->valueLabel->hide();
     this->classLabel->hide();
@@ -225,17 +228,19 @@ void ItemWidget::copyItem(ItemWidget *item_p, ItemWidget *item_)
     this->setExpanded(true);
     //然后判断item_下面是否有子节点
     if (item_->childCount() > 0) {
-        for(int i = 0; i < 1; i++) {
+        for(int i = 0; i < item_->childCount(); i++) {
             //创建子节点
             ItemWidget* items = new ItemWidget(this);
-            connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
-            connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
-            connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
-            connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), p, SLOT(rece_addItem(QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             //复制子节点数据
-            ItemWidget* item_c = dynamic_cast<ItemWidget*>(item_->child(0));
+            ItemWidget* item_c = dynamic_cast<ItemWidget*>(item_->child(i));
             items->comboBoxBase->setCurrentIndex(item_c->comboBoxBase->currentIndex());
-
+            if (item_c->checkBox->isChecked()) {
+                items->checkBox->setChecked(true);
+            }
         }
     }
 }
@@ -1034,7 +1039,7 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
-    items->copyItem(item_, dynamic_cast<ItemWidget*>(item_->child(0)));
+    items->copyItem(this, item_, dynamic_cast<ItemWidget*>(item_->child(0)));
 
     ItemWidget* items2 = new ItemWidget(item_);
     delete items2;

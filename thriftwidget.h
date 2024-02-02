@@ -65,6 +65,8 @@ namespace Ui {
 class thriftwidget;
 }
 
+class thriftwidget;
+
  class ItemWidget :public QObject ,public QTreeWidgetItem
  {
      Q_OBJECT
@@ -101,7 +103,7 @@ class thriftwidget;
 
       
 
-      void copyItem(ItemWidget * item_p, ItemWidget * item_);
+      void copyItem(thriftwidget * p, ItemWidget * item_p, ItemWidget * item_);
 
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);
