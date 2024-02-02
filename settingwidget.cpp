@@ -5,6 +5,7 @@
 #include <QPropertyAnimation>
 #include <QFontDatabase>
 #include <QListWidget>
+#include <QGraphicsOpacityEffect>
 QStringList campbell = {"#0C0C0C","#767676",
                         "#C50F1F","#E74856",
                         "#13A10E","#16C60C",
@@ -209,6 +210,15 @@ settingwidget::~settingwidget()
 void settingwidget::on_Menu_clicked(int index)
 {
     ui->stackedWidget->setCurrentIndex(index);
+    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+    ui->stackedWidget->setGraphicsEffect(eff);
+    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+    a->setDuration(250);
+    a->setStartValue(0);
+    a->setEndValue(1);
+    a->setEasingCurve(QEasingCurve::InBack);
+    a->start(QPropertyAnimation::DeleteWhenStopped);
+    connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
 }
 
 //void settingwidget::on_toolButton_clicked()
@@ -455,4 +465,9 @@ void settingwidget::on_toolButton_recover_clicked()
 
     ui->lineEdit_currentBackground->setText(confInfo->currentBackground);
 
+}
+
+void settingwidget::whenAnimationFinish()
+{
+    ui->stackedWidget->setGraphicsEffect(0); // remove effect
 }

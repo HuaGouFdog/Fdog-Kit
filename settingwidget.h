@@ -24,6 +24,8 @@ private slots:
 
     void on_toolButton_recover_clicked();
 
+    void whenAnimationFinish();
+
 private:
     Ui::settingwidget *ui;
     //启动模块
