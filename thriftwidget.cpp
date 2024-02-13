@@ -20,6 +20,7 @@
 
 ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
 {
+    qDebug() << "走1";
     init();
     parent->setItemWidget(this, 0, widgetParamName);
     parent->setItemWidget(this, 1, widgetParamType);
@@ -28,6 +29,7 @@ ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
 
 ItemWidget::ItemWidget(QTreeWidgetItem *parent): QTreeWidgetItem(parent, 1)
 {
+    qDebug() << "走2";
     init();
     treeWidget()->setItemWidget(this, 0, widgetParamName);
     treeWidget()->setItemWidget(this, 1, widgetParamType);
@@ -125,9 +127,10 @@ void ItemWidget::init()
     moveButton->setIcon(QIcon(":lib/tuodong.png"));
     moveButton->setIconSize(QSize(20, 20));
 
-
+    qDebug() << "走这里22";
     addNode = new QToolButton();
     connect(addNode,&QToolButton::clicked,[=]{
+        qDebug() << "触发信号";
         emit send_buttonClicked_add(this);
     });
     addNode->setText("添加元素");
@@ -215,16 +218,28 @@ ItemWidget::~ItemWidget()
 
 void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item_)
 {
+
+
     //将item_的格式复制到自身 传进来的是一个struct
     this->comboBoxBase->setCurrentIndex(item_->comboBoxBase->currentIndex());
     if (item_->checkBox->isChecked()) {
         this->checkBox->setChecked(true);
     }
-    this->keyLabel->show();
+
+    this->keyLabel->hide();
     this->valueLabel->hide();
     this->classLabel->hide();
-    this->lineEditParamValue->setPlaceholderText("key");
-    this->lineEditParamValue->setReadOnly(false);
+    if (!item_->keyLabel->isHidden()) {
+        this->keyLabel->show();
+    }
+    if (!item_->valueLabel->isHidden()) {
+        this->valueLabel->show();
+    }
+    if (!item_->classLabel->isHidden()) {
+        this->classLabel->show();
+    }
+    //this->lineEditParamValue->setPlaceholderText("key");
+    //this->lineEditParamValue->setReadOnly(false);
     this->setExpanded(true);
     //然后判断item_下面是否有子节点
     if (item_->childCount() > 0) {
@@ -998,6 +1013,7 @@ void thriftwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int co
 {
     ItemWidget* items = new ItemWidget(item);
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
@@ -1028,18 +1044,21 @@ void thriftwidget::rece_deleteItem(QTreeWidgetItem *item)
 
 void thriftwidget::rece_addItem(QTreeWidgetItem *item)
 {
+    qDebug() << "进入添加元素";
     //复制倒数第一个结构体
     //查找最后一个结构体
     isAddNode = true;
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
     int count = item_->childCount();
     ItemWidget* items = new ItemWidget(item_);
+
+
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
-    items->copyItem(this, item_, dynamic_cast<ItemWidget*>(item_->child(0)));
+    items->copyItem(this, items, dynamic_cast<ItemWidget*>(item_->child(0)));
 
     ItemWidget* items2 = new ItemWidget(item_);
     delete items2;
@@ -1077,6 +1096,7 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
     if (!isChild && index >= count) {
         ItemWidget* items = new ItemWidget(ui->treeWidget);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);
@@ -1084,6 +1104,7 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
     } else if (isChild && index >= count) {
         ItemWidget* items = new ItemWidget(parentItem);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         ItemWidget* items2 = new ItemWidget(parentItem);
@@ -1122,6 +1143,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             item_->lineEditParamValue->setPlaceholderText("");
             ItemWidget* item2 = new ItemWidget(item_);
             connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             //item2->setText(0, "");
@@ -1147,6 +1169,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             //添加子节点
             ItemWidget* item2 = new ItemWidget(item_);
             connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             item2->setText(0, "");
@@ -1178,6 +1201,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         item_->checkBox->setChecked(true);
         ItemWidget* item2 = new ItemWidget(item);
         connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         item2->setText(0, "");
@@ -1185,6 +1209,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         //向下创建同级节点
         ItemWidget* items = new ItemWidget(ui->treeWidget);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);

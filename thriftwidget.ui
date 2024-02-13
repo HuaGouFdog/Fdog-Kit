@@ -680,13 +680,16 @@ padding-right:10px;
            </property>
            <property name="font">
             <font>
-             <family>OPPOSans</family>
+             <family>OPPOSans B</family>
              <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
+	font: 10pt &quot;OPPOSans B&quot;;
 	color: rgb(255, 255, 255);
 	background-color: rgb(250, 118, 0);
 	border-radius: 5px;
@@ -1213,6 +1216,19 @@ QComboBox QAbstractItemView{
 	selection-background-color:#52DCFE;
 }
 
+QToolButton {
+	font: 10pt &quot;OPPOSans B&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgb(250, 118, 0);
+	border-radius: 5px;
+}
+QToolButton::menu-indicator { 
+	image: None;
+}
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(250, 118, 0);
+}
 </string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1566,7 +1582,7 @@ QScrollBar::up-arrow:horizontal {
                  <bool>false</bool>
                 </property>
                 <attribute name="headerVisible">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </attribute>
                 <attribute name="headerDefaultSectionSize">
                  <number>100</number>
