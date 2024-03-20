@@ -66,10 +66,10 @@ void ItemWidget::init()
     comboBoxKey->addItem("i64");
     comboBoxKey->addItem("double");
     comboBoxKey->addItem("string");
-    comboBoxKey->addItem("struct");
-    comboBoxKey->addItem("map");
-    comboBoxKey->addItem("set");
-    comboBoxKey->addItem("list");
+    //comboBoxKey->addItem("struct");
+    //comboBoxKey->addItem("map");
+    //comboBoxKey->addItem("set");
+    //comboBoxKey->addItem("list");
     comboBoxKey->setCurrentIndex(0);
     comboBoxKey->setMinimumHeight(29);
     comboBoxKey->hide();
@@ -694,59 +694,79 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
    QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
    string2stringList(serialNumberStr);
    //遍历item，获取所有子节点，暂时不考虑孙节点
+   int sum = -1;
    for(int i = 0; i < item->childCount(); i++) {
-       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(i));
-       //暂不考虑孙节点
-       valueType = itemChild->comboBoxBase->currentText();
-       QString value = itemChild->lineEditParamValue->text();
-       qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
-       //设置类型 设置序号
-       //设置类型
-       QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
-       string2stringList(type);
-       //设置序号
-       QString serialNumberStr = QString("%1").arg(i+1, 4, 16, QLatin1Char('0'));
-       string2stringList(serialNumberStr);
+        ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(i));
+        if (itemChild->checkBox->isChecked()) {
+            sum++;
+        } else {
+            continue;
+        }
+        //暂不考虑孙节点
+        valueType = itemChild->comboBoxBase->currentText();
+        QString value = itemChild->lineEditParamValue->text();
+        qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
+        //设置类型 设置序号
+        //设置类型
+        QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
+        string2stringList(type);
+        //设置序号
+        QString serialNumberStr = QString("%1").arg(i+1, 4, 16, QLatin1Char('0'));
+        string2stringList(serialNumberStr);
 
-       if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
-            valueType == "i32") {
-           //设置值16个长度 8个长度为4个字节  1字节 = 2长度
-           int value_i = value.toInt();
-           QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
-           string2stringList(valueData);
-       } else if (valueType == "i64") {
-            int64_t value_i = value.toULongLong();
-            qDebug() << "int64 = " << value;
+        if (valueType == "bool" || valueType == "byte" || valueType == "i16" ||
+                valueType == "i32") {
+            //设置值16个长度 8个长度为4个字节  1字节 = 2长度
+            int value_i = value.toInt();
             QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
             string2stringList(valueData);
-       } else if (valueType == "double") {
-            //这里要处理
-           double d = value.toDouble();
-           qulonglong d_long = *(qulonglong*)&d;
-           QString d_hex = QString("%1").arg(d_long, mapSize.value(valueType), 16, QLatin1Char('0'));
-           //转换
-           QString reversedString;
-           while (d_hex.length()!=0) {
-              qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
-              reversedString = reversedString + d_hex.mid(d_hex.length()-2);
-              d_hex = d_hex.mid(0, d_hex.length()-2);
-           }
-           string2stringList(reversedString);
-       } else if (valueType == "string") {
-           //设置字符串长度
-           int len = value.length();
-           QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
-           string2stringList(lenData);
-           //设置字符串值
-           QByteArray byteArray = value.toUtf8(); // 将字符串转换为字节数组
-           QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
-           string2stringList(valueData);
-       } else {
-            qDebug() << "出错";
-       }
+        } else if (valueType == "i64") {
+                int64_t value_i = value.toULongLong();
+                qDebug() << "int64 = " << value;
+                QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
+                string2stringList(valueData);
+        } else if (valueType == "double") {
+                //这里要处理
+            double d = value.toDouble();
+            qulonglong d_long = *(qulonglong*)&d;
+            QString d_hex = QString("%1").arg(d_long, mapSize.value(valueType), 16, QLatin1Char('0'));
+            //转换
+            QString reversedString;
+            while (d_hex.length()!=0) {
+                qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
+                reversedString = reversedString + d_hex.mid(d_hex.length()-2);
+                d_hex = d_hex.mid(0, d_hex.length()-2);
+            }
+            string2stringList(reversedString);
+        } else if (valueType == "string") {
+            //字母包括数字这样写没问题，但是如果是文字就占3个而不是一个
+            //设置字符串长度
+            int len = value.length();
+            if (value.contains(QRegExp("[\\x4e00-\\x9fff]+"))) {
+                //应该判断包含多少个汉字，然后*2
+                int count = 0;
+                for (QChar c : value) {
+                    if (c >= QChar(0x4e00) && c <= QChar(0x9fff)) {
+                        count++;
+                    }
+                }
+                len = len + count*2;
+            }
+            QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
+            string2stringList(lenData);
+            //设置字符串值
+            QByteArray byteArray = value.toUtf8(); // 将字符串转换为字节数组
+            QString valueData = byteArray.toHex(); // 将字节数组转换为十六进制字符串
+            string2stringList(valueData);
+        } else {
+                qDebug() << "出错";
+        }
 
    }
 
+    //添加结束符号
+    QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
+    dataList.append(stop);
 }
 
 void thriftwidget::map2List(QStringList &dataList, QString data)
@@ -921,20 +941,24 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
 {
     //遍历item
    for(int serialNumber = 0; serialNumber < item->childCount(); serialNumber++) {
-       ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(serialNumber));
-       //设置类型和序号
-       QString valueType_ = itemChild->comboBoxBase->currentText();
-       QString value_ = itemChild->lineEditParamValue->text();
-       writeTBinaryTypeAndSerialNumber(valueType, serialNumber + 1);
-       if (baseType.contains(valueType_)) {
-           writeTBinaryBaseMessage(valueType_, value_);
-       } else if (containerType.contains(valueType_)) {
-           //集合
-           writeTBinaryCollectionMessage(valueType_, value_, itemChild, itemChild->comboBoxKey->currentText(), itemChild->comboBoxValue->currentText());
-       } else {
-           //struct
-           writeTBinaryStructMessage(valueType_, itemChild);
-       }
+        ItemWidget * itemChild = dynamic_cast<ItemWidget*>(item->child(serialNumber));
+        if (!itemChild->checkBox->isChecked()) {
+            //未勾选跳过
+            continue;
+        }
+        //设置类型和序号
+        QString valueType_ = itemChild->comboBoxBase->currentText();
+        QString value_ = itemChild->lineEditParamValue->text();
+        writeTBinaryTypeAndSerialNumber(valueType, serialNumber + 1);
+        if (baseType.contains(valueType_)) {
+            writeTBinaryBaseMessage(valueType_, value_);
+        } else if (containerType.contains(valueType_)) {
+            //集合
+            writeTBinaryCollectionMessage(valueType_, value_, itemChild, itemChild->comboBoxKey->currentText(), itemChild->comboBoxValue->currentText());
+        } else {
+            //struct
+            writeTBinaryStructMessage(valueType_, itemChild);
+        }
    }
 }
 
@@ -1160,8 +1184,8 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
     } else if (item_->comboBoxBase->currentText() == "set" || item_->comboBoxBase->currentText() == "list") {
         item_->lineEditParamValue->setReadOnly(false);
         item_->lineEditParamValue->setPlaceholderText("参数值");
-        item_->comboBoxKey->show();
-        item_->comboBoxValue->hide();
+        item_->comboBoxKey->hide();
+        item_->comboBoxValue->show();
         ui->treeWidget->header()->resizeSection(1, 300);  // 设置第二列宽度为500
         qDebug() << "创建1" << item_->comboBoxKey->currentText();
         if (item_->comboBoxKey->currentText() == "struct") {

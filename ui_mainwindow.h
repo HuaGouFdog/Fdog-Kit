@@ -1,4 +1,4 @@
-﻿/********************************************************************************
+/********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.10.0
@@ -71,7 +71,10 @@ public:
     QWidget *widget_5;
     QVBoxLayout *verticalLayout_5;
     QLabel *label;
+    QWidget *widget_3;
+    QHBoxLayout *horizontalLayout_11;
     QComboBox *comboBox_tool;
+    QToolButton *toolButton_closetool;
     QSpacerItem *verticalSpacer_3;
     QStackedWidget *stackedWidget_tool;
     QWidget *page_4;
@@ -107,24 +110,19 @@ public:
     QVBoxLayout *verticalLayout_18;
     QWidget *gridWidget_timestamp;
     QGridLayout *gridLayout_2;
-    QLabel *label_now_timestamp;
-    QToolButton *toolButton_timestamp_stop;
     QToolButton *toolButton_timestamp_copy;
-    QLineEdit *lineEdit_now_timestamp;
-    QWidget *gridWidget_time2date;
-    QGridLayout *gridLayout_3;
+    QLabel *label_now_timestamp;
+    QComboBox *comboBox_time2date;
     QLabel *label_time2date;
     QLineEdit *lineEdit_time2date_in;
-    QLineEdit *lineEdit_time2date_out;
-    QComboBox *comboBox_time2date;
-    QToolButton *toolButton_time2date;
-    QWidget *gridWidget_date2time;
-    QGridLayout *gridLayout_4;
-    QLineEdit *lineEdit_date2time_out;
-    QLineEdit *lineEdit_date2time_in;
+    QLineEdit *lineEdit_now_timestamp;
     QLabel *label_date2time;
+    QLineEdit *lineEdit_time2date_out;
+    QToolButton *toolButton_time2date;
+    QLineEdit *lineEdit_date2time_in;
     QComboBox *comboBox_date2time;
     QToolButton *toolButton_date2time;
+    QLineEdit *lineEdit_date2time_out;
     QSpacerItem *verticalSpacer_2;
     QWidget *page_22;
     QVBoxLayout *verticalLayout_19;
@@ -151,7 +149,6 @@ public:
     QLineEdit *lineEdit_match_result;
     QWidget *widget_7;
     QHBoxLayout *horizontalLayout_9;
-    QToolButton *toolButton_closetool;
     QWidget *page_2;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget;
@@ -880,7 +877,18 @@ public:
 
         verticalLayout_5->addWidget(label);
 
-        comboBox_tool = new QComboBox(widget_5);
+
+        verticalLayout_21->addWidget(widget_5);
+
+        widget_3 = new QWidget(widget_tool);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setMinimumSize(QSize(0, 50));
+        horizontalLayout_11 = new QHBoxLayout(widget_3);
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        horizontalLayout_11->setContentsMargins(9, 0, 9, 0);
+        comboBox_tool = new QComboBox(widget_3);
         comboBox_tool->addItem(QString());
         comboBox_tool->addItem(QString());
         comboBox_tool->addItem(QString());
@@ -936,10 +944,34 @@ public:
         comboBox_tool->setInputMethodHints(Qt::ImhDate);
         comboBox_tool->setIconSize(QSize(16, 16));
 
-        verticalLayout_5->addWidget(comboBox_tool);
+        horizontalLayout_11->addWidget(comboBox_tool);
+
+        toolButton_closetool = new QToolButton(widget_3);
+        toolButton_closetool->setObjectName(QStringLiteral("toolButton_closetool"));
+        toolButton_closetool->setMinimumSize(QSize(80, 30));
+        toolButton_closetool->setMaximumSize(QSize(80, 30));
+        toolButton_closetool->setFont(font1);
+        toolButton_closetool->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        toolButton_closetool->setIconSize(QSize(16, 10));
+
+        horizontalLayout_11->addWidget(toolButton_closetool);
 
 
-        verticalLayout_21->addWidget(widget_5);
+        verticalLayout_21->addWidget(widget_3);
 
         verticalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
@@ -958,7 +990,11 @@ public:
         verticalLayout_22->setContentsMargins(5, 5, 2, 0);
         textEdit = new QTextEdit(page_4);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setFont(font1);
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(12);
+        font4.setStyleStrategy(QFont::PreferAntialias);
+        textEdit->setFont(font4);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
@@ -1283,37 +1319,6 @@ public:
         gridLayout_2->setHorizontalSpacing(0);
         gridLayout_2->setVerticalSpacing(10);
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_now_timestamp = new QLabel(gridWidget_timestamp);
-        label_now_timestamp->setObjectName(QStringLiteral("label_now_timestamp"));
-        label_now_timestamp->setMinimumSize(QSize(0, 32));
-        label_now_timestamp->setMaximumSize(QSize(16777215, 32));
-        label_now_timestamp->setFont(font1);
-
-        gridLayout_2->addWidget(label_now_timestamp, 0, 0, 1, 1);
-
-        toolButton_timestamp_stop = new QToolButton(gridWidget_timestamp);
-        toolButton_timestamp_stop->setObjectName(QStringLiteral("toolButton_timestamp_stop"));
-        toolButton_timestamp_stop->setMinimumSize(QSize(80, 30));
-        toolButton_timestamp_stop->setMaximumSize(QSize(80, 30));
-        toolButton_timestamp_stop->setFont(font1);
-        toolButton_timestamp_stop->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-
-        gridLayout_2->addWidget(toolButton_timestamp_stop, 2, 1, 1, 1);
-
         toolButton_timestamp_copy = new QToolButton(gridWidget_timestamp);
         toolButton_timestamp_copy->setObjectName(QStringLiteral("toolButton_timestamp_copy"));
         toolButton_timestamp_copy->setMinimumSize(QSize(80, 30));
@@ -1335,74 +1340,22 @@ public:
 "	background-color: rgb(7, 143, 255);\n"
 "}"));
 
-        gridLayout_2->addWidget(toolButton_timestamp_copy, 1, 1, 1, 1);
+        gridLayout_2->addWidget(toolButton_timestamp_copy, 1, 2, 1, 1);
 
-        lineEdit_now_timestamp = new QLineEdit(gridWidget_timestamp);
-        lineEdit_now_timestamp->setObjectName(QStringLiteral("lineEdit_now_timestamp"));
-        lineEdit_now_timestamp->setMinimumSize(QSize(165, 32));
-        lineEdit_now_timestamp->setMaximumSize(QSize(165, 32));
-        lineEdit_now_timestamp->setFont(font1);
-        lineEdit_now_timestamp->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
-"border: 1px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 5px;\n"
-"padding-left:5px;\n"
-"/*padding-right:10px;*/"));
-        lineEdit_now_timestamp->setReadOnly(true);
+        label_now_timestamp = new QLabel(gridWidget_timestamp);
+        label_now_timestamp->setObjectName(QStringLiteral("label_now_timestamp"));
+        label_now_timestamp->setMinimumSize(QSize(0, 32));
+        label_now_timestamp->setMaximumSize(QSize(16777215, 32));
+        label_now_timestamp->setFont(font1);
 
-        gridLayout_2->addWidget(lineEdit_now_timestamp, 1, 0, 1, 1);
+        gridLayout_2->addWidget(label_now_timestamp, 0, 0, 1, 1);
 
-
-        verticalLayout_18->addWidget(gridWidget_timestamp);
-
-        gridWidget_time2date = new QWidget(page_20);
-        gridWidget_time2date->setObjectName(QStringLiteral("gridWidget_time2date"));
-        gridLayout_3 = new QGridLayout(gridWidget_time2date);
-        gridLayout_3->setSpacing(6);
-        gridLayout_3->setContentsMargins(11, 11, 11, 11);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        gridLayout_3->setHorizontalSpacing(0);
-        gridLayout_3->setVerticalSpacing(10);
-        gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        label_time2date = new QLabel(gridWidget_time2date);
-        label_time2date->setObjectName(QStringLiteral("label_time2date"));
-        label_time2date->setMinimumSize(QSize(0, 32));
-        label_time2date->setMaximumSize(QSize(16777215, 32));
-        label_time2date->setFont(font1);
-
-        gridLayout_3->addWidget(label_time2date, 0, 0, 1, 1);
-
-        lineEdit_time2date_in = new QLineEdit(gridWidget_time2date);
-        lineEdit_time2date_in->setObjectName(QStringLiteral("lineEdit_time2date_in"));
-        lineEdit_time2date_in->setMinimumSize(QSize(165, 32));
-        lineEdit_time2date_in->setMaximumSize(QSize(165, 32));
-        lineEdit_time2date_in->setFont(font1);
-        lineEdit_time2date_in->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
-"border: 1px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 5px;\n"
-"padding-left:5px;\n"
-"/*padding-right:10px;*/"));
-
-        gridLayout_3->addWidget(lineEdit_time2date_in, 1, 0, 1, 1);
-
-        lineEdit_time2date_out = new QLineEdit(gridWidget_time2date);
-        lineEdit_time2date_out->setObjectName(QStringLiteral("lineEdit_time2date_out"));
-        lineEdit_time2date_out->setMinimumSize(QSize(165, 32));
-        lineEdit_time2date_out->setMaximumSize(QSize(165, 32));
-        lineEdit_time2date_out->setFont(font1);
-        lineEdit_time2date_out->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
-"border: 1px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 5px;\n"
-"padding-left:5px;\n"
-"/*padding-right:10px;*/"));
-
-        gridLayout_3->addWidget(lineEdit_time2date_out, 2, 0, 1, 1);
-
-        comboBox_time2date = new QComboBox(gridWidget_time2date);
+        comboBox_time2date = new QComboBox(gridWidget_timestamp);
         comboBox_time2date->addItem(QString());
         comboBox_time2date->addItem(QString());
         comboBox_time2date->setObjectName(QStringLiteral("comboBox_time2date"));
-        comboBox_time2date->setMinimumSize(QSize(80, 32));
-        comboBox_time2date->setMaximumSize(QSize(80, 32));
+        comboBox_time2date->setMinimumSize(QSize(60, 32));
+        comboBox_time2date->setMaximumSize(QSize(60, 32));
         comboBox_time2date->setFont(font1);
         comboBox_time2date->setStyleSheet(QLatin1String("QComboBox{ \n"
 "border:0px solid gray;  \n"
@@ -1432,9 +1385,65 @@ public:
 "}\n"
 ""));
 
-        gridLayout_3->addWidget(comboBox_time2date, 1, 1, 1, 1);
+        gridLayout_2->addWidget(comboBox_time2date, 3, 1, 1, 1);
 
-        toolButton_time2date = new QToolButton(gridWidget_time2date);
+        label_time2date = new QLabel(gridWidget_timestamp);
+        label_time2date->setObjectName(QStringLiteral("label_time2date"));
+        label_time2date->setMinimumSize(QSize(0, 32));
+        label_time2date->setMaximumSize(QSize(16777215, 32));
+        label_time2date->setFont(font1);
+
+        gridLayout_2->addWidget(label_time2date, 2, 0, 1, 1);
+
+        lineEdit_time2date_in = new QLineEdit(gridWidget_timestamp);
+        lineEdit_time2date_in->setObjectName(QStringLiteral("lineEdit_time2date_in"));
+        lineEdit_time2date_in->setMinimumSize(QSize(165, 32));
+        lineEdit_time2date_in->setMaximumSize(QSize(165, 32));
+        lineEdit_time2date_in->setFont(font1);
+        lineEdit_time2date_in->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:5px;\n"
+"/*padding-right:10px;*/"));
+
+        gridLayout_2->addWidget(lineEdit_time2date_in, 3, 0, 1, 1);
+
+        lineEdit_now_timestamp = new QLineEdit(gridWidget_timestamp);
+        lineEdit_now_timestamp->setObjectName(QStringLiteral("lineEdit_now_timestamp"));
+        lineEdit_now_timestamp->setMinimumSize(QSize(165, 32));
+        lineEdit_now_timestamp->setMaximumSize(QSize(165, 32));
+        lineEdit_now_timestamp->setFont(font1);
+        lineEdit_now_timestamp->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:5px;\n"
+"/*padding-right:10px;*/"));
+        lineEdit_now_timestamp->setReadOnly(true);
+
+        gridLayout_2->addWidget(lineEdit_now_timestamp, 1, 0, 1, 1);
+
+        label_date2time = new QLabel(gridWidget_timestamp);
+        label_date2time->setObjectName(QStringLiteral("label_date2time"));
+        label_date2time->setMinimumSize(QSize(0, 32));
+        label_date2time->setMaximumSize(QSize(16777215, 32));
+        label_date2time->setFont(font1);
+
+        gridLayout_2->addWidget(label_date2time, 5, 0, 1, 1);
+
+        lineEdit_time2date_out = new QLineEdit(gridWidget_timestamp);
+        lineEdit_time2date_out->setObjectName(QStringLiteral("lineEdit_time2date_out"));
+        lineEdit_time2date_out->setMinimumSize(QSize(165, 32));
+        lineEdit_time2date_out->setMaximumSize(QSize(165, 32));
+        lineEdit_time2date_out->setFont(font1);
+        lineEdit_time2date_out->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:5px;\n"
+"/*padding-right:10px;*/"));
+
+        gridLayout_2->addWidget(lineEdit_time2date_out, 3, 3, 1, 1);
+
+        toolButton_time2date = new QToolButton(gridWidget_timestamp);
         toolButton_time2date->setObjectName(QStringLiteral("toolButton_time2date"));
         toolButton_time2date->setMinimumSize(QSize(80, 32));
         toolButton_time2date->setMaximumSize(QSize(80, 32));
@@ -1455,34 +1464,9 @@ public:
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
 
-        gridLayout_3->addWidget(toolButton_time2date, 2, 1, 1, 1);
+        gridLayout_2->addWidget(toolButton_time2date, 3, 2, 1, 1);
 
-
-        verticalLayout_18->addWidget(gridWidget_time2date);
-
-        gridWidget_date2time = new QWidget(page_20);
-        gridWidget_date2time->setObjectName(QStringLiteral("gridWidget_date2time"));
-        gridLayout_4 = new QGridLayout(gridWidget_date2time);
-        gridLayout_4->setSpacing(6);
-        gridLayout_4->setContentsMargins(11, 11, 11, 11);
-        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        gridLayout_4->setHorizontalSpacing(0);
-        gridLayout_4->setVerticalSpacing(10);
-        gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        lineEdit_date2time_out = new QLineEdit(gridWidget_date2time);
-        lineEdit_date2time_out->setObjectName(QStringLiteral("lineEdit_date2time_out"));
-        lineEdit_date2time_out->setMinimumSize(QSize(165, 32));
-        lineEdit_date2time_out->setMaximumSize(QSize(165, 32));
-        lineEdit_date2time_out->setFont(font1);
-        lineEdit_date2time_out->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
-"border: 1px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 5px;\n"
-"padding-left:5px;\n"
-"/*padding-right:10px;*/"));
-
-        gridLayout_4->addWidget(lineEdit_date2time_out, 2, 0, 1, 1);
-
-        lineEdit_date2time_in = new QLineEdit(gridWidget_date2time);
+        lineEdit_date2time_in = new QLineEdit(gridWidget_timestamp);
         lineEdit_date2time_in->setObjectName(QStringLiteral("lineEdit_date2time_in"));
         lineEdit_date2time_in->setMinimumSize(QSize(165, 32));
         lineEdit_date2time_in->setMaximumSize(QSize(165, 32));
@@ -1493,22 +1477,14 @@ public:
 "padding-left:5px;\n"
 "/*padding-right:10px;*/"));
 
-        gridLayout_4->addWidget(lineEdit_date2time_in, 1, 0, 1, 1);
+        gridLayout_2->addWidget(lineEdit_date2time_in, 6, 0, 1, 1);
 
-        label_date2time = new QLabel(gridWidget_date2time);
-        label_date2time->setObjectName(QStringLiteral("label_date2time"));
-        label_date2time->setMinimumSize(QSize(0, 32));
-        label_date2time->setMaximumSize(QSize(16777215, 32));
-        label_date2time->setFont(font1);
-
-        gridLayout_4->addWidget(label_date2time, 0, 0, 1, 1);
-
-        comboBox_date2time = new QComboBox(gridWidget_date2time);
+        comboBox_date2time = new QComboBox(gridWidget_timestamp);
         comboBox_date2time->addItem(QString());
         comboBox_date2time->addItem(QString());
         comboBox_date2time->setObjectName(QStringLiteral("comboBox_date2time"));
-        comboBox_date2time->setMinimumSize(QSize(80, 32));
-        comboBox_date2time->setMaximumSize(QSize(80, 32));
+        comboBox_date2time->setMinimumSize(QSize(60, 32));
+        comboBox_date2time->setMaximumSize(QSize(60, 32));
         comboBox_date2time->setFont(font1);
         comboBox_date2time->setStyleSheet(QLatin1String("QComboBox{ \n"
 "border:0px solid gray;  \n"
@@ -1538,9 +1514,9 @@ public:
 "}\n"
 ""));
 
-        gridLayout_4->addWidget(comboBox_date2time, 1, 1, 1, 1);
+        gridLayout_2->addWidget(comboBox_date2time, 6, 1, 1, 1);
 
-        toolButton_date2time = new QToolButton(gridWidget_date2time);
+        toolButton_date2time = new QToolButton(gridWidget_timestamp);
         toolButton_date2time->setObjectName(QStringLiteral("toolButton_date2time"));
         toolButton_date2time->setMinimumSize(QSize(80, 32));
         toolButton_date2time->setMaximumSize(QSize(80, 32));
@@ -1561,10 +1537,23 @@ public:
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
 
-        gridLayout_4->addWidget(toolButton_date2time, 2, 1, 1, 1);
+        gridLayout_2->addWidget(toolButton_date2time, 6, 2, 1, 1);
+
+        lineEdit_date2time_out = new QLineEdit(gridWidget_timestamp);
+        lineEdit_date2time_out->setObjectName(QStringLiteral("lineEdit_date2time_out"));
+        lineEdit_date2time_out->setMinimumSize(QSize(165, 32));
+        lineEdit_date2time_out->setMaximumSize(QSize(165, 32));
+        lineEdit_date2time_out->setFont(font1);
+        lineEdit_date2time_out->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+"border: 1px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:5px;\n"
+"/*padding-right:10px;*/"));
+
+        gridLayout_2->addWidget(lineEdit_date2time_out, 6, 3, 1, 1);
 
 
-        verticalLayout_18->addWidget(gridWidget_date2time);
+        verticalLayout_18->addWidget(gridWidget_timestamp);
 
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -1807,30 +1796,6 @@ public:
         horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(110, 0, 90, 0);
-        toolButton_closetool = new QToolButton(widget_7);
-        toolButton_closetool->setObjectName(QStringLiteral("toolButton_closetool"));
-        toolButton_closetool->setMinimumSize(QSize(0, 20));
-        toolButton_closetool->setMaximumSize(QSize(50, 20));
-        toolButton_closetool->setFont(font1);
-        toolButton_closetool->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-        toolButton_closetool->setIconSize(QSize(16, 10));
-
-        horizontalLayout_9->addWidget(toolButton_closetool);
-
 
         verticalLayout_21->addWidget(widget_7);
 
@@ -1935,11 +1900,11 @@ public:
         widget_welcome_body_widget2_info_widget_icon->setObjectName(QStringLiteral("widget_welcome_body_widget2_info_widget_icon"));
         widget_welcome_body_widget2_info_widget_icon->setMinimumSize(QSize(80, 80));
         widget_welcome_body_widget2_info_widget_icon->setMaximumSize(QSize(80, 80));
-        QFont font4;
-        font4.setFamily(QStringLiteral("OPPOSans B"));
-        font4.setPointSize(20);
-        font4.setStyleStrategy(QFont::PreferAntialias);
-        widget_welcome_body_widget2_info_widget_icon->setFont(font4);
+        QFont font5;
+        font5.setFamily(QStringLiteral("OPPOSans B"));
+        font5.setPointSize(20);
+        font5.setStyleStrategy(QFont::PreferAntialias);
+        widget_welcome_body_widget2_info_widget_icon->setFont(font5);
         widget_welcome_body_widget2_info_widget_icon->setStyleSheet(QStringLiteral("border-image: url(:/lib/icon_80.png);"));
 
         horizontalLayout_3->addWidget(widget_welcome_body_widget2_info_widget_icon);
@@ -1951,14 +1916,14 @@ public:
         widget_welcome_body_widget2_info_text->setObjectName(QStringLiteral("widget_welcome_body_widget2_info_text"));
         widget_welcome_body_widget2_info_text->setMinimumSize(QSize(0, 45));
         widget_welcome_body_widget2_info_text->setMaximumSize(QSize(16777215, 45));
-        QFont font5;
-        font5.setFamily(QStringLiteral("OPPOSans B"));
-        font5.setPointSize(14);
-        font5.setBold(false);
-        font5.setItalic(false);
-        font5.setWeight(50);
-        font5.setStyleStrategy(QFont::PreferAntialias);
-        widget_welcome_body_widget2_info_text->setFont(font5);
+        QFont font6;
+        font6.setFamily(QStringLiteral("OPPOSans B"));
+        font6.setPointSize(14);
+        font6.setBold(false);
+        font6.setItalic(false);
+        font6.setWeight(50);
+        font6.setStyleStrategy(QFont::PreferAntialias);
+        widget_welcome_body_widget2_info_text->setFont(font6);
         widget_welcome_body_widget2_info_text->setStyleSheet(QLatin1String("color: qlineargradient(spread:pad, x1:0.789318, y1:0.358, x2:1, y2:1, stop:0 rgba(0, 213, 205, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "color: rgb(242, 245, 255);"));
         widget_welcome_body_widget2_info_text->setAlignment(Qt::AlignCenter);
@@ -2308,7 +2273,7 @@ public:
 
         stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(-1);
-        stackedWidget_tool->setCurrentIndex(4);
+        stackedWidget_tool->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2335,6 +2300,7 @@ public:
         comboBox_tool->setItemText(4, QApplication::translate("MainWindow", "URL\347\274\226\347\240\201\350\275\254\346\215\242", nullptr));
         comboBox_tool->setItemText(5, QApplication::translate("MainWindow", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\217", nullptr));
 
+        toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
         label_hex->setText(QApplication::translate("MainWindow", "\345\215\201\345\205\255\350\277\233\345\210\266", nullptr));
         label_dec->setText(QApplication::translate("MainWindow", "\345\215\201\350\277\233\345\210\266", nullptr));
         label_oct->setText(QApplication::translate("MainWindow", "\345\205\253\350\277\233\345\210\266", nullptr));
@@ -2345,19 +2311,18 @@ public:
         toolButton_unicode2ascii->setText(QApplication::translate("MainWindow", "Unicode\350\275\254Ascii", nullptr));
         toolButton_hex2unicode->setText(QApplication::translate("MainWindow", "\345\215\201\345\205\255\350\277\233\345\210\266\350\275\254Unicode", nullptr));
         toolButton_hex2cn->setText(QApplication::translate("MainWindow", "\345\215\201\345\205\255\350\277\233\345\210\266\350\275\254\344\270\255\346\226\207", nullptr));
-        label_now_timestamp->setText(QApplication::translate("MainWindow", "\345\275\223\345\211\215\346\227\266\351\227\264\346\210\263:", nullptr));
-        toolButton_timestamp_stop->setText(QApplication::translate("MainWindow", "\345\201\234\346\255\242", nullptr));
         toolButton_timestamp_copy->setText(QApplication::translate("MainWindow", "\345\244\215\345\210\266", nullptr));
+        label_now_timestamp->setText(QApplication::translate("MainWindow", "\345\275\223\345\211\215\346\227\266\351\227\264\346\210\263:", nullptr));
+        comboBox_time2date->setItemText(0, QApplication::translate("MainWindow", "\347\247\222", nullptr));
+        comboBox_time2date->setItemText(1, QApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+
         label_time2date->setText(QApplication::translate("MainWindow", "\346\227\266\351\227\264\346\210\263\350\275\254\346\227\245\346\234\237", nullptr));
         lineEdit_time2date_in->setText(QString());
-        lineEdit_time2date_out->setText(QApplication::translate("MainWindow", "2023-10-20 00:45:38", nullptr));
-        comboBox_time2date->setItemText(0, QApplication::translate("MainWindow", "\347\247\222(s)", nullptr));
-        comboBox_time2date->setItemText(1, QApplication::translate("MainWindow", "\346\257\253\347\247\222(ms)", nullptr));
-
-        toolButton_time2date->setText(QApplication::translate("MainWindow", "\350\275\254\346\215\242", nullptr));
         label_date2time->setText(QApplication::translate("MainWindow", "\346\227\266\351\227\264\350\275\254\346\227\266\351\227\264\346\210\263", nullptr));
-        comboBox_date2time->setItemText(0, QApplication::translate("MainWindow", "\347\247\222(s)", nullptr));
-        comboBox_date2time->setItemText(1, QApplication::translate("MainWindow", "\346\257\253\347\247\222(ms)", nullptr));
+        lineEdit_time2date_out->setText(QString());
+        toolButton_time2date->setText(QApplication::translate("MainWindow", "\350\275\254\346\215\242", nullptr));
+        comboBox_date2time->setItemText(0, QApplication::translate("MainWindow", "\347\247\222", nullptr));
+        comboBox_date2time->setItemText(1, QApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
 
         toolButton_date2time->setText(QApplication::translate("MainWindow", "\350\275\254\346\215\242", nullptr));
         label_url->setText(QApplication::translate("MainWindow", "URL:", nullptr));
@@ -2369,7 +2334,6 @@ public:
         lineEdit_reg->setText(QString());
         toolButton_begin_match->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\345\214\271\351\205\215", nullptr));
         label_match_result->setText(QApplication::translate("MainWindow", "\345\214\271\351\205\215\347\273\223\346\236\234\357\274\232", nullptr));
-        toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
         widget_welcome_body_widget2_info_widget_icon->setText(QString());
         widget_welcome_body_widget2_info_text->setText(QApplication::translate("MainWindow", "\346\254\242\350\277\216\344\275\277\347\224\250Fdog-kit", nullptr));
         widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));

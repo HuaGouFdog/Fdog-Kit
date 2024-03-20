@@ -1223,10 +1223,10 @@ public:
         toolButton_2->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
-        lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.153", nullptr));
+        lineEdit_host->setText(QApplication::translate("thriftwidget", "192.168.85.112", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
-        lineEdit_port->setText(QApplication::translate("thriftwidget", "11237", nullptr));
+        lineEdit_port->setText(QApplication::translate("thriftwidget", "4031", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
         toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));
         label_5->setText(QApplication::translate("thriftwidget", "\344\274\240\350\276\223\345\261\202", nullptr));
@@ -1241,7 +1241,7 @@ public:
         comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
 
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
-        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateClientSearchSetting", nullptr));
+        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateOnlineState", nullptr));
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));

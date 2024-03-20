@@ -1179,6 +1179,30 @@ border-left:2px solid rgb(108, 117, 125, 65);
                     </property>
                    </widget>
                   </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_3" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_11">
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
                    <widget class="QComboBox" name="comboBox_tool">
                     <property name="minimumSize">
@@ -1287,6 +1311,55 @@ QComboBox QAbstractItemView{
                     </item>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_closetool">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>关闭</string>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>16</width>
+                      <height>10</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
                </item>
@@ -1313,7 +1386,7 @@ QComboBox QAbstractItemView{
 color: rgb(255, 255, 255);</string>
                  </property>
                  <property name="currentIndex">
-                  <number>4</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="page_4">
                   <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -1334,7 +1407,7 @@ color: rgb(255, 255, 255);</string>
                      <property name="font">
                       <font>
                        <family>OPPOSans B</family>
-                       <pointsize>10</pointsize>
+                       <pointsize>12</pointsize>
                        <stylestrategy>PreferAntialias</stylestrategy>
                       </font>
                      </property>
@@ -2020,76 +2093,7 @@ padding-right:10px;</string>
                       <property name="verticalSpacing">
                        <number>10</number>
                       </property>
-                      <item row="0" column="0">
-                       <widget class="QLabel" name="label_now_timestamp">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>16777215</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>当前时间戳:</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="1">
-                       <widget class="QToolButton" name="toolButton_timestamp_stop">
-                        <property name="minimumSize">
-                         <size>
-                          <width>80</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>80</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-}</string>
-                        </property>
-                        <property name="text">
-                         <string>停止</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
+                      <item row="1" column="2">
                        <widget class="QToolButton" name="toolButton_timestamp_copy">
                         <property name="minimumSize">
                          <size>
@@ -2132,65 +2136,8 @@ QToolButton:hover {
                         </property>
                        </widget>
                       </item>
-                      <item row="1" column="0">
-                       <widget class="QLineEdit" name="lineEdit_now_timestamp">
-                        <property name="minimumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:5px;
-/*padding-right:10px;*/</string>
-                        </property>
-                        <property name="readOnly">
-                         <bool>true</bool>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="gridWidget_time2date" native="true">
-                     <layout class="QGridLayout" name="gridLayout_3">
-                      <property name="leftMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="topMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="rightMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="bottomMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="horizontalSpacing">
-                       <number>0</number>
-                      </property>
-                      <property name="verticalSpacing">
-                       <number>10</number>
-                      </property>
                       <item row="0" column="0">
-                       <widget class="QLabel" name="label_time2date">
+                       <widget class="QLabel" name="label_now_timestamp">
                         <property name="minimumSize">
                          <size>
                           <width>0</width>
@@ -2211,87 +2158,21 @@ padding-left:5px;
                          </font>
                         </property>
                         <property name="text">
-                         <string>时间戳转日期</string>
+                         <string>当前时间戳:</string>
                         </property>
                        </widget>
                       </item>
-                      <item row="1" column="0">
-                       <widget class="QLineEdit" name="lineEdit_time2date_in">
-                        <property name="minimumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:5px;
-/*padding-right:10px;*/</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="0">
-                       <widget class="QLineEdit" name="lineEdit_time2date_out">
-                        <property name="minimumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:5px;
-/*padding-right:10px;*/</string>
-                        </property>
-                        <property name="text">
-                         <string>2023-10-20 00:45:38</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
+                      <item row="3" column="1">
                        <widget class="QComboBox" name="comboBox_time2date">
                         <property name="minimumSize">
                          <size>
-                          <width>80</width>
+                          <width>60</width>
                           <height>32</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>80</width>
+                          <width>60</width>
                           <height>32</height>
                          </size>
                         </property>
@@ -2333,17 +2214,168 @@ border-image: url(:/lib/up.png);
                         </property>
                         <item>
                          <property name="text">
-                          <string>秒(s)</string>
+                          <string>秒</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>毫秒(ms)</string>
+                          <string>毫秒</string>
                          </property>
                         </item>
                        </widget>
                       </item>
-                      <item row="2" column="1">
+                      <item row="2" column="0">
+                       <widget class="QLabel" name="label_time2date">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>OPPOSans B</family>
+                          <pointsize>10</pointsize>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>时间戳转日期</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLineEdit" name="lineEdit_time2date_in">
+                        <property name="minimumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>OPPOSans B</family>
+                          <pointsize>10</pointsize>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:5px;
+/*padding-right:10px;*/</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLineEdit" name="lineEdit_now_timestamp">
+                        <property name="minimumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>OPPOSans B</family>
+                          <pointsize>10</pointsize>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:5px;
+/*padding-right:10px;*/</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="0">
+                       <widget class="QLabel" name="label_date2time">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>OPPOSans B</family>
+                          <pointsize>10</pointsize>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>时间转时间戳</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="3">
+                       <widget class="QLineEdit" name="lineEdit_time2date_out">
+                        <property name="minimumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>OPPOSans B</family>
+                          <pointsize>10</pointsize>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:5px;
+/*padding-right:10px;*/</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="2">
                        <widget class="QToolButton" name="toolButton_time2date">
                         <property name="minimumSize">
                          <size>
@@ -2386,61 +2418,7 @@ QToolButton:hover {
                         </property>
                        </widget>
                       </item>
-                     </layout>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="gridWidget_date2time" native="true">
-                     <layout class="QGridLayout" name="gridLayout_4">
-                      <property name="leftMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="topMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="rightMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="bottomMargin">
-                       <number>0</number>
-                      </property>
-                      <property name="horizontalSpacing">
-                       <number>0</number>
-                      </property>
-                      <property name="verticalSpacing">
-                       <number>10</number>
-                      </property>
-                      <item row="2" column="0">
-                       <widget class="QLineEdit" name="lineEdit_date2time_out">
-                        <property name="minimumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>165</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:5px;
-/*padding-right:10px;*/</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="0">
+                      <item row="6" column="0">
                        <widget class="QLineEdit" name="lineEdit_date2time_in">
                         <property name="minimumSize">
                          <size>
@@ -2470,43 +2448,17 @@ padding-left:5px;
                         </property>
                        </widget>
                       </item>
-                      <item row="0" column="0">
-                       <widget class="QLabel" name="label_date2time">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>16777215</width>
-                          <height>32</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>时间转时间戳</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
+                      <item row="6" column="1">
                        <widget class="QComboBox" name="comboBox_date2time">
                         <property name="minimumSize">
                          <size>
-                          <width>80</width>
+                          <width>60</width>
                           <height>32</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>80</width>
+                          <width>60</width>
                           <height>32</height>
                          </size>
                         </property>
@@ -2548,17 +2500,17 @@ border-image: url(:/lib/up.png);
                         </property>
                         <item>
                          <property name="text">
-                          <string>秒(s)</string>
+                          <string>秒</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>毫秒(ms)</string>
+                          <string>毫秒</string>
                          </property>
                         </item>
                        </widget>
                       </item>
-                      <item row="2" column="1">
+                      <item row="6" column="2">
                        <widget class="QToolButton" name="toolButton_date2time">
                         <property name="minimumSize">
                          <size>
@@ -2598,6 +2550,36 @@ QToolButton:hover {
                         </property>
                         <property name="text">
                          <string>转换</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="3">
+                       <widget class="QLineEdit" name="lineEdit_date2time_out">
+                        <property name="minimumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>165</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>OPPOSans B</family>
+                          <pointsize>10</pointsize>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:5px;
+/*padding-right:10px;*/</string>
                         </property>
                        </widget>
                       </item>
@@ -3133,55 +3115,6 @@ padding-right:10px;</string>
                   <property name="bottomMargin">
                    <number>0</number>
                   </property>
-                  <item>
-                   <widget class="QToolButton" name="toolButton_closetool">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>关闭</string>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>16</width>
-                      <height>10</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
                  </layout>
                 </widget>
                </item>
