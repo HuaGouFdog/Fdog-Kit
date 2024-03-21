@@ -366,7 +366,7 @@ QVector<uint32_t> thriftwidget::string2Uint32List(QVector<QString> & data)
 
 void thriftwidget::string2stringList(QString data)
 {
-    //获取最后一个值，判断长度是否够8
+    //获取最后一个值，判断长度是否够8 //32
     while(1) {
         if (data.length() == 0) {
             break;
@@ -379,19 +379,24 @@ void thriftwidget::string2stringList(QString data)
         }
         int len = lastValue.length();
         if (len < 8) {
+            qDebug() << "lastValue = " << lastValue <<  " & len = " << len << " & data.length() = " << data.length() << "& 8-len = " << 8-len;
             if (data.length() >= 8-len) {
                 dataList.replace(dataList.size() - 1, lastValue + data.mid(0, 8-len));
+                qDebug() << "string2stringList1 value = " << lastValue + data.mid(0, 8-len);
                 data = data.mid(8-len);
             } else {
                 dataList.replace(dataList.size() - 1, lastValue + data);
+                qDebug() << "string2stringList2 value = " << lastValue + data;
                 data = "";
             }
         } else {
             if (data.length() < 8) {
                 dataList.append(data);
+                qDebug() << "string2stringList3 value = " << data;
                 data = "";
             } else {
                 dataList.append(data.mid(0, 8));
+                qDebug() << "string2stringList4 value = " << data.mid(0, 8);
                 data = data.mid(8);
             }
         }
@@ -752,6 +757,7 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
                 }
                 len = len + count*2;
             }
+            qDebug() << "len长度为" << len;
             QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
             string2stringList(lenData);
             //设置字符串值
@@ -766,7 +772,8 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
 
     //添加结束符号
     QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
-    dataList.append(stop);
+    string2stringList(stop);
+    //dataList.append(stop);
 }
 
 void thriftwidget::map2List(QStringList &dataList, QString data)
@@ -1017,7 +1024,7 @@ void thriftwidget::on_toolButton_clicked()
     QVector<uint32_t> a = string2Uint32List(dataList);
     ui->textEdit->clear();
     ui->textEdit->append("请求源数据：");
-    QString dataTemp;
+    QString dataTemp = "";
     for (const QString& value : dataList) {
         dataTemp = dataTemp + " " + value;  // 在控制台输出元素值
     }
@@ -1027,6 +1034,7 @@ void thriftwidget::on_toolButton_clicked()
     qDebug() << "dataList = " << dataList;
     QElapsedTimer timer;
     timer.start();
+    qDebug() << "a = " << a;
     sendThriftRequest(a);
     qint64 elapsedMilliseconds = timer.elapsed();
     ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
