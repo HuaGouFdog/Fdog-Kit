@@ -71,9 +71,12 @@ class thriftwidget;
  {
      Q_OBJECT
  public:
-     explicit ItemWidget(QTreeWidget *parent = 0);
-     explicit ItemWidget(QTreeWidgetItem *parent = 0);
+     explicit ItemWidget(QTreeWidget *parent);
+     explicit ItemWidget(QTreeWidgetItem *parent);
+     explicit ItemWidget();
      void init();
+     void init2();
+     void init3();
      ~ItemWidget();
       QComboBox* comboBoxBase;    //基础
       QComboBox* comboBoxKey;     //key
@@ -86,6 +89,7 @@ class thriftwidget;
       QToolButton* deleteButton;          //删除按钮
       QToolButton* moveButton;            //删除按钮
       QToolButton* addNode;               //添加元素
+      QToolButton* addColumnButton;       //添加列
 
       QLabel * keyLabel;    //key元素
       QLabel * valueLabel;  //value元素
@@ -110,6 +114,7 @@ signals:
       void send_onTextChanged(QString data, QTreeWidgetItem * item);
       void send_currentIndexChanged(QString data, QTreeWidgetItem * item);
       void send_buttonClicked_add(QTreeWidgetItem * t1);
+      void send_buttonClicked_add_column(QTreeWidgetItem * t1);
  };
 
 enum ObjectType {
@@ -207,7 +212,18 @@ public:
 
     template<>
     void writeTBinaryFormatData(QString value, QString valueType) {
+        //注意中文占三个
         int len = value.length();
+        if (value.contains(QRegExp("[\\x4e00-\\x9fff]+"))) {
+            //应该判断包含多少个汉字，然后*2
+            int count = 0;
+            for (QChar c : value) {
+                if (c >= QChar(0x4e00) && c <= QChar(0x9fff)) {
+                    count++;
+                }
+            }
+            len = len + count*2;
+        }
         QString lenData = QString("%1").arg(len, mapSize.value("i32"), 16, QLatin1Char('0'));
         string2stringList(lenData);
         QString valueData = value.toUtf8().toHex();
@@ -231,6 +247,7 @@ private slots:
     void read_data();
     void rece_deleteItem(QTreeWidgetItem * item);
     void rece_addItem(QTreeWidgetItem * item);
+    void rece_addColumn(QTreeWidgetItem * item);
     void rece_TextChanged(QString data, QTreeWidgetItem * item);
     void rece_currentIndexChanged(QString data, QTreeWidgetItem * item);
 

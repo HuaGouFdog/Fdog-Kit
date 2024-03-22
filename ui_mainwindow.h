@@ -265,7 +265,7 @@ public:
         verticalLayout->setSpacing(0);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(6, 6, 6, 6);
+        verticalLayout->setContentsMargins(5, 5, 5, 5);
         widget_title = new QWidget(centralWidget);
         widget_title->setObjectName(QStringLiteral("widget_title"));
         widget_title->setMinimumSize(QSize(0, 22));

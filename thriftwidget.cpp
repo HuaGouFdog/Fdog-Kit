@@ -25,6 +25,7 @@ ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
     parent->setItemWidget(this, 0, widgetParamName);
     parent->setItemWidget(this, 1, widgetParamType);
     parent->setItemWidget(this, 2, widgetParamValue);
+    qDebug() << "走11";
 }
 
 ItemWidget::ItemWidget(QTreeWidgetItem *parent): QTreeWidgetItem(parent, 1)
@@ -34,6 +35,12 @@ ItemWidget::ItemWidget(QTreeWidgetItem *parent): QTreeWidgetItem(parent, 1)
     treeWidget()->setItemWidget(this, 0, widgetParamName);
     treeWidget()->setItemWidget(this, 1, widgetParamType);
     treeWidget()->setItemWidget(this, 2, widgetParamValue);
+}
+
+ItemWidget::ItemWidget(): QTreeWidgetItem()
+{
+    init();
+    qDebug() << "走333333";
 }
 
 void ItemWidget::init()
@@ -113,6 +120,15 @@ void ItemWidget::init()
         emit send_onTextChanged(lineEditParamValue->text(), this);
     });
 
+
+    addColumnButton = new QToolButton();
+    addColumnButton->setIcon(QIcon(":lib/add3.png"));
+    addColumnButton->setIconSize(QSize(20, 20));
+    addColumnButton->setMinimumWidth(30);
+        connect(addColumnButton,&QToolButton::clicked,[=]{
+        emit send_buttonClicked_add_column(this);
+    });
+
     deleteButton = new QToolButton();
     deleteButton->setIcon(QIcon(":lib/delete.png"));
     deleteButton->setIconSize(QSize(20, 20));
@@ -120,6 +136,7 @@ void ItemWidget::init()
     connect(deleteButton,&QToolButton::clicked,[=]{
         emit send_buttonClicked(this);
     });
+
     checkBox = new QCheckBox("");
     checkBox->setChecked(false);
     checkBox->setMinimumHeight(30);
@@ -199,6 +216,7 @@ void ItemWidget::init()
     layoutParamValue->addWidget(valueLabel);
     layoutParamValue->addWidget(classLabel);
     layoutParamValue->addWidget(lineEditParamValue);
+    layoutParamValue->addWidget(addColumnButton);
     layoutParamValue->addWidget(deleteButton);
     widgetParamValue = new QWidget();
     widgetParamValue->setLayout(layoutParamValue);
@@ -208,6 +226,18 @@ void ItemWidget::init()
     keyLabel->hide();
     valueLabel->show();
     classLabel->hide();
+    qDebug() << "走这里233";
+}
+
+void ItemWidget::init2()
+{
+    treeWidget()->setItemWidget(this, 0, widgetParamName);
+    treeWidget()->setItemWidget(this, 1, widgetParamType);
+    treeWidget()->setItemWidget(this, 2, widgetParamValue);
+}
+
+void ItemWidget::init3()
+{
 
 }
 
@@ -248,6 +278,7 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
             ItemWidget* items = new ItemWidget(this);
             connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
             connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), p, SLOT(rece_addItem(QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
             connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
             connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             //复制子节点数据
@@ -290,6 +321,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ItemWidget* item = new ItemWidget(ui->treeWidget);
     connect(item, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(item, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+    connect(item, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
     connect(item, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(item, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
@@ -478,6 +510,9 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         //clientSocket.close();
         return ;
     }
+    ui->label_req->hide();
+    ui->label_req->setText("EXCEPTION");
+    ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
 }
 
 void thriftwidget::buildData()
@@ -811,7 +846,7 @@ void thriftwidget::assembleTBinaryMessage()
     //清除老数据
     cleanMessage();
     //添加数据头 serialNumber为流水号 默认00000000
-    writeTBinaryHeadMessage();
+    writeTBinaryHeadMessage("00000000");
     //遍历节点写入数据
     for(int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
         ItemWidget * item = dynamic_cast<ItemWidget*>(ui->treeWidget->topLevelItem(i));
@@ -867,10 +902,12 @@ void thriftwidget::writeTBinaryTypeAndSerialNumber(QString valueType, int serial
     //设置参数序号
     QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
     string2stringList(serialNumberStr);
+    qDebug() << "writeTBinaryTypeAndSerialNumber type = " << type << " & serialNumberStr = " << serialNumberStr;
 }
 
 void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
 {
+    qDebug() << "writeTBinaryBaseMessage valueType = " << valueType << " & value = " << valueType;
     if (valueType == "bool" || valueType == "byte" || valueType == "i16" || valueType == "i32") {
         writeTBinaryFormatData(value.toInt(), valueType);
     } else if (valueType == "i64") { 
@@ -956,7 +993,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
         //设置类型和序号
         QString valueType_ = itemChild->comboBoxBase->currentText();
         QString value_ = itemChild->lineEditParamValue->text();
-        writeTBinaryTypeAndSerialNumber(valueType, serialNumber + 1);
+        writeTBinaryTypeAndSerialNumber(valueType_, serialNumber + 1);
         if (baseType.contains(valueType_)) {
             writeTBinaryBaseMessage(valueType_, value_);
         } else if (containerType.contains(valueType_)) {
@@ -967,12 +1004,15 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
             writeTBinaryStructMessage(valueType_, itemChild);
         }
    }
+    //写入结束,添加结束符号
+    writeTBinaryEndMessage();
 }
 
 void thriftwidget::writeTBinaryEndMessage()
 {
     QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
-    dataList.append(stop);
+    //dataList.append(stop);
+    string2stringList(stop);
 }
 
 void thriftwidget::writeTBinarySizeMessage()
@@ -1018,15 +1058,15 @@ void thriftwidget::parseData()
 
 void thriftwidget::on_toolButton_clicked()
 {
-    buildData();
-
+    //buildData();
+    assembleTBinaryMessage();
     //请求数据
     QVector<uint32_t> a = string2Uint32List(dataList);
     ui->textEdit->clear();
     ui->textEdit->append("请求源数据：");
     QString dataTemp = "";
     for (const QString& value : dataList) {
-        dataTemp = dataTemp + " " + value;  // 在控制台输出元素值
+        dataTemp = dataTemp + value + " ";  // 在控制台输出元素值
     }
     ui->textEdit->append(dataTemp);
     ui->textEdit->append("----------------------------------------------------------------------");
@@ -1034,7 +1074,6 @@ void thriftwidget::on_toolButton_clicked()
     qDebug() << "dataList = " << dataList;
     QElapsedTimer timer;
     timer.start();
-    qDebug() << "a = " << a;
     sendThriftRequest(a);
     qint64 elapsedMilliseconds = timer.elapsed();
     ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
@@ -1046,6 +1085,7 @@ void thriftwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int co
     ItemWidget* items = new ItemWidget(item);
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
@@ -1084,9 +1124,9 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     int count = item_->childCount();
     ItemWidget* items = new ItemWidget(item_);
 
-
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+    connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
 
@@ -1098,6 +1138,41 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     //首先child() 是struct
     
 
+}
+
+void thriftwidget::rece_addColumn(QTreeWidgetItem * item)
+{
+    //添加一列 获取item父节点 获取item所在位置 下一个位置插入新位置
+    ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
+
+    ItemWidget * item_parent = dynamic_cast<ItemWidget*>(item->parent());
+    if (item_parent != NULL) {
+        ItemWidget* items = new ItemWidget();
+        item_parent->insertChild(item_parent->indexOfChild(item_) + 1, items);
+        items->init2();
+        connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        ItemWidget* items2 = new ItemWidget(item_parent);
+        delete items2;
+    } else {
+        //没有父节点
+        ItemWidget* items = new ItemWidget(); //ui->treeWidget
+        int index = ui->treeWidget->indexOfTopLevelItem(item);
+        ui->treeWidget->insertTopLevelItem(index + 1, items);
+        //item_parent->insertChild(item_parent->indexOfChild(item_) + 1, items);
+        items->init2();
+        //qDebug() << "2 item_parent->indexOfChild(item_) + 1 = " << item_parent->indexOfChild(item_) + 1;
+        connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        ItemWidget* items2 = new ItemWidget(ui->treeWidget);
+        delete items2;
+    }
 }
 
 void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
@@ -1129,6 +1204,7 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
         ItemWidget* items = new ItemWidget(ui->treeWidget);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);
@@ -1137,6 +1213,7 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
         ItemWidget* items = new ItemWidget(parentItem);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         ItemWidget* items2 = new ItemWidget(parentItem);
@@ -1176,6 +1253,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             ItemWidget* item2 = new ItemWidget(item_);
             connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             //item2->setText(0, "");
@@ -1202,6 +1280,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             ItemWidget* item2 = new ItemWidget(item_);
             connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+            connect(item2, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
             connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             item2->setText(0, "");
@@ -1234,6 +1313,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         ItemWidget* item2 = new ItemWidget(item);
         connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(item2, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         item2->setText(0, "");
@@ -1242,6 +1322,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         ItemWidget* items = new ItemWidget(ui->treeWidget);
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);
