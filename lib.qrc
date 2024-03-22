@@ -109,5 +109,20 @@
         <file>lib/inport.png</file>
         <file>lib/icon_test.png</file>
         <file>lib/tree_open2.png</file>
+        <file>lib/jiazai.gif</file>
+        <file>lib/jiazai2.gif</file>
+        <file>lib/jiazai3.gif</file>
+        <file>lib/jiazai4.gif</file>
+        <file>lib/jiazai5.gif</file>
+        <file>lib/jiazai6.gif</file>
+        <file>lib/jiazai7.gif</file>
+        <file>lib/jiazai8.gif</file>
+        <file>lib/jiazai9.gif</file>
+        <file>lib/jiazai10.gif</file>
+        <file>lib/post.png</file>
+        <file>lib/error.png</file>
+        <file>lib/error2.png</file>
+        <file>lib/error3.png</file>
+        <file>lib/ping2.png</file>
     </qresource>
 </RCC>

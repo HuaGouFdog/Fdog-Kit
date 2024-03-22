@@ -125,6 +125,7 @@ void ItemWidget::init()
     addColumnButton->setIcon(QIcon(":lib/add3.png"));
     addColumnButton->setIconSize(QSize(20, 20));
     addColumnButton->setMinimumWidth(30);
+    addColumnButton->setToolTip("添加新列");
         connect(addColumnButton,&QToolButton::clicked,[=]{
         emit send_buttonClicked_add_column(this);
     });
@@ -133,6 +134,7 @@ void ItemWidget::init()
     deleteButton->setIcon(QIcon(":lib/delete.png"));
     deleteButton->setIconSize(QSize(20, 20));
     deleteButton->setMinimumWidth(30);
+    deleteButton->setToolTip("删除当前列");
     connect(deleteButton,&QToolButton::clicked,[=]{
         emit send_buttonClicked(this);
     });
@@ -140,18 +142,20 @@ void ItemWidget::init()
     checkBox = new QCheckBox("");
     checkBox->setChecked(false);
     checkBox->setMinimumHeight(30);
+    checkBox->setToolTip("勾选参数参与请求");
+
     moveButton = new QToolButton();
     moveButton->setIcon(QIcon(":lib/tuodong.png"));
     moveButton->setIconSize(QSize(20, 20));
 
     qDebug() << "走这里22";
     addNode = new QToolButton();
+    addNode->setText("添加元素");
+    addNode->setToolTip("将根据已有的struct格式快速生成");
     connect(addNode,&QToolButton::clicked,[=]{
         qDebug() << "触发信号";
         emit send_buttonClicked_add(this);
     });
-    addNode->setText("添加元素");
-    addNode->setToolTip("将根据已有的struct格式快速生成");
     addNode->setStyleSheet("QToolButton {\
                            font: 10pt \"OPPOSans B\";\
                            color: rgb(255, 255, 255);\
@@ -347,6 +351,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
      ui->label_req->hide();
 
      ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+
+     ui->stackedWidget->setCurrentIndex(0);
 }
 
 QString thriftwidget::getType(int index)
@@ -437,7 +443,28 @@ void thriftwidget::string2stringList(QString data)
 
 void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
 {
+    ui->stackedWidget->setCurrentIndex(1);
     QTcpSocket *clientSocket = new QTcpSocket(this);
+
+    connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=]{
+        qDebug() << "发生错误";
+        ui->stackedWidget->setCurrentIndex(2);
+    });
+
+//    connect(clientSocket,&QTcpSocket::stateChanged,[=]{
+//        qDebug() << "状态改变";
+//    });
+
+    //&QComboBox::activated
+    //static_cast<void (QComboBox::*)(int)>(&QComboBox::activated)
+//    connect(clientSocket,&QTcpSocket::disconnected,[=]{
+//        qDebug() << "断开连接";
+//    });
+
+//    connect(clientSocket,&QTcpSocket::connected,[=]{
+//        qDebug() << "已连接";
+//    });
+
     //收到数据，触发readyRead
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
         //没有可读的数据就返回
@@ -463,6 +490,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             nowLength = nowLength + 4;
             if (nowLength > countLength) {
                 qDebug() << "超过有效数据长度";
+                ui->stackedWidget->setCurrentIndex(0);
                 break;
             }
         }
