@@ -282,7 +282,7 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
             ItemWidget* items = new ItemWidget(this);
             connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
             connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), p, SLOT(rece_addItem(QTreeWidgetItem*)));
-            connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
+            connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), p, SLOT(rece_addColumn(QTreeWidgetItem*)));
             connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
             connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
             //复制子节点数据
@@ -953,26 +953,26 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
 {
     if (valueType == "set" || valueType == "list") {
         //设置key类型
-        writeTBinaryTypeMessage(paramKeyType);
+        writeTBinaryTypeMessage(paramValueType);
         //设置元素个数
         QStringList dataList;
         writeTBinaryKeySize(dataList, value);
 
-        if (baseType.contains(paramKeyType)) {
+        if (baseType.contains(paramValueType)) {
             //key为基础类型
             for (const QString &str : dataList) {
-                writeTBinaryBaseMessage(paramKeyType, str);
+                writeTBinaryBaseMessage(paramValueType, str);
             }
-        } else if (containerType.contains(paramKeyType)) {
+        } else if (containerType.contains(paramValueType)) {
             //key为集合
             for (const QString &str : dataList) {
-                writeTBinaryCollectionMessage(paramKeyType, str, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
+                writeTBinaryCollectionMessage(paramValueType, str, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
             }
         } else {
             //key为struct
             for (const QString &str : dataList) {
                 if (item->childCount() > 0) {
-                    writeTBinaryStructMessage(paramKeyType, item);
+                    writeTBinaryStructMessage(paramValueType, item);
                 }
             }
         }
@@ -1152,15 +1152,17 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     int count = item_->childCount();
     ItemWidget* items = new ItemWidget(item_);
 
+    qDebug() << typeid(this).name();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
-
+    qDebug() << "进入添加元素2";
     items->copyItem(this, items, dynamic_cast<ItemWidget*>(item_->child(0)));
-
+    qDebug() << "进入添加元素3";
     ItemWidget* items2 = new ItemWidget(item_);
+    qDebug() << "进入添加元素4";
     delete items2;
     //复制数据
     //首先child() 是struct
@@ -1295,6 +1297,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             item2->lineEditParamValue->setPlaceholderText("key");
             item2->lineEditParamValue->setReadOnly(false);
         }
+
     } else if (item_->comboBoxBase->currentText() == "set" || item_->comboBoxBase->currentText() == "list") {
         item_->lineEditParamValue->setReadOnly(false);
         item_->lineEditParamValue->setPlaceholderText("参数值");
@@ -1302,7 +1305,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         item_->comboBoxValue->show();
         ui->treeWidget->header()->resizeSection(1, 300);  // 设置第二列宽度为500
         qDebug() << "创建1" << item_->comboBoxKey->currentText();
-        if (item_->comboBoxKey->currentText() == "struct") {
+        if (item_->comboBoxValue->currentText() == "struct") {
             qDebug() << "创建2";
             //添加子节点
             ItemWidget* item2 = new ItemWidget(item_);
@@ -1368,6 +1371,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         item_->classLabel->hide();
         //ui->treeWidget->header()->resizeSection(1, 150);  // 设置第二列宽度为500
     }
+
     if (item_->comboBoxBase->currentText() != "struct" &&
             ((item_->comboBoxBase->currentText() == "list" || item_->comboBoxBase->currentText() == "set")
             && item_->comboBoxKey->currentText() != "struct") &&
