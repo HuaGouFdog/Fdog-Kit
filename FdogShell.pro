@@ -121,6 +121,10 @@ DEPENDPATH += $$PWD/../libssh2.11.0/include
 
 LIBS += -luser32
 
-DISTFILES +=
+DISTFILES += \
+    lib/Fdogicon.ico
+
+RC_ICONS = lib/Fdogicon.ico
+
 
 QT.testlib.CONFIG -= console

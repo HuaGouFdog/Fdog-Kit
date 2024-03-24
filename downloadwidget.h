@@ -17,7 +17,7 @@ class fileProgressWidget : public QWidget {
 public:
     explicit fileProgressWidget(QString filePath = "", QString fileName = "", int fileType = -1, int64_t fileSize = 0, QWidget *parent = 0);
     void rece_file_progress_sgin(int64_t sumSize, int64_t fileSize, bool status = true);
-    QWidget * widget;  //容器
+    QWidget * widgetf;  //容器
 private slots:
 
 private:

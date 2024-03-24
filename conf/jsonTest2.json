@@ -1,16 +1,16 @@
 {
     "activate": {
-        "selfStart": 0,
+        "selfStart": 1,
         "startCenter": 0,
         "startMode": 0,
-        "startPositionX": 200,
+        "startPositionX": 500,
         "startPositionY": 100,
         "trayDisplay": 1
     },
     "appearance": {
-        "labelWidth": 0,
+        "labelWidth": 1,
         "language": "cn",
-        "newLabelLocation": 0,
+        "newLabelLocation": 1,
         "topDisplay": 1
     },
     "colorSchemes": [
@@ -236,15 +236,15 @@
         }
     ],
     "terminal": {
-        "background": 0,
+        "background": 1,
         "backgroundTransparency": 1,
-        "commandDisplay": 1,
+        "commandDisplay": 0,
         "conectStatsDisplay": 0,
         "currentBackground": "",
-        "historyDisplay": 1,
+        "historyDisplay": 0,
         "infoDisplay": 0,
-        "mouseRightClick": 0,
-        "mouseWheelClick": 0,
+        "mouseRightClick": 1,
+        "mouseWheelClick": 1,
         "pictureList": [
             "dsadsadas",
             "dsadsadsa",
@@ -252,8 +252,8 @@
         ]
     },
     "typeface": {
-        "fontChinese": "中文字体",
-        "fontEnglish": "英文字体",
-        "fontSize": 0
+        "fontChinese": "xxxxx",
+        "fontEnglish": "xxxxx",
+        "fontSize": 10
     }
 }

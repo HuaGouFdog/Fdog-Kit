@@ -3,6 +3,8 @@
 #include "ui_downloadwidget.h"
 #include <QStackedLayout>
 #include <QDebug>
+#include <QPropertyAnimation>
+#include <QGraphicsOpacityEffect>
 downloadwidget::downloadwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::downloadwidget)
@@ -46,7 +48,7 @@ void downloadwidget::createNewFile(QString filePath, QString fileName, int fileT
 {
     fwidget = new fileProgressWidget(filePath, fileName, fileType, fileSize, ui->widget);
     QVBoxLayout * vLayout = qobject_cast<QVBoxLayout*>(ui->widget->layout());
-    vLayout->insertWidget(0, fwidget->widget);
+    vLayout->insertWidget(0, fwidget->widgetf);
 }
 
 void downloadwidget::updateFileProgress(int64_t sumSize, int64_t fileSize, bool status)
@@ -62,11 +64,35 @@ downloadwidget::~downloadwidget()
 void downloadwidget::on_toolButton_file_clicked()
 {
     if (ui->widget_body->isHidden()) {
+        qDebug() << "点我1";
         ui->widget_body->show();
         this->setFixedSize(280,330);
+//        QGraphicsOpacityEffect *pButtonOpacity = new QGraphicsOpacityEffect(ui->widget_body);
+//        pButtonOpacity->setOpacity(0);
+//        ui->widget_body->setGraphicsEffect(pButtonOpacity);
+//        QPropertyAnimation *opacityAnimation = new QPropertyAnimation(pButtonOpacity, "opacity", this);
+//        opacityAnimation->setDuration(200); // 设置动画持续时间
+//        opacityAnimation->setStartValue(0); // 设置起始透明度为0
+//        opacityAnimation->setEndValue(1); // 设置结束透明度为1
+//        opacityAnimation->start();
     } else {
+        qDebug() << "点我2";
         ui->widget_body->hide();
         this->setFixedSize(280,25);
+//        QGraphicsOpacityEffect *pButtonOpacity = new QGraphicsOpacityEffect(this);
+//        pButtonOpacity->setOpacity(1);
+//        ui->widget_body->setGraphicsEffect(pButtonOpacity);
+//        QPropertyAnimation *opacityAnimation = new QPropertyAnimation(pButtonOpacity, "opacity");
+//        opacityAnimation->setDuration(3000); // 设置动画持续时间
+//        opacityAnimation->setStartValue(1); // 设置起始透明度为0
+//        opacityAnimation->setEndValue(0); // 设置结束透明度为1
+//        opacityAnimation->start();
+//        QObject::connect(opacityAnimation, &QPropertyAnimation::finished, [=]()
+//        {
+//            qDebug() << "点击";
+//            ui->widget_body->hide();
+//            this->setFixedSize(280,25);
+//        });
     }
 }
 
@@ -74,7 +100,7 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     QWidget(parent), filePath(filePath), fileName(fileName), fileType(fileType), fileSize(fileSize)
 {
     //初始化进度条
-    widget = new QWidget(parent);
+    widgetf = new QWidget(parent);
     widgetFileFata = new QWidget();
     widgetDatProgreessBarData = new QWidget();
     progressBar = new QProgressBar();
@@ -85,7 +111,7 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     labelData = new QLabel();
     labelData->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(45, 45, 45);font: 9pt \"OPPOSans B\";");
     progressBar->setMaximumHeight(18);
-    progressBar->setMaximumWidth(260);
+    progressBar->setMaximumWidth(265);
     //progressBar->setFixedSize(280,25);
     horizontalSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding);
     progressBar->setMaximum(fileSize);
@@ -122,7 +148,7 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     hLayout->setSpacing(0);
     widgetFileFata->setLayout(hLayout);
     widgetFileFata->setMaximumHeight(20);
-    widgetFileFata->setMaximumWidth(260);
+    widgetFileFata->setMaximumWidth(268);
     sLayout = new QStackedLayout;
     sLayout->setStackingMode(QStackedLayout::StackAll);
     sLayout->setContentsMargins(0, 0, 0, 0);
@@ -135,15 +161,15 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     vLayout->addWidget(widgetDatProgreessBarData);
     vLayout->setContentsMargins(3, 0, 3, 0);
     vLayout->setSpacing(0);
-    widget->setLayout(vLayout);
-    widget->setFixedSize(268,40);
-    widget->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
+    widgetf->setLayout(vLayout);
+    widgetf->setFixedSize(268,40);
+    widgetf->setStyleSheet("#widgetf{background-color: rgba(255, 255, 255, 0); border-top: 1px solid;  border-color: rgba(126, 126, 126, 250);}");
 }
 
 void fileProgressWidget::rece_file_progress_sgin(int64_t sumSize, int64_t fileSize, bool status)
 {
     //更新文件进度
-    qDebug() << "sum =" << sumSize << " filesize = " << fileSize;
+    //qDebug() << "sum =" << sumSize << " filesize = " << fileSize;
     //计算大小
     double count_m = (double)fileSize / (double)1024 / (double)1024;
     double count_g = 0.0;

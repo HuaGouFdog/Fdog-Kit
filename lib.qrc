@@ -124,5 +124,6 @@
         <file>lib/error2.png</file>
         <file>lib/error3.png</file>
         <file>lib/ping2.png</file>
+        <file>lib/Fdogicon.ico</file>
     </qresource>
 </RCC>

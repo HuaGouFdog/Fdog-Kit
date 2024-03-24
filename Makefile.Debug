@@ -16,14 +16,14 @@ CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zi -MDd -W3 -w44456 -
 CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc /Fddebug\FdogShell.vc.pdb $(DEFINES)
 INCPATH       = -I. -I..\zookeeper\include -I..\libssh2.11.0\include -I..\..\Qt5.12\5.10.0\msvc2015_64\include -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtANGLE -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtTest -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork -I..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore -Idebug -I. -I\include -I..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc 
 LINKER        = link
-LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:CONSOLE "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:E:\ProjectB\zookeeper\lib E:\ProjectB\zookeeper\lib\zookeeper.lib /LIBPATH:E:\ProjectB\libssh2.11.0\lib E:\ProjectB\libssh2.11.0\lib\libssh2.lib user32.lib /LIBPATH:E:\Qt5.12\5.10.0\msvc2015_64\lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgetsd.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Guid.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Testd.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Networkd.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Cored.lib 
+LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
+LIBS          = /LIBPATH:E:\Qt5.12\5.10.0\msvc2015_64\lib E:\Qt5.12\5.10.0\msvc2015_64\lib\qtmaind.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:E:\ProjectB\zookeeper\lib E:\ProjectB\zookeeper\lib\zookeeper.lib /LIBPATH:E:\ProjectB\libssh2.11.0\lib E:\ProjectB\libssh2.11.0\lib\libssh2.lib user32.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgetsd.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Guid.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Testd.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Networkd.lib E:\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Cored.lib debug\FdogShell_resource.res 
 QMAKE         = E:\Qt5.12\5.10.0\msvc2015_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\FdogShell_resource.res
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -70,8 +70,10 @@ SOURCES       = main.cpp \
 		historycommondwidget.cpp \
 		config.cpp \
 		thriftwidget.cpp \
-		zookeepertipswidget.cpp debug\qrc_lib.cpp \
+		zookeepertipswidget.cpp \
+		zookeepermanagewidget.cpp debug\qrc_lib.cpp \
 		debug\qrc_conf.cpp \
+		debug\qrc_qss.cpp \
 		debug\moc_mainwindow.cpp \
 		debug\moc_zookeeperwidget.cpp \
 		debug\moc_createconnect.cpp \
@@ -96,7 +98,8 @@ SOURCES       = main.cpp \
 		debug\moc_historycommondwidget.cpp \
 		debug\moc_config.cpp \
 		debug\moc_thriftwidget.cpp \
-		debug\moc_zookeepertipswidget.cpp
+		debug\moc_zookeepertipswidget.cpp \
+		debug\moc_zookeepermanagewidget.cpp
 OBJECTS       = debug\main.obj \
 		debug\mainwindow.obj \
 		debug\zookeeperwidget.obj \
@@ -123,8 +126,10 @@ OBJECTS       = debug\main.obj \
 		debug\config.obj \
 		debug\thriftwidget.obj \
 		debug\zookeepertipswidget.obj \
+		debug\zookeepermanagewidget.obj \
 		debug\qrc_lib.obj \
 		debug\qrc_conf.obj \
+		debug\qrc_qss.obj \
 		debug\moc_mainwindow.obj \
 		debug\moc_zookeeperwidget.obj \
 		debug\moc_createconnect.obj \
@@ -149,9 +154,10 @@ OBJECTS       = debug\main.obj \
 		debug\moc_historycommondwidget.obj \
 		debug\moc_config.obj \
 		debug\moc_thriftwidget.obj \
-		debug\moc_zookeepertipswidget.obj
+		debug\moc_zookeepertipswidget.obj \
+		debug\moc_zookeepermanagewidget.obj
 
-DIST          =  mainwindow.h \
+DIST          = lib/Fdogicon.ico mainwindow.h \
 		zookeeperwidget.h \
 		createconnect.h \
 		zookeeperhandle.h \
@@ -175,7 +181,8 @@ DIST          =  mainwindow.h \
 		historycommondwidget.h \
 		config.h \
 		thriftwidget.h \
-		zookeepertipswidget.h main.cpp \
+		zookeepertipswidget.h \
+		zookeepermanagewidget.h main.cpp \
 		mainwindow.cpp \
 		zookeeperwidget.cpp \
 		createconnect.cpp \
@@ -200,7 +207,8 @@ DIST          =  mainwindow.h \
 		historycommondwidget.cpp \
 		config.cpp \
 		thriftwidget.cpp \
-		zookeepertipswidget.cpp
+		zookeepertipswidget.cpp \
+		zookeepermanagewidget.cpp
 QMAKE_TARGET  = FdogShell
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = FdogShell.exe
@@ -255,12 +263,15 @@ DESTDIR_TARGET = debug\FdogShell.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h ui_zookeepermanagewidget.h $(OBJECTS) debug\FdogShell_resource.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\qrc_lib.obj debug\qrc_conf.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj debug\moc_secretkeywidget.obj debug\moc_smalltoolwidget.obj
-debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj
+debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\zookeepermanagewidget.obj debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_qss.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj debug\moc_secretkeywidget.obj
+debug\moc_smalltoolwidget.obj debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj debug\moc_zookeepermanagewidget.obj
 $(LIBS)
 <<
+
+debug\FdogShell_resource.res: FdogShell_resource.rc
+	rc /NOLOGO -D_DEBUG $(DEFINES) -fo debug\FdogShell_resource.res FdogShell_resource.rc
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug FdogShell.pro -spec win32-msvc
@@ -268,11 +279,12 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) FdogShell.zip $(SOURCES) $(DIST) FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\angle.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\windows-vulkan.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\msvc-desktop.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\qconfig.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_charts.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_core.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designer.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gui.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_help.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_location.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_network.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quick.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_repparser.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_script.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sql.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_svg.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webview.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt_functions.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt_config.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\msvc-version.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\toolchain.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\default_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resolve_config.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds_post.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_post.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\build_pass.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\precompile_header.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\warn_on.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resources.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\moc.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testlib_defines.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\console.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\opengl.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\uic.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qmake_use.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\file_copies.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testcase_targets.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exceptions.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\yacc.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\lex.prf FdogShell.pro lib.qrc conf.qrc ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgetsd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Guid.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Testd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Networkd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Cored.prl   lib.qrc conf.qrc ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\data\dummy.cpp mainwindow.h zookeeperwidget.h createconnect.h zookeeperhandle.h sshwidget.h sshhandle.h datahandle.h toolswidget.h toolshandle.h settingwidget.h secretkeywidget.h smalltoolwidget.h historyconnectwidget.h keywidget.h utils.h colormatch.h findwidget.h aboutwidget.h downloadwidget.h mkdirfolderwidget.h addcommondwidget.h historycommondwidget.h config.h thriftwidget.h zookeepertipswidget.h  main.cpp mainwindow.cpp zookeeperwidget.cpp createconnect.cpp zookeeperhandle.cpp sshwidget.cpp sshhandle.cpp datahandle.cpp toolswidget.cpp toolshandle.cpp settingwidget.cpp secretkeywidget.cpp smalltoolwidget.cpp historyconnectwidget.cpp keywidget.cpp utils.cpp colormatch.cpp findwidget.cpp aboutwidget.cpp downloadwidget.cpp mkdirfolderwidget.cpp addcommondwidget.cpp historycommondwidget.cpp config.cpp thriftwidget.cpp zookeepertipswidget.cpp mainwindow.ui zookeeperwidget.ui createconnect.ui sshwidget.ui toolswidget.ui settingwidget.ui secretkeywidget.ui smalltoolwidget.ui historyconnectwidget.ui keywidget.ui colormatch.ui findwidget.ui aboutwidget.ui downloadwidget.ui mkdirfolderwidget.ui addcommondwidget.ui historycommondwidget.ui thriftwidget.ui zookeepertipswidget.ui    
+	$(ZIP) FdogShell.zip $(SOURCES) $(DIST) FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\angle.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\windows-vulkan.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\msvc-desktop.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\qconfig.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_charts.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_core.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designer.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gui.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_help.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_location.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_network.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quick.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_repparser.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_script.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sql.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_svg.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webview.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt_functions.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt_config.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\msvc-version.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\toolchain.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\default_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resolve_config.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds_post.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_post.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\build_pass.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\precompile_header.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\warn_on.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resources.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\moc.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testlib_defines.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\opengl.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\uic.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qmake_use.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\file_copies.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\windows.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testcase_targets.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exceptions.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\yacc.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\lex.prf FdogShell.pro lib.qrc conf.qrc qss\qss.qrc ..\..\Qt5.12\5.10.0\msvc2015_64\lib\qtmaind.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgetsd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Guid.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Testd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Networkd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Cored.prl   lib.qrc conf.qrc qss\qss.qrc ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\data\dummy.cpp mainwindow.h zookeeperwidget.h createconnect.h zookeeperhandle.h sshwidget.h sshhandle.h datahandle.h toolswidget.h toolshandle.h settingwidget.h secretkeywidget.h smalltoolwidget.h historyconnectwidget.h keywidget.h utils.h colormatch.h findwidget.h aboutwidget.h downloadwidget.h mkdirfolderwidget.h addcommondwidget.h historycommondwidget.h config.h thriftwidget.h zookeepertipswidget.h zookeepermanagewidget.h  main.cpp mainwindow.cpp zookeeperwidget.cpp createconnect.cpp zookeeperhandle.cpp sshwidget.cpp sshhandle.cpp datahandle.cpp toolswidget.cpp toolshandle.cpp settingwidget.cpp secretkeywidget.cpp smalltoolwidget.cpp historyconnectwidget.cpp keywidget.cpp utils.cpp colormatch.cpp findwidget.cpp aboutwidget.cpp downloadwidget.cpp mkdirfolderwidget.cpp addcommondwidget.cpp historycommondwidget.cpp config.cpp thriftwidget.cpp zookeepertipswidget.cpp zookeepermanagewidget.cpp mainwindow.ui zookeeperwidget.ui createconnect.ui sshwidget.ui toolswidget.ui settingwidget.ui secretkeywidget.ui smalltoolwidget.ui historyconnectwidget.ui keywidget.ui colormatch.ui findwidget.ui aboutwidget.ui downloadwidget.ui mkdirfolderwidget.ui addcommondwidget.ui historycommondwidget.ui thriftwidget.ui zookeepertipswidget.ui zookeepermanagewidget.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\qrc_lib.obj debug\qrc_conf.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj debug\moc_secretkeywidget.obj debug\moc_smalltoolwidget.obj debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj
+	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\zookeepermanagewidget.obj debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_qss.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj debug\moc_secretkeywidget.obj debug\moc_smalltoolwidget.obj debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj debug\moc_zookeepermanagewidget.obj
 	-$(DEL_FILE) debug\FdogShell.exp debug\FdogShell.vc.pdb debug\FdogShell.ilk debug\FdogShell.idb
+	-$(DEL_FILE) debug\FdogShell_resource.res
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash debug\FdogShell.lib debug\FdogShell.pdb
@@ -289,24 +301,30 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all: debug\qrc_lib.cpp debug\qrc_conf.cpp
+compiler_rcc_make_all: debug\qrc_lib.cpp debug\qrc_conf.cpp debug\qrc_qss.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) debug\qrc_lib.cpp debug\qrc_conf.cpp
+	-$(DEL_FILE) debug\qrc_lib.cpp debug\qrc_conf.cpp debug\qrc_qss.cpp
 debug\qrc_lib.cpp: lib.qrc \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
 		lib\daxiao.png \
 		lib\tuodong.png \
+		lib\error2.png \
 		lib\icon-minus3.png \
+		lib\inport.png \
 		lib\icon-close8.png \
+		lib\setting4.png \
 		lib\XML-Local-hover.png \
+		lib\ping2.png \
 		lib\t3.png \
 		lib\eye2.png \
 		lib\icon14.png \
 		lib\add2.png \
+		lib\jiazai2.gif \
 		lib\diann2.png \
 		lib\delete2.png \
 		lib\icon8.png \
 		lib\toolBox.png \
+		lib\icon-close42.png \
 		lib\update2.png \
 		lib\node2.png \
 		lib\icon-close3.png \
@@ -315,7 +333,11 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\line-terminal.png \
 		lib\sh.png \
 		lib\icon_80.png \
+		lib\jiazai6.gif \
+		lib\jiazai10.gif \
+		lib\Fdogicon.ico \
 		lib\icon3.png \
+		lib\icon500.png \
 		lib\wicon_64.png \
 		lib\icon-close7.png \
 		lib\zhankai.png \
@@ -325,6 +347,7 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\peixu.png \
 		lib\start.png \
 		lib\Zookeeper.png \
+		lib\tree_open2.png \
 		lib\add1.png \
 		lib\github.png \
 		lib\zhuti.png \
@@ -336,6 +359,7 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\zuijin.png \
 		lib\soucuo.png \
 		lib\diann.png \
+		lib\jiazai5.gif \
 		lib\node.png \
 		lib\sanjiao.png \
 		lib\icon2.png \
@@ -349,6 +373,7 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\fdog.png \
 		lib\icon-close.png \
 		lib\wicon_46.png \
+		lib\jiazai9.gif \
 		lib\delete.png \
 		lib\Icon_max3.png \
 		lib\icon6.png \
@@ -360,27 +385,35 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\icon01.png \
 		lib\icon-minus.png \
 		lib\bi.png \
+		lib\jiazai4.gif \
+		lib\post.png \
 		lib\diann4.png \
 		lib\font.png \
 		lib\up.png \
 		lib\icon-close5.png \
 		lib\test.png \
+		lib\error.png \
+		lib\jiazai.gif \
 		lib\setting.png \
 		lib\tool.png \
 		lib\jianbian1.png \
 		lib\down.png \
 		lib\icon-copy.png \
+		lib\jiazai8.gif \
 		lib\Icon_max2.png \
 		lib\icon5.png \
 		lib\icon32.png \
+		lib\error3.png \
 		lib\file2.png \
 		lib\t4.png \
 		lib\tree_open.png \
 		lib\tree_close.png \
 		lib\add3.png \
+		lib\jiazai3.gif \
 		lib\diann3.png \
 		lib\icon9.png \
 		lib\icon-close4.png \
+		lib\node3.png \
 		lib\connect.png \
 		lib\download.png \
 		lib\Redis.png \
@@ -389,8 +422,11 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\icon10.png \
 		lib\peixu2.png \
 		lib\tool2.png \
+		lib\zookpeer_back.jpg \
 		lib\theme.png \
-		lib\icon4.png
+		lib\jiazai7.gif \
+		lib\icon4.png \
+		lib\icon_test.png
 	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -o debug\qrc_lib.cpp
 
 debug\qrc_conf.cpp: conf.qrc \
@@ -398,15 +434,20 @@ debug\qrc_conf.cpp: conf.qrc \
 		conf\settings.json
 	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name conf conf.qrc -o debug\qrc_conf.cpp
 
+debug\qrc_qss.cpp: qss\qss.qrc \
+		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
+		qss\menu.qss
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name qss qss\qss.qrc -o debug\qrc_qss.cpp
+
 compiler_moc_predefs_make_all: debug\moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) debug\moc_predefs.h
 debug\moc_predefs.h: ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\data\dummy.cpp
 	cl -BxE:\Qt5.12\5.10.0\msvc2015_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h
 
-compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_zookeeperwidget.cpp debug\moc_createconnect.cpp debug\moc_zookeeperhandle.cpp debug\moc_sshwidget.cpp debug\moc_sshhandle.cpp debug\moc_datahandle.cpp debug\moc_toolswidget.cpp debug\moc_toolshandle.cpp debug\moc_settingwidget.cpp debug\moc_secretkeywidget.cpp debug\moc_smalltoolwidget.cpp debug\moc_historyconnectwidget.cpp debug\moc_keywidget.cpp debug\moc_utils.cpp debug\moc_colormatch.cpp debug\moc_findwidget.cpp debug\moc_aboutwidget.cpp debug\moc_downloadwidget.cpp debug\moc_mkdirfolderwidget.cpp debug\moc_addcommondwidget.cpp debug\moc_historycommondwidget.cpp debug\moc_config.cpp debug\moc_thriftwidget.cpp debug\moc_zookeepertipswidget.cpp
+compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_zookeeperwidget.cpp debug\moc_createconnect.cpp debug\moc_zookeeperhandle.cpp debug\moc_sshwidget.cpp debug\moc_sshhandle.cpp debug\moc_datahandle.cpp debug\moc_toolswidget.cpp debug\moc_toolshandle.cpp debug\moc_settingwidget.cpp debug\moc_secretkeywidget.cpp debug\moc_smalltoolwidget.cpp debug\moc_historyconnectwidget.cpp debug\moc_keywidget.cpp debug\moc_utils.cpp debug\moc_colormatch.cpp debug\moc_findwidget.cpp debug\moc_aboutwidget.cpp debug\moc_downloadwidget.cpp debug\moc_mkdirfolderwidget.cpp debug\moc_addcommondwidget.cpp debug\moc_historycommondwidget.cpp debug\moc_config.cpp debug\moc_thriftwidget.cpp debug\moc_zookeepertipswidget.cpp debug\moc_zookeepermanagewidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_zookeeperwidget.cpp debug\moc_createconnect.cpp debug\moc_zookeeperhandle.cpp debug\moc_sshwidget.cpp debug\moc_sshhandle.cpp debug\moc_datahandle.cpp debug\moc_toolswidget.cpp debug\moc_toolshandle.cpp debug\moc_settingwidget.cpp debug\moc_secretkeywidget.cpp debug\moc_smalltoolwidget.cpp debug\moc_historyconnectwidget.cpp debug\moc_keywidget.cpp debug\moc_utils.cpp debug\moc_colormatch.cpp debug\moc_findwidget.cpp debug\moc_aboutwidget.cpp debug\moc_downloadwidget.cpp debug\moc_mkdirfolderwidget.cpp debug\moc_addcommondwidget.cpp debug\moc_historycommondwidget.cpp debug\moc_config.cpp debug\moc_thriftwidget.cpp debug\moc_zookeepertipswidget.cpp
+	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_zookeeperwidget.cpp debug\moc_createconnect.cpp debug\moc_zookeeperhandle.cpp debug\moc_sshwidget.cpp debug\moc_sshhandle.cpp debug\moc_datahandle.cpp debug\moc_toolswidget.cpp debug\moc_toolshandle.cpp debug\moc_settingwidget.cpp debug\moc_secretkeywidget.cpp debug\moc_smalltoolwidget.cpp debug\moc_historyconnectwidget.cpp debug\moc_keywidget.cpp debug\moc_utils.cpp debug\moc_colormatch.cpp debug\moc_findwidget.cpp debug\moc_aboutwidget.cpp debug\moc_downloadwidget.cpp debug\moc_mkdirfolderwidget.cpp debug\moc_addcommondwidget.cpp debug\moc_historycommondwidget.cpp debug\moc_config.cpp debug\moc_thriftwidget.cpp debug\moc_zookeepertipswidget.cpp debug\moc_zookeepermanagewidget.cpp
 debug\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMainWindow \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -513,12 +554,13 @@ debug\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMai
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		zookeepermanagewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
 		zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
@@ -557,6 +599,9 @@ debug\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMai
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRunnable \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMap \
 		historyconnectwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidgetItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtablewidget.h \
@@ -3601,13 +3646,169 @@ debug\moc_zookeepertipswidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWid
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
 	E:\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IE:/Qt5.12/5.10.0/msvc2015_64/mkspecs/win32-msvc -IE:/ProjectB/FdogShell -IE:/ProjectB/zookeeper/include -IE:/ProjectB/libssh2.11.0/include -IE:/Qt5.12/5.10.0/msvc2015_64/include -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtWidgets -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtGui -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtANGLE -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtTest -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtNetwork -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtCore -IE:\vs2015\VC\INCLUDE -IE:\vs2015\VC\ATLMFC\INCLUDE -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" zookeepertipswidget.h -o debug\moc_zookeepertipswidget.cpp
 
+debug\moc_zookeepermanagewidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qconfig.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtcore-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsysinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlogging.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qflags.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmutex.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qnumeric.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qversiontagging.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qnamespace.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstring.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qchar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearray.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrefcount.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qarraydata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringliteral.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpair.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmargins.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsize.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpoint.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpalette.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qbrush.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvector.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qmatrix.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpolygon.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qregion.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatastream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiodevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qline.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtransform.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpainterpath.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qimage.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpixelformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpixmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qshareddata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhash.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfont.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qkeysequence.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariant.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlocale.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qset.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qurl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qurlquery.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfile.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
+		zookeeperwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThreadPool \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthreadpool.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrunnable.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtreewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtreeview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtreewidgetitemiterator.h \
+		..\zookeeper\include\zookeeper.h \
+		..\zookeeper\include\proto.h \
+		..\zookeeper\include\zookeeper_version.h \
+		..\zookeeper\include\recordio.h \
+		..\zookeeper\include\winconfig.h \
+		..\zookeeper\include\zookeeper.jute.h \
+		createconnect.h \
+		secretkeywidget.h \
+		keywidget.h \
+		zookeeperhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRunnable \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMap \
+		zookeepermanagewidget.h \
+		debug\moc_predefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IE:/Qt5.12/5.10.0/msvc2015_64/mkspecs/win32-msvc -IE:/ProjectB/FdogShell -IE:/ProjectB/zookeeper/include -IE:/ProjectB/libssh2.11.0/include -IE:/Qt5.12/5.10.0/msvc2015_64/include -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtWidgets -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtGui -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtANGLE -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtTest -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtNetwork -IE:/Qt5.12/5.10.0/msvc2015_64/include/QtCore -IE:\vs2015\VC\INCLUDE -IE:\vs2015\VC\ATLMFC\INCLUDE -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" zookeepermanagewidget.h -o debug\moc_zookeepermanagewidget.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h
+compiler_uic_make_all: ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h ui_zookeepermanagewidget.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h
+	-$(DEL_FILE) ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h ui_zookeepermanagewidget.h
 ui_mainwindow.h: mainwindow.ui \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\uic.exe
 	E:\Qt5.12\5.10.0\msvc2015_64\bin\uic.exe mainwindow.ui -o ui_mainwindow.h
@@ -3683,6 +3884,10 @@ ui_thriftwidget.h: thriftwidget.ui \
 ui_zookeepertipswidget.h: zookeepertipswidget.ui \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\uic.exe
 	E:\Qt5.12\5.10.0\msvc2015_64\bin\uic.exe zookeepertipswidget.ui -o ui_zookeepertipswidget.h
+
+ui_zookeepermanagewidget.h: zookeepermanagewidget.ui \
+		..\..\Qt5.12\5.10.0\msvc2015_64\bin\uic.exe
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\uic.exe zookeepermanagewidget.ui -o ui_zookeepermanagewidget.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -3803,12 +4008,13 @@ debug\main.obj: main.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		zookeepermanagewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
 		zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
@@ -3847,6 +4053,9 @@ debug\main.obj: main.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRunnable \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMap \
 		historyconnectwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidgetItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtablewidget.h \
@@ -4102,12 +4311,13 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		zookeepermanagewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
 		zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
@@ -4146,6 +4356,9 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRunnable \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMap \
 		historyconnectwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidgetItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtablewidget.h \
@@ -4293,19 +4506,6 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		ui_mainwindow.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QLocale \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QFrame \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QColor \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QMouseEvent \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenuBar \
@@ -4340,7 +4540,9 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qshortcut.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QDesktopServices \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qdesktopservices.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h
 
 debug\zookeeperwidget.obj: zookeeperwidget.cpp ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDateTime \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
@@ -4534,12 +4736,21 @@ debug\zookeeperwidget.obj: zookeeperwidget.cpp ..\..\Qt5.12\5.10.0\msvc2015_64\i
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector4d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSizePolicy \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMetaEnum \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolTip \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtooltip.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyleFactory \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstylefactory.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThreadPool \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthreadpool.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrunnable.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QPropertyAnimation \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
 		zookeeperwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
@@ -4575,39 +4786,7 @@ debug\zookeeperwidget.obj: zookeeperwidget.cpp ..\..\Qt5.12\5.10.0\msvc2015_64\i
 		zookeeperhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRunnable \
 		zookeepertipswidget.h \
-		ui_zookeeperwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		ui_zookeeperwidget.h
 
 debug\createconnect.obj: createconnect.cpp createconnect.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -4716,61 +4895,17 @@ debug\createconnect.obj: createconnect.cpp createconnect.h \
 		secretkeywidget.h \
 		keywidget.h \
 		ui_createconnect.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QMovie \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qmovie.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qimagereader.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qimageiohandler.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qplugin.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfactoryinterface.h
 
 debug\zookeeperhandle.obj: zookeeperhandle.cpp zookeeperhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
@@ -5230,47 +5365,15 @@ debug\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
 		ui_sshwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QLocale \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollArea \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QInputMethod \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTimer \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCharFormat \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextOption \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTextCodec \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextcodec.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QElapsedTimer \
@@ -5280,6 +5383,8 @@ debug\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMimeData \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmimedata.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextLayout \
@@ -5672,55 +5777,6 @@ debug\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		ui_toolswidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTimer \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
@@ -5904,21 +5960,21 @@ debug\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
 		ui_settingwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
+		colormatch.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QPropertyAnimation \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QFontDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
@@ -5930,50 +5986,8 @@ debug\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollArea \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSlider \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpinBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
-		colormatch.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QPropertyAnimation \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpropertyanimation.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariantanimation.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeasingcurve.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QFontDatabase \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
 
 debug\secretkeywidget.obj: secretkeywidget.cpp secretkeywidget.h \
 		keywidget.h \
@@ -6080,45 +6094,7 @@ debug\secretkeywidget.obj: secretkeywidget.cpp secretkeywidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_secretkeywidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtablewidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtableview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h
+		ui_secretkeywidget.h
 
 debug\smalltoolwidget.obj: smalltoolwidget.cpp smalltoolwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -6224,62 +6200,7 @@ debug\smalltoolwidget.obj: smalltoolwidget.cpp smalltoolwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_smalltoolwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		ui_smalltoolwidget.h
 
 debug\historyconnectwidget.obj: historyconnectwidget.cpp historyconnectwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -6406,35 +6327,10 @@ debug\historyconnectwidget.obj: historyconnectwidget.cpp historyconnectwidget.h 
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
 		ui_historyconnectwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QIcon
 
 debug\keywidget.obj: keywidget.cpp keywidget.h \
@@ -6542,54 +6438,6 @@ debug\keywidget.obj: keywidget.cpp keywidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		ui_keywidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDir \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdir.h \
@@ -6832,48 +6680,7 @@ debug\colormatch.obj: colormatch.cpp colormatch.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_colormatch.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem
+		ui_colormatch.h
 
 debug\findwidget.obj: findwidget.cpp findwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -6979,56 +6786,7 @@ debug\findwidget.obj: findwidget.cpp findwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_findwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		ui_findwidget.h
 
 debug\aboutwidget.obj: aboutwidget.cpp aboutwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -7134,51 +6892,7 @@ debug\aboutwidget.obj: aboutwidget.cpp aboutwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_aboutwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h
+		ui_aboutwidget.h
 
 debug\downloadwidget.obj: downloadwidget.cpp downloadwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -7299,42 +7013,6 @@ debug\downloadwidget.obj: downloadwidget.cpp downloadwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedlayout.h \
 		ui_downloadwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollArea \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QPropertyAnimation \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpropertyanimation.h \
@@ -7448,50 +7126,7 @@ debug\mkdirfolderwidget.obj: mkdirfolderwidget.cpp mkdirfolderwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_mkdirfolderwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h
+		ui_mkdirfolderwidget.h
 
 debug\addcommondwidget.obj: addcommondwidget.cpp addcommondwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -7597,61 +7232,7 @@ debug\addcommondwidget.obj: addcommondwidget.cpp addcommondwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_addcommondwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qglyphrun.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrawfont.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h
+		ui_addcommondwidget.h
 
 debug\historycommondwidget.obj: historycommondwidget.cpp historycommondwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -7757,47 +7338,7 @@ debug\historycommondwidget.obj: historycommondwidget.cpp historycommondwidget.h 
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_historycommondwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h
+		ui_historycommondwidget.h
 
 debug\config.obj: config.cpp config.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -7905,7 +7446,13 @@ debug\config.obj: config.cpp config.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QFile \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonParseError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h
 
 debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -8050,35 +7597,6 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		ui_thriftwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeventloop.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTabWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyleFactory \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstylefactory.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork\QTcpSocket \
@@ -8092,7 +7610,11 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QElapsedTimer \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qelapsedtimer.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h
 
 debug\zookeepertipswidget.obj: zookeepertipswidget.cpp zookeepertipswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -8200,9 +7722,169 @@ debug\zookeepertipswidget.obj: zookeepertipswidget.cpp zookeepertipswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
 		ui_zookeepertipswidget.h
 
+debug\zookeepermanagewidget.obj: zookeepermanagewidget.cpp zookeepermanagewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qconfig.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtcore-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsysinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlogging.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qflags.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmutex.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qnumeric.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qversiontagging.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qnamespace.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstring.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qchar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearray.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrefcount.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qarraydata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringliteral.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpair.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmargins.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsize.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpoint.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpalette.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qbrush.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvector.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qmatrix.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpolygon.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qregion.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatastream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiodevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qline.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtransform.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpainterpath.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qimage.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpixelformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpixmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qshareddata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhash.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfont.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qkeysequence.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariant.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlocale.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qset.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qurl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qurlquery.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfile.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
+		zookeeperwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qicon.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThreadPool \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthreadpool.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrunnable.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtreewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtreeview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtreewidgetitemiterator.h \
+		..\zookeeper\include\zookeeper.h \
+		..\zookeeper\include\proto.h \
+		..\zookeeper\include\zookeeper_version.h \
+		..\zookeeper\include\recordio.h \
+		..\zookeeper\include\winconfig.h \
+		..\zookeeper\include\zookeeper.jute.h \
+		createconnect.h \
+		secretkeywidget.h \
+		keywidget.h \
+		zookeeperhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRunnable \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMap \
+		ui_zookeepermanagewidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl
+
 debug\qrc_lib.obj: debug\qrc_lib.cpp 
 
 debug\qrc_conf.obj: debug\qrc_conf.cpp 
+
+debug\qrc_qss.obj: debug\qrc_qss.cpp 
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 
@@ -8253,6 +7935,8 @@ debug\moc_config.obj: debug\moc_config.cpp
 debug\moc_thriftwidget.obj: debug\moc_thriftwidget.cpp 
 
 debug\moc_zookeepertipswidget.obj: debug\moc_zookeepertipswidget.cpp 
+
+debug\moc_zookeepermanagewidget.obj: debug\moc_zookeepermanagewidget.cpp 
 
 ####### Install
 

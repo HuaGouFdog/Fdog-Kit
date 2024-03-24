@@ -63,6 +63,7 @@ public:
 
     void newConnectZk(QString name, QString host, QString port);
 
+    //创建托盘显示
     void createSystemTray();
 
 private slots:

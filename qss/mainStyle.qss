@@ -75,6 +75,51 @@ QMenu::separator {
     /*margin-right: 10px;*/
 }
 
+/*通用QComboBox*/
+
+QComboBox{
+	color:#ffffff;
+	border:0px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+}
+
+QComboBox QAbstractItemView::item
+{
+font: 10pt "OPPOSans B";
+height:28px;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	image: url(:/lib/tree_open.png);
+    width:20px;
+	height:20px;
+	margin-right: 10px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	font: 10pt "OPPOSans B";
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+
 /*主界面*/
 QMainWindow,QWidget#centralWidget {
 background-color: rgb(67, 77, 88);

@@ -45,6 +45,10 @@ MainWindow::MainWindow(QWidget *parent) :
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
+    setContentsMargins(10, 10, 10, 10);
+    ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
+    ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
+
     this->setStyleSheet(getStyleFile("qss//mainStyle.qss"));
 
     HWND hwnd = (HWND)this->winId();

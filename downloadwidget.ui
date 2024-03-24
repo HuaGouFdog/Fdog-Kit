@@ -132,7 +132,8 @@ QToolButton:hover {
 background-color: rgb(255, 255, 255);
 /*padding:5px;*/
 border-radius:6px;
-border:2px solid rgb(108, 117, 125, 65); 
+	border: 2px solid;
+	border-color: rgba(126, 126, 126, 50);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -143,7 +144,7 @@ border:2px solid rgb(108, 117, 125, 65);
        <number>5</number>
       </property>
       <property name="topMargin">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="rightMargin">
        <number>5</number>
@@ -154,7 +155,7 @@ border:2px solid rgb(108, 117, 125, 65);
       <item>
        <widget class="QWidget" name="widget_3" native="true">
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(125, 125, 125, 0);</string>
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="spacing">
@@ -215,7 +216,7 @@ border:2px solid rgb(108, 117, 125, 65);
            <property name="styleSheet">
             <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgb(255, 255, 255);
 	border: none;
 }
 
@@ -226,7 +227,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgb(255, 255, 255);
 	border: none;
 }</string>
            </property>
@@ -259,7 +260,7 @@ QToolButton:hover {
            <property name="styleSheet">
             <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgb(255, 255, 255);
 	border: none;
 }
 
@@ -270,7 +271,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgb(255, 255, 255);
 	border: none;
 }</string>
            </property>
@@ -300,7 +301,8 @@ QToolButton:hover {
         <property name="styleSheet">
          <string notr="true">#scrollArea{
 	border: 1px solid;
-	background-color: rgb(29, 29, 29);
+	border-color: rgba(126, 126, 126, 50);
+	background-color: rgba(29, 29, 29, 50);
 }
 </string>
         </property>
@@ -313,7 +315,7 @@ QToolButton:hover {
            <x>0</x>
            <y>0</y>
            <width>268</width>
-           <height>238</height>
+           <height>236</height>
           </rect>
          </property>
          <property name="minimumSize">
@@ -350,7 +352,7 @@ QToolButton:hover {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);</string>
+             <string notr="true">background-color: rgba(255, 255, 255, 50);</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <property name="spacing">
