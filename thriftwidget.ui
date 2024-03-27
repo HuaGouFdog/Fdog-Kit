@@ -209,7 +209,7 @@ color: rgb(231, 238, 244);
 border-radius: 14px;
 background-color: rgb(25, 25, 25, 155);
 border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 10px;
+border-radius: 5px;
 padding-left:10px;
 padding-right:10px;
 }</string>
@@ -497,7 +497,54 @@ QScrollBar::up-arrow:vertical {
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color:#ced4da;</string>
+         <string notr="true">
+
+QComboBox{
+	color:#ffffff;
+	border:0px solid #8a8a8a;
+	color: rgb(138, 138, 138);
+	border-radius:5px;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+}
+
+QComboBox QAbstractItemView::item
+{
+	height:28px;
+	font: 10pt &quot;OPPOSans B&quot;;
+}
+
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	image: url(:/lib/tree_open.png);
+    width:20px;
+	height:20px;
+	margin-right: 10px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	font: 10pt &quot;OPPOSans B&quot;;
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
+</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="leftMargin">
@@ -512,6 +559,81 @@ QScrollBar::up-arrow:vertical {
          <property name="bottomMargin">
           <number>0</number>
          </property>
+         <item>
+          <widget class="QLabel" name="label_14">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>测试类型</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_testType">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>基础测试</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>性能测试</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_16">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
          <item>
           <widget class="QLabel" name="label_2">
            <property name="minimumSize">
@@ -532,6 +654,9 @@ QScrollBar::up-arrow:vertical {
              <pointsize>10</pointsize>
              <stylestrategy>PreferAntialias</stylestrategy>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
            </property>
            <property name="text">
             <string>主机</string>
@@ -608,6 +733,9 @@ padding-right:10px;
              <pointsize>10</pointsize>
              <stylestrategy>PreferAntialias</stylestrategy>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
            </property>
            <property name="text">
             <string>端口</string>
@@ -749,12 +877,16 @@ QToolButton:hover {
 	border-radius:5px;
 	background-color: rgb(25, 25, 25, 155);
 	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
 }
 
 QComboBox QAbstractItemView::item
 {
-height:28px;
+	height:28px;
+	font: 10pt &quot;OPPOSans B&quot;;
 }
+
 QComboBox:disabled{
 	border:1px solid gray;
 	color:gray;
@@ -775,6 +907,7 @@ QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
 QComboBox QAbstractItemView{
+	font: 10pt &quot;OPPOSans B&quot;;
 	outline:0px solid gray;
 	border:1px solid #1e2d36;
 	color:#ffffff;
@@ -801,13 +934,13 @@ QComboBox QAbstractItemView{
           <widget class="QLabel" name="label_5">
            <property name="minimumSize">
             <size>
-             <width>40</width>
+             <width>55</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>55</width>
              <height>16777215</height>
             </size>
            </property>
@@ -830,7 +963,7 @@ QComboBox QAbstractItemView{
           <widget class="QComboBox" name="comboBox_transport">
            <property name="minimumSize">
             <size>
-             <width>160</width>
+             <width>170</width>
              <height>30</height>
             </size>
            </property>
@@ -899,7 +1032,7 @@ QComboBox QAbstractItemView{
           <widget class="QComboBox" name="comboBox_protocol">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>160</width>
              <height>30</height>
             </size>
            </property>
@@ -963,7 +1096,7 @@ QComboBox QAbstractItemView{
           <widget class="QComboBox" name="comboBox_reqType">
            <property name="minimumSize">
             <size>
-             <width>160</width>
+             <width>110</width>
              <height>30</height>
             </size>
            </property>
@@ -1013,7 +1146,7 @@ QComboBox QAbstractItemView{
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>33</height>
+          <height>30</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -1036,13 +1169,13 @@ QComboBox QAbstractItemView{
           <widget class="QLabel" name="label_3">
            <property name="minimumSize">
             <size>
-             <width>40</width>
+             <width>55</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>55</width>
              <height>16777215</height>
             </size>
            </property>
@@ -1182,6 +1315,461 @@ QToolButton:hover {
             <string>保存</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_14" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_15">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>线程数</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_port_2">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="text">
+            <string>4031</string>
+           </property>
+           <property name="placeholderText">
+            <string>9090</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_17">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>27</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_16">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>启动时间</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_port_3">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="text">
+            <string>4031</string>
+           </property>
+           <property name="placeholderText">
+            <string>9090</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_18">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>27</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_17">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>循环次数</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_port_4">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="text">
+            <string>4031</string>
+           </property>
+           <property name="placeholderText">
+            <string>9090</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_19">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>27</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_18">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="text">
+            <string>停止时间</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_port_5">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="text">
+            <string>4031</string>
+           </property>
+           <property name="placeholderText">
+            <string>9090</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_21">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>27</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_5">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(250, 118, 0);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(250, 118, 0);
+}</string>
+           </property>
+           <property name="text">
+            <string>开始测试</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_save_2">
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(0, 170, 0);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 170, 0);
+}</string>
+           </property>
+           <property name="text">
+            <string>保存测试</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_20">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -1341,6 +1929,35 @@ QToolButton:hover {
                   <number>0</number>
                  </property>
                  <item>
+                  <widget class="QToolButton" name="toolButton_3">
+                   <property name="minimumSize">
+                    <size>
+                     <width>20</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>20</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="lib.qrc">
+                     <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>23</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QLabel" name="label_4">
                    <property name="minimumSize">
                     <size>
@@ -1350,7 +1967,7 @@ QToolButton:hover {
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>16777215</width>
+                     <width>45</width>
                      <height>30</height>
                     </size>
                    </property>
@@ -1509,11 +2126,13 @@ QTreeWidget {
 	color: rgb(0, 0, 0);
 	
 	font: 10pt &quot;OPPOSans B&quot;;
+	
 }
 
 QHeaderView {
 font: 10pt &quot;OPPOSans B&quot;;
 color: rgb(56, 56, 56);
+background-color: rgb(54, 81, 97);
 }
 
 QTreeWidget#treeWidget {
@@ -1521,6 +2140,7 @@ QTreeWidget#treeWidget {
 	outline: none;
 }
 QTreeWidget::item {
+
 	height: 28px;
 	color: rgb(255, 255, 255);
 	outline: 0px;
@@ -1849,6 +2469,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;--------------------------------------------------------&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
+                <property name="cursorWidth">
+                 <number>2</number>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1905,6 +2528,18 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <widget class="QWidget" name="widget_8" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>25</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(54, 81, 97);</string>
                </property>
@@ -1925,17 +2560,55 @@ p, li { white-space: pre-wrap; }
                  <number>0</number>
                 </property>
                 <item>
+                 <widget class="QToolButton" name="toolButton_4">
+                  <property name="minimumSize">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>20</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+QToolButton {
+	font: 10pt &quot;OPPOSans B&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 5px;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="lib.qrc">
+                    <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>23</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLabel" name="label_7">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
-                    <height>30</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
-                    <height>30</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="font">
@@ -1952,7 +2625,7 @@ padding-left:2px;
 padding-right:10px;</string>
                   </property>
                   <property name="text">
-                   <string>请求结果</string>
+                   <string>请求</string>
                   </property>
                  </widget>
                 </item>
@@ -1961,7 +2634,7 @@ padding-right:10px;</string>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
-                    <height>20</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="font">
@@ -1979,6 +2652,71 @@ padding-right:10px;</string>
                   </property>
                   <property name="checked">
                    <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_req">
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>10</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_time">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(54, 81, 97);
+color: rgb(255, 255, 255);
+padding-left:2px;
+padding-right:10px;</string>
+                  </property>
+                  <property name="text">
+                   <string>响应时间：</string>
                   </property>
                  </widget>
                 </item>
@@ -2006,11 +2744,17 @@ padding-right:10px;</string>
                  <height>200</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(54, 81, 97);</string>
+               </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="page">
                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
                  <property name="leftMargin">
                   <number>0</number>
                  </property>
@@ -2024,31 +2768,156 @@ padding-right:10px;</string>
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QTextEdit" name="textEdit">
+                  <widget class="QTabWidget" name="tabWidget_2">
                    <property name="font">
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
-                     <stylestrategy>PreferAntialias</stylestrategy>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                     <underline>false</underline>
                     </font>
                    </property>
-                   <property name="cursor" stdset="0">
-                    <cursorShape>ArrowCursor</cursorShape>
-                   </property>
                    <property name="styleSheet">
-                    <string notr="true">QTextEdit{
+                    <string notr="true">
+
+/*设置TabWidget中tab_1的样式*/
+#tab_1.QWidget{
+	background-color: rgb(108, 117, 125, 65);
+}
+ 
+/*设置TabWidget中tab_2的样式*/
+#tab_11.QWidget{
+	background-color: rgb(108, 117, 125, 65);
+}
+ 
+/*设置TabWidget中QTabBar的样式*/
+QTabBar::tab{
+    /*background-color: rgb(100, 117, 125, 255);*/
+	
+	background-color: rgb(54, 81, 97);
+	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
+	font-size:10pt;
+	
+	
+	color: rgb(255, 255, 255);
+	border-top-left-radius: 0px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 0px;    /*设置tab的边框的圆角（右上圆角）*/
+	width:70px;
+	padding: 3px;
+	/*margin-right:0px;
+	margin-left: 0px;*/
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+	/*background-color: rgb(15, 15, 15);*/
+	/*border-top:3px solid rgb(108, 117, 125, 65); */
+	border-bottom:2px solid rgb(0, 170, 255); 
+	color: rgb(0, 170, 255);
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+	/*border-bottom:2px solid rgb(0, 170, 255); */
+	color: rgb(0, 170, 255);
+}
+ 
+/*设置TabWidget的边框的样式*/
+QTabWidget::pane {
+    border-top:0px solid rgb(108, 117, 125, 65); 
+}
+ 
+
+QTabBar::close-button{ 
+	
+	border-image: url(:/lib/icon-close4.png);
+}
+
+QTabBar::close-button:selected{
+	border-image: url(:/lib/icon-close4.png);
+}
+
+
+QTabBar::close-button:hover{
+	border-image: url(:/lib/icon-close42.png);
+}
+
+
+/*当打开多个tab，右侧出现，点击后，可以向前向后的按钮的样式*/
+QTabBar QToolButton {
+    border: none;
+	color: rgb(255, 206, 6);
+    background-color: rgba(100, 117, 125, 0);
+}
+ 
+QTabBar QToolButton:hover {
+	background-color: rgba(100, 117, 125, 0);
+}</string>
+                   </property>
+                   <property name="currentIndex">
+                    <number>0</number>
+                   </property>
+                   <widget class="QWidget" name="tab_5">
+                    <attribute name="title">
+                     <string>Source</string>
+                    </attribute>
+                    <layout class="QHBoxLayout" name="horizontalLayout_12">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>2</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>2</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>2</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>2</number>
+                     </property>
+                     <item>
+                      <widget class="QTextEdit" name="textEdit">
+                       <property name="font">
+                        <font>
+                         <family>OPPOSans B</family>
+                         <pointsize>10</pointsize>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
+                       <property name="cursor" stdset="0">
+                        <cursorShape>ArrowCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QTextEdit{
 color: rgb(80, 80, 80);
-background-color: rgb(255, 255, 255);
+	background-color: rgb(229, 229, 229);
 border: 1px solid rgba(255, 255, 255, 0);
 border-radius: 0px;
 padding-left:10px;
 padding-right:10px;
 
 }</string>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
+                       </property>
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="tab_4">
+                    <attribute name="title">
+                     <string>Headers</string>
+                    </attribute>
+                   </widget>
+                   <widget class="QWidget" name="tab_3">
+                    <attribute name="title">
+                     <string>Data</string>
+                    </attribute>
+                   </widget>
                   </widget>
                  </item>
                 </layout>
@@ -2300,7 +3169,7 @@ padding-right:10px;
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>28</height>
+                 <height>20</height>
                 </size>
                </property>
                <property name="font">
@@ -2330,50 +3199,55 @@ padding-right:10px;
                  <number>3</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_req">
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                    <stylestrategy>PreferAntialias</stylestrategy>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true"/>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_7">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>10</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_time">
+                 <widget class="QToolButton" name="toolButton_6">
                   <property name="minimumSize">
                    <size>
-                    <width>0</width>
+                    <width>20</width>
                     <height>0</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>16777215</width>
+                    <width>20</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+QToolButton {
+	font: 10pt &quot;OPPOSans B&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 5px;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="lib.qrc">
+                    <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>23</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_19">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
                     <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="font">
@@ -2390,7 +3264,7 @@ padding-left:2px;
 padding-right:10px;</string>
                   </property>
                   <property name="text">
-                   <string>响应时间：</string>
+                   <string>性能测试报告</string>
                   </property>
                  </widget>
                 </item>

@@ -189,7 +189,7 @@ void ItemWidget::init()
     widgetParamType->setLayout(layoutParamType);
 
     layoutParamValue = new QHBoxLayout();
-    layoutParamValue->setContentsMargins(5, 0, 0, 0);
+    layoutParamValue->setContentsMargins(0, 0, 0, 0);
     keyLabel = new QLabel();
     keyLabel->setAlignment(Qt::AlignCenter);
     keyLabel->setText("KEY");
@@ -331,28 +331,29 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     item->setText(0, "");
      // 添加树节点到树控件中
-     ui->treeWidget->addTopLevelItem(item);
+    ui->treeWidget->addTopLevelItem(item);
 
-     QAction *action = new QAction(this);
-     action->setIcon(QIcon(":/lib/soucuo.png"));
-     ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
 
-     ui->comboBox_protocol->setView(new QListView());
-     ui->comboBox_transport->setView(new QListView());
-     ui->comboBox_reqType->setView(new QListView());
+    ui->comboBox_protocol->setView(new QListView());
+    ui->comboBox_transport->setView(new QListView());
+    ui->comboBox_reqType->setView(new QListView());
+    ui->comboBox_testType->setView(new QListView());
 
-     ui->splitter->setStretchFactor(0, 5);  // 第一个子控件占 1/3 的显示空间
-     ui->splitter->setStretchFactor(1, 3);  // 第二个子控件占 2/3 的显示空间
+    ui->splitter->setStretchFactor(0, 5);  // 第一个子控件占 1/3 的显示空间
+    ui->splitter->setStretchFactor(1, 3);  // 第二个子控件占 2/3 的显示空间
 
-     ui->splitter_2->setStretchFactor(0, 2);  // 第一个子控件占 1/3 的显示空间
-     ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
+    ui->splitter_2->setStretchFactor(0, 2);  // 第一个子控件占 1/3 的显示空间
+    ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
 
-     ui->widget_thrift->hide();
-     ui->label_req->hide();
+    ui->widget_thrift->hide();
+    ui->label_req->hide();
 
-     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
 
-     ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 QString thriftwidget::getType(int index)
