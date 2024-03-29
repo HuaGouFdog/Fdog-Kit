@@ -354,6 +354,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->stackedWidget->setCurrentIndex(0);
+
+    ui->widget_property->hide();
 }
 
 QString thriftwidget::getType(int index)
@@ -494,6 +496,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
                 ui->stackedWidget->setCurrentIndex(0);
                 break;
             }
+            ui->stackedWidget->setCurrentIndex(0);
         }
         ui->textEdit->append(dataTemp);
         ui->textEdit->append("----------------------------------------------------------------------");
@@ -1085,30 +1088,6 @@ void thriftwidget::parseData()
 }
 
 
-void thriftwidget::on_toolButton_clicked()
-{
-    //buildData();
-    assembleTBinaryMessage();
-    //请求数据
-    QVector<uint32_t> a = string2Uint32List(dataList);
-    ui->textEdit->clear();
-    ui->textEdit->append("请求源数据：");
-    QString dataTemp = "";
-    for (const QString& value : dataList) {
-        dataTemp = dataTemp + value + " ";  // 在控制台输出元素值
-    }
-    ui->textEdit->append(dataTemp);
-    ui->textEdit->append("----------------------------------------------------------------------");
-    ui->textEdit->append("请求结果数据：");
-    qDebug() << "dataList = " << dataList;
-    QElapsedTimer timer;
-    timer.start();
-    sendThriftRequest(a);
-    qint64 elapsedMilliseconds = timer.elapsed();
-    ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
-    return;
-}
-
 void thriftwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
     ItemWidget* items = new ItemWidget(item);
@@ -1434,4 +1413,74 @@ void thriftwidget::on_textEdit_customContextMenuRequested(const QPoint &pos)
     menu->addAction(pnew1);
     menu->move(cursor().pos());
     menu->show();
+}
+
+void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
+{
+    if (index == 0) {
+        //基础测试
+        ui->widget_property->hide();
+        ui->toolButton_request->show();
+        ui->toolButton_save->show();
+    } else {
+        //性能测试
+        ui->widget_property->show();
+        ui->toolButton_request->hide();
+        ui->toolButton_save->hide();
+    }
+}
+
+void thriftwidget::on_toolButton_request_clicked()
+{
+    assembleTBinaryMessage();
+    //请求数据
+    QVector<uint32_t> a = string2Uint32List(dataList);
+    ui->textEdit->clear();
+    ui->textEdit->append("请求源数据：");
+    QString dataTemp = "";
+    for (const QString& value : dataList) {
+        dataTemp = dataTemp + value + " ";  // 在控制台输出元素值
+    }
+    ui->textEdit->append(dataTemp);
+    ui->textEdit->append("----------------------------------------------------------------------");
+    ui->textEdit->append("请求结果数据：");
+    qDebug() << "dataList = " << dataList;
+    QElapsedTimer timer;
+    timer.start();
+    sendThriftRequest(a);
+    qint64 elapsedMilliseconds = timer.elapsed();
+    ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+    return;
+}
+
+void thriftwidget::on_toolButton_request_param_clicked()
+{
+    //入参折叠
+    if (isToolButton_request_param_checked) {
+        //隐藏
+        ui->treeWidget->hide();
+    } else {
+        //显示
+        ui->treeWidget->show();
+    }
+}
+
+void thriftwidget::on_toolButton_response_clicked()
+{
+    //请求响应折叠
+    if (isToolButton_response_checked) {
+        ui->tabWidget_response->hide();
+    } else {
+        ui->tabWidget_response->show();
+    }
+}
+
+void thriftwidget::on_toolButton_report_clicked()
+{
+    //性能报告折叠
+    if (isToolButton_report_checked) {
+
+    } else {
+
+    }
 }

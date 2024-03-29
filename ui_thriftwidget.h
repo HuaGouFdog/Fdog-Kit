@@ -44,7 +44,7 @@ public:
     QWidget *tab;
     QWidget *tab_2;
     QToolButton *toolButton_2;
-    QWidget *widget_7;
+    QWidget *widget_right;
     QVBoxLayout *verticalLayout;
     QWidget *widget_6;
     QHBoxLayout *horizontalLayout_2;
@@ -75,9 +75,11 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_funcName;
     QSpacerItem *horizontalSpacer_8;
-    QToolButton *toolButton;
+    QToolButton *toolButton_request;
+    QSpacerItem *horizontalSpacer_27;
     QToolButton *toolButton_save;
-    QWidget *widget_14;
+    QSpacerItem *horizontalSpacer_22;
+    QWidget *widget_property;
     QHBoxLayout *horizontalLayout_13;
     QLabel *label_15;
     QLineEdit *lineEdit_port_2;
@@ -86,14 +88,22 @@ public:
     QLineEdit *lineEdit_port_3;
     QSpacerItem *horizontalSpacer_18;
     QLabel *label_17;
+    QCheckBox *checkBox;
     QLineEdit *lineEdit_port_4;
     QSpacerItem *horizontalSpacer_19;
     QLabel *label_18;
     QLineEdit *lineEdit_port_5;
     QSpacerItem *horizontalSpacer_21;
     QToolButton *toolButton_5;
+    QSpacerItem *horizontalSpacer_26;
     QToolButton *toolButton_save_2;
+    QSpacerItem *horizontalSpacer_28;
+    QToolButton *toolButton_switch;
+    QSpacerItem *horizontalSpacer_25;
     QSpacerItem *horizontalSpacer_20;
+    QStackedWidget *stackedWidget_2;
+    QWidget *page_2;
+    QVBoxLayout *verticalLayout_11;
     QSplitter *splitter_2;
     QWidget *widget_4;
     QHBoxLayout *horizontalLayout_3;
@@ -102,8 +112,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QWidget *widget_12;
     QHBoxLayout *horizontalLayout_8;
-    QToolButton *toolButton_3;
-    QLabel *label_4;
+    QToolButton *toolButton_request_param;
     QCheckBox *checkBox_3;
     QSpacerItem *horizontalSpacer;
     QToolButton *toolButton_show_thrift_info;
@@ -120,17 +129,13 @@ public:
     QVBoxLayout *verticalLayout_7;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
-    QToolButton *toolButton_4;
-    QLabel *label_7;
+    QToolButton *toolButton_response;
     QCheckBox *checkBox_2;
-    QLabel *label_req;
-    QSpacerItem *horizontalSpacer_7;
-    QLabel *label_time;
     QSpacerItem *horizontalSpacer_5;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QVBoxLayout *verticalLayout_8;
-    QTabWidget *tabWidget_2;
+    QTabWidget *tabWidget_response;
     QWidget *tab_5;
     QHBoxLayout *horizontalLayout_12;
     QTextEdit *textEdit;
@@ -156,15 +161,17 @@ public:
     QSpacerItem *horizontalSpacer_13;
     QWidget *widget_10;
     QHBoxLayout *horizontalLayout_6;
-    QToolButton *toolButton_6;
-    QLabel *label_19;
+    QLabel *label_req;
+    QSpacerItem *horizontalSpacer_7;
+    QLabel *label_time;
     QSpacerItem *horizontalSpacer_6;
+    QWidget *page_3;
 
     void setupUi(QWidget *thriftwidget)
     {
         if (thriftwidget->objectName().isEmpty())
             thriftwidget->setObjectName(QStringLiteral("thriftwidget"));
-        thriftwidget->resize(1137, 701);
+        thriftwidget->resize(1379, 701);
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -419,9 +426,9 @@ public:
 
         horizontalLayout_4->addWidget(widget_left);
 
-        widget_7 = new QWidget(thriftwidget);
-        widget_7->setObjectName(QStringLiteral("widget_7"));
-        widget_7->setStyleSheet(QString::fromUtf8("\n"
+        widget_right = new QWidget(thriftwidget);
+        widget_right->setObjectName(QStringLiteral("widget_right"));
+        widget_right->setStyleSheet(QString::fromUtf8("\n"
 "QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:1px solid #1e2d36;\n"
@@ -502,11 +509,11 @@ public:
 "QScrollBar::up-arrow:vertical {\n"
 "    border:none;\n"
 "}"));
-        verticalLayout = new QVBoxLayout(widget_7);
+        verticalLayout = new QVBoxLayout(widget_right);
         verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 7, 0, 0);
-        widget_6 = new QWidget(widget_7);
+        widget_6 = new QWidget(widget_right);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         widget_6->setMaximumSize(QSize(16777215, 33));
         widget_6->setStyleSheet(QLatin1String("\n"
@@ -558,6 +565,7 @@ public:
 "\n"
 ""));
         horizontalLayout_2 = new QHBoxLayout(widget_6);
+        horizontalLayout_2->setSpacing(5);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(9, 3, 0, 0);
         label_14 = new QLabel(widget_6);
@@ -682,7 +690,7 @@ public:
 
         verticalLayout->addWidget(widget_6);
 
-        horizontalWidget_2 = new QWidget(widget_7);
+        horizontalWidget_2 = new QWidget(widget_right);
         horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
         horizontalWidget_2->setMaximumSize(QSize(16777215, 33));
         horizontalWidget_2->setStyleSheet(QLatin1String("QComboBox{\n"
@@ -732,6 +740,7 @@ public:
 "\n"
 ""));
         horizontalLayout_9 = new QHBoxLayout(horizontalWidget_2);
+        horizontalLayout_9->setSpacing(5);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(9, 0, 0, 0);
         label_5 = new QLabel(horizontalWidget_2);
@@ -803,11 +812,12 @@ public:
 
         verticalLayout->addWidget(horizontalWidget_2);
 
-        horizontalWidget = new QWidget(widget_7);
+        horizontalWidget = new QWidget(widget_right);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
         horizontalWidget->setMaximumSize(QSize(16777215, 30));
         horizontalWidget->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
+        horizontalLayout->setSpacing(5);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(9, 0, 10, 0);
         label_3 = new QLabel(horizontalWidget);
@@ -820,7 +830,8 @@ public:
 
         lineEdit_funcName = new QLineEdit(horizontalWidget);
         lineEdit_funcName->setObjectName(QStringLiteral("lineEdit_funcName"));
-        lineEdit_funcName->setMinimumSize(QSize(0, 30));
+        lineEdit_funcName->setMinimumSize(QSize(400, 30));
+        lineEdit_funcName->setMaximumSize(QSize(1111111, 16777215));
         lineEdit_funcName->setFont(font);
         lineEdit_funcName->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
@@ -838,11 +849,11 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_8);
 
-        toolButton = new QToolButton(horizontalWidget);
-        toolButton->setObjectName(QStringLiteral("toolButton"));
-        toolButton->setMinimumSize(QSize(90, 30));
-        toolButton->setFont(font2);
-        toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_request = new QToolButton(horizontalWidget);
+        toolButton_request->setObjectName(QStringLiteral("toolButton_request"));
+        toolButton_request->setMinimumSize(QSize(90, 30));
+        toolButton_request->setFont(font2);
+        toolButton_request->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(250, 118, 0);\n"
 "	border-radius: 5px;\n"
@@ -858,7 +869,11 @@ public:
 "	background-color: rgb(250, 118, 0);\n"
 "}"));
 
-        horizontalLayout->addWidget(toolButton);
+        horizontalLayout->addWidget(toolButton_request);
+
+        horizontalSpacer_27 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_27);
 
         toolButton_save = new QToolButton(horizontalWidget);
         toolButton_save->setObjectName(QStringLiteral("toolButton_save"));
@@ -883,16 +898,21 @@ public:
 
         horizontalLayout->addWidget(toolButton_save);
 
+        horizontalSpacer_22 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_22);
+
 
         verticalLayout->addWidget(horizontalWidget);
 
-        widget_14 = new QWidget(widget_7);
-        widget_14->setObjectName(QStringLiteral("widget_14"));
-        widget_14->setMinimumSize(QSize(0, 30));
-        horizontalLayout_13 = new QHBoxLayout(widget_14);
+        widget_property = new QWidget(widget_right);
+        widget_property->setObjectName(QStringLiteral("widget_property"));
+        widget_property->setMinimumSize(QSize(0, 30));
+        horizontalLayout_13 = new QHBoxLayout(widget_property);
+        horizontalLayout_13->setSpacing(5);
         horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
         horizontalLayout_13->setContentsMargins(9, 0, 0, 0);
-        label_15 = new QLabel(widget_14);
+        label_15 = new QLabel(widget_property);
         label_15->setObjectName(QStringLiteral("label_15"));
         label_15->setMinimumSize(QSize(55, 0));
         label_15->setMaximumSize(QSize(55, 16777215));
@@ -901,7 +921,7 @@ public:
 
         horizontalLayout_13->addWidget(label_15);
 
-        lineEdit_port_2 = new QLineEdit(widget_14);
+        lineEdit_port_2 = new QLineEdit(widget_property);
         lineEdit_port_2->setObjectName(QStringLiteral("lineEdit_port_2"));
         lineEdit_port_2->setMinimumSize(QSize(70, 30));
         lineEdit_port_2->setMaximumSize(QSize(70, 16777215));
@@ -922,7 +942,7 @@ public:
 
         horizontalLayout_13->addItem(horizontalSpacer_17);
 
-        label_16 = new QLabel(widget_14);
+        label_16 = new QLabel(widget_property);
         label_16->setObjectName(QStringLiteral("label_16"));
         label_16->setMinimumSize(QSize(55, 0));
         label_16->setMaximumSize(QSize(55, 16777215));
@@ -931,7 +951,7 @@ public:
 
         horizontalLayout_13->addWidget(label_16);
 
-        lineEdit_port_3 = new QLineEdit(widget_14);
+        lineEdit_port_3 = new QLineEdit(widget_property);
         lineEdit_port_3->setObjectName(QStringLiteral("lineEdit_port_3"));
         lineEdit_port_3->setMinimumSize(QSize(70, 30));
         lineEdit_port_3->setMaximumSize(QSize(70, 16777215));
@@ -952,7 +972,7 @@ public:
 
         horizontalLayout_13->addItem(horizontalSpacer_18);
 
-        label_17 = new QLabel(widget_14);
+        label_17 = new QLabel(widget_property);
         label_17->setObjectName(QStringLiteral("label_17"));
         label_17->setMinimumSize(QSize(55, 0));
         label_17->setMaximumSize(QSize(55, 16777215));
@@ -961,7 +981,19 @@ public:
 
         horizontalLayout_13->addWidget(label_17);
 
-        lineEdit_port_4 = new QLineEdit(widget_14);
+        checkBox = new QCheckBox(widget_property);
+        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setMinimumSize(QSize(55, 20));
+        checkBox->setMaximumSize(QSize(55, 20));
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(10);
+        checkBox->setFont(font4);
+        checkBox->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_13->addWidget(checkBox);
+
+        lineEdit_port_4 = new QLineEdit(widget_property);
         lineEdit_port_4->setObjectName(QStringLiteral("lineEdit_port_4"));
         lineEdit_port_4->setMinimumSize(QSize(70, 30));
         lineEdit_port_4->setMaximumSize(QSize(70, 16777215));
@@ -982,7 +1014,7 @@ public:
 
         horizontalLayout_13->addItem(horizontalSpacer_19);
 
-        label_18 = new QLabel(widget_14);
+        label_18 = new QLabel(widget_property);
         label_18->setObjectName(QStringLiteral("label_18"));
         label_18->setMinimumSize(QSize(55, 0));
         label_18->setMaximumSize(QSize(55, 16777215));
@@ -991,7 +1023,7 @@ public:
 
         horizontalLayout_13->addWidget(label_18);
 
-        lineEdit_port_5 = new QLineEdit(widget_14);
+        lineEdit_port_5 = new QLineEdit(widget_property);
         lineEdit_port_5->setObjectName(QStringLiteral("lineEdit_port_5"));
         lineEdit_port_5->setMinimumSize(QSize(70, 30));
         lineEdit_port_5->setMaximumSize(QSize(70, 16777215));
@@ -1012,9 +1044,10 @@ public:
 
         horizontalLayout_13->addItem(horizontalSpacer_21);
 
-        toolButton_5 = new QToolButton(widget_14);
+        toolButton_5 = new QToolButton(widget_property);
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
-        toolButton_5->setMinimumSize(QSize(90, 30));
+        toolButton_5->setMinimumSize(QSize(70, 30));
+        toolButton_5->setMaximumSize(QSize(70, 16777215));
         toolButton_5->setFont(font2);
         toolButton_5->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1034,9 +1067,14 @@ public:
 
         horizontalLayout_13->addWidget(toolButton_5);
 
-        toolButton_save_2 = new QToolButton(widget_14);
+        horizontalSpacer_26 = new QSpacerItem(17, 27, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_26);
+
+        toolButton_save_2 = new QToolButton(widget_property);
         toolButton_save_2->setObjectName(QStringLiteral("toolButton_save_2"));
-        toolButton_save_2->setMinimumSize(QSize(90, 30));
+        toolButton_save_2->setMinimumSize(QSize(70, 30));
+        toolButton_save_2->setMaximumSize(QSize(70, 16777215));
         toolButton_save_2->setFont(font2);
         toolButton_save_2->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1057,14 +1095,59 @@ public:
 
         horizontalLayout_13->addWidget(toolButton_save_2);
 
+        horizontalSpacer_28 = new QSpacerItem(17, 27, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_28);
+
+        toolButton_switch = new QToolButton(widget_property);
+        toolButton_switch->setObjectName(QStringLiteral("toolButton_switch"));
+        toolButton_switch->setMinimumSize(QSize(100, 30));
+        toolButton_switch->setMaximumSize(QSize(100, 16777215));
+        toolButton_switch->setFont(font2);
+        toolButton_switch->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(0, 170, 0);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(0, 170, 0);\n"
+"}"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/lib/tree_open.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_switch->setIcon(icon4);
+        toolButton_switch->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout_13->addWidget(toolButton_switch);
+
+        horizontalSpacer_25 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_25);
+
         horizontalSpacer_20 = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_13->addItem(horizontalSpacer_20);
 
 
-        verticalLayout->addWidget(widget_14);
+        verticalLayout->addWidget(widget_property);
 
-        splitter_2 = new QSplitter(widget_7);
+        stackedWidget_2 = new QStackedWidget(widget_right);
+        stackedWidget_2->setObjectName(QStringLiteral("stackedWidget_2"));
+        stackedWidget_2->setMinimumSize(QSize(0, 315));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        verticalLayout_11 = new QVBoxLayout(page_2);
+        verticalLayout_11->setSpacing(0);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        verticalLayout_11->setContentsMargins(0, 0, 0, 0);
+        splitter_2 = new QSplitter(page_2);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Vertical);
         splitter_2->setHandleWidth(0);
@@ -1153,6 +1236,11 @@ public:
         splitter->setHandleWidth(0);
         widget = new QWidget(splitter);
         widget->setObjectName(QStringLiteral("widget"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy);
         widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(0);
@@ -1166,28 +1254,18 @@ public:
         horizontalLayout_8->setSpacing(0);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        toolButton_3 = new QToolButton(widget_12);
-        toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
-        toolButton_3->setMinimumSize(QSize(20, 25));
-        toolButton_3->setMaximumSize(QSize(20, 25));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/lib/tree_open.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_3->setIcon(icon4);
-        toolButton_3->setIconSize(QSize(23, 23));
+        toolButton_request_param = new QToolButton(widget_12);
+        toolButton_request_param->setObjectName(QStringLiteral("toolButton_request_param"));
+        toolButton_request_param->setMinimumSize(QSize(70, 25));
+        toolButton_request_param->setMaximumSize(QSize(70, 25));
+        toolButton_request_param->setFont(font3);
+        toolButton_request_param->setIcon(icon4);
+        toolButton_request_param->setIconSize(QSize(20, 20));
+        toolButton_request_param->setCheckable(false);
+        toolButton_request_param->setChecked(false);
+        toolButton_request_param->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-        horizontalLayout_8->addWidget(toolButton_3);
-
-        label_4 = new QLabel(widget_12);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setMinimumSize(QSize(0, 30));
-        label_4->setMaximumSize(QSize(45, 30));
-        label_4->setFont(font);
-        label_4->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
-"color: rgb(255, 255, 255);\n"
-"padding-left:2px;\n"
-"padding-right:10px;"));
-
-        horizontalLayout_8->addWidget(label_4);
+        horizontalLayout_8->addWidget(toolButton_request_param);
 
         checkBox_3 = new QCheckBox(widget_12);
         checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
@@ -1451,9 +1529,9 @@ public:
         widget_5 = new QWidget(widget_2);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(0, 100));
-        QFont font4;
-        font4.setStyleStrategy(QFont::PreferDefault);
-        widget_5->setFont(font4);
+        QFont font5;
+        font5.setStyleStrategy(QFont::PreferDefault);
+        widget_5->setFont(font5);
         verticalLayout_7 = new QVBoxLayout(widget_5);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
@@ -1467,33 +1545,22 @@ public:
         horizontalLayout_5->setSpacing(0);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        toolButton_4 = new QToolButton(widget_8);
-        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
-        toolButton_4->setMinimumSize(QSize(20, 0));
-        toolButton_4->setMaximumSize(QSize(20, 16777215));
-        toolButton_4->setStyleSheet(QLatin1String("\n"
+        toolButton_response = new QToolButton(widget_8);
+        toolButton_response->setObjectName(QStringLiteral("toolButton_response"));
+        toolButton_response->setMinimumSize(QSize(70, 0));
+        toolButton_response->setMaximumSize(QSize(70, 16777215));
+        toolButton_response->setStyleSheet(QLatin1String("\n"
 "QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border-radius: 5px;\n"
 "}"));
-        toolButton_4->setIcon(icon4);
-        toolButton_4->setIconSize(QSize(23, 23));
+        toolButton_response->setIcon(icon4);
+        toolButton_response->setIconSize(QSize(20, 20));
+        toolButton_response->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-        horizontalLayout_5->addWidget(toolButton_4);
-
-        label_7 = new QLabel(widget_8);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setMinimumSize(QSize(0, 25));
-        label_7->setMaximumSize(QSize(16777215, 25));
-        label_7->setFont(font);
-        label_7->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
-"color: rgb(255, 255, 255);\n"
-"padding-left:2px;\n"
-"padding-right:10px;"));
-
-        horizontalLayout_5->addWidget(label_7);
+        horizontalLayout_5->addWidget(toolButton_response);
 
         checkBox_2 = new QCheckBox(widget_8);
         checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
@@ -1503,29 +1570,6 @@ public:
         checkBox_2->setChecked(true);
 
         horizontalLayout_5->addWidget(checkBox_2);
-
-        label_req = new QLabel(widget_8);
-        label_req->setObjectName(QStringLiteral("label_req"));
-        label_req->setFont(font);
-        label_req->setStyleSheet(QStringLiteral(""));
-
-        horizontalLayout_5->addWidget(label_req);
-
-        horizontalSpacer_7 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_7);
-
-        label_time = new QLabel(widget_8);
-        label_time->setObjectName(QStringLiteral("label_time"));
-        label_time->setMinimumSize(QSize(0, 0));
-        label_time->setMaximumSize(QSize(16777215, 20));
-        label_time->setFont(font);
-        label_time->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
-"color: rgb(255, 255, 255);\n"
-"padding-left:2px;\n"
-"padding-right:10px;"));
-
-        horizontalLayout_5->addWidget(label_time);
 
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1544,16 +1588,16 @@ public:
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
-        tabWidget_2 = new QTabWidget(page);
-        tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
-        QFont font5;
-        font5.setFamily(QStringLiteral("OPPOSans B"));
-        font5.setPointSize(10);
-        font5.setBold(false);
-        font5.setUnderline(false);
-        font5.setWeight(50);
-        tabWidget_2->setFont(font5);
-        tabWidget_2->setStyleSheet(QString::fromUtf8("\n"
+        tabWidget_response = new QTabWidget(page);
+        tabWidget_response->setObjectName(QStringLiteral("tabWidget_response"));
+        QFont font6;
+        font6.setFamily(QStringLiteral("OPPOSans B"));
+        font6.setPointSize(10);
+        font6.setBold(false);
+        font6.setUnderline(false);
+        font6.setWeight(50);
+        tabWidget_response->setFont(font6);
+        tabWidget_response->setStyleSheet(QString::fromUtf8("\n"
 "\n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
 "#tab_1.QWidget{\n"
@@ -1654,15 +1698,15 @@ public:
 
         horizontalLayout_12->addWidget(textEdit);
 
-        tabWidget_2->addTab(tab_5, QString());
+        tabWidget_response->addTab(tab_5, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QStringLiteral("tab_4"));
-        tabWidget_2->addTab(tab_4, QString());
+        tabWidget_response->addTab(tab_4, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
-        tabWidget_2->addTab(tab_3, QString());
+        tabWidget_response->addTab(tab_3, QString());
 
-        verticalLayout_8->addWidget(tabWidget_2);
+        verticalLayout_8->addWidget(tabWidget_response);
 
         stackedWidget->addWidget(page);
         page_request = new QWidget();
@@ -1692,10 +1736,10 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        QFont font6;
-        font6.setFamily(QStringLiteral("OPPOSans B"));
-        font6.setPointSize(11);
-        label_13->setFont(font6);
+        QFont font7;
+        font7.setFamily(QStringLiteral("OPPOSans B"));
+        font7.setPointSize(11);
+        label_13->setFont(font7);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
 
@@ -1740,7 +1784,7 @@ public:
 
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font6);
+        label_11->setFont(font7);
         label_11->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_11->setAlignment(Qt::AlignCenter);
 
@@ -1763,40 +1807,35 @@ public:
 
         widget_10 = new QWidget(widget_5);
         widget_10->setObjectName(QStringLiteral("widget_10"));
-        widget_10->setMinimumSize(QSize(0, 20));
+        widget_10->setMinimumSize(QSize(0, 25));
         widget_10->setFont(font);
         widget_10->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
         horizontalLayout_6 = new QHBoxLayout(widget_10);
         horizontalLayout_6->setSpacing(0);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(3, 3, 0, 3);
-        toolButton_6 = new QToolButton(widget_10);
-        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
-        toolButton_6->setMinimumSize(QSize(20, 0));
-        toolButton_6->setMaximumSize(QSize(20, 16777215));
-        toolButton_6->setStyleSheet(QLatin1String("\n"
-"QToolButton {\n"
-"	font: 10pt \"OPPOSans B\";\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border-radius: 5px;\n"
-"}"));
-        toolButton_6->setIcon(icon4);
-        toolButton_6->setIconSize(QSize(23, 23));
+        label_req = new QLabel(widget_10);
+        label_req->setObjectName(QStringLiteral("label_req"));
+        label_req->setFont(font);
+        label_req->setStyleSheet(QStringLiteral(""));
 
-        horizontalLayout_6->addWidget(toolButton_6);
+        horizontalLayout_6->addWidget(label_req);
 
-        label_19 = new QLabel(widget_10);
-        label_19->setObjectName(QStringLiteral("label_19"));
-        label_19->setMinimumSize(QSize(0, 20));
-        label_19->setMaximumSize(QSize(16777215, 25));
-        label_19->setFont(font);
-        label_19->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
+        horizontalSpacer_7 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_7);
+
+        label_time = new QLabel(widget_10);
+        label_time->setObjectName(QStringLiteral("label_time"));
+        label_time->setMinimumSize(QSize(0, 0));
+        label_time->setMaximumSize(QSize(16777215, 20));
+        label_time->setFont(font);
+        label_time->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
 "color: rgb(255, 255, 255);\n"
 "padding-left:2px;\n"
 "padding-right:10px;"));
 
-        horizontalLayout_6->addWidget(label_19);
+        horizontalLayout_6->addWidget(label_time);
 
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1810,17 +1849,25 @@ public:
 
         splitter_2->addWidget(widget_2);
 
-        verticalLayout->addWidget(splitter_2);
+        verticalLayout_11->addWidget(splitter_2);
+
+        stackedWidget_2->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        stackedWidget_2->addWidget(page_3);
+
+        verticalLayout->addWidget(stackedWidget_2);
 
 
-        horizontalLayout_4->addWidget(widget_7);
+        horizontalLayout_4->addWidget(widget_right);
 
 
         retranslateUi(thriftwidget);
 
         tabWidget->setCurrentIndex(0);
+        stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(0);
+        tabWidget_response->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -1858,24 +1905,25 @@ public:
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
         lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateOnlineState", nullptr));
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
-        toolButton->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
+        toolButton_request->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         toolButton_save->setText(QApplication::translate("thriftwidget", "\344\277\235\345\255\230", nullptr));
         label_15->setText(QApplication::translate("thriftwidget", "\347\272\277\347\250\213\346\225\260", nullptr));
-        lineEdit_port_2->setText(QApplication::translate("thriftwidget", "4031", nullptr));
-        lineEdit_port_2->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
+        lineEdit_port_2->setText(QString());
+        lineEdit_port_2->setPlaceholderText(QApplication::translate("thriftwidget", "10", nullptr));
         label_16->setText(QApplication::translate("thriftwidget", "\345\220\257\345\212\250\346\227\266\351\227\264", nullptr));
-        lineEdit_port_3->setText(QApplication::translate("thriftwidget", "4031", nullptr));
-        lineEdit_port_3->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
+        lineEdit_port_3->setText(QString());
+        lineEdit_port_3->setPlaceholderText(QApplication::translate("thriftwidget", "1", nullptr));
         label_17->setText(QApplication::translate("thriftwidget", "\345\276\252\347\216\257\346\254\241\346\225\260", nullptr));
-        lineEdit_port_4->setText(QApplication::translate("thriftwidget", "4031", nullptr));
-        lineEdit_port_4->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
+        checkBox->setText(QApplication::translate("thriftwidget", "\346\260\270\350\277\234", nullptr));
+        lineEdit_port_4->setText(QString());
+        lineEdit_port_4->setPlaceholderText(QApplication::translate("thriftwidget", "1", nullptr));
         label_18->setText(QApplication::translate("thriftwidget", "\345\201\234\346\255\242\346\227\266\351\227\264", nullptr));
-        lineEdit_port_5->setText(QApplication::translate("thriftwidget", "4031", nullptr));
-        lineEdit_port_5->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
+        lineEdit_port_5->setText(QString());
+        lineEdit_port_5->setPlaceholderText(QApplication::translate("thriftwidget", "10", nullptr));
         toolButton_5->setText(QApplication::translate("thriftwidget", "\345\274\200\345\247\213\346\265\213\350\257\225", nullptr));
         toolButton_save_2->setText(QApplication::translate("thriftwidget", "\344\277\235\345\255\230\346\265\213\350\257\225", nullptr));
-        toolButton_3->setText(QString());
-        label_4->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
+        toolButton_switch->setText(QApplication::translate("thriftwidget", "\345\210\207\346\215\242\345\210\260\346\212\245\345\221\212", nullptr));
+        toolButton_request_param->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
         checkBox_3->setText(QApplication::translate("thriftwidget", "\346\240\271\346\215\256\346\225\260\346\215\256\347\261\273\345\236\213\347\224\237\346\210\220\346\265\213\350\257\225\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QString());
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
@@ -1958,20 +2006,17 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 \350\241\250\347\244\272\347\273\223\346\235\237</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">--------------------------------------------------------</span></p></body></html>", nullptr));
-        toolButton_4->setText(QString());
-        label_7->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
+        toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
         checkBox_2->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
-        label_req->setText(QString());
-        label_time->setText(QApplication::translate("thriftwidget", "\345\223\215\345\272\224\346\227\266\351\227\264\357\274\232", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("thriftwidget", "Source", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_4), QApplication::translate("thriftwidget", "Headers", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_5), QApplication::translate("thriftwidget", "Source", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_4), QApplication::translate("thriftwidget", "Headers", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));
         label_10->setText(QString());
         label_11->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\345\274\202\345\270\270", nullptr));
-        toolButton_6->setText(QString());
-        label_19->setText(QApplication::translate("thriftwidget", "\346\200\247\350\203\275\346\265\213\350\257\225\346\212\245\345\221\212", nullptr));
+        label_req->setText(QString());
+        label_time->setText(QApplication::translate("thriftwidget", "\345\223\215\345\272\224\346\227\266\351\227\264\357\274\232", nullptr));
     } // retranslateUi
 
 };

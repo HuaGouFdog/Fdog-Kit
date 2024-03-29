@@ -131,6 +131,9 @@ class thriftwidget : public QWidget
 
 public:
     bool isAddNode = false;
+    bool isToolButton_request_param_checked = true; //入参
+    bool isToolButton_response_checked = true;      //响应
+    bool isToolButton_report_checked = false;       //性能报告
 
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
@@ -242,7 +245,6 @@ public:
     //QVector<ItemWidget*> ItemWidgetList;
 
 private slots:
-    void on_toolButton_clicked();
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void read_data();
     void rece_deleteItem(QTreeWidgetItem * item);
@@ -256,6 +258,16 @@ private slots:
     void on_toolButton_show_thrift_info_clicked();
 
     void on_textEdit_customContextMenuRequested(const QPoint &pos);
+
+    void on_comboBox_testType_currentIndexChanged(int index);
+
+    void on_toolButton_request_clicked();
+
+    void on_toolButton_request_param_clicked();
+
+    void on_toolButton_response_clicked();
+
+    void on_toolButton_report_clicked();
 
 private:
     QVector<QString> dataList;
