@@ -348,7 +348,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->splitter_2->setStretchFactor(0, 2);  // 第一个子控件占 1/3 的显示空间
     ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
 
-    ui->widget_thrift->hide();
+    ui->textEdit_info->hide();
     ui->label_req->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -469,6 +469,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
 //    });
 
     //收到数据，触发readyRead
+
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
         //没有可读的数据就返回
         qDebug() << "接收到的数据（十六进制字符串）:";
@@ -480,26 +481,40 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         QString dataTemp;
         int countLength = -1; //设置数据长度，到达后不再读取 加上开头长度数据
         int nowLength = 0; //设置数据长度，到达后不再读取
+        ui->stackedWidget->setCurrentIndex(0);
+        int sum = 0;
         for (uint32_t data : receivedDataArray) {
             data = qFromBigEndian(data);
             std::stringstream stream;
             stream << std::hex << std::setw(8) << std::setfill('0') << data;
             dataList2.append(QString::fromStdString(stream.str()));
-            dataTemp = dataTemp + " " + QString::fromStdString(stream.str());
+            dataTemp = dataTemp + QString::fromStdString(stream.str()) + "  ";
             if (countLength == -1) {
+                //读取头获取数据长度
                 countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
-                qDebug() << "countLength = " << countLength;
+                qDebug() << "countLength = " << countLength - 4;
             }
             nowLength = nowLength + 4;
+            //qDebug() << "nowLength + 4 = " << nowLength;
+
+            sum++;
+            //每8个段进行下一步
+            if (sum == 8) {
+                sum = 0;
+                ui->textEdit->append(dataTemp);
+                //qDebug() << "dataTemp = " << dataTemp;
+                dataTemp = "";
+            }
+
             if (nowLength > countLength) {
                 qDebug() << "超过有效数据长度";
+                //打印剩余dataTemp
+                ui->textEdit->append(dataTemp);
                 ui->stackedWidget->setCurrentIndex(0);
                 break;
             }
-            ui->stackedWidget->setCurrentIndex(0);
         }
-        ui->textEdit->append(dataTemp);
-        ui->textEdit->append("----------------------------------------------------------------------");
+        ui->textEdit->append("------------------------------------------------------------------------------");
         if (dataList2[1] == "80010002") {
             //结果
             ui->label_req->show();
@@ -1389,11 +1404,11 @@ void thriftwidget::on_toolButton_test_clicked()
 
 void thriftwidget::on_toolButton_show_thrift_info_clicked()
 {
-    if(ui->widget_thrift->isHidden()) {
-        ui->widget_thrift->show();
+    if(ui->textEdit_info->isHidden()) {
+        ui->textEdit_info->show();
         //ui->toolButton_show_thrift_info->setText("关闭thrift协议说明");
     } else {
-        ui->widget_thrift->hide();
+        ui->textEdit_info->hide();
         //ui->toolButton_show_thrift_info->setText("查看thrift协议说明");
     }
 }
@@ -1438,11 +1453,18 @@ void thriftwidget::on_toolButton_request_clicked()
     ui->textEdit->clear();
     ui->textEdit->append("请求源数据：");
     QString dataTemp = "";
+    int sum = 0;
     for (const QString& value : dataList) {
-        dataTemp = dataTemp + value + " ";  // 在控制台输出元素值
+        dataTemp = dataTemp + value + "  ";  // 在控制台输出元素值
+        sum++;
+        //每8个段进行下一步
+        if (sum == 8) {
+            sum = 0;
+            ui->textEdit->append(dataTemp);
+            dataTemp = "";
+        }
     }
-    ui->textEdit->append(dataTemp);
-    ui->textEdit->append("----------------------------------------------------------------------");
+    ui->textEdit->append("------------------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
     qDebug() << "dataList = " << dataList;
     QElapsedTimer timer;

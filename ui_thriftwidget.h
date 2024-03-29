@@ -115,14 +115,7 @@ public:
     QToolButton *toolButton_request_param;
     QCheckBox *checkBox_3;
     QSpacerItem *horizontalSpacer;
-    QToolButton *toolButton_show_thrift_info;
     QTreeWidget *treeWidget;
-    QWidget *widget_thrift;
-    QVBoxLayout *verticalLayout_4;
-    QWidget *widget_11;
-    QHBoxLayout *horizontalLayout_7;
-    QLabel *label_6;
-    QTextEdit *textEdit_2;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget_5;
@@ -131,6 +124,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QToolButton *toolButton_response;
     QCheckBox *checkBox_2;
+    QToolButton *toolButton_show_thrift_info;
     QSpacerItem *horizontalSpacer_5;
     QStackedWidget *stackedWidget;
     QWidget *page;
@@ -138,6 +132,7 @@ public:
     QTabWidget *tabWidget_response;
     QWidget *tab_5;
     QHBoxLayout *horizontalLayout_12;
+    QTextEdit *textEdit_info;
     QTextEdit *textEdit;
     QWidget *tab_4;
     QWidget *tab_3;
@@ -462,7 +457,7 @@ public:
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
-"    width: 8px;\n"
+"    width: 12px;\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
 "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
@@ -471,10 +466,10 @@ public:
 "\n"
 "\n"
 "QScrollBar::handle:vertical{\n"
-"    width: 8px;\n"
+"    width: 12px;\n"
 "	\n"
-"	background-color: rgb(239, 239, 23"
-                        "9);\n"
+"	background-color: rgb(239, 239, "
+                        "239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
@@ -1280,34 +1275,6 @@ public:
 
         horizontalLayout_8->addItem(horizontalSpacer);
 
-        toolButton_show_thrift_info = new QToolButton(widget_12);
-        toolButton_show_thrift_info->setObjectName(QStringLiteral("toolButton_show_thrift_info"));
-        toolButton_show_thrift_info->setMinimumSize(QSize(30, 30));
-        toolButton_show_thrift_info->setMaximumSize(QSize(30, 30));
-        toolButton_show_thrift_info->setFont(font);
-        toolButton_show_thrift_info->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(54, 81, 97);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(54, 81, 97);\n"
-"}"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/lib/wenhao.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_show_thrift_info->setIcon(icon5);
-        toolButton_show_thrift_info->setIconSize(QSize(18, 18));
-        toolButton_show_thrift_info->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        horizontalLayout_8->addWidget(toolButton_show_thrift_info);
-
 
         verticalLayout_2->addWidget(widget_12);
 
@@ -1469,53 +1436,6 @@ public:
         verticalLayout_2->addWidget(treeWidget);
 
         splitter->addWidget(widget);
-        widget_thrift = new QWidget(splitter);
-        widget_thrift->setObjectName(QStringLiteral("widget_thrift"));
-        widget_thrift->setStyleSheet(QStringLiteral(""));
-        verticalLayout_4 = new QVBoxLayout(widget_thrift);
-        verticalLayout_4->setSpacing(0);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        widget_11 = new QWidget(widget_thrift);
-        widget_11->setObjectName(QStringLiteral("widget_11"));
-        widget_11->setMinimumSize(QSize(0, 28));
-        widget_11->setMaximumSize(QSize(16777215, 28));
-        widget_11->setStyleSheet(QStringLiteral(""));
-        horizontalLayout_7 = new QHBoxLayout(widget_11);
-        horizontalLayout_7->setSpacing(0);
-        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget_11);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setMinimumSize(QSize(0, 28));
-        label_6->setMaximumSize(QSize(16777215, 28));
-        label_6->setFont(font);
-        label_6->setStyleSheet(QLatin1String("background-color: rgb(54, 81, 97);\n"
-"color: rgb(255, 255, 255);\n"
-"padding-left:0px;\n"
-"padding-right:px;"));
-
-        horizontalLayout_7->addWidget(label_6);
-
-
-        verticalLayout_4->addWidget(widget_11);
-
-        textEdit_2 = new QTextEdit(widget_thrift);
-        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
-        textEdit_2->setFont(font);
-        textEdit_2->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit_2->setStyleSheet(QLatin1String("QTextEdit{\n"
-"color: rgb(255, 255, 255);\n"
-"	background-color: rgb(231, 231, 231);\n"
-"border-radius: 0px;\n"
-"border:2px solid rgb(54, 81, 97);\n"
-"}"));
-        textEdit_2->setReadOnly(true);
-        textEdit_2->setCursorWidth(2);
-
-        verticalLayout_4->addWidget(textEdit_2);
-
-        splitter->addWidget(widget_thrift);
 
         horizontalLayout_3->addWidget(splitter);
 
@@ -1538,8 +1458,9 @@ public:
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
         widget_8 = new QWidget(widget_5);
         widget_8->setObjectName(QStringLiteral("widget_8"));
-        widget_8->setMinimumSize(QSize(0, 25));
-        widget_8->setMaximumSize(QSize(16777215, 25));
+        widget_8->setMinimumSize(QSize(0, 30));
+        widget_8->setMaximumSize(QSize(16777215, 30));
+        widget_8->setFont(font4);
         widget_8->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
         horizontalLayout_5 = new QHBoxLayout(widget_8);
         horizontalLayout_5->setSpacing(0);
@@ -1564,12 +1485,40 @@ public:
 
         checkBox_2 = new QCheckBox(widget_8);
         checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
-        checkBox_2->setMaximumSize(QSize(16777215, 25));
+        checkBox_2->setMaximumSize(QSize(16777215, 30));
         checkBox_2->setFont(font);
         checkBox_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         checkBox_2->setChecked(true);
 
         horizontalLayout_5->addWidget(checkBox_2);
+
+        toolButton_show_thrift_info = new QToolButton(widget_8);
+        toolButton_show_thrift_info->setObjectName(QStringLiteral("toolButton_show_thrift_info"));
+        toolButton_show_thrift_info->setMinimumSize(QSize(150, 30));
+        toolButton_show_thrift_info->setMaximumSize(QSize(150, 30));
+        toolButton_show_thrift_info->setFont(font);
+        toolButton_show_thrift_info->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(54, 81, 97);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(54, 81, 97);\n"
+"}"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/lib/wenhao.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_show_thrift_info->setIcon(icon5);
+        toolButton_show_thrift_info->setIconSize(QSize(18, 18));
+        toolButton_show_thrift_info->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout_5->addWidget(toolButton_show_thrift_info);
 
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1581,7 +1530,7 @@ public:
         stackedWidget = new QStackedWidget(widget_5);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setMinimumSize(QSize(0, 200));
-        stackedWidget->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
+        stackedWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         verticalLayout_8 = new QVBoxLayout(page);
@@ -1611,19 +1560,21 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab{\n"
-"    /*background-color: rgb(100, 117, 125, 255);*/\n"
+"    \n"
+"	background-color: rgb(255, 255, 255);\n"
 "	\n"
-"	background-color: rgb(54, 81, 97);\n"
+"	/*background-color: rgb(54, 81, 97);*/\n"
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	\n"
 "	\n"
-"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	color: rgb(56, 56, 56);\n"
 "	border-top-left-radius: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	border-top-right-radi"
-                        "us: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	border-top-right-"
+                        "radius: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	width:70px;\n"
-"	padding: 3px;\n"
+"	padding: 5px;\n"
 "	/*margin-right:0px;\n"
 "	margin-left: 0px;*/\n"
 "}\n"
@@ -1639,8 +1590,8 @@ public:
 "/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
 "	/*border-bottom:2px solid rgb(0, 170, 255); */\n"
-"	color: rgb(0"
-                        ", 170, 255);\n"
+"	color: r"
+                        "gb(0, 170, 255);\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
@@ -1671,23 +1622,45 @@ public:
 "    background-color: rgba(100, 117, 125, 0);\n"
 "}\n"
 " \n"
-"QTabBar QToolButton:hove"
-                        "r {\n"
+"QTabBar QToolButton:"
+                        "hover {\n"
 "	background-color: rgba(100, 117, 125, 0);\n"
 "}"));
         tab_5 = new QWidget();
         tab_5->setObjectName(QStringLiteral("tab_5"));
+        tab_5->setFont(font);
         horizontalLayout_12 = new QHBoxLayout(tab_5);
         horizontalLayout_12->setSpacing(0);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
-        horizontalLayout_12->setContentsMargins(2, 2, 2, 2);
+        horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
+        textEdit_info = new QTextEdit(tab_5);
+        textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
+        textEdit_info->setMinimumSize(QSize(500, 0));
+        textEdit_info->setMaximumSize(QSize(500, 16777215));
+        textEdit_info->setFont(font);
+        textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        textEdit_info->setStyleSheet(QLatin1String("QTextEdit{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(231, 231, 231);\n"
+"border-radius: 0px;\n"
+"border-right:5px solid rgb(54, 81, 97);\n"
+"}"));
+        textEdit_info->setReadOnly(true);
+        textEdit_info->setCursorWidth(2);
+
+        horizontalLayout_12->addWidget(textEdit_info);
+
         textEdit = new QTextEdit(tab_5);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setFont(font);
+        QFont font7;
+        font7.setFamily(QStringLiteral("Cascadia Code"));
+        font7.setPointSize(11);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        textEdit->setFont(font7);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("QTextEdit{\n"
 "color: rgb(80, 80, 80);\n"
-"	background-color: rgb(229, 229, 229);\n"
+"background-color: rgb(229, 229, 229);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 0px;\n"
 "padding-left:10px;\n"
@@ -1736,10 +1709,10 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        QFont font7;
-        font7.setFamily(QStringLiteral("OPPOSans B"));
-        font7.setPointSize(11);
-        label_13->setFont(font7);
+        QFont font8;
+        font8.setFamily(QStringLiteral("OPPOSans B"));
+        font8.setPointSize(11);
+        label_13->setFont(font8);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
 
@@ -1784,7 +1757,7 @@ public:
 
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font7);
+        label_11->setFont(font8);
         label_11->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_11->setAlignment(Qt::AlignCenter);
 
@@ -1867,7 +1840,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(0);
+        tabWidget_response->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -1885,10 +1858,10 @@ public:
         comboBox_testType->setItemText(1, QApplication::translate("thriftwidget", "\346\200\247\350\203\275\346\265\213\350\257\225", nullptr));
 
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
-        lineEdit_host->setText(QApplication::translate("thriftwidget", "192.168.85.112", nullptr));
+        lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
-        lineEdit_port->setText(QApplication::translate("thriftwidget", "4031", nullptr));
+        lineEdit_port->setText(QApplication::translate("thriftwidget", "11040", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
         toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));
         label_5->setText(QApplication::translate("thriftwidget", "\344\274\240\350\276\223\345\261\202", nullptr));
@@ -1903,7 +1876,7 @@ public:
         comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
 
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
-        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "updateOnlineState", nullptr));
+        lineEdit_funcName->setText(QApplication::translate("thriftwidget", "getBadword", nullptr));
         lineEdit_funcName->setPlaceholderText(QApplication::translate("thriftwidget", "yourMethod2", nullptr));
         toolButton_request->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\216\245\345\217\243", nullptr));
         toolButton_save->setText(QApplication::translate("thriftwidget", "\344\277\235\345\255\230", nullptr));
@@ -1925,89 +1898,54 @@ public:
         toolButton_switch->setText(QApplication::translate("thriftwidget", "\345\210\207\346\215\242\345\210\260\346\212\245\345\221\212", nullptr));
         toolButton_request_param->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
         checkBox_3->setText(QApplication::translate("thriftwidget", "\346\240\271\346\215\256\346\225\260\346\215\256\347\261\273\345\236\213\347\224\237\346\210\220\346\265\213\350\257\225\346\225\260\346\215\256", nullptr));
-        toolButton_show_thrift_info->setText(QString());
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));
         ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
-        label_6->setText(QString());
-        textEdit_2->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
+        checkBox_2->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+        toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
+        textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\"> thrift\345\215\217\350\256\256\350\257\267\346\261\202\345\223\215\345\272\224\350\257\264\346\230\216</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\"> thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\200. \346\266\210\346\201\257\347\261\273\345\236\213\357\274\2104\345\255\227"
-                        "\350\212\202\357\274\211\357\274\232</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    1. CALL\357\274\21080010001\357\274\211\357\274\214\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\345\270\214\346\234\233\350\216\267\345\217\226\350\277\224\345\233\236\346\266\210\346\201\257\357\274\214</span><span style=\" color:#fa7600;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    2. REPLY\357\274\21080010002\357\274\211\357\274\214\346\235\245\350\207\252\346\234\215\345\212\241\347\253\257\350\277\224\345\233\236\347\232\204\346\266\210\346\201\257\357\274\214</span><span style=\" color:#55aa00;\">\343\200\220\350\241\250\347"
-                        "\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. EXCEPTION\357\274\21080010003\357\274\211\357\274\214\346\234\215\345\212\241\345\231\250\345\244\204\347\220\206\350\257\267\346\261\202\346\227\266\345\207\272\347\216\260\345\274\202\345\270\270\357\274\214</span><span style=\" color:#ff0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    4. ONEWAY\357\274\21080010004\357\274\211\357\274\214\345\215\225\345\220\221\350\257\267\346\261\202\357\274\214\344\270\215\351\234\200\350\246\201\350\277\224\345\233\236\346\225\260\346\215\256\357\274\214<"
-                        "/span><span style=\" color:#0055ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\200. \346\266\210\346\201\257\347\261\273\345\236\213\357\274\232</span></p>\n"
+"<p style=\" margin-t"
+                        "op:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#fa7600;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">CALL\357\274\21080010001\357\274\211\357\274\214\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\345\270\214\346\234\233\350\216\267\345\217\226\350\277\224\345\233\236\346\266\210\343\200\202	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#55aa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">REPLY\357\274\21080010002\357\274\211\357\274\214\346\235\245\350\207\252\346\234\215\345\212\241\347\253\257\350\277\224\345\233\236\347\232\204\346\266\210\346\201\257\343\200\202	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-"
+                        "block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">EXCEPTION\357\274\21080010003\357\274\211\357\274\214\346\234\215\345\212\241\345\231\250\345\244\204\347\220\206\350\257\267\346\261\202\346\227\266\345\207\272\347\216\260\345\274\202\345\270\270\343\200\202	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#0055ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">ONEWAY\357\274\21080010004\357\274\211\357\274\214\345\215\225\345\220\221\350\257\267\346\261\202\357\274\214\344\270\215\351\234\200\350\246\201\350\277\224\345\233\236\346\225\260\346\215\256\343\200\202</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-ind"
+                        "ent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\214.</span><span style=\" color:#ff00ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\346\226\271\346\263\225\345\220\215\351\225\277\345\272\246</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\214. \346\226\271\346\263\225\345\220\215\351\225\277\345\272\246\357\274\2104\345\255\227\350\212\202\357\274\211</span><span style=\" color:#ff00ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\211.</span><span style=\" color:#aaaa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\346\226\271\346\263\225\345\220\215</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:"
+                        "0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345\233\233.</span><span style=\" color:#55007f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\346\265\201\346\260\264\345\217\267</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-i"
-                        "ndent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\211. \346\226\271\346\263\225\345\220\215\357\274\210\344\270\215\345\233\272\345\256\232\345\255\227\350\212\202\357\274\214\346\240\271\346\215\256\346\226\271\346\263\225\345\220\215\351\225\277\345\272\246\350\216\267\345\217\226\357\274\211</span><span style=\" color:#aaaa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345\233\233. \346\265\201\346\260\264\345\217\267\357\274\2104\345\255\227\350\212\202\357\274\211</span><span style=\" color:#55007f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span></p>\n"
-"<p style=\"-qt-paragraph-type"
-                        ":empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\224. \346\225\260\346\215\256\347\261\273\345\236\213\357\274\214\347\261\273\345\236\213\357\274\2101\345\255\227\350\212\202\357\274\211\357\274\214\346\225\260\346\215\256\345\272\217\345\217\267\357\274\2102\345\255\227\350\212\202\357\274\211\357\274\214\346\225\260\346\215\256\345\200\274\357\274\210\346\240\271\346\215\256\346\225\260\346\215\256\347\261\273\345\236\213\350\200\214\345\256\232\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    1. bool\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2132\357\274\214</span><span style=\" color:#aa007f;\">\343\200\220"
-                        "\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    2. byte\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2133\357\274\214</span><span style=\" color:#550000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. i16\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2136\357\274\214</span><span style=\" color:#aaaa7f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margi"
-                        "n-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    3. i32\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2138\357\274\214</span><span style=\" color:#55aa7f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    4. i64\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21310\357\274\214</span><span style=\" color:#aaaaff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    5. double\347\261\273\345\236\213\357\274\214\347\261\273\345\236\2134\357\274\214</span><span style=\" colo"
-                        "r:#00557f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    6. string\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21311\357\274\214</span><span style=\" color:#ffaa7f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    7. struct\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21312\357\274\214</span><span style=\" color:#ffaaff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262</span><span style=\" color:#505050;\">\343\200\221\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bo"
-                        "ttom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    8. map\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21313\357\274\214</span><span style=\" color:#5500ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    9. set\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21314\357\274\214</span><span style=\" color:#005500;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">    10. list\347\261\273\345\236\213\357\274\214\347\261\273\345\236\21315\357\274"
-                        "\214</span><span style=\" color:#aa0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\343\200\202</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345\205\255. \347\273\223\346\235\237\347\254\246 </span><span style=\" color:#000000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345\267"
-                        "\245\345\205\267\350\257\264\346\230\216</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\351\231\244\344\272\206\345\237\272\346\234\254\347\261\273\345\236\213\344\275\234\344\270\272\345\205\245\345\217\202\347\232\204\350\257\267\346\261\202\345\244\226\357\274\214\347\233\256\345\211\215map\347\232\204key\344\273\205\346\224\257\346\214\201\345\237\272\347\241\200\347\261\273\345\236\213</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">--------------------------------------------------------</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-i"
-                        "ndent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\273\245 i32 yourMethod(1: i32 param) \346\216\245\345\217\243\344\270\272\344\276\213</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\350\257\267\346\261\202\345\216\237\346\225\260\346\215\256\344\270\272\357\274\232</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">80 01 00 01</span> <span style=\" color:#3a9d33;\">00 00 00 0a</span> <span style=\" color:#3e58ff;\">79 6f 75 72 4d 65 74 68 6f 64</span> <span style=\" color:#c23134;\">00 00 00 00</span> <span style=\" color:#408876;\">08</span> <span style=\" color:#7c5390;\">00 01</span> "
-                        "<span style=\" color:#8f6f55;\">00 00 00 01</span> <span style=\" color:#a10000;\">00</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">80 01 00 01 \350\241\250\347\244\272CALL\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\346\234\237\346\234\233\350\277\224\345\233\236\345\200\274</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 00 00 0a \350\241\250\347\244\272\346\226\271\346\263\225\345\220\215\351\225\277\345\272\246"
-                        "\344\270\27210</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">79 6f 75 72 4d 65 74 68 6f 64 \344\270\272\346\226\271\346\263\225\345\220\215</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 00 00 00 \350\241\250\347\244\272\346\265\201\346\260\264\345\217\267</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#5050"
-                        "50;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">08 \350\241\250\347\244\272\346\225\260\346\215\256\347\261\273\345\236\213\344\270\272i32</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 01 \350\241\250\347\244\272\345\272\217\345\217\267\344\270\2721</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 0"
-                        "0 00 01 \350\241\250\347\244\272\345\200\274\344\270\2721</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">00 \350\241\250\347\244\272\347\273\223\346\235\237</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">--------------------------------------------------------</span></p></body></html>", nullptr));
-        toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
-        checkBox_2->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\224. \346\225\260\346\215\256\347\261\273\345\236\213</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><"
+                        "span style=\" color:#aa007f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">bool\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2132\357\274\211   </span><span style=\" color:#550000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">byte\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2133\357\274\211	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#aaaa7f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">i16\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2136\357\274\211      </span><span style=\" color:#55aa7f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">i32\347\261\273\345\236\213\357\274\210\347\261\273\345\236\213"
+                        "8\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#aaaaff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">i64\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21310\357\274\211    </span><span style=\" color:#00557f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">double\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2134\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ffaa7f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">string\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21311\357\274\211</span><span style=\" color:#ffaaff;\">\343\200\220\350\241\250"
+                        "\347\244\272\351\242\234\350\211\262</span><span style=\" color:#505050;\">\343\200\221struct\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21312\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">map\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21313\357\274\211  </span><span style=\" color:#005500;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">set\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21314\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#005500;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#50"
+                        "5050;\">set\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21314\357\274\211    </span><span style=\" color:#aa0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">list\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21315\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#aa0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">list\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21315\357\274\211    </span><span style=\" color:#000000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\347\273\223\346\235\237\347\254\246 </span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+                        " color:#505050;\"><br /></p></body></html>", nullptr));
+        textEdit->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cascadia Code'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Courier New'; font-size:12pt;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_5), QApplication::translate("thriftwidget", "Source", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_4), QApplication::translate("thriftwidget", "Headers", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));

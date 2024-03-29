@@ -20,7 +20,7 @@ struct ServerInfoStruct {
     QString ip;            //ip
     QString runTime;       //运行时间
     QString architecture;  //硬件架构
-    QString cpuInfo;        //CPU信息
+    QString cpuInfo;       //CPU信息
     QString systemName;    //操作系统名称
     QString loginCount;    //当前登录数
 

@@ -2301,6 +2301,11 @@ public:
         comboBox_tool->setItemText(5, QApplication::translate("MainWindow", "\346\255\243\345\210\231\350\241\250\350\276\276\345\274\217", nullptr));
 
         toolButton_closetool->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
+        textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans';\"><br /></p></body></html>", nullptr));
         label_hex->setText(QApplication::translate("MainWindow", "\345\215\201\345\205\255\350\277\233\345\210\266", nullptr));
         label_dec->setText(QApplication::translate("MainWindow", "\345\215\201\350\277\233\345\210\266", nullptr));
         label_oct->setText(QApplication::translate("MainWindow", "\345\205\253\350\277\233\345\210\266", nullptr));

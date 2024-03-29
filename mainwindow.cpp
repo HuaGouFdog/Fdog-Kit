@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
     ui->setupUi(this);
 
-    this->setGeometry(200,100,1100,700);
+    this->setGeometry(200,100,1200,750);
 
     //透明背景
     this->setAttribute(Qt::WA_TranslucentBackground);
@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
     ui->toolButton_max->setIcon(QIcon(":lib/Icon_max2.png"));
 
-    this->setStyleSheet(getStyleFile("qss//mainStyle.qss"));
+    this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
 
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
@@ -875,7 +875,7 @@ void MainWindow::createSystemTray()
     QAction* closeAction = new QAction("退出");
     menu->addAction(openAction);
     menu->addAction(closeAction);
-    menu->setStyleSheet(getStyleFile("qss//menu.qss"));
+    menu->setStyleSheet(getStyleFile(":qss/menu.qss"));
     // 将菜单设置给系统托盘图标
     trayIcon->setContextMenu(menu);
 

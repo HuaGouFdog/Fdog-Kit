@@ -105,7 +105,8 @@ FORMS += \
 RESOURCES += \
     lib.qrc \
     conf.qrc \
-    qss/qss.qrc
+    fonts.qrc \
+    qss.qrc
 
 QT += network
 

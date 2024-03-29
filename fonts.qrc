@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fonts/OPPOSans-B-2.ttf</file>
+        <file>fonts/OPPOSans-R-2.ttf</file>
+    </qresource>
+</RCC>
