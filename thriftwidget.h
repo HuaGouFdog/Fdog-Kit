@@ -233,6 +233,37 @@ public:
         string2stringList(valueData);
     }
 
+    void handleMessage(QString &data);
+
+    //添加颜色
+    QString addColorHtml(QString &str, QColor *fontCrl);
+
+
+    QString handleBool(QString &str);
+
+    QString handleByte(QString &str);
+
+    QString handleDouble(QString &str);
+
+    QString handleI16(QString &str);
+
+    QString handleI32(QString &str);
+
+    QString handleI64(QString &str);
+
+    QString handleString(QString &str);
+
+    QString handleStruct(QString &str);
+
+    QString handleMap(QString &str);
+
+    QString handleSet(QString &str);
+
+    QString handleList(QString &str);
+    
+    QString handleEnd(QString &str);
+    
+
     //
     //void objectSerialize();
 
