@@ -1041,7 +1041,14 @@ void MainWindow::on_toolButton_max_clicked()
 
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
+    QString closeName = ui->tabWidget->tabText(index);
     ui->tabWidget->removeTab(index);
+    //将页面释放，下次再生成 判断关闭页面类型
+    //twidget
+    if (closeName == "Thrift接口测试") {
+        delete twidget;
+        twidget = NULL;
+    }
     if(ui->tabWidget->count() == 0) {
         //创建快速连接
         int8_t connectType = 0;

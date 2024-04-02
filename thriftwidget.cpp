@@ -39,7 +39,8 @@
 #define THRIFT_SET                          1018
 #define THRIFT_LIST                         1019
 #define THRIFT_END                          1020
-
+#define THRIFT_START                        1021
+#define THRIFT_VALUE                        1022
 QMap<QString, int> sourceTypeMap {
     {"02", THRIFT_BOOL},
     {"03", THRIFT_BYTE},
@@ -53,6 +54,7 @@ QMap<QString, int> sourceTypeMap {
     {"0e", THRIFT_SET},
     {"0f", THRIFT_LIST},
     {"00", THRIFT_END},
+    {"00", THRIFT_START},
 };
 
 QMap<int, QColor *> sourceColorMap {
@@ -76,6 +78,8 @@ QMap<int, QColor *> sourceColorMap {
     {THRIFT_SET, new QColor(255,170,0)}, 
     {THRIFT_LIST, new QColor(85,170,130)}, 
     {THRIFT_END, new QColor(0,0,0)},
+    {THRIFT_START, new QColor(0,0,0)},
+    {THRIFT_VALUE, new QColor(95,95,95)},
 };
 
 
@@ -545,14 +549,26 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         int nowLength = 0; //设置数据长度，到达后不再读取
         ui->stackedWidget->setCurrentIndex(0);
         int sum = 0;
+        int sum_2 =0; 
         for (uint32_t data : receivedDataArray) {
             data = qFromBigEndian(data);
             std::stringstream stream;
+            //每次读取一个字节
             stream << std::hex << std::setw(8) << std::setfill('0') << data;
+            sum_2++;
             dataList2.append(QString::fromStdString(stream.str()));
             QString temp2 = QString::fromStdString(stream.str());
             dataTemp_2 = dataTemp_2 + temp2;
             dataTemp = dataTemp + temp2 + "  ";
+            // if (sum_2 == 4) {
+            //     dataTemp = dataTemp + temp2 + "  ";
+            //     sum_2 = 0;
+            //     qDebug() << "dataTemp1 = " << dataTemp;
+            // } else {
+            //     dataTemp = dataTemp + temp2;
+            //     qDebug() << "dataTemp2 = " << dataTemp;
+            // }
+            
             if (countLength == -1) {
                 //读取头获取数据长度
                 countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
@@ -571,8 +587,10 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             }
 
             if (nowLength > countLength) {
-                qDebug() << "超过有效数据长度";
+                qDebug() << "超过有效数据长度 = " << nowLength - countLength;
+                dataTemp_2 = dataTemp_2.mid(0, dataTemp_2.length()-4);
                 //打印剩余dataTemp
+                dataTemp = dataTemp.mid(0, dataTemp.length()-6);
                 ui->textEdit->append(dataTemp);
                 ui->stackedWidget->setCurrentIndex(0);
                 break;
@@ -1200,48 +1218,54 @@ void thriftwidget::handleMessage(QString &data)
         QString value_type = data.mid(0, 2);
         temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
         data = data.mid(2);
-        // int type_ = 0;
-//        if (value_type == "02") {
-//            //bool
-//            type_ = THRIFT_BOOL;
-//        } else if (value_type == "03") {
-//            //byte
-//            type_ = THRIFT_BYTE;
-//        } else if (value_type == "04") {
-//            //double
-//            type_ = THRIFT_DOUBLE;
-//        } else if (value_type == "06") {
-//            //i16
-//            type_ = THRIFT_I16;
-//        } else if (value_type == "08") {
-//            //i32
-//            type_ = THRIFT_I32;
-//        } else if (value_type == "0a") {
-//            //i64
-//            //4 46
-//            //字段序号
-//            QString value_sn = data.mid(0, 4);
-//            temp = temp + addColorHtml(value_sn, sourceColorMap[sourceTypeMap[value_type]]);
-//            data = data.mid(4);
-//            //字段值
-//            temp = temp + addColorHtml(data.mid(0, 16), sourceColorMap[sourceTypeMap[value_type]]);
-//            data = data.mid(16);
-//        } else if (value_type == "0b") {
-//            //string
-//            type_ = THRIFT_STRING;
-//        } else if (value_type == "0c") {
-//            //struct
-//            type_ = THRIFT_STRUCT;
-//        } else if (value_type == "0d") {
-//            //map
-//            type_ = THRIFT_MAP;
-//        } else if (value_type == "0e") {
-//            //set
-//            type_ = THRIFT_SET;
-//        } else if (value_type == "0f") {
-//            //list
-//            type_ = THRIFT_LIST;
-//        }
+
+        QString value_sn = data.mid(0, 4);
+        temp = temp + addColorHtml(value_sn, sourceColorMap[sourceTypeMap["00"]]);
+        data = data.mid(4);
+
+       int type_ = 0;
+       if (value_type == "02") {
+           //bool
+           type_ = THRIFT_BOOL;
+           temp = temp + handleBool(data);
+       } else if (value_type == "03") {
+           //byte
+           type_ = THRIFT_BYTE;
+           temp = temp + handleByte(data);
+       } else if (value_type == "04") {
+           //double
+           type_ = THRIFT_DOUBLE;
+           temp = temp + handleDouble(data);
+       } else if (value_type == "06") {
+           //i16
+           type_ = THRIFT_I16;
+           temp = temp + handleI16(data);
+       } else if (value_type == "08") {
+           //i32
+           type_ = THRIFT_I32;
+           temp = temp + handleI32(data);
+       } else if (value_type == "0a") {
+           //i64
+           type_ = THRIFT_I32;
+           temp = temp + handleI64(data);
+       } else if (value_type == "0b") {
+           //string
+           type_ = THRIFT_STRING;
+           temp = temp + handleString(data);
+       } else if (value_type == "0c") {
+           //struct
+           type_ = THRIFT_STRUCT;
+           temp = temp + handleStruct(data);
+       } else if (value_type == "0d") {
+           //map
+           type_ = THRIFT_MAP;
+       } else if (value_type == "0e") {
+           //set
+           type_ = THRIFT_SET;
+       } else if (value_type == "0f") {
+           //list
+           type_ = THRIFT_LIST;
+       }
     //}
     data = temp + data;
 }
@@ -1260,42 +1284,42 @@ QString thriftwidget::handleBool(QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
 QString thriftwidget::handleByte(QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
 QString thriftwidget::handleDouble(QString &str)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
 QString thriftwidget::handleI16(QString &str)
 {
     QString value = str.mid(0, 4);
     str = str.mid(4);
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
 QString thriftwidget::handleI32(QString &str)
 {
     QString value = str.mid(0, 8);
     str = str.mid(8);
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
 QString thriftwidget::handleI64(QString &str)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
 QString thriftwidget::handleString(QString &str)
@@ -1304,19 +1328,85 @@ QString thriftwidget::handleString(QString &str)
     QString value = str.mid(0, 8);
     str = str.mid(8);
     QString temp = "";
-    temp = temp + addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    temp = temp + addColorHtml(value, sourceColorMap[THRIFT_MESSAGE_LENGTH]);
     //值
     bool ok;
     int len = value.toInt(&ok, 16) * 2;
     QString value2 = str.mid(0, len);
     str = str.mid(len);
-    temp = temp + addColorHtml(value2, sourceColorMap[sourceTypeMap["00"]]);
+    temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     return temp;
 }
 
 QString thriftwidget::handleStruct(QString &str)
 {
-    return "";
+    //读取编号 序号 数据
+    QString temp = "";
+    int sum = 0;
+    while (true) {
+        //读取类型编号
+        if (sum == 5) {
+            break;
+        }
+        if (str== "") {
+            break;
+        }
+        QString value_type = str.mid(0, 2);
+        str = str.mid(2);
+        
+        temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
+
+        //读取序号
+        QString value_sn = str.mid(0, 4);
+        str = str.mid(4);
+        temp = temp + addColorHtml(value_sn, sourceColorMap[sourceTypeMap["00"]]);
+
+        int type_ = 0;
+        if (value_type == "02") {
+            //bool
+            type_ = THRIFT_BOOL;
+            temp = temp + handleBool(str);
+        } else if (value_type == "03") {
+            //byte
+            type_ = THRIFT_BYTE;
+            temp = temp + handleByte(str);
+        } else if (value_type == "04") {
+            //double
+            type_ = THRIFT_DOUBLE;
+            temp = temp + handleDouble(str);
+        } else if (value_type == "06") {
+            //i16
+            type_ = THRIFT_I16;
+            temp = temp + handleI16(str);
+        } else if (value_type == "08") {
+            //i32
+            type_ = THRIFT_I32;
+            temp = temp + handleI32(str);
+        } else if (value_type == "0a") {
+            //i64
+            type_ = THRIFT_I32;
+            temp = temp + handleI64(str);
+        } else if (value_type == "0b") {
+            //string
+            type_ = THRIFT_STRING;
+            temp = temp + handleString(str);
+        } else if (value_type == "0c") {
+            //struct
+            type_ = THRIFT_STRUCT;
+            temp = temp + handleStruct(str);
+        } else if (value_type == "0d") {
+            //map
+            type_ = THRIFT_MAP;
+        } else if (value_type == "0e") {
+            //set
+            type_ = THRIFT_SET;
+        } else if (value_type == "0f") {
+            //list
+            type_ = THRIFT_LIST;
+        }
+        sum++;
+    }
+    return temp;
 }
 
 QString thriftwidget::handleMap(QString &str)
