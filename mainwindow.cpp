@@ -88,18 +88,18 @@ MainWindow::MainWindow(QWidget *parent) :
     //                   "QMenu::item:selected {background-color: #0B0E11;}");
     men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     men_tool->setAttribute(Qt::WA_TranslucentBackground);
-        toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具");
-    men_tool->addAction(toolAssemble);
-    men_tool->addSeparator();
-    textDiff = new QAction(QIcon(":lib/XML-Local-hover.png"), "文本对比");
-    men_tool->addAction(textDiff);
-    men_tool->addSeparator();
-    xmlFormat = new QAction(QIcon(":lib/xml (2).png"), "XML格式化");
-    men_tool->addAction(xmlFormat);
-    men_tool->addSeparator();
-    jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
-    men_tool->addAction(jsonFormat);
-    men_tool->addSeparator();
+    // toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具");
+    // men_tool->addAction(toolAssemble);
+    // men_tool->addSeparator();
+    // textDiff = new QAction(QIcon(":lib/XML-Local-hover.png"), "文本对比");
+    // men_tool->addAction(textDiff);
+    // men_tool->addSeparator();
+    // xmlFormat = new QAction(QIcon(":lib/xml (2).png"), "XML格式化");
+    // men_tool->addAction(xmlFormat);
+    // men_tool->addSeparator();
+    // jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
+    // men_tool->addAction(jsonFormat);
+    // men_tool->addSeparator();
     zkVisual = new QAction(QIcon(":lib/Zookeeper2.png"), "zk可视化连接");
     men_tool->addAction(zkVisual);
     men_tool->addSeparator();
@@ -108,17 +108,23 @@ MainWindow::MainWindow(QWidget *parent) :
     men_tool->addSeparator();
     ui->toolButton_tool->setMenu(men_tool);
 
+    //connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(textTest, SIGNAL(triggered()), this, SLOT(on_newTool()));
     connect(zkVisual, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
 
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(2);
 
     ui->comboBox_tool->setView(new QListView());
+
+    //暂时屏蔽
+    ui->toolButton_newCreate->hide();
+    ui->toolButton_manage->hide();
+    ui->toolButton_plugIn->hide();
+    ui->toolButton_about->hide();
 
     //ui->widget_welcome_body_widget2_info_text->hide();
 
@@ -1053,12 +1059,12 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
         //创建快速连接
         int8_t connectType = 0;
         //创建连接窗口
-        hcwidget = new historyconnectwidget(connectType);
+        //hcwidget = new historyconnectwidget(connectType);
         //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        ui->tabWidget->addTab(hcwidget, "快速连接");
-        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-        ui->stackedWidget->setCurrentIndex(0);
-        hcwidget->show();
+        //ui->tabWidget->addTab(hcwidget, "快速连接");
+        //ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        //ui->stackedWidget->setCurrentIndex(0);
+        //hcwidget->show();
         //ui->stackedWidget->setCurrentIndex(2);
     }
 }
