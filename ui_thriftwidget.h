@@ -123,19 +123,23 @@ public:
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
     QToolButton *toolButton_response;
-    QCheckBox *checkBox_2;
+    QCheckBox *checkBox_show_source;
     QToolButton *toolButton_show_thrift_info;
     QSpacerItem *horizontalSpacer_5;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QVBoxLayout *verticalLayout_8;
     QTabWidget *tabWidget_response;
-    QWidget *tab_5;
+    QWidget *tab_source;
     QHBoxLayout *horizontalLayout_12;
     QTextEdit *textEdit_info;
     QTextEdit *textEdit;
     QWidget *tab_4;
+    QVBoxLayout *verticalLayout_4;
+    QTextEdit *textEdit_headers;
     QWidget *tab_3;
+    QVBoxLayout *verticalLayout_12;
+    QTextEdit *textEdit_data;
     QWidget *page_request;
     QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_15;
@@ -1483,14 +1487,14 @@ public:
 
         horizontalLayout_5->addWidget(toolButton_response);
 
-        checkBox_2 = new QCheckBox(widget_8);
-        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
-        checkBox_2->setMaximumSize(QSize(16777215, 30));
-        checkBox_2->setFont(font);
-        checkBox_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-        checkBox_2->setChecked(true);
+        checkBox_show_source = new QCheckBox(widget_8);
+        checkBox_show_source->setObjectName(QStringLiteral("checkBox_show_source"));
+        checkBox_show_source->setMaximumSize(QSize(16777215, 30));
+        checkBox_show_source->setFont(font);
+        checkBox_show_source->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        checkBox_show_source->setChecked(true);
 
-        horizontalLayout_5->addWidget(checkBox_2);
+        horizontalLayout_5->addWidget(checkBox_show_source);
 
         toolButton_show_thrift_info = new QToolButton(widget_8);
         toolButton_show_thrift_info->setObjectName(QStringLiteral("toolButton_show_thrift_info"));
@@ -1530,7 +1534,8 @@ public:
         stackedWidget = new QStackedWidget(widget_5);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setMinimumSize(QSize(0, 200));
-        stackedWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        stackedWidget->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"color: rgb(79, 79, 79);"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         verticalLayout_8 = new QVBoxLayout(page);
@@ -1626,31 +1631,27 @@ public:
                         "hover {\n"
 "	background-color: rgba(100, 117, 125, 0);\n"
 "}"));
-        tab_5 = new QWidget();
-        tab_5->setObjectName(QStringLiteral("tab_5"));
-        tab_5->setFont(font);
-        horizontalLayout_12 = new QHBoxLayout(tab_5);
+        tab_source = new QWidget();
+        tab_source->setObjectName(QStringLiteral("tab_source"));
+        tab_source->setFont(font);
+        horizontalLayout_12 = new QHBoxLayout(tab_source);
         horizontalLayout_12->setSpacing(0);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
-        horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
-        textEdit_info = new QTextEdit(tab_5);
+        horizontalLayout_12->setContentsMargins(9, 9, 9, 9);
+        textEdit_info = new QTextEdit(tab_source);
         textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
         textEdit_info->setMinimumSize(QSize(400, 0));
         textEdit_info->setMaximumSize(QSize(400, 16777215));
         textEdit_info->setFont(font);
         textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit_info->setStyleSheet(QLatin1String("QTextEdit{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(231, 231, 231);\n"
-"border-radius: 0px;\n"
-"border-right:5px solid rgb(54, 81, 97);\n"
-"}"));
+        textEdit_info->setStyleSheet(QStringLiteral(""));
+        textEdit_info->setFrameShape(QFrame::Box);
         textEdit_info->setReadOnly(true);
         textEdit_info->setCursorWidth(2);
 
         horizontalLayout_12->addWidget(textEdit_info);
 
-        textEdit = new QTextEdit(tab_5);
+        textEdit = new QTextEdit(tab_source);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         QFont font7;
         font7.setFamily(QStringLiteral("Cascadia Code"));
@@ -1658,25 +1659,40 @@ public:
         font7.setStyleStrategy(QFont::PreferAntialias);
         textEdit->setFont(font7);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit->setStyleSheet(QLatin1String("QTextEdit{\n"
-"color: rgb(80, 80, 80);\n"
-"	background-color: rgb(231, 231, 231);\n"
-"border: 1px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 0px;\n"
-"padding-left:10px;\n"
-"padding-right:10px;\n"
-"\n"
-"}"));
+        textEdit->setStyleSheet(QStringLiteral(""));
+        textEdit->setFrameShape(QFrame::Box);
         textEdit->setReadOnly(true);
 
         horizontalLayout_12->addWidget(textEdit);
 
-        tabWidget_response->addTab(tab_5, QString());
+        tabWidget_response->addTab(tab_source, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QStringLiteral("tab_4"));
+        verticalLayout_4 = new QVBoxLayout(tab_4);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        textEdit_headers = new QTextEdit(tab_4);
+        textEdit_headers->setObjectName(QStringLiteral("textEdit_headers"));
+        textEdit_headers->setFont(font);
+        textEdit_headers->setStyleSheet(QStringLiteral(""));
+        textEdit_headers->setFrameShape(QFrame::Box);
+        textEdit_headers->setReadOnly(true);
+
+        verticalLayout_4->addWidget(textEdit_headers);
+
         tabWidget_response->addTab(tab_4, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
+        verticalLayout_12 = new QVBoxLayout(tab_3);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        textEdit_data = new QTextEdit(tab_3);
+        textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
+        textEdit_data->setFont(font);
+        textEdit_data->setStyleSheet(QStringLiteral(""));
+        textEdit_data->setFrameShape(QFrame::Box);
+        textEdit_data->setReadOnly(true);
+
+        verticalLayout_12->addWidget(textEdit_data);
+
         tabWidget_response->addTab(tab_3, QString());
 
         verticalLayout_8->addWidget(tabWidget_response);
@@ -1840,7 +1856,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(0);
+        tabWidget_response->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -1903,7 +1919,7 @@ public:
         ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
         toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
-        checkBox_2->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+        checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -1957,8 +1973,18 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Code'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Courier New'; font-size:12pt;\"><br /></p></body></html>", nullptr));
-        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_5), QApplication::translate("thriftwidget", "Source", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "Source", nullptr));
+        textEdit_headers->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_4), QApplication::translate("thriftwidget", "Headers", nullptr));
+        textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));

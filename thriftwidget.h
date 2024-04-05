@@ -262,7 +262,10 @@ public:
     QString handleList(QString &str);
     
     QString handleEnd(QString &str);
-    
+
+    QString hexToString(const QString& hex);
+
+    QString hexToLongNumber(const QString& hex);
 
     //
     //void objectSerialize();
@@ -299,6 +302,8 @@ private slots:
     void on_toolButton_response_clicked();
 
     void on_toolButton_report_clicked();
+
+    void on_checkBox_show_source_stateChanged(int arg1);
 
 private:
     QVector<QString> dataList;

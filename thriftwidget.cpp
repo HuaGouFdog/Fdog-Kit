@@ -260,27 +260,27 @@ void ItemWidget::init()
     keyLabel = new QLabel();
     keyLabel->setAlignment(Qt::AlignCenter);
     keyLabel->setText("KEY");
-    keyLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 234, 93);border-radius: 3px;");
-    keyLabel->setMinimumWidth(34);
-    keyLabel->setMaximumWidth(34);
-    keyLabel->setMaximumHeight(15);
+    keyLabel->setStyleSheet("margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 234, 93);border-radius: 3px;");
+    keyLabel->setMinimumWidth(44);
+    keyLabel->setMaximumWidth(44);
+    keyLabel->setMaximumHeight(16);
 
 
     valueLabel = new QLabel();
     valueLabel->setAlignment(Qt::AlignCenter);
     valueLabel->setText("VALUE");
-    valueLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 80, 95);border-radius: 3px;");
-    valueLabel->setMinimumWidth(50);
-    valueLabel->setMaximumWidth(50);
-    valueLabel->setMaximumHeight(15);
+    valueLabel->setStyleSheet("margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 80, 95);border-radius: 3px;");
+    valueLabel->setMinimumWidth(60);
+    valueLabel->setMaximumWidth(60);
+    valueLabel->setMaximumHeight(16);
 
     classLabel = new QLabel();
     classLabel->setAlignment(Qt::AlignCenter);
     classLabel->setText("OBJECT");
-    classLabel->setStyleSheet("font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(7, 143, 255);border-radius: 3px;");
-    classLabel->setMinimumWidth(55);
-    classLabel->setMaximumWidth(55);
-    classLabel->setMaximumHeight(15);
+    classLabel->setStyleSheet("margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(7, 143, 255);border-radius: 3px;");
+    classLabel->setMinimumWidth(65);
+    classLabel->setMaximumWidth(65);
+    classLabel->setMaximumHeight(16);
 
 
     layoutParamValue->addWidget(keyLabel);
@@ -1189,13 +1189,20 @@ void thriftwidget::handleMessage(QString &data)
 {
     QString temp;
     //数据长度
-    temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_LENGTH]);
+    QString message_len = data.mid(0, 8);
+    temp = temp + addColorHtml(message_len, sourceColorMap[THRIFT_MESSAGE_LENGTH]);
     data = data.mid(8);
+    
+    QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
+    ui->textEdit_headers->append("数据长度:" + headers_data_length);
+    qDebug() << "数据长度 = " << headers_data_length;
     //消息类型
     QString type_data = data.mid(0, 8);
     if (type_data == "80010001") {
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_CALL]);
     } else if (type_data == "80010002") {
+        qDebug() << "消息类型 = " << "CALL";
+        ui->textEdit_headers->append("消息类型:CALL");
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_REPLY]);
     } else if (type_data == "80010003") {
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_EXCEPTION]);
@@ -1205,17 +1212,27 @@ void thriftwidget::handleMessage(QString &data)
     data = data.mid(8);
     //方法长度名
     QString func_len = data.mid(0, 8);
+    QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
+    qDebug() << "方法长度 = " << headers_func_length;
+    ui->textEdit_headers->append("方法长度:" + headers_func_length);
     temp = temp + addColorHtml(func_len, sourceColorMap[THRIFT_FUNC_LENGTH]);
     bool ok;
     int len = func_len.toInt(&ok, 16) * 2;
     data = data.mid(8);
     //需要转换为长度单位
     //方法名
-    temp = temp + addColorHtml(data.mid(0, len), sourceColorMap[THRIFT_FUNC_NAME]);
+    QString fun_name = data.mid(0, len);
+    temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
+    qDebug() << "方法名 = " << hexToString(fun_name);
+    ui->textEdit_headers->append("方法名称:" + hexToString(fun_name));
     data = data.mid(len);
     //流水号
-    temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_SN]);
+    QString func_sn = data.mid(0, 8);
+    temp = temp + addColorHtml(func_sn, sourceColorMap[THRIFT_SN]);
     data = data.mid(8);
+    QString headers_data_sn = QString::number(strtol(func_sn.toStdString().c_str(), nullptr, 16));
+    qDebug() << "流水号 = " << headers_data_sn;
+    ui->textEdit_headers->append("流水号:" + headers_data_sn);
     //数据
     //编号两位数  序号4位数 数据
     //data = temp + data;
@@ -1285,6 +1302,7 @@ QString thriftwidget::handleBool(QString &str)
     QString value = str.mid(0, 2);
     str = str.mid(2);
     qDebug() << "死掉2";
+    ui->textEdit_data->append("bool类型数据" + hexToLongNumber(value));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1292,6 +1310,7 @@ QString thriftwidget::handleByte(QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
+    ui->textEdit_data->append("i8类型数据" + hexToLongNumber(value));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1306,6 +1325,7 @@ QString thriftwidget::handleI16(QString &str)
 {
     QString value = str.mid(0, 4);
     str = str.mid(4);
+    ui->textEdit_data->append("i16类型数据" + hexToLongNumber(value));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1313,6 +1333,7 @@ QString thriftwidget::handleI32(QString &str)
 {
     QString value = str.mid(0, 8);
     str = str.mid(8);
+    ui->textEdit_data->append("i32类型数据" + hexToLongNumber(value));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1320,6 +1341,7 @@ QString thriftwidget::handleI64(QString &str)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
+    ui->textEdit_data->append("i64类型数据" + hexToLongNumber(value));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1334,6 +1356,7 @@ QString thriftwidget::handleString(QString &str)
     bool ok;
     int len = value.toInt(&ok, 16) * 2;
     QString value2 = str.mid(0, len);
+    ui->textEdit_data->append("string类型数据" + hexToString(value2));
     str = str.mid(len);
     temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     return temp;
@@ -1341,6 +1364,7 @@ QString thriftwidget::handleString(QString &str)
 
 QString thriftwidget::handleStruct(QString &str)
 {
+    ui->textEdit_data->append("struct类型数据开始------------");
     //读取编号 序号 数据
     QString temp = "";
     int sum = 0;
@@ -1350,6 +1374,7 @@ QString thriftwidget::handleStruct(QString &str)
         //     break;
         // }
         if (str== "") {
+            ui->textEdit_data->append("struct类型数据结束------------");
             break;
         }
         QString value_type = str.mid(0, 2);
@@ -1360,6 +1385,7 @@ QString thriftwidget::handleStruct(QString &str)
             // str = str.mid(4);
             temp = temp + addColorHtml(value_type, sourceColorMap[THRIFT_END]);
             qDebug() << "结尾符2";
+            ui->textEdit_data->append("遇到结束符，struct类型数据结束------------");
             continue;
         } 
         temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
@@ -1440,6 +1466,7 @@ QString thriftwidget::handleSet(QString &str)
 
 QString thriftwidget::handleList(QString &str)
 {
+    ui->textEdit_data->append("list类型数据开始------------");
     //值类型 4
     QString temp;
     QString value_type = str.mid(0, 2);
@@ -1478,7 +1505,9 @@ QString thriftwidget::handleList(QString &str)
             //string
             temp = temp + handleString(str);
         } else if (value_type == "0c") {
+            qDebug() << "handleList i1 = " << i;
             temp = temp + handleStruct(str);
+            qDebug() << "handleList i2 = " << i;
         } else if (value_type == "0d") {
 
         } else if (value_type == "0e") {
@@ -1487,6 +1516,7 @@ QString thriftwidget::handleList(QString &str)
             temp = temp + handleList(str);
         }
     }
+    ui->textEdit_data->append("list类型数据结束------------");
     return temp;
     //return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
 }
@@ -1496,6 +1526,17 @@ QString thriftwidget::handleEnd(QString &str)
     QString value = str.mid(0, 2);
     str = str.mid(2);
     return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+}
+
+QString thriftwidget::hexToString(const QString &hex)
+{
+    QByteArray byteArray = QByteArray::fromHex(hex.toLatin1());
+    return QString(byteArray);
+}
+
+QString thriftwidget::hexToLongNumber(const QString &hex)
+{
+    return QString::number(strtol(hex.toStdString().c_str(), nullptr, 16));
 }
 
 
@@ -1908,4 +1949,13 @@ void thriftwidget::on_toolButton_report_clicked()
     } else {
 
     }
+}
+
+void thriftwidget::on_checkBox_show_source_stateChanged(int arg1)
+{
+    // if (ui->checkBox_show_source->isChecked()) {
+    //     ui->tab_source->show();
+    // } else {
+    //     ui->tab_source->hide();
+    // }
 }
