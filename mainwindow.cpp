@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //                   "QMenu::item:selected {background-color: #0B0E11;}");
     men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     men_tool->setAttribute(Qt::WA_TranslucentBackground);
+    QSize iconSize(30, 30); // 设置图标的大小
     // toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具");
     // men_tool->addAction(toolAssemble);
     // men_tool->addSeparator();
@@ -100,10 +101,10 @@ MainWindow::MainWindow(QWidget *parent) :
     // jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
     // men_tool->addAction(jsonFormat);
     // men_tool->addSeparator();
-    zkVisual = new QAction(QIcon(":lib/Zookeeper2.png"), "zk可视化连接");
+    zkVisual = new QAction(QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zk可视化连接");
     men_tool->addAction(zkVisual);
     men_tool->addSeparator();
-    textTest = new QAction(QIcon(":lib/icon_test.png"), "Thrift接口测试");
+    textTest = new QAction(QIcon(":lib/Thrift5.png").pixmap(iconSize), "thrift接口测试");
     men_tool->addAction(textTest);
     men_tool->addSeparator();
     ui->toolButton_tool->setMenu(men_tool);
@@ -124,8 +125,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_newCreate->hide();
     ui->toolButton_manage->hide();
     ui->toolButton_plugIn->hide();
-    ui->toolButton_about->hide();
+    ui->toolButton_setting->hide();
+    //ui->toolButton_about->hide();
 
+    ui->widget_welcome_body_widget2_newCreate_newTool->hide();
+    ui->widget_welcome_body_widget2_newCreate_setting->hide();
     //ui->widget_welcome_body_widget2_info_text->hide();
 
     //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
@@ -1051,13 +1055,19 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
     ui->tabWidget->removeTab(index);
     //将页面释放，下次再生成 判断关闭页面类型
     //twidget
-    if (closeName == "Thrift接口测试") {
+    if (closeName == "thrift接口测试") {
         delete twidget;
         twidget = NULL;
+    }
+
+    if (closeName == "zookeeper") {
+        delete zmanagewidget;
+        zmanagewidget = NULL;
     }
     if(ui->tabWidget->count() == 0) {
         //创建快速连接
         int8_t connectType = 0;
+        ui->stackedWidget->setCurrentIndex(2);
         //创建连接窗口
         //hcwidget = new historyconnectwidget(connectType);
         //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
@@ -1105,7 +1115,7 @@ void MainWindow::on_newTool()
         QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
         //创建连接窗口 
-        QSize iconSize(16, 16); // 设置图标的大小
+        QSize iconSize(20, 20); // 设置图标的大小
         qDebug() <<"工具：" << actionText;
         if (actionText == "小工具") {
             ui->widget_tool->show();
@@ -1140,11 +1150,11 @@ void MainWindow::on_newTool()
                 }
             }
             return;
-        } else if (actionText == "Thrift接口测试") {
+        } else if (actionText == "thrift接口测试") {
             if (twidget == NULL) {
-                toolName = "Thrift接口测试";
+                toolName = "thrift接口测试";
                 twidget = new thriftwidget(this);
-                ui->tabWidget->addTab(twidget, QIcon(":lib/icon_test.png").pixmap(iconSize), toolName);
+                ui->tabWidget->addTab(twidget, QIcon(":lib/Thrift5.png").pixmap(iconSize), toolName);
                 ui->stackedWidget->setCurrentIndex(0);
                 twidget->show();
                 ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
@@ -1567,5 +1577,39 @@ void MainWindow::rece_systemTrayMenu()
     } else {
         //退出
         qApp->quit();
+    }
+}
+
+void MainWindow::on_toolButton_thrift_tool_clicked()
+{
+    QSize iconSize(20, 20); // 设置图标的大小
+    if (twidget == NULL) {
+        twidget = new thriftwidget(this);
+        ui->tabWidget->addTab(twidget, QIcon(":lib/Thrift5.png").pixmap(iconSize), "thrift接口测试");
+        ui->stackedWidget->setCurrentIndex(0);
+        twidget->show();
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    } else {
+        int index = ui->tabWidget->indexOf(twidget);
+        if (index != -1) {
+            ui->tabWidget->setCurrentIndex(index);
+        }
+    }
+}
+
+void MainWindow::on_toolButton_zk_tool_clicked()
+{
+    QSize iconSize(20, 20); // 设置图标的大小
+    if(zmanagewidget == NULL) {
+        zmanagewidget = new zookeepermanagewidget();
+        ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
+        ui->stackedWidget->setCurrentIndex(0);
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    } else {
+        //切换到zookeeper tabWidget
+        int index = ui->tabWidget->indexOf(zmanagewidget);
+        if (index != -1) {
+            ui->tabWidget->setCurrentIndex(index);
+        }
     }
 }

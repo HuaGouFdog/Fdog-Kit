@@ -1895,6 +1895,8 @@ void thriftwidget::on_toolButton_request_clicked()
     //请求数据
     QVector<uint32_t> a = string2Uint32List(dataList);
     ui->textEdit->clear();
+    ui->textEdit_headers->clear();
+    ui->textEdit_data->clear();
     ui->textEdit->append("请求源数据：");
     QString dataTemp = "";
     int sum = 0;

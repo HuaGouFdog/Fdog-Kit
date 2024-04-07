@@ -182,9 +182,8 @@ public:
     QLabel *widget_welcome_body_widget2_nearestConnectionInfo_nearest;
     QWidget *widget_welcome_body_widget2_nearestConnectionInfo_list;
     QVBoxLayout *verticalLayout_17;
-    QToolButton *toolButton_21;
-    QToolButton *toolButton_20;
-    QToolButton *toolButton_25;
+    QToolButton *toolButton_thrift_tool;
+    QToolButton *toolButton_zk_tool;
     QSpacerItem *widget_welcome_body_widget2_verticalSpacer_bottom;
     QSpacerItem *widget_welcome_body_horizontalSpacer_right;
     QWidget *widget_welcome_bottom;
@@ -2075,13 +2074,13 @@ public:
         verticalLayout_17->setSpacing(8);
         verticalLayout_17->setContentsMargins(11, 11, 11, 11);
         verticalLayout_17->setObjectName(QStringLiteral("verticalLayout_17"));
-        toolButton_21 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
-        toolButton_21->setObjectName(QStringLiteral("toolButton_21"));
-        sizePolicy3.setHeightForWidth(toolButton_21->sizePolicy().hasHeightForWidth());
-        toolButton_21->setSizePolicy(sizePolicy3);
-        toolButton_21->setFont(font1);
-        toolButton_21->setLayoutDirection(Qt::LeftToRight);
-        toolButton_21->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_thrift_tool = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
+        toolButton_thrift_tool->setObjectName(QStringLiteral("toolButton_thrift_tool"));
+        sizePolicy3.setHeightForWidth(toolButton_thrift_tool->sizePolicy().hasHeightForWidth());
+        toolButton_thrift_tool->setSizePolicy(sizePolicy3);
+        toolButton_thrift_tool->setFont(font1);
+        toolButton_thrift_tool->setLayoutDirection(Qt::LeftToRight);
+        toolButton_thrift_tool->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(217, 236, 237);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -2098,20 +2097,20 @@ public:
 "	border: none;\n"
 "}"));
         QIcon icon7;
-        icon7.addFile(QStringLiteral(":/lib/toolBox.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_21->setIcon(icon7);
-        toolButton_21->setIconSize(QSize(16, 16));
-        toolButton_21->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        icon7.addFile(QStringLiteral(":/lib/Thrift5.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_thrift_tool->setIcon(icon7);
+        toolButton_thrift_tool->setIconSize(QSize(20, 20));
+        toolButton_thrift_tool->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-        verticalLayout_17->addWidget(toolButton_21);
+        verticalLayout_17->addWidget(toolButton_thrift_tool);
 
-        toolButton_20 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
-        toolButton_20->setObjectName(QStringLiteral("toolButton_20"));
-        sizePolicy3.setHeightForWidth(toolButton_20->sizePolicy().hasHeightForWidth());
-        toolButton_20->setSizePolicy(sizePolicy3);
-        toolButton_20->setFont(font1);
-        toolButton_20->setLayoutDirection(Qt::LeftToRight);
-        toolButton_20->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_zk_tool = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
+        toolButton_zk_tool->setObjectName(QStringLiteral("toolButton_zk_tool"));
+        sizePolicy3.setHeightForWidth(toolButton_zk_tool->sizePolicy().hasHeightForWidth());
+        toolButton_zk_tool->setSizePolicy(sizePolicy3);
+        toolButton_zk_tool->setFont(font1);
+        toolButton_zk_tool->setLayoutDirection(Qt::LeftToRight);
+        toolButton_zk_tool->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(217, 236, 237);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -2128,42 +2127,12 @@ public:
 "	border: none;\n"
 "}"));
         QIcon icon8;
-        icon8.addFile(QStringLiteral(":/lib/test.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_20->setIcon(icon8);
-        toolButton_20->setIconSize(QSize(16, 16));
-        toolButton_20->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        icon8.addFile(QStringLiteral(":/lib/Zookeeper2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_zk_tool->setIcon(icon8);
+        toolButton_zk_tool->setIconSize(QSize(18, 18));
+        toolButton_zk_tool->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-        verticalLayout_17->addWidget(toolButton_20);
-
-        toolButton_25 = new QToolButton(widget_welcome_body_widget2_nearestConnectionInfo_list);
-        toolButton_25->setObjectName(QStringLiteral("toolButton_25"));
-        sizePolicy3.setHeightForWidth(toolButton_25->sizePolicy().hasHeightForWidth());
-        toolButton_25->setSizePolicy(sizePolicy3);
-        toolButton_25->setFont(font1);
-        toolButton_25->setLayoutDirection(Qt::LeftToRight);
-        toolButton_25->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(217, 236, 237);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"}"));
-        QIcon icon9;
-        icon9.addFile(QStringLiteral(":/lib/json (2).png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_25->setIcon(icon9);
-        toolButton_25->setIconSize(QSize(16, 16));
-        toolButton_25->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        verticalLayout_17->addWidget(toolButton_25);
+        verticalLayout_17->addWidget(toolButton_zk_tool);
 
 
         verticalLayout_16->addWidget(widget_welcome_body_widget2_nearestConnectionInfo_list);
@@ -2219,9 +2188,9 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon10;
-        icon10.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_bottom_toolButton_github->setIcon(icon10);
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
+        widget_welcome_bottom_toolButton_github->setIcon(icon9);
         widget_welcome_bottom_toolButton_github->setIconSize(QSize(20, 20));
         widget_welcome_bottom_toolButton_github->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -2271,7 +2240,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(-1);
         stackedWidget_tool->setCurrentIndex(0);
 
@@ -2341,16 +2310,15 @@ public:
         label_match_result->setText(QApplication::translate("MainWindow", "\345\214\271\351\205\215\347\273\223\346\236\234\357\274\232", nullptr));
         widget_welcome_body_widget2_info_widget_icon->setText(QString());
         widget_welcome_body_widget2_info_text->setText(QApplication::translate("MainWindow", "\346\254\242\350\277\216\344\275\277\347\224\250Fdog-kit", nullptr));
-        widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
+        widget_welcome_body_widget2_newCreate_newTerminal->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272SSH\350\277\236\346\216\245", nullptr));
         widget_welcome_body_widget2_newCreate_newTool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267\351\233\206", nullptr));
         widget_welcome_body_widget2_newCreate_setting->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));
         widget_welcome_body_widget2_nearestConnectionInfo_nearest->setText(QApplication::translate("MainWindow", "\346\234\200\350\277\221\344\275\277\347\224\250\357\274\232", nullptr));
-        toolButton_21->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267\351\233\206", nullptr));
-        toolButton_20->setText(QApplication::translate("MainWindow", "Thrift\346\216\245\345\217\243\346\265\213\350\257\225\345\267\245\345\205\267", nullptr));
-        toolButton_25->setText(QApplication::translate("MainWindow", "JSON\346\240\274\345\274\217\345\214\226\345\267\245\345\205\267", nullptr));
+        toolButton_thrift_tool->setText(QApplication::translate("MainWindow", "Thrift\346\216\245\345\217\243\346\265\213\350\257\225\345\267\245\345\205\267", nullptr));
+        toolButton_zk_tool->setText(QApplication::translate("MainWindow", "zk\345\217\257\350\247\206\345\214\226\350\277\236\346\216\245", nullptr));
         widget_welcome_bottom_toolButton_github->setText(QApplication::translate("MainWindow", "GitHub", nullptr));
         widget_welcome_bottom_showWelcome->setText(QApplication::translate("MainWindow", "\345\220\257\345\212\250\346\227\266\346\230\276\347\244\272\346\254\242\350\277\216\351\241\265", nullptr));
-        widget_welcome_page_bottom_label_version->setText(QApplication::translate("MainWindow", "Version\357\274\2321.0.0", nullptr));
+        widget_welcome_page_bottom_label_version->setText(QApplication::translate("MainWindow", "Version\357\274\2321.0.1", nullptr));
     } // retranslateUi
 
 };

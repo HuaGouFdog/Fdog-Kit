@@ -144,6 +144,10 @@ private slots:
     //托盘菜单
     void rece_systemTrayMenu();
 
+    void on_toolButton_thrift_tool_clicked();
+
+    void on_toolButton_zk_tool_clicked();
+
 private:
     Ui::MainWindow *ui;
 

@@ -2399,7 +2399,7 @@ border-radius: 2px;
                      <bool>false</bool>
                     </property>
                     <attribute name="headerVisible">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </attribute>
                     <attribute name="headerDefaultSectionSize">
                      <number>100</number>
