@@ -134,6 +134,7 @@ public:
     bool isToolButton_request_param_checked = true; //入参
     bool isToolButton_response_checked = true;      //响应
     bool isToolButton_report_checked = false;       //性能报告
+    int  retractNum = 0;
 
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
@@ -266,6 +267,10 @@ public:
     QString hexToString(const QString& hex);
 
     QString hexToLongNumber(const QString& hex);
+
+    void removeLastComma(QString &str); //移除最后的逗号
+
+    QString getRetract(); //获取缩进
 
     //
     //void objectSerialize();
