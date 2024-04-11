@@ -1667,9 +1667,22 @@ QString thriftwidget::getRetract()
 
 QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
 {
+    //三种解析
+    //1: SessionTicket st, 2: i64 userID
+    //1:ThesaurusPage pageParam
+    //1:i64 ct,2:i64 userID
     QMap<QString, paramInfo> paramsMap_;
+    //先判断是一个参数，还是多个参数
+    if (!data.contains(",")) {
+        //一个参数
+        int index = data.indexOf(":");
+        data = data.mid(0, index + 1) + " " + data.mid(index + 1);
+        qDebug() << "data = " << data;
+    }
     QStringList funcParams = data.split(",");
     for(int i =0; i < funcParams.length(); i++) {
+        int index = funcParams[i].indexOf(":");
+        funcParams[i] = funcParams[i].mid(0, index + 1) + " " + funcParams[i].mid(index + 1);
         QStringList Params = funcParams[i].split(" ", QString::SkipEmptyParts);
         if (Params.length() == 3) {
             int index = Params[0].indexOf(":");
@@ -1681,7 +1694,6 @@ QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
         } else {
             qDebug() << "错误";
         }
-
     }
     return paramsMap_;
 }
