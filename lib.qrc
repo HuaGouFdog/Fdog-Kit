@@ -125,5 +125,10 @@
         <file>lib/error3.png</file>
         <file>lib/ping2.png</file>
         <file>lib/Fdogicon.ico</file>
+        <file>lib/Thrift.png</file>
+        <file>lib/Thrift2.png</file>
+        <file>lib/Thrift3.png</file>
+        <file>lib/Thrift5.png</file>
+        <file>lib/api.png</file>
     </qresource>
 </RCC>

@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
@@ -43,7 +44,9 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *tab_2;
-    QToolButton *toolButton_2;
+    QVBoxLayout *verticalLayout_12;
+    QToolButton *toolButton_inportFile;
+    QListWidget *listWidget;
     QWidget *widget_right;
     QVBoxLayout *verticalLayout;
     QWidget *widget_6;
@@ -174,7 +177,13 @@ public:
         font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         thriftwidget->setFont(font);
-        thriftwidget->setStyleSheet(QLatin1String("QMenu {\n"
+        thriftwidget->setStyleSheet(QLatin1String("QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}\n"
+"\n"
+"QMenu {\n"
 "\n"
 "background-color:rgb(253,253,254);\n"
 "/*padding:5px;*/\n"
@@ -210,7 +219,8 @@ public:
 "QMenu::separator {\n"
 "    height: 2px;\n"
 "    background: rgb(235,235,236);\n"
-"    /*margin-left: 10px;*/\n"
+"    /*margin-left:"
+                        " 10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
         horizontalLayout_4 = new QHBoxLayout(thriftwidget);
@@ -219,8 +229,8 @@ public:
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         widget_left = new QWidget(thriftwidget);
         widget_left->setObjectName(QStringLiteral("widget_left"));
-        widget_left->setMinimumSize(QSize(200, 0));
-        widget_left->setMaximumSize(QSize(200, 16777215));
+        widget_left->setMinimumSize(QSize(250, 0));
+        widget_left->setMaximumSize(QSize(250, 16777215));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         widget_left->setFont(font1);
@@ -337,7 +347,7 @@ public:
 "	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
                         "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	width:80px;\n"
+"	width:105px;\n"
 "	padding: 4px;\n"
 "	margin-right:0px;\n"
 "	margin-left: 0px;\n"
@@ -352,8 +362,8 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
-"	/*backgr"
-                        "ound-color: rgb(100, 117, 125, 125);*/\n"
+"	/*backg"
+                        "round-color: rgb(100, 117, 125, 125);*/\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
@@ -387,13 +397,21 @@ public:
         tabWidget->addTab(tab, icon, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
-        toolButton_2 = new QToolButton(tab_2);
-        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
-        toolButton_2->setGeometry(QRect(0, 10, 181, 28));
-        toolButton_2->setMinimumSize(QSize(0, 28));
-        toolButton_2->setMaximumSize(QSize(16777215, 28));
-        toolButton_2->setFont(font);
-        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        verticalLayout_12 = new QVBoxLayout(tab_2);
+        verticalLayout_12->setSpacing(6);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        verticalLayout_12->setContentsMargins(0, 6, 0, 9);
+        toolButton_inportFile = new QToolButton(tab_2);
+        toolButton_inportFile->setObjectName(QStringLiteral("toolButton_inportFile"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(toolButton_inportFile->sizePolicy().hasHeightForWidth());
+        toolButton_inportFile->setSizePolicy(sizePolicy);
+        toolButton_inportFile->setMinimumSize(QSize(180, 28));
+        toolButton_inportFile->setMaximumSize(QSize(16777215, 28));
+        toolButton_inportFile->setFont(font);
+        toolButton_inportFile->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	padding-left:26px;\n"
 "	\n"
@@ -411,9 +429,27 @@ public:
 "}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/inport.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_2->setIcon(icon1);
-        toolButton_2->setIconSize(QSize(14, 14));
-        toolButton_2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        toolButton_inportFile->setIcon(icon1);
+        toolButton_inportFile->setIconSize(QSize(13, 13));
+        toolButton_inportFile->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        verticalLayout_12->addWidget(toolButton_inportFile);
+
+        listWidget = new QListWidget(tab_2);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setFont(font);
+        listWidget->setStyleSheet(QString::fromUtf8("QListWidget{\n"
+"border: 1px solid rgba(212, 212, 212, 80);\n"
+"border-radius: 2px;\n"
+"padding:5px;\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    height: 25px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
+"}"));
+
+        verticalLayout_12->addWidget(listWidget);
+
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidget->addTab(tab_2, icon2, QString());
@@ -1233,11 +1269,11 @@ public:
         splitter->setHandleWidth(0);
         widget = new QWidget(splitter);
         widget->setObjectName(QStringLiteral("widget"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
-        widget->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy1);
         widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(0);
@@ -1282,9 +1318,10 @@ public:
 
         treeWidget = new QTreeWidget(widget);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setFont(3, font);
         __qtreewidgetitem->setFont(2, font);
         __qtreewidgetitem->setFont(1, font);
-        __qtreewidgetitem->setFont(0, font);
+        __qtreewidgetitem->setFont(0, font4);
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         treeWidget->setFont(font);
@@ -1430,7 +1467,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(false);
+        treeWidget->header()->setVisible(true);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1642,7 +1679,8 @@ public:
         textEdit_info->setMaximumSize(QSize(400, 16777215));
         textEdit_info->setFont(font);
         textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit_info->setStyleSheet(QStringLiteral(""));
+        textEdit_info->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 80);\n"
+"border-radius: 2px;"));
         textEdit_info->setFrameShape(QFrame::Box);
         textEdit_info->setReadOnly(true);
         textEdit_info->setCursorWidth(2);
@@ -1657,7 +1695,8 @@ public:
         font7.setStyleStrategy(QFont::PreferAntialias);
         textEdit->setFont(font7);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit->setStyleSheet(QStringLiteral(""));
+        textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 80);\n"
+"border-radius: 2px;"));
         textEdit->setFrameShape(QFrame::Box);
         textEdit->setReadOnly(true);
 
@@ -1680,7 +1719,8 @@ public:
         textEdit_data = new QTextEdit(tab_3);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
         textEdit_data->setFont(font);
-        textEdit_data->setStyleSheet(QStringLiteral(""));
+        textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 80);\n"
+"border-radius: 2px;"));
         textEdit_data->setFrameShape(QFrame::Box);
         textEdit_data->setReadOnly(true);
 
@@ -1843,10 +1883,12 @@ public:
 
         horizontalLayout_4->addWidget(widget_right);
 
+        horizontalLayout_4->setStretch(0, 1);
+        horizontalLayout_4->setStretch(1, 10);
 
         retranslateUi(thriftwidget);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
         tabWidget_response->setCurrentIndex(1);
@@ -1860,7 +1902,7 @@ public:
         thriftwidget->setWindowTitle(QApplication::translate("thriftwidget", "Form", nullptr));
         lineEdit_find->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
-        toolButton_2->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
+        toolButton_inportFile->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         label_14->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\347\261\273\345\236\213", nullptr));
         comboBox_testType->setItemText(0, QApplication::translate("thriftwidget", "\345\237\272\347\241\200\346\265\213\350\257\225", nullptr));
@@ -1908,9 +1950,10 @@ public:
         toolButton_request_param->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
         checkBox_3->setText(QApplication::translate("thriftwidget", "\346\240\271\346\215\256\346\225\260\346\215\256\347\261\273\345\236\213\347\224\237\346\210\220\346\265\213\350\257\225\346\225\260\346\215\256", nullptr));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
-        ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));
-        ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
-        ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
+        ___qtreewidgetitem->setText(3, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\200\274", nullptr));
+        ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
+        ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
+        ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\272\217\345\217\267", nullptr));
         toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));

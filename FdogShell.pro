@@ -129,3 +129,5 @@ RC_ICONS = lib/Fdogicon.ico
 
 
 QT.testlib.CONFIG -= console
+
+CONFIG += resources_big

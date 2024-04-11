@@ -10,6 +10,9 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QCheckBox>
+#include <QKeyEvent>
+#include <QDebug>
+#include <QListWidgetItem>
 
 //请求类型
 #define THRIFT_CALL        "80010001"
@@ -61,13 +64,69 @@ static QMap<QString, int> mapSize = {{"bool", THRIFT_BOOL_SIZE}, {"byte", THRIFT
 static QSet<QString> baseType = {"bool", "byte", "i16","i32", "i64", "double", "string"};
 static QSet<QString> containerType = {"map", "set", "list"};
 
+struct paramInfo {
+    QString paramType; //参数类型
+    QString paramName; //参数名
+};
+
+//QMap<QString, paramInfo> paramsMap;
+
+static QMap<QString, QMap<QString, paramInfo>> funcParamMap;
+
+
 namespace Ui {
 class thriftwidget;
 }
 
 class thriftwidget;
 
- class ItemWidget :public QObject ,public QTreeWidgetItem
+class EnglishOnlyFilter : public QObject
+{
+    Q_OBJECT
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override
+    {
+        if (event->type() == QEvent::InputMethodQuery) {
+            QInputMethodQueryEvent *queryEvent = static_cast<QInputMethodQueryEvent*>(event);
+            if (queryEvent->queries() & Qt::ImEnabled) {
+                // 如果输入法激活，表示正在进行中文输入，则忽略此事件
+                return true;
+            }
+        } else if (event->type() == QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+            QString text = keyEvent->text();
+            qDebug() << "text =" << text;
+            // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
+            if (!text.isEmpty() && !(text >= "A" && text <= "Z") && !(text >= "a" && text <= "z")
+                    && !(text >= "0" && text <= "9") && !(keyEvent->key() == Qt::Key_Backspace)
+                    && !(text == "\u0001") && !(text == "\u0003") && !(text == "\u0016") && !(text == "\u001A")) {
+                return true; // 忽略非英文字符和数字
+            }
+        } else if (event->type() == QEvent::InputMethod) {
+            // 对于输入法事件，获取输入的文本
+            QInputMethodEvent *inputMethodEvent = static_cast<QInputMethodEvent*>(event);
+            QString text = inputMethodEvent->commitString();
+            // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
+            if (!text.isEmpty()) {
+                bool containsNonEnglishOrDigit = false;
+                for (const QChar &ch : text) {
+                    if (!(ch >= 'A' && ch <= 'Z') && !(ch >= 'a' && ch <= 'z')
+                            && !(ch >= '0' && ch <= '9')) {
+                        containsNonEnglishOrDigit = true;
+                        break;
+                    }
+                }
+                if (containsNonEnglishOrDigit) {
+                    return true; // 忽略非英文字符和数字
+                }
+            }
+        }
+        return QObject::eventFilter(obj, event);
+    }
+};
+
+
+class ItemWidget :public QObject ,public QTreeWidgetItem
  {
      Q_OBJECT
  public:
@@ -82,6 +141,7 @@ class thriftwidget;
       QComboBox* comboBoxKey;     //key
       QComboBox* comboBoxValue;   //value
 
+      QLineEdit* lineEditParamSN;       //参数序号
       QLineEdit* lineEditParamName;       //参数名
       QLineEdit* lineEditParamValue;      //参数值
       //QLineEdit* lineEditParamDescribe;   //参数描述
@@ -95,6 +155,9 @@ class thriftwidget;
       QLabel * valueLabel;  //value元素
       QLabel * classLabel;  //类元素
 
+
+      QHBoxLayout* layoutParamSN;
+      QWidget* widgetParamSN;
       QHBoxLayout* layoutParamName;
       QWidget* widgetParamName;
       QHBoxLayout* layoutParamType;
@@ -239,6 +302,15 @@ public:
     //添加颜色
     QString addColorHtml(QString &str, QColor *fontCrl);
 
+    //添加字段颜色
+    QString addColorFieldHtml(QString str);
+
+    //添加字段 数值颜色
+    QString addColorValueNumHtml(QString str);
+    //添加字段 字符串颜色
+    QString addColorValueStrHtml(QString str);
+    //添加括号颜色
+    QString addColorBracketsHtml(QString str);
 
     QString handleBool(QString &str);
 
@@ -264,13 +336,21 @@ public:
     
     QString handleEnd(QString &str);
 
-    QString hexToString(const QString& hex);
+    QString hexToString(QString& hex);
 
-    QString hexToLongNumber(const QString& hex);
+    QString hexToLongNumber(QString& hex);
 
     void removeLastComma(QString &str); //移除最后的逗号
 
     QString getRetract(); //获取缩进
+
+    
+
+    //获取入参
+    QMap<QString, paramInfo> getFuncParams(QString data);
+
+    //
+
 
     //
     //void objectSerialize();
@@ -309,6 +389,12 @@ private slots:
     void on_toolButton_report_clicked();
 
     void on_checkBox_show_source_stateChanged(int arg1);
+
+    void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
+
+    void on_toolButton_inportFile_clicked();
+
+    void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
     QVector<QString> dataList;

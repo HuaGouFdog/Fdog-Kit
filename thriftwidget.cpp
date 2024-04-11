@@ -15,6 +15,7 @@
 #include <QListView>
 #include <QElapsedTimer>
 #include <QMenu>
+#include <QFileDialog>
 #include <cstdlib>
 #pragma comment(lib, "ws2_32.lib")
 
@@ -89,9 +90,11 @@ ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
 {
     qDebug() << "走1";
     init();
-    parent->setItemWidget(this, 0, widgetParamName);
-    parent->setItemWidget(this, 1, widgetParamType);
-    parent->setItemWidget(this, 2, widgetParamValue);
+    
+    parent->setItemWidget(this, 0, widgetParamSN);
+    parent->setItemWidget(this, 1, widgetParamName);
+    parent->setItemWidget(this, 2, widgetParamType);
+    parent->setItemWidget(this, 3, widgetParamValue);
     qDebug() << "走11";
 }
 
@@ -99,9 +102,10 @@ ItemWidget::ItemWidget(QTreeWidgetItem *parent): QTreeWidgetItem(parent, 1)
 {
     qDebug() << "走2";
     init();
-    treeWidget()->setItemWidget(this, 0, widgetParamName);
-    treeWidget()->setItemWidget(this, 1, widgetParamType);
-    treeWidget()->setItemWidget(this, 2, widgetParamValue);
+    treeWidget()->setItemWidget(this, 0, widgetParamSN);
+    treeWidget()->setItemWidget(this, 1, widgetParamName);
+    treeWidget()->setItemWidget(this, 2, widgetParamType);
+    treeWidget()->setItemWidget(this, 3, widgetParamValue);
 }
 
 ItemWidget::ItemWidget(): QTreeWidgetItem()
@@ -113,19 +117,20 @@ ItemWidget::ItemWidget(): QTreeWidgetItem()
 void ItemWidget::init()
 {
     comboBoxBase = new QComboBox();
-    comboBoxBase->addItem("bool");
-    comboBoxBase->addItem("byte");
-    comboBoxBase->addItem("i16");
-    comboBoxBase->addItem("i32");
     comboBoxBase->addItem("i64");
-    comboBoxBase->addItem("double");
     comboBoxBase->addItem("string");
+    comboBoxBase->addItem("byte");
+    comboBoxBase->addItem("i32");
     comboBoxBase->addItem("struct");
+    comboBoxBase->addItem("bool");
+    comboBoxBase->addItem("i16");
+    comboBoxBase->addItem("double");
     comboBoxBase->addItem("map");
     comboBoxBase->addItem("set");
     comboBoxBase->addItem("list");
-    comboBoxBase->setCurrentIndex(3);
+    comboBoxBase->setCurrentIndex(0);
     comboBoxBase->setMinimumHeight(29);
+    comboBoxBase->setMinimumWidth(50);
     comboBoxBase->setView(new QListView());  //必须设置
 
     connect(comboBoxBase, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),[=]{
@@ -133,19 +138,20 @@ void ItemWidget::init()
     });
 
     comboBoxKey = new QComboBox();
-    comboBoxKey->addItem("bool");
-    comboBoxKey->addItem("byte");
-    comboBoxKey->addItem("i16");
-    comboBoxKey->addItem("i32");
     comboBoxKey->addItem("i64");
-    comboBoxKey->addItem("double");
     comboBoxKey->addItem("string");
+    comboBoxKey->addItem("byte");
+    comboBoxKey->addItem("i32");
+    comboBoxKey->addItem("bool");
+    comboBoxKey->addItem("i16");
+    comboBoxKey->addItem("double");
     //comboBoxKey->addItem("struct");
     //comboBoxKey->addItem("map");
     //comboBoxKey->addItem("set");
     //comboBoxKey->addItem("list");
     comboBoxKey->setCurrentIndex(0);
     comboBoxKey->setMinimumHeight(29);
+    comboBoxKey->setMinimumWidth(50);
     comboBoxKey->hide();
 
     comboBoxKey->setView(new QListView());  //必须设置
@@ -155,19 +161,20 @@ void ItemWidget::init()
     });
 
     comboBoxValue = new QComboBox();
-    comboBoxValue->addItem("bool");
-    comboBoxValue->addItem("byte");
-    comboBoxValue->addItem("i16");
-    comboBoxValue->addItem("i32");
     comboBoxValue->addItem("i64");
-    comboBoxValue->addItem("double");
     comboBoxValue->addItem("string");
+    comboBoxValue->addItem("byte");
+    comboBoxValue->addItem("i32");
     comboBoxValue->addItem("struct");
+    comboBoxValue->addItem("bool");
+    comboBoxValue->addItem("i16");
+    comboBoxValue->addItem("double");
     comboBoxValue->addItem("map");
     comboBoxValue->addItem("set");
     comboBoxValue->addItem("list");
     comboBoxValue->setCurrentIndex(0);
     comboBoxValue->setMinimumHeight(29);
+    comboBoxValue->setMinimumWidth(50);
     comboBoxValue->hide();
 
     comboBoxValue->setView(new QListView());  //必须设置
@@ -175,6 +182,11 @@ void ItemWidget::init()
     connect(comboBoxValue, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),[=]{
         emit send_currentIndexChanged(comboBoxValue->currentText(), this);
     });
+
+    lineEditParamSN = new QLineEdit();
+    lineEditParamSN->setPlaceholderText("0");
+    lineEditParamSN->setMinimumHeight(29);
+    //lineEditParamSN->setMaximumWidth(50);
 
     lineEditParamName = new QLineEdit();
     lineEditParamName->setPlaceholderText("参数名");
@@ -210,6 +222,7 @@ void ItemWidget::init()
     checkBox->setChecked(false);
     checkBox->setMinimumHeight(30);
     checkBox->setToolTip("勾选参数参与请求");
+    checkBox->setMaximumWidth(20);
 
     moveButton = new QToolButton();
     moveButton->setIcon(QIcon(":lib/tuodong.png"));
@@ -238,12 +251,23 @@ void ItemWidget::init()
                        }");
     addNode->setMinimumHeight(29);
     addNode->hide();
+
+
+    layoutParamSN = new QHBoxLayout();
+    layoutParamSN->setContentsMargins(0, 0, 0, 0);
+    layoutParamSN->addWidget(checkBox);
+    layoutParamSN->addWidget(lineEditParamSN);
+    widgetParamSN = new QWidget();
+    widgetParamSN->setLayout(layoutParamSN);
+    //widgetParamSN->setStyleSheet("background-color: rgb(255, 80, 95);");
+
     layoutParamName = new QHBoxLayout();
     layoutParamName->setContentsMargins(0, 0, 0, 0);
-    layoutParamName->addWidget(checkBox);
+    //layoutParamName->addWidget(checkBox);
     layoutParamName->addWidget(lineEditParamName);
     widgetParamName = new QWidget();
     widgetParamName->setLayout(layoutParamName);
+    
 
     layoutParamType = new QHBoxLayout();
     layoutParamType->setContentsMargins(0, 0, 0, 0);
@@ -302,9 +326,11 @@ void ItemWidget::init()
 
 void ItemWidget::init2()
 {
-    treeWidget()->setItemWidget(this, 0, widgetParamName);
-    treeWidget()->setItemWidget(this, 1, widgetParamType);
-    treeWidget()->setItemWidget(this, 2, widgetParamValue);
+    
+    treeWidget()->setItemWidget(this, 0, widgetParamSN);
+    treeWidget()->setItemWidget(this, 1, widgetParamName);
+    treeWidget()->setItemWidget(this, 2, widgetParamType);
+    treeWidget()->setItemWidget(this, 3, widgetParamValue);
 }
 
 void ItemWidget::init3()
@@ -369,27 +395,40 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->setupUi(this);
 
     // 设置树的列数（如果需要多列）
-    ui->treeWidget->setColumnCount(3);
+    ui->treeWidget->setColumnCount(4);
     // 设置第一列的宽度为 100 像素
     ui->treeWidget->setColumnWidth(0, 120);
 
     // 设置第三列的宽度为 150 像素
     ui->treeWidget->setColumnWidth(1, 150);
 
+    // 设置第三列的宽度为 150 像素
+    ui->treeWidget->setColumnWidth(2, 150);
+
     // 计算第五列的宽度，使其占满剩余空间
-    int lastColumnWidth = ui->treeWidget->viewport()->width() - 120 - 150;
-    ui->treeWidget->setColumnWidth(2, lastColumnWidth);
+    int lastColumnWidth = ui->treeWidget->viewport()->width() - 420;
+    ui->treeWidget->setColumnWidth(3, lastColumnWidth);
 
     QHeaderView* header = ui->treeWidget->header();
 
     // 设置所有列的大小调整模式为 Interactive
-    header->setSectionResizeMode(QHeaderView::Interactive);
+    //header->setSectionResizeMode(QHeaderView::Interactive);
 
     // 设置默认的列高度为 30 像素
-    header->setDefaultSectionSize(200);
-    ui->treeWidget->header()->resizeSection(1, 150);
+    //header->setDefaultSectionSize(200);
+    //ui->treeWidget->header()->resizeSection(1, 150);
     // 创建一个树节点
     ItemWidget* item = new ItemWidget(ui->treeWidget);
+
+    //获取当前节点的位置索引，显示序号
+    int index = ui->treeWidget->indexOfTopLevelItem(item);
+    if (index != -1) {
+        item->lineEditParamSN->setText(QString::number(index + 1));
+        qDebug() << "Index of item in treeWidget: " << index;
+    } else {
+        qDebug() << "Item is not a top-level item in treeWidget.";
+    }
+
     connect(item, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(item, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(item, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
@@ -419,13 +458,20 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->label_req->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->textEdit_info->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->textEdit_data->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->stackedWidget->setCurrentIndex(0);
 
     ui->widget_property->hide();
+    //ui->widget_left->hide();
 
 //    ui->splitter_response->setStretchFactor(0,10);
 //    ui->splitter_response->setStretchFactor(1,80);
+    ui->lineEdit_funcName->installEventFilter(new EnglishOnlyFilter);
+    ui->comboBox_testType->setItemData(1, false, Qt::UserRole - 1);
+
+    ui->toolButton_inportFile->setToolTip("导入thrift文件后，可自动生成接口参数");
 }
 
 QString thriftwidget::getType(int index)
@@ -1198,7 +1244,7 @@ void thriftwidget::handleMessage(QString &data)
     data = data.mid(8);
     
     QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
-    label_headers = label_headers + "数据长度 : " + headers_data_length + "   ";
+    label_headers = label_headers + "数据长度:" + headers_data_length + "   ";
     qDebug() << "数据长度 = " << headers_data_length;
     //消息类型
     QString type_data = data.mid(0, 8);
@@ -1206,7 +1252,7 @@ void thriftwidget::handleMessage(QString &data)
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_CALL]);
     } else if (type_data == "80010002") {
         qDebug() << "消息类型 = " << "CALL";
-        label_headers = label_headers + "消息类型 : CALL" + "  ";
+        label_headers = label_headers + "消息类型:CALL" + "   ";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_REPLY]);
     } else if (type_data == "80010003") {
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_EXCEPTION]);
@@ -1218,7 +1264,7 @@ void thriftwidget::handleMessage(QString &data)
     QString func_len = data.mid(0, 8);
     QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
     qDebug() << "方法长度 = " << headers_func_length;
-    label_headers = label_headers + "方法长度 : " + headers_func_length + "   ";
+    label_headers = label_headers + "方法长度:" + headers_func_length + "   ";
     temp = temp + addColorHtml(func_len, sourceColorMap[THRIFT_FUNC_LENGTH]);
     bool ok;
     int len = func_len.toInt(&ok, 16) * 2;
@@ -1228,7 +1274,7 @@ void thriftwidget::handleMessage(QString &data)
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
     qDebug() << "方法名 = " << hexToString(fun_name);
-    label_headers = label_headers + "方法名称 : " + hexToString(fun_name) + "   ";
+    label_headers = label_headers + "方法名称:" + hexToString(fun_name) + "   ";
     data = data.mid(len);
     //流水号
     QString func_sn = data.mid(0, 8);
@@ -1236,7 +1282,7 @@ void thriftwidget::handleMessage(QString &data)
     data = data.mid(8);
     QString headers_data_sn = QString::number(strtol(func_sn.toStdString().c_str(), nullptr, 16));
     qDebug() << "流水号 = " << headers_data_sn;
-    label_headers = label_headers + "流水号 : " + headers_data_sn + "   ";
+    label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
     ui->label_headers->setText(label_headers);
     //数据
     //编号两位数  序号4位数 数据
@@ -1302,12 +1348,62 @@ QString thriftwidget::addColorHtml(QString &str, QColor *fontCrl)
     return QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
 }
 
+
+QString thriftwidget::addColorFieldHtml(QString str)
+{
+    qDebug() << "addColorFieldHtml str = " << str;
+    QColor *fontCrl = new QColor(150, 40, 140);
+    QByteArray array;
+    array.append(fontCrl->red());
+    array.append(fontCrl->green());
+    array.append(fontCrl->blue());
+    QString strC(array.toHex());
+    str.replace(" ","&nbsp;");
+    return QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
+}
+
+
+QString thriftwidget::addColorValueNumHtml(QString str)
+{
+    QColor *fontCrl = new QColor(0, 160, 255);
+    QByteArray array;
+    array.append(fontCrl->red());
+    array.append(fontCrl->green());
+    array.append(fontCrl->blue());
+    QString strC(array.toHex());
+    return QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
+}
+
+QString thriftwidget::addColorValueStrHtml(QString str)
+{
+    QColor *fontCrl = new QColor(0, 180, 0);
+    QByteArray array;
+    array.append(fontCrl->red());
+    array.append(fontCrl->green());
+    array.append(fontCrl->blue());
+    QString strC(array.toHex());
+    return QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
+}
+
+QString thriftwidget::addColorBracketsHtml(QString str)
+{
+    QColor *fontCrl = new QColor(35, 35, 35);
+    QByteArray array;
+    array.append(fontCrl->red());
+    array.append(fontCrl->green());
+    array.append(fontCrl->blue());
+    QString strC(array.toHex());
+    str.replace(" ","&nbsp;");
+    return QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
+}
+
+
 QString thriftwidget::handleBool(QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
     qDebug() << "死掉2";
-    ui->textEdit_data->append(getRetract() + "bool : " + hexToLongNumber(value));
+    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "bool") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1315,7 +1411,8 @@ QString thriftwidget::handleByte(QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
-    ui->textEdit_data->append(getRetract() + "i8 : " + hexToLongNumber(value));
+    qDebug() << "handleByte getRetract()  = " << getRetract() ;
+    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "byte") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1330,7 +1427,7 @@ QString thriftwidget::handleI16(QString &str)
 {
     QString value = str.mid(0, 4);
     str = str.mid(4);
-    ui->textEdit_data->append(getRetract() + "i16 : " + hexToLongNumber(value));
+    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i16") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1338,7 +1435,7 @@ QString thriftwidget::handleI32(QString &str)
 {
     QString value = str.mid(0, 8);
     str = str.mid(8);
-    ui->textEdit_data->append(getRetract() + "i32 : " + hexToLongNumber(value));
+    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i32") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1346,7 +1443,7 @@ QString thriftwidget::handleI64(QString &str)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
-    ui->textEdit_data->append(getRetract() + "i64 : " + hexToLongNumber(value));
+    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i64") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1361,7 +1458,7 @@ QString thriftwidget::handleString(QString &str)
     bool ok;
     int len = value.toInt(&ok, 16) * 2;
     QString value2 = str.mid(0, len);
-    ui->textEdit_data->append(getRetract() + "string : \"" + hexToString(value2) + "\"");
+    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "string") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\""));
     str = str.mid(len);
     temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     return temp;
@@ -1370,7 +1467,7 @@ QString thriftwidget::handleString(QString &str)
 QString thriftwidget::handleStruct(QString &str)
 {
     
-    ui->textEdit_data->append(getRetract() + "{");
+    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
     retractNum++;
     //读取编号 序号 数据
     QString temp = "";
@@ -1393,7 +1490,7 @@ QString thriftwidget::handleStruct(QString &str)
             temp = temp + addColorHtml(value_type, sourceColorMap[THRIFT_END]);
             //qDebug() << "结尾符2";
             retractNum--;
-            ui->textEdit_data->append(getRetract() + "}");
+            ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
             break;
         } 
         temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
@@ -1474,7 +1571,7 @@ QString thriftwidget::handleSet(QString &str)
 
 QString thriftwidget::handleList(QString &str)
 {
-    ui->textEdit_data->append(getRetract() + "[");
+    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     retractNum++;
     //值类型 4
     QString temp;
@@ -1527,7 +1624,7 @@ QString thriftwidget::handleList(QString &str)
         }
     }
     retractNum--;
-    ui->textEdit_data->append(getRetract() + "]");
+    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
     return temp;
     //return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
 }
@@ -1539,13 +1636,13 @@ QString thriftwidget::handleEnd(QString &str)
     return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
 }
 
-QString thriftwidget::hexToString(const QString &hex)
+QString thriftwidget::hexToString(QString &hex)
 {
     QByteArray byteArray = QByteArray::fromHex(hex.toLatin1());
     return QString(byteArray);
 }
 
-QString thriftwidget::hexToLongNumber(const QString &hex)
+QString thriftwidget::hexToLongNumber(QString &hex)
 {
     return QString::number(strtol(hex.toStdString().c_str(), nullptr, 16));
 }
@@ -1562,9 +1659,31 @@ QString thriftwidget::getRetract()
 {
     QString retract;
     for(int i = 0; i < retractNum; i++) {
-        retract = retract + "    ";
+        retract = retract + "  ";
     }
     return retract;
+}
+
+
+QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
+{
+    QMap<QString, paramInfo> paramsMap_;
+    QStringList funcParams = data.split(",");
+    for(int i =0; i < funcParams.length(); i++) {
+        QStringList Params = funcParams[i].split(" ", QString::SkipEmptyParts);
+        if (Params.length() == 3) {
+            int index = Params[0].indexOf(":");
+            QString sn = Params[0].mid(0, index);
+            QString paramType = Params[1];
+            QString paramName = Params[2];
+            paramsMap_.insert(sn, {paramType, paramName});
+            qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
+        } else {
+            qDebug() << "错误";
+        }
+
+    }
+    return paramsMap_;
 }
 
 
@@ -1698,21 +1817,33 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
     qDebug() << "count" << count;
     qDebug() << "index" << index;
     if (!isChild && index >= count) {
+        //顶层
         ItemWidget* items = new ItemWidget(ui->treeWidget);
+        int index = ui->treeWidget->indexOfTopLevelItem(items);
+        items->lineEditParamSN->setText(QString::number(index + 1));
+        //还要考虑上下序号的关系，必要时需要更新
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        
+        //刷新用
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);
         delete items2;
     } else if (isChild && index >= count) {
+        //子节点
         ItemWidget* items = new ItemWidget(parentItem);
+        int index = parentItem->indexOfChild(items);
+        items->lineEditParamSN->setText(QString::number(index + 1));
+        //还要考虑上下序号的关系，必要时需要更新
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
         connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+        
+        //刷新用
         ItemWidget* items2 = new ItemWidget(parentItem);
         delete items2;
     } else if (data == "") {
@@ -1809,6 +1940,10 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 
         item_->checkBox->setChecked(true);
         ItemWidget* item2 = new ItemWidget(item);
+
+        int index = item->indexOfChild(item2);
+        item2->lineEditParamSN->setText(QString::number(index + 1));
+
         connect(item2, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(item2, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
@@ -1816,8 +1951,12 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         connect(item2, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
         item2->setText(0, "");
         item_->setExpanded(true);
-        //向下创建同级节点
+
+        //向下创建同级节点 有问题，不一定是顶节点
         ItemWidget* items = new ItemWidget(ui->treeWidget);
+        //设置序号
+        int index2 = ui->treeWidget->indexOfTopLevelItem(items);
+        items->lineEditParamSN->setText(QString::number(index2 + 1));
         connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
         connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
@@ -1891,13 +2030,13 @@ void thriftwidget::on_textEdit_customContextMenuRequested(const QPoint &pos)
     QMenu *menu = new QMenu(ui->textEdit);
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction *pnew = new QAction("复制", ui->textEdit);
-    QAction *pnew1 = new QAction("选择全部", ui->textEdit);
+    QAction *copy1 = new QAction("复制", ui->textEdit);
+    QAction *all1 = new QAction("选择全部", ui->textEdit);
     //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
     //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
-    menu->addAction(pnew);
+    menu->addAction(copy1);
     menu->addSeparator();
-    menu->addAction(pnew1);
+    menu->addAction(all1);
     menu->move(cursor().pos());
     menu->show();
 }
@@ -1921,7 +2060,7 @@ void thriftwidget::on_toolButton_request_clicked()
 {
     assembleTBinaryMessage();
     //请求数据
-    QVector<uint32_t> a = string2Uint32List(dataList);
+    QVector<uint32_t> sendData = string2Uint32List(dataList);
     ui->textEdit->clear();
     //ui->textEdit_headers->clear();
     ui->textEdit_data->clear();
@@ -1929,21 +2068,26 @@ void thriftwidget::on_toolButton_request_clicked()
     QString dataTemp = "";
     int sum = 0;
     for (const QString& value : dataList) {
+        qDebug() << "value = " << value;
         dataTemp = dataTemp + value + "  ";  // 在控制台输出元素值
+        qDebug() << "dataTemp1 = " << dataTemp;
         sum++;
         //每8个段进行下一步
         if (sum == 8) {
             sum = 0;
+            qDebug() << "dataTemp2 = " << dataTemp;
             ui->textEdit->append(dataTemp);
             dataTemp = "";
         }
     }
+    //打印剩下数据
+    ui->textEdit->append(dataTemp);
     ui->textEdit->append("------------------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
     qDebug() << "dataList = " << dataList;
     QElapsedTimer timer;
     timer.start();
-    sendThriftRequest(a);
+    sendThriftRequest(sendData);
     qint64 elapsedMilliseconds = timer.elapsed();
     ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
@@ -1988,4 +2132,118 @@ void thriftwidget::on_checkBox_show_source_stateChanged(int arg1)
     // } else {
     //     ui->tab_source->hide();
     // }
+}
+
+void thriftwidget::on_textEdit_data_customContextMenuRequested(const QPoint &pos)
+{
+    QMenu *menu = new QMenu(ui->textEdit_data);
+    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    menu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction *copy1 = new QAction("复制", ui->textEdit_data);
+    QAction *all1 = new QAction("选择全部", ui->textEdit_data);
+    //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+    //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
+    menu->addAction(copy1);
+    menu->addSeparator();
+    menu->addAction(all1);
+    menu->move(cursor().pos());
+    menu->show();
+}
+
+void thriftwidget::on_toolButton_inportFile_clicked()
+{
+    //解析thrift文件
+    // 创建文件对话框
+    QFileDialog dialog;
+    
+    // 设置文件过滤器
+    dialog.setNameFilter("Thrift Files (*.thrift)");
+    
+    // 设置只能选择文件
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    
+    // 打开文件对话框
+    if (dialog.exec()) {
+        // 获取所选文件的路径
+        QString selectedFile = dialog.selectedFiles().first();
+        // 处理所选文件
+        // 在这里你可以做你想做的事情，比如读取文件内容等等
+        // 读取文件内容
+        QFile file(selectedFile);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&file);
+            QString fileContent = in.readAll();
+            qDebug() << "File content:" << fileContent;
+            file.close();
+
+            //查找server
+            int index = fileContent.contains("service");
+            if (index) {
+                int index2 = fileContent.indexOf("service");
+                fileContent = fileContent.mid(index2);
+                
+
+                int index3 = fileContent.indexOf("{");
+                fileContent = fileContent.mid(index3 + 1);
+                int index4 = fileContent.indexOf("}");
+                fileContent = fileContent.mid(0, index4);
+                //fileContent.replace(" ","");
+                QStringList list = fileContent.split("\n", QString::SkipEmptyParts);
+
+                //开始循环解析接口部分
+                for (int i = 0; i < list.length(); i++) {
+                    qDebug() << "接口部分：" << list[i];
+                    QString func = list[i].trimmed();
+                    int index5 = func.indexOf(" ");
+                    QString funcParam = func.mid(0, index5);
+                    QString funcName1 =func.mid(index5).trimmed();
+                    qDebug() << "funcParam1 " << funcParam;
+                    qDebug() << "funcName1 " << funcName1;
+
+                    int index6 = funcName1.indexOf("(");
+                    QString funcName = funcName1.mid(0, index6);
+                    qDebug() << "funcName " << funcName;
+                    QString funcParam2 = funcName1.mid(index6 + 1);
+                    int index7 = funcParam2.indexOf(")");
+                    funcParam2 = funcParam2.mid(0, index7);
+                    qDebug() << "funcParam2 " << funcParam2;
+                    funcParamMap.insert(funcName, getFuncParams(funcParam2));
+                    QStringList funcP = funcParam2.split(",");
+                    qDebug() << "funcP " << funcP;
+
+                    for(int i =0; i < funcP.length(); i++) {
+                        qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);
+                    }
+
+                    QListWidgetItem *item1 = new QListWidgetItem(funcName);
+                    // 创建一个QIcon对象并设置图标
+                    QIcon icon1(":/lib/api.png"); // 设置您的图标路径
+                    // 为项设置图标
+                    item1->setIcon(icon1);
+                    // 将项添加到列表中
+                    ui->listWidget->addItem(item1);
+                    //ui->listWidget->addItem(funcName);
+                }
+
+            }
+
+        } else {
+            qDebug() << "Failed to open file:" << file.errorString();
+        }
+    }
+}
+
+void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    ui->lineEdit_funcName->setText(current->text());
+    
+    for(int i =1; i <= funcParamMap.value(current->text()).size(); i++) {
+        //QMap<QString, paramInfo>
+        qDebug() << " sn = " << i
+                << " paramType = " << funcParamMap.value(current->text()).value(QString::number(i)).paramType
+                << " paramName" << funcParamMap.value(current->text()).value(QString::number(i)).paramName;
+    }
+//    qDebug() << " sn = " << funcParamMap.value(current->text())
+//            << " paramType = " << funcParamMap.value(current->text()).paramType
+//            << " paramName" << funcParamMap.value(current->text()).paramName;
 }
