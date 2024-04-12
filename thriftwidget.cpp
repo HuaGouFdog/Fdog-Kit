@@ -218,11 +218,28 @@ void ItemWidget::init()
         emit send_buttonClicked(this);
     });
 
+    mastLabel = new QLabel();
+    mastLabel->setStyleSheet("QLabel {image: url(:/lib/mast.png);}");
+    mastLabel->setToolTip("必选字段");
+    mastLabel->setMinimumWidth(15);
     checkBox = new QCheckBox("");
     checkBox->setChecked(false);
-    checkBox->setMinimumHeight(30);
     checkBox->setToolTip("勾选参数参与请求");
+    checkBox->setMinimumWidth(20);
     checkBox->setMaximumWidth(20);
+    checkBox->setMinimumHeight(20);
+    checkBox->setMaximumHeight(20);
+
+    checkBox->setStyleSheet("QCheckBox::indicator{\
+                width:15px;\
+                height:15px;\
+           }\
+            QCheckBox::indicator::unchecked{\
+                image:url(:/lib/gouxuan2.png);\
+            }\
+            QCheckBox::indicator::checked{\
+                image:url(:/lib/gouxuan.png);\
+            }");
 
     moveButton = new QToolButton();
     moveButton->setIcon(QIcon(":lib/tuodong.png"));
@@ -255,6 +272,7 @@ void ItemWidget::init()
 
     layoutParamSN = new QHBoxLayout();
     layoutParamSN->setContentsMargins(0, 0, 0, 0);
+    layoutParamSN->addWidget(mastLabel);
     layoutParamSN->addWidget(checkBox);
     layoutParamSN->addWidget(lineEditParamSN);
     widgetParamSN = new QWidget();
@@ -284,7 +302,7 @@ void ItemWidget::init()
     keyLabel = new QLabel();
     keyLabel->setAlignment(Qt::AlignCenter);
     keyLabel->setText("KEY");
-    keyLabel->setStyleSheet("margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 234, 93);border-radius: 3px;");
+    keyLabel->setStyleSheet("font-weight: bold; margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(0, 234, 93);border-radius: 3px;");
     keyLabel->setMinimumWidth(44);
     keyLabel->setMaximumWidth(44);
     keyLabel->setMaximumHeight(16);
@@ -293,15 +311,17 @@ void ItemWidget::init()
     valueLabel = new QLabel();
     valueLabel->setAlignment(Qt::AlignCenter);
     valueLabel->setText("VALUE");
-    valueLabel->setStyleSheet("margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 80, 95);border-radius: 3px;");
+    valueLabel->setStyleSheet("font-weight: bold; margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(255, 80, 95);border-radius: 3px;");
+    //valueLabel->setStyleSheet("image: url(:/lib/mast2.png);");
     valueLabel->setMinimumWidth(60);
     valueLabel->setMaximumWidth(60);
+    //valueLabel->setMinimumHeight(30);
     valueLabel->setMaximumHeight(16);
 
     classLabel = new QLabel();
     classLabel->setAlignment(Qt::AlignCenter);
     classLabel->setText("OBJECT");
-    classLabel->setStyleSheet("margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(7, 143, 255);border-radius: 3px;");
+    classLabel->setStyleSheet("font-weight: bold; margin-left: 10px; font: 8pt \"OPPOSans B\";color: rgb(255, 255, 255);background-color: rgb(7, 143, 255);border-radius: 3px;");
     classLabel->setMinimumWidth(65);
     classLabel->setMaximumWidth(65);
     classLabel->setMaximumHeight(16);
@@ -388,12 +408,71 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
     }
 }
 
+void ItemWidget::setParamSN(QString str)
+{
+    lineEditParamSN->setText(str);
+}
+
+void ItemWidget::setParamName(QString str)
+{
+    lineEditParamName->setText(str);
+}
+
+void ItemWidget::setParamType(QString str)
+{
+    lineEditParamValue->setText(str);
+}
+
+void ItemWidget::setParamValue(QString sn, QString name, QString type)
+{
+    lineEditParamSN->setText(sn);
+    lineEditParamName->setText(name);
+    if (baseType.contains(type)) {
+        //基础类型
+        comboBoxBase->setCurrentText(type);
+    } else if (type.startsWith("map")) {
+        //复杂类型
+
+    } else if (type.startsWith("set")) {
+        //复杂类型
+
+    } else if (type.startsWith("list")) {
+        //复杂类型
+
+    } else {
+        comboBoxBase->setCurrentText("struct");
+        lineEditParamName->setText(name + "（" + type + "）");
+        comboBoxKey->hide();
+        comboBoxValue->hide();
+
+        keyLabel->hide();
+        valueLabel->hide();
+        classLabel->show();
+
+        checkBox->setChecked(true);
+        setExpanded(true);
+        lineEditParamValue->setReadOnly(true);
+        lineEditParamValue->setPlaceholderText("");
+
+        //根据name添加子节点
+        //查找对应的数据
+        qDebug() << "点击的结构体类型：" << type;
+        for(int i = 1; i <= structParamMap.value(type).size() ;i++)
+        {
+            qDebug() << "对应结构体数据type<<" << structParamMap.value(type)[QString::number(i)].paramType;
+            qDebug() << "对应结构体数据name<<" << structParamMap.value(type)[QString::number(i)].paramName;
+        }
+        
+    }
+    //lineEditParamValue->setText(type);
+}
+
 thriftwidget::thriftwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::thriftwidget)
 {
     ui->setupUi(this);
-
+    //ui->treeWidget->setStyle(QStyleFactory::create("windows"));
     // 设置树的列数（如果需要多列）
     ui->treeWidget->setColumnCount(4);
     // 设置第一列的宽度为 100 像素
@@ -1698,13 +1777,37 @@ QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
     return paramsMap_;
 }
 
-
-
-void thriftwidget::parseData()
+QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
 {
-
+    QMap<QString, structInfo> paramsStructMap_;
+    //按照\n分割，排空
+    QStringList list = data.split("\n", QString::SkipEmptyParts);
+    qDebug() << "list = " << list;
+    for (int i = 0; i < list.length(); i++) {
+        QString str = list[i];
+        //分割序号，类型，名字
+        //查找:
+        int index = str.indexOf(":");
+        QString sn = str.mid(0, index).replace(" ", "");
+        QStringList a = str.mid(index + 1).split(" ", QString::SkipEmptyParts);
+        if (a.length() == 2) {
+            QString type = a[0];
+            QString name = a[1];
+            qDebug() << "sn = " << sn << " type = " << type << " name = << name";
+        } else if (a.length() == 3) {
+            if (a[0] == "optional") {
+                qDebug() << "选传";
+            } else if (a[0] == "required") {
+                qDebug() << "提示";
+            }
+            QString type = a[1];
+            QString name = a[2];
+            qDebug() << "sn = " << sn << " type = " << type << " name = " << name;
+            paramsStructMap_.insert(sn, {type, name, a[0]});
+        }
+    }
+    return paramsStructMap_;
 }
-
 
 void thriftwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
@@ -2185,6 +2288,8 @@ void thriftwidget::on_toolButton_inportFile_clicked()
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
             QString fileContent = in.readAll();
+            QString fileContent2;
+            QString fileContent3;
             qDebug() << "File content:" << fileContent;
             file.close();
 
@@ -2192,15 +2297,22 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             int index = fileContent.contains("service");
             if (index) {
                 int index2 = fileContent.indexOf("service");
-                fileContent = fileContent.mid(index2);
+
+                
+                fileContent2 = fileContent.mid(index2);
                 
 
-                int index3 = fileContent.indexOf("{");
-                fileContent = fileContent.mid(index3 + 1);
-                int index4 = fileContent.indexOf("}");
-                fileContent = fileContent.mid(0, index4);
+                int index3 = fileContent2.indexOf("{");
+                fileContent2 = fileContent2.mid(index3 + 1);
+                int index4 = fileContent2.indexOf("}");
+
+                fileContent2 = fileContent2.mid(0, index4);
+
+                //获取结构体部分
+                fileContent3 = fileContent.mid(0, index2); //获取结构体部分 其实这就可以 暂时不考虑service后面还有struct
+
                 //fileContent.replace(" ","");
-                QStringList list = fileContent.split("\n", QString::SkipEmptyParts);
+                QStringList list = fileContent2.split("\n", QString::SkipEmptyParts);
 
                 //开始循环解析接口部分
                 for (int i = 0; i < list.length(); i++) {
@@ -2239,6 +2351,28 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 
             }
 
+            //查找struct
+            //找struct关键字
+            //找{}确定一个，再找下一个。直到没有
+            while(true) {
+                if (fileContent3.contains("struct")) {
+                    //获取结构体名
+                    int index_ = fileContent3.indexOf("struct");
+                    int index = fileContent3.indexOf("{");
+
+                    QString structName = fileContent3.mid(index_ + 7, index - index_ - 7 - 1);
+
+                    int index2 = fileContent3.indexOf("}");
+                    QString data = fileContent3.mid(index + 1, index2 - index - 1);
+                    fileContent3 = fileContent3.mid(index2 + 1);
+                    //data.replace("\n"," ");
+                    qDebug() << "获取的struct name = " << structName << " data = " << data;
+                    structParamMap.insert(structName, getStructParams(data));
+                } else {
+                    break; 
+                }
+            }
+
         } else {
             qDebug() << "Failed to open file:" << file.errorString();
         }
@@ -2248,14 +2382,24 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
     ui->lineEdit_funcName->setText(current->text());
-    
+    ui->treeWidget->clear();
+    //循环获取参数
     for(int i =1; i <= funcParamMap.value(current->text()).size(); i++) {
         //QMap<QString, paramInfo>
         qDebug() << " sn = " << i
                 << " paramType = " << funcParamMap.value(current->text()).value(QString::number(i)).paramType
                 << " paramName" << funcParamMap.value(current->text()).value(QString::number(i)).paramName;
+        
+
+        ItemWidget* items = new ItemWidget(ui->treeWidget);
+        items->setParamValue(QString::number(i),
+            funcParamMap.value(current->text()).value(QString::number(i)).paramName,
+            funcParamMap.value(current->text()).value(QString::number(i)).paramType);
+        connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), this, SLOT(rece_deleteItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), this, SLOT(rece_addItem(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), this, SLOT(rece_addColumn(QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
+        connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), this, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
+
     }
-//    qDebug() << " sn = " << funcParamMap.value(current->text())
-//            << " paramType = " << funcParamMap.value(current->text()).paramType
-//            << " paramName" << funcParamMap.value(current->text()).paramName;
 }

@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
-    <height>270</height>
+    <width>450</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>370</width>
-    <height>270</height>
+    <width>450</width>
+    <height>350</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>370</width>
-    <height>270</height>
+    <width>450</width>
+    <height>350</height>
    </size>
   </property>
   <property name="font">
@@ -42,16 +42,16 @@ background-color: rgb(30, 45, 54);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
-    <number>30</number>
+    <number>20</number>
    </property>
    <property name="topMargin">
-    <number>9</number>
+    <number>5</number>
    </property>
    <property name="rightMargin">
-    <number>30</number>
+    <number>20</number>
    </property>
    <property name="bottomMargin">
-    <number>9</number>
+    <number>5</number>
    </property>
    <item>
     <widget class="QTextEdit" name="textEdit">
@@ -133,8 +133,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt;&quot;&gt;联系我：2506897252@qq.com&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt;&quot;&gt;项目地址：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;&quot;&gt;https://github.com/HuaGouFdog/Fdog-Kit&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt;&quot;&gt;项目源码地址：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#0055ff;&quot;&gt;https://github.com/HuaGouFdog/Fdog-Kit&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;工具下载：&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit/releases&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0055ff;&quot;&gt;https://github.com/HuaGouFdog/Fdog-Kit/releases&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;感谢您的使用！😊😊😊&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>

@@ -306,17 +306,8 @@ QTabBar QToolButton:hover {
 }</string>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
-        <widget class="QWidget" name="tab">
-         <attribute name="icon">
-          <iconset resource="lib.qrc">
-           <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
-         </attribute>
-         <attribute name="title">
-          <string>历史记录</string>
-         </attribute>
-        </widget>
         <widget class="QWidget" name="tab_2">
          <attribute name="icon">
           <iconset resource="lib.qrc">
@@ -371,7 +362,7 @@ QTabBar QToolButton:hover {
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	padding-left:26px;
+	padding-left:65px;
 	
 	background-color: rgb(20, 20, 20);
 	border-radius: 5px;
@@ -387,7 +378,7 @@ QToolButton:hover {
 }</string>
             </property>
             <property name="text">
-             <string>导入thrift文件</string>
+             <string>导入thrift</string>
             </property>
             <property name="icon">
              <iconset resource="lib.qrc">
@@ -427,6 +418,15 @@ QListWidget::item {
            </widget>
           </item>
          </layout>
+        </widget>
+        <widget class="QWidget" name="tab">
+         <attribute name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string>历史记录</string>
+         </attribute>
         </widget>
        </widget>
       </item>
@@ -2339,7 +2339,7 @@ QTreeWidget#treeWidget {
 }
 QTreeWidget::item {
 
-	height: 28px;
+	height: 30px;
 	color: rgb(255, 255, 255);
 	outline: 0px;
 	border-bottom: 1px solid rgba(197, 197, 197, 50);
@@ -2659,6 +2659,22 @@ QToolButton {
                       </property>
                       <property name="checked">
                        <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>40</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">image: url(:/lib/mast2.png);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
                       </property>
                      </widget>
                     </item>

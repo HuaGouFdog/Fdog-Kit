@@ -69,10 +69,18 @@ struct paramInfo {
     QString paramName; //参数名
 };
 
+struct structInfo {
+    QString paramType;  //参数类型
+    QString paramName;  //参数名
+    QString typeSign;   //描述符 1 opt-in, req-out 默认 1 required 2 optional
+};
+
 //QMap<QString, paramInfo> paramsMap;
 
 static QMap<QString, QMap<QString, paramInfo>> funcParamMap;
 
+//第一个参数是结构体名，map里面string是序号
+static QMap<QString, QMap<QString, structInfo>> structParamMap;
 
 namespace Ui {
 class thriftwidget;
@@ -141,6 +149,7 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
       QComboBox* comboBoxKey;     //key
       QComboBox* comboBoxValue;   //value
 
+      
       QLineEdit* lineEditParamSN;       //参数序号
       QLineEdit* lineEditParamName;       //参数名
       QLineEdit* lineEditParamValue;      //参数值
@@ -154,7 +163,7 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
       QLabel * keyLabel;    //key元素
       QLabel * valueLabel;  //value元素
       QLabel * classLabel;  //类元素
-
+      QLabel * mastLabel;   //必选标记
 
       QHBoxLayout* layoutParamSN;
       QWidget* widgetParamSN;
@@ -171,6 +180,11 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
       
 
       void copyItem(thriftwidget * p, ItemWidget * item_p, ItemWidget * item_);
+
+      void setParamSN(QString str);
+      void setParamName(QString str);
+      void setParamType(QString str);
+      void setParamValue(QString sn, QString name, QString type);
 
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);
@@ -349,19 +363,9 @@ public:
     //获取入参
     QMap<QString, paramInfo> getFuncParams(QString data);
 
-    //
-
-
-    //
-    //void objectSerialize();
-
-    //处理
-    //void serialize();
-
-    //解析数据
-    void parseData();
-
-    //QVector<ItemWidget*> ItemWidgetList;
+    //获取结构体信息
+    QMap<QString, structInfo> getStructParams(QString data);
+    
 
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);

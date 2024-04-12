@@ -3432,6 +3432,12 @@ border-radius: 10px;</string>
                                  <height>30</height>
                                 </size>
                                </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
                                <property name="font">
                                 <font>
                                  <family>OPPOSans B</family>
@@ -3480,18 +3486,12 @@ QToolButton:hover {
                               </widget>
                              </item>
                              <item>
-                              <widget class="QToolButton" name="widget_welcome_body_widget2_newCreate_newTool">
+                              <widget class="QToolButton" name="toolButton_thrift_tool">
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                                  <horstretch>50</horstretch>
                                  <verstretch>50</verstretch>
                                 </sizepolicy>
-                               </property>
-                               <property name="minimumSize">
-                                <size>
-                                 <width>0</width>
-                                 <height>30</height>
-                                </size>
                                </property>
                                <property name="font">
                                 <font>
@@ -3522,11 +3522,11 @@ QToolButton:hover {
 }</string>
                                </property>
                                <property name="text">
-                                <string>工具集</string>
+                                <string>Thrift接口测试工具</string>
                                </property>
                                <property name="icon">
                                 <iconset resource="lib.qrc">
-                                 <normaloff>:/lib/tool2.png</normaloff>:/lib/tool2.png</iconset>
+                                 <normaloff>:/lib/Thrift5.png</normaloff>:/lib/Thrift5.png</iconset>
                                </property>
                                <property name="iconSize">
                                 <size>
@@ -3540,18 +3540,12 @@ QToolButton:hover {
                               </widget>
                              </item>
                              <item>
-                              <widget class="QToolButton" name="widget_welcome_body_widget2_newCreate_setting">
+                              <widget class="QToolButton" name="toolButton_zk_tool">
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                                  <horstretch>50</horstretch>
                                  <verstretch>50</verstretch>
                                 </sizepolicy>
-                               </property>
-                               <property name="minimumSize">
-                                <size>
-                                 <width>0</width>
-                                 <height>30</height>
-                                </size>
                                </property>
                                <property name="font">
                                 <font>
@@ -3559,6 +3553,9 @@ QToolButton:hover {
                                  <pointsize>10</pointsize>
                                  <stylestrategy>PreferAntialias</stylestrategy>
                                 </font>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">QToolButton {
@@ -3579,16 +3576,16 @@ QToolButton:hover {
 }</string>
                                </property>
                                <property name="text">
-                                <string>设置</string>
+                                <string>zk可视化连接</string>
                                </property>
                                <property name="icon">
                                 <iconset resource="lib.qrc">
-                                 <normaloff>:/lib/setiing2.png</normaloff>:/lib/setiing2.png</iconset>
+                                 <normaloff>:/lib/Zookeeper2.png</normaloff>:/lib/Zookeeper2.png</iconset>
                                </property>
                                <property name="iconSize">
                                 <size>
-                                 <width>20</width>
-                                 <height>20</height>
+                                 <width>18</width>
+                                 <height>18</height>
                                 </size>
                                </property>
                                <property name="toolButtonStyle">
@@ -3668,7 +3665,7 @@ padding-right:3px;</string>
                                <property name="minimumSize">
                                 <size>
                                  <width>260</width>
-                                 <height>0</height>
+                                 <height>80</height>
                                 </size>
                                </property>
                                <property name="maximumSize">
@@ -3687,12 +3684,18 @@ color: rgb(217, 236, 237);</string>
                                  <number>8</number>
                                 </property>
                                 <item>
-                                 <widget class="QToolButton" name="toolButton_thrift_tool">
+                                 <widget class="QToolButton" name="widget_welcome_body_widget2_newCreate_setting">
                                   <property name="sizePolicy">
                                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                                     <horstretch>50</horstretch>
                                     <verstretch>50</verstretch>
                                    </sizepolicy>
+                                  </property>
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>0</width>
+                                    <height>30</height>
+                                   </size>
                                   </property>
                                   <property name="font">
                                    <font>
@@ -3700,9 +3703,6 @@ color: rgb(217, 236, 237);</string>
                                     <pointsize>10</pointsize>
                                     <stylestrategy>PreferAntialias</stylestrategy>
                                    </font>
-                                  </property>
-                                  <property name="layoutDirection">
-                                   <enum>Qt::LeftToRight</enum>
                                   </property>
                                   <property name="styleSheet">
                                    <string notr="true">QToolButton {
@@ -3723,11 +3723,11 @@ QToolButton:hover {
 }</string>
                                   </property>
                                   <property name="text">
-                                   <string>Thrift接口测试工具</string>
+                                   <string>设置</string>
                                   </property>
                                   <property name="icon">
                                    <iconset resource="lib.qrc">
-                                    <normaloff>:/lib/Thrift5.png</normaloff>:/lib/Thrift5.png</iconset>
+                                    <normaloff>:/lib/setiing2.png</normaloff>:/lib/setiing2.png</iconset>
                                   </property>
                                   <property name="iconSize">
                                    <size>
@@ -3741,12 +3741,18 @@ QToolButton:hover {
                                  </widget>
                                 </item>
                                 <item>
-                                 <widget class="QToolButton" name="toolButton_zk_tool">
+                                 <widget class="QToolButton" name="widget_welcome_body_widget2_newCreate_newTool">
                                   <property name="sizePolicy">
                                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                                     <horstretch>50</horstretch>
                                     <verstretch>50</verstretch>
                                    </sizepolicy>
+                                  </property>
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>0</width>
+                                    <height>30</height>
+                                   </size>
                                   </property>
                                   <property name="font">
                                    <font>
@@ -3777,16 +3783,16 @@ QToolButton:hover {
 }</string>
                                   </property>
                                   <property name="text">
-                                   <string>zk可视化连接</string>
+                                   <string>工具集</string>
                                   </property>
                                   <property name="icon">
                                    <iconset resource="lib.qrc">
-                                    <normaloff>:/lib/Zookeeper2.png</normaloff>:/lib/Zookeeper2.png</iconset>
+                                    <normaloff>:/lib/tool2.png</normaloff>:/lib/tool2.png</iconset>
                                   </property>
                                   <property name="iconSize">
                                    <size>
-                                    <width>18</width>
-                                    <height>18</height>
+                                    <width>20</width>
+                                    <height>20</height>
                                    </size>
                                   </property>
                                   <property name="toolButtonStyle">

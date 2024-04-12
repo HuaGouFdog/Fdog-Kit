@@ -30,9 +30,9 @@ public:
     {
         if (aboutwidget->objectName().isEmpty())
             aboutwidget->setObjectName(QStringLiteral("aboutwidget"));
-        aboutwidget->resize(370, 270);
-        aboutwidget->setMinimumSize(QSize(370, 270));
-        aboutwidget->setMaximumSize(QSize(370, 270));
+        aboutwidget->resize(450, 350);
+        aboutwidget->setMinimumSize(QSize(450, 350));
+        aboutwidget->setMaximumSize(QSize(450, 350));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -45,7 +45,7 @@ public:
 "background-color: rgb(30, 45, 54);"));
         verticalLayout = new QVBoxLayout(aboutwidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(30, 9, 30, 9);
+        verticalLayout->setContentsMargins(20, 5, 20, 5);
         textEdit = new QTextEdit(aboutwidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
@@ -134,9 +134,13 @@ public:
                         "graph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\350\201\224\347\263\273\346\210\221\357\274\2322506897252@qq.com</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\351\241\271\347\233\256\345\234\260\345\235\200\357\274\232</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
-                        "<a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;\">https://github.com/HuaGouFdog/Fdog-Kit</span></a></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\351\241\271\347\233\256\346\272\220\347\240\201\345\234\260\345\235\200\357\274\232</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
+                        "t:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#0055ff;\">https://github.com/HuaGouFdog/Fdog-Kit</span></a></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;\">\345\267\245\345\205\267\344\270\213\350\275\275\357\274\232</span></a></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit/releases\"><span sty"
+                        "le=\" text-decoration: underline; color:#0055ff;\">https://github.com/HuaGouFdog/Fdog-Kit/releases</span></a></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;\">\346\204\237\350\260\242\346\202\250\347\232\204\344\275\277\347\224\250\357\274\201\360\237\230\212\360\237\230\212\360\237\230\212</span></a></p></body></html>", nullptr));
     } // retranslateUi

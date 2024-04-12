@@ -42,11 +42,11 @@ public:
     QVBoxLayout *verticalLayout_3;
     QLineEdit *lineEdit_find;
     QTabWidget *tabWidget;
-    QWidget *tab;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
     QToolButton *toolButton_inportFile;
     QListWidget *listWidget;
+    QWidget *tab;
     QWidget *widget_right;
     QVBoxLayout *verticalLayout;
     QWidget *widget_6;
@@ -127,6 +127,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QToolButton *toolButton_response;
     QCheckBox *checkBox_show_source;
+    QLabel *label_4;
     QToolButton *toolButton_show_thrift_info;
     QSpacerItem *horizontalSpacer_5;
     QStackedWidget *stackedWidget;
@@ -390,11 +391,6 @@ public:
 "QTabBar QToolButton:hover {\n"
 "	background-color: #161a1e; \n"
 "}"));
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/history2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab, icon, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
         verticalLayout_12 = new QVBoxLayout(tab_2);
@@ -413,7 +409,7 @@ public:
         toolButton_inportFile->setFont(font);
         toolButton_inportFile->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	padding-left:26px;\n"
+"	padding-left:65px;\n"
 "	\n"
 "	background-color: rgb(20, 20, 20);\n"
 "	border-radius: 5px;\n"
@@ -427,9 +423,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(20, 20, 20);\n"
 "}"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/inport.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_inportFile->setIcon(icon1);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/inport.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_inportFile->setIcon(icon);
         toolButton_inportFile->setIconSize(QSize(13, 13));
         toolButton_inportFile->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -450,9 +446,14 @@ public:
 
         verticalLayout_12->addWidget(listWidget);
 
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(tab_2, icon1, QString());
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab_2, icon2, QString());
+        icon2.addFile(QStringLiteral(":/lib/history2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(tab, icon2, QString());
 
         verticalLayout_5->addWidget(tabWidget);
 
@@ -1369,7 +1370,7 @@ public:
 "}\n"
 "QTreeWidget::item {\n"
 "\n"
-"	height: 28px;\n"
+"	height: 30px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	outline: 0px;\n"
 "	border-bottom: 1px solid rgba(197, 197, 197, 50);\n"
@@ -1530,6 +1531,13 @@ public:
         checkBox_show_source->setChecked(true);
 
         horizontalLayout_5->addWidget(checkBox_show_source);
+
+        label_4 = new QLabel(widget_8);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setMinimumSize(QSize(40, 0));
+        label_4->setStyleSheet(QStringLiteral("image: url(:/lib/mast2.png);"));
+
+        horizontalLayout_5->addWidget(label_4);
 
         toolButton_show_thrift_info = new QToolButton(widget_8);
         toolButton_show_thrift_info->setObjectName(QStringLiteral("toolButton_show_thrift_info"));
@@ -1888,7 +1896,7 @@ public:
 
         retranslateUi(thriftwidget);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
         tabWidget_response->setCurrentIndex(1);
@@ -1901,9 +1909,9 @@ public:
     {
         thriftwidget->setWindowTitle(QApplication::translate("thriftwidget", "Form", nullptr));
         lineEdit_find->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
-        toolButton_inportFile->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
+        toolButton_inportFile->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
         label_14->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\347\261\273\345\236\213", nullptr));
         comboBox_testType->setItemText(0, QApplication::translate("thriftwidget", "\345\237\272\347\241\200\346\265\213\350\257\225", nullptr));
         comboBox_testType->setItemText(1, QApplication::translate("thriftwidget", "\346\200\247\350\203\275\346\265\213\350\257\225", nullptr));
@@ -1956,6 +1964,7 @@ public:
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\272\217\345\217\267", nullptr));
         toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+        label_4->setText(QString());
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

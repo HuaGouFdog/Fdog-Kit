@@ -130,5 +130,10 @@
         <file>lib/Thrift3.png</file>
         <file>lib/Thrift5.png</file>
         <file>lib/api.png</file>
+        <file>lib/mast.png</file>
+        <file>lib/mast2.png</file>
+        <file>lib/push.png</file>
+        <file>lib/gouxuan.png</file>
+        <file>lib/gouxuan2.png</file>
     </qresource>
 </RCC>
