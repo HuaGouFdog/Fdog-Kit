@@ -67,6 +67,7 @@ static QSet<QString> containerType = {"map", "set", "list"};
 struct paramInfo {
     QString paramType; //参数类型
     QString paramName; //参数名
+    QString typeSign;   //描述符 1 opt-in, req-out 默认 1 required 2 optional  这个是必opt-in, req-out
 };
 
 struct structInfo {
@@ -184,7 +185,8 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
       void setParamSN(QString str);
       void setParamName(QString str);
       void setParamType(QString str);
-      void setParamValue(thriftwidget * p, QString sn, QString name, QString type);
+      void setParamValue(thriftwidget * p, QString sn, QString name, QString type, QString typeSign);
+
 
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);

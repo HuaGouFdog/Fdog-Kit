@@ -420,8 +420,22 @@ void ItemWidget::setParamType(QString str)
     lineEditParamValue->setText(str);
 }
 
-void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QString type)
+void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QString type, QString typeSign)
 {
+    //判断typeSign
+    qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
+    if (typeSign == "opt-in, req-out") {
+        //必选
+        mastLabel->show();
+        checkBox->hide();
+        checkBox->setChecked(true);
+    } else if (typeSign == "optional") {
+        //可选
+        mastLabel->hide();
+        checkBox->show();
+        checkBox->setChecked(true);
+    }
+
     lineEditParamSN->setText(sn);
     lineEditParamName->setText(name);
     if (baseType.contains(type)) {
@@ -452,7 +466,6 @@ void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QStri
         valueLabel->hide();
         classLabel->show();
 
-        checkBox->setChecked(true);
         setExpanded(true);
         lineEditParamValue->setReadOnly(true);
         lineEditParamValue->setPlaceholderText("");
@@ -467,7 +480,8 @@ void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QStri
             ItemWidget* items = thriftwidget::createAndGetNode(p, this);
             items->setParamValue(p, QString::number(i),
                 structParamMap.value(type)[QString::number(i)].paramName,
-                structParamMap.value(type)[QString::number(i)].paramType);
+                structParamMap.value(type)[QString::number(i)].paramType,
+                structParamMap.value(type)[QString::number(i)].typeSign);
         }
         
     }
@@ -505,7 +519,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //ui->treeWidget->header()->resizeSection(1, 150);
     // 创建一个树节点
     ItemWidget* item = createAndGetNode(this, ui->treeWidget);
-
+    //隐藏必选字段
+    item->mastLabel->hide();
     //获取当前节点的位置索引，显示序号
     int index = ui->treeWidget->indexOfTopLevelItem(item);
     if (index != -1) {
@@ -1769,7 +1784,7 @@ QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
             QString sn = Params[0].mid(0, index);
             QString paramType = Params[1];
             QString paramName = Params[2];
-            paramsMap_.insert(sn, {paramType, paramName});
+            paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
             qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
         } else {
             qDebug() << "错误";
@@ -1792,17 +1807,18 @@ QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
         QString sn = str.mid(0, index).replace(" ", "");
         QStringList a = str.mid(index + 1).split(" ", QString::SkipEmptyParts);
         if (a.length() == 2) {
-            QString type = a[0];
-            QString name = a[1];
-            qDebug() << "sn = " << sn << " type = " << type << " name = << name";
+            QString type = a[0].replace(";", "");
+            QString name = a[1].replace(";", "");
+            qDebug() << "sn = " << sn << " type = " << type << " name =" << name;
+            paramsStructMap_.insert(sn, {type, name, "opt-in, req-out"});
         } else if (a.length() == 3) {
             if (a[0] == "optional") {
                 qDebug() << "选传";
             } else if (a[0] == "required") {
                 qDebug() << "提示";
             }
-            QString type = a[1].replace(";", "");;
-            QString name = a[2].replace(";", "");;
+            QString type = a[1].replace(";", "");
+            QString name = a[2].replace(";", "");
             qDebug() << "sn = " << sn << " type = " << type << " name = " << name;
             paramsStructMap_.insert(sn, {type, name, a[0]});
         }
@@ -2374,7 +2390,8 @@ void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QL
         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
         items->setParamValue(this, QString::number(i),
             funcParamMap.value(current->text()).value(QString::number(i)).paramName,
-            funcParamMap.value(current->text()).value(QString::number(i)).paramType);
+            funcParamMap.value(current->text()).value(QString::number(i)).paramType,
+            funcParamMap.value(current->text()).value(QString::number(i)).typeSign);
 
     }
 }
