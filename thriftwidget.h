@@ -53,6 +53,9 @@
 
 static QMap<QString, QString> mapReqType = {{"CALL", THRIFT_CALL}, {"ONEWAY", THRIFT_ONEWAY}};
 
+static QMap<QString, QString> ExceptionType = {{"1", "Unknown Method"}};
+
+
 static QMap<QString, int> mapType = {{"bool", THRIFT_BOOL_TYPE}, {"byte", THRIFT_BYTE_TYPE}, {"i16", THRIFT_I16_TYPE}, {"i32", THRIFT_I32_TYPE},
                 {"i64", THRIFT_I64_TYPE}, {"double", THRIFT_DOUBLE_TYPE}, {"string", THRIFT_STRING_TYPE}, {"struct", THRIFT_STRUCT_TYPE}, 
                 {"map", THRIFT_MAP_TYPE}, {"set", THRIFT_SET_TYPE}, {"list", THRIFT_LIST_TYPE}};
@@ -336,11 +339,11 @@ public:
 
     QString handleI16(QString &str);
 
-    QString handleI32(QString &str);
+    QString handleI32(QString &str, QString resType = THRIFT_REPLY);
 
     QString handleI64(QString &str);
 
-    QString handleString(QString &str);
+    QString handleString(QString &str, QString resType = THRIFT_REPLY);
 
     QString handleStruct(QString &str);
 
