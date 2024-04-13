@@ -135,5 +135,10 @@
         <file>lib/push.png</file>
         <file>lib/gouxuan.png</file>
         <file>lib/gouxuan2.png</file>
+        <file>lib/redres.png</file>
+        <file>lib/blueres.png</file>
+        <file>lib/purpleres.png</file>
+        <file>lib/addM.png</file>
+        <file>lib/addM2.png</file>
     </qresource>
 </RCC>

@@ -2200,13 +2200,13 @@ QToolButton:hover {
                       <widget class="QToolButton" name="toolButton_request_param">
                        <property name="minimumSize">
                         <size>
-                         <width>70</width>
+                         <width>50</width>
                          <height>25</height>
                         </size>
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>70</width>
+                         <width>50</width>
                          <height>25</height>
                         </size>
                        </property>
@@ -2221,10 +2221,6 @@ QToolButton:hover {
                        </property>
                        <property name="text">
                         <string>入参</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="lib.qrc">
-                         <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
@@ -2599,13 +2595,13 @@ border-radius: 2px;
                      <widget class="QToolButton" name="toolButton_response">
                       <property name="minimumSize">
                        <size>
-                        <width>70</width>
+                        <width>50</width>
                         <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>70</width>
+                        <width>50</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2620,10 +2616,6 @@ QToolButton {
                       </property>
                       <property name="text">
                        <string>请求</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="lib.qrc">
-                        <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
                       </property>
                       <property name="iconSize">
                        <size>
@@ -2659,22 +2651,6 @@ QToolButton {
                       </property>
                       <property name="checked">
                        <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>40</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">image: url(:/lib/mast2.png);</string>
-                      </property>
-                      <property name="text">
-                       <string/>
                       </property>
                      </widget>
                     </item>

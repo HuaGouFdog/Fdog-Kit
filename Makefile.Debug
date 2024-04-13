@@ -71,11 +71,7 @@ SOURCES       = main.cpp \
 		config.cpp \
 		thriftwidget.cpp \
 		zookeepertipswidget.cpp \
-		zookeepermanagewidget.cpp debug\qrc_lib.cpp \
-		debug\qrc_conf.cpp \
-		debug\qrc_fonts.cpp \
-		debug\qrc_qss.cpp \
-		debug\moc_mainwindow.cpp \
+		zookeepermanagewidget.cpp debug\moc_mainwindow.cpp \
 		debug\moc_zookeeperwidget.cpp \
 		debug\moc_createconnect.cpp \
 		debug\moc_zookeeperhandle.cpp \
@@ -101,7 +97,11 @@ SOURCES       = main.cpp \
 		debug\moc_thriftwidget.cpp \
 		debug\moc_zookeepertipswidget.cpp \
 		debug\moc_zookeepermanagewidget.cpp
-OBJECTS       = debug\main.obj \
+OBJECTS       = debug\qrc_lib.obj \
+		debug\qrc_conf.obj \
+		debug\qrc_fonts.obj \
+		debug\qrc_qss.obj \
+		debug\main.obj \
 		debug\mainwindow.obj \
 		debug\zookeeperwidget.obj \
 		debug\createconnect.obj \
@@ -128,10 +128,6 @@ OBJECTS       = debug\main.obj \
 		debug\thriftwidget.obj \
 		debug\zookeepertipswidget.obj \
 		debug\zookeepermanagewidget.obj \
-		debug\qrc_lib.obj \
-		debug\qrc_conf.obj \
-		debug\qrc_fonts.obj \
-		debug\qrc_qss.obj \
 		debug\moc_mainwindow.obj \
 		debug\moc_zookeeperwidget.obj \
 		debug\moc_createconnect.obj \
@@ -267,7 +263,7 @@ all: Makefile.Debug  $(DESTDIR_TARGET)
 
 $(DESTDIR_TARGET): ui_mainwindow.h ui_zookeeperwidget.h ui_createconnect.h ui_sshwidget.h ui_toolswidget.h ui_settingwidget.h ui_secretkeywidget.h ui_smalltoolwidget.h ui_historyconnectwidget.h ui_keywidget.h ui_colormatch.h ui_findwidget.h ui_aboutwidget.h ui_downloadwidget.h ui_mkdirfolderwidget.h ui_addcommondwidget.h ui_historycommondwidget.h ui_thriftwidget.h ui_zookeepertipswidget.h ui_zookeepermanagewidget.h $(OBJECTS) debug\FdogShell_resource.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\zookeepermanagewidget.obj debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_fonts.obj debug\qrc_qss.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj
+debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_fonts.obj debug\qrc_qss.obj debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\zookeepermanagewidget.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj
 debug\moc_secretkeywidget.obj debug\moc_smalltoolwidget.obj debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj debug\moc_zookeepermanagewidget.obj
 $(LIBS)
 <<
@@ -284,7 +280,7 @@ dist:
 	$(ZIP) FdogShell.zip $(SOURCES) $(DIST) FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\angle.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\windows-vulkan.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\msvc-desktop.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\qconfig.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_charts.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_core.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designer.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gui.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_help.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_location.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_network.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quick.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_repparser.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_script.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sql.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_svg.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webview.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xml.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt_functions.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt_config.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\common\msvc-version.conf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\toolchain.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\default_pre.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resolve_config.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds_post.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_post.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\build_pass.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\precompile_header.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\warn_on.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resources.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\moc.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testlib_defines.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\opengl.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\uic.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qmake_use.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\file_copies.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\windows.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testcase_targets.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exceptions.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\yacc.prf ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\lex.prf FdogShell.pro lib.qrc conf.qrc fonts.qrc qss.qrc ..\..\Qt5.12\5.10.0\msvc2015_64\lib\qtmaind.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgetsd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Guid.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Testd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Networkd.prl ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Cored.prl   lib.qrc conf.qrc fonts.qrc qss.qrc ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\data\dummy.cpp mainwindow.h zookeeperwidget.h createconnect.h zookeeperhandle.h sshwidget.h sshhandle.h datahandle.h toolswidget.h toolshandle.h settingwidget.h secretkeywidget.h smalltoolwidget.h historyconnectwidget.h keywidget.h utils.h colormatch.h findwidget.h aboutwidget.h downloadwidget.h mkdirfolderwidget.h addcommondwidget.h historycommondwidget.h config.h thriftwidget.h zookeepertipswidget.h zookeepermanagewidget.h  main.cpp mainwindow.cpp zookeeperwidget.cpp createconnect.cpp zookeeperhandle.cpp sshwidget.cpp sshhandle.cpp datahandle.cpp toolswidget.cpp toolshandle.cpp settingwidget.cpp secretkeywidget.cpp smalltoolwidget.cpp historyconnectwidget.cpp keywidget.cpp utils.cpp colormatch.cpp findwidget.cpp aboutwidget.cpp downloadwidget.cpp mkdirfolderwidget.cpp addcommondwidget.cpp historycommondwidget.cpp config.cpp thriftwidget.cpp zookeepertipswidget.cpp zookeepermanagewidget.cpp mainwindow.ui zookeeperwidget.ui createconnect.ui sshwidget.ui toolswidget.ui settingwidget.ui secretkeywidget.ui smalltoolwidget.ui historyconnectwidget.ui keywidget.ui colormatch.ui findwidget.ui aboutwidget.ui downloadwidget.ui mkdirfolderwidget.ui addcommondwidget.ui historycommondwidget.ui thriftwidget.ui zookeepertipswidget.ui zookeepermanagewidget.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\zookeepermanagewidget.obj debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_fonts.obj debug\qrc_qss.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj debug\moc_secretkeywidget.obj debug\moc_smalltoolwidget.obj debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj debug\moc_zookeepermanagewidget.obj
+	-$(DEL_FILE) debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_fonts.obj debug\qrc_qss.obj debug\main.obj debug\mainwindow.obj debug\zookeeperwidget.obj debug\createconnect.obj debug\zookeeperhandle.obj debug\sshwidget.obj debug\sshhandle.obj debug\datahandle.obj debug\toolswidget.obj debug\toolshandle.obj debug\settingwidget.obj debug\secretkeywidget.obj debug\smalltoolwidget.obj debug\historyconnectwidget.obj debug\keywidget.obj debug\utils.obj debug\colormatch.obj debug\findwidget.obj debug\aboutwidget.obj debug\downloadwidget.obj debug\mkdirfolderwidget.obj debug\addcommondwidget.obj debug\historycommondwidget.obj debug\config.obj debug\thriftwidget.obj debug\zookeepertipswidget.obj debug\zookeepermanagewidget.obj debug\moc_mainwindow.obj debug\moc_zookeeperwidget.obj debug\moc_createconnect.obj debug\moc_zookeeperhandle.obj debug\moc_sshwidget.obj debug\moc_sshhandle.obj debug\moc_datahandle.obj debug\moc_toolswidget.obj debug\moc_toolshandle.obj debug\moc_settingwidget.obj debug\moc_secretkeywidget.obj debug\moc_smalltoolwidget.obj debug\moc_historyconnectwidget.obj debug\moc_keywidget.obj debug\moc_utils.obj debug\moc_colormatch.obj debug\moc_findwidget.obj debug\moc_aboutwidget.obj debug\moc_downloadwidget.obj debug\moc_mkdirfolderwidget.obj debug\moc_addcommondwidget.obj debug\moc_historycommondwidget.obj debug\moc_config.obj debug\moc_thriftwidget.obj debug\moc_zookeepertipswidget.obj debug\moc_zookeepermanagewidget.obj
 	-$(DEL_FILE) debug\FdogShell.exp debug\FdogShell.vc.pdb debug\FdogShell.ilk debug\FdogShell.idb
 	-$(DEL_FILE) debug\FdogShell_resource.res
 
@@ -303,150 +299,173 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all: debug\qrc_lib.cpp debug\qrc_conf.cpp debug\qrc_fonts.cpp debug\qrc_qss.cpp
+compiler_rcc_make_all: debug\qrc_lib.obj debug\qrc_conf.obj debug\qrc_fonts.obj debug\qrc_qss.obj
 compiler_rcc_clean:
-	-$(DEL_FILE) debug\qrc_lib.cpp debug\qrc_conf.cpp debug\qrc_fonts.cpp debug\qrc_qss.cpp
-debug\qrc_lib.cpp: lib.qrc \
+	-$(DEL_FILE) debug\qrc_lib.cpp debug\qrc_lib.tmp.obj debug\qrc_conf.cpp debug\qrc_conf.tmp.obj debug\qrc_fonts.cpp debug\qrc_fonts.tmp.obj debug\qrc_qss.cpp debug\qrc_qss.tmp.obj
+debug\qrc_lib.obj: lib.qrc \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
-		lib\daxiao.png \
-		lib\tuodong.png \
-		lib\error2.png \
-		lib\icon-minus3.png \
-		lib\inport.png \
-		lib\icon-close8.png \
-		lib\setting4.png \
-		lib\XML-Local-hover.png \
-		lib\ping2.png \
-		lib\t3.png \
-		lib\eye2.png \
-		lib\icon14.png \
-		lib\add2.png \
-		lib\jiazai2.gif \
-		lib\diann2.png \
-		lib\delete2.png \
-		lib\icon8.png \
-		lib\toolBox.png \
-		lib\icon-close42.png \
-		lib\update2.png \
-		lib\node2.png \
-		lib\icon-close3.png \
-		lib\json.png \
-		lib\wenhao.png \
-		lib\line-terminal.png \
-		lib\sh.png \
-		lib\icon_80.png \
-		lib\jiazai6.gif \
-		lib\jiazai10.gif \
-		lib\Fdogicon.ico \
-		lib\icon3.png \
-		lib\icon500.png \
-		lib\wicon_64.png \
-		lib\icon-close7.png \
-		lib\zhankai.png \
-		lib\t2.png \
-		lib\eye1.png \
-		lib\xml.png \
-		lib\peixu.png \
-		lib\start.png \
-		lib\Zookeeper.png \
-		lib\tree_open2.png \
-		lib\add1.png \
-		lib\github.png \
-		lib\zhuti.png \
-		lib\Icon_max4.png \
-		lib\icon7.png \
-		lib\setiing2.png \
-		lib\Kafka.png \
-		lib\powershell.png \
-		lib\zuijin.png \
-		lib\soucuo.png \
-		lib\diann.png \
-		lib\jiazai5.gif \
-		lib\node.png \
-		lib\sanjiao.png \
-		lib\icon2.png \
-		lib\db.png \
-		lib\keyboard.png \
 		lib\icon-close6.png \
-		lib\setting2.png \
-		lib\zhedie.png \
-		lib\icon-shell.png \
-		lib\t1.png \
-		lib\fdog.png \
-		lib\icon-close.png \
-		lib\wicon_46.png \
-		lib\jiazai9.gif \
-		lib\delete.png \
-		lib\Icon_max3.png \
-		lib\icon6.png \
-		lib\Zookeeper2.png \
-		lib\icon_w.png \
-		lib\copy.png \
+		lib\error3.png \
+		lib\add1.png \
+		lib\inport.png \
+		lib\icon3.png \
+		lib\tuodong.png \
+		lib\t4.png \
+		lib\icon-close4.png \
+		lib\zhankai.png \
+		lib\Redis.png \
+		lib\addM.png \
+		lib\t2.png \
+		lib\wenhao.png \
+		lib\jiazai10.gif \
+		lib\addM2.png \
+		lib\diann3.png \
+		lib\eye1.png \
+		lib\keyboard.png \
+		lib\purpleres.png \
+		lib\zuijin.png \
+		lib\setting.png \
+		lib\zookpeer_back.jpg \
 		lib\history2.png \
-		lib\icon48.png \
-		lib\icon01.png \
-		lib\icon-minus.png \
+		lib\jiazai9.gif \
+		lib\tree_open2.png \
+		lib\Icon_max4.png \
+		lib\node3.png \
 		lib\bi.png \
-		lib\jiazai4.gif \
-		lib\post.png \
-		lib\diann4.png \
-		lib\font.png \
+		lib\api.png \
+		lib\Zookeeper2.png \
+		lib\daxiao.png \
+		lib\jiazai7.gif \
+		lib\redres.png \
+		lib\Icon_max2.png \
+		lib\diann.png \
+		lib\fdog.png \
+		lib\jianbian1.png \
+		lib\mast.png \
+		lib\jiazai5.gif \
+		lib\icon-minus.png \
+		lib\test.png \
+		lib\ping2.png \
+		lib\node.png \
+		lib\icon8.png \
+		lib\file2.png \
+		lib\github.png \
+		lib\jiazai3.gif \
+		lib\XML-Local-hover.png \
+		lib\Thrift2.png \
+		lib\icon-close42.png \
+		lib\icon6.png \
+		lib\theme.png \
+		lib\peixu.png \
+		lib\icon-close7.png \
+		lib\sanjiao.png \
+		lib\add2.png \
+		lib\tool2.png \
+		lib\icon-close.png \
+		lib\icon4.png \
+		lib\file.png \
+		lib\push.png \
+		lib\blueres.png \
+		lib\gouxuan.png \
 		lib\up.png \
 		lib\icon-close5.png \
-		lib\test.png \
-		lib\error.png \
-		lib\jiazai.gif \
-		lib\setting.png \
-		lib\tool.png \
-		lib\jianbian1.png \
-		lib\down.png \
-		lib\icon-copy.png \
-		lib\jiazai8.gif \
-		lib\Icon_max2.png \
-		lib\icon5.png \
-		lib\icon32.png \
-		lib\error3.png \
-		lib\file2.png \
-		lib\t4.png \
-		lib\tree_open.png \
-		lib\tree_close.png \
-		lib\add3.png \
-		lib\jiazai3.gif \
-		lib\diann3.png \
-		lib\icon9.png \
-		lib\icon-close4.png \
-		lib\node3.png \
-		lib\connect.png \
-		lib\download.png \
-		lib\Redis.png \
-		lib\file.png \
+		lib\error2.png \
+		lib\copy.png \
+		lib\setting4.png \
 		lib\history.png \
-		lib\icon10.png \
+		lib\update2.png \
+		lib\toolBox.png \
+		lib\icon14.png \
+		lib\Kafka.png \
+		lib\icon2.png \
+		lib\t3.png \
+		lib\Thrift.png \
+		lib\icon32.png \
+		lib\error.png \
+		lib\icon-close3.png \
+		lib\jiazai.gif \
+		lib\setting2.png \
+		lib\zhuti.png \
+		lib\diann4.png \
+		lib\t1.png \
 		lib\peixu2.png \
-		lib\tool2.png \
-		lib\zookpeer_back.jpg \
-		lib\theme.png \
-		lib\jiazai7.gif \
-		lib\icon4.png \
-		lib\icon_test.png
-	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -o debug\qrc_lib.cpp
+		lib\eye2.png \
+		lib\download.png \
+		lib\icon_test.png \
+		lib\zhedie.png \
+		lib\xml.png \
+		lib\icon_w.png \
+		lib\icon01.png \
+		lib\icon10.png \
+		lib\diann2.png \
+		lib\Zookeeper.png \
+		lib\gouxuan2.png \
+		lib\line-terminal.png \
+		lib\icon_80.png \
+		lib\start.png \
+		lib\jiazai8.gif \
+		lib\node2.png \
+		lib\icon-shell.png \
+		lib\delete.png \
+		lib\Icon_max3.png \
+		lib\font.png \
+		lib\soucuo.png \
+		lib\setiing2.png \
+		lib\tree_close.png \
+		lib\Fdogicon.ico \
+		lib\powershell.png \
+		lib\jiazai6.gif \
+		lib\Thrift5.png \
+		lib\post.png \
+		lib\icon9.png \
+		lib\icon-minus3.png \
+		lib\sh.png \
+		lib\icon48.png \
+		lib\connect.png \
+		lib\tool.png \
+		lib\jiazai4.gif \
+		lib\Thrift3.png \
+		lib\down.png \
+		lib\icon500.png \
+		lib\icon7.png \
+		lib\icon-copy.png \
+		lib\wicon_46.png \
+		lib\delete2.png \
+		lib\db.png \
+		lib\tree_open.png \
+		lib\icon-close8.png \
+		lib\wicon_64.png \
+		lib\jiazai2.gif \
+		lib\add3.png \
+		lib\json.png \
+		lib\icon5.png \
+		lib\mast2.png
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -pass 1 -o debug/qrc_lib.cpp 
+	 cl $(CXXFLAGS) -c debug/qrc_lib.cpp -Fodebug/qrc_lib.tmp.obj 
+	 E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -pass 2 -temp debug/qrc_lib.tmp.obj -o debug\qrc_lib.obj
 
-debug\qrc_conf.cpp: conf.qrc \
+debug\qrc_conf.obj: conf.qrc \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
 		conf\settings.json
-	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name conf conf.qrc -o debug\qrc_conf.cpp
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name conf conf.qrc -pass 1 -o debug/qrc_conf.cpp 
+	 cl $(CXXFLAGS) -c debug/qrc_conf.cpp -Fodebug/qrc_conf.tmp.obj 
+	 E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name conf conf.qrc -pass 2 -temp debug/qrc_conf.tmp.obj -o debug\qrc_conf.obj
 
-debug\qrc_fonts.cpp: fonts.qrc \
+debug\qrc_fonts.obj: fonts.qrc \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
 		fonts\OPPOSans-R-2.ttf \
 		fonts\OPPOSans-B-2.ttf
-	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name fonts fonts.qrc -o debug\qrc_fonts.cpp
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name fonts fonts.qrc -pass 1 -o debug/qrc_fonts.cpp 
+	 cl $(CXXFLAGS) -c debug/qrc_fonts.cpp -Fodebug/qrc_fonts.tmp.obj 
+	 E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name fonts fonts.qrc -pass 2 -temp debug/qrc_fonts.tmp.obj -o debug\qrc_fonts.obj
 
-debug\qrc_qss.cpp: qss.qrc \
+debug\qrc_qss.obj: qss.qrc \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
 		qss\mainStyle.qss \
 		qss\menu.qss
-	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name qss qss.qrc -o debug\qrc_qss.cpp
+	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name qss qss.qrc -pass 1 -o debug/qrc_qss.cpp 
+	 cl $(CXXFLAGS) -c debug/qrc_qss.cpp -Fodebug/qrc_qss.tmp.obj 
+	 E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name qss qss.qrc -pass 2 -temp debug/qrc_qss.tmp.obj -o debug\qrc_qss.obj
 
 compiler_moc_predefs_make_all: debug\moc_predefs.h
 compiler_moc_predefs_clean:
@@ -757,6 +776,9 @@ debug\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMai
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		mainwindow.h \
 		debug\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -3542,6 +3564,11 @@ debug\moc_thriftwidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QW
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QKeyEvent \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		thriftwidget.h \
 		debug\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -4211,6 +4238,9 @@ debug\main.obj: main.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication
 
 debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
@@ -4514,6 +4544,9 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		ui_mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QLocale \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
@@ -4563,8 +4596,7 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QDesktopServices \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qdesktopservices.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView
 
 debug\zookeeperwidget.obj: zookeeperwidget.cpp ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDateTime \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
@@ -8308,6 +8340,11 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QKeyEvent \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidgetItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		ui_thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
@@ -8330,6 +8367,7 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
@@ -8349,13 +8387,16 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QtEndian \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qendian.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QElapsedTimer \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qelapsedtimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMenu \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qmenu.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QFileDialog \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qfiledialog.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdir.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h
 
 debug\zookeepertipswidget.obj: zookeepertipswidget.cpp zookeepertipswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -8694,14 +8735,6 @@ debug\zookeepermanagewidget.obj: zookeepermanagewidget.cpp zookeepermanagewidget
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qdesktopservices.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl
-
-debug\qrc_lib.obj: debug\qrc_lib.cpp 
-
-debug\qrc_conf.obj: debug\qrc_conf.cpp 
-
-debug\qrc_fonts.obj: debug\qrc_fonts.cpp 
-
-debug\qrc_qss.obj: debug\qrc_qss.cpp 
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 

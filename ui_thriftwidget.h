@@ -127,7 +127,6 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QToolButton *toolButton_response;
     QCheckBox *checkBox_show_source;
-    QLabel *label_4;
     QToolButton *toolButton_show_thrift_info;
     QSpacerItem *horizontalSpacer_5;
     QStackedWidget *stackedWidget;
@@ -1290,10 +1289,9 @@ public:
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
         toolButton_request_param = new QToolButton(widget_12);
         toolButton_request_param->setObjectName(QStringLiteral("toolButton_request_param"));
-        toolButton_request_param->setMinimumSize(QSize(70, 25));
-        toolButton_request_param->setMaximumSize(QSize(70, 25));
+        toolButton_request_param->setMinimumSize(QSize(50, 25));
+        toolButton_request_param->setMaximumSize(QSize(50, 25));
         toolButton_request_param->setFont(font3);
-        toolButton_request_param->setIcon(icon4);
         toolButton_request_param->setIconSize(QSize(20, 20));
         toolButton_request_param->setCheckable(false);
         toolButton_request_param->setChecked(false);
@@ -1508,8 +1506,8 @@ public:
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         toolButton_response = new QToolButton(widget_8);
         toolButton_response->setObjectName(QStringLiteral("toolButton_response"));
-        toolButton_response->setMinimumSize(QSize(70, 0));
-        toolButton_response->setMaximumSize(QSize(70, 16777215));
+        toolButton_response->setMinimumSize(QSize(50, 0));
+        toolButton_response->setMaximumSize(QSize(50, 16777215));
         toolButton_response->setStyleSheet(QLatin1String("\n"
 "QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
@@ -1517,7 +1515,6 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border-radius: 5px;\n"
 "}"));
-        toolButton_response->setIcon(icon4);
         toolButton_response->setIconSize(QSize(20, 20));
         toolButton_response->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -1531,13 +1528,6 @@ public:
         checkBox_show_source->setChecked(true);
 
         horizontalLayout_5->addWidget(checkBox_show_source);
-
-        label_4 = new QLabel(widget_8);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setMinimumSize(QSize(40, 0));
-        label_4->setStyleSheet(QStringLiteral("image: url(:/lib/mast2.png);"));
-
-        horizontalLayout_5->addWidget(label_4);
 
         toolButton_show_thrift_info = new QToolButton(widget_8);
         toolButton_show_thrift_info->setObjectName(QStringLiteral("toolButton_show_thrift_info"));
@@ -1964,7 +1954,6 @@ public:
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\272\217\345\217\267", nullptr));
         toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
-        label_4->setText(QString());
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

@@ -184,7 +184,7 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
       void setParamSN(QString str);
       void setParamName(QString str);
       void setParamType(QString str);
-      void setParamValue(QString sn, QString name, QString type);
+      void setParamValue(thriftwidget * p, QString sn, QString name, QString type);
 
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);
@@ -366,6 +366,10 @@ public:
     //获取结构体信息
     QMap<QString, structInfo> getStructParams(QString data);
     
+    //创建节点
+    static ItemWidget* createAndGetNode(thriftwidget * p);
+    static ItemWidget* createAndGetNode(thriftwidget * p, QTreeWidget *parent);
+    static ItemWidget* createAndGetNode(thriftwidget * p, QTreeWidgetItem *parent);
 
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
