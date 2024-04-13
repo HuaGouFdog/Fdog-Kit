@@ -1996,7 +1996,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             //item2->setText(0, "");
             //子节点应为struct
             qDebug() << "走这里";
-            item2->comboBoxBase->setCurrentIndex(7);
+            item2->comboBoxBase->setCurrentText("struct");
             item2->keyLabel->show();
             item2->valueLabel->hide();
             item2->classLabel->hide();
@@ -2022,7 +2022,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             item_->keyLabel->hide();
             item_->valueLabel->hide();
             item_->classLabel->hide();
-            item2->comboBoxBase->setCurrentIndex(7);
+            item2->comboBoxBase->setCurrentText("struct");
             item2->keyLabel->hide();
             item2->valueLabel->hide();
             item2->classLabel->show();
@@ -2097,7 +2097,7 @@ void thriftwidget::on_toolButton_test_clicked()
     if (!clientSocket->waitForConnected(500)) {
         qDebug() << "无法连接到服务器";
         ui->toolButton_test->setIcon(QIcon(":lib/node2.png"));
-        ui->toolButton_test->setText("测试地址(不可访问)");
+        ui->toolButton_test->setText("测试地址(不可访问，若开启了VPN，关闭后再试)");
         clientSocket->close();
     } else {
         qDebug() << "服务器可用";
