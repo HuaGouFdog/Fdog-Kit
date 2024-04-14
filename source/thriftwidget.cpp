@@ -90,7 +90,7 @@ QMap<int, QColor *> sourceColorMap {
 
 ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
 {
-    qDebug() << "走ItemWidget(QTreeWidget *parent)";
+    //qDebug() << "走ItemWidget(QTreeWidget *parent)";
     init();
     
     parent->setItemWidget(this, 0, widgetParamSN);
@@ -101,7 +101,7 @@ ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
 
 ItemWidget::ItemWidget(QTreeWidgetItem *parent): QTreeWidgetItem(parent, 1)
 {
-    qDebug() << "走ItemWidget(QTreeWidgetItem *parent)";
+    //qDebug() << "走ItemWidget(QTreeWidgetItem *parent)";
     init();
     treeWidget()->setItemWidget(this, 0, widgetParamSN);
     treeWidget()->setItemWidget(this, 1, widgetParamName);
@@ -112,7 +112,7 @@ ItemWidget::ItemWidget(QTreeWidgetItem *parent): QTreeWidgetItem(parent, 1)
 ItemWidget::ItemWidget(): QTreeWidgetItem()
 {
     init();
-    qDebug() << "走ItemWidget()";
+    //qDebug() << "走ItemWidget()";
 }
 
 void ItemWidget::init()
@@ -250,7 +250,7 @@ void ItemWidget::init()
     addNode->setText("");
     addNode->setToolTip("将根据已有的struct格式快速生成");
     connect(addNode,&QToolButton::clicked,[=]{
-        qDebug() << "触发信号";
+        //qDebug() << "触发信号";
         emit send_buttonClicked_add(this);
     });
     addNode->setStyleSheet("QToolButton {\
@@ -344,7 +344,7 @@ void ItemWidget::init()
     keyLabel->hide();
     valueLabel->show();
     classLabel->hide();
-    qDebug() << "走init()";
+    //qDebug() << "走init()";
 }
 
 void ItemWidget::init2()
@@ -423,7 +423,7 @@ void ItemWidget::setParamType(QString str)
 void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QString type, QString typeSign)
 {
     //判断typeSign
-    qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
+    //qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
     if (typeSign == "opt-in, req-out") {
         //必选
         mastLabel->show();
@@ -451,11 +451,11 @@ void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QStri
         //复杂类型
 
     } else {
-        qDebug() << "设置struct1";
+        //qDebug() << "设置struct1";
         isAuto = false;
         comboBoxBase->setCurrentText("struct");
         
-        qDebug() << "设置struct2";
+        //qDebug() << "设置struct2";
         lineEditParamName->setText(name);
         lineEditParamValue->setText(type);
         isAuto = true;
@@ -472,11 +472,11 @@ void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QStri
 
         //根据name添加子节点
         //查找对应的数据
-        qDebug() << "点击的结构体类型：" << type;
+        //qDebug() << "点击的结构体类型：" << type;
         for(int i = 1; i <= structParamMap.value(type).size() ;i++)
         {
-            qDebug() << "对应结构体数据type<<" << structParamMap.value(type)[QString::number(i)].paramType;
-            qDebug() << "对应结构体数据name<<" << structParamMap.value(type)[QString::number(i)].paramName;
+            //qDebug() << "对应结构体数据type<<" << structParamMap.value(type)[QString::number(i)].paramType;
+            //qDebug() << "对应结构体数据name<<" << structParamMap.value(type)[QString::number(i)].paramName;
             ItemWidget* items = thriftwidget::createAndGetNode(p, this);
             items->setParamValue(p, QString::number(i),
                 structParamMap.value(type)[QString::number(i)].paramName,
@@ -525,9 +525,9 @@ thriftwidget::thriftwidget(QWidget *parent) :
     int index = ui->treeWidget->indexOfTopLevelItem(item);
     if (index != -1) {
         item->lineEditParamSN->setText(QString::number(index + 1));
-        qDebug() << "Index of item in treeWidget: " << index;
+        //qDebug() << "Index of item in treeWidget: " << index;
     } else {
-        qDebug() << "Item is not a top-level item in treeWidget.";
+        //qDebug() << "Item is not a top-level item in treeWidget.";
     }
 
     item->setText(0, "");
@@ -683,7 +683,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
 
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
         //没有可读的数据就返回
-        qDebug() << "接收到的数据（十六进制字符串）:";
+        //qDebug() << "接收到的数据（十六进制字符串）:";
         std::array<uint32_t, 2000> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                   receivedDataArray.size() * sizeof(uint32_t));
@@ -718,7 +718,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             if (countLength == -1) {
                 //读取头获取数据长度
                 countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
-                qDebug() << "countLength = " << countLength - 4;
+                //qDebug() << "countLength = " << countLength - 4;
             }
             nowLength = nowLength + 4;
             //qDebug() << "nowLength + 4 = " << nowLength;
@@ -870,7 +870,7 @@ void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString va
        string2stringList(valueData);
    } else if (valueType == "i64") { 
         int64_t value_i = value.toULongLong();
-        qDebug() << "int64 = " << value;
+        //qDebug() << "int64 = " << value;
         QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
         string2stringList(valueData);
    } else if (valueType == "double") {
@@ -881,7 +881,7 @@ void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString va
        //转换
        QString reversedString;
        while (d_hex.length()!=0) {
-          qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
+          //qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
           reversedString = reversedString + d_hex.mid(d_hex.length()-2);
           d_hex = d_hex.mid(0, d_hex.length()-2);
        }
@@ -1027,7 +1027,7 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
         //暂不考虑孙节点
         valueType = itemChild->comboBoxBase->currentText();
         QString value = itemChild->lineEditParamValue->text();
-        qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
+        //qDebug() << "struct 参数类型为" << valueType << " 参数值为" << value;
         //设置类型 设置序号
         //设置类型
         QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
@@ -1044,7 +1044,7 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
             string2stringList(valueData);
         } else if (valueType == "i64") {
                 int64_t value_i = value.toULongLong();
-                qDebug() << "int64 = " << value;
+                //qDebug() << "int64 = " << value;
                 QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
                 string2stringList(valueData);
         } else if (valueType == "double") {
@@ -1055,7 +1055,7 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
             //转换
             QString reversedString;
             while (d_hex.length()!=0) {
-                qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
+                //qDebug() << "reversedString = " << d_hex.mid(d_hex.length()-2);
                 reversedString = reversedString + d_hex.mid(d_hex.length()-2);
                 d_hex = d_hex.mid(0, d_hex.length()-2);
             }
@@ -1074,7 +1074,7 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
                 }
                 len = len + count*2;
             }
-            qDebug() << "len长度为" << len;
+            //qDebug() << "len长度为" << len;
             QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
             string2stringList(lenData);
             //设置字符串值
@@ -1095,26 +1095,27 @@ void thriftwidget::structSerialize(int serialNumber, QString valueType, ItemWidg
 
 void thriftwidget::map2List(QStringList &dataList, QString data)
 {
-    int sum = 0;
-    int first = 0;
-    int end = 0;
-    int len = data.length();
-    for (int i = 0; i <= len; i++) {
-        if (data[i] == '{') {
-            sum++;
-            if (sum == 1) {
-                first = i;
-            }
-        }
-        if (data[i] == '}') {
-            sum--;
-            if (sum == 0) {
-                end = i;
-                QString da = data.mid(first+1, end - first - 1);
-                dataList.push_back(da);
-            }
-        }
-    }
+
+    // int sum = 0;
+    // int first = 0;
+    // int end = 0;
+    // int len = data.length();
+    // for (int i = 0; i <= len; i++) {
+    //     if (data[i] == '{') {
+    //         sum++;
+    //         if (sum == 1) {
+    //             first = i;
+    //         }
+    //     }
+    //     if (data[i] == '}') {
+    //         sum--;
+    //         if (sum == 0) {
+    //             end = i;
+    //             QString da = data.mid(first+1, end - first - 1);
+    //             dataList.push_back(da);
+    //         }
+    //     }
+    // }
 }
 
 void thriftwidget::cleanMessage()
@@ -1184,12 +1185,12 @@ void thriftwidget::writeTBinaryTypeAndSerialNumber(QString valueType, int serial
     //设置参数序号
     QString serialNumberStr = QString("%1").arg(serialNumber, 4, 16, QLatin1Char('0'));
     string2stringList(serialNumberStr);
-    qDebug() << "writeTBinaryTypeAndSerialNumber type = " << type << " & serialNumberStr = " << serialNumberStr;
+    //qDebug() << "writeTBinaryTypeAndSerialNumber type = " << type << " & serialNumberStr = " << serialNumberStr;
 }
 
 void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
 {
-    qDebug() << "writeTBinaryBaseMessage valueType = " << valueType << " & value = " << valueType;
+    //qDebug() << "writeTBinaryBaseMessage valueType = " << valueType << " & value = " << valueType;
     if (valueType == "bool" || valueType == "byte" || valueType == "i16" || valueType == "i32") {
         writeTBinaryFormatData(value.toInt(), valueType);
     } else if (valueType == "i64") { 
@@ -1206,12 +1207,14 @@ void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
 void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString value, ItemWidget *item, QString paramKeyType, QString paramValueType)
 {
     if (valueType == "set" || valueType == "list") {
+        //qDebug() << "writeTBinaryCollectionMessage 构建" << valueType;
         //设置key类型
         writeTBinaryTypeMessage(paramValueType);
         //设置元素个数
         QStringList dataList;
+        //qDebug() << " value = " << value;
         writeTBinaryKeySize(dataList, value);
-
+        //qDebug() << " dataList = " << dataList;
         if (baseType.contains(paramValueType)) {
             //key为基础类型
             for (const QString &str : dataList) {
@@ -1238,12 +1241,14 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
         //设置元素个数
         QStringList dataList;
         writeTBinaryValueSize(dataList, value);
-
+        qDebug() << "map dataList = " << dataList;
         if (baseType.contains(paramKeyType)) {
             //设置元素值
             for (const QString &str : dataList) {
                 int index = str.indexOf(":");
                 //设置key值
+                qDebug() << "key = " << str.mid(0, index);
+                qDebug() << "value = " << str.mid(index+1);
                 writeTBinaryBaseMessage(paramKeyType, str.mid(0, index));
                 if (baseType.contains(paramValueType)) {
                     writeTBinaryBaseMessage(paramValueType, str.mid(index+1));
@@ -1315,16 +1320,19 @@ void thriftwidget::writeTBinaryTypeMessage(QString type_)
 
 void thriftwidget::writeTBinaryKeySize(QStringList &dataList, QString value)
 {
-    QString data = value.mid(1, value.length() - 2);
+    QString data = value;//.mid(0, value.length() - 2);
     dataList = data.split(",");
     QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
+    qDebug() << "writeTBinaryKeySize = " << dataList.length() << " lenData = " << lenData;
     string2stringList(lenData);
 }
 
 void thriftwidget::writeTBinaryValueSize(QStringList &dataList, QString value)
 {
-    QString data = value.mid(1, value.length() - 2);
-    map2List(dataList, data);
+    QString data = value;//.mid(1, value.length() - 2);
+    qDebug() << "writeTBinaryValueSize data = " << data;
+    dataList = data.split(",");
+    //map2List(dataList, data);
     QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
     string2stringList(lenData);
 }
@@ -1340,28 +1348,28 @@ void thriftwidget::handleMessage(QString &data)
     
     QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
     label_headers = label_headers + "数据长度:" + headers_data_length + "   ";
-    qDebug() << "数据长度 = " << headers_data_length;
+    //qDebug() << "数据长度 = " << headers_data_length;
     //消息类型
     QString type_data = data.mid(0, 8);
     if (type_data == "80010001") {
-        qDebug() << "消息类型 = " << "CALL";
+        //qDebug() << "消息类型 = " << "CALL";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_CALL]);
     } else if (type_data == "80010002") {
-        qDebug() << "消息类型 = " << "REPLY";
+        //qDebug() << "消息类型 = " << "REPLY";
         label_headers = label_headers + "消息类型:REPLY";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_REPLY]);
     } else if (type_data == "80010003") {
-        qDebug() << "消息类型 = " << "EXCEPTION";
+        //qDebug() << "消息类型 = " << "EXCEPTION";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_EXCEPTION]);
     } else if (type_data == "80010004") {
-        qDebug() << "消息类型 = " << "ONEWAY";
+        //qDebug() << "消息类型 = " << "ONEWAY";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_ONEWAY]);
     }
     data = data.mid(8);
     //方法长度名
     QString func_len = data.mid(0, 8);
     QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
-    qDebug() << "方法长度 = " << headers_func_length;
+    //qDebug() << "方法长度 = " << headers_func_length;
     label_headers = label_headers + "方法长度:" + headers_func_length + "   ";
     temp = temp + addColorHtml(func_len, sourceColorMap[THRIFT_FUNC_LENGTH]);
     bool ok;
@@ -1371,7 +1379,7 @@ void thriftwidget::handleMessage(QString &data)
     //方法名
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
-    qDebug() << "方法名 = " << hexToString(fun_name);
+    //qDebug() << "方法名 = " << hexToString(fun_name);
     label_headers = label_headers + "方法名称:" + hexToString(fun_name) + "   ";
     data = data.mid(len);
     //流水号
@@ -1379,16 +1387,21 @@ void thriftwidget::handleMessage(QString &data)
     temp = temp + addColorHtml(func_sn, sourceColorMap[THRIFT_SN]);
     data = data.mid(8);
     QString headers_data_sn = QString::number(strtol(func_sn.toStdString().c_str(), nullptr, 16));
-    qDebug() << "流水号 = " << headers_data_sn;
+    //qDebug() << "流水号 = " << headers_data_sn;
     label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
     ui->label_headers->setText(label_headers);
     //数据
     //编号两位数  序号4位数 数据
     //data = temp + data;
     //for(int i = 0; i < = 500; i++) {
-    qDebug() << "数据= " << data;
+    //qDebug() << "数据= " << data;
     if (type_data == "80010002") {
         while (true) {
+
+            if (data.length() <= 0) {
+                break;
+            }
+
             QString value_type = data.mid(0, 2);
             temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
             data = data.mid(2);
@@ -1430,10 +1443,13 @@ void thriftwidget::handleMessage(QString &data)
                 break;
             } else if (value_type == "0d") {
                 //map
+                temp = temp + handleMap(data);
             } else if (value_type == "0e") {
                 //set
+                temp = temp + handleSet(data);
             } else if (value_type == "0f") {
                 //list
+                temp = temp + handleList(data);
             }
         }
     } else if (type_data == "80010003") {
@@ -1472,7 +1488,7 @@ QString thriftwidget::addColorHtml(QString &str, QColor *fontCrl)
 
 QString thriftwidget::addColorFieldHtml(QString str)
 {
-    qDebug() << "addColorFieldHtml str = " << str;
+    //qDebug() << "addColorFieldHtml str = " << str;
     QColor *fontCrl = new QColor(150, 40, 140);
     QByteArray array;
     array.append(fontCrl->red());
@@ -1927,7 +1943,7 @@ void thriftwidget::rece_deleteItem(QTreeWidgetItem *item)
 
 void thriftwidget::rece_addItem(QTreeWidgetItem *item)
 {
-    qDebug() << "进入添加元素";
+    //qDebug() << "进入添加元素";
     //复制倒数第一个结构体
     //查找最后一个结构体
     isAddNode = true;
@@ -1935,12 +1951,12 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     int count = item_->childCount();
     ItemWidget* items = createAndGetNode(this, item_);
 
-    qDebug() << typeid(this).name();
-    qDebug() << "进入添加元素2";
+    //qDebug() << typeid(this).name();
+    //qDebug() << "进入添加元素2";
     items->copyItem(this, items, dynamic_cast<ItemWidget*>(item_->child(0)));
-    qDebug() << "进入添加元素3";
+    //qDebug() << "进入添加元素3";
     ItemWidget* items2 = new ItemWidget(item_);
-    qDebug() << "进入添加元素4";
+    //qDebug() << "进入添加元素4";
     delete items2;
     //复制数据
     //首先child() 是struct
@@ -2216,14 +2232,14 @@ void thriftwidget::on_toolButton_request_clicked()
     QString dataTemp = "";
     int sum = 0;
     for (const QString& value : dataList) {
-        qDebug() << "value = " << value;
+        //qDebug() << "value = " << value;
         dataTemp = dataTemp + value + "  ";  // 在控制台输出元素值
-        qDebug() << "dataTemp1 = " << dataTemp;
+        //qDebug() << "dataTemp1 = " << dataTemp;
         sum++;
         //每8个段进行下一步
         if (sum == 8) {
             sum = 0;
-            qDebug() << "dataTemp2 = " << dataTemp;
+            //qDebug() << "dataTemp2 = " << dataTemp;
             ui->textEdit->append(dataTemp);
             dataTemp = "";
         }
@@ -2235,7 +2251,7 @@ void thriftwidget::on_toolButton_request_clicked()
     qDebug() << "dataList = " << dataList;
     QElapsedTimer timer;
     timer.start();
-    sendThriftRequest(sendData);
+    //sendThriftRequest(sendData);
     qint64 elapsedMilliseconds = timer.elapsed();
     ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
@@ -2349,24 +2365,24 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 
                 //开始循环解析接口部分
                 for (int i = 0; i < list.length(); i++) {
-                    qDebug() << "接口部分：" << list[i];
+                    //qDebug() << "接口部分：" << list[i];
                     QString func = list[i].trimmed();
                     int index5 = func.indexOf(" ");
                     QString funcParam = func.mid(0, index5);
                     QString funcName1 =func.mid(index5).trimmed();
-                    qDebug() << "funcParam1 " << funcParam;
-                    qDebug() << "funcName1 " << funcName1;
+                    //qDebug() << "funcParam1 " << funcParam;
+                    //qDebug() << "funcName1 " << funcName1;
 
                     int index6 = funcName1.indexOf("(");
                     QString funcName = funcName1.mid(0, index6);
-                    qDebug() << "funcName " << funcName;
+                    //qDebug() << "funcName " << funcName;
                     QString funcParam2 = funcName1.mid(index6 + 1);
                     int index7 = funcParam2.indexOf(")");
                     funcParam2 = funcParam2.mid(0, index7);
-                    qDebug() << "funcParam2 " << funcParam2;
+                    //qDebug() << "funcParam2 " << funcParam2;
                     funcParamMap.insert(funcName, getFuncParams(funcParam2));
                     QStringList funcP = funcParam2.split(",");
-                    qDebug() << "funcP " << funcP;
+                    //qDebug() << "funcP " << funcP;
 
                     for(int i =0; i < funcP.length(); i++) {
                         qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);

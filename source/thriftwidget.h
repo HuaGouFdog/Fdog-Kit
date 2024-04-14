@@ -64,7 +64,7 @@ static QMap<QString, int> mapSize = {{"bool", THRIFT_BOOL_SIZE}, {"byte", THRIFT
                 {"i64", THRIFT_I64_SIZE}, {"double", THRIFT_DOUBLE_SIZE}, {"string", THRIFT_STRING_SIZE}, {"struct", THRIFT_STRUCT_SIZE}, 
                 {"map", THRIFT_MAP_SIZE}, {"set", THRIFT_SET_SIZE}, {"list", THRIFT_LIST_SIZE}};
 
-static QSet<QString> baseType = {"bool", "byte", "i16","i32", "i64", "double", "string"};
+static QSet<QString> baseType = {"bool", "byte", "i16", "i32", "i64", "double", "string"};
 static QSet<QString> containerType = {"map", "set", "list"};
 
 struct paramInfo {
@@ -107,7 +107,7 @@ protected:
         } else if (event->type() == QEvent::KeyPress) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
             QString text = keyEvent->text();
-            qDebug() << "text =" << text;
+            //qDebug() << "text =" << text;
             // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
             if (!text.isEmpty() && !(text >= "A" && text <= "Z") && !(text >= "a" && text <= "z")
                     && !(text >= "0" && text <= "9") && !(keyEvent->key() == Qt::Key_Backspace)
