@@ -542,6 +542,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->comboBox_transport->setView(new QListView());
     ui->comboBox_reqType->setView(new QListView());
     ui->comboBox_testType->setView(new QListView());
+    ui->comboBox_port->setView(new QListView());
 
     ui->splitter->setStretchFactor(0, 5);  // 第一个子控件占 1/3 的显示空间
     ui->splitter->setStretchFactor(1, 3);  // 第二个子控件占 2/3 的显示空间
@@ -551,6 +552,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->textEdit_info->hide();
     ui->label_req->hide();
+    ui->lineEdit_port->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->textEdit_info->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -772,8 +774,11 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         }
         clientSocket->close();
     });
-    //qDebug() << "ui->lineEdit_host->text() = " << ui->lineEdit_host->text() << " ui->lineEdit_port->text().toInt() = " << ui->lineEdit_port->text().toInt();
-    clientSocket->connectToHost(ui->lineEdit_host->text(), ui->lineEdit_port->text().toInt());
+    QString port_str = ui->comboBox_port->currentText();
+    int index_s = port_str.indexOf("(");
+    int index_e = port_str.indexOf(")");
+    int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
+    clientSocket->connectToHost(ui->lineEdit_host->text(), port);
         if (!clientSocket->waitForConnected()) {
             qDebug() << "无法连接到服务器";
             return ;
@@ -2178,7 +2183,11 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 void thriftwidget::on_toolButton_test_clicked()
 {
     QTcpSocket *clientSocket = new QTcpSocket(this);
-    clientSocket->connectToHost(ui->lineEdit_host->text(), ui->lineEdit_port->text().toInt());
+    QString port_str = ui->comboBox_port->currentText();
+    int index_s = port_str.indexOf("(");
+    int index_e = port_str.indexOf(")");
+    int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
+    clientSocket->connectToHost(ui->lineEdit_host->text(), port);
     if (!clientSocket->waitForConnected(500)) {
         qDebug() << "无法连接到服务器";
         ui->toolButton_test->setIcon(QIcon(":lib/node2.png"));

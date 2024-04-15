@@ -58,6 +58,7 @@ public:
     QLineEdit *lineEdit_host;
     QSpacerItem *horizontalSpacer_3;
     QLabel *label;
+    QComboBox *comboBox_port;
     QLineEdit *lineEdit_port;
     QSpacerItem *horizontalSpacer_4;
     QToolButton *toolButton_test;
@@ -662,6 +663,63 @@ public:
 
         horizontalLayout_2->addWidget(label);
 
+        comboBox_port = new QComboBox(widget_6);
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
+        comboBox_port->setObjectName(QStringLiteral("comboBox_port"));
+        sizePolicy.setHeightForWidth(comboBox_port->sizePolicy().hasHeightForWidth());
+        comboBox_port->setSizePolicy(sizePolicy);
+        comboBox_port->setMinimumSize(QSize(200, 30));
+        comboBox_port->setStyleSheet(QStringLiteral("color:#ced4da;"));
+        comboBox_port->setEditable(true);
+
+        horizontalLayout_2->addWidget(comboBox_port);
+
         lineEdit_port = new QLineEdit(widget_6);
         lineEdit_port->setObjectName(QStringLiteral("lineEdit_port"));
         lineEdit_port->setMinimumSize(QSize(0, 30));
@@ -835,6 +893,7 @@ public:
         comboBox_reqType->setMinimumSize(QSize(110, 30));
         comboBox_reqType->setFont(font);
         comboBox_reqType->setStyleSheet(QStringLiteral("color:#ced4da;"));
+        comboBox_reqType->setEditable(false);
 
         horizontalLayout_9->addWidget(comboBox_reqType);
 
@@ -1229,7 +1288,7 @@ public:
 "	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
-"    margin-right: 20px;\n"
+"    margin-right: 10px;\n"
 "}\n"
 "\n"
 "\n"
@@ -1490,6 +1549,54 @@ public:
         QFont font5;
         font5.setStyleStrategy(QFont::PreferDefault);
         widget_5->setFont(font5);
+        widget_5->setStyleSheet(QString::fromUtf8("QScrollBar:vertical{\n"
+"    width: 12px;\n"
+"	background-color: rgba(0, 41, 69, 0);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"\n"
+"QScrollBar::handle:vertical{\n"
+"    width: 12px;\n"
+"	\n"
+"	background-color: rgba(0, 41, 69, 255);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-pos"
+                        "ition: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
         verticalLayout_7 = new QVBoxLayout(widget_5);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
@@ -1706,11 +1813,18 @@ public:
         verticalLayout_8 = new QVBoxLayout(tab_3);
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(-1, 0, -1, -1);
         label_headers = new QLabel(tab_3);
         label_headers->setObjectName(QStringLiteral("label_headers"));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(label_headers->sizePolicy().hasHeightForWidth());
+        label_headers->setSizePolicy(sizePolicy2);
         label_headers->setMinimumSize(QSize(0, 30));
         label_headers->setMaximumSize(QSize(16777215, 30));
         label_headers->setFont(font);
+        label_headers->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         verticalLayout_8->addWidget(label_headers);
 
@@ -1910,6 +2024,54 @@ public:
         lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
+        comboBox_port->setItemText(0, QApplication::translate("thriftwidget", "ap(4031)", nullptr));
+        comboBox_port->setItemText(1, QApplication::translate("thriftwidget", "badword(11040)", nullptr));
+        comboBox_port->setItemText(2, QApplication::translate("thriftwidget", "analysiswebsite(11200)", nullptr));
+        comboBox_port->setItemText(3, QApplication::translate("thriftwidget", "buddy(11201)", nullptr));
+        comboBox_port->setItemText(4, QApplication::translate("thriftwidget", "cache(11202)", nullptr));
+        comboBox_port->setItemText(5, QApplication::translate("thriftwidget", "chat(11203)", nullptr));
+        comboBox_port->setItemText(6, QApplication::translate("thriftwidget", "cloud(11204)", nullptr));
+        comboBox_port->setItemText(7, QApplication::translate("thriftwidget", "collection(11205)", nullptr));
+        comboBox_port->setItemText(8, QApplication::translate("thriftwidget", "commentcenter(11206)", nullptr));
+        comboBox_port->setItemText(9, QApplication::translate("thriftwidget", "customer(11207)", nullptr));
+        comboBox_port->setItemText(10, QApplication::translate("thriftwidget", "dbconfig(11208)", nullptr));
+        comboBox_port->setItemText(11, QApplication::translate("thriftwidget", "emoticon(11209)", nullptr));
+        comboBox_port->setItemText(12, QApplication::translate("thriftwidget", "enterprisedictionary(11210)", nullptr));
+        comboBox_port->setItemText(13, QApplication::translate("thriftwidget", "enterpriseorganization(11211)", nullptr));
+        comboBox_port->setItemText(14, QApplication::translate("thriftwidget", "enterpriseregister(11212)", nullptr));
+        comboBox_port->setItemText(15, QApplication::translate("thriftwidget", "enterpriserolemenu(11213)", nullptr));
+        comboBox_port->setItemText(16, QApplication::translate("thriftwidget", "enterprisestatistics(11214)", nullptr));
+        comboBox_port->setItemText(17, QApplication::translate("thriftwidget", "enterpriseTask(11215)", nullptr));
+        comboBox_port->setItemText(18, QApplication::translate("thriftwidget", "enterpriseuser(11216)", nullptr));
+        comboBox_port->setItemText(19, QApplication::translate("thriftwidget", "feedback(11217)", nullptr));
+        comboBox_port->setItemText(20, QApplication::translate("thriftwidget", "fullsearch(11218)", nullptr));
+        comboBox_port->setItemText(21, QApplication::translate("thriftwidget", "group(11219)", nullptr));
+        comboBox_port->setItemText(22, QApplication::translate("thriftwidget", "groupfile(11220)", nullptr));
+        comboBox_port->setItemText(23, QApplication::translate("thriftwidget", "groupmember(11221)", nullptr));
+        comboBox_port->setItemText(24, QApplication::translate("thriftwidget", "imageverify(11222)", nullptr));
+        comboBox_port->setItemText(25, QApplication::translate("thriftwidget", "iosnotice-new(11223)", nullptr));
+        comboBox_port->setItemText(26, QApplication::translate("thriftwidget", "lbs(11224)", nullptr));
+        comboBox_port->setItemText(27, QApplication::translate("thriftwidget", "login(11225)", nullptr));
+        comboBox_port->setItemText(28, QApplication::translate("thriftwidget", "memo(11226)", nullptr));
+        comboBox_port->setItemText(29, QApplication::translate("thriftwidget", "messagestorage(11227)", nullptr));
+        comboBox_port->setItemText(30, QApplication::translate("thriftwidget", "online(11228)", nullptr));
+        comboBox_port->setItemText(31, QApplication::translate("thriftwidget", "operationlog(11229)", nullptr));
+        comboBox_port->setItemText(32, QApplication::translate("thriftwidget", "platform(11230)", nullptr));
+        comboBox_port->setItemText(33, QApplication::translate("thriftwidget", "platform-business(11231)", nullptr));
+        comboBox_port->setItemText(34, QApplication::translate("thriftwidget", "platform-database(11232)", nullptr));
+        comboBox_port->setItemText(35, QApplication::translate("thriftwidget", "platformstatistics(11233)", nullptr));
+        comboBox_port->setItemText(36, QApplication::translate("thriftwidget", "recommend(11234)", nullptr));
+        comboBox_port->setItemText(37, QApplication::translate("thriftwidget", "registeruser(11235)", nullptr));
+        comboBox_port->setItemText(38, QApplication::translate("thriftwidget", "route(11236)", nullptr));
+        comboBox_port->setItemText(39, QApplication::translate("thriftwidget", "setting(11237)", nullptr));
+        comboBox_port->setItemText(40, QApplication::translate("thriftwidget", "sharecomment(11238)", nullptr));
+        comboBox_port->setItemText(41, QApplication::translate("thriftwidget", "sharecontent(11239)", nullptr));
+        comboBox_port->setItemText(42, QApplication::translate("thriftwidget", "timestamp(11240)", nullptr));
+        comboBox_port->setItemText(43, QApplication::translate("thriftwidget", "user(11241)", nullptr));
+        comboBox_port->setItemText(44, QApplication::translate("thriftwidget", "userbase(11242)", nullptr));
+        comboBox_port->setItemText(45, QApplication::translate("thriftwidget", "verifycode(11243)", nullptr));
+        comboBox_port->setItemText(46, QApplication::translate("thriftwidget", "verifymessage(11244)", nullptr));
+
         lineEdit_port->setText(QApplication::translate("thriftwidget", "11040", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
         toolButton_test->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\345\234\260\345\235\200", nullptr));

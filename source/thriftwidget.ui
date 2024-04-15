@@ -791,6 +791,263 @@ padding-right:10px;
           </widget>
          </item>
          <item>
+          <widget class="QComboBox" name="comboBox_port">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>ap(4031)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>badword(11040)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>analysiswebsite(11200)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>buddy(11201)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>cache(11202)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>chat(11203)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>cloud(11204)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>collection(11205)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>commentcenter(11206)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>customer(11207)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>dbconfig(11208)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>emoticon(11209)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterprisedictionary(11210)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterpriseorganization(11211)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterpriseregister(11212)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterpriserolemenu(11213)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterprisestatistics(11214)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterpriseTask(11215)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>enterpriseuser(11216)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>feedback(11217)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>fullsearch(11218)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>group(11219)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>groupfile(11220)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>groupmember(11221)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>imageverify(11222)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>iosnotice-new(11223)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>lbs(11224)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>login(11225)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>memo(11226)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>messagestorage(11227)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>online(11228)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>operationlog(11229)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>platform(11230)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>platform-business(11231)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>platform-database(11232)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>platformstatistics(11233)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>recommend(11234)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>registeruser(11235)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>route(11236)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>setting(11237)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>sharecomment(11238)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>sharecontent(11239)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>timestamp(11240)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>user(11241)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>userbase(11242)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>verifycode(11243)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>verifymessage(11244)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
           <widget class="QLineEdit" name="lineEdit_port">
            <property name="minimumSize">
             <size>
@@ -1160,6 +1417,9 @@ QComboBox QAbstractItemView{
            </property>
            <property name="styleSheet">
             <string notr="true">color:#ced4da;</string>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
            </property>
            <item>
             <property name="text">
@@ -2089,7 +2349,7 @@ QComboBox::down-arrow{
 	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 
@@ -2535,6 +2795,55 @@ border-radius: 2px;
                  <font>
                   <stylestrategy>PreferDefault</stylestrategy>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QScrollBar:vertical{
+    width: 12px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+
+QScrollBar::handle:vertical{
+    width: 12px;
+	
+	background-color: rgba(0, 41, 69, 255);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_7">
                  <property name="spacing">
@@ -2997,8 +3306,17 @@ p, li { white-space: pre-wrap; }
                          <property name="spacing">
                           <number>0</number>
                          </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
                          <item>
                           <widget class="QLabel" name="label_headers">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
                            <property name="minimumSize">
                             <size>
                              <width>0</width>
@@ -3020,6 +3338,9 @@ p, li { white-space: pre-wrap; }
                            </property>
                            <property name="text">
                             <string/>
+                           </property>
+                           <property name="alignment">
+                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                            </property>
                           </widget>
                          </item>
