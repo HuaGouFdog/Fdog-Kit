@@ -281,6 +281,7 @@ public:
     template<class T>
     void writeTBinaryFormatData(T value, QString valueType) {
        QString fromatData = QString("%1").arg(value, mapSize.value(valueType), 16, QLatin1Char('0'));
+       qDebug() << "writeTBinaryFormatData fromatData =" << fromatData;
        string2stringList(fromatData);
     }
 
@@ -411,6 +412,8 @@ private slots:
 
 private:
     QVector<QString> dataList;
+    QString lastValue_;
+    QString last2Value_;
     Ui::thriftwidget *ui;
 };
 

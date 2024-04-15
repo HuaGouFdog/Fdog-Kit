@@ -497,13 +497,13 @@ thriftwidget::thriftwidget(QWidget *parent) :
     // 设置树的列数（如果需要多列）
     ui->treeWidget->setColumnCount(4);
     // 设置第一列的宽度为 100 像素
-    ui->treeWidget->setColumnWidth(0, 150);
+    ui->treeWidget->setColumnWidth(0, 120);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(1, 200);
+    ui->treeWidget->setColumnWidth(1, 150);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(2, 300);
+    ui->treeWidget->setColumnWidth(2, 200);
 
     // 计算第五列的宽度，使其占满剩余空间
     //int lastColumnWidth = ui->treeWidget->viewport()->width() - 420;
@@ -601,12 +601,16 @@ uint32_t thriftwidget::string2Uint32(QString data)
 
 QVector<uint32_t> thriftwidget::string2Uint32List(QVector<QString> & data)
 {
+    qDebug() << "最后一个值 = " << last2Value_;
     QString lastValue = "";
-    if (dataList.length() > 1) {
-        lastValue = dataList.last();
+    if (data.length() > 1) {
+        lastValue = data.last();
         if (lastValue.length() < 8) {
-            //lastValue = lastValue.leftJustified(8, '0');
-            dataList.replace(dataList.size() - 1, lastValue);
+            //补位一定要
+            lastValue = lastValue.leftJustified(8, '0');
+            qDebug() << "最后小于8" << " data = " << data << " data.size() - 1 = " << data.size() - 1 << " lastValue = " << lastValue;
+            data.replace(data.size() - 1, lastValue);
+            qDebug() << "改完" << data;
         }
     }
     QVector<uint32_t> return_;
@@ -618,6 +622,8 @@ QVector<uint32_t> thriftwidget::string2Uint32List(QVector<QString> & data)
 
 void thriftwidget::string2stringList(QString data)
 {
+    last2Value_ = lastValue_;
+    lastValue_ = data;
     //获取最后一个值，判断长度是否够8 //32
     while(1) {
         if (data.length() == 0) {
@@ -1208,7 +1214,7 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
 {
     if (valueType == "set" || valueType == "list") {
         //qDebug() << "writeTBinaryCollectionMessage 构建" << valueType;
-        //设置key类型
+        //设置类型
         writeTBinaryTypeMessage(paramValueType);
         //设置元素个数
         QStringList dataList;
@@ -1297,6 +1303,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
 
 void thriftwidget::writeTBinaryEndMessage()
 {
+    qDebug() << "写入结尾符";
     QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
     //dataList.append(stop);
     string2stringList(stop);
@@ -1304,11 +1311,14 @@ void thriftwidget::writeTBinaryEndMessage()
 
 void thriftwidget::writeTBinarySizeMessage()
 {
+
     QString data;
     for (const QString& value : dataList) {
         data = data + value;
     }
     QString dataLength = QString("%1").arg(data.length()/2, 8, 16, QLatin1Char('0'));
+    qDebug() << "writeTBinarySizeMessage data = " << data << " Length = " << data.length()/2;
+    qDebug() << "dataLength = " << dataLength;
     dataList.insert(0, dataLength);
 }
 
@@ -1356,7 +1366,7 @@ void thriftwidget::handleMessage(QString &data)
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_CALL]);
     } else if (type_data == "80010002") {
         //qDebug() << "消息类型 = " << "REPLY";
-        label_headers = label_headers + "消息类型:REPLY";
+        label_headers = label_headers + "消息类型:REPLY" + "   ";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_REPLY]);
     } else if (type_data == "80010003") {
         //qDebug() << "消息类型 = " << "EXCEPTION";
@@ -1419,6 +1429,7 @@ void thriftwidget::handleMessage(QString &data)
                 temp = temp + handleBool(data);
             } else if (value_type == "03") {
                 //byte
+                qDebug() << "走这里1";
                 temp = temp + handleByte(data);
             } else if (value_type == "04") {
                 //double
@@ -1548,7 +1559,7 @@ QString thriftwidget::handleByte(QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
-    qDebug() << "handleByte getRetract()  = " << getRetract() ;
+    //qDebug() << "handleByte getRetract()  = " << getRetract() ;
     ui->textEdit_data->append(addColorFieldHtml(getRetract() + "byte") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
@@ -1658,6 +1669,7 @@ QString thriftwidget::handleStruct(QString &str)
         } else if (value_type == "03") {
             //byte
             type_ = THRIFT_BYTE;
+            qDebug() << "走这里2";
             temp = temp + handleByte(str);
         } else if (value_type == "04") {
             //double
@@ -1743,6 +1755,7 @@ QString thriftwidget::handleList(QString &str)
             temp = temp + handleBool(str);
         } else if (value_type == "03") {
             //byte
+            qDebug() << "走这里3";
             temp = temp + handleByte(str);
         } else if (value_type == "04") {
             //double
@@ -1882,6 +1895,7 @@ QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p)
 {
     ItemWidget* items = new ItemWidget();
+    items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), p, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), p, SLOT(rece_addColumn(QTreeWidgetItem*)));
@@ -1892,8 +1906,9 @@ ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p)
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
-    qDebug() << "调一次";
+    //qDebug() << "调一次";
     ItemWidget* items = new ItemWidget(parent);
+    items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), p, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), p, SLOT(rece_addColumn(QTreeWidgetItem*)));
@@ -1905,6 +1920,7 @@ ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidgetItem *parent)
 {
     ItemWidget* items = new ItemWidget(parent);
+    items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add(QTreeWidgetItem*)), p, SLOT(rece_addItem(QTreeWidgetItem*)));
     connect(items, SIGNAL(send_buttonClicked_add_column(QTreeWidgetItem*)), p, SLOT(rece_addColumn(QTreeWidgetItem*)));
@@ -2249,9 +2265,11 @@ void thriftwidget::on_toolButton_request_clicked()
     ui->textEdit->append("------------------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
     qDebug() << "dataList = " << dataList;
+    qDebug() << "sendData = " << sendData;
     QElapsedTimer timer;
     timer.start();
-    //sendThriftRequest(sendData);
+    retractNum = 0;
+    sendThriftRequest(sendData);
     qint64 elapsedMilliseconds = timer.elapsed();
     ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
