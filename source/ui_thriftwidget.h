@@ -134,14 +134,14 @@ public:
     QWidget *page;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget_response;
-    QWidget *tab_source;
-    QHBoxLayout *horizontalLayout_12;
-    QTextEdit *textEdit_info;
-    QTextEdit *textEdit;
     QWidget *tab_3;
     QVBoxLayout *verticalLayout_8;
     QLabel *label_headers;
     QTextEdit *textEdit_data;
+    QWidget *tab_source;
+    QHBoxLayout *horizontalLayout_12;
+    QTextEdit *textEdit_info;
+    QTextEdit *textEdit;
     QWidget *page_request;
     QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_15;
@@ -442,6 +442,51 @@ public:
 "\n"
 "QListWidget::item {\n"
 "    height: 25px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
+"}\n"
+"\n"
+"QScrollBar::horizontal{\n"
+"    height: 8px;\n"
+"	background-color: rgb(67, 77, 88);\n"
+"	margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    height: 8px;\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:horizontal {\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:horizontal \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QSc"
+                        "rollBar::add-line:horizontal {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:horizontal {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:horizontal {\n"
+"    border:none;\n"
 "}"));
 
         verticalLayout_12->addWidget(listWidget);
@@ -714,7 +759,8 @@ public:
         comboBox_port->setObjectName(QStringLiteral("comboBox_port"));
         sizePolicy.setHeightForWidth(comboBox_port->sizePolicy().hasHeightForWidth());
         comboBox_port->setSizePolicy(sizePolicy);
-        comboBox_port->setMinimumSize(QSize(200, 30));
+        comboBox_port->setMinimumSize(QSize(250, 30));
+        comboBox_port->setMaximumSize(QSize(250, 16777215));
         comboBox_port->setStyleSheet(QStringLiteral("color:#ced4da;"));
         comboBox_port->setEditable(true);
 
@@ -1771,43 +1817,6 @@ public:
                         "hover {\n"
 "	background-color: rgba(100, 117, 125, 0);\n"
 "}"));
-        tab_source = new QWidget();
-        tab_source->setObjectName(QStringLiteral("tab_source"));
-        tab_source->setFont(font);
-        horizontalLayout_12 = new QHBoxLayout(tab_source);
-        horizontalLayout_12->setSpacing(0);
-        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
-        horizontalLayout_12->setContentsMargins(9, 9, 9, 9);
-        textEdit_info = new QTextEdit(tab_source);
-        textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
-        textEdit_info->setMinimumSize(QSize(400, 0));
-        textEdit_info->setMaximumSize(QSize(400, 16777215));
-        textEdit_info->setFont(font);
-        textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit_info->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 80);\n"
-"border-radius: 2px;"));
-        textEdit_info->setFrameShape(QFrame::Box);
-        textEdit_info->setReadOnly(true);
-        textEdit_info->setCursorWidth(2);
-
-        horizontalLayout_12->addWidget(textEdit_info);
-
-        textEdit = new QTextEdit(tab_source);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        QFont font7;
-        font7.setFamily(QStringLiteral("Cascadia Code"));
-        font7.setPointSize(11);
-        font7.setStyleStrategy(QFont::PreferAntialias);
-        textEdit->setFont(font7);
-        textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 80);\n"
-"border-radius: 2px;"));
-        textEdit->setFrameShape(QFrame::Box);
-        textEdit->setReadOnly(true);
-
-        horizontalLayout_12->addWidget(textEdit);
-
-        tabWidget_response->addTab(tab_source, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
         verticalLayout_8 = new QVBoxLayout(tab_3);
@@ -1831,7 +1840,7 @@ public:
         textEdit_data = new QTextEdit(tab_3);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
         textEdit_data->setFont(font);
-        textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 80);\n"
+        textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;"));
         textEdit_data->setFrameShape(QFrame::Box);
         textEdit_data->setReadOnly(true);
@@ -1839,6 +1848,43 @@ public:
         verticalLayout_8->addWidget(textEdit_data);
 
         tabWidget_response->addTab(tab_3, QString());
+        tab_source = new QWidget();
+        tab_source->setObjectName(QStringLiteral("tab_source"));
+        tab_source->setFont(font);
+        horizontalLayout_12 = new QHBoxLayout(tab_source);
+        horizontalLayout_12->setSpacing(0);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        horizontalLayout_12->setContentsMargins(9, 9, 9, 9);
+        textEdit_info = new QTextEdit(tab_source);
+        textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
+        textEdit_info->setMinimumSize(QSize(400, 0));
+        textEdit_info->setMaximumSize(QSize(400, 16777215));
+        textEdit_info->setFont(font);
+        textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        textEdit_info->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+"border-radius: 2px;"));
+        textEdit_info->setFrameShape(QFrame::Box);
+        textEdit_info->setReadOnly(true);
+        textEdit_info->setCursorWidth(2);
+
+        horizontalLayout_12->addWidget(textEdit_info);
+
+        textEdit = new QTextEdit(tab_source);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        QFont font7;
+        font7.setFamily(QStringLiteral("Cascadia Code"));
+        font7.setPointSize(11);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        textEdit->setFont(font7);
+        textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+"border-radius: 2px;"));
+        textEdit->setFrameShape(QFrame::Box);
+        textEdit->setReadOnly(true);
+
+        horizontalLayout_12->addWidget(textEdit);
+
+        tabWidget_response->addTab(tab_source, QString());
 
         verticalLayout_4->addWidget(tabWidget_response);
 
@@ -2003,7 +2049,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(1);
+        tabWidget_response->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -2117,6 +2163,13 @@ public:
         toolButton_response->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202", nullptr));
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
+        label_headers->setText(QString());
+        textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2170,13 +2223,6 @@ public:
 "</style></head><body style=\" font-family:'Cascadia Code'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Courier New'; font-size:12pt;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "Source", nullptr));
-        label_headers->setText(QString());
-        textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));
         label_10->setText(QString());

@@ -81,7 +81,9 @@ struct structInfo {
 
 //QMap<QString, paramInfo> paramsMap;
 
-static QMap<QString, QMap<QString, paramInfo>> funcParamMap;
+static QMap<QString, QMap<QString, paramInfo>> funcParamInMap;
+
+static QMap<QString, QMap<QString, paramInfo>> funcParamOutMap;
 
 //第一个参数是结构体名，map里面string是序号
 static QMap<QString, QMap<QString, structInfo>> structParamMap;
@@ -340,13 +342,13 @@ public:
 
     QString handleI16(QString &str);
 
-    QString handleI32(QString &str, QString resType = THRIFT_REPLY);
+    QString handleI32(QString &str, QString resType = THRIFT_REPLY, QString paramName = "");
 
-    QString handleI64(QString &str);
+    QString handleI64(QString &str, QString paramName = "");
 
-    QString handleString(QString &str, QString resType = THRIFT_REPLY);
+    QString handleString(QString &str, QString resType = THRIFT_REPLY, QString paramName = "");
 
-    QString handleStruct(QString &str);
+    QString handleStruct(QString &str, QString outType = "", QString outParam = "");
 
     QString handleMap(QString &str);
 
@@ -367,7 +369,10 @@ public:
     
 
     //获取入参
-    QMap<QString, paramInfo> getFuncParams(QString data);
+    QMap<QString, paramInfo> getFuncInParams(QString data);
+
+    //获取出参
+    QMap<QString, paramInfo> getFuncOutParams(QString data);
 
     //获取结构体信息
     QMap<QString, structInfo> getStructParams(QString data);

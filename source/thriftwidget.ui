@@ -413,6 +413,50 @@ padding:5px;
 
 QListWidget::item {
     height: 25px; /* 设置行高为50像素 */
+}
+
+QScrollBar::horizontal{
+    height: 8px;
+	background-color: rgb(67, 77, 88);
+	margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    height: 8px;
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:horizontal {
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:horizontal 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:horizontal {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:horizontal {
+    border:none;
+}
+QScrollBar::up-arrow:horizontal {
+    border:none;
 }</string>
             </property>
            </widget>
@@ -800,8 +844,14 @@ padding-right:10px;
            </property>
            <property name="minimumSize">
             <size>
-             <width>200</width>
+             <width>250</width>
              <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -3158,8 +3208,84 @@ QTabBar QToolButton:hover {
 }</string>
                        </property>
                        <property name="currentIndex">
-                        <number>1</number>
+                        <number>0</number>
                        </property>
+                       <widget class="QWidget" name="tab_3">
+                        <attribute name="title">
+                         <string>Data</string>
+                        </attribute>
+                        <layout class="QVBoxLayout" name="verticalLayout_8">
+                         <property name="spacing">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QLabel" name="label_headers">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>16777215</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>OPPOSans B</family>
+                             <pointsize>10</pointsize>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="alignment">
+                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QTextEdit" name="textEdit_data">
+                           <property name="font">
+                            <font>
+                             <family>OPPOSans B</family>
+                             <pointsize>10</pointsize>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
+border-radius: 2px;</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::Box</enum>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
+                           </property>
+                           <property name="html">
+                            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
                        <widget class="QWidget" name="tab_source">
                         <property name="font">
                          <font>
@@ -3212,7 +3338,7 @@ QTabBar QToolButton:hover {
                             <cursorShape>ArrowCursor</cursorShape>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">border: 1px solid rgba(199, 199, 199, 80);
+                            <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
 border-radius: 2px;</string>
                            </property>
                            <property name="frameShape">
@@ -3278,7 +3404,7 @@ p, li { white-space: pre-wrap; }
                             <cursorShape>ArrowCursor</cursorShape>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">border: 1px solid rgba(199, 199, 199, 80);
+                            <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
 border-radius: 2px;</string>
                            </property>
                            <property name="frameShape">
@@ -3293,82 +3419,6 @@ border-radius: 2px;</string>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Courier New'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
-                       </widget>
-                       <widget class="QWidget" name="tab_3">
-                        <attribute name="title">
-                         <string>Data</string>
-                        </attribute>
-                        <layout class="QVBoxLayout" name="verticalLayout_8">
-                         <property name="spacing">
-                          <number>0</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QLabel" name="label_headers">
-                           <property name="sizePolicy">
-                            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                             <horstretch>0</horstretch>
-                             <verstretch>0</verstretch>
-                            </sizepolicy>
-                           </property>
-                           <property name="minimumSize">
-                            <size>
-                             <width>0</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="maximumSize">
-                            <size>
-                             <width>16777215</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>OPPOSans B</family>
-                             <pointsize>10</pointsize>
-                             <stylestrategy>PreferAntialias</stylestrategy>
-                            </font>
-                           </property>
-                           <property name="text">
-                            <string/>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QTextEdit" name="textEdit_data">
-                           <property name="font">
-                            <font>
-                             <family>OPPOSans B</family>
-                             <pointsize>10</pointsize>
-                             <stylestrategy>PreferAntialias</stylestrategy>
-                            </font>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">border: 1px solid rgba(199, 199, 199, 80);
-border-radius: 2px;</string>
-                           </property>
-                           <property name="frameShape">
-                            <enum>QFrame::Box</enum>
-                           </property>
-                           <property name="readOnly">
-                            <bool>true</bool>
-                           </property>
-                           <property name="html">
-                            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                            </property>
                           </widget>
                          </item>

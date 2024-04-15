@@ -1417,14 +1417,16 @@ void thriftwidget::handleMessage(QString &data)
                 break;
             }
 
+            //获取类型
             QString value_type = data.mid(0, 2);
             temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
             data = data.mid(2);
 
+            //获取编号
             QString value_sn = data.mid(0, 4);
             temp = temp + addColorHtml(value_sn, sourceColorMap[THRIFT_VALUE_SN]);
             data = data.mid(4);
-
+            
             // if (value_type == "00") {
             //     qDebug() << "结尾符";
             //     break;
@@ -1454,7 +1456,9 @@ void thriftwidget::handleMessage(QString &data)
             } else if (value_type == "0c") {
                 //struct
                 qDebug() << "进入struct";
-                temp = temp + handleStruct(data);
+                temp = temp + handleStruct(data, funcParamOutMap.value(hexToString(fun_name)).value("1").paramType,
+                    funcParamOutMap.value(hexToString(fun_name)).value("1").paramName);
+                //固定1
                 //记得处理请求结束
                 break;
             } else if (value_type == "0d") {
@@ -1482,13 +1486,13 @@ void thriftwidget::handleMessage(QString &data)
                 temp = temp + handleString(data, THRIFT_EXCEPTION);
 
             } else if (value_type == "08") {
-                qDebug() << "剩下数据" << data;
+                //qDebug() << "剩下数据" << data;
                 temp = temp + handleI32(data, THRIFT_EXCEPTION);
             }
         }
     }
     data = temp + data;
-    qDebug() << "异常数据 = " << data;
+    //qDebug() << "异常数据 = " << data;
 }
 
 QString thriftwidget::addColorHtml(QString &str, QColor *fontCrl)
@@ -1584,12 +1588,19 @@ QString thriftwidget::handleI16(QString &str)
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI32(QString &str, QString resType)
+QString thriftwidget::handleI32(QString &str, QString resType, QString paramName)
 {
     QString value = str.mid(0, 8);
     str = str.mid(8);
     if (resType == THRIFT_REPLY) {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i32") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
+        if (paramName != "") {
+            qDebug() << "paramName1";
+            ui->textEdit_data->append(addColorFieldHtml(getRetract() + paramName) + " : " + addColorValueNumHtml(hexToLongNumber(value)));
+        } else {
+            qDebug() << "paramName2";
+            ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i32") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
+        }
+        
     } else if (resType == THRIFT_EXCEPTION) {
         QString excType = hexToLongNumber(value);
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Type") + " : " + addColorValueNumHtml(ExceptionType.value(excType) + " (" + excType + ")"));
@@ -1597,15 +1608,22 @@ QString thriftwidget::handleI32(QString &str, QString resType)
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI64(QString &str)
+QString thriftwidget::handleI64(QString &str, QString paramName)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
-    ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i64") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
+    if (paramName != "") {
+        qDebug() << "paramName1";
+        ui->textEdit_data->append(addColorFieldHtml(getRetract() + paramName) + " : " + addColorValueNumHtml(hexToLongNumber(value)));
+    } else {
+        qDebug() << "paramName2";
+        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i64") + " : " + addColorValueNumHtml(hexToLongNumber(value)));
+    }
+    
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleString(QString &str, QString resType)
+QString thriftwidget::handleString(QString &str, QString resType, QString paramName)
 {
     //长度
     QString value = str.mid(0, 8);
@@ -1617,7 +1635,14 @@ QString thriftwidget::handleString(QString &str, QString resType)
     int len = value.toInt(&ok, 16) * 2;
     QString value2 = str.mid(0, len);
     if (resType == THRIFT_REPLY) {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "string") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\""));
+        if (paramName != "") {
+            qDebug() << "paramName1";
+            ui->textEdit_data->append(addColorFieldHtml(getRetract() + paramName) + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\""));
+        } else {
+            qDebug() << "paramName2";
+            ui->textEdit_data->append(addColorFieldHtml(getRetract() + "string") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\""));
+        }
+        
         str = str.mid(len);
         temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     } else if (resType == THRIFT_EXCEPTION) {
@@ -1628,10 +1653,12 @@ QString thriftwidget::handleString(QString &str, QString resType)
     return temp;
 }
 
-QString thriftwidget::handleStruct(QString &str)
+QString thriftwidget::handleStruct(QString &str, QString outType, QString outParam)
 {
-    
-    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+    if (outParam == "") {
+        outParam = outType;
+    }
+    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + outParam +":{"));
     retractNum++;
     //读取编号 序号 数据
     QString temp = "";
@@ -1661,6 +1688,11 @@ QString thriftwidget::handleStruct(QString &str)
 
         //读取序号
         QString value_sn = str.mid(0, 4);
+        //需要转
+        qDebug() << "outParam = " << outParam << " hexToLongNumber(value_sn) = " << hexToLongNumber(value_sn) << " value_sn = " << value_sn;
+        QString paramName_ = structParamMap.value(outType).value(hexToLongNumber(value_sn)).paramName;
+        QString paramType_ = structParamMap.value(outType).value(hexToLongNumber(value_sn)).paramType;
+        qDebug()<< "paramName_ = " << paramName_;
         str = str.mid(4);
         temp = temp + addColorHtml(value_sn, sourceColorMap[THRIFT_VALUE_SN]);
 
@@ -1687,21 +1719,21 @@ QString thriftwidget::handleStruct(QString &str)
         } else if (value_type == "08") {
             //i32
             type_ = THRIFT_I32;
-            qDebug()<< "走到这里08";
-            temp = temp + handleI32(str);
+            qDebug()<< "走到这里08 = " << paramName_;
+            temp = temp + handleI32(str, THRIFT_REPLY, paramName_);
             
         } else if (value_type == "0a") {
             //i64
             type_ = THRIFT_I32;
-            temp = temp + handleI64(str);
+            temp = temp + handleI64(str, paramName_);
         } else if (value_type == "0b") {
             //string
             type_ = THRIFT_STRING;
-            temp = temp + handleString(str);
+            temp = temp + handleString(str, THRIFT_REPLY, paramName_);
         } else if (value_type == "0c") {
             //struct
             type_ = THRIFT_STRUCT;
-            temp = temp + handleStruct(str);
+            temp = temp + handleStruct(str, paramType_, paramName_);
         } else if (value_type == "0d") {
             //map
             type_ = THRIFT_MAP;
@@ -1831,7 +1863,7 @@ QString thriftwidget::getRetract()
 }
 
 
-QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
+QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data)
 {
     //三种解析
     //1: SessionTicket st, 2: i64 userID
@@ -1861,6 +1893,29 @@ QMap<QString, paramInfo> thriftwidget::getFuncParams(QString data)
             qDebug() << "错误";
         }
     }
+    return paramsMap_;
+}
+
+QMap<QString, paramInfo> thriftwidget::getFuncOutParams(QString data)
+{
+    QMap<QString, paramInfo> paramsMap_;
+    //只可能有一个返回值，判断是不是基础类型
+    if (baseType.contains(data)) {
+        //基础类型
+    } else if (data.startsWith("map")) {
+        //复杂类型
+
+    } else if (data.startsWith("set")) {
+        //复杂类型
+
+    } else if (data.startsWith("list")) {
+        //复杂类型
+
+    } else {
+        //struct
+        paramsMap_.insert("1", {data, "", "opt-in, req-out"});
+    }
+    
     return paramsMap_;
 }
 
@@ -2360,13 +2415,16 @@ void thriftwidget::on_toolButton_inportFile_clicked()
         // 处理所选文件
         // 在这里你可以做你想做的事情，比如读取文件内容等等
         // 读取文件内容
+        //这里应该添加一个最近路径
         QFile file(selectedFile);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
             QString fileContent = in.readAll();
             QString fileContent2;
             QString fileContent3;
+            QString funcServer;
             qDebug() << "File content:" << fileContent;
+            fileContent.replace("\t", "");
             file.close();
 
             //查找server
@@ -2374,11 +2432,12 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             if (index) {
                 int index2 = fileContent.indexOf("service");
 
-                
+
                 fileContent2 = fileContent.mid(index2);
-                
 
                 int index3 = fileContent2.indexOf("{");
+                funcServer = fileContent2.mid(0, index3).split(" ", QString::SkipEmptyParts)[1];
+                qDebug() << "所属服务 = " << funcServer;
                 fileContent2 = fileContent2.mid(index3 + 1);
                 int index4 = fileContent2.indexOf("}");
 
@@ -2397,8 +2456,8 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     int index5 = func.indexOf(" ");
                     QString funcParam = func.mid(0, index5);
                     QString funcName1 =func.mid(index5).trimmed();
-                    //qDebug() << "funcParam1 " << funcParam;
-                    //qDebug() << "funcName1 " << funcName1;
+                    qDebug() << "funcParam1 " << funcParam;
+                    qDebug() << "funcName1 " << funcName1;
 
                     int index6 = funcName1.indexOf("(");
                     QString funcName = funcName1.mid(0, index6);
@@ -2406,16 +2465,16 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     QString funcParam2 = funcName1.mid(index6 + 1);
                     int index7 = funcParam2.indexOf(")");
                     funcParam2 = funcParam2.mid(0, index7);
-                    //qDebug() << "funcParam2 " << funcParam2;
-                    funcParamMap.insert(funcName, getFuncParams(funcParam2));
+                    qDebug() << "funcParam2 " << funcParam2;
+                    funcParamInMap.insert(funcName, getFuncInParams(funcParam2));
+                    funcParamOutMap.insert(funcName, getFuncOutParams(funcParam));
                     QStringList funcP = funcParam2.split(",");
-                    //qDebug() << "funcP " << funcP;
 
                     for(int i =0; i < funcP.length(); i++) {
                         qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);
                     }
 
-                    QListWidgetItem *item1 = new QListWidgetItem(funcName);
+                    QListWidgetItem *item1 = new QListWidgetItem(funcName + " : " + funcServer);
                     // 创建一个QIcon对象并设置图标
                     QIcon icon1(":/lib/api.png"); // 设置您的图标路径
                     // 为项设置图标
@@ -2457,21 +2516,27 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 
 void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
-    ui->lineEdit_funcName->setText(current->text());
+    int index = current->text().indexOf(":");
+    if (index == 0) {
+        index = current->text().length();
+    }
+    QString funcName2 = current->text().mid(0, index - 1);
+    qDebug() << "funcName2 = " << funcName2;
+    ui->lineEdit_funcName->setText(funcName2);
     ui->treeWidget->clear();
     //循环获取参数
-    for(int i =1; i <= funcParamMap.value(current->text()).size(); i++) {
+    for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
         //QMap<QString, paramInfo>
         qDebug() << " sn = " << i
-                << " paramType = " << funcParamMap.value(current->text()).value(QString::number(i)).paramType
-                << " paramName" << funcParamMap.value(current->text()).value(QString::number(i)).paramName;
+                << " paramType = " << funcParamInMap.value(funcName2).value(QString::number(i)).paramType
+                << " paramName" << funcParamInMap.value(funcName2).value(QString::number(i)).paramName;
         
 
         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
         items->setParamValue(this, QString::number(i),
-            funcParamMap.value(current->text()).value(QString::number(i)).paramName,
-            funcParamMap.value(current->text()).value(QString::number(i)).paramType,
-            funcParamMap.value(current->text()).value(QString::number(i)).typeSign);
+            funcParamInMap.value(funcName2).value(QString::number(i)).paramName,
+            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
+            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
 
     }
 }
