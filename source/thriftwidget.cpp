@@ -1766,19 +1766,19 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         if (value_type == "02") {
             //bool
             type_ = THRIFT_BOOL;
-            temp = temp + handleBool(str, isEnd);
+            temp = temp + handleBool(str, isEnd, paramName_);
         } else if (value_type == "03") {
             //byte
             type_ = THRIFT_BYTE;
-            temp = temp + handleByte(str, isEnd);
+            temp = temp + handleByte(str, isEnd, paramName_);
         } else if (value_type == "04") {
             //double
             type_ = THRIFT_DOUBLE;
-            temp = temp + handleDouble(str, isEnd);
+            temp = temp + handleDouble(str, isEnd, paramName_);
         } else if (value_type == "06") {
             //i16
             type_ = THRIFT_I16;
-            temp = temp + handleI16(str, isEnd);
+            temp = temp + handleI16(str, isEnd, paramName_);
         } else if (value_type == "08") {
             //i32
             type_ = THRIFT_I32;
@@ -1807,6 +1807,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
             //list
             type_ = THRIFT_LIST;
             qDebug()<< "走到这里0f";
+            //内部处理类型吧
             temp = temp + handleList(str, isEnd, paramType_, paramName_);
             //break;
         }
@@ -1831,6 +1832,11 @@ QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QS
 
 QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, QString outParam)
 {
+    qDebug() << "outType =" << outType;
+    int index_s = outType.indexOf("<");
+    int index_e = outType.lastIndexOf(">");
+    QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
+    qDebug() << "paramType_s =" << paramType_s;
     if (outParam == "") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
@@ -1854,39 +1860,41 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
     int len = value_len.toInt(&ok, 16);
     qDebug() << "list len = " << len;
     //QString isEnd = str.mid(0, 2);
-    for(int i = 0; i < len; i++) {
+
+    for(int i = 1; i <= len; i++) {
+        QString paramName = ""; //structParamMap.value(paramType_s).value(QString::number(i)).paramName;
+        QString paramType = paramType_s; //structParamMap.value(paramType_s).value(QString::number(i)).paramType;
+        qDebug() << " paramName  = " << paramName << " paramType = " << paramType;
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd);
+            temp = temp + handleBool(str, isEnd, paramName);
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd);
+            temp = temp + handleByte(str, isEnd, paramName);
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd);
+            temp = temp + handleDouble(str, isEnd, paramName);
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd);
+            temp = temp + handleI16(str, isEnd, paramName);
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd);
+            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName);
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd);
+            temp = temp + handleI64(str, isEnd, paramName);
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd);
+            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName);
         } else if (value_type == "0c") {
-            //qDebug() << "handleList i1 = " << i;
-            temp = temp + handleStruct(str, isEnd);
-            //qDebug() << "handleList i2 = " << i;
+            temp = temp + handleStruct(str, isEnd, paramType, paramName);
         } else if (value_type == "0d") {
 
         } else if (value_type == "0e") {
             
         } else if (value_type == "0f") {
-            temp = temp + handleList(str, isEnd);
+            temp = temp + handleList(str, isEnd, paramType, paramName);
         }
     }
     retractNum--;
@@ -2618,3 +2626,4 @@ void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QL
 
     }
 }
+
