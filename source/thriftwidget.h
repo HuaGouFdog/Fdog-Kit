@@ -334,27 +334,27 @@ public:
     //添加括号颜色
     QString addColorBracketsHtml(QString str);
 
-    QString handleBool(QString &str);
+    QString handleBool(QString &str, QString isEnd, QString paramName = "");
 
-    QString handleByte(QString &str);
+    QString handleByte(QString &str, QString isEnd, QString paramName = "");
 
-    QString handleDouble(QString &str);
+    QString handleDouble(QString &str, QString isEnd, QString paramName = "");
 
-    QString handleI16(QString &str);
+    QString handleI16(QString &str, QString isEnd, QString paramName = "");
 
-    QString handleI32(QString &str, QString resType = THRIFT_REPLY, QString paramName = "");
+    QString handleI32(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "");
 
-    QString handleI64(QString &str, QString paramName = "");
+    QString handleI64(QString &str, QString isEnd, QString paramName = "");
 
-    QString handleString(QString &str, QString resType = THRIFT_REPLY, QString paramName = "");
+    QString handleString(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "");
 
-    QString handleStruct(QString &str, QString outType = "", QString outParam = "");
+    QString handleStruct(QString &str, QString isEnd, QString outType = "", QString outParam = "");
 
-    QString handleMap(QString &str);
+    QString handleMap(QString &str, QString isEnd, QString outType = "", QString paramName = "");
 
-    QString handleSet(QString &str);
+    QString handleSet(QString &str, QString isEnd, QString outType = "", QString paramName = "");
 
-    QString handleList(QString &str);
+    QString handleList(QString &str, QString isEnd, QString outType = "", QString paramName = "");
     
     QString handleEnd(QString &str);
 
