@@ -2611,6 +2611,23 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 
 void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
+    //获取接口服务名，尝试匹配端口
+    QTreeWidgetItem * parent = current->parent();
+    QString port_ = parent->text(0);
+    int index_port = port_.indexOf("Service");
+    port_ = port_.mid(0, index_port);
+    //尝试匹配
+    port_ = port_.toLower();
+    int itemCount = ui->comboBox_port->count();
+    for(int i =0; i < itemCount; i++) {
+       QString com_port = ui->comboBox_port->itemText(i).toLower();
+       qDebug() << " com_port = " << com_port << " port_ = " << port_;
+       if (com_port.contains(port_)) {
+           ui->comboBox_port->setCurrentIndex(i);
+           break;
+       }
+    }
+
     int index = current->text(0).indexOf(":");
     if (index == 0) {
         index = current->text(0).length();
