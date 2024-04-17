@@ -1742,7 +1742,12 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
             if (isEnd == "00") {
                 ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
             } else {
-                ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "},"));
+                if (retractNum == 0) {
+                    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
+                } else {
+                    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "},"));
+                }
+                
             }
             
             break;
