@@ -415,6 +415,8 @@ private slots:
 
     void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
+    void on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+
 private:
     QVector<QString> dataList;
     QString lastValue_;

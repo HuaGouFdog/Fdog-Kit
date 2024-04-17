@@ -45,6 +45,7 @@ public:
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
     QToolButton *toolButton_inportFile;
+    QTreeWidget *treeWidget_api;
     QListWidget *listWidget;
     QWidget *tab;
     QWidget *widget_right;
@@ -230,8 +231,8 @@ public:
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         widget_left = new QWidget(thriftwidget);
         widget_left->setObjectName(QStringLiteral("widget_left"));
-        widget_left->setMinimumSize(QSize(250, 0));
-        widget_left->setMaximumSize(QSize(250, 16777215));
+        widget_left->setMinimumSize(QSize(220, 0));
+        widget_left->setMaximumSize(QSize(220, 16777215));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         widget_left->setFont(font1);
@@ -348,7 +349,7 @@ public:
 "	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
                         "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	width:105px;\n"
+"	width:90px;\n"
 "	padding: 4px;\n"
 "	margin-right:0px;\n"
 "	margin-left: 0px;\n"
@@ -363,8 +364,8 @@ public:
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
-"	/*backg"
-                        "round-color: rgb(100, 117, 125, 125);*/\n"
+"	/*backgr"
+                        "ound-color: rgb(100, 117, 125, 125);*/\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
@@ -430,6 +431,79 @@ public:
         toolButton_inportFile->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout_12->addWidget(toolButton_inportFile);
+
+        treeWidget_api = new QTreeWidget(tab_2);
+        treeWidget_api->setObjectName(QStringLiteral("treeWidget_api"));
+        treeWidget_api->setFont(font);
+        treeWidget_api->setStyleSheet(QString::fromUtf8("QTreeWidget{\n"
+"border: 1px solid rgba(212, 212, 212, 80);\n"
+"border-radius: 2px;\n"
+"padding:5px;\n"
+"}\n"
+"\n"
+"QTreeWidget::item {\n"
+"    height: 25px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
+"}\n"
+"\n"
+"QScrollBar::horizontal{\n"
+"    height: 8px;\n"
+"	background-color: rgb(67, 77, 88);\n"
+"	margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"QTreeWidget::branch:closed:has-children:!has-siblings,\n"
+"QTreeWidget::branch:closed:has-children:has-siblings {\n"
+"	border-image: none;\n"
+"    image: url(:/lib/tree_close.png);\n"
+"}\n"
+" \n"
+"QTreeWidget::branch:open:has-children:!has-siblings,\n"
+"QTreeWidget::branch:open:has-children:has-siblings  {\n"
+"	border-image: none;\n"
+"    image: url(:/lib/tree_open.png);\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    height: 8px;\n"
+"	background-color: rgb(239, 239, 239"
+                        ");\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:horizontal {\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:horizontal \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:horizontal {\n"
+"    border:none;\n"
+"}\n"
+"QScrollBar::up-arrow:horizontal {\n"
+"    border:none;\n"
+"}"));
+        treeWidget_api->header()->setVisible(false);
+
+        verticalLayout_12->addWidget(treeWidget_api);
 
         listWidget = new QListWidget(tab_2);
         listWidget->setObjectName(QStringLiteral("listWidget"));

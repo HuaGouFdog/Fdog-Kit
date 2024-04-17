@@ -2529,6 +2529,11 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                 int index3 = fileContent2.indexOf("{");
                 funcServer = fileContent2.mid(0, index3).split(" ", QString::SkipEmptyParts)[1];
                 qDebug() << "所属服务 = " << funcServer;
+                QTreeWidgetItem *parentItem = new QTreeWidgetItem(ui->treeWidget_api);
+                QIcon icon2(":/lib/server.png");
+                parentItem->setText(0, funcServer);
+                parentItem->setIcon(0, icon2);
+                parentItem->setExpanded(true);
                 fileContent2 = fileContent2.mid(index3 + 1);
                 int index4 = fileContent2.indexOf("}");
 
@@ -2565,9 +2570,14 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                         qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);
                     }
 
-                    QListWidgetItem *item1 = new QListWidgetItem(funcName + " : " + funcServer);
                     // 创建一个QIcon对象并设置图标
                     QIcon icon1(":/lib/api.png"); // 设置您的图标路径
+
+                    QTreeWidgetItem *childItem1 = new QTreeWidgetItem(parentItem);
+                    childItem1->setText(0, funcName);
+                    childItem1->setIcon(0, icon1);
+
+                    QListWidgetItem *item1 = new QListWidgetItem(funcName + " : " + funcServer);
                     // 为项设置图标
                     item1->setIcon(icon1);
                     // 将项添加到列表中
@@ -2632,3 +2642,30 @@ void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QL
     }
 }
 
+
+void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    int index = current->text(0).indexOf(":");
+    if (index == 0) {
+        index = current->text(0).length();
+    }
+    QString funcName2 = current->text(0).mid(0, index - 1);
+    qDebug() << "funcName2 = " << funcName2;
+    ui->lineEdit_funcName->setText(funcName2);
+    ui->treeWidget->clear();
+    //循环获取参数
+    for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
+        //QMap<QString, paramInfo>
+        qDebug() << " sn = " << i
+                << " paramType = " << funcParamInMap.value(funcName2).value(QString::number(i)).paramType
+                << " paramName" << funcParamInMap.value(funcName2).value(QString::number(i)).paramName;
+
+
+        ItemWidget* items = createAndGetNode(this, ui->treeWidget);
+        items->setParamValue(this, QString::number(i),
+            funcParamInMap.value(funcName2).value(QString::number(i)).paramName,
+            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
+            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
+
+    }
+}
