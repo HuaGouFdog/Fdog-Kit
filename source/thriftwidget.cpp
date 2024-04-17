@@ -2577,12 +2577,6 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     childItem1->setText(0, funcName);
                     childItem1->setIcon(0, icon1);
 
-                    QListWidgetItem *item1 = new QListWidgetItem(funcName + " : " + funcServer);
-                    // 为项设置图标
-                    item1->setIcon(icon1);
-                    // 将项添加到列表中
-                    ui->listWidget->addItem(item1);
-                    //ui->listWidget->addItem(funcName);
                 }
 
             }
@@ -2614,34 +2608,6 @@ void thriftwidget::on_toolButton_inportFile_clicked()
         }
     }
 }
-
-void thriftwidget::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
-{
-    int index = current->text().indexOf(":");
-    if (index == 0) {
-        index = current->text().length();
-    }
-    QString funcName2 = current->text().mid(0, index - 1);
-    qDebug() << "funcName2 = " << funcName2;
-    ui->lineEdit_funcName->setText(funcName2);
-    ui->treeWidget->clear();
-    //循环获取参数
-    for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
-        //QMap<QString, paramInfo>
-        qDebug() << " sn = " << i
-                << " paramType = " << funcParamInMap.value(funcName2).value(QString::number(i)).paramType
-                << " paramName" << funcParamInMap.value(funcName2).value(QString::number(i)).paramName;
-        
-
-        ItemWidget* items = createAndGetNode(this, ui->treeWidget);
-        items->setParamValue(this, QString::number(i),
-            funcParamInMap.value(funcName2).value(QString::number(i)).paramName,
-            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
-            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
-
-    }
-}
-
 
 void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {

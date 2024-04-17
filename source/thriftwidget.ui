@@ -87,13 +87,13 @@ QMenu::separator {
     <widget class="QWidget" name="widget_left" native="true">
      <property name="minimumSize">
       <size>
-       <width>220</width>
+       <width>240</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>220</width>
+       <width>240</width>
        <height>16777215</height>
       </size>
      </property>
@@ -262,7 +262,7 @@ QTabBar::tab{
 	color:#ced4da;    /*设置tab中的文本的颜色*/
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
-	width:90px;
+	width:100px;
 	padding: 4px;
 	margin-right:0px;
 	margin-left: 0px;
@@ -474,72 +474,6 @@ QScrollBar::up-arrow:horizontal {
             <attribute name="headerVisible">
              <bool>false</bool>
             </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QListWidget" name="listWidget">
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QListWidget{
-border: 1px solid rgba(212, 212, 212, 80);
-border-radius: 2px;
-padding:5px;
-}
-
-QListWidget::item {
-    height: 25px; /* 设置行高为50像素 */
-}
-
-QScrollBar::horizontal{
-    height: 8px;
-	background-color: rgb(67, 77, 88);
-	margin: 0px,0px,0px,0px;
-    padding-top: 0px;		/*//隐藏上下的箭头*/
-    padding-bottom: 0px;
-}
-
-QScrollBar::handle:horizontal {
-    height: 8px;
-	background-color: rgb(239, 239, 239);
-    /*滚动条两端变成椭圆 */
-    border-radius: 2px;
-    min-height: 0;
-}
-
-QScrollBar::sub-page:horizontal {
-	background-color: rgba(255, 255, 255, 0);
-}
-QScrollBar::add-page:horizontal 
-{
-    background-color: rgba(255, 255, 255, 0);
-}
-
-QScrollBar::add-line:horizontal {
-	border: none;
-    height: 0px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
-}
-QScrollBar::sub-line:horizontal {
-    border: none;
-    height: 0px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
-}
-
-QScrollBar::down-arrow:horizontal {
-    border:none;
-}
-QScrollBar::up-arrow:horizontal {
-    border:none;
-}</string>
-            </property>
            </widget>
           </item>
          </layout>
