@@ -2936,6 +2936,10 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
     //获取接口服务名，尝试匹配端口
+    qDebug() << "=1";
+    if (!current->parent()) {
+        return;
+    }
     QTreeWidgetItem * parent = current->parent();
     QString port_ = parent->text(0);
     int index_port = port_.indexOf("Service");
@@ -2951,7 +2955,7 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
            break;
        }
     }
-
+    qDebug() << "=2";
     int index = current->text(0).indexOf(":");
     if (index == 0) {
         index = current->text(0).length();
@@ -2961,6 +2965,7 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
     ui->lineEdit_funcName->setText(funcName2);
     ui->treeWidget->clear();
     //循环获取参数
+    qDebug() << "=3";
     for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
         //QMap<QString, paramInfo>
         qDebug() << " sn = " << i
