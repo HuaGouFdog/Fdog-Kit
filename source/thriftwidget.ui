@@ -87,13 +87,13 @@ QMenu::separator {
     <widget class="QWidget" name="widget_left" native="true">
      <property name="minimumSize">
       <size>
-       <width>240</width>
+       <width>260</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>240</width>
+       <width>260</width>
        <height>16777215</height>
       </size>
      </property>
@@ -104,7 +104,7 @@ QMenu::separator {
      </property>
      <property name="styleSheet">
       <string notr="true">#widget_left{
-border-right:2px solid rgba(108, 117, 125, 65); 
+border-right:0px solid rgba(108, 117, 125, 65); 
 }
 QScrollBar:vertical{
     width: 10px;
@@ -159,13 +159,13 @@ QScrollBar::up-arrow:vertical {
        <number>9</number>
       </property>
       <property name="leftMargin">
-       <number>10</number>
+       <number>5</number>
       </property>
       <property name="topMargin">
        <number>5</number>
       </property>
       <property name="rightMargin">
-       <number>10</number>
+       <number>5</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -262,7 +262,7 @@ QTabBar::tab{
 	color:#ced4da;    /*设置tab中的文本的颜色*/
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
-	width:100px;
+	width:110px;
 	padding: 4px;
 	margin-right:0px;
 	margin-left: 0px;
@@ -324,13 +324,13 @@ QTabBar QToolButton:hover {
            <number>0</number>
           </property>
           <property name="topMargin">
-           <number>6</number>
+           <number>5</number>
           </property>
           <property name="rightMargin">
            <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>9</number>
+           <number>5</number>
           </property>
           <item>
            <widget class="QToolButton" name="toolButton_inportFile">
@@ -406,7 +406,7 @@ QToolButton:hover {
             </property>
             <property name="styleSheet">
              <string notr="true">QTreeWidget{
-border: 1px solid rgba(212, 212, 212, 80);
+border: 1px solid rgba(212, 212, 212, 50);
 border-radius: 2px;
 padding:5px;
 }
@@ -474,6 +474,11 @@ QScrollBar::up-arrow:horizontal {
             <attribute name="headerVisible">
              <bool>false</bool>
             </attribute>
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>
@@ -584,13 +589,13 @@ QScrollBar::up-arrow:vertical {
        <number>0</number>
       </property>
       <property name="topMargin">
-       <number>7</number>
+       <number>6</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>10</number>
       </property>
       <property name="bottomMargin">
-       <number>0</number>
+       <number>6</number>
       </property>
       <item>
        <widget class="QWidget" name="widget_6" native="true">
@@ -2371,7 +2376,13 @@ QToolButton:hover {
             </property>
             <widget class="QWidget" name="widget_4" native="true">
              <property name="styleSheet">
-              <string notr="true">QComboBox{
+              <string notr="true">#widget_4{
+/*border-right:2px solid rgb(54, 81, 97); */
+/*border-left:2px solid rgb(54, 81, 97); */
+/*background-color: rgb(54, 81, 97);*/
+}
+
+QComboBox{
 	font: 10pt &quot;OPPOSans B&quot;;
 	color:#ffffff;
 	color: rgb(138, 138, 138);
@@ -2495,7 +2506,7 @@ QToolButton:hover {
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QWidget" name="widget_12" native="true">
+                   <widget class="QWidget" name="widget_in_param" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -2503,7 +2514,13 @@ QToolButton:hover {
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">background-color: rgb(54, 81, 97);</string>
+                     <string notr="true">#widget_in_param{
+	background-color: rgb(54, 81, 97);
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+</string>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_8">
                      <property name="spacing">
@@ -2522,45 +2539,31 @@ QToolButton:hover {
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QToolButton" name="toolButton_request_param">
+                      <widget class="QLabel" name="label_request_param">
                        <property name="minimumSize">
                         <size>
-                         <width>50</width>
-                         <height>25</height>
+                         <width>40</width>
+                         <height>0</height>
                         </size>
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>50</width>
-                         <height>25</height>
+                         <width>40</width>
+                         <height>16777215</height>
                         </size>
                        </property>
                        <property name="font">
                         <font>
                          <family>OPPOSans B</family>
                          <pointsize>10</pointsize>
-                         <weight>50</weight>
-                         <italic>false</italic>
-                         <bold>false</bold>
+                         <stylestrategy>PreferAntialias</stylestrategy>
                         </font>
                        </property>
                        <property name="text">
                         <string>入参</string>
                        </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>20</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                       <property name="checkable">
-                        <bool>false</bool>
-                       </property>
-                       <property name="checked">
-                        <bool>false</bool>
-                       </property>
-                       <property name="toolButtonStyle">
-                        <enum>Qt::ToolButtonTextBesideIcon</enum>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -2655,7 +2658,8 @@ background-color: rgb(54, 81, 97);
 }
 
 QTreeWidget#treeWidget {
-	border: 0px solid #D3D6DD;
+border-right:5px solid rgb(54, 81, 97); 
+border-left:5px solid rgb(54, 81, 97); 
 	outline: none;
 }
 QTreeWidget::item {
@@ -2853,7 +2857,7 @@ border-radius: 2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>100</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="font">
@@ -2927,7 +2931,7 @@ QScrollBar::up-arrow:vertical {
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QWidget" name="widget_8" native="true">
+                  <widget class="QWidget" name="widget_response" native="true">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -2966,39 +2970,31 @@ QScrollBar::up-arrow:vertical {
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QToolButton" name="toolButton_response">
+                     <widget class="QLabel" name="label_response_param">
                       <property name="minimumSize">
                        <size>
-                        <width>50</width>
+                        <width>40</width>
                         <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>50</width>
+                        <width>40</width>
                         <height>16777215</height>
                        </size>
                       </property>
-                      <property name="styleSheet">
-                       <string notr="true">
-QToolButton {
-	font: 10pt &quot;OPPOSans B&quot;;
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border-radius: 5px;
-}</string>
+                      <property name="font">
+                       <font>
+                        <family>OPPOSans B</family>
+                        <pointsize>10</pointsize>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
                       </property>
                       <property name="text">
-                       <string>请求</string>
+                       <string>入参</string>
                       </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="toolButtonStyle">
-                       <enum>Qt::ToolButtonTextBesideIcon</enum>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
                       </property>
                      </widget>
                     </item>
@@ -3109,8 +3105,13 @@ QToolButton:hover {
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(79, 79, 79);</string>
+                    <string notr="true">#stackedWidget{
+background-color: rgb(255, 255, 255);
+color: rgb(79, 79, 79);
+}
+
+
+</string>
                    </property>
                    <property name="currentIndex">
                     <number>0</number>
@@ -3144,19 +3145,7 @@ color: rgb(79, 79, 79);</string>
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">
-
-/*设置TabWidget中tab_1的样式*/
-#tab_1.QWidget{
-	background-color: rgb(108, 117, 125, 65);
-}
- 
-/*设置TabWidget中tab_2的样式*/
-#tab_11.QWidget{
-	background-color: rgb(108, 117, 125, 65);
-}
- 
-/*设置TabWidget中QTabBar的样式*/
+                        <string notr="true">/*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
     
 	background-color: rgb(255, 255, 255);
@@ -3226,6 +3215,15 @@ QTabBar QToolButton:hover {
                         <number>0</number>
                        </property>
                        <widget class="QWidget" name="tab_3">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
                         <attribute name="title">
                          <string>Data</string>
                         </attribute>
@@ -3302,6 +3300,12 @@ p, li { white-space: pre-wrap; }
                         </layout>
                        </widget>
                        <widget class="QWidget" name="tab_source">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
                         <property name="font">
                          <font>
                           <family>OPPOSans B</family>
@@ -3686,7 +3690,7 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QWidget" name="widget_10" native="true">
+                  <widget class="QWidget" name="widget_response_bottom" native="true">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -3701,7 +3705,12 @@ p, li { white-space: pre-wrap; }
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(54, 81, 97);</string>
+                    <string notr="true">#widget_response_bottom{
+	background-color: rgb(54, 81, 97);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_6">
                     <property name="spacing">

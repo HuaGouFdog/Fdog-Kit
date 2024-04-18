@@ -544,8 +544,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->comboBox_testType->setView(new QListView());
     ui->comboBox_port->setView(new QListView());
 
-    ui->splitter->setStretchFactor(0, 5);  // 第一个子控件占 1/3 的显示空间
-    ui->splitter->setStretchFactor(1, 3);  // 第二个子控件占 2/3 的显示空间
+    ui->splitter->setStretchFactor(0, 6);  // 第一个子控件占 1/3 的显示空间
+    ui->splitter->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
 
     ui->splitter_2->setStretchFactor(0, 2);  // 第一个子控件占 1/3 的显示空间
     ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
@@ -1953,6 +1953,106 @@ QString thriftwidget::getRetract()
     return retract;
 }
 
+void thriftwidget::deleteComments(char *buf, int n)
+{
+    char *p, *end, c;
+
+    p = buf;
+    end = buf + n;
+
+    char *pos1 = NULL, *pos2 = NULL;
+    bool flag1 = false, flag2 = false;// "   and   '
+    int flag3 = 0, flag4 = 0, flag5 = 0;// for /*...     //...      */
+
+    while( p < end)
+    {
+        c = *p;
+        //cout << "new char: " << c <<endl;
+        switch(c)
+        {
+        case '"':
+        {
+            if (flag3 == 0)
+                flag1 = (flag1 == true)?false:true;
+            p ++;
+        } break;
+        case '\'':
+        {
+            if (flag3 == 0)
+                flag2 = (flag2 == true)?false:true;
+            p ++;
+        } break;
+        case '/':
+        {
+            p ++;
+            if (*p == '/' && (flag3 == 0))    // ..... //....
+            {
+                p ++;
+                //qDebug() << "in // " << endl;
+                //cout << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                if (!flag1 && !flag2 && (flag5 == 0) && (flag4 == 0) && (flag3 == 0))
+                {
+                    //flag4 ++;
+                    // deal with //...:delete char until '\n'
+                    //qDebug()  << "deal with // ..." << endl;
+
+                    *(p-1) = ' ';
+                    *(p-2) = ' ';
+                    while (*p != '\n')
+                    {
+                        //qDebug()  << "dealing : " << *p << "   ";
+                        *p = ' ';
+                        p ++;
+                    }
+                }
+
+            }
+            else if ( *p == '*' && !flag1 && !flag2 && (flag3 == 0))    // ....  /*.....
+            {
+                p ++;
+                flag3 ++;
+                //qDebug()  << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                if (!flag1 && !flag2 && (flag4 == 0) && (flag3 == 1))
+                {
+                    pos1 = p;// delete from pos1
+                }
+            }
+        }break;
+        case '*':
+        {
+            p ++;
+            if (*p == '/' && !flag1 && !flag2)  // .... */...
+            {
+                flag5 ++;
+                //qDebug()  << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                if(!flag1 && !flag2 && (flag3 != 0) && (flag5 != 0))
+                {
+                    flag3 = 0;
+                    flag5 --;
+                    pos2 = p - 2;
+                    //qDebug()  << "deal with  \/* .. *\/" << endl;
+                    // deal wtih /*... */... : delete from pos1 to pos2
+                    char *pos = pos1;
+                    *(pos - 1) = ' ';
+                    *(pos - 2) = ' ';
+                    *(pos2 + 1) = ' ';
+                    *(pos2 + 2) = ' ';
+
+                    do {
+                        //qDebug()  << "dealing: " <<  *pos << endl;
+                        *pos = ' ';
+                        pos ++;
+                    } while(pos != pos2 + 1);
+                }
+            }
+        } break;
+        default:
+            p ++;
+            break;
+        }
+    }
+}
+
 
 QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data)
 {
@@ -2026,13 +2126,13 @@ QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
         if (a.length() == 2) {
             QString type = a[0].replace(";", "");
             QString name = a[1].replace(";", "");
-            qDebug() << "sn = " << sn << " type = " << type << " name =" << name;
+            //qDebug() << "sn = " << sn << " type = " << type << " name =" << name;
             paramsStructMap_.insert(sn, {type, name, "opt-in, req-out"});
         } else if (a.length() == 3) {
             if (a[0] == "optional") {
-                qDebug() << "选传";
+                //qDebug() << "选传";
             } else if (a[0] == "required") {
-                qDebug() << "提示";
+                //qDebug() << "提示";
             }
             QString type = a[1].replace(";", "");
             QString name = a[2].replace(";", "");
@@ -2516,6 +2616,24 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             QString funcServer;
             qDebug() << "File content:" << fileContent;
             fileContent.replace("\t", "");
+            qDebug() << "原数据 = " << fileContent;
+            //删除注释
+            char *charArray = strdup(fileContent.toUtf8().constData());
+            deleteComments(charArray, fileContent.length());
+            fileContent = QString::fromUtf8(charArray);
+
+            // char *charArray2 = strdup(fileContent.toUtf8().constData());
+            // deleteComments(charArray2, fileContent.length());
+            // fileContent = QString::fromUtf8(charArray2);
+
+            // char *charArray3 = strdup(fileContent.toUtf8().constData());
+            // deleteComments(charArray3, fileContent.length());
+            // fileContent = QString::fromUtf8(charArray3);
+
+            qDebug() << "删除注释数据 = " << fileContent;
+            free(charArray);
+            //free(charArray2);
+            //free(charArray3);
             file.close();
 
             //查找server
@@ -2543,10 +2661,20 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                 fileContent3 = fileContent.mid(0, index2); //获取结构体部分 其实这就可以 暂时不考虑service后面还有struct
 
                 //fileContent.replace(" ","");
+                qDebug() << " fileContent2 = " << fileContent2;
+                //处理多的空格
+                while(fileContent2.contains("  ")) {
+                    fileContent2.replace("  ", " ");
+                }
+                qDebug() << " fileContent2 = " << fileContent2;
                 QStringList list = fileContent2.split("\n", QString::SkipEmptyParts);
-
+                //接口长度不能小于3
+                qDebug() << "list = " << list;
                 //开始循环解析接口部分
                 for (int i = 0; i < list.length(); i++) {
+                    if (list[i].length() <= 3) {
+                        continue;
+                    }
                     //qDebug() << "接口部分：" << list[i];
                     QString func = list[i].trimmed();
                     int index5 = func.indexOf(" ");
@@ -2621,7 +2749,7 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
     int itemCount = ui->comboBox_port->count();
     for(int i =0; i < itemCount; i++) {
        QString com_port = ui->comboBox_port->itemText(i).toLower();
-       qDebug() << " com_port = " << com_port << " port_ = " << port_;
+       //qDebug() << " com_port = " << com_port << " port_ = " << port_;
        if (com_port.contains(port_)) {
            ui->comboBox_port->setCurrentIndex(i);
            break;

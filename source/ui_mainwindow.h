@@ -261,26 +261,26 @@ public:
         centralWidget->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(0);
+        verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(5, 5, 5, 5);
+        verticalLayout->setContentsMargins(5, 0, 0, 5);
         widget_title = new QWidget(centralWidget);
         widget_title->setObjectName(QStringLiteral("widget_title"));
-        widget_title->setMinimumSize(QSize(0, 22));
-        widget_title->setMaximumSize(QSize(16777215, 24));
-        widget_title->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        widget_title->setMinimumSize(QSize(0, 30));
+        widget_title->setMaximumSize(QSize(16777215, 30));
+        widget_title->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54, 0);\n"
 "color: rgb(255, 255, 255);\n"
 ""));
         horizontalLayout = new QHBoxLayout(widget_title);
-        horizontalLayout->setSpacing(4);
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 1, 5, 2);
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         toolButton = new QToolButton(widget_title);
         toolButton->setObjectName(QStringLiteral("toolButton"));
-        toolButton->setMinimumSize(QSize(20, 20));
-        toolButton->setMaximumSize(QSize(20, 20));
+        toolButton->setMinimumSize(QSize(25, 20));
+        toolButton->setMaximumSize(QSize(25, 20));
         toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
 "	\n"
 "	color: rgb(217, 236, 237);\n"
@@ -559,15 +559,16 @@ public:
 
         toolButton_min = new QToolButton(widget_title);
         toolButton_min->setObjectName(QStringLiteral("toolButton_min"));
-        toolButton_min->setMinimumSize(QSize(20, 20));
-        toolButton_min->setMaximumSize(QSize(20, 20));
+        toolButton_min->setMinimumSize(QSize(40, 29));
+        toolButton_min->setMaximumSize(QSize(40, 29));
         QFont font2;
         font2.setPointSize(10);
         font2.setStyleStrategy(QFont::PreferAntialias);
         toolButton_min->setFont(font2);
         toolButton_min->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
 "	border: none;\n"
 "}\n"
 "\n"
@@ -578,24 +579,27 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"\n"
+"	\n"
+"	background-color: rgb(23, 35, 42);\n"
 "	border: none;\n"
 "}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/icon-minus3.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_min->setIcon(icon1);
-        toolButton_min->setIconSize(QSize(19, 19));
+        toolButton_min->setIconSize(QSize(13, 13));
 
         horizontalLayout->addWidget(toolButton_min);
 
         toolButton_max = new QToolButton(widget_title);
         toolButton_max->setObjectName(QStringLiteral("toolButton_max"));
-        toolButton_max->setMinimumSize(QSize(20, 20));
-        toolButton_max->setMaximumSize(QSize(20, 20));
+        toolButton_max->setMinimumSize(QSize(40, 29));
+        toolButton_max->setMaximumSize(QSize(40, 29));
         toolButton_max->setFont(font2);
         toolButton_max->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
 "	border: none;\n"
 "}\n"
 "\n"
@@ -606,13 +610,13 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	background-color: rgb(23, 35, 42);\n"
 "	border: none;\n"
 "}"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/Icon_max3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/lib/Icon_max4.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_max->setIcon(icon2);
-        toolButton_max->setIconSize(QSize(16, 16));
+        toolButton_max->setIconSize(QSize(11, 11));
         toolButton_max->setCheckable(false);
         toolButton_max->setAutoRepeat(false);
         toolButton_max->setAutoExclusive(false);
@@ -622,12 +626,13 @@ public:
 
         toolButton_close = new QToolButton(widget_title);
         toolButton_close->setObjectName(QStringLiteral("toolButton_close"));
-        toolButton_close->setMinimumSize(QSize(20, 20));
-        toolButton_close->setMaximumSize(QSize(20, 20));
+        toolButton_close->setMinimumSize(QSize(40, 29));
+        toolButton_close->setMaximumSize(QSize(40, 29));
         toolButton_close->setFont(font2);
         toolButton_close->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	border-top-right-radius: 9px;\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
 "	border: none;\n"
 "}\n"
 "\n"
@@ -638,13 +643,14 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+"	\n"
+"	background-color: rgb(200, 0, 0);\n"
 "	border: none;\n"
 "}"));
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/lib/icon-close8.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_close->setIcon(icon3);
-        toolButton_close->setIconSize(QSize(13, 13));
+        toolButton_close->setIconSize(QSize(11, 11));
         toolButton_close->setCheckable(false);
 
         horizontalLayout->addWidget(toolButton_close);
@@ -676,7 +682,7 @@ public:
 
         widget_body = new QWidget(centralWidget);
         widget_body->setObjectName(QStringLiteral("widget_body"));
-        widget_body->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        widget_body->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54, 0);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout_2 = new QVBoxLayout(widget_body);
         verticalLayout_2->setSpacing(5);
@@ -685,12 +691,12 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         stackedWidget = new QStackedWidget(widget_body);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        stackedWidget->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54,0);\n"
 "color: rgb(255, 255, 255);"));
         stackedWidget->setLineWidth(1);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        page->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54,0);\n"
 "color: rgb(255, 255, 255);"));
         horizontalLayout_2 = new QHBoxLayout(page);
         horizontalLayout_2->setSpacing(0);
@@ -1805,7 +1811,7 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        page_2->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54,0);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout_6 = new QVBoxLayout(page_2);
         verticalLayout_6->setSpacing(6);
@@ -1821,7 +1827,7 @@ public:
         stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        page_3->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54,0);\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout_7 = new QVBoxLayout(page_3);
         verticalLayout_7->setSpacing(6);
@@ -1974,7 +1980,7 @@ public:
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/lib/add3.png"), QSize(), QIcon::Normal, QIcon::Off);
         widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon4);
-        widget_welcome_body_widget2_newCreate_newTerminal->setIconSize(QSize(20, 20));
+        widget_welcome_body_widget2_newCreate_newTerminal->setIconSize(QSize(23, 24));
         widget_welcome_body_widget2_newCreate_newTerminal->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout_10->addWidget(widget_welcome_body_widget2_newCreate_newTerminal);
