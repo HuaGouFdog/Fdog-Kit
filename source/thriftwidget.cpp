@@ -1967,7 +1967,7 @@ void thriftwidget::deleteComments(char *buf, int n)
     while( p < end)
     {
         c = *p;
-        //cout << "new char: " << c <<endl;
+        //qDebug()  << "new char: " << c <<endl;
         switch(c)
         {
         case '"':
@@ -1989,7 +1989,7 @@ void thriftwidget::deleteComments(char *buf, int n)
             {
                 p ++;
                 //qDebug() << "in // " << endl;
-                //cout << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                //qDebug()  << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
                 if (!flag1 && !flag2 && (flag5 == 0) && (flag4 == 0) && (flag3 == 0))
                 {
                     //flag4 ++;
@@ -2054,36 +2054,175 @@ void thriftwidget::deleteComments(char *buf, int n)
 }
 
 
-QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data)
+void thriftwidget::deleteComments(QString &str) 
+{
+    bool inSingleLineComment = false;
+    bool inMultiLineComment = false;
+    bool inDoubleQuotes = false;
+    bool inSingleQuotes = false;
+
+    int i = 0;
+    while (i < str.length())
+    {
+        QChar c = str.at(i);
+
+        if (c == '"')
+        {
+            if (!inSingleLineComment && !inMultiLineComment && !inSingleQuotes)
+                inDoubleQuotes = !inDoubleQuotes;
+        }
+        else if (c == '\'')
+        {
+            if (!inSingleLineComment && !inMultiLineComment && !inDoubleQuotes)
+                inSingleQuotes = !inSingleQuotes;
+        }
+        else if (c == '/' && i + 1 < str.length())
+        {
+            QChar nextChar = str.at(i + 1);
+            if (!inDoubleQuotes && !inSingleQuotes && nextChar == '/')
+            {
+                // 开始单行注释
+                inSingleLineComment = true;
+                i++; // 跳过下一个字符，避免将其也视为注释
+            }
+            else if (!inDoubleQuotes && !inSingleQuotes && nextChar == '*')
+            {
+                // 开始多行注释
+                inMultiLineComment = true;
+                i++; // 跳过下一个字符，避免将其也视为注释
+            }
+        }
+        else if (c == '\n' && inSingleLineComment)
+        {
+            // 结束单行注释
+            inSingleLineComment = false;
+        }
+        else if (c == '*' && i + 1 < str.length() && str.at(i + 1) == '/' && inMultiLineComment)
+        {
+            // 结束多行注释
+            inMultiLineComment = false;
+            i++; // 跳过下一个字符，避免将其也视为注释
+        }
+        else if (!inSingleLineComment && !inMultiLineComment)
+        {
+            // 未在注释中，将字符保留
+            i++;
+        }
+        else
+        {
+            // 在注释中，将字符替换为空格
+            str[i] = ' ';
+            i++;
+        }
+    }
+}
+
+
+bool thriftwidget::containsChinese(QString &str) {
+    for (int i = 0; i < str.length(); ++i)
+    {
+        QChar c = str.at(i);
+        if (c >= 0x4E00 && c <= 0x9FFF)
+        {
+            // 当前字符是中文
+            return true;
+        }
+    }
+    // 没有发现中文字符
+    return false;
+}
+
+QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
 {
     //三种解析
     //1: SessionTicket st, 2: i64 userID
     //1:ThesaurusPage pageParam
     //1:i64 ct,2:i64 userID
+    isok = true;
     QMap<QString, paramInfo> paramsMap_;
     //先判断是一个参数，还是多个参数
+    qDebug() << "getFuncInParams = " << data;
     if (!data.contains(",")) {
         //一个参数
         int index = data.indexOf(":");
         data = data.mid(0, index + 1) + " " + data.mid(index + 1);
         qDebug() << "data = " << data;
     }
-    QStringList funcParams = data.split(",");
-    for(int i =0; i < funcParams.length(); i++) {
-        int index = funcParams[i].indexOf(":");
-        funcParams[i] = funcParams[i].mid(0, index + 1) + " " + funcParams[i].mid(index + 1);
-        QStringList Params = funcParams[i].split(" ", QString::SkipEmptyParts);
-        if (Params.length() == 3) {
-            int index = Params[0].indexOf(":");
-            QString sn = Params[0].mid(0, index);
-            QString paramType = Params[1];
-            QString paramName = Params[2];
-            paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
-            qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
-        } else {
-            qDebug() << "错误";
+    //这里不应该用逗号来获取参数，应该用:
+//    QStringList funcParams = data.split(",");
+//    for(int i =0; i < funcParams.length(); i++) {
+//        int index = funcParams[i].indexOf(":");
+//        funcParams[i] = funcParams[i].mid(0, index + 1) + " " + funcParams[i].mid(index + 1);
+//        QStringList Params = funcParams[i].split(" ", QString::SkipEmptyParts);
+//        if (Params.length() == 3) {
+//            int index = Params[0].indexOf(":");
+//            QString sn = Params[0].mid(0, index);
+//            QString paramType = Params[1];
+//            QString paramName = Params[2];
+//            paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
+//            qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
+//        } else {
+//            qDebug() << "错误";
+//            isok = false;
+//        }
+//    }
+
+    //先处理:
+    qDebug() << "=========";
+    while(data.contains("  ")){
+        qDebug() << "错误1";
+        data.replace("  ", " ");
+    }
+    qDebug() << "=========2";
+    while(data.contains(" :")){
+        qDebug() << "错误2";
+        data.replace(" :", ":");
+    }
+    while(data.contains(": ")){
+        qDebug() << "错误3";
+        data.replace(": ", ":");
+        qDebug() << "错误4";
+    }
+
+    if (!data.contains(":")) {
+        qDebug() << "错误";
+        isok = false;
+        return paramsMap_;
+    }
+    int a =0;
+    while(data.contains(":")){
+        qDebug() << "while data.length() = " << data.length();
+        int sum = 0;
+        for(int i = data.length() -1; i >= 0; i--) {
+            qDebug() << "while data.length() = " << data.length() << " i = " << i << " data[]" <<  data[i];
+            if (data[i] == ":") {
+                sum++;
+            }
+            if (sum != 0 && (data[i] == "," || i == 0)) {
+                //获取
+                QString param1 = data.mid(i);
+                qDebug() << "param1 = " << param1;
+                data = data.mid(0, i); //删除逗号
+                qDebug() << "剩下 = " << data;
+                int index = param1.indexOf(":");
+                QString sn = param1.mid(0, index).replace(" ", ""); //防止有逗号
+                param1 = param1.mid(index + 1);
+                qDebug() << "剩下param1 = " << param1;
+                QStringList Params = param1.split(" ", QString::SkipEmptyParts); //类型和名字必然有空格
+                if (Params.length() == 2) {
+                    QString paramType = Params[0];
+                    QString paramName = Params[1];
+                    paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
+                    qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
+                } else {
+                    qDebug() << "错误";
+                    isok = false;
+                }
+                continue;
+            }
         }
     }
+
     return paramsMap_;
 }
 
@@ -2610,6 +2749,8 @@ void thriftwidget::on_toolButton_inportFile_clicked()
         QFile file(selectedFile);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
+            //中文乱码问题
+            in.setCodec("UTF-8");
             QString fileContent = in.readAll();
             QString fileContent2;
             QString fileContent3;
@@ -2617,10 +2758,22 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             qDebug() << "File content:" << fileContent;
             fileContent.replace("\t", "");
             qDebug() << "原数据 = " << fileContent;
+            //删除中文
+            //QRegularExpression re("[\u4e00-\u9fff]+");
+            //fileContent.remove(re);
+            qDebug() << "原数据2 = " << fileContent;
+
+            //处理多的空格
+            while(fileContent.contains("  ")) {
+                fileContent.replace("  ", " ");
+            }
             //删除注释
             char *charArray = strdup(fileContent.toUtf8().constData());
+            qDebug() << " fileContent.length() =" << fileContent.length();
             deleteComments(charArray, fileContent.length());
             fileContent = QString::fromUtf8(charArray);
+
+            //deleteComments(fileContent);
 
             // char *charArray2 = strdup(fileContent.toUtf8().constData());
             // deleteComments(charArray2, fileContent.length());
@@ -2675,8 +2828,43 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     if (list[i].length() <= 3) {
                         continue;
                     }
+
+                    if (containsChinese(list[i].trimmed())) {
+                        continue;
+                        //暂时这样
+                    }
+
+
+
                     //qDebug() << "接口部分：" << list[i];
                     QString func = list[i].trimmed();
+                    qDebug() << " func = " << func;
+                    //map<i32, i32> batchAddBadWord(1: map<i32, Badword> badwords);
+                    //以这个为例，尝试处理特殊类型可能包含的空格
+                    int sum1 = 0;
+                    while (func.mid(sum1).contains("map<")) {
+                        int sum = 0;
+                        int index_left_map = func.indexOf("map<", sum1);
+                        if (index_left_map != -1) {
+                            sum++;
+                        }
+                        for (int i = index_left_map + 4; i < func.length(); i++) {
+                            if (func[i] == "<") {
+                                sum++;
+                            } else if (func[i] == ">") {
+                                sum--;
+                            } else if (func[i] == " ") {
+                                func.remove(i, 1);
+                            }
+                            if (sum == 0) {
+                                sum1 = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    qDebug() << " func2 = " << func;
+                    
                     int index5 = func.indexOf(" ");
                     QString funcParam = func.mid(0, index5);
                     QString funcName1 =func.mid(index5).trimmed();
@@ -2690,13 +2878,21 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     int index7 = funcParam2.indexOf(")");
                     funcParam2 = funcParam2.mid(0, index7);
                     qDebug() << "funcParam2 " << funcParam2;
-                    funcParamInMap.insert(funcName, getFuncInParams(funcParam2));
+                    bool isok = false;
+                    funcParamInMap.insert(funcName, getFuncInParams(funcParam2, isok));
                     funcParamOutMap.insert(funcName, getFuncOutParams(funcParam));
-                    QStringList funcP = funcParam2.split(",");
-
-                    for(int i =0; i < funcP.length(); i++) {
-                        qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);
+                    if (!isok) {
+                        funcParamInMap.remove(funcName);
+                        funcParamOutMap.remove(funcName);
+                        //提醒一下前端
+                        ui->label_time->setText("解析thrift文件出现问题！");
+                        continue;
                     }
+                    //QStringList funcP = funcParam2.split(",");
+
+//                    for(int i =0; i < funcP.length(); i++) {
+//                        qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);
+//                    }
 
                     // 创建一个QIcon对象并设置图标
                     QIcon icon1(":/lib/api.png"); // 设置您的图标路径

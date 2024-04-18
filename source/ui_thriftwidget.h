@@ -1421,9 +1421,10 @@ public:
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
         label_request_param = new QLabel(widget_in_param);
         label_request_param->setObjectName(QStringLiteral("label_request_param"));
-        label_request_param->setMinimumSize(QSize(40, 0));
-        label_request_param->setMaximumSize(QSize(40, 16777215));
+        label_request_param->setMinimumSize(QSize(50, 0));
+        label_request_param->setMaximumSize(QSize(50, 16777215));
         label_request_param->setFont(font);
+        label_request_param->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_request_param->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_8->addWidget(label_request_param);
@@ -1684,9 +1685,10 @@ public:
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         label_response_param = new QLabel(widget_response);
         label_response_param->setObjectName(QStringLiteral("label_response_param"));
-        label_response_param->setMinimumSize(QSize(40, 0));
-        label_response_param->setMaximumSize(QSize(40, 16777215));
+        label_response_param->setMinimumSize(QSize(50, 0));
+        label_response_param->setMaximumSize(QSize(50, 16777215));
         label_response_param->setFont(font);
+        label_response_param->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_response_param->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_5->addWidget(label_response_param);
@@ -2183,7 +2185,7 @@ public:
         ___qtreewidgetitem->setText(2, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\347\261\273\345\236\213", nullptr));
         ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\272\217\345\217\267", nullptr));
-        label_response_param->setText(QApplication::translate("thriftwidget", "\345\205\245\345\217\202", nullptr));
+        label_response_param->setText(QApplication::translate("thriftwidget", "\347\273\223\346\236\234", nullptr));
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
         label_headers->setText(QString());

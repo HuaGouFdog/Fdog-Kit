@@ -366,10 +366,15 @@ public:
 
     QString getRetract(); //获取缩进
 
+    void deleteComments(char* buf, int n); //删除注释
+
+    void deleteComments(QString &str);
+
+    bool containsChinese(QString &str);
     
 
     //获取入参
-    QMap<QString, paramInfo> getFuncInParams(QString data);
+    QMap<QString, paramInfo> getFuncInParams(QString data, bool & isok);
 
     //获取出参
     QMap<QString, paramInfo> getFuncOutParams(QString data);

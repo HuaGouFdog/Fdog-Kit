@@ -2542,13 +2542,13 @@ QToolButton:hover {
                       <widget class="QLabel" name="label_request_param">
                        <property name="minimumSize">
                         <size>
-                         <width>40</width>
+                         <width>50</width>
                          <height>0</height>
                         </size>
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>40</width>
+                         <width>50</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -2558,6 +2558,9 @@ QToolButton:hover {
                          <pointsize>10</pointsize>
                          <stylestrategy>PreferAntialias</stylestrategy>
                         </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">color: rgb(255, 255, 255);</string>
                        </property>
                        <property name="text">
                         <string>入参</string>
@@ -2973,13 +2976,13 @@ QScrollBar::up-arrow:vertical {
                      <widget class="QLabel" name="label_response_param">
                       <property name="minimumSize">
                        <size>
-                        <width>40</width>
+                        <width>50</width>
                         <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>40</width>
+                        <width>50</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2990,8 +2993,11 @@ QScrollBar::up-arrow:vertical {
                         <stylestrategy>PreferAntialias</stylestrategy>
                        </font>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
                       <property name="text">
-                       <string>入参</string>
+                       <string>结果</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
