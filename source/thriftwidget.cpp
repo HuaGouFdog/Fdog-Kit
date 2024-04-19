@@ -550,6 +550,9 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->splitter_2->setStretchFactor(0, 2);  // 第一个子控件占 1/3 的显示空间
     ui->splitter_2->setStretchFactor(1, 1);  // 第二个子控件占 2/3 的显示空间
 
+    ui->splitter_3->setStretchFactor(0, 1);  // 第一个子控件占 1/3 的显示空间
+    ui->splitter_3->setStretchFactor(1, 10);  // 第二个子控件占 2/3 的显示空间
+
     ui->textEdit_info->hide();
     ui->label_req->hide();
     ui->lineEdit_port->hide();
@@ -2053,70 +2056,209 @@ void thriftwidget::deleteComments(char *buf, int n)
     }
 }
 
+void thriftwidget::handleComments(QString &fileContent) {
+    qDebug() << "原数据1 = " << fileContent;
+    fileContent.replace("\t", "");
+    QRegularExpression re("[\u4e00-\u9fa5]+");
+    fileContent.replace(re, "  ");
+    qDebug() << "原数据2 = " << fileContent;
 
-void thriftwidget::deleteComments(QString &str) 
-{
-    bool inSingleLineComment = false;
-    bool inMultiLineComment = false;
-    bool inDoubleQuotes = false;
-    bool inSingleQuotes = false;
-
-    int i = 0;
-    while (i < str.length())
-    {
-        QChar c = str.at(i);
-
-        if (c == '"')
-        {
-            if (!inSingleLineComment && !inMultiLineComment && !inSingleQuotes)
-                inDoubleQuotes = !inDoubleQuotes;
-        }
-        else if (c == '\'')
-        {
-            if (!inSingleLineComment && !inMultiLineComment && !inDoubleQuotes)
-                inSingleQuotes = !inSingleQuotes;
-        }
-        else if (c == '/' && i + 1 < str.length())
-        {
-            QChar nextChar = str.at(i + 1);
-            if (!inDoubleQuotes && !inSingleQuotes && nextChar == '/')
-            {
-                // 开始单行注释
-                inSingleLineComment = true;
-                i++; // 跳过下一个字符，避免将其也视为注释
-            }
-            else if (!inDoubleQuotes && !inSingleQuotes && nextChar == '*')
-            {
-                // 开始多行注释
-                inMultiLineComment = true;
-                i++; // 跳过下一个字符，避免将其也视为注释
-            }
-        }
-        else if (c == '\n' && inSingleLineComment)
-        {
-            // 结束单行注释
-            inSingleLineComment = false;
-        }
-        else if (c == '*' && i + 1 < str.length() && str.at(i + 1) == '/' && inMultiLineComment)
-        {
-            // 结束多行注释
-            inMultiLineComment = false;
-            i++; // 跳过下一个字符，避免将其也视为注释
-        }
-        else if (!inSingleLineComment && !inMultiLineComment)
-        {
-            // 未在注释中，将字符保留
-            i++;
-        }
-        else
-        {
-            // 在注释中，将字符替换为空格
-            str[i] = ' ';
-            i++;
-        }
+    //删除thrift include头
+    while (fileContent.contains("include")) {
+        int index_s = fileContent.indexOf("include");
+        //查找\n
+        int index_e = fileContent.indexOf("\n", index_s + 7);
+        //qDebug() << "删除一次include = " << fileContent.mid(index_s, index_e + 1);
+        //删除头
+        fileContent.remove(index_s, index_e + 1);
     }
+
+    //删除thrift namespace头
+    while (fileContent.contains("namespace")) {
+        int index_s = fileContent.indexOf("namespace");
+        //查找\n
+        int index_e = fileContent.indexOf("\n", index_s + 9 + 1);
+        //删除头
+        //qDebug() << "删除一次namespace = " << fileContent.mid(index_s, index_e + 1);
+        fileContent.remove(index_s, index_e);
+        
+    }
+
+    //处理多的空格
+    while(fileContent.contains("  ")) {
+        fileContent.replace("  ", " ");
+    }
+    //删除注释
+    char *charArray = strdup(fileContent.toUtf8().constData());
+    //qDebug() << " fileContent.length() =" << fileContent.length();
+    deleteComments(charArray, fileContent.length());
+    fileContent = QString::fromUtf8(charArray);
+    qDebug() << "原数据3 = " << fileContent;
+    free(charArray);
+    return;
 }
 
+void thriftwidget::handleExtraSpace(QString &func, QString type) {
+    int sum1 = 0;
+    while (func.mid(sum1).contains(type)) {
+        //qDebug() << "list 有空格";
+        int sum = 0;
+        int index_left_map = func.indexOf(type, sum1);
+        if (index_left_map != -1) {
+            sum++;
+        }
+        //这里有问题 func长度是实时变化的
+        for (int i = index_left_map + type.length(); i < func.length(); i++) {
+            //qDebug() << "char = " << func[i];
+            if (func[i] == "<") {
+                sum++;
+            } else if (func[i] == ">") {
+                sum--;
+            } else if (func[i] == " ") {
+                qDebug() << "list 有空格 移除空格";
+                qDebug() << "char2 = " << func[i+1];
+                func.remove(i, 1);
+                i = i -1;
+            }
+            if (sum == 0) {
+                sum1 = i;
+                break;
+            }
+        }
+    }
+    return ;
+}
+
+QString thriftwidget::getServerInterface(QString &fileContent) {
+    QString funcServerName;
+
+    QString fileContent_temp;
+    QString fileContent_return;
+    //查找server
+    int index = fileContent.contains("service");
+    if (index) {
+        int index2 = fileContent.indexOf("service");
+
+        fileContent_temp = fileContent.mid(index2);
+
+        int index3 = fileContent_temp.indexOf("{");
+        funcServerName = fileContent_temp.mid(0, index3).split(" ", QString::SkipEmptyParts)[1];
+        qDebug() << "所属服务 = " << funcServerName;
+        QTreeWidgetItem *parentItem = new QTreeWidgetItem(ui->treeWidget_api);
+        QIcon icon2(":/lib/server.png");
+        parentItem->setText(0, funcServerName);
+        parentItem->setIcon(0, icon2);
+        parentItem->setExpanded(true);
+        fileContent_temp = fileContent_temp.mid(index3 + 1);
+        int index4 = fileContent_temp.indexOf("}");
+
+        fileContent_temp = fileContent_temp.mid(0, index4);
+
+        //获取结构体部分
+        fileContent_return = fileContent.mid(0, index2); //获取结构体部分 其实这就可以 暂时不考虑service后面还有struct
+
+        //fileContent.replace(" ","");
+        qDebug() << " fileContent_temp = " << fileContent_temp;
+        //处理多的空格
+        while(fileContent_temp.contains("  ")) {
+            fileContent_temp.replace("  ", " ");
+        }
+        //qDebug() << " fileContent_temp = " << fileContent_temp;
+        QStringList list = fileContent_temp.split("\n", QString::SkipEmptyParts);
+        //接口长度不能小于3
+        //qDebug() << "list = " << list;
+        //开始循环解析接口部分
+        for (int i = 0; i < list.length(); i++) {
+            if (list[i].length() <= 3) {
+                continue;
+            }
+
+            if (containsChinese(list[i].trimmed())) {
+                continue;
+            }
+
+            QString func = list[i].trimmed();
+            qDebug() << " func = " << func;
+
+            if (func.contains("map<")) {
+                handleExtraSpace(func, "map<");
+            }
+
+            if (func.contains("list<")) {
+                handleExtraSpace(func, "list<");
+            }
+
+            if (func.contains("set<")) {
+                handleExtraSpace(func, "set<");
+            }
+
+            int index5 = func.indexOf(" ");
+            QString funcParam_outparam = func.mid(0, index5);
+            QString funcName1 =func.mid(index5).trimmed();
+
+            int index6 = funcName1.indexOf("(");
+            QString funcName = funcName1.mid(0, index6);
+
+            qDebug() << "funcName " << funcName;
+
+            QString funcParam_inparam = funcName1.mid(index6 + 1);
+            int index7 = funcParam_inparam.indexOf(")");
+            funcParam_inparam = funcParam_inparam.mid(0, index7);
+
+            bool isok = false;
+            funcParamOutMap.insert(funcName, getFuncOutParams(funcParam_outparam));
+            if (funcParam_inparam != "") {
+                funcParamInMap.insert(funcName, getFuncInParams(funcParam_inparam, isok));
+            } else {
+                isok = true;
+            }
+            
+            if (!isok) {
+                funcParamInMap.remove(funcName);
+                funcParamOutMap.remove(funcName);
+                //提醒一下前端
+                ui->label_time->setText("解析thrift文件出现问题！");
+                continue;
+            }
+
+            // 创建一个QIcon对象并设置图标
+            QIcon icon1(":/lib/api.png"); // 设置您的图标路径
+
+            QTreeWidgetItem *childItem1 = new QTreeWidgetItem(parentItem);
+            childItem1->setText(0, funcName);
+            childItem1->setIcon(0, icon1);
+        }
+
+    }
+    return fileContent_return;
+}
+
+void thriftwidget::getStructInfo(QString &fileContent) {
+    while(true) {
+        if (fileContent.contains("struct")) {
+            //获取结构体名
+            int index_struct = fileContent.indexOf("struct");
+            int index_s = fileContent.indexOf("{");
+            //把中间空格删掉
+            for(int i = index_struct + 7; i < index_s; i++) {
+                if (fileContent[i] == " ") {
+                    fileContent.remove(i, 1);
+                }
+            }
+            index_s = fileContent.indexOf("{");
+            QString structName = fileContent.mid(index_struct + 7, index_s - index_struct - 7);
+
+            int index_e = fileContent.indexOf("}");
+            QString data = fileContent.mid(index_s + 1, index_e - index_s - 1);
+            fileContent = fileContent.mid(index_e + 1);
+            structParamMap.insert(structName, getStructParams(data));
+            qDebug() << "获取的struct name = " << structName << " data = " << data;
+        } else {
+            break; 
+        }
+    }
+    return;
+}
 
 bool thriftwidget::containsChinese(QString &str) {
     for (int i = 0; i < str.length(); ++i)
@@ -2150,24 +2292,6 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
         data = data.mid(0, index + 1) + " " + data.mid(index + 1);
         qDebug() << "data = " << data;
     }
-    //这里不应该用逗号来获取参数，应该用:
-//    QStringList funcParams = data.split(",");
-//    for(int i =0; i < funcParams.length(); i++) {
-//        int index = funcParams[i].indexOf(":");
-//        funcParams[i] = funcParams[i].mid(0, index + 1) + " " + funcParams[i].mid(index + 1);
-//        QStringList Params = funcParams[i].split(" ", QString::SkipEmptyParts);
-//        if (Params.length() == 3) {
-//            int index = Params[0].indexOf(":");
-//            QString sn = Params[0].mid(0, index);
-//            QString paramType = Params[1];
-//            QString paramName = Params[2];
-//            paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
-//            qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
-//        } else {
-//            qDebug() << "错误";
-//            isok = false;
-//        }
-//    }
 
     //先处理:
     //qDebug() << "=========";
@@ -2175,6 +2299,7 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
         //qDebug() << "错误1";
         data.replace("  ", " ");
     }
+
     //qDebug() << "=========2";
     while(data.contains(" :")){
         //qDebug() << "错误2";
@@ -2193,23 +2318,23 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
     }
     int a =0;
     while(data.contains(":")){
-        qDebug() << "while data.length() = " << data.length();
+        //qDebug() << "while data.length() = " << data.length();
         int sum = 0;
         for(int i = data.length() -1; i >= 0; i--) {
-            qDebug() << "while data.length() = " << data.length() << " i = " << i << " data[]" <<  data[i];
+            //qDebug() << "while data.length() = " << data.length() << " i = " << i << " data[]" <<  data[i];
             if (data[i] == ":") {
                 sum++;
             }
             if (sum != 0 && (data[i] == "," || i == 0)) {
                 //获取
                 QString param1 = data.mid(i);
-                qDebug() << "param1 = " << param1;
+                //qDebug() << "param1 = " << param1;
                 data = data.mid(0, i); //删除逗号
-                qDebug() << "剩下 = " << data;
+                //qDebug() << "剩下 = " << data;
                 int index = param1.indexOf(":");
                 QString sn = param1.mid(0, index).replace(" ", ""); //防止有逗号
                 param1 = param1.mid(index + 1);
-                qDebug() << "剩下param1 = " << param1;
+                //qDebug() << "剩下param1 = " << param1;
                 QStringList Params = param1.split(" ", QString::SkipEmptyParts); //类型和名字必然有空格
                 if (Params.length() == 2) {
                     QString paramType = Params[0];
@@ -2230,21 +2355,24 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
 
 QMap<QString, paramInfo> thriftwidget::getFuncOutParams(QString data)
 {
+    qDebug() << "getFuncOutParams1 data =" << data;
     QMap<QString, paramInfo> paramsMap_;
     //只可能有一个返回值，判断是不是基础类型
-    if (baseType.contains(data)) {
-        //基础类型
-    } else if (data.startsWith("map")) {
+    if (data.startsWith("map")) {
         //复杂类型
-
+        qDebug() << "map类型";
     } else if (data.startsWith("set")) {
         //复杂类型
-
+        qDebug() << "set类型";
     } else if (data.startsWith("list")) {
         //复杂类型
-
+        qDebug() << "list类型";
+    } else if (baseType.contains(data)) {
+        qDebug() << "基础类型";
+        //基础类型
     } else {
         //struct
+        qDebug() << "getFuncOutParams2 data =" << data;
         paramsMap_.insert("1", {data, "", "opt-in, req-out"});
     }
     
@@ -2738,230 +2866,33 @@ void thriftwidget::on_toolButton_inportFile_clicked()
     dialog.setNameFilter("Thrift Files (*.thrift)");
     
     // 设置只能选择文件
-    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setFileMode(QFileDialog::ExistingFiles);
     
+    dialog.setDirectory("E:/ProjectA/thrift");
     // 打开文件对话框
     if (dialog.exec()) {
         // 获取所选文件的路径
-        QString selectedFile = dialog.selectedFiles().first();
-        // 处理所选文件
-        // 在这里你可以做你想做的事情，比如读取文件内容等等
-        // 读取文件内容
-        //这里应该添加一个最近路径
-        QFile file(selectedFile);
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QTextStream in(&file);
-            //中文乱码问题
-            in.setCodec("UTF-8");
-            QString fileContent = in.readAll();
-            QString fileContent2;
-            QString fileContent3;
-            QString funcServer;
-            qDebug() << "File content:" << fileContent;
-            fileContent.replace("\t", "");
-            qDebug() << "原数据 = " << fileContent;
-            //删除中文
-            QRegularExpression re("[\u4e00-\u9fa5]+");
-            fileContent.replace(re, "  ");
-            qDebug() << "原数据2 = " << fileContent;
+        QStringList fileList = dialog.selectedFiles();
+        for (int i = 0; i < fileList.length(); i++) {
+            QString selectedFile = fileList[i];
+            QFile file(selectedFile);
+            if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                QTextStream in(&file);
+                //中文乱码问题
+                in.setCodec("UTF-8");
+                QString fileContent = in.readAll();
+                file.close();
 
-            //删除thrift include头
-            while (fileContent.contains("include")) {
-                int index = fileContent.indexOf("include");
-                //查找\n
-                int index_n = fileContent.indexOf("\n", index + 7);
-                //删除头
-                fileContent.remove(index, index_n + 1);
+                //处理注释
+                handleComments(fileContent);
+                //查找server接口 并处理入参出参
+                QString fileContent_s = getServerInterface(fileContent);
+                //查找struct
+                getStructInfo(fileContent_s);
+
+            } else {
+                qDebug() << "Failed to open file:" << file.errorString();
             }
-
-            //删除thrift namespace头
-            while (fileContent.contains("namespace")) {
-                int index = fileContent.indexOf("namespace");
-                //查找\n
-                int index_n = fileContent.indexOf("\n", index + 7);
-                //删除头
-                fileContent.remove(index, index_n + 1);
-            }
-
-            //处理多的空格
-            while(fileContent.contains("  ")) {
-                fileContent.replace("  ", " ");
-            }
-            //删除注释
-            char *charArray = strdup(fileContent.toUtf8().constData());
-            qDebug() << " fileContent.length() =" << fileContent.length();
-            deleteComments(charArray, fileContent.length());
-            fileContent = QString::fromUtf8(charArray);
-
-            //deleteComments(fileContent);
-
-            // char *charArray2 = strdup(fileContent.toUtf8().constData());
-            // deleteComments(charArray2, fileContent.length());
-            // fileContent = QString::fromUtf8(charArray2);
-
-            // char *charArray3 = strdup(fileContent.toUtf8().constData());
-            // deleteComments(charArray3, fileContent.length());
-            // fileContent = QString::fromUtf8(charArray3);
-
-            qDebug() << "删除注释数据 = " << fileContent;
-            free(charArray);
-            //free(charArray2);
-            //free(charArray3);
-            file.close();
-
-            //查找server
-            int index = fileContent.contains("service");
-            if (index) {
-                int index2 = fileContent.indexOf("service");
-
-
-                fileContent2 = fileContent.mid(index2);
-
-                int index3 = fileContent2.indexOf("{");
-                funcServer = fileContent2.mid(0, index3).split(" ", QString::SkipEmptyParts)[1];
-                qDebug() << "所属服务 = " << funcServer;
-                QTreeWidgetItem *parentItem = new QTreeWidgetItem(ui->treeWidget_api);
-                QIcon icon2(":/lib/server.png");
-                parentItem->setText(0, funcServer);
-                parentItem->setIcon(0, icon2);
-                parentItem->setExpanded(true);
-                fileContent2 = fileContent2.mid(index3 + 1);
-                int index4 = fileContent2.indexOf("}");
-
-                fileContent2 = fileContent2.mid(0, index4);
-
-                //获取结构体部分
-                fileContent3 = fileContent.mid(0, index2); //获取结构体部分 其实这就可以 暂时不考虑service后面还有struct
-
-                //fileContent.replace(" ","");
-                qDebug() << " fileContent2 = " << fileContent2;
-                //处理多的空格
-                while(fileContent2.contains("  ")) {
-                    fileContent2.replace("  ", " ");
-                }
-                qDebug() << " fileContent2 = " << fileContent2;
-                QStringList list = fileContent2.split("\n", QString::SkipEmptyParts);
-                //接口长度不能小于3
-                qDebug() << "list = " << list;
-                //开始循环解析接口部分
-                for (int i = 0; i < list.length(); i++) {
-                    if (list[i].length() <= 3) {
-                        continue;
-                    }
-
-                    if (containsChinese(list[i].trimmed())) {
-                        continue;
-                        //暂时这样
-                    }
-
-
-
-                    //qDebug() << "接口部分：" << list[i];
-                    QString func = list[i].trimmed();
-                    qDebug() << " func = " << func;
-                    //map<i32, i32> batchAddBadWord(1: map<i32, Badword> badwords);
-                    //以这个为例，尝试处理特殊类型可能包含的空格
-                    int sum1 = 0;
-                    while (func.mid(sum1).contains("map<")) {
-                        int sum = 0;
-                        int index_left_map = func.indexOf("map<", sum1);
-                        if (index_left_map != -1) {
-                            sum++;
-                        }
-                        for (int i = index_left_map + 4; i < func.length(); i++) {
-                            if (func[i] == "<") {
-                                sum++;
-                            } else if (func[i] == ">") {
-                                sum--;
-                            } else if (func[i] == " ") {
-                                func.remove(i, 1);
-                            }
-                            if (sum == 0) {
-                                sum1 = i;
-                                break;
-                            }
-                        }
-                    }
-
-                    qDebug() << " func2 = " << func;
-                    
-                    int index5 = func.indexOf(" ");
-                    QString funcParam = func.mid(0, index5);
-                    QString funcName1 =func.mid(index5).trimmed();
-                    qDebug() << "funcParam1 " << funcParam;
-                    qDebug() << "funcName1 " << funcName1;
-
-                    int index6 = funcName1.indexOf("(");
-                    QString funcName = funcName1.mid(0, index6);
-                    //qDebug() << "funcName " << funcName;
-                    QString funcParam2 = funcName1.mid(index6 + 1);
-                    int index7 = funcParam2.indexOf(")");
-                    funcParam2 = funcParam2.mid(0, index7);
-                    qDebug() << "funcParam2 " << funcParam2;
-                    bool isok = false;
-                    if (funcParam2 != "") {
-                        funcParamInMap.insert(funcName, getFuncInParams(funcParam2, isok));
-                    } else {
-                        isok = true;
-                    }
-                    if (funcParam2 != "") {
-                        funcParamOutMap.insert(funcName, getFuncOutParams(funcParam));
-                    }
-                    
-                    if (!isok) {
-                        funcParamInMap.remove(funcName);
-                        funcParamOutMap.remove(funcName);
-                        //提醒一下前端
-                        ui->label_time->setText("解析thrift文件出现问题！");
-                        continue;
-                    }
-                    //QStringList funcP = funcParam2.split(",");
-
-//                    for(int i =0; i < funcP.length(); i++) {
-//                        qDebug() << "参数为" << funcP[i].split(" ", QString::SkipEmptyParts);
-//                    }
-
-                    // 创建一个QIcon对象并设置图标
-                    QIcon icon1(":/lib/api.png"); // 设置您的图标路径
-
-                    QTreeWidgetItem *childItem1 = new QTreeWidgetItem(parentItem);
-                    childItem1->setText(0, funcName);
-                    childItem1->setIcon(0, icon1);
-
-                }
-
-            }
-
-            //查找struct
-            //找struct关键字
-            //找{}确定一个，再找下一个。直到没有
-            while(true) {
-                if (fileContent3.contains("struct")) {
-                    //获取结构体名
-                    int index_ = fileContent3.indexOf("struct");
-                    int index = fileContent3.indexOf("{");
-                    //把中间空格删掉
-                    for(int i = index_ + 7; i < index; i++) {
-                        if (fileContent3[i] == " ") {
-                            fileContent3.remove(i, 1);
-                        }
-                    }
-                    index = fileContent3.indexOf("{");
-                    QString structName = fileContent3.mid(index_ + 7, index - index_ - 7);
-
-                    int index2 = fileContent3.indexOf("}");
-                    QString data = fileContent3.mid(index + 1, index2 - index - 1);
-                    fileContent3 = fileContent3.mid(index2 + 1);
-                    //data.replace("\n"," ");
-                    qDebug() << "获取的struct name = " << structName << " data = " << data;
-                    structParamMap.insert(structName, getStructParams(data));
-                } else {
-                    break; 
-                }
-            }
-
-        } else {
-            qDebug() << "Failed to open file:" << file.errorString();
         }
     }
 }

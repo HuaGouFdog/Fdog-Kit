@@ -35,6 +35,7 @@ class Ui_thriftwidget
 {
 public:
     QHBoxLayout *horizontalLayout_4;
+    QSplitter *splitter_3;
     QWidget *widget_left;
     QVBoxLayout *verticalLayout_5;
     QWidget *widget_9;
@@ -227,10 +228,13 @@ public:
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        widget_left = new QWidget(thriftwidget);
+        splitter_3 = new QSplitter(thriftwidget);
+        splitter_3->setObjectName(QStringLiteral("splitter_3"));
+        splitter_3->setOrientation(Qt::Horizontal);
+        widget_left = new QWidget(splitter_3);
         widget_left->setObjectName(QStringLiteral("widget_left"));
         widget_left->setMinimumSize(QSize(260, 0));
-        widget_left->setMaximumSize(QSize(260, 16777215));
+        widget_left->setMaximumSize(QSize(500, 16777215));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         widget_left->setFont(font1);
@@ -443,7 +447,7 @@ public:
 "}\n"
 "\n"
 "QTreeWidget::item {\n"
-"    height: 25px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
+"    height: 22px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
 "}\n"
 "\n"
 "QScrollBar::horizontal{\n"
@@ -517,10 +521,8 @@ public:
 
         verticalLayout_5->addWidget(tabWidget);
 
-
-        horizontalLayout_4->addWidget(widget_left);
-
-        widget_right = new QWidget(thriftwidget);
+        splitter_3->addWidget(widget_left);
+        widget_right = new QWidget(splitter_3);
         widget_right->setObjectName(QStringLiteral("widget_right"));
         widget_right->setStyleSheet(QString::fromUtf8("\n"
 "QComboBox{\n"
@@ -2063,11 +2065,10 @@ public:
 
         verticalLayout->addWidget(stackedWidget_2);
 
+        splitter_3->addWidget(widget_right);
 
-        horizontalLayout_4->addWidget(widget_right);
+        horizontalLayout_4->addWidget(splitter_3);
 
-        horizontalLayout_4->setStretch(0, 1);
-        horizontalLayout_4->setStretch(1, 10);
 
         retranslateUi(thriftwidget);
 
