@@ -2765,6 +2765,24 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             fileContent.replace(re, "  ");
             qDebug() << "原数据2 = " << fileContent;
 
+            //删除thrift include头
+            while (fileContent.contains("include")) {
+                int index = fileContent.indexOf("include");
+                //查找\n
+                int index_n = fileContent.indexOf("\n", index + 7);
+                //删除头
+                fileContent.remove(index, index_n + 1);
+            }
+
+            //删除thrift namespace头
+            while (fileContent.contains("namespace")) {
+                int index = fileContent.indexOf("namespace");
+                //查找\n
+                int index_n = fileContent.indexOf("\n", index + 7);
+                //删除头
+                fileContent.remove(index, index_n + 1);
+            }
+
             //处理多的空格
             while(fileContent.contains("  ")) {
                 fileContent.replace("  ", " ");
