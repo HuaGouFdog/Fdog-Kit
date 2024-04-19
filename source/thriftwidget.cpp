@@ -1989,7 +1989,7 @@ void thriftwidget::deleteComments(char *buf, int n)
             {
                 p ++;
                 //qDebug() << "in // " << endl;
-                //qDebug()  << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                //qDebug()  << "1 falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
                 if (!flag1 && !flag2 && (flag5 == 0) && (flag4 == 0) && (flag3 == 0))
                 {
                     //flag4 ++;
@@ -2011,7 +2011,7 @@ void thriftwidget::deleteComments(char *buf, int n)
             {
                 p ++;
                 flag3 ++;
-                //qDebug()  << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                //qDebug()  << "2 falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
                 if (!flag1 && !flag2 && (flag4 == 0) && (flag3 == 1))
                 {
                     pos1 = p;// delete from pos1
@@ -2024,7 +2024,7 @@ void thriftwidget::deleteComments(char *buf, int n)
             if (*p == '/' && !flag1 && !flag2)  // .... */...
             {
                 flag5 ++;
-                //qDebug()  << " falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
+                //qDebug()  << "3 falg3: " << flag3 << "  flag5: " << flag5 << "  flag1: " << flag1 << "  flag2: " << flag2 << endl;
                 if(!flag1 && !flag2 && (flag3 != 0) && (flag5 != 0))
                 {
                     flag3 = 0;
@@ -2139,7 +2139,9 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
     //1:ThesaurusPage pageParam
     //1:i64 ct,2:i64 userID
     isok = true;
+    
     QMap<QString, paramInfo> paramsMap_;
+    
     //先判断是一个参数，还是多个参数
     qDebug() << "getFuncInParams = " << data;
     if (!data.contains(",")) {
@@ -2168,20 +2170,20 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
 //    }
 
     //先处理:
-    qDebug() << "=========";
+    //qDebug() << "=========";
     while(data.contains("  ")){
-        qDebug() << "错误1";
+        //qDebug() << "错误1";
         data.replace("  ", " ");
     }
-    qDebug() << "=========2";
+    //qDebug() << "=========2";
     while(data.contains(" :")){
-        qDebug() << "错误2";
+        //qDebug() << "错误2";
         data.replace(" :", ":");
     }
     while(data.contains(": ")){
-        qDebug() << "错误3";
+        //qDebug() << "错误3";
         data.replace(": ", ":");
-        qDebug() << "错误4";
+        //qDebug() << "错误4";
     }
 
     if (!data.contains(":")) {
@@ -2759,8 +2761,8 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             fileContent.replace("\t", "");
             qDebug() << "原数据 = " << fileContent;
             //删除中文
-            //QRegularExpression re("[\u4e00-\u9fff]+");
-            //fileContent.remove(re);
+            QRegularExpression re("[\u4e00-\u9fa5]+");
+            fileContent.replace(re, "  ");
             qDebug() << "原数据2 = " << fileContent;
 
             //处理多的空格
@@ -2879,8 +2881,15 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     funcParam2 = funcParam2.mid(0, index7);
                     qDebug() << "funcParam2 " << funcParam2;
                     bool isok = false;
-                    funcParamInMap.insert(funcName, getFuncInParams(funcParam2, isok));
-                    funcParamOutMap.insert(funcName, getFuncOutParams(funcParam));
+                    if (funcParam2 != "") {
+                        funcParamInMap.insert(funcName, getFuncInParams(funcParam2, isok));
+                    } else {
+                        isok = true;
+                    }
+                    if (funcParam2 != "") {
+                        funcParamOutMap.insert(funcName, getFuncOutParams(funcParam));
+                    }
+                    
                     if (!isok) {
                         funcParamInMap.remove(funcName);
                         funcParamOutMap.remove(funcName);
