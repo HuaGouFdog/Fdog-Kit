@@ -2913,8 +2913,14 @@ void thriftwidget::on_toolButton_inportFile_clicked()
                     //获取结构体名
                     int index_ = fileContent3.indexOf("struct");
                     int index = fileContent3.indexOf("{");
-
-                    QString structName = fileContent3.mid(index_ + 7, index - index_ - 7 - 1);
+                    //把中间空格删掉
+                    for(int i = index_ + 7; i < index; i++) {
+                        if (fileContent3[i] == " ") {
+                            fileContent3.remove(i, 1);
+                        }
+                    }
+                    index = fileContent3.indexOf("{");
+                    QString structName = fileContent3.mid(index_ + 7, index - index_ - 7);
 
                     int index2 = fileContent3.indexOf("}");
                     QString data = fileContent3.mid(index + 1, index2 - index - 1);
