@@ -316,9 +316,11 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\Redis.png \
 		lib\addM.png \
 		lib\t2.png \
+		lib\func.png \
 		lib\wenhao.png \
 		lib\jiazai10.gif \
 		lib\addM2.png \
+		lib\Zookeeper21.png \
 		lib\diann3.png \
 		lib\eye1.png \
 		lib\keyboard.png \
@@ -341,6 +343,7 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\diann.png \
 		lib\fdog.png \
 		lib\jianbian1.png \
+		lib\login.png \
 		lib\mast.png \
 		lib\jiazai5.gif \
 		lib\icon-minus.png \
@@ -355,10 +358,12 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\Thrift2.png \
 		lib\icon-close42.png \
 		lib\icon6.png \
+		lib\anniu1.png \
 		lib\theme.png \
 		lib\peixu.png \
 		lib\icon-close7.png \
 		lib\sanjiao.png \
+		lib\about.png \
 		lib\add2.png \
 		lib\tool2.png \
 		lib\icon-close.png \
@@ -379,16 +384,19 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\Kafka.png \
 		lib\icon2.png \
 		lib\t3.png \
+		lib\black_mode.png \
 		lib\Thrift.png \
 		lib\icon32.png \
 		lib\error.png \
 		lib\icon-close3.png \
 		lib\jiazai.gif \
 		lib\setting2.png \
+		lib\home.png \
 		lib\zhuti.png \
 		lib\diann4.png \
 		lib\t1.png \
 		lib\peixu2.png \
+		lib\tool_plugIn.png \
 		lib\eye2.png \
 		lib\download.png \
 		lib\icon_test.png \
@@ -399,8 +407,10 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\icon10.png \
 		lib\diann2.png \
 		lib\Zookeeper.png \
+		lib\mysql.png \
 		lib\gouxuan2.png \
 		lib\line-terminal.png \
+		lib\touxiang.jpeg \
 		lib\icon_80.png \
 		lib\start.png \
 		lib\jiazai8.gif \
@@ -413,11 +423,14 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\setiing2.png \
 		lib\tree_close.png \
 		lib\Fdogicon.ico \
+		lib\white_mode.png \
 		lib\powershell.png \
 		lib\jiazai6.gif \
 		lib\Thrift5.png \
 		lib\post.png \
+		lib\left.png \
 		lib\icon9.png \
+		lib\shell_side.png \
 		lib\icon-minus3.png \
 		lib\sh.png \
 		lib\icon48.png \
@@ -461,6 +474,8 @@ debug\qrc_fonts.obj: fonts.qrc \
 
 debug\qrc_qss.obj: qss.qrc \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe \
+		qss\side_light.qss \
+		qss\side_drak.qss \
 		qss\mainStyle.qss \
 		qss\menu.qss
 	E:\Qt5.12\5.10.0\msvc2015_64\bin\rcc.exe -name qss qss.qrc -pass 1 -o debug/qrc_qss.cpp 
@@ -8367,7 +8382,6 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
@@ -8396,7 +8410,9 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdir.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfileinfo.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
 
 debug\zookeepertipswidget.obj: zookeepertipswidget.cpp zookeepertipswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \

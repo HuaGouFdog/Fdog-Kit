@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>qss/mainStyle.qss</file>
         <file>qss/menu.qss</file>
+        <file>qss/side_drak.qss</file>
+        <file>qss/side_light.qss</file>
     </qresource>
 </RCC>

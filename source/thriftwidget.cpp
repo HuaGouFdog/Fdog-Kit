@@ -17,6 +17,7 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <cstdlib>
+#include <QGraphicsDropShadowEffect>
 #pragma comment(lib, "ws2_32.lib")
 
 
@@ -572,6 +573,110 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->comboBox_testType->setItemData(1, false, Qt::UserRole - 1);
 
     ui->toolButton_inportFile->setToolTip("导入thrift文件后，可自动生成接口参数");
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect->setColor(QColor(20, 30, 36));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->toolButton_inportFile->setGraphicsEffect(effect);
+
+    QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect(this);
+    effect2->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect2->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect2->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->lineEdit_find->setGraphicsEffect(effect2);
+
+    QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect(this);
+    effect3->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect3->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect3->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->lineEdit_host->setGraphicsEffect(effect3);
+
+    QGraphicsDropShadowEffect *effect4 = new QGraphicsDropShadowEffect(this);
+    effect4->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect4->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect4->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->comboBox_port->setGraphicsEffect(effect4);
+
+    QGraphicsDropShadowEffect *effect5 = new QGraphicsDropShadowEffect(this);
+    effect5->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect5->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect5->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->comboBox_transport->setGraphicsEffect(effect5);
+
+    QGraphicsDropShadowEffect *effect6 = new QGraphicsDropShadowEffect(this);
+    effect6->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect6->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect6->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->comboBox_protocol->setGraphicsEffect(effect6);
+
+    QGraphicsDropShadowEffect *effect7 = new QGraphicsDropShadowEffect(this);
+    effect7->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect7->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect7->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->comboBox_reqType->setGraphicsEffect(effect7);
+
+
+    QGraphicsDropShadowEffect *effect8 = new QGraphicsDropShadowEffect(this);
+    effect8->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect8->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect8->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->comboBox_testType->setGraphicsEffect(effect8);
+
+    QGraphicsDropShadowEffect *effect9 = new QGraphicsDropShadowEffect(this);
+    effect9->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect9->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect9->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->lineEdit_funcName->setGraphicsEffect(effect9);
+
+
+    QGraphicsDropShadowEffect *effect10 = new QGraphicsDropShadowEffect(this);
+    effect10->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect10->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect10->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->comboBox_testType->setGraphicsEffect(effect10);
+
+    QGraphicsDropShadowEffect *effect11 = new QGraphicsDropShadowEffect(this);
+    effect11->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect11->setColor(QColor(250, 118, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect11->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->toolButton_test->setGraphicsEffect(effect11);
+
+    QGraphicsDropShadowEffect *effect12 = new QGraphicsDropShadowEffect(this);
+    effect12->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect12->setColor(QColor(250, 118, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect12->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->toolButton_request->setGraphicsEffect(effect12);
+
+    QGraphicsDropShadowEffect *effect13 = new QGraphicsDropShadowEffect(this);
+    effect13->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect13->setColor(QColor(0, 170, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect13->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->toolButton_save->setGraphicsEffect(effect13);
+
+    QGraphicsDropShadowEffect *effect14 = new QGraphicsDropShadowEffect(this);
+    effect14->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect14->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
+    ui->treeWidget_api->setGraphicsEffect(effect14);
+
+    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
+    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect15->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect15->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
+    //ui->widget_inparam->setGraphicsEffect(effect15);
+    
+    QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect();
+    effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect16->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect16->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
+    //ui->widget_outparam->setGraphicsEffect(effect16);
+    
+    // QGraphicsDropShadowEffect *effect17 = new QGraphicsDropShadowEffect();
+    // effect17->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect17->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect17->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->treeWidget_api->setGraphicsEffect(effect17);
 }
 
 QString thriftwidget::getType(int index)
@@ -2327,18 +2432,24 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
             }
             if (sum != 0 && (data[i] == "," || i == 0)) {
                 //获取
-                QString param1 = data.mid(i);
-                //qDebug() << "param1 = " << param1;
-                data = data.mid(0, i); //删除逗号
-                //qDebug() << "剩下 = " << data;
+                int temp = 0;
+                if (i == 0) {
+                    temp = 0;
+                } else {
+                    temp = 1;
+                }
+                QString param1 = data.mid(i + temp);
+                qDebug() << "param1 = " << param1;
+                data = data.mid(0, i + temp); //删除逗号
+                qDebug() << "剩下 = " << data;
                 int index = param1.indexOf(":");
-                QString sn = param1.mid(0, index).replace(" ", ""); //防止有逗号
+                QString sn = param1.mid(0, index).replace(" ", "").replace(",", "");; //防止有逗号
                 param1 = param1.mid(index + 1);
-                //qDebug() << "剩下param1 = " << param1;
+                qDebug() << "剩下param1 = " << param1;
                 QStringList Params = param1.split(" ", QString::SkipEmptyParts); //类型和名字必然有空格
                 if (Params.length() == 2) {
                     QString paramType = Params[0];
-                    QString paramName = Params[1];
+                    QString paramName = Params[1].replace(",", ""); //防止有逗号;
                     paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
                     qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
                 } else {
@@ -2394,8 +2505,8 @@ QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
         QStringList a = str.mid(index + 1).split(" ", QString::SkipEmptyParts);
         if (a.length() == 2) {
             QString type = a[0].replace(";", "");
-            QString name = a[1].replace(";", "");
-            //qDebug() << "sn = " << sn << " type = " << type << " name =" << name;
+            QString name = a[1].replace(";", "").replace(",", "");
+            qDebug() << "sn = " << sn << " type = " << type << " name =" << name;
             paramsStructMap_.insert(sn, {type, name, "opt-in, req-out"});
         } else if (a.length() == 3) {
             if (a[0] == "optional") {

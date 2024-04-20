@@ -140,5 +140,19 @@
         <file>lib/purpleres.png</file>
         <file>lib/addM.png</file>
         <file>lib/addM2.png</file>
+        <file>lib/Zookeeper21.png</file>
+        <file>lib/anniu1.png</file>
+        <file>lib/black_mode.png</file>
+        <file>lib/white_mode.png</file>
+        <file>lib/about.png</file>
+        <file>lib/tool_plugIn.png</file>
+        <file>lib/home.png</file>
+        <file>lib/shell_side.png</file>
+        <file>lib/mysql.png</file>
+        <file>lib/func.png</file>
+        <file>lib/left.png</file>
+        <file>lib/touxiang.jpeg</file>
+        <file>lib/login.png</file>
+        <file>lib/server.png</file>
     </qresource>
 </RCC>

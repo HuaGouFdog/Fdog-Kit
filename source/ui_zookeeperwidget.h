@@ -189,7 +189,7 @@ public:
         verticalWidget_1_l = new QWidget(splitter);
         verticalWidget_1_l->setObjectName(QStringLiteral("verticalWidget_1_l"));
         verticalWidget_1_l->setStyleSheet(QLatin1String("#verticalWidget_1_l{\n"
-"background-color: rgb(30, 45, 54);\n"
+"\n"
 "color: rgb(255, 255, 255);\n"
 "border-right:2px solid rgba(108, 117, 125, 65); \n"
 "}"));
@@ -691,7 +691,7 @@ public:
         verticalWidget_1_r->setObjectName(QStringLiteral("verticalWidget_1_r"));
         verticalWidget_1_r->setMaximumSize(QSize(16777215, 99999));
         verticalWidget_1_r->setFont(font2);
-        verticalWidget_1_r->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        verticalWidget_1_r->setStyleSheet(QLatin1String("\n"
 "color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(verticalWidget_1_r);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

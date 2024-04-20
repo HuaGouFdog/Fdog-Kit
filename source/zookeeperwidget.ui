@@ -109,7 +109,7 @@ QMenu::separator {
      <widget class="QWidget" name="verticalWidget_1_l" native="true">
       <property name="styleSheet">
        <string notr="true">#verticalWidget_1_l{
-background-color: rgb(30, 45, 54);
+
 color: rgb(255, 255, 255);
 border-right:2px solid rgba(108, 117, 125, 65); 
 }</string>
@@ -936,7 +936,7 @@ QMenu::separator {
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(30, 45, 54);
+       <string notr="true">
 color: rgb(255, 255, 255);</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">

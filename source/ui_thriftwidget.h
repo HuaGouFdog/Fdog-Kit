@@ -39,21 +39,23 @@ public:
     QWidget *widget_left;
     QVBoxLayout *verticalLayout_5;
     QWidget *widget_9;
-    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *horizontalLayout_7;
+    QWidget *widget_7;
+    QToolButton *toolButton_inportFile;
+    QSpacerItem *horizontalSpacer_23;
+    QWidget *widget_8;
+    QHBoxLayout *horizontalLayout_14;
     QLineEdit *lineEdit_find;
+    QSpacerItem *horizontalSpacer_24;
     QTabWidget *tabWidget;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
-    QToolButton *toolButton_inportFile;
     QTreeWidget *treeWidget_api;
     QWidget *tab;
     QWidget *widget_right;
     QVBoxLayout *verticalLayout;
     QWidget *widget_6;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *label_14;
-    QComboBox *comboBox_testType;
-    QSpacerItem *horizontalSpacer_16;
     QLabel *label_2;
     QLineEdit *lineEdit_host;
     QSpacerItem *horizontalSpacer_3;
@@ -73,6 +75,9 @@ public:
     QSpacerItem *horizontalSpacer_11;
     QLabel *label_9;
     QComboBox *comboBox_reqType;
+    QSpacerItem *horizontalSpacer_16;
+    QLabel *label_14;
+    QComboBox *comboBox_testType;
     QSpacerItem *horizontalSpacer_9;
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout;
@@ -109,7 +114,7 @@ public:
     QWidget *page_2;
     QVBoxLayout *verticalLayout_11;
     QSplitter *splitter_2;
-    QWidget *widget_4;
+    QWidget *widget_inparam;
     QHBoxLayout *horizontalLayout_3;
     QSplitter *splitter;
     QWidget *widget;
@@ -120,7 +125,7 @@ public:
     QCheckBox *checkBox_3;
     QSpacerItem *horizontalSpacer;
     QTreeWidget *treeWidget;
-    QWidget *widget_2;
+    QWidget *widget_outparam;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget_5;
     QVBoxLayout *verticalLayout_7;
@@ -162,6 +167,7 @@ public:
     QSpacerItem *horizontalSpacer_13;
     QWidget *widget_response_bottom;
     QHBoxLayout *horizontalLayout_6;
+    QSpacerItem *horizontalSpacer_29;
     QLabel *label_req;
     QSpacerItem *horizontalSpacer_7;
     QLabel *label_time;
@@ -178,7 +184,12 @@ public:
         font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         thriftwidget->setFont(font);
-        thriftwidget->setStyleSheet(QLatin1String("QToolTip {\n"
+        thriftwidget->setStyleSheet(QLatin1String("\n"
+"#thriftwidget{\n"
+"background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));\n"
+"}\n"
+"\n"
+"QToolTip {\n"
 "color:#ced4da;\n"
 "background-color: rgb(108, 117, 125, 65);\n"
 "border-radius: 2px;\n"
@@ -214,20 +225,20 @@ public:
 "    left: 1px;\n"
 "}\n"
 "QMenu::icon:checked:selected {\n"
-"    background-color : rgb(236,236,237);\n"
+"    background-color : rgb("
+                        "236,236,237);\n"
 "    background-image: url(:/space_selected.png);\n"
 "}\n"
 "QMenu::separator {\n"
 "    height: 2px;\n"
 "    background: rgb(235,235,236);\n"
-"    /*margin-left:"
-                        " 10px;*/\n"
+"    /*margin-left: 10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
         horizontalLayout_4 = new QHBoxLayout(thriftwidget);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_4->setContentsMargins(10, 0, 5, 10);
         splitter_3 = new QSplitter(thriftwidget);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
@@ -290,19 +301,74 @@ public:
 "    border:none;\n"
 "}"));
         verticalLayout_5 = new QVBoxLayout(widget_left);
-        verticalLayout_5->setSpacing(9);
+        verticalLayout_5->setSpacing(8);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(5, 5, 5, 0);
+        verticalLayout_5->setContentsMargins(5, 0, 5, 5);
         widget_9 = new QWidget(widget_left);
         widget_9->setObjectName(QStringLiteral("widget_9"));
-        verticalLayout_3 = new QVBoxLayout(widget_9);
-        verticalLayout_3->setSpacing(0);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 5, 0, 5);
-        lineEdit_find = new QLineEdit(widget_9);
+        widget_9->setMinimumSize(QSize(0, 44));
+        horizontalLayout_7 = new QHBoxLayout(widget_9);
+        horizontalLayout_7->setSpacing(30);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(0, 5, 0, 0);
+        widget_7 = new QWidget(widget_9);
+        widget_7->setObjectName(QStringLiteral("widget_7"));
+        widget_7->setMinimumSize(QSize(100, 40));
+        widget_7->setMaximumSize(QSize(100, 40));
+        widget_7->setStyleSheet(QStringLiteral("image: url(:/lib/Thrift.png);"));
+
+        horizontalLayout_7->addWidget(widget_7);
+
+        toolButton_inportFile = new QToolButton(widget_9);
+        toolButton_inportFile->setObjectName(QStringLiteral("toolButton_inportFile"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(toolButton_inportFile->sizePolicy().hasHeightForWidth());
+        toolButton_inportFile->setSizePolicy(sizePolicy);
+        toolButton_inportFile->setMinimumSize(QSize(120, 30));
+        toolButton_inportFile->setMaximumSize(QSize(120, 30));
+        toolButton_inportFile->setFont(font);
+        toolButton_inportFile->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(20, 30, 36);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	/*background-color: rgba(20, 20, 20,0);*/\n"
+"}"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/inport.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_inportFile->setIcon(icon);
+        toolButton_inportFile->setIconSize(QSize(13, 13));
+        toolButton_inportFile->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout_7->addWidget(toolButton_inportFile);
+
+        horizontalSpacer_23 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_23);
+
+
+        verticalLayout_5->addWidget(widget_9);
+
+        widget_8 = new QWidget(widget_left);
+        widget_8->setObjectName(QStringLiteral("widget_8"));
+        widget_8->setMinimumSize(QSize(0, 40));
+        horizontalLayout_14 = new QHBoxLayout(widget_8);
+        horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
+        horizontalLayout_14->setContentsMargins(0, -1, 0, -1);
+        lineEdit_find = new QLineEdit(widget_8);
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
-        lineEdit_find->setMinimumSize(QSize(0, 30));
-        lineEdit_find->setMaximumSize(QSize(16777215, 30));
+        lineEdit_find->setMinimumSize(QSize(250, 30));
+        lineEdit_find->setMaximumSize(QSize(250, 30));
         QFont font2;
         font2.setFamily(QStringLiteral("OPPOSans"));
         font2.setPointSize(10);
@@ -318,10 +384,14 @@ public:
 "padding-right:10px;\n"
 "}"));
 
-        verticalLayout_3->addWidget(lineEdit_find);
+        horizontalLayout_14->addWidget(lineEdit_find);
+
+        horizontalSpacer_24 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_14->addItem(horizontalSpacer_24);
 
 
-        verticalLayout_5->addWidget(widget_9);
+        verticalLayout_5->addWidget(widget_8);
 
         tabWidget = new QTabWidget(widget_left);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
@@ -351,23 +421,23 @@ public:
 "	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
                         "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	width:110px;\n"
+"	width:100px;\n"
 "	padding: 4px;\n"
-"	margin-right:0px;\n"
-"	margin-left: 0px;\n"
+"	margin-right:5px;\n"
+"	margin-left: 5px;\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:selected{\n"
 "	/*background-color: #0B0E11;*/\n"
 "	background-color: rgb(108, 117, 125, 0);\n"
-"	border-bottom: 2px solid rgb(54, 81, 97)\n"
+"	border-bottom: 3px solid rgb(255, 255, 255);\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
-"	/*backg"
-                        "round-color: rgb(100, 117, 125, 125);*/\n"
+"	/*b"
+                        "ackground-color: rgb(100, 117, 125, 125);*/\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
@@ -399,41 +469,7 @@ public:
         verticalLayout_12 = new QVBoxLayout(tab_2);
         verticalLayout_12->setSpacing(6);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        verticalLayout_12->setContentsMargins(0, 5, 0, 5);
-        toolButton_inportFile = new QToolButton(tab_2);
-        toolButton_inportFile->setObjectName(QStringLiteral("toolButton_inportFile"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(toolButton_inportFile->sizePolicy().hasHeightForWidth());
-        toolButton_inportFile->setSizePolicy(sizePolicy);
-        toolButton_inportFile->setMinimumSize(QSize(180, 28));
-        toolButton_inportFile->setMaximumSize(QSize(16777215, 28));
-        toolButton_inportFile->setFont(font);
-        toolButton_inportFile->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	padding-left:65px;\n"
-"	\n"
-"	background-color: rgb(20, 20, 20);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(20, 20, 20);\n"
-"}"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/inport.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_inportFile->setIcon(icon);
-        toolButton_inportFile->setIconSize(QSize(13, 13));
-        toolButton_inportFile->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        verticalLayout_12->addWidget(toolButton_inportFile);
-
+        verticalLayout_12->setContentsMargins(5, 10, 5, 5);
         treeWidget_api = new QTreeWidget(tab_2);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
@@ -441,13 +477,14 @@ public:
         treeWidget_api->setObjectName(QStringLiteral("treeWidget_api"));
         treeWidget_api->setFont(font);
         treeWidget_api->setStyleSheet(QString::fromUtf8("QTreeWidget{\n"
-"border: 1px solid rgba(212, 212, 212, 50);\n"
-"border-radius: 2px;\n"
+"background-color: rgba(25, 25, 25, 80);\n"
+"border: 0px solid rgba(212, 212, 212, 50);\n"
+"border-radius: 10px;\n"
 "padding:5px;\n"
 "}\n"
 "\n"
 "QTreeWidget::item {\n"
-"    height: 22px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
+"    height: 25px; /* \350\256\276\347\275\256\350\241\214\351\253\230\344\270\27250\345\203\217\347\264\240 */\n"
 "}\n"
 "\n"
 "QScrollBar::horizontal{\n"
@@ -471,9 +508,9 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    height: 8px;\n"
-"	background-color: rgb(239, 239, 239"
-                        ");\n"
+"    height: "
+                        "8px;\n"
+"	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
@@ -608,10 +645,11 @@ public:
         verticalLayout = new QVBoxLayout(widget_right);
         verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 6, 10, 6);
+        verticalLayout->setContentsMargins(10, 6, 15, 10);
         widget_6 = new QWidget(widget_right);
         widget_6->setObjectName(QStringLiteral("widget_6"));
-        widget_6->setMaximumSize(QSize(16777215, 33));
+        widget_6->setMinimumSize(QSize(0, 40));
+        widget_6->setMaximumSize(QSize(16777215, 40));
         widget_6->setStyleSheet(QLatin1String("\n"
 "\n"
 "QComboBox{\n"
@@ -664,33 +702,10 @@ public:
         horizontalLayout_2->setSpacing(5);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(9, 3, 0, 0);
-        label_14 = new QLabel(widget_6);
-        label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setMinimumSize(QSize(55, 0));
-        label_14->setMaximumSize(QSize(55, 16777215));
-        label_14->setFont(font);
-        label_14->setStyleSheet(QStringLiteral("color:#ced4da;"));
-
-        horizontalLayout_2->addWidget(label_14);
-
-        comboBox_testType = new QComboBox(widget_6);
-        comboBox_testType->addItem(QString());
-        comboBox_testType->addItem(QString());
-        comboBox_testType->setObjectName(QStringLiteral("comboBox_testType"));
-        comboBox_testType->setMinimumSize(QSize(100, 30));
-        comboBox_testType->setFont(font);
-        comboBox_testType->setStyleSheet(QStringLiteral("color:#ced4da;"));
-
-        horizontalLayout_2->addWidget(comboBox_testType);
-
-        horizontalSpacer_16 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_16);
-
         label_2 = new QLabel(widget_6);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(40, 0));
-        label_2->setMaximumSize(QSize(40, 16777215));
+        label_2->setMinimumSize(QSize(55, 0));
+        label_2->setMaximumSize(QSize(55, 16777215));
         label_2->setFont(font);
         label_2->setStyleSheet(QStringLiteral("color:#ced4da;"));
 
@@ -699,7 +714,7 @@ public:
         lineEdit_host = new QLineEdit(widget_6);
         lineEdit_host->setObjectName(QStringLiteral("lineEdit_host"));
         lineEdit_host->setMinimumSize(QSize(0, 30));
-        lineEdit_host->setMaximumSize(QSize(500, 16777215));
+        lineEdit_host->setMaximumSize(QSize(170, 16777215));
         lineEdit_host->setFont(font);
         lineEdit_host->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
@@ -776,8 +791,8 @@ public:
         comboBox_port->setObjectName(QStringLiteral("comboBox_port"));
         sizePolicy.setHeightForWidth(comboBox_port->sizePolicy().hasHeightForWidth());
         comboBox_port->setSizePolicy(sizePolicy);
-        comboBox_port->setMinimumSize(QSize(250, 30));
-        comboBox_port->setMaximumSize(QSize(250, 16777215));
+        comboBox_port->setMinimumSize(QSize(230, 30));
+        comboBox_port->setMaximumSize(QSize(230, 16777215));
         comboBox_port->setStyleSheet(QStringLiteral("color:#ced4da;"));
         comboBox_port->setEditable(true);
 
@@ -817,6 +832,7 @@ public:
         toolButton_test->setStyleSheet(QLatin1String("QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "	color: rgb(255, 255, 255);\n"
+"	\n"
 "	background-color: rgb(250, 118, 0);\n"
 "	border-radius: 5px;\n"
 "}\n"
@@ -828,7 +844,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(250, 118, 0);\n"
+"	background-color: rgb(0, 170, 255);\n"
 "}"));
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -846,7 +862,8 @@ public:
 
         horizontalWidget_2 = new QWidget(widget_right);
         horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
-        horizontalWidget_2->setMaximumSize(QSize(16777215, 33));
+        horizontalWidget_2->setMinimumSize(QSize(0, 40));
+        horizontalWidget_2->setMaximumSize(QSize(16777215, 40));
         horizontalWidget_2->setStyleSheet(QLatin1String("QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:0px solid #8a8a8a;\n"
@@ -960,6 +977,29 @@ public:
 
         horizontalLayout_9->addWidget(comboBox_reqType);
 
+        horizontalSpacer_16 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_16);
+
+        label_14 = new QLabel(horizontalWidget_2);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setMinimumSize(QSize(55, 0));
+        label_14->setMaximumSize(QSize(55, 16777215));
+        label_14->setFont(font);
+        label_14->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(label_14);
+
+        comboBox_testType = new QComboBox(horizontalWidget_2);
+        comboBox_testType->addItem(QString());
+        comboBox_testType->addItem(QString());
+        comboBox_testType->setObjectName(QStringLiteral("comboBox_testType"));
+        comboBox_testType->setMinimumSize(QSize(100, 30));
+        comboBox_testType->setFont(font);
+        comboBox_testType->setStyleSheet(QStringLiteral("color:#ced4da;"));
+
+        horizontalLayout_9->addWidget(comboBox_testType);
+
         horizontalSpacer_9 = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_9->addItem(horizontalSpacer_9);
@@ -969,7 +1009,8 @@ public:
 
         horizontalWidget = new QWidget(widget_right);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
-        horizontalWidget->setMaximumSize(QSize(16777215, 30));
+        horizontalWidget->setMinimumSize(QSize(0, 40));
+        horizontalWidget->setMaximumSize(QSize(16777215, 40));
         horizontalWidget->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setSpacing(5);
@@ -1062,7 +1103,8 @@ public:
 
         widget_property = new QWidget(widget_right);
         widget_property->setObjectName(QStringLiteral("widget_property"));
-        widget_property->setMinimumSize(QSize(0, 30));
+        widget_property->setMinimumSize(QSize(0, 40));
+        widget_property->setMaximumSize(QSize(16777215, 40));
         horizontalLayout_13 = new QHBoxLayout(widget_property);
         horizontalLayout_13->setSpacing(5);
         horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
@@ -1306,9 +1348,9 @@ public:
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Vertical);
         splitter_2->setHandleWidth(0);
-        widget_4 = new QWidget(splitter_2);
-        widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setStyleSheet(QLatin1String("#widget_4{\n"
+        widget_inparam = new QWidget(splitter_2);
+        widget_inparam->setObjectName(QStringLiteral("widget_inparam"));
+        widget_inparam->setStyleSheet(QLatin1String("#widget_inparam{\n"
 "/*border-right:2px solid rgb(54, 81, 97); */\n"
 "/*border-left:2px solid rgb(54, 81, 97); */\n"
 "/*background-color: rgb(54, 81, 97);*/\n"
@@ -1356,8 +1398,8 @@ public:
 "QComboBox::down-arrow{\n"
 "	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
-"	height:20px;"
-                        "\n"
+"	height"
+                        ":20px;\n"
 "    margin-right: 10px;\n"
 "}\n"
 "\n"
@@ -1387,11 +1429,11 @@ public:
 "	background-color: rgb(250, 118, 0);\n"
 "}\n"
 ""));
-        horizontalLayout_3 = new QHBoxLayout(widget_4);
+        horizontalLayout_3 = new QHBoxLayout(widget_inparam);
         horizontalLayout_3->setSpacing(0);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        splitter = new QSplitter(widget_4);
+        splitter = new QSplitter(widget_inparam);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
         splitter->setHandleWidth(0);
@@ -1406,14 +1448,15 @@ public:
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_2->setContentsMargins(5, 5, 5, 0);
         widget_in_param = new QWidget(widget);
         widget_in_param->setObjectName(QStringLiteral("widget_in_param"));
         widget_in_param->setMinimumSize(QSize(0, 30));
         widget_in_param->setStyleSheet(QLatin1String("#widget_in_param{\n"
 "	background-color: rgb(54, 81, 97);\n"
-"	border-top-left-radius: 10px;\n"
-"	border-top-right-radius: 10px;\n"
+"	border-top-left-radius: 15px;\n"
+"	border-top-right-radius: 15px;\n"
+"	border: 0px solid rgba(212, 212, 212, 50);\n"
 "}\n"
 "\n"
 ""));
@@ -1426,7 +1469,10 @@ public:
         label_request_param->setMinimumSize(QSize(50, 0));
         label_request_param->setMaximumSize(QSize(50, 16777215));
         label_request_param->setFont(font);
-        label_request_param->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_request_param->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"border-top-left-radius: 15px;\n"
+"border: 0px solid rgba(212, 212, 212, 50);"));
         label_request_param->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_8->addWidget(label_request_param);
@@ -1610,14 +1656,15 @@ public:
 
         horizontalLayout_3->addWidget(splitter);
 
-        splitter_2->addWidget(widget_4);
-        widget_2 = new QWidget(splitter_2);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        verticalLayout_6 = new QVBoxLayout(widget_2);
+        splitter_2->addWidget(widget_inparam);
+        widget_outparam = new QWidget(splitter_2);
+        widget_outparam->setObjectName(QStringLiteral("widget_outparam"));
+        widget_outparam->setStyleSheet(QStringLiteral("color: rgb(113, 113, 113);"));
+        verticalLayout_6 = new QVBoxLayout(widget_outparam);
         verticalLayout_6->setSpacing(0);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        widget_5 = new QWidget(widget_2);
+        widget_5 = new QWidget(widget_outparam);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(0, 0));
         QFont font5;
@@ -1674,7 +1721,7 @@ public:
         verticalLayout_7 = new QVBoxLayout(widget_5);
         verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_7->setContentsMargins(5, 0, 5, 5);
         widget_response = new QWidget(widget_5);
         widget_response->setObjectName(QStringLiteral("widget_response"));
         widget_response->setMinimumSize(QSize(0, 30));
@@ -2021,10 +2068,17 @@ public:
         horizontalLayout_6->setSpacing(0);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(3, 3, 0, 3);
+        horizontalSpacer_29 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_29);
+
         label_req = new QLabel(widget_response_bottom);
         label_req->setObjectName(QStringLiteral("label_req"));
         label_req->setFont(font);
-        label_req->setStyleSheet(QStringLiteral(""));
+        label_req->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"border-top-left-radius: 15px;\n"
+"border: 0px solid rgba(212, 212, 212, 50);"));
 
         horizontalLayout_6->addWidget(label_req);
 
@@ -2054,7 +2108,7 @@ public:
 
         verticalLayout_6->addWidget(widget_5);
 
-        splitter_2->addWidget(widget_2);
+        splitter_2->addWidget(widget_outparam);
 
         verticalLayout_11->addWidget(splitter_2);
 
@@ -2075,7 +2129,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(0);
+        tabWidget_response->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -2084,14 +2138,10 @@ public:
     void retranslateUi(QWidget *thriftwidget)
     {
         thriftwidget->setWindowTitle(QApplication::translate("thriftwidget", "Form", nullptr));
+        toolButton_inportFile->setText(QApplication::translate("thriftwidget", " \345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
         lineEdit_find->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
-        toolButton_inportFile->setText(QApplication::translate("thriftwidget", "\345\257\274\345\205\245thrift", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
-        label_14->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\347\261\273\345\236\213", nullptr));
-        comboBox_testType->setItemText(0, QApplication::translate("thriftwidget", "\345\237\272\347\241\200\346\265\213\350\257\225", nullptr));
-        comboBox_testType->setItemText(1, QApplication::translate("thriftwidget", "\346\200\247\350\203\275\346\265\213\350\257\225", nullptr));
-
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
         lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
@@ -2157,6 +2207,10 @@ public:
         label_9->setText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\347\261\273\345\236\213", nullptr));
         comboBox_reqType->setItemText(0, QApplication::translate("thriftwidget", "CALL", nullptr));
         comboBox_reqType->setItemText(1, QApplication::translate("thriftwidget", "ONEWAY", nullptr));
+
+        label_14->setText(QApplication::translate("thriftwidget", "\346\265\213\350\257\225\347\261\273\345\236\213", nullptr));
+        comboBox_testType->setItemText(0, QApplication::translate("thriftwidget", "\345\237\272\347\241\200\346\265\213\350\257\225", nullptr));
+        comboBox_testType->setItemText(1, QApplication::translate("thriftwidget", "\346\200\247\350\203\275\346\265\213\350\257\225", nullptr));
 
         label_3->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243", nullptr));
         lineEdit_funcName->setText(QApplication::translate("thriftwidget", "getBadword", nullptr));

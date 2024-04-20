@@ -20,6 +20,9 @@
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
 
+#define DARK_THEME 0   //暗黑主题
+#define LIGHT_THEME 1  //浅色主题
+
 
 enum WindowStretchRectState
 {
@@ -33,6 +36,8 @@ enum WindowStretchRectState
     LEFT_BOTTOM_RECT,           // 鼠标在左下角区域;
     LEFT_BORDER                 // 鼠标在左边框区域;
 };
+
+
 
 namespace Ui {
 class MainWindow;
@@ -148,6 +153,12 @@ private slots:
 
     void on_toolButton_zk_tool_clicked();
 
+    void on_toolButton_side_theme_clicked();
+
+    void on_toolButton_side_setting_clicked();
+
+    void on_toolButton_side_thrift_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -208,6 +219,9 @@ private:
     aboutwidget *awidget = nullptr;
 
     config * confInfo = nullptr; //配置信息
+
+    int currentTheme = 0; //当前主题
+    
 };
 
 #endif // MAINWINDOW_H

@@ -21,7 +21,12 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QToolTip {
+   <string notr="true">
+#thriftwidget{
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));
+}
+
+QToolTip {
 color:#ced4da;
 background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
@@ -72,16 +77,16 @@ QMenu::separator {
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>10</number>
    </property>
    <property name="topMargin">
     <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>5</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>10</number>
    </property>
    <item>
     <widget class="QSplitter" name="splitter_3">
@@ -160,25 +165,31 @@ QScrollBar::up-arrow:vertical {
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="spacing">
-        <number>9</number>
+        <number>8</number>
        </property>
        <property name="leftMargin">
         <number>5</number>
        </property>
        <property name="topMargin">
-        <number>5</number>
+        <number>0</number>
        </property>
        <property name="rightMargin">
         <number>5</number>
        </property>
        <property name="bottomMargin">
-        <number>0</number>
+        <number>5</number>
        </property>
        <item>
         <widget class="QWidget" name="widget_9" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>44</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
           <property name="spacing">
-           <number>0</number>
+           <number>30</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -190,19 +201,131 @@ QScrollBar::up-arrow:vertical {
            <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>5</number>
+           <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="lineEdit_find">
+           <widget class="QWidget" name="widget_7" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
+              <width>100</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">image: url(:/lib/Thrift.png);</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_inportFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
               <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>120</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(20, 30, 36);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	/*background-color: rgba(20, 20, 20,0);*/
+}</string>
+            </property>
+            <property name="text">
+             <string> 导入thrift文件</string>
+            </property>
+            <property name="icon">
+             <iconset resource="lib.qrc">
+              <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>13</width>
+              <height>13</height>
+             </size>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_23">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_8" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_find">
+            <property name="minimumSize">
+             <size>
+              <width>250</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>250</width>
               <height>30</height>
              </size>
             </property>
@@ -228,6 +351,19 @@ padding-right:10px;
              <string>搜索API</string>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_24">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -266,17 +402,17 @@ QTabBar::tab{
 	color:#ced4da;    /*设置tab中的文本的颜色*/
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
-	width:110px;
+	width:100px;
 	padding: 4px;
-	margin-right:0px;
-	margin-left: 0px;
+	margin-right:5px;
+	margin-left: 5px;
 }
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
 QTabBar::tab:selected{
 	/*background-color: #0B0E11;*/
 	background-color: rgb(108, 117, 125, 0);
-	border-bottom: 2px solid rgb(54, 81, 97)
+	border-bottom: 3px solid rgb(255, 255, 255);
 }
  
 /*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
@@ -325,80 +461,17 @@ QTabBar QToolButton:hover {
             <number>6</number>
            </property>
            <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
             <number>5</number>
            </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
            <property name="rightMargin">
-            <number>0</number>
+            <number>5</number>
            </property>
            <property name="bottomMargin">
             <number>5</number>
            </property>
-           <item>
-            <widget class="QToolButton" name="toolButton_inportFile">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>180</width>
-               <height>28</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>28</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>OPPOSans B</family>
-               <pointsize>10</pointsize>
-               <stylestrategy>PreferAntialias</stylestrategy>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	padding-left:65px;
-	
-	background-color: rgb(20, 20, 20);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(20, 20, 20);
-}</string>
-             </property>
-             <property name="text">
-              <string>导入thrift</string>
-             </property>
-             <property name="icon">
-              <iconset resource="lib.qrc">
-               <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>13</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="toolButtonStyle">
-              <enum>Qt::ToolButtonTextBesideIcon</enum>
-             </property>
-            </widget>
-           </item>
            <item>
             <widget class="QTreeWidget" name="treeWidget_api">
              <property name="font">
@@ -410,13 +483,14 @@ QToolButton:hover {
              </property>
              <property name="styleSheet">
               <string notr="true">QTreeWidget{
-border: 1px solid rgba(212, 212, 212, 50);
-border-radius: 2px;
+background-color: rgba(25, 25, 25, 80);
+border: 0px solid rgba(212, 212, 212, 50);
+border-radius: 10px;
 padding:5px;
 }
 
 QTreeWidget::item {
-    height: 22px; /* 设置行高为50像素 */
+    height: 25px; /* 设置行高为50像素 */
 }
 
 QScrollBar::horizontal{
@@ -588,23 +662,29 @@ QScrollBar::up-arrow:vertical {
         <number>10</number>
        </property>
        <property name="leftMargin">
-        <number>0</number>
+        <number>10</number>
        </property>
        <property name="topMargin">
         <number>6</number>
        </property>
        <property name="rightMargin">
-        <number>10</number>
+        <number>15</number>
        </property>
        <property name="bottomMargin">
-        <number>6</number>
+        <number>10</number>
        </property>
        <item>
         <widget class="QWidget" name="widget_6" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>33</height>
+           <height>40</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -674,91 +754,16 @@ QComboBox QAbstractItemView{
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_14">
-            <property name="minimumSize">
-             <size>
-              <width>55</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>55</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:#ced4da;</string>
-            </property>
-            <property name="text">
-             <string>测试类型</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_testType">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:#ced4da;</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>基础测试</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>性能测试</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_16">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <widget class="QLabel" name="label_2">
             <property name="minimumSize">
              <size>
-              <width>40</width>
+              <width>55</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>40</width>
+              <width>55</width>
               <height>16777215</height>
              </size>
             </property>
@@ -787,7 +792,7 @@ QComboBox QAbstractItemView{
             </property>
             <property name="maximumSize">
              <size>
-              <width>500</width>
+              <width>170</width>
               <height>16777215</height>
              </size>
             </property>
@@ -866,13 +871,13 @@ padding-right:10px;
             </property>
             <property name="minimumSize">
              <size>
-              <width>250</width>
+              <width>230</width>
               <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>250</width>
+              <width>230</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1196,6 +1201,7 @@ padding-right:10px;
              <string notr="true">QToolButton {
 	font: 10pt &quot;OPPOSans B&quot;;
 	color: rgb(255, 255, 255);
+	
 	background-color: rgb(250, 118, 0);
 	border-radius: 5px;
 }
@@ -1207,7 +1213,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgb(250, 118, 0);
+	background-color: rgb(0, 170, 255);
 }</string>
             </property>
             <property name="text">
@@ -1240,10 +1246,16 @@ QToolButton:hover {
        </item>
        <item>
         <widget class="QWidget" name="horizontalWidget_2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>33</height>
+           <height>40</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -1506,6 +1518,81 @@ QComboBox QAbstractItemView{
            </widget>
           </item>
           <item>
+           <spacer name="horizontalSpacer_16">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="minimumSize">
+             <size>
+              <width>55</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>55</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:#ced4da;</string>
+            </property>
+            <property name="text">
+             <string>测试类型</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_testType">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:#ced4da;</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>基础测试</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>性能测试</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_9">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1526,10 +1613,16 @@ QComboBox QAbstractItemView{
        </item>
        <item>
         <widget class="QWidget" name="horizontalWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>30</height>
+           <height>40</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -1748,7 +1841,13 @@ QToolButton:hover {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>30</height>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
           </size>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
@@ -2376,9 +2475,9 @@ QToolButton:hover {
              <property name="handleWidth">
               <number>0</number>
              </property>
-             <widget class="QWidget" name="widget_4" native="true">
+             <widget class="QWidget" name="widget_inparam" native="true">
               <property name="styleSheet">
-               <string notr="true">#widget_4{
+               <string notr="true">#widget_inparam{
 /*border-right:2px solid rgb(54, 81, 97); */
 /*border-left:2px solid rgb(54, 81, 97); */
 /*background-color: rgb(54, 81, 97);*/
@@ -2496,13 +2595,13 @@ QToolButton:hover {
                     <number>0</number>
                    </property>
                    <property name="leftMargin">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <property name="topMargin">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <property name="rightMargin">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <property name="bottomMargin">
                     <number>0</number>
@@ -2518,8 +2617,9 @@ QToolButton:hover {
                      <property name="styleSheet">
                       <string notr="true">#widget_in_param{
 	background-color: rgb(54, 81, 97);
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border: 0px solid rgba(212, 212, 212, 50);
 }
 
 </string>
@@ -2562,7 +2662,10 @@ QToolButton:hover {
                          </font>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">color: rgb(255, 255, 255);</string>
+                         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(255, 255, 255, 0);
+border-top-left-radius: 15px;
+border: 0px solid rgba(212, 212, 212, 50);</string>
                         </property>
                         <property name="text">
                          <string>入参</string>
@@ -2840,7 +2943,10 @@ border-radius: 2px;
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="widget_2" native="true">
+             <widget class="QWidget" name="widget_outparam" native="true">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(113, 113, 113);</string>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <property name="spacing">
                 <number>0</number>
@@ -2924,16 +3030,16 @@ QScrollBar::up-arrow:vertical {
                    <number>0</number>
                   </property>
                   <property name="leftMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="topMargin">
                    <number>0</number>
                   </property>
                   <property name="rightMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="bottomMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <item>
                    <widget class="QWidget" name="widget_response" native="true">
@@ -3220,7 +3326,7 @@ QTabBar QToolButton:hover {
 }</string>
                         </property>
                         <property name="currentIndex">
-                         <number>0</number>
+                         <number>1</number>
                         </property>
                         <widget class="QWidget" name="tab_3">
                          <property name="sizePolicy">
@@ -3737,6 +3843,22 @@ p, li { white-space: pre-wrap; }
                       <number>3</number>
                      </property>
                      <item>
+                      <spacer name="horizontalSpacer_29">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeType">
+                        <enum>QSizePolicy::Fixed</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>10</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
                       <widget class="QLabel" name="label_req">
                        <property name="font">
                         <font>
@@ -3746,7 +3868,10 @@ p, li { white-space: pre-wrap; }
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true"/>
+                        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(255, 255, 255, 0);
+border-top-left-radius: 15px;
+border: 0px solid rgba(212, 212, 212, 50);</string>
                        </property>
                        <property name="text">
                         <string/>

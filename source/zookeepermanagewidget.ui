@@ -105,7 +105,7 @@ QScrollBar::up-arrow:vertical {
        <number>5</number>
       </property>
       <property name="topMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
        <number>9</number>
@@ -118,16 +118,16 @@ QScrollBar::up-arrow:vertical {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>35</height>
+          <height>70</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>35</height>
+          <height>70</height>
          </size>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -144,10 +144,29 @@ QScrollBar::up-arrow:vertical {
           <number>5</number>
          </property>
          <item>
+          <widget class="QWidget" name="widget_4" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>45</width>
+             <height>45</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>45</width>
+             <height>45</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">image: url(:/lib/Zookeeper21.png);</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QToolButton" name="toolButton_newCreate">
            <property name="minimumSize">
             <size>
-             <width>180</width>
+             <width>125</width>
              <height>30</height>
             </size>
            </property>
@@ -178,6 +197,13 @@ QToolButton:hover {
            </property>
            <property name="text">
             <string>新建连接</string>
+           </property>
+           <property name="icon">
+            <iconset resource="lib.qrc">
+             <normaloff>:/lib/Zookeeper2.png</normaloff>:/lib/Zookeeper2.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextOnly</enum>
            </property>
           </widget>
          </item>
@@ -260,7 +286,7 @@ QScrollBar::up-arrow:vertical {
               <x>0</x>
               <y>0</y>
               <width>186</width>
-              <height>458</height>
+              <height>432</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -897,6 +923,8 @@ QToolButton:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="lib.qrc"/>
+ </resources>
  <connections/>
 </ui>

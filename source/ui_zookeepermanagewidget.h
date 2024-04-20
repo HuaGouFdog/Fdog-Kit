@@ -34,7 +34,8 @@ public:
     QWidget *widget_left;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget_9;
-    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_4;
+    QWidget *widget_4;
     QToolButton *toolButton_newCreate;
     QWidget *widget;
     QVBoxLayout *verticalLayout_3;
@@ -145,18 +146,26 @@ public:
 "}"));
         verticalLayout_6 = new QVBoxLayout(widget_left);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(5, 9, 9, 0);
+        verticalLayout_6->setContentsMargins(5, 0, 9, 0);
         widget_9 = new QWidget(widget_left);
         widget_9->setObjectName(QStringLiteral("widget_9"));
-        widget_9->setMinimumSize(QSize(0, 35));
-        widget_9->setMaximumSize(QSize(16777215, 35));
-        verticalLayout_2 = new QVBoxLayout(widget_9);
-        verticalLayout_2->setSpacing(0);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 5, 0, 5);
+        widget_9->setMinimumSize(QSize(0, 70));
+        widget_9->setMaximumSize(QSize(16777215, 70));
+        horizontalLayout_4 = new QHBoxLayout(widget_9);
+        horizontalLayout_4->setSpacing(0);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setContentsMargins(0, 5, 0, 5);
+        widget_4 = new QWidget(widget_9);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setMinimumSize(QSize(45, 45));
+        widget_4->setMaximumSize(QSize(45, 45));
+        widget_4->setStyleSheet(QStringLiteral("image: url(:/lib/Zookeeper21.png);"));
+
+        horizontalLayout_4->addWidget(widget_4);
+
         toolButton_newCreate = new QToolButton(widget_9);
         toolButton_newCreate->setObjectName(QStringLiteral("toolButton_newCreate"));
-        toolButton_newCreate->setMinimumSize(QSize(180, 30));
+        toolButton_newCreate->setMinimumSize(QSize(125, 30));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
         font1.setPointSize(10);
@@ -178,8 +187,12 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(20, 20, 20);\n"
 "}"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/Zookeeper2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_newCreate->setIcon(icon);
+        toolButton_newCreate->setToolButtonStyle(Qt::ToolButtonTextOnly);
 
-        verticalLayout_2->addWidget(toolButton_newCreate);
+        horizontalLayout_4->addWidget(toolButton_newCreate);
 
 
         verticalLayout_6->addWidget(widget_9);
@@ -243,7 +256,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 186, 458));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 186, 432));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "    qproperty-iconSize: 22px 22px;\n"
