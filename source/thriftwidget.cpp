@@ -31,7 +31,7 @@ static bool isAuto = true;
 #define THRIFT_FUNC_LENGTH                  1006
 #define THRIFT_FUNC_NAME                    1007
 #define THRIFT_SN                           1008
-#define THRIFT_BOOL                         1009           
+#define THRIFT_BOOL                         1009
 #define THRIFT_BYTE                         1010
 #define THRIFT_I16                          1011
 #define THRIFT_I32                          1012
@@ -63,25 +63,25 @@ QMap<QString, int> sourceTypeMap {
 };
 
 QMap<int, QColor *> sourceColorMap {
-    {THRIFT_MESSAGE_LENGTH, new QColor(255,115,115)}, 
-    {THRIFT_MESSAGE_TYPE_CALL, new QColor(255, 170, 0)}, 
+    {THRIFT_MESSAGE_LENGTH, new QColor(255,115,115)},
+    {THRIFT_MESSAGE_TYPE_CALL, new QColor(255, 170, 0)},
     {THRIFT_MESSAGE_TYPE_REPLY, new QColor(255, 170, 0)},
-    {THRIFT_MESSAGE_TYPE_EXCEPTION, new QColor(255, 170, 0)}, 
+    {THRIFT_MESSAGE_TYPE_EXCEPTION, new QColor(255, 170, 0)},
     {THRIFT_MESSAGE_TYPE_ONEWAY, new QColor(255, 170, 0)},
-    {THRIFT_FUNC_LENGTH, new QColor(255,170,130)}, 
+    {THRIFT_FUNC_LENGTH, new QColor(255,170,130)},
     {THRIFT_FUNC_NAME, new QColor(80,80,80)},
-    {THRIFT_SN, new QColor(85,0,130)}, 
+    {THRIFT_SN, new QColor(85,0,130)},
     {THRIFT_BOOL, new QColor(0,85,0)},
-    {THRIFT_BYTE, new QColor(80,10,10)}, 
-    {THRIFT_I16, new QColor(0,170,255)}, 
-    {THRIFT_I32, new QColor(255,0,255)}, 
-    {THRIFT_I64, new QColor(0,160,150)}, 
-    {THRIFT_DOUBLE, new QColor(0,0,130)}, 
-    {THRIFT_STRING, new QColor(170,170,0)}, 
-    {THRIFT_STRUCT, new QColor(0,85,255)}, 
-    {THRIFT_MAP, new QColor(85,0,255)}, 
-    {THRIFT_SET, new QColor(255,115,0)}, 
-    {THRIFT_LIST, new QColor(85,170,130)}, 
+    {THRIFT_BYTE, new QColor(80,10,10)},
+    {THRIFT_I16, new QColor(0,170,255)},
+    {THRIFT_I32, new QColor(255,0,255)},
+    {THRIFT_I64, new QColor(0,160,150)},
+    {THRIFT_DOUBLE, new QColor(0,0,130)},
+    {THRIFT_STRING, new QColor(170,170,0)},
+    {THRIFT_STRUCT, new QColor(0,85,255)},
+    {THRIFT_MAP, new QColor(85,0,255)},
+    {THRIFT_SET, new QColor(255,115,0)},
+    {THRIFT_LIST, new QColor(85,170,130)},
     {THRIFT_END, new QColor(0,0,0)},
     {THRIFT_START, new QColor(0,0,0)},
     {THRIFT_VALUE, new QColor(255, 0, 0)},
@@ -93,7 +93,7 @@ ItemWidget::ItemWidget(QTreeWidget *parent) : QTreeWidgetItem(parent, 1)
 {
     //qDebug() << "走ItemWidget(QTreeWidget *parent)";
     init();
-    
+
     parent->setItemWidget(this, 0, widgetParamSN);
     parent->setItemWidget(this, 1, widgetParamName);
     parent->setItemWidget(this, 2, widgetParamType);
@@ -287,7 +287,7 @@ void ItemWidget::init()
     layoutParamName->addWidget(lineEditParamName);
     widgetParamName = new QWidget();
     widgetParamName->setLayout(layoutParamName);
-    
+
 
     layoutParamType = new QHBoxLayout();
     layoutParamType->setContentsMargins(0, 0, 0, 0);
@@ -406,9 +406,9 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
     }
 }
 
-void ItemWidget::setParamSN(QString str)
+void ItemWidget::setParamSN(int str)
 {
-    lineEditParamSN->setText(str);
+    lineEditParamSN->setText(QString::number(str));
 }
 
 void ItemWidget::setParamName(QString str)
@@ -421,10 +421,11 @@ void ItemWidget::setParamType(QString str)
     lineEditParamValue->setText(str);
 }
 
-void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QString type, QString typeSign)
+void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString type, QString typeSign)
 {
+    setExpanded(true);
     //判断typeSign
-    //qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
+    qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
     if (typeSign == "opt-in, req-out") {
         //必选
         mastLabel->show();
@@ -437,25 +438,112 @@ void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QStri
         checkBox->setChecked(true);
     }
 
-    lineEditParamSN->setText(sn);
+    lineEditParamSN->setText(QString::number(sn));
     lineEditParamName->setText(name);
-    if (baseType.contains(type)) {
-        //基础类型
-        comboBoxBase->setCurrentText(type);
-    } else if (type.startsWith("map")) {
+    if (type.startsWith("map")) {
         //复杂类型
 
     } else if (type.startsWith("set")) {
         //复杂类型
+        comboBoxBase->setCurrentText("set");
+        //获取 先这样写,默认就一成，里面要么基础类型，要么结构体
+        int index_s =  type.indexOf("set<");
+        int index_e =  type.indexOf(">", index_s + 4);
+        QString type_s = type.mid(index_s + 4, index_e - index_s - 4);
+        qDebug() << "set type_s = " << type_s;
+        if (baseType.contains(type_s)) {
+            //基础类型
+            comboBoxValue->setCurrentText(type_s);
+            qDebug() << "基础类型";
+        } else {
+            //复杂类型
+            isAuto = false;
+            comboBoxValue->setCurrentText("struct");
+            isAuto = true;
+            qDebug() << "复杂类型";
+        }
 
     } else if (type.startsWith("list")) {
         //复杂类型
+        comboBoxBase->setCurrentText("list");
+        //获取list里面的值
+        int index_s =  type.indexOf("list<");
+        int index_e =  type.indexOf(">", index_s + 5);
+        QString type_s = type.mid(index_s + 5, index_e - index_s - 5);
+        qDebug() << "list type_s = " << type_s;
+        if (baseType.contains(type_s)) {
+            //基础类型
+            comboBoxValue->setCurrentText(type_s);
 
+            qDebug() << "基础类型";
+        } else {
+            //复杂类型
+            isAuto = false;
+            comboBoxValue->setCurrentText("struct");
+            qDebug() << "复杂类型";
+            //创建子节点
+            keyLabel->hide();
+            valueLabel->hide();
+            classLabel->hide();
+            addNode->show();
+            lineEditParamValue->setReadOnly(true);
+            lineEditParamValue->setPlaceholderText("");
+
+            ItemWidget* items = thriftwidget::createAndGetNode(p, this);
+            items->lineEditParamValue->setText(type_s);
+            items->comboBoxBase->setCurrentText("struct");
+            items->keyLabel->hide();
+            items->valueLabel->hide();
+            items->classLabel->show();
+            //items->lineEditParamName->setText(name);
+            items->lineEditParamValue->setReadOnly(true);
+            items->lineEditParamValue->setPlaceholderText("");
+            items->lineEditParamSN->setText("1");
+            items->checkBox->setChecked(true);
+            items->setExpanded(true);
+            isAuto = true;
+            //这里还有问题，只能处理单层数据
+            //遍历创建节点
+            int index_ = type_s.lastIndexOf(".");
+            if (index_ != -1) {
+                type_s = type_s.mid(index_ + 1);
+            }
+
+            if (structParamMap.value(type_s).size() > 0) {
+                QMap<int, structInfo> temp = structParamMap.value(type_s);
+                for (const auto &key : temp.keys()) {
+                    ItemWidget* item_1 = thriftwidget::createAndGetNode(p, items);
+                    item_1->setParamValue(p, key,
+                        temp[key].paramName,
+                        temp[key].paramType,
+                        temp[key].typeSign);
+                }
+            }
+
+
+            // for(int i = 1; i <= structParamMap.value("AccountType").size() ;i++)
+            // {
+            //     qDebug() << "找到数据";
+            //     qDebug() << "对应结构体数据type<<" << structParamMap.value(type_s)[QString::number(i)].paramType;
+            //     qDebug() << "对应结构体数据name<<" << structParamMap.value(type_s)[QString::number(i)].paramName;
+            //     ItemWidget* item_1 = thriftwidget::createAndGetNode(p, items);
+            //     //items->addChild(item_1);
+            //     item_1->setParamValue(p, QString::number(i),
+            //         structParamMap.value(type_s)[QString::number(i)].paramName,
+            //         structParamMap.value(type_s)[QString::number(i)].paramType,
+            //         structParamMap.value(type_s)[QString::number(i)].typeSign);
+            // }
+        }
+
+    } else if (baseType.contains(type)) {
+        //基础类型
+        qDebug() << "设置基础类型";
+        comboBoxBase->setCurrentText(type);
     } else {
         //qDebug() << "设置struct1";
         isAuto = false;
         comboBoxBase->setCurrentText("struct");
-        
+
         //qDebug() << "设置struct2";
         lineEditParamName->setText(name);
         lineEditParamValue->setText(type);
@@ -474,17 +562,35 @@ void ItemWidget::setParamValue(thriftwidget * p, QString sn, QString name, QStri
         //根据name添加子节点
         //查找对应的数据
         //qDebug() << "点击的结构体类型：" << type;
-        for(int i = 1; i <= structParamMap.value(type).size() ;i++)
-        {
-            //qDebug() << "对应结构体数据type<<" << structParamMap.value(type)[QString::number(i)].paramType;
-            //qDebug() << "对应结构体数据name<<" << structParamMap.value(type)[QString::number(i)].paramName;
-            ItemWidget* items = thriftwidget::createAndGetNode(p, this);
-            items->setParamValue(p, QString::number(i),
-                structParamMap.value(type)[QString::number(i)].paramName,
-                structParamMap.value(type)[QString::number(i)].paramType,
-                structParamMap.value(type)[QString::number(i)].typeSign);
+
+        int index_ = type.lastIndexOf(".");
+        if (index_ != -1) {
+            type = type.mid(index_ + 1);
         }
-        
+
+        if (structParamMap.value(type).size() > 0) {
+            QMap<int, structInfo> temp = structParamMap.value(type);
+            for (const auto &key : temp.keys()) {
+                ItemWidget* items = thriftwidget::createAndGetNode(p, this);
+                items->setParamValue(p, key,
+                    temp[key].paramName,
+                    temp[key].paramType,
+                    temp[key].typeSign);
+            }
+        }
+
+
+        // for(int i = 1; i <= structParamMap.value(type).size() ;i++)
+        // {
+        //     //qDebug() << "对应结构体数据type<<" << structParamMap.value(type)[QString::number(i)].paramType;
+        //     //qDebug() << "对应结构体数据name<<" << structParamMap.value(type)[QString::number(i)].paramName;
+        //     ItemWidget* items = thriftwidget::createAndGetNode(p, this);
+        //     items->setParamValue(p, QString::number(i),
+        //         structParamMap.value(type)[QString::number(i)].paramName,
+        //         structParamMap.value(type)[QString::number(i)].paramType,
+        //         structParamMap.value(type)[QString::number(i)].typeSign);
+        // }
+
     }
     //lineEditParamValue->setText(type);
 }
@@ -501,10 +607,10 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->treeWidget->setColumnWidth(0, 120);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(1, 150);
+    ui->treeWidget->setColumnWidth(1, 100);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(2, 200);
+    ui->treeWidget->setColumnWidth(2, 300);
 
     // 计算第五列的宽度，使其占满剩余空间
     //int lastColumnWidth = ui->treeWidget->viewport()->width() - 420;
@@ -640,38 +746,38 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect11->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect11->setColor(QColor(250, 118, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect11->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->toolButton_test->setGraphicsEffect(effect11);
+    //ui->toolButton_test->setGraphicsEffect(effect11);
 
     QGraphicsDropShadowEffect *effect12 = new QGraphicsDropShadowEffect(this);
     effect12->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect12->setColor(QColor(250, 118, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect12->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->toolButton_request->setGraphicsEffect(effect12);
+    //ui->toolButton_request->setGraphicsEffect(effect12);
 
     QGraphicsDropShadowEffect *effect13 = new QGraphicsDropShadowEffect(this);
     effect13->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect13->setColor(QColor(0, 170, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect13->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->toolButton_save->setGraphicsEffect(effect13);
+    //ui->toolButton_save->setGraphicsEffect(effect13);
 
     QGraphicsDropShadowEffect *effect14 = new QGraphicsDropShadowEffect(this);
     effect14->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect14->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
-    ui->treeWidget_api->setGraphicsEffect(effect14);
+    effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->widget_thrift_api->setGraphicsEffect(effect14);
 
     QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
     effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect15->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect15->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
     //ui->widget_inparam->setGraphicsEffect(effect15);
-    
+
     QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect();
     effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect16->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect16->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
     //ui->widget_outparam->setGraphicsEffect(effect16);
-    
+
     // QGraphicsDropShadowEffect *effect17 = new QGraphicsDropShadowEffect();
     // effect17->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     // effect17->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
@@ -811,7 +917,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         int nowLength = 0; //设置数据长度，到达后不再读取
         ui->stackedWidget->setCurrentIndex(0);
         int sum = 0;
-        int sum_2 =0; 
+        int sum_2 =0;
         for (uint32_t data : receivedDataArray) {
             data = qFromBigEndian(data);
             std::stringstream stream;
@@ -830,7 +936,7 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             //     dataTemp = dataTemp + temp2;
             //     qDebug() << "dataTemp2 = " << dataTemp;
             // }
-            
+
             if (countLength == -1) {
                 //读取头获取数据长度
                 countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
@@ -987,7 +1093,7 @@ void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString va
        int value_i = value.toInt();
        QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
        string2stringList(valueData);
-   } else if (valueType == "i64") { 
+   } else if (valueType == "i64") {
         int64_t value_i = value.toULongLong();
         //qDebug() << "int64 = " << value;
         QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
@@ -1070,7 +1176,7 @@ void thriftwidget::containerSerialize(int serialNumber, QString valueType, QStri
         } else if (containerType.contains(key_Type)) {
             //key为复杂类型暂不考虑
         } else {
-            
+
         }
     } else if (valueType == "map") {
         //获取key类型
@@ -1312,7 +1418,7 @@ void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
     //qDebug() << "writeTBinaryBaseMessage valueType = " << valueType << " & value = " << valueType;
     if (valueType == "bool" || valueType == "byte" || valueType == "i16" || valueType == "i32") {
         writeTBinaryFormatData(value.toInt(), valueType);
-    } else if (valueType == "i64") { 
+    } else if (valueType == "i64") {
         writeTBinaryFormatData(value.toULongLong(), valueType);
     } else if (valueType == "double") {
         writeTBinaryFormatData(value.toDouble(), valueType);
@@ -1468,7 +1574,7 @@ void thriftwidget::handleMessage(QString &data)
     QString message_len = data.mid(0, 8);
     temp = temp + addColorHtml(message_len, sourceColorMap[THRIFT_MESSAGE_LENGTH]);
     data = data.mid(8);
-    
+
     QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
     label_headers = label_headers + "数据长度:" + headers_data_length + "   ";
     //qDebug() << "数据长度 = " << headers_data_length;
@@ -1512,9 +1618,9 @@ void thriftwidget::handleMessage(QString &data)
     QString headers_data_sn = QString::number(strtol(func_sn.toStdString().c_str(), nullptr, 16));
     //qDebug() << "流水号 = " << headers_data_sn;
     label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
-    
 
-    label_headers = label_headers + "返回值类型:" + funcParamOutMap.value(hexToString(fun_name)).value("1").paramType + "   ";
+
+    label_headers = label_headers + "返回值类型:" + funcParamOutMap.value(hexToString(fun_name)).value(1).paramType + "   ";
     ui->label_headers->setText(label_headers);
     //数据
     //编号两位数  序号4位数 数据
@@ -1537,13 +1643,13 @@ void thriftwidget::handleMessage(QString &data)
             QString value_sn = data.mid(0, 4);
             temp = temp + addColorHtml(value_sn, sourceColorMap[THRIFT_VALUE_SN]);
             data = data.mid(4);
-            
+
             // if (value_type == "00") {
             //     qDebug() << "结尾符";
             //     break;
-            // } else 
+            // } else
             QString isEnd = data.mid(0, 2);
-            qDebug() << "handleMessage isEnd = " << isEnd; 
+            qDebug() << "handleMessage isEnd = " << isEnd;
             if (value_type == "02") {
                 //bool
                 temp = temp + handleBool(data, isEnd);
@@ -1569,8 +1675,8 @@ void thriftwidget::handleMessage(QString &data)
             } else if (value_type == "0c") {
                 //struct
                 qDebug() << "进入struct";
-                temp = temp + handleStruct(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value("1").paramType,
-                    funcParamOutMap.value(hexToString(fun_name)).value("1").paramName);
+                temp = temp + handleStruct(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
                 //固定1
                 //记得处理请求结束
                 break;
@@ -1733,7 +1839,7 @@ QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName)
         qDebug() << "paramName2";
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i16") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
     }
-    
+
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1754,7 +1860,7 @@ QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QS
             qDebug() << "paramName2";
             ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i32") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
         }
-        
+
     } else if (resType == THRIFT_EXCEPTION) {
         QString excType = hexToLongNumber(value);
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Type") + " : " + addColorValueNumHtml(ExceptionType.value(excType) + " (" + excType + ")"));
@@ -1778,7 +1884,7 @@ QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName)
         qDebug() << "paramName2";
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "i64") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
     }
-    
+
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
@@ -1807,7 +1913,7 @@ QString thriftwidget::handleString(QString &str, QString isEnd, QString resType,
             qDebug() << "paramName2";
             ui->textEdit_data->append(addColorFieldHtml(getRetract() + "string") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\"") + end);
         }
-        
+
         temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     } else if (resType == THRIFT_EXCEPTION) {
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Message") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\""));
@@ -1823,7 +1929,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
     } else {
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"")  + addColorBracketsHtml(":{"));
     }
-    
+
     retractNum++;
     //读取编号 序号 数据
     QString temp = "";
@@ -1855,20 +1961,20 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
                 } else {
                     ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "},"));
                 }
-                
+
             }
-            
+
             break;
-        } 
+        }
         temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
 
         //读取序号
         QString value_sn = str.mid(0, 4);
         //需要转
         qDebug() << "outParam = " << outParam << " hexToLongNumber(value_sn) = " << hexToLongNumber(value_sn) << " value_sn = " << value_sn;
-        QString paramName_ = structParamMap.value(outType).value(hexToLongNumber(value_sn)).paramName;
-        QString paramType_ = structParamMap.value(outType).value(hexToLongNumber(value_sn)).paramType;
-        
+        QString paramName_ = structParamMap.value(outType).value(value_sn.toInt()).paramName;
+        QString paramType_ = structParamMap.value(outType).value(value_sn.toInt()).paramType;
+
         str = str.mid(4);
         temp = temp + addColorHtml(value_sn, sourceColorMap[THRIFT_VALUE_SN]);
 
@@ -1896,7 +2002,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
             //i32
             type_ = THRIFT_I32;
             temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName_);
-            
+
         } else if (value_type == "0a") {
             //i64
             type_ = THRIFT_I32;
@@ -2005,7 +2111,7 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
         } else if (value_type == "0d") {
 
         } else if (value_type == "0e") {
-            
+
         } else if (value_type == "0f") {
             temp = temp + handleList(str, isEnd, paramType, paramName);
         }
@@ -2186,7 +2292,7 @@ void thriftwidget::handleComments(QString &fileContent) {
         //删除头
         //qDebug() << "删除一次namespace = " << fileContent.mid(index_s, index_e + 1);
         fileContent.remove(index_s, index_e);
-        
+
     }
 
     //处理多的空格
@@ -2317,7 +2423,7 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
             } else {
                 isok = true;
             }
-            
+
             if (!isok) {
                 funcParamInMap.remove(funcName);
                 funcParamOutMap.remove(funcName);
@@ -2334,7 +2440,10 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
             childItem1->setIcon(0, icon1);
         }
 
+    } else {
+        fileContent_return = fileContent;
     }
+
     return fileContent_return;
 }
 
@@ -2359,7 +2468,7 @@ void thriftwidget::getStructInfo(QString &fileContent) {
             structParamMap.insert(structName, getStructParams(data));
             qDebug() << "获取的struct name = " << structName << " data = " << data;
         } else {
-            break; 
+            break;
         }
     }
     return;
@@ -2379,16 +2488,16 @@ bool thriftwidget::containsChinese(QString &str) {
     return false;
 }
 
-QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
+QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
 {
     //三种解析
     //1: SessionTicket st, 2: i64 userID
     //1:ThesaurusPage pageParam
     //1:i64 ct,2:i64 userID
     isok = true;
-    
-    QMap<QString, paramInfo> paramsMap_;
-    
+
+    QMap<int, paramInfo> paramsMap_;
+
     //先判断是一个参数，还是多个参数
     qDebug() << "getFuncInParams = " << data;
     if (!data.contains(",")) {
@@ -2450,7 +2559,7 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
                 if (Params.length() == 2) {
                     QString paramType = Params[0];
                     QString paramName = Params[1].replace(",", ""); //防止有逗号;
-                    paramsMap_.insert(sn, {paramType, paramName, "opt-in, req-out"});
+                    paramsMap_.insert(sn.toInt(), {paramType, paramName, "opt-in, req-out"});
                     qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
                 } else {
                     qDebug() << "错误";
@@ -2464,10 +2573,10 @@ QMap<QString, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok
     return paramsMap_;
 }
 
-QMap<QString, paramInfo> thriftwidget::getFuncOutParams(QString data)
+QMap<int, paramInfo> thriftwidget::getFuncOutParams(QString data)
 {
     qDebug() << "getFuncOutParams1 data =" << data;
-    QMap<QString, paramInfo> paramsMap_;
+    QMap<int, paramInfo> paramsMap_;
     //只可能有一个返回值，判断是不是基础类型
     if (data.startsWith("map")) {
         //复杂类型
@@ -2484,15 +2593,15 @@ QMap<QString, paramInfo> thriftwidget::getFuncOutParams(QString data)
     } else {
         //struct
         qDebug() << "getFuncOutParams2 data =" << data;
-        paramsMap_.insert("1", {data, "", "opt-in, req-out"});
+        paramsMap_.insert(1, {data, "", "opt-in, req-out"});
     }
-    
+
     return paramsMap_;
 }
 
-QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
+QMap<int, structInfo> thriftwidget::getStructParams(QString data)
 {
-    QMap<QString, structInfo> paramsStructMap_;
+    QMap<int, structInfo> paramsStructMap_;
     //按照\n分割，排空
     QStringList list = data.split("\n", QString::SkipEmptyParts);
     qDebug() << "list = " << list;
@@ -2507,7 +2616,7 @@ QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
             QString type = a[0].replace(";", "");
             QString name = a[1].replace(";", "").replace(",", "");
             qDebug() << "sn = " << sn << " type = " << type << " name =" << name;
-            paramsStructMap_.insert(sn, {type, name, "opt-in, req-out"});
+            paramsStructMap_.insert(sn.toInt(), {type, name, "opt-in, req-out"});
         } else if (a.length() == 3) {
             if (a[0] == "optional") {
                 //qDebug() << "选传";
@@ -2517,7 +2626,7 @@ QMap<QString, structInfo> thriftwidget::getStructParams(QString data)
             QString type = a[1].replace(";", "");
             QString name = a[2].replace(";", "");
             qDebug() << "sn = " << sn << " type = " << type << " name = " << name;
-            paramsStructMap_.insert(sn, {type, name, a[0]});
+            paramsStructMap_.insert(sn.toInt(), {type, name, a[0]});
         }
     }
     return paramsStructMap_;
@@ -2607,7 +2716,7 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     delete items2;
     //复制数据
     //首先child() 是struct
-    
+
 
 }
 
@@ -2972,13 +3081,13 @@ void thriftwidget::on_toolButton_inportFile_clicked()
     //解析thrift文件
     // 创建文件对话框
     QFileDialog dialog;
-    
+
     // 设置文件过滤器
     dialog.setNameFilter("Thrift Files (*.thrift)");
-    
+
     // 设置只能选择文件
     dialog.setFileMode(QFileDialog::ExistingFiles);
-    
+
     dialog.setDirectory("E:/ProjectA/thrift");
     // 打开文件对话框
     if (dialog.exec()) {
@@ -3041,18 +3150,29 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
     ui->treeWidget->clear();
     //循环获取参数
     qDebug() << "=3";
-    for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
-        //QMap<QString, paramInfo>
-        qDebug() << " sn = " << i
-                << " paramType = " << funcParamInMap.value(funcName2).value(QString::number(i)).paramType
-                << " paramName" << funcParamInMap.value(funcName2).value(QString::number(i)).paramName;
 
-
-        ItemWidget* items = createAndGetNode(this, ui->treeWidget);
-        items->setParamValue(this, QString::number(i),
-            funcParamInMap.value(funcName2).value(QString::number(i)).paramName,
-            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
-            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
-
+    if (funcParamInMap.value(funcName2).size() > 0) {
+        QMap<int, paramInfo> temp = funcParamInMap.value(funcName2);
+        for (const auto &key : temp.keys()) {
+            ItemWidget* items = createAndGetNode(this, ui->treeWidget);
+            items->setParamValue(this, key,
+                        temp[key].paramName,
+                        temp[key].paramType,
+                        temp[key].typeSign);
+        }
     }
+
+//    for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
+//        //QMap<QString, paramInfo>
+//        qDebug() << " sn = " << i
+//                << " paramType = " << funcParamInMap.value(funcName2).value(QString::number(i)).paramType
+//                << " paramName" << funcParamInMap.value(funcName2).value(QString::number(i)).paramName;
+
+
+//        ItemWidget* items = createAndGetNode(this, ui->treeWidget);
+//        items->setParamValue(this, QString::number(i),
+//            funcParamInMap.value(funcName2).value(QString::number(i)).paramName,
+//            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
+//            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
+//    }
 }

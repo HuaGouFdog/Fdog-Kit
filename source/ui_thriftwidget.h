@@ -38,15 +38,16 @@ public:
     QSplitter *splitter_3;
     QWidget *widget_left;
     QVBoxLayout *verticalLayout_5;
-    QWidget *widget_9;
+    QWidget *widget_imprt_thrift;
     QHBoxLayout *horizontalLayout_7;
     QWidget *widget_7;
     QToolButton *toolButton_inportFile;
     QSpacerItem *horizontalSpacer_23;
-    QWidget *widget_8;
+    QWidget *widget_thrift_search;
     QHBoxLayout *horizontalLayout_14;
     QLineEdit *lineEdit_find;
-    QSpacerItem *horizontalSpacer_24;
+    QWidget *widget_thrift_api;
+    QVBoxLayout *verticalLayout_3;
     QTabWidget *tabWidget;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
@@ -178,7 +179,7 @@ public:
     {
         if (thriftwidget->objectName().isEmpty())
             thriftwidget->setObjectName(QStringLiteral("thriftwidget"));
-        thriftwidget->resize(1379, 701);
+        thriftwidget->resize(1372, 701);
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -244,7 +245,7 @@ public:
         splitter_3->setOrientation(Qt::Horizontal);
         widget_left = new QWidget(splitter_3);
         widget_left->setObjectName(QStringLiteral("widget_left"));
-        widget_left->setMinimumSize(QSize(260, 0));
+        widget_left->setMinimumSize(QSize(280, 0));
         widget_left->setMaximumSize(QSize(500, 16777215));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans B"));
@@ -304,14 +305,14 @@ public:
         verticalLayout_5->setSpacing(8);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(5, 0, 5, 5);
-        widget_9 = new QWidget(widget_left);
-        widget_9->setObjectName(QStringLiteral("widget_9"));
-        widget_9->setMinimumSize(QSize(0, 44));
-        horizontalLayout_7 = new QHBoxLayout(widget_9);
+        widget_imprt_thrift = new QWidget(widget_left);
+        widget_imprt_thrift->setObjectName(QStringLiteral("widget_imprt_thrift"));
+        widget_imprt_thrift->setMinimumSize(QSize(0, 44));
+        horizontalLayout_7 = new QHBoxLayout(widget_imprt_thrift);
         horizontalLayout_7->setSpacing(30);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 5, 0, 0);
-        widget_7 = new QWidget(widget_9);
+        widget_7 = new QWidget(widget_imprt_thrift);
         widget_7->setObjectName(QStringLiteral("widget_7"));
         widget_7->setMinimumSize(QSize(100, 40));
         widget_7->setMaximumSize(QSize(100, 40));
@@ -319,7 +320,7 @@ public:
 
         horizontalLayout_7->addWidget(widget_7);
 
-        toolButton_inportFile = new QToolButton(widget_9);
+        toolButton_inportFile = new QToolButton(widget_imprt_thrift);
         toolButton_inportFile->setObjectName(QStringLiteral("toolButton_inportFile"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -357,18 +358,18 @@ public:
         horizontalLayout_7->addItem(horizontalSpacer_23);
 
 
-        verticalLayout_5->addWidget(widget_9);
+        verticalLayout_5->addWidget(widget_imprt_thrift);
 
-        widget_8 = new QWidget(widget_left);
-        widget_8->setObjectName(QStringLiteral("widget_8"));
-        widget_8->setMinimumSize(QSize(0, 40));
-        horizontalLayout_14 = new QHBoxLayout(widget_8);
+        widget_thrift_search = new QWidget(widget_left);
+        widget_thrift_search->setObjectName(QStringLiteral("widget_thrift_search"));
+        widget_thrift_search->setMinimumSize(QSize(0, 40));
+        horizontalLayout_14 = new QHBoxLayout(widget_thrift_search);
         horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
         horizontalLayout_14->setContentsMargins(0, -1, 0, -1);
-        lineEdit_find = new QLineEdit(widget_8);
+        lineEdit_find = new QLineEdit(widget_thrift_search);
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
         lineEdit_find->setMinimumSize(QSize(250, 30));
-        lineEdit_find->setMaximumSize(QSize(250, 30));
+        lineEdit_find->setMaximumSize(QSize(5999, 30));
         QFont font2;
         font2.setFamily(QStringLiteral("OPPOSans"));
         font2.setPointSize(10);
@@ -377,7 +378,7 @@ public:
         lineEdit_find->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color: rgb(231, 238, 244);\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -386,14 +387,19 @@ public:
 
         horizontalLayout_14->addWidget(lineEdit_find);
 
-        horizontalSpacer_24 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_14->addItem(horizontalSpacer_24);
+        verticalLayout_5->addWidget(widget_thrift_search);
 
-
-        verticalLayout_5->addWidget(widget_8);
-
-        tabWidget = new QTabWidget(widget_left);
+        widget_thrift_api = new QWidget(widget_left);
+        widget_thrift_api->setObjectName(QStringLiteral("widget_thrift_api"));
+        widget_thrift_api->setStyleSheet(QLatin1String("#widget_thrift_api {\n"
+"background-color: rgba(25, 25, 25, 100);\n"
+"border-radius: 10px;\n"
+"}"));
+        verticalLayout_3 = new QVBoxLayout(widget_thrift_api);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 10, 0, 0);
+        tabWidget = new QTabWidget(widget_thrift_api);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setFont(font);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
@@ -421,10 +427,10 @@ public:
 "	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350"
                         "\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	width:100px;\n"
-"	padding: 4px;\n"
-"	margin-right:5px;\n"
-"	margin-left: 5px;\n"
+"	width:95px;\n"
+"	padding: 5px;\n"
+"	margin-right:10px;\n"
+"	margin-left:10px;\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
@@ -466,10 +472,14 @@ public:
 "}"));
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        tab_2->setStyleSheet(QLatin1String("#tab_2{\n"
+"border-radius: 5px;\n"
+"background-color: rgba(28, 35, 39, 0);\n"
+"}"));
         verticalLayout_12 = new QVBoxLayout(tab_2);
         verticalLayout_12->setSpacing(6);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        verticalLayout_12->setContentsMargins(5, 10, 5, 5);
+        verticalLayout_12->setContentsMargins(0, 10, 0, 0);
         treeWidget_api = new QTreeWidget(tab_2);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
@@ -477,7 +487,7 @@ public:
         treeWidget_api->setObjectName(QStringLiteral("treeWidget_api"));
         treeWidget_api->setFont(font);
         treeWidget_api->setStyleSheet(QString::fromUtf8("QTreeWidget{\n"
-"background-color: rgba(25, 25, 25, 80);\n"
+"/*background-color: rgba(25, 25, 25, 100);*/\n"
 "border: 0px solid rgba(212, 212, 212, 50);\n"
 "border-radius: 10px;\n"
 "padding:5px;\n"
@@ -508,9 +518,9 @@ public:
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    height: "
-                        "8px;\n"
-"	background-color: rgb(239, 239, 239);\n"
+"    hei"
+                        "ght: 8px;\n"
+"	background-color: rgba(239, 239, 239, 100);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
@@ -556,7 +566,10 @@ public:
         icon2.addFile(QStringLiteral(":/lib/history2.png"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidget->addTab(tab, icon2, QString());
 
-        verticalLayout_5->addWidget(tabWidget);
+        verticalLayout_3->addWidget(tabWidget);
+
+
+        verticalLayout_5->addWidget(widget_thrift_api);
 
         splitter_3->addWidget(widget_left);
         widget_right = new QWidget(splitter_3);
@@ -645,7 +658,7 @@ public:
         verticalLayout = new QVBoxLayout(widget_right);
         verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(10, 6, 15, 10);
+        verticalLayout->setContentsMargins(10, 6, 15, 3);
         widget_6 = new QWidget(widget_right);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         widget_6->setMinimumSize(QSize(0, 40));
@@ -719,7 +732,7 @@ public:
         lineEdit_host->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -869,7 +882,7 @@ public:
 "	border:0px solid #8a8a8a;\n"
 "	color: rgb(138, 138, 138);\n"
 "	border-radius:5px;\n"
-"	background-color: rgb(25, 25, 25, 155);\n"
+"	background-color: rgb(25, 25, 25, 100);\n"
 "	padding-left:10px;\n"
 "	\n"
 "	font: 10pt \"OPPOSans B\";\n"
@@ -1032,7 +1045,7 @@ public:
         lineEdit_funcName->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -1126,7 +1139,7 @@ public:
         lineEdit_port_2->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -1156,7 +1169,7 @@ public:
         lineEdit_port_3->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -1198,7 +1211,7 @@ public:
         lineEdit_port_4->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -1228,7 +1241,7 @@ public:
         lineEdit_port_5->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
+"background-color: rgb(25, 25, 25, 100);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"

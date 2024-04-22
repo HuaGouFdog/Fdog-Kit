@@ -81,12 +81,12 @@ struct structInfo {
 
 //QMap<QString, paramInfo> paramsMap;
 
-static QMap<QString, QMap<QString, paramInfo>> funcParamInMap;
+static QMap<QString, QMap<int, paramInfo>> funcParamInMap;
 
-static QMap<QString, QMap<QString, paramInfo>> funcParamOutMap;
+static QMap<QString, QMap<int, paramInfo>> funcParamOutMap;
 
 //第一个参数是结构体名，map里面string是序号
-static QMap<QString, QMap<QString, structInfo>> structParamMap;
+static QMap<QString, QMap<int, structInfo>> structParamMap;
 
 namespace Ui {
 class thriftwidget;
@@ -187,10 +187,10 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
 
       void copyItem(thriftwidget * p, ItemWidget * item_p, ItemWidget * item_);
 
-      void setParamSN(QString str);
+      void setParamSN(int str);
       void setParamName(QString str);
       void setParamType(QString str);
-      void setParamValue(thriftwidget * p, QString sn, QString name, QString type, QString typeSign);
+      void setParamValue(thriftwidget * p, int sn, QString name, QString type, QString typeSign);
 
 
 signals:
@@ -368,19 +368,25 @@ public:
 
     void deleteComments(char* buf, int n); //删除注释
 
-    void deleteComments(QString &str);
+    void handleComments(QString &fileContent);
+
+    void handleExtraSpace(QString &func, QString type);
 
     bool containsChinese(QString &str);
-    
 
-    //获取入参
-    QMap<QString, paramInfo> getFuncInParams(QString data, bool & isok);
-
-    //获取出参
-    QMap<QString, paramInfo> getFuncOutParams(QString data);
+    QString getServerInterface(QString &fileContent);
 
     //获取结构体信息
-    QMap<QString, structInfo> getStructParams(QString data);
+    void getStructInfo(QString &fileContent);
+    
+    //获取入参
+    QMap<int, paramInfo> getFuncInParams(QString data, bool & isok);
+
+    //获取出参
+    QMap<int, paramInfo> getFuncOutParams(QString data);
+
+    //获取结构体信息
+    QMap<int, structInfo> getStructParams(QString data);
     
     //创建节点
     static ItemWidget* createAndGetNode(thriftwidget * p);

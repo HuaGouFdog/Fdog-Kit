@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1379</width>
+    <width>1372</width>
     <height>701</height>
    </rect>
   </property>
@@ -96,7 +96,7 @@ QMenu::separator {
      <widget class="QWidget" name="widget_left" native="true">
       <property name="minimumSize">
        <size>
-        <width>260</width>
+        <width>280</width>
         <height>0</height>
        </size>
       </property>
@@ -180,7 +180,7 @@ QScrollBar::up-arrow:vertical {
         <number>5</number>
        </property>
        <item>
-        <widget class="QWidget" name="widget_9" native="true">
+        <widget class="QWidget" name="widget_imprt_thrift" native="true">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -301,7 +301,7 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="widget_8" native="true">
+        <widget class="QWidget" name="widget_thrift_search" native="true">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -325,7 +325,7 @@ QToolButton:hover {
             </property>
             <property name="maximumSize">
              <size>
-              <width>250</width>
+              <width>5999</width>
               <height>30</height>
              </size>
             </property>
@@ -340,7 +340,7 @@ QToolButton:hover {
              <string notr="true">QLineEdit{
 color: rgb(231, 238, 244);
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;
@@ -352,33 +352,41 @@ padding-right:10px;
             </property>
            </widget>
           </item>
-          <item>
-           <spacer name="horizontalSpacer_24">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QTabWidget" name="tabWidget">
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-           <stylestrategy>PreferAntialias</stylestrategy>
-          </font>
-         </property>
+        <widget class="QWidget" name="widget_thrift_api" native="true">
          <property name="styleSheet">
-          <string notr="true">
+          <string notr="true">#widget_thrift_api {
+background-color: rgba(25, 25, 25, 100);
+border-radius: 10px;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QTabWidget" name="tabWidget">
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
  QTabWidget::tab-bar {
          left:0px;       
 }
@@ -402,10 +410,10 @@ QTabBar::tab{
 	color:#ced4da;    /*设置tab中的文本的颜色*/
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
-	width:100px;
-	padding: 4px;
-	margin-right:5px;
-	margin-left: 5px;
+	width:95px;
+	padding: 5px;
+	margin-right:10px;
+	margin-left:10px;
 }
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
@@ -444,46 +452,52 @@ QTabBar QToolButton {
 QTabBar QToolButton:hover {
 	background-color: #161a1e; 
 }</string>
-         </property>
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <widget class="QWidget" name="tab_2">
-          <attribute name="icon">
-           <iconset resource="lib.qrc">
-            <normaloff>:/lib/file2.png</normaloff>:/lib/file2.png</iconset>
-          </attribute>
-          <attribute name="title">
-           <string>接口列表</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_12">
-           <property name="spacing">
-            <number>6</number>
-           </property>
-           <property name="leftMargin">
-            <number>5</number>
-           </property>
-           <property name="topMargin">
-            <number>10</number>
-           </property>
-           <property name="rightMargin">
-            <number>5</number>
-           </property>
-           <property name="bottomMargin">
-            <number>5</number>
-           </property>
-           <item>
-            <widget class="QTreeWidget" name="treeWidget_api">
-             <property name="font">
-              <font>
-               <family>OPPOSans B</family>
-               <pointsize>10</pointsize>
-               <stylestrategy>PreferAntialias</stylestrategy>
-              </font>
-             </property>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="tab_2">
              <property name="styleSheet">
-              <string notr="true">QTreeWidget{
-background-color: rgba(25, 25, 25, 80);
+              <string notr="true">#tab_2{
+border-radius: 5px;
+background-color: rgba(28, 35, 39, 0);
+}</string>
+             </property>
+             <attribute name="icon">
+              <iconset resource="lib.qrc">
+               <normaloff>:/lib/file2.png</normaloff>:/lib/file2.png</iconset>
+             </attribute>
+             <attribute name="title">
+              <string>接口列表</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QTreeWidget" name="treeWidget_api">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTreeWidget{
+/*background-color: rgba(25, 25, 25, 100);*/
 border: 0px solid rgba(212, 212, 212, 50);
 border-radius: 10px;
 padding:5px;
@@ -515,7 +529,7 @@ QTreeWidget::branch:open:has-children:has-siblings  {
 
 QScrollBar::handle:horizontal {
     height: 8px;
-	background-color: rgb(239, 239, 239);
+	background-color: rgba(239, 239, 239, 100);
     /*滚动条两端变成椭圆 */
     border-radius: 2px;
     min-height: 0;
@@ -548,28 +562,31 @@ QScrollBar::down-arrow:horizontal {
 QScrollBar::up-arrow:horizontal {
     border:none;
 }</string>
-             </property>
-             <attribute name="headerVisible">
-              <bool>false</bool>
-             </attribute>
-             <column>
-              <property name="text">
-               <string notr="true">1</string>
-              </property>
-             </column>
+                </property>
+                <attribute name="headerVisible">
+                 <bool>false</bool>
+                </attribute>
+                <column>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </column>
+               </widget>
+              </item>
+             </layout>
             </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab">
-          <attribute name="icon">
-           <iconset resource="lib.qrc">
-            <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
-          </attribute>
-          <attribute name="title">
-           <string>历史记录</string>
-          </attribute>
-         </widget>
+            <widget class="QWidget" name="tab">
+             <attribute name="icon">
+              <iconset resource="lib.qrc">
+               <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
+             </attribute>
+             <attribute name="title">
+              <string>历史记录</string>
+             </attribute>
+            </widget>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -671,7 +688,7 @@ QScrollBar::up-arrow:vertical {
         <number>15</number>
        </property>
        <property name="bottomMargin">
-        <number>10</number>
+        <number>3</number>
        </property>
        <item>
         <widget class="QWidget" name="widget_6" native="true">
@@ -807,7 +824,7 @@ QComboBox QAbstractItemView{
              <string notr="true">QLineEdit{
 color:#ced4da;
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;
@@ -1264,7 +1281,7 @@ QToolButton:hover {
 	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
 	border-radius:5px;
-	background-color: rgb(25, 25, 25, 155);
+	background-color: rgb(25, 25, 25, 100);
 	padding-left:10px;
 	
 	font: 10pt &quot;OPPOSans B&quot;;
@@ -1695,7 +1712,7 @@ QComboBox QAbstractItemView{
              <string notr="true">QLineEdit{
 color:#ced4da;
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;
@@ -1920,7 +1937,7 @@ QToolButton:hover {
              <string notr="true">QLineEdit{
 color:#ced4da;
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;
@@ -2005,7 +2022,7 @@ padding-right:10px;
              <string notr="true">QLineEdit{
 color:#ced4da;
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;
@@ -2118,7 +2135,7 @@ padding-right:10px;
              <string notr="true">QLineEdit{
 color:#ced4da;
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;
@@ -2203,7 +2220,7 @@ padding-right:10px;
              <string notr="true">QLineEdit{
 color:#ced4da;
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 5px;
 padding-left:10px;

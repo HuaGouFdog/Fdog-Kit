@@ -512,10 +512,10 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         widget_left = new QWidget(widget_2);
         widget_left->setObjectName(QStringLiteral("widget_left"));
-        widget_left->setMinimumSize(QSize(190, 0));
-        widget_left->setMaximumSize(QSize(190, 16777215));
+        widget_left->setMinimumSize(QSize(230, 0));
+        widget_left->setMaximumSize(QSize(230, 16777215));
         widget_left->setStyleSheet(QLatin1String("#widget_left {\n"
-"background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));\n"
+"background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\n"
 "}\n"
 "\n"
 "QToolButton {\n"
@@ -549,7 +549,7 @@ public:
         verticalLayout = new QVBoxLayout(widget_left);
         verticalLayout->setSpacing(5);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(15, 10, 15, 10);
+        verticalLayout->setContentsMargins(25, 10, 25, 10);
         label_left_setting = new QLabel(widget_left);
         label_left_setting->setObjectName(QStringLiteral("label_left_setting"));
         label_left_setting->setMinimumSize(QSize(0, 50));
@@ -1087,9 +1087,9 @@ public:
         page_appearance->setObjectName(QStringLiteral("page_appearance"));
         page_appearance->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         verticalLayout_17 = new QVBoxLayout(page_appearance);
-        verticalLayout_17->setSpacing(10);
+        verticalLayout_17->setSpacing(20);
         verticalLayout_17->setObjectName(QStringLiteral("verticalLayout_17"));
-        verticalLayout_17->setContentsMargins(20, 10, 50, 10);
+        verticalLayout_17->setContentsMargins(50, 10, 50, 10);
         horizontalWidget_6 = new QWidget(page_appearance);
         horizontalWidget_6->setObjectName(QStringLiteral("horizontalWidget_6"));
         horizontalWidget_6->setMinimumSize(QSize(0, 40));
@@ -1381,9 +1381,9 @@ public:
         page_typeface->setObjectName(QStringLiteral("page_typeface"));
         page_typeface->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         verticalLayout_9 = new QVBoxLayout(page_typeface);
-        verticalLayout_9->setSpacing(10);
+        verticalLayout_9->setSpacing(20);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
-        verticalLayout_9->setContentsMargins(20, 10, 50, 10);
+        verticalLayout_9->setContentsMargins(50, 10, 50, 10);
         horizontalWidget_7 = new QWidget(page_typeface);
         horizontalWidget_7->setObjectName(QStringLiteral("horizontalWidget_7"));
         horizontalWidget_7->setMinimumSize(QSize(0, 40));
@@ -1806,9 +1806,9 @@ public:
         page_colorSchemes->setObjectName(QStringLiteral("page_colorSchemes"));
         page_colorSchemes->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         verticalLayout_18 = new QVBoxLayout(page_colorSchemes);
-        verticalLayout_18->setSpacing(10);
+        verticalLayout_18->setSpacing(20);
         verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
-        verticalLayout_18->setContentsMargins(20, 10, 50, 10);
+        verticalLayout_18->setContentsMargins(50, 10, 50, 10);
         horizontalWidget_8 = new QWidget(page_colorSchemes);
         horizontalWidget_8->setObjectName(QStringLiteral("horizontalWidget_8"));
         horizontalWidget_8->setMinimumSize(QSize(0, 40));
@@ -2142,9 +2142,9 @@ public:
 "padding-right:10px;\n"
 "}"));
         verticalLayout_50 = new QVBoxLayout(page_terminal);
-        verticalLayout_50->setSpacing(10);
+        verticalLayout_50->setSpacing(20);
         verticalLayout_50->setObjectName(QStringLiteral("verticalLayout_50"));
-        verticalLayout_50->setContentsMargins(20, 10, 50, 10);
+        verticalLayout_50->setContentsMargins(50, 10, 50, 10);
         horizontalWidget_10 = new QWidget(page_terminal);
         horizontalWidget_10->setObjectName(QStringLiteral("horizontalWidget_10"));
         horizontalWidget_10->setMinimumSize(QSize(0, 40));
@@ -2938,9 +2938,9 @@ public:
         page_shortcutKey->setObjectName(QStringLiteral("page_shortcutKey"));
         page_shortcutKey->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         verticalLayout_10 = new QVBoxLayout(page_shortcutKey);
-        verticalLayout_10->setSpacing(10);
+        verticalLayout_10->setSpacing(20);
         verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
-        verticalLayout_10->setContentsMargins(20, 10, 50, 10);
+        verticalLayout_10->setContentsMargins(50, 10, 50, 10);
         horizontalWidget_11 = new QWidget(page_shortcutKey);
         horizontalWidget_11->setObjectName(QStringLiteral("horizontalWidget_11"));
         horizontalWidget_11->setMinimumSize(QSize(0, 40));
@@ -4023,7 +4023,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(settingwidget);
