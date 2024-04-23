@@ -192,6 +192,10 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
       void setParamType(QString str);
       void setParamValue(thriftwidget * p, int sn, QString name, QString type, QString typeSign);
 
+      //处理list set
+      void setParamValue_interior(thriftwidget * p, QString type_s);
+      //处理map
+      void setParamValue_interior_map(thriftwidget * p, QString type_s);
 
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);

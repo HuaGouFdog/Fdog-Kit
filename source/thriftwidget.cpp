@@ -440,8 +440,37 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
 
     lineEditParamSN->setText(QString::number(sn));
     lineEditParamName->setText(name);
+    //暂时只考虑一层
     if (type.startsWith("map")) {
         //复杂类型
+        comboBoxBase->setCurrentText("map");
+        int index_s =  type.indexOf("map<");
+        int index_e =  type.indexOf(">", index_s + 4);
+        QString type_s = type.mid(index_s + 4, index_e - index_s - 4);
+        qDebug() << "map type_s = " << type_s;
+        //目前只支持基础类型作为key
+        QString key = type_s.split(",", QString::SkipEmptyParts)[0].replace(" ", "");
+        qDebug() << "map key = " << key;
+
+        QString value = type_s.split(",", QString::SkipEmptyParts)[1].replace(" ", "");
+        qDebug() << "map value = " << value;
+        if (baseType.contains(key)) {
+            //基础类型
+            comboBoxKey->setCurrentText(key);
+            qDebug() << "基础类型";
+        } else {
+            qDebug() << "出错";
+        }
+
+        if (baseType.contains(value)) {
+            //基础类型
+            comboBoxValue->setCurrentText(value);
+            qDebug() << "基础类型";
+        } else {
+            //复杂类型
+            setParamValue_interior_map(p, value);
+        }
+
 
     } else if (type.startsWith("set")) {
         //复杂类型
@@ -457,10 +486,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
             qDebug() << "基础类型";
         } else {
             //复杂类型
-            isAuto = false;
-            comboBoxValue->setCurrentText("struct");
-            isAuto = true;
-            qDebug() << "复杂类型";
+            setParamValue_interior(p, type_s);
         }
 
     } else if (type.startsWith("list")) {
@@ -474,65 +500,10 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         if (baseType.contains(type_s)) {
             //基础类型
             comboBoxValue->setCurrentText(type_s);
-
             qDebug() << "基础类型";
         } else {
             //复杂类型
-            isAuto = false;
-            comboBoxValue->setCurrentText("struct");
-            qDebug() << "复杂类型";
-            //创建子节点
-            keyLabel->hide();
-            valueLabel->hide();
-            classLabel->hide();
-            addNode->show();
-            lineEditParamValue->setReadOnly(true);
-            lineEditParamValue->setPlaceholderText("");
-
-            ItemWidget* items = thriftwidget::createAndGetNode(p, this);
-            items->lineEditParamValue->setText(type_s);
-            items->comboBoxBase->setCurrentText("struct");
-            items->keyLabel->hide();
-            items->valueLabel->hide();
-            items->classLabel->show();
-            //items->lineEditParamName->setText(name);
-            items->lineEditParamValue->setReadOnly(true);
-            items->lineEditParamValue->setPlaceholderText("");
-            items->lineEditParamSN->setText("1");
-            items->checkBox->setChecked(true);
-            items->setExpanded(true);
-            isAuto = true;
-            //这里还有问题，只能处理单层数据
-            //遍历创建节点
-            int index_ = type_s.lastIndexOf(".");
-            if (index_ != -1) {
-                type_s = type_s.mid(index_ + 1);
-            }
-
-            if (structParamMap.value(type_s).size() > 0) {
-                QMap<int, structInfo> temp = structParamMap.value(type_s);
-                for (const auto &key : temp.keys()) {
-                    ItemWidget* item_1 = thriftwidget::createAndGetNode(p, items);
-                    item_1->setParamValue(p, key,
-                        temp[key].paramName,
-                        temp[key].paramType,
-                        temp[key].typeSign);
-                }
-            }
-
-
-            // for(int i = 1; i <= structParamMap.value("AccountType").size() ;i++)
-            // {
-            //     qDebug() << "找到数据";
-            //     qDebug() << "对应结构体数据type<<" << structParamMap.value(type_s)[QString::number(i)].paramType;
-            //     qDebug() << "对应结构体数据name<<" << structParamMap.value(type_s)[QString::number(i)].paramName;
-            //     ItemWidget* item_1 = thriftwidget::createAndGetNode(p, items);
-            //     //items->addChild(item_1);
-            //     item_1->setParamValue(p, QString::number(i),
-            //         structParamMap.value(type_s)[QString::number(i)].paramName,
-            //         structParamMap.value(type_s)[QString::number(i)].paramType,
-            //         structParamMap.value(type_s)[QString::number(i)].typeSign);
-            // }
+            setParamValue_interior(p, type_s);
         }
 
     } else if (baseType.contains(type)) {
@@ -578,22 +549,98 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
                     temp[key].typeSign);
             }
         }
-
-
-        // for(int i = 1; i <= structParamMap.value(type).size() ;i++)
-        // {
-        //     //qDebug() << "对应结构体数据type<<" << structParamMap.value(type)[QString::number(i)].paramType;
-        //     //qDebug() << "对应结构体数据name<<" << structParamMap.value(type)[QString::number(i)].paramName;
-        //     ItemWidget* items = thriftwidget::createAndGetNode(p, this);
-        //     items->setParamValue(p, QString::number(i),
-        //         structParamMap.value(type)[QString::number(i)].paramName,
-        //         structParamMap.value(type)[QString::number(i)].paramType,
-        //         structParamMap.value(type)[QString::number(i)].typeSign);
-        // }
-
     }
-    //lineEditParamValue->setText(type);
 }
+
+void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
+    isAuto = false;
+    comboBoxValue->setCurrentText("struct");
+    qDebug() << "复杂类型";
+    //创建子节点
+    keyLabel->hide();
+    valueLabel->hide();
+    classLabel->hide();
+    addNode->show();
+    lineEditParamValue->setReadOnly(true);
+    lineEditParamValue->setPlaceholderText("");
+
+    ItemWidget* items = thriftwidget::createAndGetNode(p, this);
+    items->lineEditParamValue->setText(type_s);
+    items->comboBoxBase->setCurrentText("struct");
+    items->keyLabel->hide();
+    items->valueLabel->hide();
+    items->classLabel->show();
+    //items->lineEditParamName->setText(name);
+    items->lineEditParamValue->setReadOnly(true);
+    items->lineEditParamValue->setPlaceholderText("");
+    items->lineEditParamSN->setText("1");
+    items->checkBox->setChecked(true);
+    items->setExpanded(true);
+    isAuto = true;
+    //这里还有问题，只能处理单层数据
+    //遍历创建节点
+    int index_ = type_s.lastIndexOf(".");
+    if (index_ != -1) {
+        type_s = type_s.mid(index_ + 1);
+    }
+
+    if (structParamMap.value(type_s).size() > 0) {
+        QMap<int, structInfo> temp = structParamMap.value(type_s);
+        for (const auto &key : temp.keys()) {
+            ItemWidget* item_1 = thriftwidget::createAndGetNode(p, items);
+            item_1->setParamValue(p, key,
+                temp[key].paramName,
+                temp[key].paramType,
+                temp[key].typeSign);
+        }
+    }
+}
+
+void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
+    isAuto = false;
+    comboBoxValue->setCurrentText("struct");
+    qDebug() << "复杂类型";
+    //创建子节点
+    keyLabel->hide();
+    valueLabel->hide();
+    classLabel->hide();
+    addNode->show();
+    lineEditParamValue->setReadOnly(true);
+    lineEditParamValue->setPlaceholderText("");
+
+    ItemWidget* items = thriftwidget::createAndGetNode(p, this);
+    //items->lineEditParamValue->setText(type_s);
+    items->comboBoxBase->setCurrentText("struct");
+    items->keyLabel->show();
+    items->valueLabel->hide();
+    items->classLabel->hide();
+    //items->lineEditParamName->setText(name);
+    //items->lineEditParamValue->setReadOnly(true);
+    items->lineEditParamValue->setPlaceholderText("key");
+    items->lineEditParamSN->setText("1");
+    items->checkBox->setChecked(true);
+    items->setExpanded(true);
+    isAuto = true;
+
+    //这里还有问题，只能处理单层数据
+    //遍历创建节点
+    int index_ = type_s.lastIndexOf(".");
+    if (index_ != -1) {
+        type_s = type_s.mid(index_ + 1);
+    }
+
+    if (structParamMap.value(type_s).size() > 0) {
+        QMap<int, structInfo> temp = structParamMap.value(type_s);
+        for (const auto &key : temp.keys()) {
+            ItemWidget* item_1 = thriftwidget::createAndGetNode(p, items);
+            item_1->setParamValue(p, key,
+                temp[key].paramName,
+                temp[key].paramType,
+                temp[key].typeSign);
+        }
+    }
+}
+
 
 thriftwidget::thriftwidget(QWidget *parent) :
     QWidget(parent),
@@ -2531,15 +2578,22 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
         return paramsMap_;
     }
     int a =0;
+    bool isMap = false;
     while(data.contains(":")){
         //qDebug() << "while data.length() = " << data.length();
         int sum = 0;
         for(int i = data.length() -1; i >= 0; i--) {
-            //qDebug() << "while data.length() = " << data.length() << " i = " << i << " data[]" <<  data[i];
             if (data[i] == ":") {
                 sum++;
             }
             if (sum != 0 && (data[i] == "," || i == 0)) {
+                if (data[i] == ",") {
+                    if (-1 == data.mid(i + 1).indexOf(":")) {
+                        qDebug() << "跳过";
+                        continue;
+                    }
+                    
+                }
                 //获取
                 int temp = 0;
                 if (i == 0) {
@@ -2554,7 +2608,7 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
                 int index = param1.indexOf(":");
                 QString sn = param1.mid(0, index).replace(" ", "").replace(",", "");; //防止有逗号
                 param1 = param1.mid(index + 1);
-                qDebug() << "剩下param1 = " << param1;
+                qDebug() << "结果 param1 = " << param1;
                 QStringList Params = param1.split(" ", QString::SkipEmptyParts); //类型和名字必然有空格
                 if (Params.length() == 2) {
                     QString paramType = Params[0];
