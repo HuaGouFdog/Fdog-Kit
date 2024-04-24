@@ -195,7 +195,7 @@ void ItemWidget::init()
     lineEditParamName->setMinimumHeight(29);
 
     lineEditParamValue = new QLineEdit();
-    lineEditParamValue->setPlaceholderText("参数值");
+    lineEditParamValue->setPlaceholderText("value");
     lineEditParamValue->setMinimumHeight(29);
     connect(lineEditParamValue,&QLineEdit::textChanged,[=]{
         emit send_onTextChanged(lineEditParamValue->text(), this);
@@ -467,6 +467,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
     if (type.startsWith("map")) {
         //复杂类型
         comboBoxBase->setCurrentText("map");
+        qDebug() << "怀疑";
         int index_s =  type.indexOf("map<");
         int index_e =  type.indexOf(">", index_s + 4);
         QString type_s = type.mid(index_s + 4, index_e - index_s - 4);
@@ -590,9 +591,10 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
 
     lineEditParamValue->setReadOnly(true);
     lineEditParamValue->setPlaceholderText("");
-
+    lineEditParamValue->setText(type_s);
     ItemWidget* items = thriftwidget::createAndGetNode(p, this);
     items->lineEditParamValue->setText(type_s);
+    
     items->comboBoxBase->setCurrentText("struct");
     items->keyLabel->hide();
     items->valueLabel->hide();
@@ -610,7 +612,7 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
     if (index_ != -1) {
         type_s = type_s.mid(index_ + 1);
     }
-    lineEditParamValue->setText(type_s);
+    
     if (structParamMap.value(type_s).size() > 0) {
         QMap<int, structInfo> temp = structParamMap.value(type_s);
         for (const auto &key : temp.keys()) {
@@ -648,6 +650,7 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     items->lineEditParamValue->setPlaceholderText("key");
     items->lineEditParamSN->setText("1");
     items->checkBox->setChecked(true);
+    
     items->setExpanded(true);
     isAuto = true;
 
@@ -657,7 +660,7 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     if (index_ != -1) {
         type_s = type_s.mid(index_ + 1);
     }
-    lineEditParamValue->setText(type_s);
+    
     if (structParamMap.value(type_s).size() > 0) {
         QMap<int, structInfo> temp = structParamMap.value(type_s);
         for (const auto &key : temp.keys()) {
@@ -680,13 +683,13 @@ thriftwidget::thriftwidget(QWidget *parent) :
     // 设置树的列数（如果需要多列）
     ui->treeWidget->setColumnCount(4);
     // 设置第一列的宽度为 100 像素
-    ui->treeWidget->setColumnWidth(0, 120);
+    ui->treeWidget->setColumnWidth(0, 150);
 
     // 设置第三列的宽度为 150 像素
     ui->treeWidget->setColumnWidth(1, 100);
 
     // 设置第三列的宽度为 150 像素
-    ui->treeWidget->setColumnWidth(2, 300);
+    ui->treeWidget->setColumnWidth(2, 350);
 
     // 计算第五列的宽度，使其占满剩余空间
     //int lastColumnWidth = ui->treeWidget->viewport()->width() - 420;
@@ -1440,8 +1443,15 @@ void thriftwidget::assembleTBinaryMessage()
         }
         QString valueType = item->comboBoxBase->currentText();
         QString value = item->lineEditParamValue->text();
+        QString SN = item->lineEditParamSN->text();
+        if (SN != "") {
+            qDebug() << "出错";
+            SN = QString::number(i + 1);
+        }
+
         //设置类型和序号
-        writeTBinaryTypeAndSerialNumber(valueType, i + 1);
+        //这里的序号不能依靠遍历值，要依靠sn的值
+        writeTBinaryTypeAndSerialNumber(valueType, SN.toInt());
         if (baseType.contains(valueType)) {
             //构建基础类型
             writeTBinaryBaseMessage(valueType, value);
@@ -1606,7 +1616,12 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
         //设置类型和序号
         QString valueType_ = itemChild->comboBoxBase->currentText();
         QString value_ = itemChild->lineEditParamValue->text();
-        writeTBinaryTypeAndSerialNumber(valueType_, serialNumber + 1);
+        QString SN = itemChild->lineEditParamSN->text();
+        if (SN != "") {
+            qDebug() << "出错";
+            SN = QString::number(serialNumber + 1);
+        }
+        writeTBinaryTypeAndSerialNumber(valueType_, SN.toInt());
         if (baseType.contains(valueType_)) {
             writeTBinaryBaseMessage(valueType_, value_);
         } else if (containerType.contains(valueType_)) {
@@ -2827,7 +2842,7 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     items->comboBoxBase->setCurrentIndex(dynamic_cast<ItemWidget*>(item_->child(0))->comboBoxBase->currentIndex());
     items->keyLabel->show();
     items->valueLabel->hide();
-    items->classLabel->show();
+    items->classLabel->hide();
     items->lineEditParamValue->setPlaceholderText("key");
     items->checkBox->setChecked(true);
     qDebug() << "struct type = " << struct_type;
@@ -2942,7 +2957,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
     if (item_->comboBoxBase->currentText() == "map") {
         item_->lineEditParamValue->setReadOnly(false);
-        item_->lineEditParamValue->setPlaceholderText("参数值");
+        item_->lineEditParamValue->setPlaceholderText("value");
         item_->comboBoxKey->show();
         item_->comboBoxValue->show();
         ui->treeWidget->header()->resizeSection(2, 450);  // 设置第三列宽度为500
@@ -2970,7 +2985,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 
     } else if (item_->comboBoxBase->currentText() == "set" || item_->comboBoxBase->currentText() == "list") {
         item_->lineEditParamValue->setReadOnly(false);
-        item_->lineEditParamValue->setPlaceholderText("参数值");
+        item_->lineEditParamValue->setPlaceholderText("value");
         item_->comboBoxKey->hide();
         item_->comboBoxValue->show();
         ui->treeWidget->header()->resizeSection(1, 300);  // 设置第二列宽度为500
@@ -3028,7 +3043,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 
     } else {
         item_->lineEditParamValue->setReadOnly(false);
-        item_->lineEditParamValue->setPlaceholderText("参数值");
+        item_->lineEditParamValue->setPlaceholderText("value");
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
         item_->keyLabel->hide();
