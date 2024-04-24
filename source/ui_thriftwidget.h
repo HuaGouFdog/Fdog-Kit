@@ -49,10 +49,10 @@ public:
     QWidget *widget_thrift_api;
     QVBoxLayout *verticalLayout_3;
     QTabWidget *tabWidget;
-    QWidget *tab;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
     QTreeWidget *treeWidget_api;
+    QWidget *tab;
     QWidget *widget_right;
     QVBoxLayout *verticalLayout;
     QWidget *widget_6;
@@ -393,12 +393,12 @@ public:
         widget_thrift_api = new QWidget(widget_left);
         widget_thrift_api->setObjectName(QStringLiteral("widget_thrift_api"));
         widget_thrift_api->setStyleSheet(QLatin1String("#widget_thrift_api {\n"
-"background-color: rgba(25, 25, 25, 150);\n"
+"background-color: rgb(54, 81, 97);\n"
 "border-radius: 10px;\n"
 "}"));
         verticalLayout_3 = new QVBoxLayout(widget_thrift_api);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_3->setContentsMargins(0, 10, 0, 0);
         tabWidget = new QTabWidget(widget_thrift_api);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setFont(font);
@@ -470,11 +470,6 @@ public:
 "QTabBar QToolButton:hover {\n"
 "	background-color: #161a1e; \n"
 "}"));
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/history2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab, icon1, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
         tab_2->setStyleSheet(QLatin1String("#tab_2{\n"
@@ -562,9 +557,14 @@ public:
 
         verticalLayout_12->addWidget(treeWidget_api);
 
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(tab_2, icon1, QString());
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/file2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab_2, icon2, QString());
+        icon2.addFile(QStringLiteral(":/lib/history2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(tab, icon2, QString());
 
         verticalLayout_3->addWidget(tabWidget);
 
@@ -2139,7 +2139,7 @@ public:
 
         retranslateUi(thriftwidget);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
         tabWidget_response->setCurrentIndex(1);
@@ -2153,56 +2153,56 @@ public:
         thriftwidget->setWindowTitle(QApplication::translate("thriftwidget", "Form", nullptr));
         toolButton_inportFile->setText(QApplication::translate("thriftwidget", " \345\257\274\345\205\245thrift\346\226\207\344\273\266", nullptr));
         lineEdit_find->setPlaceholderText(QApplication::translate("thriftwidget", "\346\220\234\347\264\242API", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
         lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
         comboBox_port->setItemText(0, QApplication::translate("thriftwidget", "ap(4031)", nullptr));
         comboBox_port->setItemText(1, QApplication::translate("thriftwidget", "badword(11040)", nullptr));
-        comboBox_port->setItemText(2, QApplication::translate("thriftwidget", "analysiswebsite(11200)", nullptr));
+        comboBox_port->setItemText(2, QApplication::translate("thriftwidget", "user(11241)", nullptr));
         comboBox_port->setItemText(3, QApplication::translate("thriftwidget", "buddy(11201)", nullptr));
-        comboBox_port->setItemText(4, QApplication::translate("thriftwidget", "cache(11202)", nullptr));
-        comboBox_port->setItemText(5, QApplication::translate("thriftwidget", "chat(11203)", nullptr));
+        comboBox_port->setItemText(4, QApplication::translate("thriftwidget", "chat(11203)", nullptr));
+        comboBox_port->setItemText(5, QApplication::translate("thriftwidget", "login(11225)", nullptr));
         comboBox_port->setItemText(6, QApplication::translate("thriftwidget", "cloud(11204)", nullptr));
-        comboBox_port->setItemText(7, QApplication::translate("thriftwidget", "collection(11205)", nullptr));
-        comboBox_port->setItemText(8, QApplication::translate("thriftwidget", "commentcenter(11206)", nullptr));
+        comboBox_port->setItemText(7, QApplication::translate("thriftwidget", "cache(11202)", nullptr));
+        comboBox_port->setItemText(8, QApplication::translate("thriftwidget", "collection(11205)", nullptr));
         comboBox_port->setItemText(9, QApplication::translate("thriftwidget", "customer(11207)", nullptr));
         comboBox_port->setItemText(10, QApplication::translate("thriftwidget", "dbconfig(11208)", nullptr));
         comboBox_port->setItemText(11, QApplication::translate("thriftwidget", "emoticon(11209)", nullptr));
-        comboBox_port->setItemText(12, QApplication::translate("thriftwidget", "enterprisedictionary(11210)", nullptr));
-        comboBox_port->setItemText(13, QApplication::translate("thriftwidget", "enterpriseorganization(11211)", nullptr));
-        comboBox_port->setItemText(14, QApplication::translate("thriftwidget", "enterpriseregister(11212)", nullptr));
-        comboBox_port->setItemText(15, QApplication::translate("thriftwidget", "enterpriserolemenu(11213)", nullptr));
-        comboBox_port->setItemText(16, QApplication::translate("thriftwidget", "enterprisestatistics(11214)", nullptr));
-        comboBox_port->setItemText(17, QApplication::translate("thriftwidget", "enterpriseTask(11215)", nullptr));
-        comboBox_port->setItemText(18, QApplication::translate("thriftwidget", "enterpriseuser(11216)", nullptr));
-        comboBox_port->setItemText(19, QApplication::translate("thriftwidget", "feedback(11217)", nullptr));
-        comboBox_port->setItemText(20, QApplication::translate("thriftwidget", "fullsearch(11218)", nullptr));
-        comboBox_port->setItemText(21, QApplication::translate("thriftwidget", "group(11219)", nullptr));
-        comboBox_port->setItemText(22, QApplication::translate("thriftwidget", "groupfile(11220)", nullptr));
-        comboBox_port->setItemText(23, QApplication::translate("thriftwidget", "groupmember(11221)", nullptr));
-        comboBox_port->setItemText(24, QApplication::translate("thriftwidget", "imageverify(11222)", nullptr));
-        comboBox_port->setItemText(25, QApplication::translate("thriftwidget", "iosnotice-new(11223)", nullptr));
-        comboBox_port->setItemText(26, QApplication::translate("thriftwidget", "lbs(11224)", nullptr));
-        comboBox_port->setItemText(27, QApplication::translate("thriftwidget", "login(11225)", nullptr));
-        comboBox_port->setItemText(28, QApplication::translate("thriftwidget", "memo(11226)", nullptr));
-        comboBox_port->setItemText(29, QApplication::translate("thriftwidget", "messagestorage(11227)", nullptr));
-        comboBox_port->setItemText(30, QApplication::translate("thriftwidget", "online(11228)", nullptr));
-        comboBox_port->setItemText(31, QApplication::translate("thriftwidget", "operationlog(11229)", nullptr));
-        comboBox_port->setItemText(32, QApplication::translate("thriftwidget", "platform(11230)", nullptr));
-        comboBox_port->setItemText(33, QApplication::translate("thriftwidget", "platform-business(11231)", nullptr));
-        comboBox_port->setItemText(34, QApplication::translate("thriftwidget", "platform-database(11232)", nullptr));
-        comboBox_port->setItemText(35, QApplication::translate("thriftwidget", "platformstatistics(11233)", nullptr));
-        comboBox_port->setItemText(36, QApplication::translate("thriftwidget", "recommend(11234)", nullptr));
-        comboBox_port->setItemText(37, QApplication::translate("thriftwidget", "registeruser(11235)", nullptr));
-        comboBox_port->setItemText(38, QApplication::translate("thriftwidget", "route(11236)", nullptr));
-        comboBox_port->setItemText(39, QApplication::translate("thriftwidget", "setting(11237)", nullptr));
-        comboBox_port->setItemText(40, QApplication::translate("thriftwidget", "sharecomment(11238)", nullptr));
-        comboBox_port->setItemText(41, QApplication::translate("thriftwidget", "sharecontent(11239)", nullptr));
-        comboBox_port->setItemText(42, QApplication::translate("thriftwidget", "timestamp(11240)", nullptr));
-        comboBox_port->setItemText(43, QApplication::translate("thriftwidget", "user(11241)", nullptr));
+        comboBox_port->setItemText(12, QApplication::translate("thriftwidget", "commentcenter(11206)", nullptr));
+        comboBox_port->setItemText(13, QApplication::translate("thriftwidget", "analysiswebsite(11200)", nullptr));
+        comboBox_port->setItemText(14, QApplication::translate("thriftwidget", "enterprisedictionary(11210)", nullptr));
+        comboBox_port->setItemText(15, QApplication::translate("thriftwidget", "enterpriseorganization(11211)", nullptr));
+        comboBox_port->setItemText(16, QApplication::translate("thriftwidget", "enterpriseregister(11212)", nullptr));
+        comboBox_port->setItemText(17, QApplication::translate("thriftwidget", "enterpriserolemenu(11213)", nullptr));
+        comboBox_port->setItemText(18, QApplication::translate("thriftwidget", "enterprisestatistics(11214)", nullptr));
+        comboBox_port->setItemText(19, QApplication::translate("thriftwidget", "enterpriseTask(11215)", nullptr));
+        comboBox_port->setItemText(20, QApplication::translate("thriftwidget", "enterpriseuser(11216)", nullptr));
+        comboBox_port->setItemText(21, QApplication::translate("thriftwidget", "feedback(11217)", nullptr));
+        comboBox_port->setItemText(22, QApplication::translate("thriftwidget", "fullsearch(11218)", nullptr));
+        comboBox_port->setItemText(23, QApplication::translate("thriftwidget", "group(11219)", nullptr));
+        comboBox_port->setItemText(24, QApplication::translate("thriftwidget", "groupfile(11220)", nullptr));
+        comboBox_port->setItemText(25, QApplication::translate("thriftwidget", "groupmember(11221)", nullptr));
+        comboBox_port->setItemText(26, QApplication::translate("thriftwidget", "imageverify(11222)", nullptr));
+        comboBox_port->setItemText(27, QApplication::translate("thriftwidget", "iosnotice-new(11223)", nullptr));
+        comboBox_port->setItemText(28, QApplication::translate("thriftwidget", "lbs(11224)", nullptr));
+        comboBox_port->setItemText(29, QApplication::translate("thriftwidget", "memo(11226)", nullptr));
+        comboBox_port->setItemText(30, QApplication::translate("thriftwidget", "messagestorage(11227)", nullptr));
+        comboBox_port->setItemText(31, QApplication::translate("thriftwidget", "online(11228)", nullptr));
+        comboBox_port->setItemText(32, QApplication::translate("thriftwidget", "operationlog(11229)", nullptr));
+        comboBox_port->setItemText(33, QApplication::translate("thriftwidget", "platform(11230)", nullptr));
+        comboBox_port->setItemText(34, QApplication::translate("thriftwidget", "platform-business(11231)", nullptr));
+        comboBox_port->setItemText(35, QApplication::translate("thriftwidget", "platform-database(11232)", nullptr));
+        comboBox_port->setItemText(36, QApplication::translate("thriftwidget", "platformstatistics(11233)", nullptr));
+        comboBox_port->setItemText(37, QApplication::translate("thriftwidget", "recommend(11234)", nullptr));
+        comboBox_port->setItemText(38, QApplication::translate("thriftwidget", "registeruser(11235)", nullptr));
+        comboBox_port->setItemText(39, QApplication::translate("thriftwidget", "route(11236)", nullptr));
+        comboBox_port->setItemText(40, QApplication::translate("thriftwidget", "setting(11237)", nullptr));
+        comboBox_port->setItemText(41, QApplication::translate("thriftwidget", "sharecomment(11238)", nullptr));
+        comboBox_port->setItemText(42, QApplication::translate("thriftwidget", "sharecontent(11239)", nullptr));
+        comboBox_port->setItemText(43, QApplication::translate("thriftwidget", "timestamp(11240)", nullptr));
         comboBox_port->setItemText(44, QApplication::translate("thriftwidget", "userbase(11242)", nullptr));
         comboBox_port->setItemText(45, QApplication::translate("thriftwidget", "verifycode(11243)", nullptr));
         comboBox_port->setItemText(46, QApplication::translate("thriftwidget", "verifymessage(11244)", nullptr));

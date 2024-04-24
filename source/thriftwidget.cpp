@@ -331,9 +331,9 @@ void ItemWidget::init()
     classLabel->setMaximumHeight(17);
 
 
-    layoutParamValue->addWidget(keyLabel);
     layoutParamValue->addWidget(valueLabel);
     layoutParamValue->addWidget(classLabel);
+    layoutParamValue->addWidget(keyLabel);
     layoutParamValue->addWidget(lineEditParamValue);
     layoutParamValue->addWidget(addColumnButton);
     layoutParamValue->addWidget(deleteButton);
@@ -372,6 +372,19 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
 
     //将item_的格式复制到自身 传进来的是一个struct
     this->comboBoxBase->setCurrentIndex(item_->comboBoxBase->currentIndex());
+
+    if (item_->mastLabel->isHidden()) {
+        this->mastLabel->hide();
+    } else {
+        this->mastLabel->show();
+    }
+
+    if (item_->checkBox->isHidden()) {
+        this->checkBox->hide();
+    } else {
+        this->checkBox->show();
+    }
+
     if (item_->checkBox->isChecked()) {
         this->checkBox->setChecked(true);
     }
@@ -390,6 +403,15 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
     }
     //this->lineEditParamValue->setPlaceholderText("key");
     //this->lineEditParamValue->setReadOnly(false);
+
+    this->lineEditParamSN->setText(QString::number(item_p->childCount()));
+    this->lineEditParamName->setText(item_->lineEditParamName->text());
+    this->lineEditParamValue->setText(item_->lineEditParamValue->text());
+
+    if (item_->lineEditParamValue->isReadOnly()) {
+        this->lineEditParamValue->setReadOnly(true);
+    }
+
     this->setExpanded(true);
     //然后判断item_下面是否有子节点
     if (item_->childCount() > 0) {
@@ -423,6 +445,7 @@ void ItemWidget::setParamType(QString str)
 
 void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString type, QString typeSign)
 {
+    isAuto = false;
     setExpanded(true);
     //判断typeSign
     qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
@@ -468,6 +491,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
             qDebug() << "基础类型";
         } else {
             //复杂类型
+            qDebug() << "进入" << "setParamValue_interior_map";
             setParamValue_interior_map(p, value);
         }
 
@@ -550,6 +574,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
             }
         }
     }
+    isAuto = true;
 }
 
 void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
@@ -561,6 +586,8 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
     valueLabel->hide();
     classLabel->hide();
     addNode->show();
+    comboBoxValue->show();
+
     lineEditParamValue->setReadOnly(true);
     lineEditParamValue->setPlaceholderText("");
 
@@ -583,7 +610,7 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
     if (index_ != -1) {
         type_s = type_s.mid(index_ + 1);
     }
-
+    lineEditParamValue->setText(type_s);
     if (structParamMap.value(type_s).size() > 0) {
         QMap<int, structInfo> temp = structParamMap.value(type_s);
         for (const auto &key : temp.keys()) {
@@ -599,6 +626,8 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
 void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     isAuto = false;
     comboBoxValue->setCurrentText("struct");
+    comboBoxKey->show();
+    comboBoxValue->show();
     qDebug() << "复杂类型";
     //创建子节点
     keyLabel->hide();
@@ -606,8 +635,8 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     classLabel->hide();
     addNode->show();
     lineEditParamValue->setReadOnly(true);
-    lineEditParamValue->setPlaceholderText("");
-
+    //lineEditParamValue->setPlaceholderText("key");
+    lineEditParamValue->setText(type_s);
     ItemWidget* items = thriftwidget::createAndGetNode(p, this);
     //items->lineEditParamValue->setText(type_s);
     items->comboBoxBase->setCurrentText("struct");
@@ -628,7 +657,7 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     if (index_ != -1) {
         type_s = type_s.mid(index_ + 1);
     }
-
+    lineEditParamValue->setText(type_s);
     if (structParamMap.value(type_s).size() > 0) {
         QMap<int, structInfo> temp = structParamMap.value(type_s);
         for (const auto &key : temp.keys()) {
@@ -814,22 +843,22 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->widget_thrift_api->setGraphicsEffect(effect14);
 
     QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
-    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect15->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect15->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
-    //ui->widget_inparam->setGraphicsEffect(effect15);
+    effect15->setOffset(-2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->widget_in_param->setGraphicsEffect(effect15);
 
-    QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect();
-    effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect16->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect16->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
-    //ui->widget_outparam->setGraphicsEffect(effect16);
+    // QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect();
+    // effect16->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect16->setColor(QColor(25, 25, 25, 0));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect16->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->treeWidget->setGraphicsEffect(effect16);
 
-    // QGraphicsDropShadowEffect *effect17 = new QGraphicsDropShadowEffect();
-    // effect17->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    // effect17->setColor(QColor(54, 81, 97));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    // effect17->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
-    // ui->treeWidget_api->setGraphicsEffect(effect17);
+    QGraphicsDropShadowEffect *effect17 = new QGraphicsDropShadowEffect();
+    effect17->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect17->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect17->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->widget_outparam->setGraphicsEffect(effect17);
 }
 
 QString thriftwidget::getType(int index)
@@ -1418,6 +1447,7 @@ void thriftwidget::assembleTBinaryMessage()
             writeTBinaryBaseMessage(valueType, value);
         } else if (containerType.contains(valueType)) {
             //构建集合类型
+            qDebug() << "list类型";
             writeTBinaryCollectionMessage(valueType, value, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
         } else {
             //构建struct
@@ -1478,31 +1508,41 @@ void thriftwidget::writeTBinaryBaseMessage(QString valueType, QString value)
 
 void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString value, ItemWidget *item, QString paramKeyType, QString paramValueType)
 {
+    //如果成员是结构体 value是空值
     if (valueType == "set" || valueType == "list") {
-        //qDebug() << "writeTBinaryCollectionMessage 构建" << valueType;
+        qDebug() << "writeTBinaryCollectionMessage 构建" << valueType;
         //设置类型
         writeTBinaryTypeMessage(paramValueType);
-        //设置元素个数
-        QStringList dataList;
-        //qDebug() << " value = " << value;
-        writeTBinaryKeySize(dataList, value);
-        //qDebug() << " dataList = " << dataList;
         if (baseType.contains(paramValueType)) {
-            //key为基础类型
+            //value为基础类型
+            //设置元素个数
+            QStringList dataList;
+            qDebug() << " value = " << value;
+            writeTBinaryKeySize(dataList, value);
+            qDebug() << " dataList = " << dataList;
             for (const QString &str : dataList) {
                 writeTBinaryBaseMessage(paramValueType, str);
             }
         } else if (containerType.contains(paramValueType)) {
-            //key为集合
+            //value为集合 暂时不考虑
             for (const QString &str : dataList) {
                 writeTBinaryCollectionMessage(paramValueType, str, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
             }
         } else {
-            //key为struct
-            for (const QString &str : dataList) {
-                if (item->childCount() > 0) {
-                    writeTBinaryStructMessage(paramValueType, item);
-                }
+
+            qDebug() << "writeTBinaryCollectionMessage list / set";
+            //value为struct 需要读取子节点数据
+            int childCount = item->childCount();
+
+            QString lenData = QString("%1").arg(childCount, 8, 16, QLatin1Char('0'));
+            qDebug() << "writeTBinaryKeySize = " << childCount << " lenData = " << lenData;
+            string2stringList(lenData);
+
+            qDebug() << "结构体成员数量 = " << childCount;
+            for (int j = 0; j < childCount; ++j) {
+                ItemWidget *item_temp = dynamic_cast<ItemWidget*>(item->child(j));
+                //构建结构体
+                writeTBinaryStructMessage(paramValueType, item_temp);
             }
         }
     } else if (valueType == "map") {
@@ -1510,29 +1550,43 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
         writeTBinaryTypeMessage(paramKeyType);
         //设置value类型
         writeTBinaryTypeMessage(paramValueType);
-        //设置元素个数
-        QStringList dataList;
-        writeTBinaryValueSize(dataList, value);
+
         qDebug() << "map dataList = " << dataList;
         if (baseType.contains(paramKeyType)) {
-            //设置元素值
-            for (const QString &str : dataList) {
-                int index = str.indexOf(":");
-                //设置key值
-                qDebug() << "key = " << str.mid(0, index);
-                qDebug() << "value = " << str.mid(index+1);
-                writeTBinaryBaseMessage(paramKeyType, str.mid(0, index));
-                if (baseType.contains(paramValueType)) {
+            if (baseType.contains(paramValueType)) {
+                //基础类型
+                //设置元素个数
+                QStringList dataList;
+                writeTBinaryValueSize(dataList, value);
+                            //设置元素值
+                for (const QString &str : dataList) {
+                    int index = str.indexOf(":");
+                    //设置key值
+                    qDebug() << "key = " << str.mid(0, index);
+                    qDebug() << "value = " << str.mid(index+1);
+                    writeTBinaryBaseMessage(paramKeyType, str.mid(0, index));
                     writeTBinaryBaseMessage(paramValueType, str.mid(index+1));
-                } else if (containerType.contains(paramValueType)) {
-                    //集合
-                    writeTBinaryCollectionMessage(paramValueType, str.mid(index+1), item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
-                } else {
-                    //struct
-                    writeTBinaryStructMessage(paramValueType, item);
                 }
+            } else if (containerType.contains(paramValueType)) {
+                //暂时不考虑
+            } else {
+                int childCount = item->childCount();
+                QString lenData = QString("%1").arg(childCount, 8, 16, QLatin1Char('0'));
+                qDebug() << "writeTBinaryKeySize = " << childCount << " lenData = " << lenData;
+                string2stringList(lenData);
+                qDebug() << "结构体成员数量 = " << childCount;
+                for (int j = 0; j < childCount; ++j) {
+                ItemWidget *item_temp = dynamic_cast<ItemWidget*>(item->child(j));
+                //构建结构体
+                qDebug() << "map key = " << item->lineEditParamValue->text();
+                qDebug() << "map key = " << paramKeyType;
+                writeTBinaryBaseMessage(paramKeyType, item->lineEditParamValue->text());
+                writeTBinaryStructMessage(paramValueType, item_temp);
             }
+            }
+
         } else {
+            qDebug() << "出错";
             //key如果不是基础类型，不支持
         }
     } else {
@@ -2084,6 +2138,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
 
 QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QString paramName)
 {
+    qDebug() << "走这里handleMap";
     return "";
 }
 
@@ -2455,7 +2510,7 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
             QString funcName1 =func.mid(index5).trimmed();
 
             int index6 = funcName1.indexOf("(");
-            QString funcName = funcName1.mid(0, index6);
+            QString funcName = funcName1.mid(0, index6).replace(" ", "");
 
             qDebug() << "funcName " << funcName;
 
@@ -2688,6 +2743,7 @@ QMap<int, structInfo> thriftwidget::getStructParams(QString data)
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p)
 {
+    qDebug() << "createAndGetNode 创建1";
     ItemWidget* items = new ItemWidget();
     items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -2700,7 +2756,7 @@ ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p)
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
-    //qDebug() << "调一次";
+    qDebug() << "createAndGetNode 创建2";
     ItemWidget* items = new ItemWidget(parent);
     items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -2713,6 +2769,7 @@ ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidgetItem *parent)
 {
+    qDebug() << "createAndGetNode 创建3";
     ItemWidget* items = new ItemWidget(parent);
     items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -2760,17 +2817,44 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
     int count = item_->childCount();
     ItemWidget* items = createAndGetNode(this, item_);
+    items->setExpanded(true);
+    //复制成员，这里先只考虑struct
+    //获取item_的struct类型
+    QString struct_type = dynamic_cast<ItemWidget*>(item_->child(0))->lineEditParamValue->text();
+    items->lineEditParamSN->setText(QString::number(count + 1));
+    items->lineEditParamValue->setText(struct_type);
+    items->lineEditParamValue->setReadOnly(true);
+    items->comboBoxBase->setCurrentIndex(dynamic_cast<ItemWidget*>(item_->child(0))->comboBoxBase->currentIndex());
+    items->keyLabel->show();
+    items->valueLabel->hide();
+    items->classLabel->show();
+    items->lineEditParamValue->setPlaceholderText("key");
+    items->checkBox->setChecked(true);
+    qDebug() << "struct type = " << struct_type;
+    QString struct_type2 = item_->lineEditParamValue->text();
+    qDebug() << "struct type2 = " << struct_type2;
+    if (struct_type2 == "") {
+        items->copyItem(this, items, dynamic_cast<ItemWidget*>(item_->child(0)));
+    } else {
+        int index_ = struct_type2.lastIndexOf(".");
+        if (index_ != -1) {
+            struct_type2 = struct_type2.mid(index_ + 1);
+        }
 
-    //qDebug() << typeid(this).name();
-    //qDebug() << "进入添加元素2";
-    items->copyItem(this, items, dynamic_cast<ItemWidget*>(item_->child(0)));
-    //qDebug() << "进入添加元素3";
+        if (structParamMap.value(struct_type2).size() > 0) {
+            QMap<int, structInfo> temp = structParamMap.value(struct_type2);
+            for (const auto &key : temp.keys()) {
+                ItemWidget* item_1 = thriftwidget::createAndGetNode(this, items);
+                item_1->setParamValue(this, key,
+                    temp[key].paramName,
+                    temp[key].paramType,
+                    temp[key].typeSign);
+            }
+        }
+    }
+
     ItemWidget* items2 = new ItemWidget(item_);
-    //qDebug() << "进入添加元素4";
     delete items2;
-    //复制数据
-    //首先child() 是struct
-
 
 }
 
@@ -2874,7 +2958,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             ItemWidget* item2 = createAndGetNode(this, item_);
             //item2->setText(0, "");
             //子节点应为struct
-            qDebug() << "走这里";
+            qDebug() << "进入创建子节点";
             item2->comboBoxBase->setCurrentText("struct");
             item2->keyLabel->show();
             item2->valueLabel->hide();
@@ -2913,6 +2997,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             //item2->lineEditParamValue->hide();
         }
     } else if (item_->comboBoxBase->currentText() == "struct" && isAddNode != true) {
+        
         //创建子节点
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
@@ -2993,6 +3078,7 @@ void thriftwidget::on_toolButton_test_clicked()
 
 void thriftwidget::on_toolButton_show_thrift_info_clicked()
 {
+    ui->stackedWidget->setCurrentIndex(0);
     if(ui->textEdit_info->isHidden()) {
         ui->textEdit_info->show();
         //ui->toolButton_show_thrift_info->setText("关闭thrift协议说明");
@@ -3000,6 +3086,7 @@ void thriftwidget::on_toolButton_show_thrift_info_clicked()
         ui->textEdit_info->hide();
         //ui->toolButton_show_thrift_info->setText("查看thrift协议说明");
     }
+
 }
 
 void thriftwidget::on_textEdit_customContextMenuRequested(const QPoint &pos)

@@ -359,7 +359,7 @@ padding-right:10px;
         <widget class="QWidget" name="widget_thrift_api" native="true">
          <property name="styleSheet">
           <string notr="true">#widget_thrift_api {
-background-color: rgba(25, 25, 25, 150);
+background-color: rgb(54, 81, 97);
 border-radius: 10px;
 }</string>
          </property>
@@ -368,7 +368,7 @@ border-radius: 10px;
            <number>0</number>
           </property>
           <property name="topMargin">
-           <number>0</number>
+           <number>10</number>
           </property>
           <property name="rightMargin">
            <number>0</number>
@@ -454,17 +454,8 @@ QTabBar QToolButton:hover {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
-            <widget class="QWidget" name="tab">
-             <attribute name="icon">
-              <iconset resource="lib.qrc">
-               <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
-             </attribute>
-             <attribute name="title">
-              <string>历史记录</string>
-             </attribute>
-            </widget>
             <widget class="QWidget" name="tab_2">
              <property name="styleSheet">
               <string notr="true">#tab_2{
@@ -583,6 +574,15 @@ QScrollBar::up-arrow:horizontal {
                </widget>
               </item>
              </layout>
+            </widget>
+            <widget class="QWidget" name="tab">
+             <attribute name="icon">
+              <iconset resource="lib.qrc">
+               <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
+             </attribute>
+             <attribute name="title">
+              <string>历史记录</string>
+             </attribute>
             </widget>
            </widget>
           </item>
@@ -916,7 +916,7 @@ padding-right:10px;
             </item>
             <item>
              <property name="text">
-              <string>analysiswebsite(11200)</string>
+              <string>user(11241)</string>
              </property>
             </item>
             <item>
@@ -926,12 +926,12 @@ padding-right:10px;
             </item>
             <item>
              <property name="text">
-              <string>cache(11202)</string>
+              <string>chat(11203)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>chat(11203)</string>
+              <string>login(11225)</string>
              </property>
             </item>
             <item>
@@ -941,12 +941,12 @@ padding-right:10px;
             </item>
             <item>
              <property name="text">
-              <string>collection(11205)</string>
+              <string>cache(11202)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>commentcenter(11206)</string>
+              <string>collection(11205)</string>
              </property>
             </item>
             <item>
@@ -962,6 +962,16 @@ padding-right:10px;
             <item>
              <property name="text">
               <string>emoticon(11209)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>commentcenter(11206)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>analysiswebsite(11200)</string>
              </property>
             </item>
             <item>
@@ -1041,11 +1051,6 @@ padding-right:10px;
             </item>
             <item>
              <property name="text">
-              <string>login(11225)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
               <string>memo(11226)</string>
              </property>
             </item>
@@ -1117,11 +1122,6 @@ padding-right:10px;
             <item>
              <property name="text">
               <string>timestamp(11240)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>user(11241)</string>
              </property>
             </item>
             <item>
