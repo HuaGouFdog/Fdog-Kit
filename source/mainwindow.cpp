@@ -92,6 +92,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->widget_side->setGraphicsEffect(effect);
 
+
+    QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
+    effect2->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect2->setColor(QColor(30, 45, 54));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect2->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
+
+    ui->widget_body_left->setGraphicsEffect(effect2);
+
+
+
+
     isPressedWidget = false;
     m_isMousePressed = false;
 
@@ -150,8 +161,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_about->hide();
     ui->widget_top_tool->hide();
 
-    ui->widget_welcome_body_widget2_newCreate_newTool->hide();
-    ui->widget_welcome_body_widget2_newCreate_setting->hide();
+    //ui->widget_welcome_body_widget2_newCreate_newTool->hide();
+    //ui->widget_welcome_body_widget2_newCreate_setting->hide();
     //ui->widget_welcome_body_widget2_info_text->hide();
 
     //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
@@ -1581,11 +1592,6 @@ void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
     }
 }
 
-void MainWindow::on_widget_welcome_bottom_toolButton_github_clicked()
-{
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
-}
-
 void MainWindow::rece_systemTrayMenu()
 {
     //获取发送者
@@ -1717,16 +1723,66 @@ void MainWindow::on_toolButton_side_theme_clicked()
 void MainWindow::on_toolButton_side_setting_clicked()
 {
     //设置页面
-    stwidget = new settingwidget(confInfo);
-    ui->stackedWidget->addWidget(stwidget);
-    stwidget->show();
-    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    if (stwidget == NULL) {
+        stwidget = new settingwidget(confInfo);
+        stwidget->setObjectName("stwidget");
+        ui->stackedWidget->addWidget(stwidget);
+        stwidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            // 获取索引处的widget
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "stwidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
 }
 
 void MainWindow::on_toolButton_side_thrift_clicked()
 {
-    twidget = new thriftwidget();
-    ui->stackedWidget->addWidget(twidget);
-    twidget->show();
-    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    if (twidget == NULL) {
+        twidget = new thriftwidget();
+        twidget->setObjectName("twidget");
+        ui->stackedWidget->addWidget(twidget);
+        twidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            // 获取索引处的widget
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "twidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
+}
+
+void MainWindow::on_toolButton_side_zookeeper_clicked()
+{
+    if (zmanagewidget == NULL) {
+        zmanagewidget = new zookeepermanagewidget();
+        zmanagewidget->setObjectName("zmanagewidget");
+        ui->stackedWidget->addWidget(zmanagewidget);
+        zmanagewidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            // 获取索引处的widget
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "zmanagewidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
+
+}
+
+void MainWindow::on_toolButton_side_github_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
 }

@@ -142,10 +142,6 @@ private slots:
 
     void on_tabWidget_customContextMenuRequested(const QPoint &pos);
 
-
-
-    void on_widget_welcome_bottom_toolButton_github_clicked();
-
     //托盘菜单
     void rece_systemTrayMenu();
 
@@ -158,6 +154,10 @@ private slots:
     void on_toolButton_side_setting_clicked();
 
     void on_toolButton_side_thrift_clicked();
+
+    void on_toolButton_side_zookeeper_clicked();
+
+    void on_toolButton_side_github_clicked();
 
 private:
     Ui::MainWindow *ui;

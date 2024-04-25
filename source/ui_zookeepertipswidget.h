@@ -45,12 +45,17 @@ public:
         font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         zookeepertipswidget->setFont(font);
-        zookeepertipswidget->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
+        zookeepertipswidget->setStyleSheet(QLatin1String("#zookeepertipswidget{\n"
+"background-color: rgb(27, 27, 27);\n"
+"border-radius: 10px;\n"
+"}\n"
+""));
         verticalLayout = new QVBoxLayout(zookeepertipswidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         widget = new QWidget(zookeepertipswidget);
         widget->setObjectName(QStringLiteral("widget"));
+        widget->setStyleSheet(QStringLiteral(""));
         horizontalLayout = new QHBoxLayout(widget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);

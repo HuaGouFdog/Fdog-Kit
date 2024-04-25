@@ -33,13 +33,13 @@
     <widget class="QWidget" name="widget_left" native="true">
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>260</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>260</width>
        <height>16777215</height>
       </size>
      </property>
@@ -50,7 +50,8 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#widget_left{
-border-right:2px solid rgba(108, 117, 125, 65); 
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));
+border-right:0px solid rgba(108, 117, 125, 65); 
 }
 QScrollBar:vertical{
     width: 10px;
@@ -101,8 +102,11 @@ QScrollBar::up-arrow:vertical {
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
+      <property name="spacing">
+       <number>10</number>
+      </property>
       <property name="leftMargin">
-       <number>5</number>
+       <number>20</number>
       </property>
       <property name="topMargin">
        <number>0</number>
@@ -114,7 +118,7 @@ QScrollBar::up-arrow:vertical {
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="widget_9" native="true">
+       <widget class="QWidget" name="widget_side_top" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -138,27 +142,18 @@ QScrollBar::up-arrow:vertical {
           <number>5</number>
          </property>
          <property name="rightMargin">
-          <number>0</number>
+          <number>11</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
          </property>
          <item>
-          <widget class="QWidget" name="widget_4" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>45</width>
-             <height>45</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>45</width>
-             <height>45</height>
-            </size>
-           </property>
+          <widget class="QLabel" name="label_zk_icon">
            <property name="styleSheet">
             <string notr="true">image: url(:/lib/Zookeeper21.png);</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -211,7 +206,44 @@ QToolButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget" native="true">
+       <widget class="QLineEdit" name="lineEdit_find">
+        <property name="minimumSize">
+         <size>
+          <width>220</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>220</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>OPPOSans</family>
+          <pointsize>10</pointsize>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>搜索连接</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_side_body" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="leftMargin">
           <number>0</number>
@@ -285,8 +317,8 @@ QScrollBar::up-arrow:vertical {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>186</width>
-              <height>432</height>
+              <width>231</width>
+              <height>388</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -318,7 +350,7 @@ QToolButton:checked {
 	border: none;
 }</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_8">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
              <property name="leftMargin">
               <number>0</number>
              </property>
@@ -355,7 +387,7 @@ QToolButton:checked {
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget_2" native="true">
+    <widget class="QWidget" name="widget_right" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
        <number>0</number>

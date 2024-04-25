@@ -13,6 +13,9 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     m_buttonGroup = new QButtonGroup(this);
     m_buttonGroup->setExclusive(true);
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(rece_buttonClicked(int)));
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
     //只是创建一个界面
     zookeeperwidget * zkWidget = new zookeeperwidget();
     ui->stackedWidget->addWidget(zkWidget);
@@ -120,7 +123,7 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     qbutton->setText(data);
     qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     qbutton->setMinimumHeight(50);
-    qbutton->setMinimumWidth(180);
+    qbutton->setMinimumWidth(220);
     qbutton->setCheckable(true);
     m_buttonGroup->addButton(qbutton, count++);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();

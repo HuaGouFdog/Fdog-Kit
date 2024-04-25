@@ -33,17 +33,18 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *widget_left;
     QVBoxLayout *verticalLayout_6;
-    QWidget *widget_9;
+    QWidget *widget_side_top;
     QHBoxLayout *horizontalLayout_4;
-    QWidget *widget_4;
+    QLabel *label_zk_icon;
     QToolButton *toolButton_newCreate;
-    QWidget *widget;
+    QLineEdit *lineEdit_find;
+    QWidget *widget_side_body;
     QVBoxLayout *verticalLayout_3;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QVBoxLayout *verticalLayout_8;
+    QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer;
-    QWidget *widget_2;
+    QWidget *widget_right;
     QVBoxLayout *verticalLayout;
     QStackedWidget *stackedWidget;
     QWidget *page_2;
@@ -88,13 +89,14 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         widget_left = new QWidget(zookeepermanagewidget);
         widget_left->setObjectName(QStringLiteral("widget_left"));
-        widget_left->setMinimumSize(QSize(200, 0));
-        widget_left->setMaximumSize(QSize(200, 16777215));
+        widget_left->setMinimumSize(QSize(260, 0));
+        widget_left->setMaximumSize(QSize(260, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         widget_left->setFont(font);
         widget_left->setStyleSheet(QString::fromUtf8("#widget_left{\n"
-"border-right:2px solid rgba(108, 117, 125, 65); \n"
+"background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\n"
+"border-right:0px solid rgba(108, 117, 125, 65); \n"
 "}\n"
 "QScrollBar:vertical{\n"
 "    width: 10px;\n"
@@ -124,13 +126,13 @@ public:
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
-"	border: none;\n"
+""
+                        "	border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::sub-line:v"
-                        "ertical {\n"
+"QScrollBar::sub-line:vertical {\n"
 "    border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: top;\n"
@@ -145,25 +147,24 @@ public:
 "    border:none;\n"
 "}"));
         verticalLayout_6 = new QVBoxLayout(widget_left);
+        verticalLayout_6->setSpacing(10);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(5, 0, 9, 0);
-        widget_9 = new QWidget(widget_left);
-        widget_9->setObjectName(QStringLiteral("widget_9"));
-        widget_9->setMinimumSize(QSize(0, 70));
-        widget_9->setMaximumSize(QSize(16777215, 70));
-        horizontalLayout_4 = new QHBoxLayout(widget_9);
+        verticalLayout_6->setContentsMargins(20, 0, 9, 0);
+        widget_side_top = new QWidget(widget_left);
+        widget_side_top->setObjectName(QStringLiteral("widget_side_top"));
+        widget_side_top->setMinimumSize(QSize(0, 70));
+        widget_side_top->setMaximumSize(QSize(16777215, 70));
+        horizontalLayout_4 = new QHBoxLayout(widget_side_top);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 5, 0, 5);
-        widget_4 = new QWidget(widget_9);
-        widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setMinimumSize(QSize(45, 45));
-        widget_4->setMaximumSize(QSize(45, 45));
-        widget_4->setStyleSheet(QStringLiteral("image: url(:/lib/Zookeeper21.png);"));
+        horizontalLayout_4->setContentsMargins(0, 5, 11, 5);
+        label_zk_icon = new QLabel(widget_side_top);
+        label_zk_icon->setObjectName(QStringLiteral("label_zk_icon"));
+        label_zk_icon->setStyleSheet(QStringLiteral("image: url(:/lib/Zookeeper21.png);"));
 
-        horizontalLayout_4->addWidget(widget_4);
+        horizontalLayout_4->addWidget(label_zk_icon);
 
-        toolButton_newCreate = new QToolButton(widget_9);
+        toolButton_newCreate = new QToolButton(widget_side_top);
         toolButton_newCreate->setObjectName(QStringLiteral("toolButton_newCreate"));
         toolButton_newCreate->setMinimumSize(QSize(125, 30));
         QFont font1;
@@ -195,14 +196,35 @@ public:
         horizontalLayout_4->addWidget(toolButton_newCreate);
 
 
-        verticalLayout_6->addWidget(widget_9);
+        verticalLayout_6->addWidget(widget_side_top);
 
-        widget = new QWidget(widget_left);
-        widget->setObjectName(QStringLiteral("widget"));
-        verticalLayout_3 = new QVBoxLayout(widget);
+        lineEdit_find = new QLineEdit(widget_left);
+        lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
+        lineEdit_find->setMinimumSize(QSize(220, 30));
+        lineEdit_find->setMaximumSize(QSize(220, 30));
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans"));
+        font2.setPointSize(10);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        lineEdit_find->setFont(font2);
+        lineEdit_find->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(231, 238, 244);\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
+"}"));
+
+        verticalLayout_6->addWidget(lineEdit_find);
+
+        widget_side_body = new QWidget(widget_left);
+        widget_side_body->setObjectName(QStringLiteral("widget_side_body"));
+        verticalLayout_3 = new QVBoxLayout(widget_side_body);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        scrollArea = new QScrollArea(widget);
+        scrollArea = new QScrollArea(widget_side_body);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setStyleSheet(QString::fromUtf8("QScrollArea{\n"
 "	border: none;\n"
@@ -256,7 +278,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 186, 432));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 231, 388));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "    qproperty-iconSize: 22px 22px;\n"
@@ -284,30 +306,30 @@ public:
 "	background-color: rgb(21, 21, 21);\n"
 "	border: none;\n"
 "}"));
-        verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         verticalSpacer = new QSpacerItem(20, 309, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_8->addItem(verticalSpacer);
+        verticalLayout_2->addItem(verticalSpacer);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout_3->addWidget(scrollArea);
 
 
-        verticalLayout_6->addWidget(widget);
+        verticalLayout_6->addWidget(widget_side_body);
 
 
         horizontalLayout->addWidget(widget_left);
 
-        widget_2 = new QWidget(zookeepermanagewidget);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        verticalLayout = new QVBoxLayout(widget_2);
+        widget_right = new QWidget(zookeepermanagewidget);
+        widget_right->setObjectName(QStringLiteral("widget_right"));
+        verticalLayout = new QVBoxLayout(widget_right);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        stackedWidget = new QStackedWidget(widget_2);
+        stackedWidget = new QStackedWidget(widget_right);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -331,12 +353,12 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(toolButton->sizePolicy().hasHeightForWidth());
         toolButton->setSizePolicy(sizePolicy);
-        QFont font2;
-        font2.setFamily(QStringLiteral("OPPOSans B"));
-        font2.setPointSize(12);
-        font2.setUnderline(true);
-        font2.setStyleStrategy(QFont::PreferAntialias);
-        toolButton->setFont(font2);
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(12);
+        font3.setUnderline(true);
+        font3.setStyleStrategy(QFont::PreferAntialias);
+        toolButton->setFont(font3);
         toolButton->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(242, 245, 255, 50);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -393,10 +415,10 @@ public:
         gridLayout->setContentsMargins(-1, 10, -1, 10);
         label_port_zk = new QLabel(horizontalWidget);
         label_port_zk->setObjectName(QStringLiteral("label_port_zk"));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(10);
-        label_port_zk->setFont(font3);
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(10);
+        label_port_zk->setFont(font4);
 
         gridLayout->addWidget(label_port_zk, 1, 0, 1, 1);
 
@@ -404,7 +426,7 @@ public:
         lineEdit_port_zk_data->setObjectName(QStringLiteral("lineEdit_port_zk_data"));
         lineEdit_port_zk_data->setMinimumSize(QSize(0, 35));
         lineEdit_port_zk_data->setMaximumSize(QSize(300, 28));
-        lineEdit_port_zk_data->setFont(font3);
+        lineEdit_port_zk_data->setFont(font4);
         lineEdit_port_zk_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -416,7 +438,7 @@ public:
         lineEdit_remark_zk->setObjectName(QStringLiteral("lineEdit_remark_zk"));
         lineEdit_remark_zk->setMinimumSize(QSize(0, 35));
         lineEdit_remark_zk->setMaximumSize(QSize(300, 28));
-        lineEdit_remark_zk->setFont(font3);
+        lineEdit_remark_zk->setFont(font4);
         lineEdit_remark_zk->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -426,13 +448,13 @@ public:
 
         label_remark_zk = new QLabel(horizontalWidget);
         label_remark_zk->setObjectName(QStringLiteral("label_remark_zk"));
-        label_remark_zk->setFont(font3);
+        label_remark_zk->setFont(font4);
 
         gridLayout->addWidget(label_remark_zk, 3, 0, 1, 1);
 
         label_host_zk = new QLabel(horizontalWidget);
         label_host_zk->setObjectName(QStringLiteral("label_host_zk"));
-        label_host_zk->setFont(font3);
+        label_host_zk->setFont(font4);
 
         gridLayout->addWidget(label_host_zk, 0, 0, 1, 1);
 
@@ -440,7 +462,7 @@ public:
         lineEdit_host_zk_data->setObjectName(QStringLiteral("lineEdit_host_zk_data"));
         lineEdit_host_zk_data->setMinimumSize(QSize(0, 35));
         lineEdit_host_zk_data->setMaximumSize(QSize(300, 28));
-        lineEdit_host_zk_data->setFont(font3);
+        lineEdit_host_zk_data->setFont(font4);
         lineEdit_host_zk_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -450,7 +472,7 @@ public:
 
         label_timeout_zk = new QLabel(horizontalWidget);
         label_timeout_zk->setObjectName(QStringLiteral("label_timeout_zk"));
-        label_timeout_zk->setFont(font3);
+        label_timeout_zk->setFont(font4);
 
         gridLayout->addWidget(label_timeout_zk, 2, 0, 1, 1);
 
@@ -458,7 +480,7 @@ public:
         lineEdit_timeout_zk->setObjectName(QStringLiteral("lineEdit_timeout_zk"));
         lineEdit_timeout_zk->setMinimumSize(QSize(0, 35));
         lineEdit_timeout_zk->setMaximumSize(QSize(300, 28));
-        lineEdit_timeout_zk->setFont(font3);
+        lineEdit_timeout_zk->setFont(font4);
         lineEdit_timeout_zk->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
@@ -577,7 +599,7 @@ public:
         verticalLayout->addWidget(stackedWidget);
 
 
-        horizontalLayout->addWidget(widget_2);
+        horizontalLayout->addWidget(widget_right);
 
 
         retranslateUi(zookeepermanagewidget);
@@ -591,7 +613,9 @@ public:
     void retranslateUi(QWidget *zookeepermanagewidget)
     {
         zookeepermanagewidget->setWindowTitle(QApplication::translate("zookeepermanagewidget", "Form", nullptr));
+        label_zk_icon->setText(QString());
         toolButton_newCreate->setText(QApplication::translate("zookeepermanagewidget", "\346\226\260\345\273\272\350\277\236\346\216\245", nullptr));
+        lineEdit_find->setPlaceholderText(QApplication::translate("zookeepermanagewidget", "\346\220\234\347\264\242\350\277\236\346\216\245", nullptr));
         label->setText(QString());
         toolButton->setText(QApplication::translate("zookeepermanagewidget", "https://github.com/HuaGouFdog/Fdog-Kit", nullptr));
         label_port_zk->setText(QApplication::translate("zookeepermanagewidget", "\347\253\257\345\217\243", nullptr));
