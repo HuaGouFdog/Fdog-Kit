@@ -242,7 +242,7 @@
         "conectStatsDisplay": 0,
         "currentBackground": "",
         "historyDisplay": 1,
-        "infoDisplay": 0,
+        "infoDisplay": 1,
         "mouseRightClick": 0,
         "mouseWheelClick": 0,
         "pictureList": [

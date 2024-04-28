@@ -29,6 +29,7 @@
 #include <QFile>
 #include <QListView>
 #include "utils.h"
+#include <QFormLayout>
 
 QVariant mySheetStyle(const QString & start, const QString & end, qreal progress)
 {
@@ -150,6 +151,58 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(2);
 
+
+    FlowLayout *flowLayout = new FlowLayout(0, 30, 30);
+
+    //flowLayout->addWidget(new QPushButton(tr("Short")));
+    //flowLayout->addWidget(new QPushButton(tr("Longer")));
+    //flowLayout->addWidget(new QPushButton(tr("Different text")));
+    WidgetMouseFilter * wfFilter;
+    wfFilter = new WidgetMouseFilter();
+
+    ui->widget_9->installEventFilter(wfFilter);
+
+    flowLayout->addWidget(ui->widget_9);
+    flowLayout->addWidget(ui->widget_12);
+    flowLayout->addWidget(ui->widget_15);
+    flowLayout->addWidget(ui->widget_18);
+    flowLayout->addWidget(ui->widget_21);
+    flowLayout->addWidget(ui->widget_23);
+
+    flowLayout->addWidget(ui->widget_26);
+    flowLayout->addWidget(ui->widget_33);
+    flowLayout->addWidget(ui->widget_35);
+    flowLayout->addWidget(ui->widget_31);
+    flowLayout->addWidget(ui->widget_29);
+    flowLayout->addWidget(ui->widget_37);
+    //flowLayout->addWidget(new QPushButton(tr("More text")));
+    //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
+    //flowLayout->setSpacing(50);
+    //flowLayout->horizontalSpacing(10);
+    //flowLayout->verticalSpacing(10);
+    flowLayout->setSpacing(30);
+    ui->widget_2->setLayout(flowLayout);
+
+
+    //m_flowlayout = new FlowLayout;
+    //m_flowlayout->setMargin(0);
+    //m_flowlayout->setSpacing(10, 10);
+
+    //for (int i =0; i < 10; i++) {
+
+        //m_flowlayout->addWidget(new QPushButton(tr("Short")));
+    //}
+    //ui->widget->setLayout(m_flowlayout);
+
+
+//    while (ui->wdgCard->layout()->count())
+//    {
+//        auto ptr = ui->wdgCard->layout()->itemAt(0)->widget();
+//        ui->wdgCard->layout()->removeWidget(wdg);
+//        wdg->deleteLater();
+//    }
+
+
     ui->comboBox_tool->setView(new QListView());
 
     //暂时屏蔽
@@ -161,6 +214,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_about->hide();
     ui->widget_top_tool->hide();
 
+
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo2.png"));
+
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
     //ui->widget_welcome_body_widget2_newCreate_newTool->hide();
     //ui->widget_welcome_body_widget2_newCreate_setting->hide();
     //ui->widget_welcome_body_widget2_info_text->hide();
@@ -1785,4 +1843,19 @@ void MainWindow::on_toolButton_side_zookeeper_clicked()
 void MainWindow::on_toolButton_side_github_clicked()
 {
     QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
+}
+
+void MainWindow::on_toolButton_side_about_clicked()
+{
+    awidget = new aboutwidget();
+    QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+    int x = globalPos.x() + (this->width() - awidget->width()) / 2;//x坐标
+    int y = globalPos.y() + (this->height() - awidget->height()) / 2;//y坐标
+    awidget->move(x, y);//窗口移动
+    awidget->show();
+}
+
+void MainWindow::on_toolButton_side_home_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }

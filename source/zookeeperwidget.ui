@@ -196,6 +196,12 @@ border-right:2px solid rgba(108, 117, 125, 65);
           </item>
           <item>
            <widget class="QLabel" name="label_node">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
               <family>OPPOSans B</family>

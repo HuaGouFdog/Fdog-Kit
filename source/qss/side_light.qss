@@ -1,0 +1,30 @@
+#widget_side {
+	color: rgb(255, 255, 255);
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	
+	background-color: rgb(84, 95, 255);
+}
+
+QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(32, 49, 59);
+	border: none;
+}
+
+QLabel {
+border: none;
+background-color: rgba(255, 255, 255, 0);
+}

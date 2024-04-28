@@ -6,7 +6,7 @@
 #include "thriftwidget.h"
 #include "zookeeperhandle.h"
 #include <iostream>
-
+#include <QStyleFactory>
 #include <QThreadPool>
 
 //class Counter : public QRunnable
@@ -72,7 +72,11 @@ void getChildrenRecursive(zhandle_t* zh, const std::string& path, std::vector<st
 
 int main(int argc, char *argv[])
 {
+    if(QT_VERSION>=QT_VERSION_CHECK(5,6,0))
+            QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QApplication a(argc, argv);
+    a.setStyle(QStyleFactory::create("Fusion"));
     int fontId = QFontDatabase::addApplicationFont(":fonts/OPPOSans-B-2.ttf");
     qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontId);
     QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);

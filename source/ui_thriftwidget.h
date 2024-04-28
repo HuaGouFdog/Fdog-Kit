@@ -185,7 +185,18 @@ public:
         font.setPointSize(10);
         font.setStyleStrategy(QFont::PreferAntialias);
         thriftwidget->setFont(font);
-        thriftwidget->setStyleSheet(QLatin1String("\n"
+        thriftwidget->setStyleSheet(QLatin1String("QCheckBox::indicator{\n"
+"                width:16px;\n"
+"                height:16px;\n"
+"           }\n"
+"            QCheckBox::indicator::unchecked{\n"
+"                image:url(:/lib/gouxuan2.png);\n"
+"            }\n"
+"            QCheckBox::indicator::checked{\n"
+"                image:url(:/lib/gouxuan.png);\n"
+"            }\n"
+"\n"
+"\n"
 "#thriftwidget{\n"
 "background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));\n"
 "}\n"
@@ -212,7 +223,8 @@ public:
 "	color: rgb(63, 63, 63);\n"
 "    background-color:rgb(253,253,254);\n"
 "    padding: 5px 25px 5px 25px;\n"
-"    /*margin: 2px 2px 2px 2px;*/\n"
+"    /*margin:"
+                        " 2px 2px 2px 2px;*/\n"
 "}\n"
 "QMenu::item:selected {\n"
 "    background-color : rgb(236,236,237);\n"
@@ -226,8 +238,7 @@ public:
 "    left: 1px;\n"
 "}\n"
 "QMenu::icon:checked:selected {\n"
-"    background-color : rgb("
-                        "236,236,237);\n"
+"    background-color : rgb(236,236,237);\n"
 "    background-image: url(:/space_selected.png);\n"
 "}\n"
 "QMenu::separator {\n"
@@ -239,7 +250,7 @@ public:
         horizontalLayout_4 = new QHBoxLayout(thriftwidget);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(10, 0, 5, 10);
+        horizontalLayout_4->setContentsMargins(20, 0, 5, 10);
         splitter_3 = new QSplitter(thriftwidget);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
@@ -658,7 +669,7 @@ public:
         verticalLayout = new QVBoxLayout(widget_right);
         verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(10, 6, 15, 10);
+        verticalLayout->setContentsMargins(10, 6, 8, 0);
         widget_6 = new QWidget(widget_right);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         widget_6->setMinimumSize(QSize(0, 40));
@@ -678,9 +689,10 @@ public:
 "\n"
 "QComboBox QAbstractItemView::item\n"
 "{\n"
-"	height:28px;\n"
+"	height:25px;\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "}\n"
+"\n"
 "\n"
 "QComboBox:disabled{\n"
 "	border:1px solid gray;\n"
@@ -890,7 +902,7 @@ public:
 "\n"
 "QComboBox QAbstractItemView::item\n"
 "{\n"
-"	height:28px;\n"
+"	height:25px;\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "}\n"
 "\n"
@@ -1515,7 +1527,9 @@ public:
         treeWidget->setHeaderItem(__qtreewidgetitem1);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         treeWidget->setFont(font);
-        treeWidget->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+        treeWidget->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"QLineEdit{\n"
 "font: 10pt \"OPPOSans B\";\n"
 "color:#ced4da;\n"
 "background-color: rgba(255, 255, 255, 0);\n"
@@ -1549,25 +1563,28 @@ public:
 "\n"
 "QHeaderView {\n"
 "font: 10pt \"OPPOSans B\";\n"
-"color: rgb(56, 56, 56);\n"
-"background-color: rgb(54, 81, 97);\n"
+"	color: rgb(255, 255, 255);\n"
+"/*background-color: rgb(54, 81, 97);*/\n"
+"	background-color: rgb(54, 81, 97);\n"
+"height: 20px;\n"
+"/*border: none;*/\n"
 "}\n"
 "\n"
 "QTreeWidget#treeWidget {\n"
-"border-right:5px solid rgb(54, 81, 97); \n"
-"border-left:5px solid rgb(54, 81, 97); \n"
+"border-right:10px solid rgb(54, 81, 97); \n"
+"border-left:10px solid rgb(54, 81, 97); \n"
 "	outline: none;\n"
 "}\n"
 "QTreeWidget::item {\n"
 "\n"
 "	height: 30px;\n"
-"	color: rgb(255, 255, 255);\n"
+"	color: rgb(255, 255, 2"
+                        "55);\n"
 "	outline: 0px;\n"
 "	border-bottom: 1px solid rgba(197, 197, 197, 50);\n"
 "}\n"
 "\n"
-"QTreeW"
-                        "idget::item:hover {\n"
+"QTreeWidget::item:hover {\n"
 "	outline: 0px;\n"
 "    color: rgb(255, 255, 255);\n"
 "	background-color: rgba(209, 209, 209, 20);\n"
@@ -1586,20 +1603,38 @@ public:
 "	outline: 0px;\n"
 "    color: #45B2FF;\n"
 "}\n"
+"\n"
+"\n"
 "QTreeWidget::branch {\n"
 "	height: 28px;\n"
 "	width: 28px;\n"
 "}\n"
+"\n"
+"QTreeView::branch:selected {\n"
+"background-color: rgb(30, 45, 54);\n"
+"}\n"
+"\n"
+"QTreeWidget::branch:!has-children:selected {\n"
+"	background-color: rgb(30, 45, 54);\n"
+"}\n"
+"QTreeWidget::branch:!has-children:!selected {\n"
+"	background-color: rgb(30, 45, 54);\n"
+"}\n"
+"\n"
 "QTreeWidget::branch:closed:has-children:!has-siblings,\n"
 "QTreeWidget::branch:closed:has-children:has-siblings {\n"
-"	border-image: none;\n"
+""
+                        "	border-image: none;\n"
 "    image: url(:/lib/tree_close.png);\n"
+"	background-color: rgb(30, 45, 54);\n"
 "}\n"
 " \n"
 "QTreeWidget::branch:open:has-children:!has-siblings,\n"
 "QTreeWidget::branch:open:has-children:has-siblings  {\n"
 "	border-image: none;\n"
 "    image: url(:/lib/tree_open.png);\n"
+"    \n"
+"	background-color: rgb(30, 45, 54);\n"
 "}\n"
 "\n"
 "\n"
@@ -1607,8 +1642,7 @@ public:
 "    height: 8px;\n"
 "	background-color: rgb(67, 77, 88);\n"
 "	margin: 0px,0px,0px,0px;\n"
-""
-                        "    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
 "    padding-bottom: 0px;\n"
 "}\n"
 "\n"
@@ -1623,7 +1657,8 @@ public:
 "QScrollBar::sub-page:horizontal {\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
-"QScrollBar::add-page:horizontal \n"
+"QScrollB"
+                        "ar::add-page:horizontal \n"
 "{\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
@@ -1644,8 +1679,7 @@ public:
 "QScrollBar::down-arrow:horizontal {\n"
 "    border:none;\n"
 "}\n"
-"QScr"
-                        "ollBar::up-arrow:horizontal {\n"
+"QScrollBar::up-arrow:horizontal {\n"
 "    border:none;\n"
 "}\n"
 "\n"
@@ -1658,7 +1692,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);

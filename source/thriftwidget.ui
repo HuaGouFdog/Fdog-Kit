@@ -21,7 +21,18 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
+   <string notr="true">QCheckBox::indicator{
+                width:16px;
+                height:16px;
+           }
+            QCheckBox::indicator::unchecked{
+                image:url(:/lib/gouxuan2.png);
+            }
+            QCheckBox::indicator::checked{
+                image:url(:/lib/gouxuan.png);
+            }
+
+
 #thriftwidget{
 background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));
 }
@@ -77,7 +88,7 @@ QMenu::separator {
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>10</number>
+    <number>20</number>
    </property>
    <property name="topMargin">
     <number>0</number>
@@ -685,10 +696,10 @@ QScrollBar::up-arrow:vertical {
         <number>6</number>
        </property>
        <property name="rightMargin">
-        <number>15</number>
+        <number>8</number>
        </property>
        <property name="bottomMargin">
-        <number>10</number>
+        <number>0</number>
        </property>
        <item>
         <widget class="QWidget" name="widget_6" native="true">
@@ -720,9 +731,10 @@ QComboBox{
 
 QComboBox QAbstractItemView::item
 {
-	height:28px;
+	height:25px;
 	font: 10pt &quot;OPPOSans B&quot;;
 }
+
 
 QComboBox:disabled{
 	border:1px solid gray;
@@ -1289,7 +1301,7 @@ QToolButton:hover {
 
 QComboBox QAbstractItemView::item
 {
-	height:28px;
+	height:25px;
 	font: 10pt &quot;OPPOSans B&quot;;
 }
 
@@ -2744,7 +2756,9 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                       </font>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">QLineEdit{
+                      <string notr="true">
+
+QLineEdit{
 font: 10pt &quot;OPPOSans B&quot;;
 color:#ced4da;
 background-color: rgba(255, 255, 255, 0);
@@ -2778,13 +2792,16 @@ QTreeWidget {
 
 QHeaderView {
 font: 10pt &quot;OPPOSans B&quot;;
-color: rgb(56, 56, 56);
-background-color: rgb(54, 81, 97);
+	color: rgb(255, 255, 255);
+/*background-color: rgb(54, 81, 97);*/
+	background-color: rgb(54, 81, 97);
+height: 20px;
+/*border: none;*/
 }
 
 QTreeWidget#treeWidget {
-border-right:5px solid rgb(54, 81, 97); 
-border-left:5px solid rgb(54, 81, 97); 
+border-right:10px solid rgb(54, 81, 97); 
+border-left:10px solid rgb(54, 81, 97); 
 	outline: none;
 }
 QTreeWidget::item {
@@ -2814,20 +2831,37 @@ QTreeWidget::item:selected:!active {
 	outline: 0px;
     color: #45B2FF;
 }
+
+
 QTreeWidget::branch {
 	height: 28px;
 	width: 28px;
 }
+
+QTreeView::branch:selected {
+background-color: rgb(30, 45, 54);
+}
+
+QTreeWidget::branch:!has-children:selected {
+	background-color: rgb(30, 45, 54);
+}
+QTreeWidget::branch:!has-children:!selected {
+	background-color: rgb(30, 45, 54);
+}
+
 QTreeWidget::branch:closed:has-children:!has-siblings,
 QTreeWidget::branch:closed:has-children:has-siblings {
 	border-image: none;
     image: url(:/lib/tree_close.png);
+	background-color: rgb(30, 45, 54);
 }
  
 QTreeWidget::branch:open:has-children:!has-siblings,
 QTreeWidget::branch:open:has-children:has-siblings  {
 	border-image: none;
     image: url(:/lib/tree_open.png);
+    
+	background-color: rgb(30, 45, 54);
 }
 
 
@@ -2894,7 +2928,7 @@ border-radius: 2px;
                       <bool>false</bool>
                      </property>
                      <attribute name="headerVisible">
-                      <bool>true</bool>
+                      <bool>false</bool>
                      </attribute>
                      <attribute name="headerDefaultSectionSize">
                       <number>100</number>

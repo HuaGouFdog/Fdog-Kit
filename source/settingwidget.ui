@@ -89,19 +89,19 @@ QComboBox QAbstractItemView{
        <widget class="QWidget" name="widget_left" native="true">
         <property name="minimumSize">
          <size>
-          <width>190</width>
+          <width>230</width>
           <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>190</width>
+          <width>230</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
          <string notr="true">#widget_left {
-background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));
 }
 
 QToolButton {
@@ -138,13 +138,13 @@ QToolButton:checked {
           <number>5</number>
          </property>
          <property name="leftMargin">
-          <number>15</number>
+          <number>25</number>
          </property>
          <property name="topMargin">
           <number>10</number>
          </property>
          <property name="rightMargin">
-          <number>15</number>
+          <number>25</number>
          </property>
          <property name="bottomMargin">
           <number>10</number>
@@ -622,7 +622,7 @@ QToolButton:checked {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="page_activate">
          <property name="styleSheet">
@@ -1470,10 +1470,10 @@ QToolButton:hover {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_17">
           <property name="spacing">
-           <number>10</number>
+           <number>20</number>
           </property>
           <property name="leftMargin">
-           <number>20</number>
+           <number>50</number>
           </property>
           <property name="topMargin">
            <number>10</number>
@@ -2300,10 +2300,10 @@ border-radius: 5px;}</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_9">
           <property name="spacing">
-           <number>10</number>
+           <number>20</number>
           </property>
           <property name="leftMargin">
-           <number>20</number>
+           <number>50</number>
           </property>
           <property name="topMargin">
            <number>10</number>
@@ -3085,10 +3085,10 @@ QScrollBar::up-arrow:vertical {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_18">
           <property name="spacing">
-           <number>10</number>
+           <number>20</number>
           </property>
           <property name="leftMargin">
-           <number>20</number>
+           <number>50</number>
           </property>
           <property name="topMargin">
            <number>10</number>
@@ -3890,10 +3890,10 @@ padding-right:10px;
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_50">
           <property name="spacing">
-           <number>10</number>
+           <number>20</number>
           </property>
           <property name="leftMargin">
-           <number>20</number>
+           <number>50</number>
           </property>
           <property name="topMargin">
            <number>10</number>
@@ -5720,10 +5720,10 @@ border-radius: 5px;}</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <property name="spacing">
-           <number>10</number>
+           <number>20</number>
           </property>
           <property name="leftMargin">
-           <number>20</number>
+           <number>50</number>
           </property>
           <property name="topMargin">
            <number>10</number>

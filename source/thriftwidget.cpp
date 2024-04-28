@@ -18,6 +18,7 @@
 #include <QFileDialog>
 #include <cstdlib>
 #include <QGraphicsDropShadowEffect>
+#include <QFontDatabase>
 #pragma comment(lib, "ws2_32.lib")
 
 
@@ -719,6 +720,21 @@ thriftwidget::thriftwidget(QWidget *parent) :
     item->setText(0, "");
      // 添加树节点到树控件中
     ui->treeWidget->addTopLevelItem(item);
+
+    int fontId = QFontDatabase::addApplicationFont(":fonts/CascadiaCode_VTT.ttf");
+    qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontId);
+    QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+    if (fontFamilies.size() > 0)
+    {
+        QFont font;// = QFontDatabase::applicationFont(fontId);
+        font.setFamily(fontFamilies[0]);//设置全局字体
+        // 设置控件字体
+        ui->textEdit->setFont(font);
+    } else {
+        qDebug() << "fonts/CascadiaCode_VTT.ttf错误";
+    }
+
+    //ui->treeWidget->setStyle(QStyleFactory::create("fusion"));
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));

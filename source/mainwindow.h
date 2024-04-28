@@ -16,6 +16,7 @@
 #include "aboutwidget.h"
 #include "config.h"
 #include "thriftwidget.h"
+#include "flowlayout.h"
 
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
@@ -42,6 +43,31 @@ enum WindowStretchRectState
 namespace Ui {
 class MainWindow;
 }
+
+
+class WidgetMouseFilter : public QObject
+{
+   Q_OBJECT
+public:
+   WidgetMouseFilter(QObject *parent = nullptr) : QObject(parent) {}
+
+protected:
+    bool eventFilter(QObject *object, QEvent *event) {
+        if (object->isWidgetType()) {
+            QWidget *widget = static_cast<QWidget*>(object);
+            if (event->type() == QEvent::Enter) {
+                // 当鼠标进入widget时增加宽度
+                widget->resize(widget->width() + 50, widget->height());
+            } else if (event->type() == QEvent::Leave) {
+                // 当鼠标离开widget时还原宽度
+                widget->resize(widget->width() - 50, widget->height());
+            }
+            return false;
+        }
+        // 继续传递事件
+        return false;
+    }
+};
 
 class MainWindow : public QMainWindow
 {
@@ -159,9 +185,14 @@ private slots:
 
     void on_toolButton_side_github_clicked();
 
+    void on_toolButton_side_about_clicked();
+
+    void on_toolButton_side_home_clicked();
+
 private:
     Ui::MainWindow *ui;
 
+    //FlowLayout * m_flowlayout;
     QRect m_leftTopRect;
     QRect m_leftBottomRect;
     QRect m_rightTopRect;

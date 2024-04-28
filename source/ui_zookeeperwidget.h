@@ -228,6 +228,11 @@ public:
 
         label_node = new QLabel(horizontalWidget_1_2_l);
         label_node->setObjectName(QStringLiteral("label_node"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_node->sizePolicy().hasHeightForWidth());
+        label_node->setSizePolicy(sizePolicy);
         label_node->setFont(font3);
         label_node->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
@@ -1114,11 +1119,11 @@ public:
         verticalLayout_4->setContentsMargins(2, 10, 2, 0);
         textEdit_data = new QTextEdit(verticalWidget_1_2_5_2_r);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(10);
-        sizePolicy.setHeightForWidth(textEdit_data->sizePolicy().hasHeightForWidth());
-        textEdit_data->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(10);
+        sizePolicy1.setHeightForWidth(textEdit_data->sizePolicy().hasHeightForWidth());
+        textEdit_data->setSizePolicy(sizePolicy1);
         textEdit_data->setMinimumSize(QSize(0, 0));
         textEdit_data->setFont(font3);
         textEdit_data->setStyleSheet(QString::fromUtf8("#textEdit_data{\n"

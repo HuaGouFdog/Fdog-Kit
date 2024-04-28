@@ -1,0 +1,56 @@
+#widget_side[state='dark'] {
+	color: rgb(255, 255, 255);
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background-color: rgb(20, 30, 36);
+}
+
+#widget_side[state='light'] {
+	color: rgb(255, 255, 255);
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background-color: rgb(0, 170, 255);
+}
+
+QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover[state='dark'] {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(32, 49, 59);
+	border: none;
+}
+
+QToolButton:hover[state='light'] {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(0, 159, 238);
+	border: none;
+}
+
+QLabel {
+color: rgb(255, 255, 255);
+border: none;
+background-color: rgba(255, 255, 255, 0);
+}
+
+QLabel[state='dark'] {
+color: rgb(255, 255, 255);
+border: none;
+background-color: rgba(255, 255, 255, 0);
+}
+
+QLabel[state='light'] {
+color: rgb(12, 12, 12);
+border: none;
+background-color: rgba(255, 255, 255, 0);
+}

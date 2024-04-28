@@ -154,5 +154,7 @@
         <file>lib/touxiang.jpeg</file>
         <file>lib/login.png</file>
         <file>lib/server.png</file>
+        <file>lib/soucuo2.png</file>
+        <file>lib/caozuo.png</file>
     </qresource>
 </RCC>

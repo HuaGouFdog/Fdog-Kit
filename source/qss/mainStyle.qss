@@ -122,7 +122,6 @@ QComboBox QAbstractItemView{
 
 /*主界面*/
 QMainWindow,QWidget#centralWidget {
-background-color: rgb(67, 77, 88);
-border-radius:10px;
+background-color: rgb(30, 45, 54);border-radius:10px;
 }
 

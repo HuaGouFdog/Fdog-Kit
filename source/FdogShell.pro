@@ -50,7 +50,8 @@ SOURCES += \
     config.cpp \
     thriftwidget.cpp \
     zookeepertipswidget.cpp \
-    zookeepermanagewidget.cpp
+    zookeepermanagewidget.cpp \
+    flowlayout.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -78,7 +79,8 @@ HEADERS += \
     config.h \
     thriftwidget.h \
     zookeepertipswidget.h \
-    zookeepermanagewidget.h
+    zookeepermanagewidget.h \
+    flowlayout.h
 
 FORMS += \
         mainwindow.ui \
