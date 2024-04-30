@@ -152,7 +152,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(2);
 
 
-    FlowLayout *flowLayout = new FlowLayout(0, 30, 30);
+    FlowLayout *flowLayout = new FlowLayout(10, 15, 15);
 
     //flowLayout->addWidget(new QPushButton(tr("Short")));
     //flowLayout->addWidget(new QPushButton(tr("Longer")));
@@ -163,18 +163,35 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_9->installEventFilter(wfFilter);
 
     flowLayout->addWidget(ui->widget_9);
+    getGraphicsEffectUtils(ui->widget_9, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_12);
+    getGraphicsEffectUtils(ui->widget_12, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_15);
+    getGraphicsEffectUtils(ui->widget_15, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_18);
+    getGraphicsEffectUtils(ui->widget_18, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_21);
+    getGraphicsEffectUtils(ui->widget_21, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_23);
-
+    getGraphicsEffectUtils(ui->widget_23, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_26);
+    getGraphicsEffectUtils(ui->widget_26, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_33);
+    getGraphicsEffectUtils(ui->widget_33, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_35);
+    getGraphicsEffectUtils(ui->widget_35, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_31);
+    getGraphicsEffectUtils(ui->widget_31, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_29);
+    getGraphicsEffectUtils(ui->widget_29, 0, 0, 20, QColor(50,50,50));
     flowLayout->addWidget(ui->widget_37);
+    getGraphicsEffectUtils(ui->widget_37, 0, 0, 20, QColor(50,50,50));
+    flowLayout->addWidget(ui->widget_39);
+    getGraphicsEffectUtils(ui->widget_39, 0, 0, 20, QColor(50,50,50));
+    flowLayout->addWidget(ui->widget_41);
+    getGraphicsEffectUtils(ui->widget_41, 0, 0, 20, QColor(50,50,50));
+    flowLayout->addWidget(ui->widget_43);
+    getGraphicsEffectUtils(ui->widget_43, 0, 0, 20, QColor(50,50,50));
     //flowLayout->addWidget(new QPushButton(tr("More text")));
     //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
     //flowLayout->setSpacing(50);
@@ -182,6 +199,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //flowLayout->verticalSpacing(10);
     flowLayout->setSpacing(30);
     ui->widget_2->setLayout(flowLayout);
+
+    ui->widget_4->layout()->addWidget(new parsingJsonTextEdit());
+
+    //ui->widget_welcome_body_widget2->hide();
 
 
     //m_flowlayout = new FlowLayout;

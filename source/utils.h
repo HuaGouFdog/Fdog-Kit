@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QCheckBox>
 #include <QLabel>
+#include <QGraphicsDropShadowEffect>
+#include <QTextEdit>
+//开关组件
 class AnimatedCheckBox : public QCheckBox
 {
 public:
@@ -18,6 +21,31 @@ private:
         checked 为 false 时 indicator 在最左边，为 true 时 indicator 在最右边 */
     QLabel *indicator;
 };
+
+
+
+class parsingJsonTextEdit : public QTextEdit
+{
+    Q_OBJECT
+public:
+    parsingJsonTextEdit(QWidget * parent = nullptr);
+    void parsingJsonInfo(QString &jsonString);
+    void parsingJsonObject(QJsonObject &object, const int numberOfLayers);
+    void parsingJsonArray(QJsonArray &array,const int numberOfLayers);
+protected:
+    void insertFromMimeData( const QMimeData *source)override;
+    void keyPressEvent(QKeyEvent * e)override;
+};
+
+//通用设置阴影
+
+//根据自身背景值设置阴影颜色
+void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius);
+//根据入参设置阴影颜色
+void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &color);
+
+
+
 
 class utils : public QWidget
 {
