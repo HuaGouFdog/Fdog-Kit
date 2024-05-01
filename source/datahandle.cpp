@@ -115,7 +115,8 @@ void datahandle::stringToHtmlFilter(QString &str)
     str.replace("<","&lt;");
     str.replace("\"","&quot;");
     str.replace("\'","&#39;");
-    str.replace(" ","&nbsp;");
+    //str.replace(" ","&nbsp;");
+    str.replace(" ","x");
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
@@ -158,7 +159,8 @@ void datahandle::stringToHtmlFilter4(QString &str)
             }
         }
     } else {
-        str.replace(" ","&nbsp;");
+        //str.replace(" ","&nbsp;");
+        str.replace(" ","");
     }
 
     int index = 0;
@@ -420,7 +422,7 @@ QString datahandle::processData(QString data)
 }
 
 QStringList datahandle::processDataS(QString data)
-{
+{   
     int sum = 0; //记录有多少连续的\b
     //qDebug() << "processDataS data = " << data;
     QStringList dataS;

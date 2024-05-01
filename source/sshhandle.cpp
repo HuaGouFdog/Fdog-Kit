@@ -68,7 +68,7 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
 
     // 创建套接字并建立连接
 
-    SOCKET sockfd = createSocket("172.16.8.154", 22);
+    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
     if (sockfd == INVALID_SOCKET) {
     }
 
