@@ -894,22 +894,32 @@ void sshwidget::rece_channel_readS(QStringList data)
                 //例如当前在27（24） 24 + 3 - 1 = 26   26 - 27 = -1
                 //获取相对于滚动区域的行数24
                 acurrentLine = acurrentLine - currentLine + 1;
-                int moveCount = regExp2.cap(1).toInt();
-                moveCount = moveCount - acurrentLine;
+                int moveCount = regExp2.cap(1).toInt() - acurrentLine;
+                int columnCount = regExp2.cap(2).toInt() - 1;
                 //第一个参数是移动到第几行，第二个参数是第几位
                 if (moveCount > 0) {
                     qDebug() << "移动" << moveCount << "行";
                     movePositionDown(sshwidget::MoveAnchor, moveCount);
-                    movePositionStartLine(sshwidget::MoveAnchor);
-                    movePositionRight(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                    //移动列
+                    if (columnCount >= 0) {
+                        qDebug() << "移动" << columnCount << "列";
+                        movePositionStartLine(sshwidget::MoveAnchor);
+                        movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    }
                 } else if (moveCount < 0) {
                     qDebug() << "移动" << moveCount << "行";
                     movePositionUp(sshwidget::MoveAnchor, -moveCount);
-                    movePositionStartLine(sshwidget::MoveAnchor);
-                    movePositionRight(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                    //移动列
+                    if (columnCount >= 0) {
+                        qDebug() << "移动" << columnCount << "列";
+                        movePositionStartLine(sshwidget::MoveAnchor);
+                        movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    }
                 } else {
                     qDebug() << "不需要移动";
                 }
+
+
                 data[i].replace(regExp2.cap(0), "");
             }
 
@@ -1063,8 +1073,12 @@ void sshwidget::rece_channel_readS(QStringList data)
                     //     data[i] = "<br>";
                     // }
                     qDebug() << "打印8";
-                    
                     sendData(data[i]);
+                    //如果是vi 模式 在输出字符的同时，删除后面对应长度的字符
+                    if (mode == 2) {
+                        //记录输出长度
+                        mode_2_length = data[i].length();
+                    }
                     if (clearPos + 1 == i && lastCommondS == "clear") {
                         qDebug() << "lineCount = " << lineCount;
                         int sum = lineCount - clearSPos;

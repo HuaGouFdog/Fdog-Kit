@@ -103,6 +103,8 @@ private:
 
 static int mode = 1;  //1数字模式 2应用模式
 
+static int mode_2_length = -1; 
+
 class KeyFilter : public QObject
 {
     Q_OBJECT
@@ -140,7 +142,7 @@ protected:
                 
                 return true;
             } else if (keyEvent->key() == Qt::Key_Left) {
-                                if (mode == 2) {
+                if (mode == 2) {
                     emit send_key_sign("\u001BOD");
                 } else {
                     emit send_key_sign("\u001B[D");
