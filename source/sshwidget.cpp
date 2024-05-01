@@ -522,8 +522,17 @@ void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 {
+    QTextCursor cursor3 = ui->textEdit->textCursor();
+    cursor3.movePosition(QTextCursor::StartOfLine);
+    cursor3.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+    QString currentLine = cursor3.selectedText();
+
+    // 输出到控制台
+    qDebug() << "当前光标所在行的内容：" << currentLine;
+
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+    qDebug() << "选择删除 = " << cursor.selectedText();
     cursor.removeSelectedText();
     ui->textEdit->setTextCursor(cursor);
     QTextCursor cursor2 = textEdit_s->textCursor();
@@ -590,11 +599,16 @@ void sshwidget::rece_channel_readS(QStringList data)
             backspaceSum++;
         }
 
+        if (data[i] == "\u001B[m") {
+            qDebug() << "检测到\u001B[m" << "跳过";
+            continue;
+        } 
+
         if (lastCommondS == "\u001BOC") {
             //data[i].length() 可能不是1
-            //删除右边一个字符，并打印
-            movePositionLeft(sshwidget::MoveAnchor, 1);
-            qDebug() << "打印2";
+            qDebug() << "删除右边一个字符，并打印";
+            movePositionRemoveLeftSelect(sshwidget::MoveAnchor, 1);
+            qDebug() << "打印2 =" << data[i];
             sendData(data[i]);
             lastCommondS = "";
             continue;
@@ -883,16 +897,18 @@ void sshwidget::rece_channel_readS(QStringList data)
                 int moveCount = regExp2.cap(1).toInt();
                 moveCount = moveCount - acurrentLine;
                 //第一个参数是移动到第几行，第二个参数是第几位
-                if (moveCount >= 0) {
+                if (moveCount > 0) {
                     qDebug() << "移动" << moveCount << "行";
                     movePositionDown(sshwidget::MoveAnchor, moveCount);
                     movePositionStartLine(sshwidget::MoveAnchor);
                     movePositionRight(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1);
-                } else {
+                } else if (moveCount < 0) {
                     qDebug() << "移动" << moveCount << "行";
                     movePositionUp(sshwidget::MoveAnchor, -moveCount);
                     movePositionStartLine(sshwidget::MoveAnchor);
                     movePositionRight(sshwidget::MoveAnchor, regExp2.cap(2).toInt() - 1);
+                } else {
+                    qDebug() << "不需要移动";
                 }
                 data[i].replace(regExp2.cap(0), "");
             }

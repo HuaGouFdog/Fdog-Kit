@@ -160,7 +160,7 @@ void datahandle::stringToHtmlFilter4(QString &str)
         }
     } else {
         //str.replace(" ","&nbsp;");
-        str.replace(" ","");
+        str.replace(" ","&nbsp;");
     }
 
     int index = 0;
