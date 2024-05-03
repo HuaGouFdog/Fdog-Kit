@@ -520,6 +520,19 @@ void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
     textEdit_s->setTextCursor(cursor2);
 }
 
+void sshwidget::movePositionRemoveRightSelect(sshwidget::MoveMode mode, int n)
+{
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
+    cursor.removeSelectedText();
+    ui->textEdit->setTextCursor(cursor);
+
+    QTextCursor cursor2 = textEdit_s->textCursor();
+    cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
+    cursor2.removeSelectedText();
+    textEdit_s->setTextCursor(cursor2);
+}
+
 void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor3 = ui->textEdit->textCursor();
@@ -590,6 +603,8 @@ void sshwidget::rece_channel_readS(QStringList data)
     int i = 0;
     for(i = 0; i < data.length(); i++) {
         //qDebug() << "lastCommondS =  " << lastCommondS;
+
+
         if (data[i] == "\b" && lastCommondS == "\u001B[D") {
             data[i] = "\u001B[D";
             lastCommondS = "";
@@ -598,6 +613,19 @@ void sshwidget::rece_channel_readS(QStringList data)
         if (lastData == "\u001B[D" || lastData == "\b") {
             backspaceSum++;
         }
+
+        // if (data[i] == "\b" && lastCommondS == "\u001BOD") {
+        //     data[i] = "\u001BOD";
+        //     lastCommondS = "";
+        // }
+
+        // if (data[i] == "\b") {
+        //     //backspaceSum++;
+        //     movePositionRemoveRightSelect(sshwidget::KeepAnchor, 1);
+        //     data[i] = "";
+        //     qDebug() << "backspaceSum++ = " << backspaceSum;
+        // }
+
 
         if (data[i] == "\u001B[m") {
             qDebug() << "检测到\u001B[m" << "跳过";
@@ -705,7 +733,9 @@ void sshwidget::rece_channel_readS(QStringList data)
             movePositionStartLine(sshwidget::MoveAnchor);
             isEnter = true;
             continue;
+        //} else if (data[i] == "\u001BOD") {
         } else if (data[i] == "\b") {
+            qDebug() << "\u001BOD走到这里";
             sum++;
             QString previousChar = movePositionRightSelect(sshwidget::KeepAnchor, 1);
             //qDebug() << "1前一个字符为" << previousChar2;
@@ -802,7 +832,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 //lastData == "\u001B[D" || lastData == "\b"
                 //光标删除后面一位
                 qDebug() << "backspaceSum1 =" << backspaceSum << " data[i] = " << data[i];
-                qDebug() << "删除数据";
+                qDebug() << "删除数据1";
                 //backspaceSum = backspaceSum - 1;
                 lastData = "";
                 int sum = 0;
@@ -823,7 +853,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             if (backspaceSum > 0) {
                 //光标删除后面一位
                 qDebug() << "backspaceSum1 =" << backspaceSum << " data[i] = " << data[i];
-                qDebug() << "删除数据";
+                qDebug() << "删除数据2";
                 lastData = "";
                 int sum = 0;
                 sum = backspaceSum;
@@ -995,6 +1025,8 @@ void sshwidget::rece_channel_readS(QStringList data)
                 data[i].replace(regExp5.cap(0), "");
                 //break;
             }
+
+            //到了这边就只有打印了数据了
             if (!isa) {
                 if (sum != 0) {
                     //qDebug() << "走到这里7";
@@ -1105,8 +1137,8 @@ void sshwidget::rece_channel_readS(QStringList data)
                             sum = backspaceSum;
                             backspaceSum = 0;
                         }
-                        qDebug() << "backspaceSum sum=" << backspaceSum;
-                        qDebug() << "删除数据";
+                        qDebug() << "backspaceSum sum=" << sum;
+                        qDebug() << "删除数据3";
                         // 获取选定文本
                         QString previousChar2 = movePositionLeftSelect(sshwidget::KeepAnchor, 1);;
                         movePositionRemoveLeftSelect(sshwidget::KeepAnchor, sum);

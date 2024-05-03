@@ -1070,7 +1070,7 @@ public:
         widget_color_toolButton_color_data->setText(QApplication::translate("createconnect", "#000000", nullptr));
         widget_dynamic_title_checkBox->setText(QApplication::translate("createconnect", "\344\275\277\347\224\250\345\212\250\346\200\201\346\240\207\351\242\230", nullptr));
         widget_dynamic_title_label->setText(QApplication::translate("createconnect", "\347\246\201\347\224\250\345\220\216\357\274\214\346\240\207\351\242\230\346\240\217\345\260\206\344\270\272\"Fdog-kit\"", nullptr));
-        lineEdit_host_ssh_data->setText(QApplication::translate("createconnect", "172.16.8.154", nullptr));
+        lineEdit_host_ssh_data->setText(QApplication::translate("createconnect", "192.168.85.205", nullptr));
         lineEdit_host_ssh_data->setPlaceholderText(QApplication::translate("createconnect", "127.0.0.1", nullptr));
         label_host_ssh->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272", nullptr));
         label_port_ssh->setText(QApplication::translate("createconnect", "\347\253\257\345\217\243", nullptr));
@@ -1079,7 +1079,7 @@ public:
         label_user_ssh->setText(QApplication::translate("createconnect", "\347\224\250\346\210\267\345\220\215", nullptr));
         lineEdit_user_ssh_data->setText(QString());
         lineEdit_user_ssh_data->setPlaceholderText(QApplication::translate("createconnect", "root", nullptr));
-        tab_passowrd_lineEdit_password_data->setText(QApplication::translate("createconnect", "Linkdood@123456", nullptr));
+        tab_passowrd_lineEdit_password_data->setText(QApplication::translate("createconnect", "vrv300352", nullptr));
         tab_passowrd_label_password->setText(QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
         tab_passowrd_checkBox_remember_password->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\345\257\206\347\240\201", nullptr));
         tab_passowrd_toolButton_show->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));

@@ -265,6 +265,8 @@ public:
     //删除文本
     void movePositionRemoveLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //删除文本
+    void movePositionRemoveRightSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //删除文本
     void movePositionRemoveEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //删除文本
     void movePositionRemoveRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
