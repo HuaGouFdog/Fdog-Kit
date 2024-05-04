@@ -136,7 +136,7 @@ void sshhandle::initEXEC(int connrectType, QString host, QString port, QString u
 
     // 创建套接字并建立连接
 
-    SOCKET sockfd = createSocket("172.16.8.154", 22);
+    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
     if (sockfd == INVALID_SOCKET) {
     }
 
@@ -185,7 +185,7 @@ void sshhandle::initSFTP(int connrectType, QString host, QString port, QString u
 
     // 创建套接字并建立连接
 
-    SOCKET sockfd = createSocket("172.16.8.154", 22);
+    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
     if (sockfd == INVALID_SOCKET) {
     }
 
@@ -239,6 +239,8 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     qDebug() << "执行initSSH";
     initSSH(connrectType, host, port, username, password);
     qDebug() << "执行initSSH init 完成";
+    ////发送信号
+    //emit send_init_ssh_done();
     return;
 }
 
@@ -512,7 +514,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
 
     // 创建套接字并建立连接
 
-    SOCKET sockfd = createSocket("172.16.8.154", 22);
+    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
     if (sockfd == INVALID_SOCKET) {
     }
 
@@ -927,7 +929,7 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
     int rc;
     // 创建套接字并建立连接
 
-    SOCKET sockfd = createSocket("172.16.8.154", 22);
+    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
     if (sockfd == INVALID_SOCKET) {
     }
 

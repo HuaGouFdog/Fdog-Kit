@@ -328,6 +328,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\addM2.png \
 		lib\Zookeeper21.png \
 		lib\diann3.png \
+		lib\URL2.png \
 		lib\eye1.png \
 		lib\keyboard.png \
 		lib\purpleres.png \
@@ -340,6 +341,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\Icon_max4.png \
 		lib\node3.png \
 		lib\bi.png \
+		lib\Binary.png \
 		lib\api.png \
 		lib\Zookeeper2.png \
 		lib\daxiao.png \
@@ -351,6 +353,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\jianbian1.png \
 		lib\login.png \
 		lib\mast.png \
+		lib\calculator.png \
 		lib\jiazai5.gif \
 		lib\icon-minus.png \
 		lib\test.png \
@@ -358,6 +361,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\node.png \
 		lib\icon8.png \
 		lib\caozuo.png \
+		lib\timestamp.png \
 		lib\file2.png \
 		lib\github.png \
 		lib\jiazai3.gif \
@@ -398,7 +402,9 @@ release\qrc_lib.obj: lib.qrc \
 		lib\icon-close3.png \
 		lib\jiazai.gif \
 		lib\setting2.png \
+		lib\windows.png \
 		lib\home.png \
+		lib\encoding.png \
 		lib\zhuti.png \
 		lib\diann4.png \
 		lib\t1.png \
@@ -421,6 +427,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\icon_80.png \
 		lib\start.png \
 		lib\jiazai8.gif \
+		lib\regular.png \
 		lib\node2.png \
 		lib\icon-shell.png \
 		lib\delete.png \
@@ -429,6 +436,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\soucuo.png \
 		lib\setiing2.png \
 		lib\tree_close.png \
+		lib\MD5.png \
 		lib\Fdogicon.ico \
 		lib\white_mode.png \
 		lib\powershell.png \
@@ -447,6 +455,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\Thrift3.png \
 		lib\down.png \
 		lib\icon500.png \
+		lib\URL.png \
 		lib\icon7.png \
 		lib\icon-copy.png \
 		lib\wicon_46.png \
@@ -457,6 +466,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\wicon_64.png \
 		lib\jiazai2.gif \
 		lib\add3.png \
+		lib\note.png \
 		lib\json.png \
 		lib\icon5.png \
 		lib\mast2.png
@@ -1991,6 +2001,16 @@ release\moc_settingwidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		config.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
@@ -2563,6 +2583,16 @@ release\moc_utils.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		utils.h \
 		release\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -6213,6 +6243,16 @@ release\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		config.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
@@ -6254,14 +6294,9 @@ release\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListView \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
@@ -6274,9 +6309,6 @@ release\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
@@ -6288,8 +6320,7 @@ release\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QFontDatabase \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect
 
 release\secretkeywidget.obj: secretkeywidget.cpp secretkeywidget.h \
 		keywidget.h \
@@ -7025,6 +7056,16 @@ release\utils.obj: utils.cpp utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyle \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QMouseEvent \
@@ -7040,9 +7081,18 @@ release\utils.obj: utils.cpp utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariantanimation.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeasingcurve.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMimeData \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmimedata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonParseError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QKeyEvent \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h
 
 release\colormatch.obj: colormatch.cpp colormatch.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \

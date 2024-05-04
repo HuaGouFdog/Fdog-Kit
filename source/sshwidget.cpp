@@ -131,6 +131,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(sshExec,SIGNAL(send_init()),this,
             SLOT(rece_ssh_exec_init()));
     threadExec->start();
+    //在其他地方调用
     //QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 
     //sftp
@@ -237,7 +238,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     QStackedLayout * Layout = new QStackedLayout;
     Layout->setStackingMode(QStackedLayout::StackAll);
-    Layout->setContentsMargins(0,0,0,0);
+    Layout->setContentsMargins(10,10,10,10);
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
 
@@ -1679,6 +1680,7 @@ void sshwidget::rece_ssh_init()
     QString password = cInfoStruct.password;
     int connrectType = 1;
     QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 }
 
 void sshwidget::rece_ssh_exec_init()

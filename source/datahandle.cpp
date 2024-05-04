@@ -115,8 +115,7 @@ void datahandle::stringToHtmlFilter(QString &str)
     str.replace("<","&lt;");
     str.replace("\"","&quot;");
     str.replace("\'","&#39;");
-    //str.replace(" ","&nbsp;");
-    str.replace(" ","x");
+    str.replace(" ","&nbsp;");
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
@@ -124,12 +123,6 @@ void datahandle::stringToHtmlFilter(QString &str)
 
 void datahandle::stringToHtmlFilter2(QString &str)
 {
-    // str.replace("&","&amp;");
-    // str.replace(">","&gt;");
-    // str.replace("<","&lt;");
-    // str.replace("\"","&quot;");
-    // str.replace("\'","&#39;");
-    // str.replace(" ","&nbsp;");
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
@@ -267,6 +260,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     QRegExp regex("(\\x001B\\[(\\d*)m)*\\x001B\\[(\\d*)\\;*(\\d*)\\;*(\\d*)m(\\S*)\\x001B\\[(\\d*)m(\\s*)");
     int pos = 0;
     int lastPos = 0;
+    int pos2 = 0;
     //stringToHtmlFilter3(data);
     bool isRegex = false;
     while ((pos = regex.indexIn(data, pos)) != -1) {
@@ -274,7 +268,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //qDebug() << "Pos = " << pos;
         isRegex = true;
         QString match = regex.cap(0); // 获取完整的匹配项
-        //qDebug() << "Matched email:" << match;
+        qDebug() << "Matched all:" << match;
         //qDebug() << "Matched email 1:" << regex.cap(1);
         //qDebug() << "Matched email 2:" << regex.cap(2);
         //qDebug() << "Matched email 3:" << regex.cap(3);
@@ -284,7 +278,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //qDebug() << "Matched email 7:" << regex.cap(7);
         //qDebug() << "Matched email 8:" << regex.cap(8);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
-        //qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
+        qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
 
         QColor *fontCrl = NULL;
         QColor *backCrl = NULL;
@@ -312,21 +306,35 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         }
 
         //设置颜色
-        QString cc = regex.cap(6) + regex.cap(8);
-        //qDebug() << "cc = " << cc;
+        QString cc = regex.cap(6);
+        //regex.cap(8) 是空白符;
+        QString blankChar = regex.cap(8);
+        stringToHtmlFilter(blankChar);
+        qDebug() << "cc = " << cc;
         stringToHtmlFilter(cc);
         stringToHtml(cc, fontCrl, backCrl);
         //替换
+        cc = cc + blankChar;
+        qDebug() << "替换前pos = " << pos << " 后面字符为" << data.mid(pos);
+        qDebug() << "由" << match << " 替换为 " << cc;
         data.replace(match, cc);
+        //这里有问题
         //pos += regex.matchedLength();
         pos += cc.length();
-        //qDebug() << "pos = " << pos;
+        qDebug() << "替换后pos = " << pos << " 后面字符为" << data.mid(pos);
+        pos2 = pos;
     }
-    
-    if (!isRegex) {
-        data.replace(">","&gt;");
-        data.replace("<","&lt;");
-    }
+
+    //走到这里说明没有颜色参数了，处理空白符  但是如果两段颜色间有呢
+    QString endStr = data.mid(pos2);
+    qDebug() << "blankChar.mid(pos2) = " << endStr;
+    stringToHtmlFilter(endStr);
+    data = data.mid(0, pos2) + endStr;
+    qDebug() << "最后data 数据为" << data;
+    // if (!isRegex) {
+    //     data.replace(">","&gt;");
+    //     data.replace("<","&lt;");
+    // }
     //qDebug() << "data.length =" << data.length();
     //qDebug() << "pos = " << pos;
     //stringToHtmlFilter(data);
@@ -424,7 +432,7 @@ QString datahandle::processData(QString data)
 QStringList datahandle::processDataS(QString data)
 {   
     int sum = 0; //记录有多少连续的\b
-    //qDebug() << "processDataS data = " << data;
+    qDebug() << "processDataS data = " << data;
     QStringList dataS;
     //对内容进行分组
     while(1) {
@@ -724,7 +732,7 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                //qDebug() << "添加m" << match << " position = " << position;
+                qDebug() << "添加m" << match << " position = " << position;
                 data = data.mid(position + match.length());
                 pos = 0;
                 //break;
