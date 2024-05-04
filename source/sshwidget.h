@@ -270,6 +270,13 @@ public:
     void movePositionRemoveEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //删除文本
     void movePositionRemoveRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    //获取当前行位置
+    int getCurrentRowPosition();
+    //获取当前列位置
+    int getCurrentColumnPosition();
+    //获取当前列对于行尾长度
+    int getTolineLength();
+    //获取当前行对于底部长度
 
 signals:
     void send_toolButton_toolkit_sign();

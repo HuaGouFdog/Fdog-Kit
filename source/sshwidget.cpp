@@ -509,8 +509,10 @@ QString sshwidget::movePositionRightSelect(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 {
+    
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
+    qDebug() << "选择删除 = " << cursor.selectedText();
     cursor.removeSelectedText();
     ui->textEdit->setTextCursor(cursor);
 
@@ -567,6 +569,40 @@ void sshwidget::movePositionRemoveRight(sshwidget::MoveMode mode, int n)
     textEdit_s->setTextCursor(cursor2);
 }
 
+//获取当前行位置
+int sshwidget::getCurrentRowPosition() {
+    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextLayout *lay = tc.block().layout();
+    int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+    int currentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
+    qDebug() << "当前行数 =" << currentLine;
+    return currentLine;
+}
+//获取当前列位置
+int sshwidget::getCurrentColumnPosition() {
+    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextLayout *lay = tc.block().layout();
+    int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+    //int currentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
+    qDebug() << "当前列数 =" << iCurPos;
+    return iCurPos; 
+}
+//获取当前列对于行尾长度
+int sshwidget::getTolineLength() {
+    //获取当前光标位置
+    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    // 移动光标到行尾
+    //tc.movePosition(QTextCursor::EndOfLine);
+    tc.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+    qDebug() << "选择的字符 = " << tc.selectedText();
+    // 计算光标当前位置到行尾的长度
+    int length = tc.position() - ui->textEdit->textCursor().position();
+    qDebug() << "当前光标距离尾行长度为 =" << length; 
+
+
+    return length;
+}
+
 void sshwidget::on_textEdit_cursorPositionChanged()
 {
 
@@ -605,14 +641,14 @@ void sshwidget::rece_channel_readS(QStringList data)
         //qDebug() << "lastCommondS =  " << lastCommondS;
 
 
-        if (data[i] == "\b" && lastCommondS == "\u001B[D") {
-            data[i] = "\u001B[D";
-            lastCommondS = "";
-        }
-        lastData = data[i];
-        if (lastData == "\u001B[D" || lastData == "\b") {
-            backspaceSum++;
-        }
+        // if (data[i] == "\b" && lastCommondS == "\u001B[D") {
+        //     data[i] = "\u001B[D";
+        //     lastCommondS = "";
+        // }
+        // lastData = data[i];
+        // if (lastData == "\u001B[D" || lastData == "\b") {
+        //     backspaceSum++;
+        // }
 
         // if (data[i] == "\b" && lastCommondS == "\u001BOD") {
         //     data[i] = "\u001BOD";
@@ -730,12 +766,14 @@ void sshwidget::rece_channel_readS(QStringList data)
 
             continue;
         } else if (data[i] == "\r") {
+            qDebug() << "移动到行首" << " 当前列位置 = " << getCurrentColumnPosition();
             movePositionStartLine(sshwidget::MoveAnchor);
-            isEnter = true;
+            qDebug() << "移动到行首" << " 当前列位置 = " << getCurrentColumnPosition();
+            //isEnter = true;
             continue;
         //} else if (data[i] == "\u001BOD") {
         } else if (data[i] == "\b") {
-            qDebug() << "\u001BOD走到这里";
+            qDebug() << "BOD走到这里";
             sum++;
             QString previousChar = movePositionRightSelect(sshwidget::KeepAnchor, 1);
             //qDebug() << "1前一个字符为" << previousChar2;
@@ -775,6 +813,11 @@ void sshwidget::rece_channel_readS(QStringList data)
             } else {
                 movePositionLeft(sshwidget::MoveAnchor, 1);
             }
+
+            // 获取光标当前位置到行尾的长度
+            int length = getTolineLength();
+            qDebug() << "当前光标距离尾行长度为 =" << length;
+
             continue;
         } else if (data[i] == "\u001B[D") {
             // 获取选定文本
@@ -915,8 +958,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 QTextLayout *lay = tc.block().layout();
                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                 int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
-                qDebug() << "A当前光标所在行数(相对于滚动区域) =" << acurrentLine - currentLine + 1;
-                qDebug() << "R当前行数 =" << currentLine;
+                qDebug() << "A当前光标所在行数(相对于滚动区域) =" << acurrentLine - currentLine + 1 << "  R当前行数 =" << currentLine;
                 QTextCursor tc2 = textEdit_s->textCursor(); //当前光标
                 QTextLayout *lay2 = tc2.block().layout();
                 int iCurPos2= tc2.position() - tc2.block().position();//当前光标在本BLOCK内的相对位置
@@ -931,22 +973,29 @@ void sshwidget::rece_channel_readS(QStringList data)
                     qDebug() << "移动" << moveCount << "行";
                     movePositionDown(sshwidget::MoveAnchor, moveCount);
                     //移动列
-                    if (columnCount >= 0) {
-                        qDebug() << "移动" << columnCount << "列";
-                        movePositionStartLine(sshwidget::MoveAnchor);
-                        movePositionLeft(sshwidget::MoveAnchor, columnCount);
-                    }
+                    // if (columnCount >= 0) {
+                    //     qDebug() << "移动" << columnCount << "列";
+                    //     movePositionStartLine(sshwidget::MoveAnchor);
+                    //     movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    // }
                 } else if (moveCount < 0) {
                     qDebug() << "移动" << moveCount << "行";
                     movePositionUp(sshwidget::MoveAnchor, -moveCount);
                     //移动列
-                    if (columnCount >= 0) {
-                        qDebug() << "移动" << columnCount << "列";
-                        movePositionStartLine(sshwidget::MoveAnchor);
-                        movePositionLeft(sshwidget::MoveAnchor, columnCount);
-                    }
+                    // if (columnCount >= 0) {
+                    //     qDebug() << "移动" << columnCount << "列";
+                    //     movePositionStartLine(sshwidget::MoveAnchor);
+                    //     movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    // }
                 } else {
                     qDebug() << "不需要移动";
+                }
+                if (columnCount >= 0) {
+                    qDebug() << "移动" << columnCount << "列";
+                    movePositionStartLine(sshwidget::MoveAnchor);
+                    movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                } else {
+                    qDebug() << "不需要移动列";
                 }
 
 
@@ -1008,7 +1057,9 @@ void sshwidget::rece_channel_readS(QStringList data)
                             //sendData(QString::number(i) + "=<br>");
                             //这里应该发送当前列数
                             qDebug() << "打印4";
-                            sendData("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                            //sendData("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                            sendData("&nbsp;");
+                            sendData("<br>");
                             //textEdit->insertPlainText("\n");
                         }
                     }
@@ -1029,7 +1080,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             //到了这边就只有打印了数据了
             if (!isa) {
                 if (sum != 0) {
-                    //qDebug() << "走到这里7";
+                    qDebug() << "走到这里7";
                     QTextCursor cursor4 = ui->textEdit->textCursor();
                     //QTextCursor cursor2 = textEdit_s->textCursor();
                     int cursorPos = cursor4.position();
@@ -1038,6 +1089,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
                     //覆盖 如果data[i]有数据就覆盖几个，剩下的继续覆盖
                     if (sum != 0) {
+                        qDebug() << "走到这里8";
                         QTextCursor cursor = ui->textEdit->textCursor();
                         cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
                         cursor.deletePreviousChar();
@@ -1104,7 +1156,23 @@ void sshwidget::rece_channel_readS(QStringList data)
                     // if (data[i] == "") {
                     //     data[i] = "<br>";
                     // }
-                    qDebug() << "打印8";
+                    qDebug() << "打印8" << " 当前列位置 = " << getCurrentColumnPosition();
+                    //打印之前，读取需要打印的长度，计算当前光标后面的长度是否需要删除几个
+                    
+                    // 计算光标当前位置到行尾的长度
+                    int length = getTolineLength();
+                    //qDebug() << "当前光标距离尾行长度为 =" << length;
+                    //计算需要清除长度
+                    if (data[i].length() >= length) {
+                        //删除length
+                        movePositionRemoveLeftSelect(sshwidget::KeepAnchor, length);
+                        qDebug() << "删除右边" << length;
+                    } else {
+                        //删除data[i].length()
+                        movePositionRemoveLeftSelect(sshwidget::KeepAnchor, data[i].length());
+                        qDebug() << "删除右边" << data[i].length();
+                    }
+
                     sendData(data[i]);
                     //如果是vi 模式 在输出字符的同时，删除后面对应长度的字符
                     if (mode == 2) {

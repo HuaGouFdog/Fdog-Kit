@@ -99,6 +99,7 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
     }
 
     // 进行身份验证
+    qDebug() << "user = " << username << " password = " << password;
     rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
     if (rc) {
         qWarning() << "Authentication failed";
