@@ -62,6 +62,22 @@ sshhandle::sshhandle(QObject *parent) : QObject(parent)
     qRegisterMetaType<ServerInfoStruct>("ServerInfoStruct&");
 }
 
+sshhandle::~sshhandle()
+{
+    qDebug() << "释放连接句柄";
+    // libssh2_session_disconnect(session_ssh, "Bye bye... session_ssh");
+    // libssh2_session_free(session_ssh);
+
+    // libssh2_session_disconnect(session_exec, "Bye bye... session_exec");
+    // libssh2_session_free(session_exec);
+
+    // libssh2_session_disconnect(session_ssh_sftp, "Bye bye... session_ssh_sftp");
+    // libssh2_session_free(session_ssh_sftp);
+    
+    //libssh2_exit();
+    qDebug() << "释放连接句柄结束";
+}
+
 void sshhandle::initSSH(int connrectType, QString host, QString port, QString username, QString password)
 {
     int rc;
@@ -102,9 +118,10 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
     qDebug() << "user = " << username << " password = " << password;
     rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
     if (rc) {
-        qWarning() << "Authentication failed";
-        libssh2_session_disconnect(session_ssh, "Authentication failed");
-        libssh2_session_free(session_ssh);
+        qWarning() << "initSSH Authentication failed rc = " << rc;
+        // libssh2_session_disconnect(session_ssh, "Authentication failed");
+        // libssh2_session_free(session_ssh);
+        // close(sockfd);
         return;
     }
 
@@ -163,15 +180,16 @@ void sshhandle::initEXEC(int connrectType, QString host, QString port, QString u
     if (rc) {
         qWarning() << "SSH handshake failed";
         libssh2_session_free(session_exec);
+        close(sockfd);
         return;
     }
 
     // 进行身份验证
     rc = libssh2_userauth_password(session_exec, username.toUtf8().constData(), password.toUtf8().constData());
     if (rc) {
-        qWarning() << "Authentication failed";
-        libssh2_session_disconnect(session_exec, "Authentication failed");
-        libssh2_session_free(session_exec);
+        qWarning() << "initEXEC Authentication failed";
+        // libssh2_session_disconnect(session_exec, "Authentication failed");
+        // libssh2_session_free(session_exec);
         return;
     }
 
@@ -218,9 +236,9 @@ void sshhandle::initSFTP(int connrectType, QString host, QString port, QString u
     // 进行身份验证
     rc = libssh2_userauth_password(session_ssh_sftp, username.toUtf8().constData(), password.toUtf8().constData());
     if (rc) {
-        qWarning() << "Authentication failed";
-        libssh2_session_disconnect(session_ssh_sftp, "Authentication failed");
-        libssh2_session_free(session_ssh_sftp);
+        qWarning() << "initSFTP Authentication failed";
+        // libssh2_session_disconnect(session_ssh_sftp, "Authentication failed");
+        // libssh2_session_free(session_ssh_sftp);
         return;
     }
     //初始化 SFTP 会话
@@ -539,17 +557,20 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
     // 建立 SSH 连接
     rc = libssh2_session_handshake(session_exec, sockfd);
     if (rc) {
-        qWarning() << "SSH handshake failed";
-        libssh2_session_free(session_exec);
+        qWarning() << "session_exec SSH handshake failed";
+        // libssh2_session_disconnect(session_exec, "Authentication failed");
+        // libssh2_session_free(session_exec);
+        // close(sockfd);
         return;
     }
 
     // 进行身份验证
     rc = libssh2_userauth_password(session_exec, username.toUtf8().constData(), password.toUtf8().constData());
     if (rc) {
-        qWarning() << "Authentication failed";
-        libssh2_session_disconnect(session_exec, "Authentication failed");
-        libssh2_session_free(session_exec);
+        qWarning() << "session_exec init Authentication failed rc = " << rc;
+        // libssh2_session_disconnect(session_exec, "Authentication failed");
+        // libssh2_session_free(session_exec);
+        // close(sockfd);
         return;
     }
 
@@ -746,6 +767,7 @@ sshHandleSftp::sshHandleSftp(QObject *parent)
 {
     qRegisterMetaType<int64_t>("int64_t");
 }
+
 
 bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path, QString fileName)
 {
@@ -964,9 +986,10 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
     // 进行身份验证
     rc = libssh2_userauth_password(session_ssh_sftp, username.toUtf8().constData(), password.toUtf8().constData());
     if (rc) {
-        qWarning() << "Authentication failed";
-        libssh2_session_disconnect(session_ssh_sftp, "Authentication failed");
-        libssh2_session_free(session_ssh_sftp);
+        qWarning() << "session_ssh_sftp init Authentication failed";
+        // libssh2_session_disconnect(session_ssh_sftp, "Authentication failed");
+        // libssh2_session_free(session_ssh_sftp);
+        // close(sockfd);
         return;
     }
     qDebug() << " 执行sshHandleSftp init3";

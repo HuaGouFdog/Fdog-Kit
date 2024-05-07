@@ -1167,15 +1167,20 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
     ui->tabWidget->removeTab(index);
     //将页面释放，下次再生成 判断关闭页面类型
     //twidget
+    qDebug() << "关闭页面" << closeName;
     if (closeName == "thrift接口测试") {
         delete twidget;
         twidget = NULL;
-    }
-
-    if (closeName == "zookeeper") {
+    } else if (closeName == "zookeeper") {
         delete zmanagewidget;
         zmanagewidget = NULL;
+    } else {
+        qDebug() << "关闭ssh页面";
+        //delete sshWidgetList[0];
+        //delete ui->tabWidget->currentWidget();
     }
+    
+
     if(ui->tabWidget->count() == 0) {
         //创建快速连接
         int8_t connectType = 0;

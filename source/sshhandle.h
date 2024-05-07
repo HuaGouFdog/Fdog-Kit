@@ -65,7 +65,6 @@ class sshHandleSftp : public QObject {
     Q_OBJECT
 public:
     explicit sshHandleSftp(QObject *parent = nullptr);
-
     //void getServerInfo();
     //QString commondExec(QString commond);
 signals:
@@ -92,6 +91,7 @@ class sshhandle : public QObject
     Q_OBJECT
 public:
     explicit sshhandle(QObject *parent = nullptr);
+    ~sshhandle();
     datahandle ac;
     LIBSSH2_SESSION *session_ssh = nullptr;  //ssh session
     LIBSSH2_CHANNEL *channel_ssh = nullptr;  //ssh channel

@@ -261,7 +261,11 @@ public:
     void movePositionEnd(sshwidget::MoveMode mode = sshwidget::MoveAnchor);
     //选中文本
     QString movePositionRightSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
     QString movePositionLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
+    QString movePositionEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
     //删除文本
     void movePositionRemoveLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //删除文本
@@ -414,6 +418,16 @@ private:
     bool isEnter = false;   //是否回车状态
 
     bool isScrollBar = false; //是否显示滚动区
+
+    bool isfirstR = false;
+
+    bool isfirstR2 = false;
+
+    int firstS = 0;
+    int firstE = 0;
+
+    int firstS2 = 0;
+    int firstE2 = 0;
 
     int currentLine = -1;
 
