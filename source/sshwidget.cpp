@@ -1116,7 +1116,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     firstE = regExp4.cap(2).toInt();
                     qDebug() << "滚动结束" << regExp4.cap(2).toInt();
                 } else {
-                    if (regExp4.cap(1).toInt() != firstS && regExp4.cap(2).toInt() != firstE ) {
+                    if (regExp4.cap(1).toInt() != firstS || regExp4.cap(2).toInt() != firstE ) {
                         isfirstR2 = true;
                         //当前处于备用缓冲区，如果碰到r可能就要滚动了
                         //\u001B[15;23r 设置二级滚动区域 后面如果在23更新，就需要更新15-23里面的数据
