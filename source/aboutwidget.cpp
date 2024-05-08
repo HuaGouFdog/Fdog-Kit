@@ -1,4 +1,5 @@
-﻿#include "aboutwidget.h"
+﻿#pragma execution_character_set("utf-8")
+#include "aboutwidget.h"
 #include "ui_aboutwidget.h"
 
 aboutwidget::aboutwidget(QWidget *parent) :

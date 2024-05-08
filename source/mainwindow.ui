@@ -155,6 +155,12 @@ QLabel {
 color: rgb(255, 255, 255);
 border: none;
 background-color: rgba(255, 255, 255, 0);
+}
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
 }</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1672,7 +1678,7 @@ color: rgb(255, 255, 255);</string>
              <number>1</number>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page">
              <property name="styleSheet">
@@ -4398,7 +4404,8 @@ QToolButton:hover {
                     </property>
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(217, 217, 217);
-font: 10pt &quot;OPPOSans B&quot;;</string>
+font: 10pt &quot;OPPOSans B&quot;;
+color: rgb(115, 115, 115);</string>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_13">
                      <item>

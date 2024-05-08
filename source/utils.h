@@ -6,6 +6,9 @@
 #include <QLabel>
 #include <QGraphicsDropShadowEffect>
 #include <QTextEdit>
+
+#define UNUSED(x) (void)(x)
+
 //开关组件
 class AnimatedCheckBox : public QCheckBox
 {

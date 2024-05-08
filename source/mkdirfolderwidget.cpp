@@ -13,3 +13,14 @@ mkdirfolderwidget::~mkdirfolderwidget()
 {
     delete ui;
 }
+
+void mkdirfolderwidget::on_toolButton_cancel_clicked()
+{
+    this->close();
+}
+
+void mkdirfolderwidget::on_toolButton_ok_clicked()
+{
+    emit send_mkdirFolder(ui->lineEdit_name->text());
+    this->hide();
+}

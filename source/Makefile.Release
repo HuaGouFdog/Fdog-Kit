@@ -8012,16 +8012,10 @@ release\addcommondwidget.obj: addcommondwidget.cpp addcommondwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qglyphrun.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrawfont.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout

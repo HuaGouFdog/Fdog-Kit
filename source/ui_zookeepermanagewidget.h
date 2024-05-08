@@ -82,7 +82,7 @@ public:
     {
         if (zookeepermanagewidget->objectName().isEmpty())
             zookeepermanagewidget->setObjectName(QStringLiteral("zookeepermanagewidget"));
-        zookeepermanagewidget->resize(853, 508);
+        zookeepermanagewidget->resize(853, 520);
         horizontalLayout = new QHBoxLayout(zookeepermanagewidget);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -278,7 +278,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 231, 388));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 231, 400));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "    qproperty-iconSize: 22px 22px;\n"

@@ -893,7 +893,7 @@ QTabBar QToolButton:hover {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="tabBarAutoHide">
           <bool>false</bool>
@@ -931,7 +931,7 @@ padding-left:10px;
 padding-right:10px;</string>
            </property>
            <property name="text">
-            <string>172.16.8.154</string>
+            <string>192.168.85.205</string>
            </property>
            <property name="placeholderText">
             <string>127.0.0.1</string>
@@ -1182,7 +1182,7 @@ padding-left:10px;
 padding-right:10px;</string>
              </property>
              <property name="text">
-              <string>Linkdood@123456</string>
+              <string>vrv300352</string>
              </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>

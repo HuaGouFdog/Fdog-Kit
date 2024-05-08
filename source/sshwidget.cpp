@@ -31,6 +31,7 @@
 #include <QTextBlock>
 #include <QShortcut>
 #include "datahandle.h"
+#include "FlowLayout.h"
 QString a = "";
 
 //    // 关闭 SSH 连接
@@ -73,7 +74,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     ui->textEdit_2->setOverwriteMode(true);
 
-    ui->splitter_2->setStretchFactor(10,2);
+    ui->splitter_2->setStretchFactor(0,5);
+    ui->splitter_2->setStretchFactor(1,1);
 
     ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
     //表格自适应
@@ -239,7 +241,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     QStackedLayout * Layout = new QStackedLayout;
     Layout->setStackingMode(QStackedLayout::StackAll);
-    Layout->setContentsMargins(10,10,10,10);
+    Layout->setContentsMargins(0,0,0,0);
     Layout->addWidget(textEdit_s);
     Layout->addWidget(ui->textEdit);
 
@@ -352,6 +354,17 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     ui->textEdit_4->append("<scrollRegion top=\"1\" bottom=\"26\"/>\n");
     ui->textEdit_4->append("Hello, world!\n");
     ui->textEdit_4->append("<scrollDown/>\n");
+
+    //获取当前tab页widget
+    QWidget * cWidget = ui->tabWidget->currentWidget();
+    FlowLayout *flowLayout = new FlowLayout(10, 5, 5);
+    for(int i = 0; i< 20; i++) {
+       flowLayout->addWidget(new QPushButton("命令" + QString::number(i)));
+    }
+    flowLayout->setSpacing(30);
+    cWidget->setLayout(flowLayout);
+    //设置流式布局
+    //
 }
 
 sshwidget::~sshwidget()
@@ -1789,14 +1802,16 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
 void sshwidget::rece_addCommond_sgin()
 {
     //添加命令
-    addcommondwidget * addcwidget = new addcommondwidget();
+    addcwidget = new addcommondwidget();
+    connect(addcwidget,SIGNAL(send_addCommond(QString, QString)),this,SLOT(rece_addCommond(QString, QString)));
     addcwidget->show();
 }
 
 void sshwidget::rece_mkdirFolder_sgin()
 {
     //创建文件夹
-    mkdirfolderwidget * mkdirfwidget = new mkdirfolderwidget();
+    mkdirfwidget = new mkdirfolderwidget();
+    connect(mkdirfwidget,SIGNAL(send_mkdirFolder(QString)),this,SLOT(rece_mkdirFolder(QString)));
     mkdirfwidget->show();
 }
 
@@ -1894,4 +1909,15 @@ void sshwidget::rece_ssh_exec_init()
 void sshwidget::rece_ssh_sftp_init()
 {
     //初始化完成
+}
+
+void sshwidget::rece_addCommond(QString name, QString data) {
+    //添加命令
+    qDebug() << "rece_addCommond name = " << name  << " data = " << data;
+}
+
+void sshwidget::rece_mkdirFolder(QString data) {
+    //创建tab
+    qDebug() << "rece_addCommond data = " << data;
+    ui->tabWidget->addTab(new QWidget(this), data);
 }

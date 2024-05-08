@@ -357,6 +357,10 @@ private slots:
 
     void rece_ssh_sftp_init();
 
+    void rece_addCommond(QString name, QString data);
+
+    void rece_mkdirFolder(QString data);
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号
@@ -386,6 +390,9 @@ private:
     QVector<fileProgressWidget *> fwidgetList;
     downloadwidget * dlwidget = NULL;
     historycommondwidget * hcwidget = NULL;
+
+    addcommondwidget * addcwidget = NULL;
+    mkdirfolderwidget * mkdirfwidget = NULL;
 
     QString lastCommondS; //上一条命令
     QString lastData;  //上一条返回的数据

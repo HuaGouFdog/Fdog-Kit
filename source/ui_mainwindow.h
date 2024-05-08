@@ -376,6 +376,12 @@ public:
 "color: rgb(255, 255, 255);\n"
 "border: none;\n"
 "background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
 "}"));
         verticalLayout_12 = new QVBoxLayout(widget_side);
         verticalLayout_12->setSpacing(0);
@@ -2403,7 +2409,8 @@ public:
         font9.setWeight(50);
         widget_4->setFont(font9);
         widget_4->setStyleSheet(QLatin1String("background-color: rgb(217, 217, 217);\n"
-"font: 10pt \"OPPOSans B\";"));
+"font: 10pt \"OPPOSans B\";\n"
+"color: rgb(115, 115, 115);"));
         verticalLayout_13 = new QVBoxLayout(widget_4);
         verticalLayout_13->setSpacing(6);
         verticalLayout_13->setContentsMargins(11, 11, 11, 11);
@@ -3252,7 +3259,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(-1);
         stackedWidget_tool->setCurrentIndex(0);
 

@@ -1,4 +1,4 @@
-#ifndef MKDIRFOLDERWIDGET_H
+﻿#ifndef MKDIRFOLDERWIDGET_H
 #define MKDIRFOLDERWIDGET_H
 
 #include <QWidget>
@@ -14,6 +14,13 @@ class mkdirfolderwidget : public QWidget
 public:
     explicit mkdirfolderwidget(QWidget *parent = 0);
     ~mkdirfolderwidget();
+
+signals:
+    void send_mkdirFolder(QString data);
+private slots:
+    void on_toolButton_cancel_clicked();
+
+    void on_toolButton_ok_clicked();
 
 private:
     Ui::mkdirfolderwidget *ui;

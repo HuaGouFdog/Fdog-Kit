@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>853</width>
-    <height>508</height>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -318,7 +318,7 @@ QScrollBar::up-arrow:vertical {
               <x>0</x>
               <y>0</y>
               <width>231</width>
-              <height>388</height>
+              <height>400</height>
              </rect>
             </property>
             <property name="styleSheet">
