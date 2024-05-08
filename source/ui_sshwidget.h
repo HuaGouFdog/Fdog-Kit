@@ -134,9 +134,9 @@ public:
     QTextEdit *textEdit_4;
     QWidget *widget_8;
     QHBoxLayout *horizontalLayout_5;
-    QLabel *label;
-    QLabel *label_2;
-    QToolButton *toolButton_2;
+    QLabel *label_command;
+    QLabel *label_edit;
+    QToolButton *toolButton_edit;
     QSpacerItem *horizontalSpacer;
     QWidget *widget_4;
 
@@ -952,6 +952,22 @@ public:
 "	background-color: rgb(255, 255, 255);\n"
 "	border-radius: 10px;\n"
 "}*/\n"
+"QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
 "\n"
 "QMenu {\n"
 "\n"
@@ -977,7 +993,8 @@ public:
 "QMenu::icon:checked {\n"
 "    background: rgb(253,253,254);\n"
 "    position: absolute;\n"
-"    top: 1px;\n"
+"  "
+                        "  top: 1px;\n"
 "    right: 1px;\n"
 "    bottom: 1px;\n"
 "    left: 1px;\n"
@@ -989,8 +1006,7 @@ public:
 "QMenu::separator {\n"
 "    height: 2px;\n"
 "    background: rgb(235,235,236);\n"
-"    /*margin-left: 10p"
-                        "x;*/\n"
+"    /*margin-left: 10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
         horizontalLayout_2 = new QHBoxLayout(widget_bottom);
@@ -1254,30 +1270,31 @@ public:
         horizontalLayout_5 = new QHBoxLayout(widget_8);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(10, 5, 10, 5);
-        label = new QLabel(widget_8);
-        label->setObjectName(QStringLiteral("label"));
-        label->setFont(font);
-        label->setStyleSheet(QLatin1String("background-color: rgb(80, 130, 120);\n"
-"color: rgb(255, 255, 255);"));
-        label->setLineWidth(1);
-        label->setMargin(3);
-        label->setIndent(0);
+        label_command = new QLabel(widget_8);
+        label_command->setObjectName(QStringLiteral("label_command"));
+        label_command->setFont(font);
+        label_command->setStyleSheet(QLatin1String("background-color: rgb(80, 130, 120);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 2px;"));
+        label_command->setLineWidth(1);
+        label_command->setMargin(3);
+        label_command->setIndent(0);
 
-        horizontalLayout_5->addWidget(label);
+        horizontalLayout_5->addWidget(label_command);
 
-        label_2 = new QLabel(widget_8);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setFont(font);
-        label_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-        label_2->setMargin(2);
+        label_edit = new QLabel(widget_8);
+        label_edit->setObjectName(QStringLiteral("label_edit"));
+        label_edit->setFont(font);
+        label_edit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_edit->setMargin(2);
 
-        horizontalLayout_5->addWidget(label_2);
+        horizontalLayout_5->addWidget(label_edit);
 
-        toolButton_2 = new QToolButton(widget_8);
-        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
-        toolButton_2->setMinimumSize(QSize(0, 0));
-        toolButton_2->setFont(font);
-        toolButton_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_edit = new QToolButton(widget_8);
+        toolButton_edit->setObjectName(QStringLiteral("toolButton_edit"));
+        toolButton_edit->setMinimumSize(QSize(0, 0));
+        toolButton_edit->setFont(font);
+        toolButton_edit->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
@@ -1294,7 +1311,7 @@ public:
 "	border: none;\n"
 "}"));
 
-        horizontalLayout_5->addWidget(toolButton_2);
+        horizontalLayout_5->addWidget(toolButton_edit);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1363,8 +1380,8 @@ public:
         toolButton_conectStats->setText(QApplication::translate("sshwidget", "\345\261\236\346\200\247", nullptr));
         toolButton_toolkit->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
         toolButton_fullScreen->setText(QApplication::translate("sshwidget", "\345\205\250\345\261\217", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", "\351\273\230\350\256\244\345\210\206\347\261\273", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", "minic", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", " \351\273\230\350\256\244\345\210\206\347\261\273 ", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("sshwidget", " minic ", nullptr));
         textEdit_2->setHtml(QApplication::translate("sshwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -1386,7 +1403,7 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">111111111111111</p></body></html>", nullptr));
         pushButton->setText(QApplication::translate("sshwidget", "PushButton", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", "java", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("sshwidget", " java ", nullptr));
         progressBar_swap_2->setFormat(QApplication::translate("sshwidget", "%p%", nullptr));
         progressBar_cpu_2->setFormat(QApplication::translate("sshwidget", "%p%", nullptr));
         label_swap_2->setText(QApplication::translate("sshwidget", "\344\272\244\346\215\242", nullptr));
@@ -1413,10 +1430,10 @@ public:
                         "lor:#ff0000;\">qe</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">wqe</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">q</span></p></body></html>", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("sshwidget", "\346\211\223\345\214\205", nullptr));
-        label->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
-        label_2->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));
-        toolButton_2->setText(QApplication::translate("sshwidget", "\347\274\226\350\276\221", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("sshwidget", " \346\211\223\345\214\205 ", nullptr));
+        label_command->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));
+        label_edit->setText(QApplication::translate("sshwidget", "/data/linkdood/im/bin/databack/databak -c ", nullptr));
+        toolButton_edit->setText(QApplication::translate("sshwidget", "\347\274\226\350\276\221", nullptr));
     } // retranslateUi
 
 };

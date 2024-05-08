@@ -357,9 +357,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     //获取当前tab页widget
     QWidget * cWidget = ui->tabWidget->currentWidget();
-    FlowLayout *flowLayout = new FlowLayout(10, 5, 5);
+    FlowLayout *flowLayout = new FlowLayout(5, 0, 0);
     for(int i = 0; i< 20; i++) {
-       flowLayout->addWidget(new QPushButton("命令" + QString::number(i)));
+        flowLayout->addWidget(createCommand("命令" + QString::number(i), "xxxxxxxxxxxxxxxxxxx"));
+       //flowLayout->addWidget(new QPushButton("命令" + QString::number(i)));
     }
     flowLayout->setSpacing(30);
     cWidget->setLayout(flowLayout);
@@ -373,6 +374,33 @@ sshwidget::~sshwidget()
     // delete m_sshhandle;
     // delete m_sshhandle2;
     delete ui;
+}
+
+QWidget * sshwidget::createCommand(QString name, QString data) {
+    QWidget * widget = new QWidget();
+    //widget->setObjectName(name);
+
+    QToolButton * button_name = new QToolButton();
+    button_name->setText(name);
+    button_name->setStyleSheet("background-color: rgba(200, 200, 200, 0);");
+    connect (button_name,SIGNAL(clicked()),this,SLOT(rece_clicked_run()));
+
+    QToolButton * button = new QToolButton();
+    button->setText(name);
+    button->setIcon(QIcon((":lib/setting.png")));
+    button->setStyleSheet("background-color: rgba(200, 200, 200, 0);");
+    connect (button,SIGNAL(clicked()),this,SLOT(rece_clicked_edit()));
+
+    commondList[name] = data;
+    QHBoxLayout* layout = new QHBoxLayout();
+    layout->setSpacing(0);
+    layout->setContentsMargins(4, 2, 2, 2);
+    layout->addWidget(button_name);
+    layout->addWidget(button);
+    widget->setLayout(layout);
+    widget->setStyleSheet("QWidget:hover{background-color: rgba(200, 200, 200, 100); border-radius:5px;}");
+    widget->setMaximumHeight(25);
+    return widget;
 }
 
 void sshwidget::sendCommandData(QString data)
@@ -1914,10 +1942,41 @@ void sshwidget::rece_ssh_sftp_init()
 void sshwidget::rece_addCommond(QString name, QString data) {
     //添加命令
     qDebug() << "rece_addCommond name = " << name  << " data = " << data;
+    QWidget * commondWidget = createCommand(name, data);
+    QWidget * cWidget = ui->tabWidget->currentWidget();
+    cWidget->layout()->addWidget(commondWidget);
 }
 
 void sshwidget::rece_mkdirFolder(QString data) {
     //创建tab
     qDebug() << "rece_addCommond data = " << data;
     ui->tabWidget->addTab(new QWidget(this), data);
+}
+
+void sshwidget::rece_clicked_run()
+{
+    QToolButton *button = qobject_cast<QToolButton*>(sender());
+    if (button) {
+        ui->label_command->setText(button->text());
+        ui->label_edit->clear();
+        ui->label_edit->setText(commondList[button->text()]);
+        qDebug() << "执行" << button->text() << "命令:" << commondList[button->text()];
+        sendCommandData(commondList[button->text()]);
+    }
+}
+
+void sshwidget::rece_clicked_edit()
+{
+    QToolButton *button = qobject_cast<QToolButton*>(sender());
+    if (button) {
+        ui->label_command->setText(button->text());
+        ui->label_edit->clear();
+        ui->label_edit->setText(commondList[button->text()]);
+        //qDebug() << "执行" << button->text() << "命令:" << commondList[button->text()];
+    }
+}
+
+void sshwidget::on_toolButton_edit_clicked()
+{
+    //修改
 }

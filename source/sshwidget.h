@@ -234,6 +234,8 @@ public:
         KeepAnchor
     };
 
+    QWidget * createCommand(QString name, QString data);
+
     //发送命令
     void sendCommandData(QString data);
     //发送上传命令
@@ -361,6 +363,12 @@ private slots:
 
     void rece_mkdirFolder(QString data);
 
+    void rece_clicked_run();
+
+    void rece_clicked_edit();
+
+    void on_toolButton_edit_clicked();
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号
@@ -393,6 +401,8 @@ private:
 
     addcommondwidget * addcwidget = NULL;
     mkdirfolderwidget * mkdirfwidget = NULL;
+
+    QMap<QString, QString> commondList;
 
     QString lastCommondS; //上一条命令
     QString lastData;  //上一条返回的数据

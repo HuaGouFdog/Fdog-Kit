@@ -1707,6 +1707,22 @@ QToolButton:hover {
 	background-color: rgb(255, 255, 255);
 	border-radius: 10px;
 }*/
+QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
 
 QMenu {
 
@@ -1876,17 +1892,17 @@ QTabBar QToolButton:hover {
                </property>
                <widget class="QWidget" name="tab">
                 <attribute name="title">
-                 <string>默认分类</string>
+                 <string> 默认分类 </string>
                 </attribute>
                </widget>
                <widget class="QWidget" name="tab_2">
                 <attribute name="title">
-                 <string>minic</string>
+                 <string> minic </string>
                 </attribute>
                </widget>
                <widget class="QWidget" name="tab_3">
                 <attribute name="title">
-                 <string>java</string>
+                 <string> java </string>
                 </attribute>
                 <widget class="QTextEdit" name="textEdit_2">
                  <property name="geometry">
@@ -1985,7 +2001,7 @@ p, li { white-space: pre-wrap; }
                </widget>
                <widget class="QWidget" name="tab_4">
                 <attribute name="title">
-                 <string>打包</string>
+                 <string> 打包 </string>
                 </attribute>
                 <widget class="QProgressBar" name="progressBar_swap_2">
                  <property name="geometry">
@@ -2393,7 +2409,7 @@ p, li { white-space: pre-wrap; }
                  <number>5</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label">
+                 <widget class="QLabel" name="label_command">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -2403,7 +2419,8 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(80, 130, 120);
-color: rgb(255, 255, 255);</string>
+color: rgb(255, 255, 255);
+border-radius: 2px;</string>
                   </property>
                   <property name="lineWidth">
                    <number>1</number>
@@ -2420,7 +2437,7 @@ color: rgb(255, 255, 255);</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_2">
+                 <widget class="QLabel" name="label_edit">
                   <property name="font">
                    <font>
                     <family>OPPOSans B</family>
@@ -2440,7 +2457,7 @@ color: rgb(255, 255, 255);</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="toolButton_2">
+                 <widget class="QToolButton" name="toolButton_edit">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
