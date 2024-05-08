@@ -710,7 +710,28 @@ void sshwidget::rece_channel_readS(QStringList data)
         }
 
         if (lastCommondS == "\u001BOB") {
-            if (data[i] == "<br>") {
+            if (data[i] == "\b") {
+                qDebug() << "BOD走到这里2" << " i = " << i;
+                sum++;
+                QString previousChar = movePositionRightSelect(sshwidget::KeepAnchor, 1);
+                //qDebug() << "1前一个字符为" << previousChar2;
+                isChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+
+                if(isChinese) {
+                    if (ChineseBackspaceSum!= 0) {
+                        movePositionRight(sshwidget::MoveAnchor, 1);
+                        isChinese = false;
+                        ChineseBackspaceSum = 0;
+                        qDebug() << "走了这里？2";
+                    } else {
+                        //记录
+                        isChinese = true;
+                        ChineseBackspaceSum++;
+                    }
+                } else {
+                    movePositionRight(sshwidget::MoveAnchor, 1);
+                }
+            } else if (data[i] == "<br>") {
                 QTextCursor tc = textEdit_s->textCursor(); //当前光标
                 QTextLayout *lay = tc.block().layout();
                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
@@ -866,7 +887,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             continue;
         //} else if (data[i] == "\u001BOD") {
         } else if (data[i] == "\b") {
-            qDebug() << "BOD走到这里";
+            qDebug() << "BOD走到这里" << " i = " << i;
             sum++;
             QString previousChar = movePositionRightSelect(sshwidget::KeepAnchor, 1);
             //qDebug() << "1前一个字符为" << previousChar2;
@@ -877,6 +898,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     movePositionRight(sshwidget::MoveAnchor, 1);
                     isChinese = false;
                     ChineseBackspaceSum = 0;
+                    qDebug() << "走了这里？";
                 } else {
                     //记录
                     isChinese = true;
@@ -1117,9 +1139,23 @@ void sshwidget::rece_channel_readS(QStringList data)
                     qDebug() << "不需要移动";
                 }
                 if (columnCount > 0) {
-                    qDebug() << "移动" << columnCount << "列";  //8
                     movePositionStartLine(sshwidget::MoveAnchor);
-                    movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    int length_ = getTolineLength();
+                    qDebug() << "移动到" << columnCount << "列" << " 当前光标到行尾部 距离" << length_;
+                    if (columnCount <= length_) {
+                        //长度够直接移动
+                        movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    } else {
+                        //如果长度不够直接移动，会移动到下一行,所以移动之前先补空格，权宜之计，后面会正整行生成空格
+                        int diff = columnCount - length_;
+                        qDebug() << "补" << diff << "个空格";
+                        for(int i =0; i< diff; i++) {
+                            sendData("&nbsp;");
+                        }
+                        movePositionStartLine(sshwidget::MoveAnchor);
+                        movePositionLeft(sshwidget::MoveAnchor, columnCount);
+                    }
+                    
                     // qDebug() << "移动" << moveCount << "行";    //1 
                     // movePositionDown(sshwidget::MoveAnchor, moveCount);
                     QTextCursor tc = ui->textEdit->textCursor(); //当前光标
