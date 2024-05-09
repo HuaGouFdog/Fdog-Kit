@@ -378,10 +378,11 @@ sshwidget::~sshwidget()
 
 QWidget * sshwidget::createCommand(QString name, QString data) {
     QWidget * widget = new QWidget();
-    //widget->setObjectName(name);
-
+    widget->setObjectName(name);
+    //widget->setText(name);
     QToolButton * button_name = new QToolButton();
     button_name->setText(name);
+    button_name->setObjectName(name);
     button_name->setStyleSheet("background-color: rgba(200, 200, 200, 0);");
     connect (button_name,SIGNAL(clicked()),this,SLOT(rece_clicked_run()));
 
@@ -1831,7 +1832,7 @@ void sshwidget::rece_addCommond_sgin()
 {
     //添加命令
     addcwidget = new addcommondwidget();
-    connect(addcwidget,SIGNAL(send_addCommond(QString, QString)),this,SLOT(rece_addCommond(QString, QString)));
+    connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString)),this,SLOT(rece_addCommond(QString, QString, QString)));
     addcwidget->show();
 }
 
@@ -1939,12 +1940,59 @@ void sshwidget::rece_ssh_sftp_init()
     //初始化完成
 }
 
-void sshwidget::rece_addCommond(QString name, QString data) {
+void sshwidget::rece_addCommond(QString name, QString data, QString oldData) {
     //添加命令
     qDebug() << "rece_addCommond name = " << name  << " data = " << data;
-    QWidget * commondWidget = createCommand(name, data);
-    QWidget * cWidget = ui->tabWidget->currentWidget();
-    cWidget->layout()->addWidget(commondWidget);
+    if (oldData == "") {
+        qDebug() << "新增";
+        QWidget * commondWidget = createCommand(name, data);
+        QWidget * cWidget = ui->tabWidget->currentWidget();
+        cWidget->layout()->addWidget(commondWidget);
+    } else {
+        qDebug() << "修改";
+        //查找原name所属
+        QString oldName = ui->label_command->text();
+        //遍历当前命令查找oldName
+        //
+        QWidget * cWidget = ui->tabWidget->currentWidget();
+        QObjectList children = cWidget->children();
+        foreach(QObject *child, children) {
+            if (QWidget *childWidget = qobject_cast<QWidget*>(child)) {
+                // 这里可以对子部件执行操作，比如打印部件的类型或者执行其他操作
+                qDebug() << "Found child widget: " << childWidget->objectName();
+                if (childWidget->objectName() == oldName) {
+                    qDebug() << "找到需要修改的部件widget";
+                    QObjectList children2 = childWidget->children();
+                    foreach(QObject *child, children2) {
+                        if (QToolButton *button = qobject_cast<QToolButton *>(child)) {
+                            qDebug() << "Found child widget: " << button->text();
+                            if (button->text() == oldName) {
+                                qDebug() << "找到需要修改的部件button";
+                                button->setText(name);
+                                //删除旧数据
+                                commondList.remove(oldName);
+                                commondList[name] = data;
+                                ui->label_command->setText(name);
+                                ui->label_edit->setText(data);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (ui->label_command->text() == name) {
+            //没有修改命令名字
+        } else {
+            //修改了命令名字
+        }
+
+        if (ui->label_edit->text() == data) {
+            //没有修改命令
+        } else {
+            //修改了命令
+        }
+    }
 }
 
 void sshwidget::rece_mkdirFolder(QString data) {
@@ -1979,4 +2027,8 @@ void sshwidget::rece_clicked_edit()
 void sshwidget::on_toolButton_edit_clicked()
 {
     //修改
+    addcwidget = new addcommondwidget(ui->label_command->text(), ui->label_edit->text());
+    //addcwidget->textEdit_date
+    connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString)),this,SLOT(rece_addCommond(QString, QString, QString)));
+    addcwidget->show();
 }

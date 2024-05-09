@@ -1885,3 +1885,8 @@ void MainWindow::on_toolButton_side_home_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
+
+void MainWindow::on_toolButton_side_shell_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}

@@ -57,12 +57,13 @@ protected:
             QWidget *widget = static_cast<QWidget*>(object);
             if (event->type() == QEvent::Enter) {
                 // 当鼠标进入widget时增加宽度
-                widget->resize(widget->width() + 50, widget->height());
+                widget->resize(widget->width() + 10, widget->height());
+                widget->resize(widget->width(), widget->height() + 10);
             } else if (event->type() == QEvent::Leave) {
                 // 当鼠标离开widget时还原宽度
-                widget->resize(widget->width() - 50, widget->height());
+                widget->resize(widget->width() - 10, widget->height());
+                widget->resize(widget->width(), widget->height() - 10);
             }
-            return false;
         }
         // 继续传递事件
         return false;
@@ -188,6 +189,8 @@ private slots:
     void on_toolButton_side_about_clicked();
 
     void on_toolButton_side_home_clicked();
+
+    void on_toolButton_side_shell_clicked();
 
 private:
     Ui::MainWindow *ui;

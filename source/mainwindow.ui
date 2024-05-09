@@ -3974,13 +3974,13 @@ color: rgb(255, 255, 255);</string>
                <widget class="QWidget" name="widget_welcome_body_widget2" native="true">
                 <property name="minimumSize">
                  <size>
-                  <width>700</width>
+                  <width>300</width>
                   <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>700</width>
+                  <width>300</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -4639,7 +4639,7 @@ QScrollBar::up-arrow:horizontal {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>812</width>
+                      <width>1212</width>
                       <height>576</height>
                      </rect>
                     </property>

@@ -2203,8 +2203,8 @@ public:
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         widget_welcome_body_widget2 = new QWidget(page_main);
         widget_welcome_body_widget2->setObjectName(QStringLiteral("widget_welcome_body_widget2"));
-        widget_welcome_body_widget2->setMinimumSize(QSize(700, 0));
-        widget_welcome_body_widget2->setMaximumSize(QSize(700, 16777215));
+        widget_welcome_body_widget2->setMinimumSize(QSize(300, 0));
+        widget_welcome_body_widget2->setMaximumSize(QSize(300, 16777215));
         widget_welcome_body_widget2->setLayoutDirection(Qt::LeftToRight);
         widget_welcome_body_widget2->setStyleSheet(QLatin1String("#widget_welcome_body_widget2{\n"
 "background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\n"
@@ -2585,7 +2585,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 812, 576));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1212, 576));
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 6000));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
