@@ -6,6 +6,15 @@
 #include <QUrl>
 #include <QJsonParseError>
 #include <QXmlStreamReader>
+#include "utils.h"
+
+toolswidget::toolswidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::toolswidget)
+{
+    ui->setupUi(this);
+}
+
 toolswidget::toolswidget(int8_t connectType, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::toolswidget)
@@ -21,13 +30,8 @@ toolswidget::~toolswidget()
 
 void toolswidget::on_textEdit_json_source_textChanged()
 {
-    QJsonParseError error;
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(ui->textEdit_json_source->toPlainText().toUtf8(), &error);
-        if (error.error == QJsonParseError::NoError && !jsonDoc.isNull()) {
-            // 格式化为可读的字符串
-            QString formattedJson = jsonDoc.toJson(QJsonDocument::Indented);
-            ui->textEdit_json_target->setPlainText(formattedJson);
-        }
+    ui->textEdit_json_target->clear();
+    utils_parsingJsonInfo(ui->textEdit_json_target, ui->plainTextEdit_json_source->toPlainText());
 }
 
 void formatXml(const QString& xmlData) {
@@ -75,4 +79,10 @@ void toolswidget::on_textEdit_xml_source_textChanged()
     //QXmlStreamReader xmlReader(ui->textEdit_xml_source->toPlainText());
     formatXml(ui->textEdit_xml_source->toPlainText());
 
+}
+
+void toolswidget::on_plainTextEdit_json_source_textChanged()
+{
+    ui->textEdit_json_target->clear();
+    utils_parsingJsonInfo(ui->textEdit_json_target, ui->plainTextEdit_json_source->toPlainText());
 }

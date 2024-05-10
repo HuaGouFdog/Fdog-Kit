@@ -49,6 +49,14 @@ void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &
 
 
 
+void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString);
+void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const int numberOfLayers);
+void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int numberOfLayers);
+
+
+//判断有没有非零数
+bool containsNonZeroDigit(const QString &str);
+
 
 class utils : public QWidget
 {

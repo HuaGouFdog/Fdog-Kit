@@ -482,8 +482,8 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         }
         else if(value.isDouble())
         {
-            //QString obj = QString("%1").arg(value.toDouble(), 0, 'f', 9);
-            QString obj = value.toString();
+            QString obj = QString("%1").arg(value.toDouble(), 0, 'f', 9);
+            //QString obj = value.toString();
             qDebug() << "obj = " << obj;
             //判断倒数9位有没有非零，如果都是零，显示整数
             if (!containsNonZeroDigit(obj.mid(obj.length() - 10))) {
