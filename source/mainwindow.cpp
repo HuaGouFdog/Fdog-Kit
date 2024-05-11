@@ -30,6 +30,7 @@
 #include <QListView>
 #include "utils.h"
 #include <QFormLayout>
+#include <QDesktopWidget>
 
 QVariant mySheetStyle(const QString & start, const QString & end, qreal progress)
 {
@@ -48,9 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     //setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
     ui->setupUi(this);
-
-    this->setGeometry(200,100,1200,750);
-
+    //this->setAttribute(Qt::WA_DeleteOnClose);
     //透明背景
     this->setAttribute(Qt::WA_TranslucentBackground);
 
@@ -59,11 +58,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     setContentsMargins(10, 10, 10, 10);
-    ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
+    //ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
     ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
 
-    this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
-
+    //this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
@@ -85,10 +83,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //不要直接给this，会报UpdateLayeredWindowIndirect failed
     ui->centralWidget->setGraphicsEffect(defaultShadow);
 
-
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect->setColor(QColor(20, 30, 36));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setColor(QColor(10, 31, 57));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
 
     ui->widget_side->setGraphicsEffect(effect);
@@ -103,12 +100,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-
     isPressedWidget = false;
     m_isMousePressed = false;
 
     setSupportStretch(true);
-
     ui->splitter->setStretchFactor(0,20);
     ui->splitter->setStretchFactor(1,2);
     //快捷键 F11 全屏
@@ -140,20 +135,16 @@ MainWindow::MainWindow(QWidget *parent) :
     men_tool->addAction(textTest);
     men_tool->addSeparator();
     ui->toolButton_tool->setMenu(men_tool);
-
     //connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(textTest, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    connect(zkVisual, SIGNAL(triggered()), this, SLOT(on_newTool()));
-
+    //connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    //connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    //connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    //connect(textTest, SIGNAL(triggered()), this, SLOT(on_newTool()));
+    //connect(zkVisual, SIGNAL(triggered()), this, SLOT(on_newTool()));
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(2);
 
-
     FlowLayout *flowLayout = new FlowLayout(10, 15, 15);
-
     //flowLayout->addWidget(new QPushButton(tr("Short")));
     //flowLayout->addWidget(new QPushButton(tr("Longer")));
     //flowLayout->addWidget(new QPushButton(tr("Different text")));
@@ -204,7 +195,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //ui->widget_welcome_body_widget2->hide();
 
-
     //m_flowlayout = new FlowLayout;
     //m_flowlayout->setMargin(0);
     //m_flowlayout->setSpacing(10, 10);
@@ -235,6 +225,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_about->hide();
     ui->widget_top_tool->hide();
 
+    ui->widget_25->hide();
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo2.png"));
@@ -256,6 +247,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // 连接定时器的timeout()信号到槽函数
     connect(timer,SIGNAL(timeout()), this,
                             SLOT(rece_showtimestamp()));
+
     // 启动定时器
     timer->start();
 
@@ -278,7 +270,6 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "Failed to open file.";
         return;
     }
-
     // 将JSON数据解析为QJsonDocument对象
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
@@ -559,12 +550,24 @@ MainWindow::MainWindow(QWidget *parent) :
         this->showFullScreen();
         isFullScreen = true;
     }
+
+    if (confInfo->startCenter == 1) {
+        QDesktopWidget dw;
+        int deskWidth = dw.width();
+        int deskHeight = dw.height();
+        this->setGeometry(deskWidth/2 - 1100/2,deskHeight/2 - 750/2,1100,750);
+        qDebug() << "居中显示";
+    } else {
+        this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),1100,750);
+        qDebug() << "不居中显示";
+    }
     confInfo->writeSettingConf();
     qRegisterAnimationInterpolator<QString>(mySheetStyle);
 }
 
 MainWindow::~MainWindow()
 {
+    qDebug() <<  "关闭MainWindow";
     delete ui;
 }
 
@@ -1889,4 +1892,25 @@ void MainWindow::on_toolButton_side_home_clicked()
 void MainWindow::on_toolButton_side_shell_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_toolButton_side_tool_clicked()
+{
+    //tswidget = new toolswidget(1);
+    if (tswidget == NULL) {
+        tswidget = new toolswidget();
+        tswidget->setObjectName("tswidget");
+        ui->stackedWidget->addWidget(tswidget);
+        tswidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            // 获取索引处的widget
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "tswidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
 }

@@ -8,43 +8,8 @@
 #include <iostream>
 #include <QStyleFactory>
 #include <QThreadPool>
-
-//class Counter : public QRunnable
-//{
-//public:
-//    Counter(zhandle_t* zh, const std::string& path){
-//        this->path = path;
-//        this->zh = zh;
-//    }
-//private:
-//    void run() {
-//        getChildrenRecursive(zh, path);
-//    }
-//    std::string path;
-//    zhandle_t* zh;
-//};
-
-//void getChildrenRecursive(zhandle_t* zh, const std::string& path)
-//{
-//    struct String_vector childNodes;
-//    int ret = zoo_get_children(zh, path.c_str(), 0, &childNodes);
-//    if (ret != ZOK) {
-//        std::cout << "Failed to get children nodes for path " << path << ": " << zerror(ret) << std::endl;
-//        return;
-//    }
-
-//    for (int i = 0; i < childNodes.count; ++i) {
-//        std::string childPath;
-//        if (path != "/") {
-//            childPath = path + "/" + childNodes.data[i];
-//        } else {
-//            childPath = path + childNodes.data[i];
-//        }
-//        //std::cout << "childPath = " << childPath << std::endl;
-//        getChildrenRecursive(zh, childPath, nodes);
-//    }
-//}
-
+#include "activate.h"
+#include "utils.h"
 void getChildrenRecursive(zhandle_t* zh, const std::string& path, std::vector<std::string>& nodes, int sum)
 {
     if (sum >= 3) {
@@ -70,6 +35,9 @@ void getChildrenRecursive(zhandle_t* zh, const std::string& path, std::vector<st
     }
 }
 
+
+extern bool signalReceived;
+
 int main(int argc, char *argv[])
 {
     if(QT_VERSION>=QT_VERSION_CHECK(5,6,0))
@@ -88,41 +56,21 @@ int main(int argc, char *argv[])
     } else {
         qDebug() << "错误";
     }
+
+#if 0
     MainWindow w;
     w.show();
-
-    // 连接到ZooKeeper服务器
-//    QElapsedTimer timer;
-//    timer.start();
-//    zhandle_t* zh = zookeeper_init("172.16.8.153:11100", nullptr, 10000, nullptr, nullptr, 0);
-//    if (!zh) {
-//        std::cout << "Failed to connect to ZooKeeper server!" << std::endl;
-//        return -1;
-//    }
-
-//    // 指定要获取节点的路径
-//    std::string path = "/";
-
-//    // 获取指定节点及其所有子节点
-//    std::vector<std::string> nodes;
-//    getChildrenRecursive(zh, path, nodes, 1);
-
-//    qint64 elapsedMilliseconds = timer.elapsed();
-//    std::cout << "响应时间：" << elapsedMilliseconds << "ms" << std::endl;
-
-//    // 打印节点信息
-//    std::cout << "Nodes under " << path << ":" << std::endl;
-//    for (const auto& node : nodes) {
-//        std::cout << node << std::endl;
-//    }
-
-
-//    // 关闭ZooKeeper连接
-//    zookeeper_close(zh);
-
-//    find w;
-//    w.show();
-      //thriftwidget w;
-      //w.show();
+#endif
+#if 1
+    Activate aw;
+    aw.show();
+    while(!signalReceived) {
+        a.processEvents(); //防止界面出现无响应
+    }
+    MainWindow w;
+    qDebug() <<  "显示w";
+    //aw.close();
+    w.show();
+#endif
     return a.exec();
 }

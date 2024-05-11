@@ -242,6 +242,7 @@ Makefile: FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resolve_config.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds_post.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_post.prf \
+		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\console.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\precompile_header.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\warn_on.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt.prf \
@@ -252,13 +253,11 @@ Makefile: FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\uic.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qmake_use.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\file_copies.prf \
-		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\windows.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testcase_targets.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exceptions.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\yacc.prf \
 		..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\lex.prf \
 		FdogShell.pro \
-		..\..\Qt5.12\5.10.0\msvc2015_64\lib\qtmain.prl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgets.prl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Gui.prl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Test.prl \
@@ -432,6 +431,7 @@ Makefile: FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\resolve_config.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exclusive_builds_post.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\default_post.prf:
+..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\console.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\precompile_header.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\warn_on.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qt.prf:
@@ -442,13 +442,11 @@ Makefile: FdogShell.pro ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\win32-msvc\qmake
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\uic.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\qmake_use.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\file_copies.prf:
-..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\win32\windows.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\testcase_targets.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\exceptions.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\yacc.prf:
 ..\..\Qt5.12\5.10.0\msvc2015_64\mkspecs\features\lex.prf:
 FdogShell.pro:
-..\..\Qt5.12\5.10.0\msvc2015_64\lib\qtmain.prl:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Widgets.prl:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Gui.prl:
 ..\..\Qt5.12\5.10.0\msvc2015_64\lib\Qt5Test.prl:

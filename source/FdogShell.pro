@@ -51,7 +51,8 @@ SOURCES += \
     thriftwidget.cpp \
     zookeepertipswidget.cpp \
     zookeepermanagewidget.cpp \
-    flowlayout.cpp
+    flowlayout.cpp \
+    activate.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -80,7 +81,8 @@ HEADERS += \
     thriftwidget.h \
     zookeepertipswidget.h \
     zookeepermanagewidget.h \
-    flowlayout.h
+    flowlayout.h \
+    activate.h
 
 FORMS += \
         mainwindow.ui \
@@ -102,7 +104,8 @@ FORMS += \
     historycommondwidget.ui \
     thriftwidget.ui \
     zookeepertipswidget.ui \
-    zookeepermanagewidget.ui
+    zookeepermanagewidget.ui \
+    activate.ui
 
 RESOURCES += \
     lib.qrc \
@@ -131,5 +134,5 @@ RC_ICONS = lib/Fdogicon.ico
 
 
 QT.testlib.CONFIG -= console
-
+CONFIG += console
 CONFIG += resources_big

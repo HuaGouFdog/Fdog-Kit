@@ -14,6 +14,9 @@
 #include <QKeyEvent>
 #include <QJsonObject>
 #include <QJsonArray>
+
+bool signalReceived = false;
+
 AnimatedCheckBox::AnimatedCheckBox(bool isChecked, QWidget *parent) : QCheckBox (parent)
 {
     indicator = new QLabel(this);
@@ -482,8 +485,8 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         }
         else if(value.isDouble())
         {
-            //QString obj = QString("%1").arg(value.toDouble(), 0, 'f', 9);
-            QString obj = value.toString();
+            QString obj = QString("%1").arg(value.toDouble(), 0, 'f', 9);
+            //QString obj = value.toString();
             qDebug() << "obj = " << obj;
             //判断倒数9位有没有非零，如果都是零，显示整数
             if (!containsNonZeroDigit(obj.mid(obj.length() - 10))) {
@@ -589,8 +592,8 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
         }
         else if(jsonValueType == QJsonValue::Double)
         {
-            //QString obj = QString("%1").arg(ref.toDouble(), 0, 'f', 9);
-            QString obj = ref.toString();
+            QString obj = QString("%1").arg(ref.toDouble(), 0, 'f', 9);
+            //QString obj = ref.toString();
             qDebug() << "obj = " << obj;
             //判断倒数9位有没有非零，如果都是零，显示整数
             if (!containsNonZeroDigit(obj.mid(obj.length()-10))) {

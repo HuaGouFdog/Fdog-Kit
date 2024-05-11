@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Activate</class>
+ <widget class="QWidget" name="Activate">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>447</width>
+    <height>92</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Activate_widget{
+background-color:rgb(56,58,89);
+color:rgb(220,220,220);
+border-radius:10px;
+}
+QProgressBar{
+background-color:rgb(98,114,164);
+color:rgb(200,200,200);
+border-style:none;
+border-radius:10px;
+text-align:center;
+}
+QProgressBar::chunk{
+border-radius:10px;
+background-color: qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.523, stop:0 rgba(254, 121, 199, 255), stop:1 rgba(170, 85, 255, 255));
+}</string>
+  </property>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>421</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>OPPOSans B</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
