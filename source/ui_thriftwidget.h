@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
@@ -138,16 +139,20 @@ public:
     QSpacerItem *horizontalSpacer_5;
     QStackedWidget *stackedWidget;
     QWidget *page;
-    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_15;
+    QSplitter *splitter_4;
     QTabWidget *tabWidget_response;
     QWidget *tab_3;
     QVBoxLayout *verticalLayout_8;
-    QLabel *label_headers;
     QTextEdit *textEdit_data;
     QWidget *tab_source;
     QHBoxLayout *horizontalLayout_12;
     QTextEdit *textEdit_info;
     QTextEdit *textEdit;
+    QWidget *widget_2;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *label_4;
+    QPlainTextEdit *plainTextEdit;
     QWidget *page_request;
     QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_15;
@@ -172,6 +177,8 @@ public:
     QLabel *label_req;
     QSpacerItem *horizontalSpacer_7;
     QLabel *label_time;
+    QSpacerItem *horizontalSpacer_24;
+    QLabel *label_headers;
     QSpacerItem *horizontalSpacer_6;
     QWidget *page_3;
 
@@ -250,7 +257,7 @@ public:
         horizontalLayout_4 = new QHBoxLayout(thriftwidget);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(20, 0, 5, 10);
+        horizontalLayout_4->setContentsMargins(20, 0, 5, 5);
         splitter_3 = new QSplitter(thriftwidget);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
@@ -816,7 +823,7 @@ public:
         comboBox_port->setObjectName(QStringLiteral("comboBox_port"));
         sizePolicy.setHeightForWidth(comboBox_port->sizePolicy().hasHeightForWidth());
         comboBox_port->setSizePolicy(sizePolicy);
-        comboBox_port->setMinimumSize(QSize(230, 30));
+        comboBox_port->setMinimumSize(QSize(100, 30));
         comboBox_port->setMaximumSize(QSize(230, 16777215));
         comboBox_port->setStyleSheet(QStringLiteral("color:#ced4da;"));
         comboBox_port->setEditable(true);
@@ -952,7 +959,7 @@ public:
         comboBox_transport->addItem(QString());
         comboBox_transport->addItem(QString());
         comboBox_transport->setObjectName(QStringLiteral("comboBox_transport"));
-        comboBox_transport->setMinimumSize(QSize(170, 30));
+        comboBox_transport->setMinimumSize(QSize(50, 30));
         comboBox_transport->setFont(font);
         comboBox_transport->setStyleSheet(QStringLiteral("color:#ced4da;"));
 
@@ -973,7 +980,7 @@ public:
         comboBox_protocol = new QComboBox(horizontalWidget_2);
         comboBox_protocol->addItem(QString());
         comboBox_protocol->setObjectName(QStringLiteral("comboBox_protocol"));
-        comboBox_protocol->setMinimumSize(QSize(160, 30));
+        comboBox_protocol->setMinimumSize(QSize(150, 30));
         comboBox_protocol->setFont(font);
         comboBox_protocol->setStyleSheet(QStringLiteral("color:#ced4da;"));
 
@@ -1051,7 +1058,7 @@ public:
 
         lineEdit_funcName = new QLineEdit(horizontalWidget);
         lineEdit_funcName->setObjectName(QStringLiteral("lineEdit_funcName"));
-        lineEdit_funcName->setMinimumSize(QSize(400, 30));
+        lineEdit_funcName->setMinimumSize(QSize(50, 30));
         lineEdit_funcName->setMaximumSize(QSize(1111111, 16777215));
         lineEdit_funcName->setFont(font);
         lineEdit_funcName->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -1692,7 +1699,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(false);
+        treeWidget->header()->setVisible(true);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1845,15 +1852,17 @@ public:
 ""));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        verticalLayout_4 = new QVBoxLayout(page);
-        verticalLayout_4->setSpacing(0);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        tabWidget_response = new QTabWidget(page);
+        horizontalLayout_15 = new QHBoxLayout(page);
+        horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
+        horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
+        splitter_4 = new QSplitter(page);
+        splitter_4->setObjectName(QStringLiteral("splitter_4"));
+        splitter_4->setOrientation(Qt::Horizontal);
+        tabWidget_response = new QTabWidget(splitter_4);
         tabWidget_response->setObjectName(QStringLiteral("tabWidget_response"));
         QFont font6;
         font6.setFamily(QStringLiteral("OPPOSans B"));
-        font6.setPointSize(10);
+        font6.setPointSize(11);
         font6.setBold(false);
         font6.setUnderline(false);
         font6.setWeight(50);
@@ -1872,14 +1881,14 @@ public:
 "	color: rgb(56, 56, 56);\n"
 "	border-top-left-radius: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	border-top-right-radius: 0px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	width:70px;\n"
+"	/*width:70px;*/\n"
 "	padding: 5px;\n"
 "	/*margin-right:0px;\n"
 "	margin-left: 0px;*/\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204"
-                        "tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232"
+                        "\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:selected{\n"
 "	/*background-color: rgb(15, 15, 15);*/\n"
 "	/*border-top:3px solid rgb(108, 117, 125, 65); */\n"
@@ -1904,8 +1913,8 @@ public:
 "	border-image: url(:/lib/icon-close4.png);\n"
 "}\n"
 "\n"
-"QTabBar::close-button:selec"
-                        "ted{\n"
+"QTabBar::close-button:s"
+                        "elected{\n"
 "	border-image: url(:/lib/icon-close4.png);\n"
 "}\n"
 "\n"
@@ -1936,21 +1945,7 @@ public:
         verticalLayout_8 = new QVBoxLayout(tab_3);
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(-1, 0, -1, -1);
-        label_headers = new QLabel(tab_3);
-        label_headers->setObjectName(QStringLiteral("label_headers"));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(label_headers->sizePolicy().hasHeightForWidth());
-        label_headers->setSizePolicy(sizePolicy3);
-        label_headers->setMinimumSize(QSize(0, 30));
-        label_headers->setMaximumSize(QSize(16777215, 30));
-        label_headers->setFont(font);
-        label_headers->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-
-        verticalLayout_8->addWidget(label_headers);
-
+        verticalLayout_8->setContentsMargins(-1, 9, -1, -1);
         textEdit_data = new QTextEdit(tab_3);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
         textEdit_data->setFont(font);
@@ -1988,21 +1983,51 @@ public:
         textEdit = new QTextEdit(tab_source);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         QFont font7;
-        font7.setFamily(QStringLiteral("Cascadia Code"));
-        font7.setPointSize(11);
-        font7.setStyleStrategy(QFont::PreferAntialias);
+        font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font7.setPointSize(10);
+        font7.setBold(false);
+        font7.setItalic(false);
+        font7.setWeight(7);
         textEdit->setFont(font7);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
-"border-radius: 2px;"));
+"border-radius: 2px;\n"
+"font: 63 10pt \"Cascadia Code SemiBold\";"));
         textEdit->setFrameShape(QFrame::Box);
         textEdit->setReadOnly(true);
 
         horizontalLayout_12->addWidget(textEdit);
 
         tabWidget_response->addTab(tab_source, QString());
+        splitter_4->addWidget(tabWidget_response);
+        widget_2 = new QWidget(splitter_4);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        verticalLayout_4 = new QVBoxLayout(widget_2);
+        verticalLayout_4->setSpacing(8);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        label_4 = new QLabel(widget_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        QFont font8;
+        font8.setFamily(QStringLiteral("OPPOSans B"));
+        font8.setPointSize(11);
+        label_4->setFont(font8);
 
-        verticalLayout_4->addWidget(tabWidget_response);
+        verticalLayout_4->addWidget(label_4);
+
+        plainTextEdit = new QPlainTextEdit(widget_2);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        QFont font9;
+        font9.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font9.setPointSize(10);
+        plainTextEdit->setFont(font9);
+        plainTextEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+"border-radius: 2px;"));
+
+        verticalLayout_4->addWidget(plainTextEdit);
+
+        splitter_4->addWidget(widget_2);
+
+        horizontalLayout_15->addWidget(splitter_4);
 
         stackedWidget->addWidget(page);
         page_request = new QWidget();
@@ -2032,9 +2057,6 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        QFont font8;
-        font8.setFamily(QStringLiteral("OPPOSans B"));
-        font8.setPointSize(11);
         label_13->setFont(font8);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
@@ -2144,6 +2166,25 @@ public:
 "padding-right:10px;"));
 
         horizontalLayout_6->addWidget(label_time);
+
+        horizontalSpacer_24 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_24);
+
+        label_headers = new QLabel(widget_response_bottom);
+        label_headers->setObjectName(QStringLiteral("label_headers"));
+        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(label_headers->sizePolicy().hasHeightForWidth());
+        label_headers->setSizePolicy(sizePolicy3);
+        label_headers->setMinimumSize(QSize(0, 20));
+        label_headers->setMaximumSize(QSize(16777215, 20));
+        label_headers->setFont(font);
+        label_headers->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_headers->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout_6->addWidget(label_headers);
 
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -2288,15 +2329,14 @@ public:
         ___qtreewidgetitem->setText(1, QApplication::translate("thriftwidget", "\345\217\202\346\225\260\345\220\215", nullptr));
         ___qtreewidgetitem->setText(0, QApplication::translate("thriftwidget", "\345\272\217\345\217\267", nullptr));
         label_response_param->setText(QApplication::translate("thriftwidget", "\347\273\223\346\236\234", nullptr));
-        checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256/\347\273\223\346\236\234\346\272\220\346\225\260\346\215\256", nullptr));
+        checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
-        label_headers->setText(QString());
         textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "Data", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "  Data  ", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2347,15 +2387,30 @@ public:
         textEdit->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cascadia Code'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Courier New'; font-size:12pt;\"><br /></p></body></html>", nullptr));
-        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "Source", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:56; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:24;\"><br /></p></body></html>", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "  \344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256  ", nullptr));
+        label_4->setText(QApplication::translate("thriftwidget", "\347\274\226\350\276\221\345\214\272", nullptr));
+        plainTextEdit->setPlainText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256\357\274\232\n"
+"00000022  80010001  0000000a  67657442  6164776f  72640000  00000a00  01000000  \n"
+"00000001  2c000000  \n"
+"------------------------------------------------------------------------------\n"
+"\350\257\267\346\261\202\347\273\223\346\236\234\346\225\260\346\215\256\357\274\232\n"
+"0000004d  80010002  0000000a  67657442  6164776f  72640000  00000c00  000c0001  \n"
+"08000100  0000000b  00020000  00026f6b  0a000300  00000000  00010e00  0a000200  \n"
+"00000000  00010e0f  00030c00  00000000  0000\n"
+"------------------------------------------------------------------------------\n"
+"\346\237\223\350\211\262\346\225\260\346\215\256(\351\242\234\350\211\262\344\277\241\346\201\257\345\217\257\346\237\245\347\234\213thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216):\n"
+"0000004d800100020000000a676574426164776f7264000000000c00000c0001080001000000000b0002000000026f6b0a0003000000000000010e000a0002000000000000010e0f00"
+                        "030c00000000000000\n"
+"------------------------------------------------------------------------------", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));
         label_10->setText(QString());
         label_11->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\345\274\202\345\270\270", nullptr));
         label_req->setText(QString());
         label_time->setText(QApplication::translate("thriftwidget", "\345\223\215\345\272\224\346\227\266\351\227\264\357\274\232", nullptr));
+        label_headers->setText(QString());
     } // retranslateUi
 
 };

@@ -156,5 +156,19 @@
         <file>lib/server.png</file>
         <file>lib/soucuo2.png</file>
         <file>lib/caozuo.png</file>
+        <file>lib/windows.png</file>
+        <file>lib/Binary.png</file>
+        <file>lib/calculator.png</file>
+        <file>lib/encoding.png</file>
+        <file>lib/regular.png</file>
+        <file>lib/timestamp.png</file>
+        <file>lib/URL.png</file>
+        <file>lib/URL2.png</file>
+        <file>lib/note.png</file>
+        <file>lib/MD5.png</file>
+        <file>lib/right1.png</file>
+        <file>lib/left1.png</file>
+        <file>lib/linux.png</file>
+        <file>lib/qssmaihua.png</file>
     </qresource>
 </RCC>

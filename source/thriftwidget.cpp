@@ -721,17 +721,17 @@ thriftwidget::thriftwidget(QWidget *parent) :
      // 添加树节点到树控件中
     ui->treeWidget->addTopLevelItem(item);
 
-    int fontId = QFontDatabase::addApplicationFont(":fonts/CascadiaCode_VTT.ttf");
-    qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontId);
+    int fontId = QFontDatabase::addApplicationFont(":fonts/Cascadia-Code-Regular-2.ttf");
     QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+    qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontId) << " fontFamilies[0] = " << fontFamilies[0];
     if (fontFamilies.size() > 0)
     {
-        QFont font;// = QFontDatabase::applicationFont(fontId);
-        font.setFamily(fontFamilies[0]);//设置全局字体
-        // 设置控件字体
+        QFont font;
+        font.setFamily(fontFamilies[0]);
+        // // 设置控件字体
         ui->textEdit->setFont(font);
     } else {
-        qDebug() << "fonts/CascadiaCode_VTT.ttf错误";
+        qDebug() << "fonts/Cascadia-Code-Regular-2.ttf错误";
     }
 
     //ui->treeWidget->setStyle(QStyleFactory::create("fusion"));

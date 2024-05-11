@@ -277,6 +277,7 @@ public:
     {
         addcommondwidget->setWindowTitle(QApplication::translate("addcommondwidget", "\346\267\273\345\212\240\345\221\275\344\273\244", nullptr));
         label->setText(QApplication::translate("addcommondwidget", "\345\220\215\347\247\260\357\274\232", nullptr));
+        lineEdit_name->setText(QString());
         label_2->setText(QApplication::translate("addcommondwidget", "\345\221\275\344\273\244\357\274\232", nullptr));
         label_3->setText(QApplication::translate("addcommondwidget", "\346\217\222\345\205\245\345\217\202\346\225\260\357\274\210\345\212\250\346\200\201\347\224\237\346\210\220\345\221\275\344\273\244\357\274\211", nullptr));
         toolButton_param1->setText(QApplication::translate("addcommondwidget", "\345\217\202\346\225\2601", nullptr));

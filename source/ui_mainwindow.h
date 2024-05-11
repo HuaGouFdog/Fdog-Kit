@@ -178,7 +178,7 @@ public:
     QVBoxLayout *verticalLayout_6;
     QWidget *widget;
     QWidget *page_main;
-    QHBoxLayout *horizontalLayout_4;
+    QVBoxLayout *verticalLayout_16;
     QWidget *widget_welcome_body_widget2;
     QVBoxLayout *verticalLayout_7;
     QSpacerItem *verticalSpacer_8;
@@ -2196,15 +2196,15 @@ public:
         page_main->setObjectName(QStringLiteral("page_main"));
         page_main->setStyleSheet(QLatin1String("background-color: rgba(30, 45, 54,0);\n"
 "color: rgb(255, 255, 255);"));
-        horizontalLayout_4 = new QHBoxLayout(page_main);
-        horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_16 = new QVBoxLayout(page_main);
+        verticalLayout_16->setSpacing(6);
+        verticalLayout_16->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_16->setObjectName(QStringLiteral("verticalLayout_16"));
+        verticalLayout_16->setContentsMargins(0, 0, 0, 0);
         widget_welcome_body_widget2 = new QWidget(page_main);
         widget_welcome_body_widget2->setObjectName(QStringLiteral("widget_welcome_body_widget2"));
-        widget_welcome_body_widget2->setMinimumSize(QSize(300, 0));
-        widget_welcome_body_widget2->setMaximumSize(QSize(300, 16777215));
+        widget_welcome_body_widget2->setMinimumSize(QSize(0, 0));
+        widget_welcome_body_widget2->setMaximumSize(QSize(16777215, 16777215));
         widget_welcome_body_widget2->setLayoutDirection(Qt::LeftToRight);
         widget_welcome_body_widget2->setStyleSheet(QLatin1String("#widget_welcome_body_widget2{\n"
 "background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\n"
@@ -2400,7 +2400,7 @@ public:
 
         widget_4 = new QWidget(widget_25);
         widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setGeometry(QRect(10, 140, 661, 361));
+        widget_4->setGeometry(QRect(1230, 80, 311, 361));
         QFont font9;
         font9.setFamily(QStringLiteral("OPPOSans B"));
         font9.setPointSize(10);
@@ -2420,14 +2420,10 @@ public:
 
         verticalLayout_13->addWidget(toolButton_18);
 
-
-        verticalLayout_7->addWidget(widget_25);
-
-
-        horizontalLayout_4->addWidget(widget_welcome_body_widget2);
-
-        widget_body_left = new QWidget(page_main);
+        widget_body_left = new QWidget(widget_25);
         widget_body_left->setObjectName(QStringLiteral("widget_body_left"));
+        widget_body_left->setGeometry(QRect(360, 70, 771, 421));
+        widget_body_left->setMinimumSize(QSize(0, 0));
         widget_body_left->setStyleSheet(QLatin1String("#widget_body_left{\n"
 "\n"
 "}"));
@@ -2585,7 +2581,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1212, 576));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 748, 518));
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 6000));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
@@ -3241,7 +3237,10 @@ public:
         verticalLayout_8->addWidget(scrollArea);
 
 
-        horizontalLayout_4->addWidget(widget_body_left);
+        verticalLayout_7->addWidget(widget_25);
+
+
+        verticalLayout_16->addWidget(widget_welcome_body_widget2);
 
         stackedWidget->addWidget(page_main);
 

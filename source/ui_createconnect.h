@@ -1044,7 +1044,7 @@ public:
 
         retranslateUi(createconnect);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 
 
