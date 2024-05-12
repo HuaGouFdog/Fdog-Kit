@@ -13,23 +13,23 @@ createconnect::createconnect(int8_t connectType, QWidget *parent) :
     setWindowFlags(Qt::WindowCloseButtonHint);
     //选择显示的连接类型
     this->connectType = connectType;
-    setWindowTitle("新建终端");
-//    if (connectType == SSH_CONNECT_TYPE) {
-//        ui->stackedWidget->setCurrentIndex(connectType - 1);
-//        setWindowTitle("新建ssh连接");
-//    } else if (connectType == ZK_CONNECT_TYPE) {
-//        ui->stackedWidget->setCurrentIndex(connectType - 1);
-//        setWindowTitle("新建zookeeper连接");
-//    } else if (connectType == REDIS_CONNECT_TYPE) {
-//        ui->stackedWidget->setCurrentIndex(connectType - 1);
-//        setWindowTitle("新建redis连接");
-//    } else if (connectType == KAFKA_CONNECT_TYPE) {
-//        ui->stackedWidget->setCurrentIndex(connectType - 1);
-//        setWindowTitle("新建kafka连接");
-//    } else if (connectType == DB_CONNECT_TYPE) {
-//        ui->stackedWidget->setCurrentIndex(connectType - 1);
-//        setWindowTitle("新建database连接");
-//    }
+    //setWindowTitle("新建终端");
+    if (connectType == SSH_CONNECT_TYPE) {
+        ui->tabWidget->setCurrentIndex(connectType - 1);
+        setWindowTitle("新建ssh连接");
+    } else if (connectType == ZK_CONNECT_TYPE) {
+        ui->tabWidget->setCurrentIndex(connectType - 1);
+        setWindowTitle("新建zookeeper连接");
+    } else if (connectType == REDIS_CONNECT_TYPE) {
+        ui->tabWidget->setCurrentIndex(connectType - 1);
+        setWindowTitle("新建redis连接");
+    } else if (connectType == KAFKA_CONNECT_TYPE) {
+        ui->tabWidget->setCurrentIndex(connectType - 1);
+        setWindowTitle("新建kafka连接");
+    } else if (connectType == DB_CONNECT_TYPE) {
+        ui->tabWidget->setCurrentIndex(connectType - 1);
+        setWindowTitle("新建database连接");
+    }
 }
 
 createconnect::~createconnect()

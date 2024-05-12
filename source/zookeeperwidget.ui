@@ -36,6 +36,18 @@
     border-style:outset
 }
 
+QCheckBox::indicator{
+                width:16px;
+                height:16px;
+           }
+            QCheckBox::indicator::unchecked{
+                image:url(:/lib/gouxuan2.png);
+            }
+            QCheckBox::indicator::checked{
+                image:url(:/lib/gouxuan.png);
+            }
+
+
 QMenu {
 
 background-color:rgb(253,253,254);
@@ -246,7 +258,7 @@ border-right:2px solid rgba(108, 117, 125, 65);
              <string>自动url解码</string>
             </property>
             <property name="checked">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
            </widget>
           </item>

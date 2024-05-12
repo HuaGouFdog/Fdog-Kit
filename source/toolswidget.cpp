@@ -7,12 +7,21 @@
 #include <QJsonParseError>
 #include <QXmlStreamReader>
 #include "utils.h"
-
+#include <QGraphicsDropShadowEffect>
 toolswidget::toolswidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::toolswidget)
 {
     ui->setupUi(this);
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
+
+    ui->widget_left->setGraphicsEffect(effect);
+    //QAction *action = new QAction(this);
+    //action->setIcon(QIcon(":/lib/soucuo.png").pixmap(QSize(50, 50)));
+    //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
 }
 
 toolswidget::toolswidget(int8_t connectType, QWidget *parent) :
@@ -21,6 +30,16 @@ toolswidget::toolswidget(int8_t connectType, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(connectType - 1);
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
+
+    ui->widget_left->setGraphicsEffect(effect);
 }
 
 toolswidget::~toolswidget()
@@ -28,11 +47,11 @@ toolswidget::~toolswidget()
     delete ui;
 }
 
-void toolswidget::on_textEdit_json_source_textChanged()
-{
-    ui->textEdit_json_target->clear();
-    utils_parsingJsonInfo(ui->textEdit_json_target, ui->plainTextEdit_json_source->toPlainText());
-}
+// void toolswidget::on_textEdit_json_source_textChanged()
+// {
+//     ui->textEdit_json_target->clear();
+//     utils_parsingJsonInfo(ui->textEdit_json_target, ui->plainTextEdit_json_source->toPlainText());
+// }
 
 void formatXml(const QString& xmlData) {
     QXmlStreamReader xmlReader(xmlData);

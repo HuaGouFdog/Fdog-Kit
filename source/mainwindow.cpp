@@ -85,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect->setColor(QColor(10, 31, 57));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
 
     ui->widget_side->setGraphicsEffect(effect);
@@ -224,7 +224,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_tool->hide();
     ui->toolButton_about->hide();
     ui->widget_top_tool->hide();
-
+    ui->toolButton_side_about->hide();
     ui->widget_25->hide();
 
     QAction *action = new QAction(this);
@@ -257,311 +257,12 @@ MainWindow::MainWindow(QWidget *parent) :
     createSystemTray();
     //读取配置文件信息
     confInfo = new config();
-    /*
-    int selfStart = 0;
-    int trayDisplay = 0;
-    int startMode = 0;
-    int startPosition = 0;
-    int startCenter = 0;
-    */
     // 读取JSON文件
-    QFile file("conf//settings.json");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file.";
-        return;
-    }
-    // 将JSON数据解析为QJsonDocument对象
-    QJsonParseError error;
-    QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
-    if (error.error != QJsonParseError::NoError) {
-        qDebug() << "Failed to parse JSON:" << error.errorString();
-        //return -1;
-    }
+    confInfo->readSettingConf();
 
-    if (doc.isObject()) {
-        QJsonObject obj = doc.object();
-        QJsonValue activateValue = obj.value("activate");
-        if (activateValue.isObject()) {
-            QJsonObject activateObj = activateValue.toObject();
-
-            // 获取"selfStart"属性值
-            QJsonValue selfStartValue = activateObj.value("selfStart");
-            if (selfStartValue.isDouble()) {
-                confInfo->selfStart = selfStartValue.toInt();
-                //qDebug() << "selfStart:" << confInfo->selfStart;
-            }
-
-            // 获取"trayDisplay"属性值
-            QJsonValue trayDisplayValue = activateObj.value("trayDisplay");
-            if (trayDisplayValue.isDouble()) {
-                confInfo->trayDisplay = trayDisplayValue.toInt();
-                //qDebug() << "trayDisplay:" << confInfo->trayDisplay;
-            }
-
-            // 获取"startMode"属性值
-            QJsonValue startModeValue = activateObj.value("startMode");
-            if (startModeValue.isDouble()) {
-                confInfo->startMode = startModeValue.toInt();
-                //qDebug() << "startMode:" << confInfo->startMode;
-            }
-
-            // 获取"startPositionX"属性值
-            QJsonValue startPositionXValue = activateObj.value("startPositionX");
-            if (startPositionXValue.isDouble()) {
-                confInfo->startPositionX = startPositionXValue.toInt();
-                //qDebug() << "startPositionX:" << confInfo->startPositionX;
-            }
-
-            // 获取"startPositionY"属性值
-            QJsonValue startPositionYValue = activateObj.value("startPositionY");
-            if (startPositionYValue.isDouble()) {
-                confInfo->startPositionY = startPositionYValue.toInt();
-                //qDebug() << "startPositionY:" << confInfo->startPositionY;
-            }
-
-            // 获取"startCenter"属性值
-            QJsonValue startCenterValue = activateObj.value("startCenter");
-            if (startCenterValue.isDouble()) {
-                confInfo->startCenter = startCenterValue.toInt();
-                //qDebug() << "startCenter:" << confInfo->startCenter;
-            }
-        }
-
-        QJsonValue appearanceValue = obj.value("appearance");
-        if (appearanceValue.isObject()) {
-            QJsonObject appearanceObj = appearanceValue.toObject();
-
-            // 获取"selfStart"属性值
-            QJsonValue languageValue = appearanceObj.value("language");
-            if (languageValue.isString()) {
-                confInfo->language = languageValue.toString();
-                //qDebug() << "language:" << confInfo->language;
-            }
-
-            QJsonValue topDisplayValue = appearanceObj.value("topDisplay");
-            if (topDisplayValue.isDouble()) {
-                confInfo->topDisplay = topDisplayValue.toInt();
-                //qDebug() << "topDisplay:" << confInfo->topDisplay;
-            }
-
-            QJsonValue newLabelLocationValue = appearanceObj.value("newLabelLocation");
-            if (newLabelLocationValue.isDouble()) {
-                confInfo->newLabelLocation = newLabelLocationValue.toInt();
-                //qDebug() << "newLabelLocation:" << confInfo->newLabelLocation;
-            }
-
-            QJsonValue labelWidthValue = appearanceObj.value("labelWidth");
-            if (labelWidthValue.isDouble()) {
-                confInfo->labelWidth = labelWidthValue.toInt();
-                //qDebug() << "labelWidth:" << confInfo->labelWidth;
-            }
-        }
-
-        QJsonValue typefaceValue = obj.value("typeface");
-        if (typefaceValue.isObject()) {
-            QJsonObject typefaceObj = typefaceValue.toObject();
-
-            // 获取"selfStart"属性值
-            QJsonValue fontSizeValue = typefaceObj.value("fontSize");
-            if (fontSizeValue.isDouble()) {
-                confInfo->fontSize = fontSizeValue.toInt();
-                //qDebug() << "fontSize:" << confInfo->fontSize;
-            }
-
-            QJsonValue fontEnglishValue = typefaceObj.value("fontEnglish");
-            if (fontEnglishValue.isString()) {
-                confInfo->fontEnglish = fontEnglishValue.toString();
-                //qDebug() << "fontEnglish:" << confInfo->fontEnglish;
-            }
-
-            QJsonValue fontChineseValue = typefaceObj.value("fontChinese");
-            if (fontChineseValue.isString()) {
-                confInfo->fontChinese = fontChineseValue.toString();
-                //qDebug() << "fontChinese:" << confInfo->fontChinese;
-            }
-        }
-
-        QJsonValue colorSchemesValue = obj.value("colorSchemes");
-        if (colorSchemesValue.isArray()) {
-            QJsonArray colorSchemesArray = colorSchemesValue.toArray();
-            for(int i = 0; i < colorSchemesArray.size(); i++) {
-                QJsonObject colorSchemeObj = colorSchemesArray[i].toObject();
-                ColorScheme cs;
-                cs.name = colorSchemeObj["name"].toString();
-                //qDebug() << "name: " << colorSchemeObj["name"].toString();
-
-                cs.background = colorSchemeObj["background"].toString();
-                //qDebug() << "background: " << colorSchemeObj["background"].toString();
-
-                cs.foreground = colorSchemeObj["foreground"].toString();
-                //qDebug() << "foreground: " << colorSchemeObj["foreground"].toString();
-
-                cs.selectionBackground = colorSchemeObj["selectionBackground"].toString();
-                //qDebug() << "selectionBackground: " << colorSchemeObj["selectionBackground"].toString();
-
-                cs.cursorColor = colorSchemeObj["cursorColor"].toString();
-                //qDebug() << "cursorColor: " << colorSchemeObj["cursorColor"].toString();
-
-                cs.black = colorSchemeObj["black"].toString();
-                //qDebug() << "black: " << colorSchemeObj["black"].toString();
-
-                cs.blue = colorSchemeObj["blue"].toString();
-                //qDebug() << "blue: " << colorSchemeObj["blue"].toString();
-
-                cs.cyan = colorSchemeObj["cyan"].toString();
-                //qDebug() << "cyan: " << colorSchemeObj["cyan"].toString();
-
-                cs.green = colorSchemeObj["green"].toString();
-                //qDebug() << "green: " << colorSchemeObj["green"].toString();
-
-                cs.purple = colorSchemeObj["purple"].toString();
-                //qDebug() << "purple: " << colorSchemeObj["purple"].toString();
-
-                cs.red = colorSchemeObj["red"].toString();
-                //qDebug() << "red: " << colorSchemeObj["red"].toString();
-
-                cs.white = colorSchemeObj["white"].toString();
-                //qDebug() << "white: " << colorSchemeObj["white"].toString();
-
-                cs.brightBlack = colorSchemeObj["brightBlack"].toString();
-                //qDebug() << "brightBlack: " << colorSchemeObj["brightBlack"].toString();
-
-                cs.brightBlue = colorSchemeObj["brightBlue"].toString();
-                //qDebug() << "brightBlue: " << colorSchemeObj["brightBlue"].toString();
-
-                cs.brightCyan = colorSchemeObj["brightCyan"].toString();
-                //qDebug() << "brightCyan: " << colorSchemeObj["brightCyan"].toString();
-
-                cs.brightGreen = colorSchemeObj["brightGreen"].toString();
-                //qDebug() << "brightGreen: " << colorSchemeObj["brightGreen"].toString();
-
-                cs.brightPurple = colorSchemeObj["brightPurple"].toString();
-                //qDebug() << "brightPurple: " << colorSchemeObj["brightPurple"].toString();
-
-                cs.brightRed = colorSchemeObj["brightRed"].toString();
-                //qDebug() << "brightRed: " << colorSchemeObj["brightRed"].toString();
-
-                cs.brightWhite = colorSchemeObj["brightWhite"].toString();
-                //qDebug() << "brightWhite: " << colorSchemeObj["brightWhite"].toString();
-
-                cs.brightYellow = colorSchemeObj["brightYellow"].toString();
-                //qDebug() << "brightYellow: " << colorSchemeObj["brightYellow"].toString();
-                confInfo->colorSchemeList.append(cs);
-            }
-        }
-
-
-        QJsonValue terminalValue = obj.value("terminal");
-        if (terminalValue.isObject()) {
-            QJsonObject terminalObj = terminalValue.toObject();
-
-            // 获取"infoDisplay"属性值
-            QJsonValue infoDisplayValue = terminalObj.value("infoDisplay");
-            if (infoDisplayValue.isDouble()) {
-                confInfo->infoDisplay = infoDisplayValue.toInt();
-                //qDebug() << "infoDisplay:" << confInfo->infoDisplay;
-            }
-
-            // 获取"historyDisplay"属性值
-            QJsonValue historyDisplayValue = terminalObj.value("historyDisplay");
-            if (historyDisplayValue.isDouble()) {
-                confInfo->historyDisplay = historyDisplayValue.toInt();
-                //qDebug() << "historyDisplay:" << confInfo->historyDisplay;
-            }
-
-            // 获取"commandDisplay"属性值
-            QJsonValue commandDisplayValue = terminalObj.value("commandDisplay");
-            if (commandDisplayValue.isDouble()) {
-                confInfo->commandDisplay = commandDisplayValue.toInt();
-                //qDebug() << "commandDisplay:" << confInfo->commandDisplay;
-            }
-
-            // 获取"conectStatsDisplay"属性值
-            QJsonValue conectStatsDisplayValue = terminalObj.value("conectStatsDisplay");
-            if (conectStatsDisplayValue.isDouble()) {
-                confInfo->conectStatsDisplay = conectStatsDisplayValue.toInt();
-                //qDebug() << "conectStatsDisplay:" << confInfo->conectStatsDisplay;
-            }
-
-            QJsonValue mouseRightClickValue = terminalObj.value("mouseRightClick");
-            if (mouseRightClickValue.isDouble()) {
-                confInfo->mouseRightClick = mouseRightClickValue.toInt();
-                //qDebug() << "mouseRightClick:" << confInfo->mouseRightClick;
-            }
-
-            QJsonValue mouseWheelClickValue = terminalObj.value("mouseWheelClick");
-            if (mouseWheelClickValue.isDouble()) {
-                confInfo->mouseWheelClick = mouseWheelClickValue.toInt();
-                //qDebug() << "mouseWheelClick:" << confInfo->mouseWheelClick;
-            }
-
-            QJsonValue backgroundValue = terminalObj.value("background");
-            if (backgroundValue.isDouble()) {
-                confInfo->background = backgroundValue.toInt();
-                //qDebug() << "background:" << confInfo->background;
-            }
-
-            QJsonValue currentBackgroundValue = terminalObj.value("currentBackground");
-            if (currentBackgroundValue.isDouble()) {
-                confInfo->currentBackground = currentBackgroundValue.toInt();
-                //qDebug() << "currentBackground:" << confInfo->currentBackground;
-            }
-
-            QJsonValue backgroundTransparencyValue = terminalObj.value("backgroundTransparency");
-            if (backgroundTransparencyValue.isDouble()) {
-                confInfo->backgroundTransparency = backgroundTransparencyValue.toInt();
-                //qDebug() << "backgroundTransparency:" << confInfo->backgroundTransparency;
-            }
-
-            QJsonValue pictureListValue = terminalObj.value("pictureList");
-            if (pictureListValue.isArray()) {
-                for(int i = 0; i < pictureListValue.toArray().size(); i++) {
-                    confInfo->pictureList.append(pictureListValue.toArray()[i].toString());
-                }
-                //qDebug() << "pictureList:" << confInfo->pictureList;
-            }
-        }
-    }
-    if (confInfo->selfStart == 1) {
-
-    } else if (confInfo->selfStart == 2) {
-
-    }
-
-    if (confInfo->startMode == 1) {
-        //默认
-    } else if (confInfo->startMode == 2) {
-        //最大化
-        setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
-        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
-        this->showMaximized();
-        isMaxShow = true;
-        showFlag = true;
-    } else if (confInfo->startMode == 3) {
-        //全屏
-        setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
-        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
-        //this->showNormal();
-        ui->toolButton_min->hide();
-        ui->toolButton_max->hide();
-        ui->toolButton_close->hide();
-        this->showFullScreen();
-        isFullScreen = true;
-    }
-
-    if (confInfo->startCenter == 1) {
-        QDesktopWidget dw;
-        int deskWidth = dw.width();
-        int deskHeight = dw.height();
-        this->setGeometry(deskWidth/2 - 1100/2,deskHeight/2 - 750/2,1100,750);
-        qDebug() << "居中显示";
-    } else {
-        this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),1100,750);
-        qDebug() << "不居中显示";
-    }
-    confInfo->writeSettingConf();
+    //设置窗口样式
+    setWindowsByConf();
+    //confInfo->writeSettingConf();
     qRegisterAnimationInterpolator<QString>(mySheetStyle);
 }
 
@@ -933,13 +634,13 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if(ui->widget_title->underMouse() && !showFlag) {
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         this->showMaximized();
         showFlag = true;
     } else if (ui->widget_title->underMouse() && showFlag) {
         setContentsMargins(10, 10, 10, 10);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
         this->showNormal();
         showFlag = false;
@@ -1006,6 +707,49 @@ void MainWindow::createSystemTray()
 
     connect(openAction, SIGNAL(triggered()), this, SLOT(rece_systemTrayMenu()));
     connect(closeAction, SIGNAL(triggered()), this, SLOT(rece_systemTrayMenu()));
+}
+
+void MainWindow::setWindowsByConf()
+{
+    if (confInfo->selfStart == 1) {
+
+    } else if (confInfo->selfStart == 2) {
+
+    }
+
+    if (confInfo->startMode == 1) {
+        //默认
+    } else if (confInfo->startMode == 2) {
+        //最大化
+        setContentsMargins(0, 0, 0, 0);
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
+        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        this->showMaximized();
+        isMaxShow = true;
+        showFlag = true;
+    } else if (confInfo->startMode == 3) {
+        //全屏
+        setContentsMargins(0, 0, 0, 0);
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
+        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        //this->showNormal();
+        ui->toolButton_min->hide();
+        ui->toolButton_max->hide();
+        ui->toolButton_close->hide();
+        this->showFullScreen();
+        isFullScreen = true;
+    }
+
+    if (confInfo->startCenter == 1) {
+        QDesktopWidget dw;
+        int deskWidth = dw.width();
+        int deskHeight = dw.height();
+        this->setGeometry(deskWidth/2 - 1100/2,deskHeight/2 - 750/2,1100,750);
+        qDebug() << "居中显示";
+    } else {
+        this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),1100,750);
+        qDebug() << "不居中显示";
+    }
 }
 
 void MainWindow::on_toolButton_close_clicked()
@@ -1149,14 +893,14 @@ void MainWindow::on_toolButton_max_clicked()
     //最大化
     if (!showFlag) {
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         this->showMaximized();
         isMaxShow = true;
         showFlag = true;
     } else {
         setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
         this->showNormal();
         isMaxShow = false;
@@ -1342,7 +1086,7 @@ void MainWindow::on_newClose()
 void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
 {
     //新建终端
-    int8_t connectType = 0;
+    int8_t connectType = 1;
     ccwidget = new createconnect(connectType);
     connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
     ccwidget->show();
@@ -1571,7 +1315,7 @@ void MainWindow::rece_toolButton_fullScreen_sign()
     qDebug() << "isFullScreen = " <<isFullScreen;
     if (!isFullScreen) {
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         //this->showNormal();
         ui->toolButton_min->hide();
@@ -1584,10 +1328,10 @@ void MainWindow::rece_toolButton_fullScreen_sign()
         ui->toolButton_max->show();
         ui->toolButton_close->show();
         setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
+        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
         if (showFlag) {
-            ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:0px;}");
+            ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
             setContentsMargins(0, 0, 0, 0);
             ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
             this->showMaximized();
@@ -1714,19 +1458,24 @@ void MainWindow::on_toolButton_thrift_tool_clicked()
 
 void MainWindow::on_toolButton_zk_tool_clicked()
 {
-    QSize iconSize(20, 20); // 设置图标的大小
-    if(zmanagewidget == NULL) {
-        zmanagewidget = new zookeepermanagewidget();
-        ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
-        ui->stackedWidget->setCurrentIndex(0);
-        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-    } else {
-        //切换到zookeeper tabWidget
-        int index = ui->tabWidget->indexOf(zmanagewidget);
-        if (index != -1) {
-            ui->tabWidget->setCurrentIndex(index);
-        }
-    }
+    //新建终端
+    int8_t connectType = 3;
+    ccwidget = new createconnect(connectType);
+    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    ccwidget->show();
+//    QSize iconSize(20, 20); // 设置图标的大小
+//    if(zmanagewidget == NULL) {
+//        zmanagewidget = new zookeepermanagewidget();
+//        ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
+//        ui->stackedWidget->setCurrentIndex(0);
+//        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+//    } else {
+//        //切换到zookeeper tabWidget
+//        int index = ui->tabWidget->indexOf(zmanagewidget);
+//        if (index != -1) {
+//            ui->tabWidget->setCurrentIndex(index);
+//        }
+//    }
 }
 
 void MainWindow::on_toolButton_side_theme_clicked()

@@ -91,7 +91,7 @@ public:
         toolswidget->setStyleSheet(QLatin1String("/*background-color: rgb(61, 93, 111);*/\n"
 "color: rgb(255, 255, 255);"));
         horizontalLayout_4 = new QHBoxLayout(toolswidget);
-        horizontalLayout_4->setSpacing(0);
+        horizontalLayout_4->setSpacing(10);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 9, 0);
         widget_left = new QWidget(toolswidget);
@@ -99,7 +99,7 @@ public:
         widget_left->setMinimumSize(QSize(230, 0));
         widget_left->setMaximumSize(QSize(230, 16777215));
         widget_left->setStyleSheet(QString::fromUtf8("#widget_left{\n"
-"background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\n"
+"border-image: url(:/lib/back2.png);\n"
 "border-right:0px solid rgba(108, 117, 125, 65); \n"
 "}\n"
 "QScrollBar:vertical{\n"
@@ -130,11 +130,11 @@ public:
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
-""
-                        "	border: none;\n"
+"	border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: bottom;\n"
-"    subcontrol-origin: margin;\n"
+"    subcontrol-origin: "
+                        "margin;\n"
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
 "    border: none;\n"
@@ -169,12 +169,12 @@ public:
 "}\n"
 "\n"
 "QScrollBar::sub-page:horizontal {\n"
-"	backg"
-                        "round-color: rgba(255, 255, 255, 0);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "QScrollBar::add-page:horizontal \n"
 "{\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
+"    backgr"
+                        "ound-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:horizontal {\n"
@@ -215,7 +215,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 166, 782));
+        scrollAreaWidgetContents->setGeometry(QRect(0, -246, 166, 782));
         scrollAreaWidgetContents->setCursor(QCursor(Qt::PointingHandCursor));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("QToolButton {\n"
 "    qproperty-iconSize: 22px 22px;\n"
@@ -365,7 +365,7 @@ public:
         QIcon icon6;
         icon6.addFile(QStringLiteral(":/lib/MD5.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_12->setIcon(icon6);
-        toolButton_12->setIconSize(QSize(20, 20));
+        toolButton_12->setIconSize(QSize(22, 22));
         toolButton_12->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout->addWidget(toolButton_12);
@@ -413,7 +413,7 @@ public:
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/lib/qssmaihua.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_20->setIcon(icon9);
-        toolButton_20->setIconSize(QSize(20, 20));
+        toolButton_20->setIconSize(QSize(22, 22));
         toolButton_20->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         verticalLayout->addWidget(toolButton_20);
@@ -541,6 +541,7 @@ public:
 
         widget_2 = new QWidget(toolswidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setStyleSheet(QStringLiteral(""));
         verticalLayout_2 = new QVBoxLayout(widget_2);
         verticalLayout_2->setSpacing(30);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -787,6 +788,8 @@ public:
 
         horizontalLayout_4->addWidget(widget_2);
 
+        widget_2->raise();
+        widget_left->raise();
 
         retranslateUi(toolswidget);
 

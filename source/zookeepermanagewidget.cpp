@@ -3,6 +3,7 @@
 #include "ui_zookeepermanagewidget.h"
 #include <QDesktopServices>
 #include <QUrl>
+#include <QGraphicsDropShadowEffect>
 zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::zookeepermanagewidget)
@@ -19,6 +20,13 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     //只是创建一个界面
     zookeeperwidget * zkWidget = new zookeeperwidget();
     ui->stackedWidget->addWidget(zkWidget);
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
+
+    ui->widget_left->setGraphicsEffect(effect);
 }
 
 zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QWidget *parent) :
@@ -39,6 +47,7 @@ zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QW
     qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     qbutton->setMinimumHeight(50);
     qbutton->setMinimumWidth(180);
+    qbutton->setMaximumWidth(180);
     qbutton->setCheckable(true);
     m_buttonGroup->addButton(qbutton, count++);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
@@ -65,6 +74,7 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
     qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     qbutton->setMinimumHeight(50);
     qbutton->setMinimumWidth(180);
+    qbutton->setMaximumWidth(180);
     qbutton->setCheckable(true);
     m_buttonGroup->addButton(qbutton, count++);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
@@ -101,6 +111,7 @@ void zookeepermanagewidget::on_toolButton_save_clicked()
     qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     qbutton->setMinimumHeight(50);
     qbutton->setMinimumWidth(180);
+    qbutton->setMaximumWidth(180);
     qbutton->setCheckable(true);
     m_buttonGroup->addButton(qbutton, count++);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
@@ -123,7 +134,8 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     qbutton->setText(data);
     qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     qbutton->setMinimumHeight(50);
-    qbutton->setMinimumWidth(220);
+    qbutton->setMinimumWidth(180);
+    qbutton->setMaximumWidth(180);
     qbutton->setCheckable(true);
     m_buttonGroup->addButton(qbutton, count++);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();

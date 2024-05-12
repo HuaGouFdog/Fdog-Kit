@@ -33,13 +33,13 @@
     <widget class="QWidget" name="widget_left" native="true">
      <property name="minimumSize">
       <size>
-       <width>260</width>
+       <width>230</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>260</width>
+       <width>230</width>
        <height>16777215</height>
       </size>
      </property>
@@ -50,7 +50,7 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#widget_left{
-background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));
+border-image: url(:/lib/back2.png);
 border-right:0px solid rgba(108, 117, 125, 65); 
 }
 QScrollBar:vertical{
@@ -106,13 +106,13 @@ QScrollBar::up-arrow:vertical {
        <number>10</number>
       </property>
       <property name="leftMargin">
-       <number>20</number>
+       <number>25</number>
       </property>
       <property name="topMargin">
        <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>9</number>
+       <number>25</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -209,13 +209,13 @@ QToolButton:hover {
        <widget class="QLineEdit" name="lineEdit_find">
         <property name="minimumSize">
          <size>
-          <width>220</width>
+          <width>180</width>
           <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>220</width>
+          <width>200</width>
           <height>30</height>
          </size>
         </property>
@@ -317,7 +317,7 @@ QScrollBar::up-arrow:vertical {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>231</width>
+              <width>180</width>
               <height>400</height>
              </rect>
             </property>

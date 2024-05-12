@@ -89,13 +89,13 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         widget_left = new QWidget(zookeepermanagewidget);
         widget_left->setObjectName(QStringLiteral("widget_left"));
-        widget_left->setMinimumSize(QSize(260, 0));
-        widget_left->setMaximumSize(QSize(260, 16777215));
+        widget_left->setMinimumSize(QSize(230, 0));
+        widget_left->setMaximumSize(QSize(230, 16777215));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         widget_left->setFont(font);
         widget_left->setStyleSheet(QString::fromUtf8("#widget_left{\n"
-"background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\n"
+"border-image: url(:/lib/back2.png);\n"
 "border-right:0px solid rgba(108, 117, 125, 65); \n"
 "}\n"
 "QScrollBar:vertical{\n"
@@ -126,11 +126,11 @@ public:
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
-""
-                        "	border: none;\n"
+"	border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: bottom;\n"
-"    subcontrol-origin: margin;\n"
+"    subcontrol-origin: "
+                        "margin;\n"
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
 "    border: none;\n"
@@ -149,7 +149,7 @@ public:
         verticalLayout_6 = new QVBoxLayout(widget_left);
         verticalLayout_6->setSpacing(10);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(20, 0, 9, 0);
+        verticalLayout_6->setContentsMargins(25, 0, 25, 0);
         widget_side_top = new QWidget(widget_left);
         widget_side_top->setObjectName(QStringLiteral("widget_side_top"));
         widget_side_top->setMinimumSize(QSize(0, 70));
@@ -200,8 +200,8 @@ public:
 
         lineEdit_find = new QLineEdit(widget_left);
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
-        lineEdit_find->setMinimumSize(QSize(220, 30));
-        lineEdit_find->setMaximumSize(QSize(220, 30));
+        lineEdit_find->setMinimumSize(QSize(180, 30));
+        lineEdit_find->setMaximumSize(QSize(200, 30));
         QFont font2;
         font2.setFamily(QStringLiteral("OPPOSans"));
         font2.setPointSize(10);
@@ -278,7 +278,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 231, 400));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 180, 400));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "    qproperty-iconSize: 22px 22px;\n"

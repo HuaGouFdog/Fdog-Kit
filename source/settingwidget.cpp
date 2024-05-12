@@ -1,4 +1,5 @@
-﻿#include "settingwidget.h"
+﻿#pragma execution_character_set("utf-8")
+#include "settingwidget.h"
 #include "ui_settingwidget.h"
 #include "utils.h"
 #include "colormatch.h"
@@ -6,6 +7,7 @@
 #include <QFontDatabase>
 #include <QListWidget>
 #include <QGraphicsOpacityEffect>
+#include <Qdebug>
 QStringList campbell = {"#0C0C0C","#767676",
                         "#C50F1F","#E74856",
                         "#13A10E","#16C60C",
@@ -190,6 +192,8 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     m_buttonGroup->addButton(ui->toolButton_theme, 4);
     m_buttonGroup->addButton(ui->toolButton_terminal, 5);
     m_buttonGroup->addButton(ui->toolButton_shortcutKey, 6);
+    m_buttonGroup->addButton(ui->toolButton_about, 7);
+    
     m_buttonGroup->button(0)->setChecked(true); //设置按钮组第一个按钮高亮显示
     m_buttonGroup->setExclusive(true);
     ui->stackedWidget->setCurrentIndex(0);
@@ -202,11 +206,23 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
 
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect->setColor(QColor(30, 45, 54));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
 
     ui->widget_left->setGraphicsEffect(effect);
 
+    //ui->comboBox_startMode->setWindowFlags(ui->comboBox_startMode->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+	//解决下拉菜单背景不透明问题
+    //ui->comboBox_startMode->view()->parentWidget()->setWindowFlags(Qt::Popup | Qt::FramelessWindowHint);
+	//ui->comboBox_startMode->view()->parentWidget()->setAttribute(Qt::WA_TranslucentBackground);
+    //ui->comboBox_startMode->setView(new QListView());
+    qDebug() << "设置comboBox_startMode";
+    
+    ui->comboBox_startMode->setView(new QListView());
+    //ui->comboBox_startMode->view()->window()->setWindowFlags(Qt::Popup | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    //ui->comboBox_startMode->view()->window()->setAttribute(Qt::WA_TranslucentBackground,true);
+    ui->comboBox_startMode->setWindowFlags(ui->comboBox_startMode->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    ui->comboBox_startMode->setAttribute(Qt::WA_TranslucentBackground);
 }
 
 settingwidget::~settingwidget()
@@ -264,8 +280,8 @@ void settingwidget::on_toolButton_save_clicked()
         confInfo->startMode = 2;
     }
 
-    confInfo->startPositionX = ui->spinBox_startPositionX->value();
-    confInfo->startPositionY = ui->spinBox_startPositionY->value();
+    confInfo->startPositionX = ui->lineEdit_startPositionX->text().toInt();
+    confInfo->startPositionY = ui->lineEdit_startPositionY->text().toInt();
 
     if (startCenter->isChecked()) {
         confInfo->startCenter = 1;
@@ -301,7 +317,7 @@ void settingwidget::on_toolButton_save_clicked()
     }
 
     //字体选项
-    confInfo->fontSize = ui->spinBox_fontSize->value();
+    confInfo->fontSize = ui->lineEdit_fontSize->text().toInt();
     confInfo->fontEnglish = ui->label_fontEnglish->text();
     confInfo->fontChinese = ui->label_fontChinese->text();
     //配色选项
@@ -361,69 +377,75 @@ void settingwidget::on_toolButton_save_clicked()
 void settingwidget::on_toolButton_recover_clicked()
 {
     //恢复读取confInfo
-    //启动选项
-    if (confInfo->selfStart == 1) {
-        selfStart->setChecked(true);
-    } else {
-        selfStart->setChecked(false);
-    }
-    
-    if (confInfo->trayDisplay == 1) {
-        trayDisplay->setChecked(true);
-    } else {
-        trayDisplay->setChecked(false);
-    }
+    int index = ui->stackedWidget->currentIndex();
+    if (index == 0) {
+        //启动选项
+        qDebug() << "恢复启动选项";
+        if (confInfo->selfStart == 1) {
+            selfStart->setChecked(true);
+        } else {
+            selfStart->setChecked(false);
+        }
 
-    if (confInfo->startMode == 0) {
-        ui->comboBox_startMode->setCurrentIndex(0);
-    } else if (confInfo->startMode == 1) {
-        ui->comboBox_startMode->setCurrentIndex(1);
-    } else if (confInfo->startMode == 2) {
-        ui->comboBox_startMode->setCurrentIndex(2);
-    }
+        if (confInfo->trayDisplay == 1) {
+            trayDisplay->setChecked(true);
+        } else {
+            trayDisplay->setChecked(false);
+        }
 
-    ui->spinBox_startPositionX->setValue(confInfo->startPositionX);
-    ui->spinBox_startPositionY->setValue(confInfo->startPositionY);
+        if (confInfo->startMode == 0) {
+            ui->comboBox_startMode->setCurrentIndex(0);
+        } else if (confInfo->startMode == 1) {
+            ui->comboBox_startMode->setCurrentIndex(1);
+        } else if (confInfo->startMode == 2) {
+            ui->comboBox_startMode->setCurrentIndex(2);
+        }
 
-    if (confInfo->startCenter == 1) {
-        startCenter->setChecked(true);
-    } else {
-        startCenter->setChecked(false);
-    }
+        ui->lineEdit_startPositionX->setText(QString::number(confInfo->startPositionX));
+        ui->lineEdit_startPositionY->setText(QString::number(confInfo->startPositionY));
 
-    //外观选项
-    if (confInfo->language == "cn") {
-        ui->comboBox_language->setCurrentIndex(0);
-    } else if (confInfo->language == "zn") {
-        ui->comboBox_language->setCurrentIndex(1);
-    }
+        if (confInfo->startCenter == 1) {
+            startCenter->setChecked(true);
+        } else {
+            startCenter->setChecked(false);
+        }
+    } else if (index == 1) {
+        //外观选项
+        if (confInfo->language == "cn") {
+            ui->comboBox_language->setCurrentIndex(0);
+        } else if (confInfo->language == "zn") {
+            ui->comboBox_language->setCurrentIndex(1);
+        }
 
-    if (confInfo->topDisplay == 1) {
-        topDisplay->setChecked(true);
-    } else {
-        topDisplay->setChecked(false);
-    }
+        if (confInfo->topDisplay == 1) {
+            topDisplay->setChecked(true);
+        } else {
+            topDisplay->setChecked(false);
+        }
 
-    if (confInfo->newLabelLocation == 0) {
-        ui->comboBox_newLabelLocation->setCurrentIndex(0);
-    } else {
-        ui->comboBox_newLabelLocation->setCurrentIndex(1);
-    }
+        if (confInfo->newLabelLocation == 0) {
+            ui->comboBox_newLabelLocation->setCurrentIndex(0);
+        } else {
+            ui->comboBox_newLabelLocation->setCurrentIndex(1);
+        }
 
-    if (confInfo->labelWidth == 0) {
-        ui->comboBox_labelWidth->setCurrentIndex(0);
-    } else if (confInfo->labelWidth == 1) {
-        ui->comboBox_labelWidth->setCurrentIndex(1);
-    } else if (confInfo->labelWidth == 2) {
-        ui->comboBox_labelWidth->setCurrentIndex(2);
-    }
-
-    //字体选项
-    ui->spinBox_fontSize->setValue(confInfo->fontSize);
-    ui->label_fontEnglish->setText(confInfo->fontEnglish);
-    ui->label_fontChinese->setText(confInfo->fontChinese);
-
-    //配色选项 只支持选择
+        if (confInfo->labelWidth == 0) {
+            ui->comboBox_labelWidth->setCurrentIndex(0);
+        } else if (confInfo->labelWidth == 1) {
+            ui->comboBox_labelWidth->setCurrentIndex(1);
+        } else if (confInfo->labelWidth == 2) {
+            ui->comboBox_labelWidth->setCurrentIndex(2);
+        }
+    } else if (index == 2) {
+        //字体选项
+        ui->lineEdit_fontSize->setText(QString::number(confInfo->fontSize));
+        ui->label_fontEnglish->setText(confInfo->fontEnglish);
+        ui->label_fontChinese->setText(confInfo->fontChinese);
+    } else if (index == 3) {
+        //配色选项 只支持选择
+    } else if (index == 4) {
+        //主题
+    } else if (index == 5) {
 
     //终端选项
     if (confInfo->infoDisplay == 1) {
@@ -471,6 +493,8 @@ void settingwidget::on_toolButton_recover_clicked()
     }
 
     ui->lineEdit_currentBackground->setText(confInfo->currentBackground);
+    }
+
 
 }
 

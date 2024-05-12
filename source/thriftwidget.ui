@@ -716,9 +716,7 @@ QScrollBar::up-arrow:vertical {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">
-
-QComboBox{
+          <string notr="true">QComboBox{
 	color:#ffffff;
 	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
@@ -729,15 +727,9 @@ QComboBox{
 	font: 10pt &quot;OPPOSans B&quot;;
 }
 
-QComboBox QAbstractItemView::item
-{
-	height:25px;
-	font: 10pt &quot;OPPOSans B&quot;;
-}
-
 
 QComboBox:disabled{
-	border:1px solid gray;
+	border:0px solid gray;
 	color:gray;
 }
 
@@ -755,15 +747,37 @@ QComboBox::down-arrow{
 QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
+
+
 QComboBox QAbstractItemView{
 	font: 10pt &quot;OPPOSans B&quot;;
-	outline:0px solid gray;
+	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
 }
 
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
 </string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1299,14 +1313,9 @@ QToolButton:hover {
 	font: 10pt &quot;OPPOSans B&quot;;
 }
 
-QComboBox QAbstractItemView::item
-{
-	height:25px;
-	font: 10pt &quot;OPPOSans B&quot;;
-}
 
 QComboBox:disabled{
-	border:1px solid gray;
+	border:0px solid gray;
 	color:gray;
 }
 
@@ -1324,15 +1333,37 @@ QComboBox::down-arrow{
 QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
+
+
 QComboBox QAbstractItemView{
 	font: 10pt &quot;OPPOSans B&quot;;
-	outline:0px solid gray;
+	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
 }
 
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
 </string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -2513,38 +2544,19 @@ QToolButton:hover {
 }
 
 QComboBox{
-	font: 10pt &quot;OPPOSans B&quot;;
-	color:#ffffff;
-	color: rgb(138, 138, 138);
-	background:transparent;
-	border-radius: 0px;
-}
-
-QComboBox::focus {
-border: 1px solid rgb(255, 104, 17);
-}
-
-QComboBox::hover {
-border: 1px solid rgb(255, 104, 17);
-}
-
-
-QComboBox QAbstractItemView{
-	font: 10pt &quot;OPPOSans B&quot;;
 	color:#ffffff;
 	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
-	border-radius:0px;
-	background:transparent;
-    outline:0px;
+	border-radius:5px;
+	/*background-color: rgb(25, 25, 25, 155);*/
+	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
 }
 
-QComboBox QAbstractItemView::item
-{
-	height:28px;
-}
+
 QComboBox:disabled{
-	border:1px solid gray;
+	border:0px solid gray;
 	color:gray;
 }
 
@@ -2555,20 +2567,45 @@ QComboBox::down-arrow{
 	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 
 QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
+
+
 QComboBox QAbstractItemView{
-	outline:0px solid gray;
+	font: 10pt &quot;OPPOSans B&quot;;
+	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
 }
+
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
+
 
 QToolButton {
 	font: 10pt &quot;OPPOSans B&quot;;
@@ -2802,10 +2839,10 @@ height: 20px;
 QTreeWidget#treeWidget {
 border-right:10px solid rgb(54, 81, 97); 
 border-left:10px solid rgb(54, 81, 97); 
-	outline: none;
+outline: none;
+background-color: rgb(30, 45, 54);
 }
 QTreeWidget::item {
-
 	height: 30px;
 	color: rgb(255, 255, 255);
 	outline: 0px;

@@ -135,6 +135,18 @@ public:
 "    border-style:outset\n"
 "}\n"
 "\n"
+"QCheckBox::indicator{\n"
+"                width:16px;\n"
+"                height:16px;\n"
+"           }\n"
+"            QCheckBox::indicator::unchecked{\n"
+"                image:url(:/lib/gouxuan2.png);\n"
+"            }\n"
+"            QCheckBox::indicator::checked{\n"
+"                image:url(:/lib/gouxuan.png);\n"
+"            }\n"
+"\n"
+"\n"
 "QMenu {\n"
 "\n"
 "background-color:rgb(253,253,254);\n"
@@ -160,7 +172,8 @@ public:
 "    background: rgb(253,253,254);\n"
 "    position: absolute;\n"
 "    top: 1px;\n"
-"    right: 1px;\n"
+"    right: 1px;"
+                        "\n"
 "    bottom: 1px;\n"
 "    left: 1px;\n"
 "}\n"
@@ -245,7 +258,7 @@ public:
         checkBox_auto_url = new QCheckBox(horizontalWidget_1_2_l);
         checkBox_auto_url->setObjectName(QStringLiteral("checkBox_auto_url"));
         checkBox_auto_url->setFont(font3);
-        checkBox_auto_url->setChecked(false);
+        checkBox_auto_url->setChecked(true);
 
         horizontalLayout->addWidget(checkBox_auto_url);
 
