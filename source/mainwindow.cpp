@@ -264,6 +264,20 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowsByConf();
     //confInfo->writeSettingConf();
     qRegisterAnimationInterpolator<QString>(mySheetStyle);
+
+    QToolButton *button1 = new QToolButton();
+    button1->setIcon(QIcon(":/lib/add1.png"));
+    // button1->setStyleSheet("QToolButton {\
+    //                        color: rgb(255, 255, 255);\
+    //                        background-color: rgb(94, 255, 210);\
+    //                        border: none;}");
+    
+    ui->tabWidget->setCornerWidget(button1, Qt::TopLeftCorner);
+
+    // QPushButton *b2 = new QPushButton(QString::fromStdWString(L"设置"));
+    // b2->setObjectName("settingButton");
+    // ui->tabWidget->setTabEnabled(0, false);
+    // ui->tabWidget->tabBar()->setTabButton(0, QTabBar::RightSide, b2);
 }
 
 MainWindow::~MainWindow()

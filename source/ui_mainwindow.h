@@ -78,6 +78,7 @@ public:
     QWidget *widget_top_tool;
     QHBoxLayout *horizontalLayout_13;
     QLabel *label_3;
+    QToolButton *toolButton_25;
     QSpacerItem *horizontalSpacer_2;
     QToolButton *toolButton_top_back;
     QToolButton *toolButton;
@@ -89,6 +90,9 @@ public:
     QWidget *widget_main;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
+    QWidget *tab;
+    QWidget *tab_3;
+    QWidget *tab_2;
     QWidget *widget_tool;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
@@ -391,7 +395,7 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	\n"
 "	\n"
-"	background-color: rgb(31, 54, 77);\n"
+"	background-color: rgb(26, 53, 83);\n"
 "	border: none;\n"
 "}\n"
 "\n"
@@ -1043,6 +1047,22 @@ public:
 
         horizontalLayout_13->addWidget(label_3);
 
+        toolButton_25 = new QToolButton(widget_top_tool);
+        toolButton_25->setObjectName(QStringLiteral("toolButton_25"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(toolButton_25->sizePolicy().hasHeightForWidth());
+        toolButton_25->setSizePolicy(sizePolicy);
+        toolButton_25->setMinimumSize(QSize(25, 25));
+        toolButton_25->setMaximumSize(QSize(25, 25));
+        toolButton_25->setStyleSheet(QStringLiteral(""));
+        QIcon icon15;
+        icon15.addFile(QStringLiteral(":/lib/add1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_25->setIcon(icon15);
+
+        horizontalLayout_13->addWidget(toolButton_25);
+
         horizontalSpacer_2 = new QSpacerItem(953, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_13->addItem(horizontalSpacer_2);
@@ -1051,9 +1071,9 @@ public:
         toolButton_top_back->setObjectName(QStringLiteral("toolButton_top_back"));
         toolButton_top_back->setMinimumSize(QSize(20, 20));
         toolButton_top_back->setMaximumSize(QSize(20, 20));
-        QIcon icon15;
-        icon15.addFile(QStringLiteral(":/lib/left.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_top_back->setIcon(icon15);
+        QIcon icon16;
+        icon16.addFile(QStringLiteral(":/lib/left.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_top_back->setIcon(icon16);
         toolButton_top_back->setIconSize(QSize(14, 14));
 
         horizontalLayout_13->addWidget(toolButton_top_back);
@@ -1064,9 +1084,9 @@ public:
         toolButton->setMaximumSize(QSize(20, 20));
         toolButton->setStyleSheet(QLatin1String("border-radius:25px;\n"
 ""));
-        QIcon icon16;
-        icon16.addFile(QStringLiteral(":/lib/login.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton->setIcon(icon16);
+        QIcon icon17;
+        icon17.addFile(QStringLiteral(":/lib/login.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton->setIcon(icon17);
         toolButton->setIconSize(QSize(35, 35));
 
         horizontalLayout_13->addWidget(toolButton);
@@ -1146,11 +1166,11 @@ public:
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(widget_main);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
-        tabWidget->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
+        tabWidget->setSizePolicy(sizePolicy1);
         QFont font5;
         font5.setFamily(QStringLiteral("OPPOSans B"));
         font5.setPointSize(11);
@@ -1158,14 +1178,14 @@ public:
         tabWidget->setFont(font5);
         tabWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
-"\n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
-"#tab_1.QWidget{\n"
-"	background-color: rgb(108, 117, 125, 65);\n"
+"#tab.QTabBar::tab{\n"
+"	\n"
+"	background-color: rgb(111, 255, 188);\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_2\347\232\204\346\240\267\345\274\217*/\n"
-"#tab_11.QWidget{\n"
+"#tab_2.QTabBar::tab{\n"
 "	background-color: rgb(108, 117, 125, 65);\n"
 "}\n"
 " \n"
@@ -1175,11 +1195,13 @@ public:
 "	/*font-family:Consolas; */   /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:10pt;\n"
 "	color:#ced4da;    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247"
-                        "\222\357\274\211*/\n"
+"	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350"
+                        "\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	/*width:120px;*/\n"
-"	padding: 4px;\n"
+"	padding-left: 5px;\n"
+"    padding-right: 5px;\n"
+"	/*width:150;*/\n"
+"	height:25;\n"
 "	/*margin-right:0px;\n"
 "	margin-left: 0px;*/\n"
 "}\n"
@@ -1194,10 +1216,10 @@ public:
 "	background-color: rgb(100, 117, 125, 255);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267"
-                        "\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\347\232"
+                        "\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
-"    border-top:2px solid rgb(108, 117, 125, 65); \n"
+"    border-top:0px solid rgb(108, 117, 125, 65); \n"
 "}\n"
 " \n"
 "\n"
@@ -1230,6 +1252,15 @@ public:
         tabWidget->setDocumentMode(false);
         tabWidget->setTabsClosable(true);
         tabWidget->setMovable(true);
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
+        tabWidget->addTab(tab, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QStringLiteral("tab_3"));
+        tabWidget->addTab(tab_3, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QStringLiteral("tab_2"));
+        tabWidget->addTab(tab_2, QString());
 
         verticalLayout_4->addWidget(tabWidget);
 
@@ -1518,11 +1549,11 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         toolButton_cn2Unicode = new QToolButton(gridWidget);
         toolButton_cn2Unicode->setObjectName(QStringLiteral("toolButton_cn2Unicode"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(toolButton_cn2Unicode->sizePolicy().hasHeightForWidth());
-        toolButton_cn2Unicode->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(toolButton_cn2Unicode->sizePolicy().hasHeightForWidth());
+        toolButton_cn2Unicode->setSizePolicy(sizePolicy2);
         toolButton_cn2Unicode->setMinimumSize(QSize(0, 30));
         toolButton_cn2Unicode->setMaximumSize(QSize(16777215, 30));
         toolButton_cn2Unicode->setFont(font3);
@@ -1546,8 +1577,8 @@ public:
 
         toolButton_3 = new QToolButton(gridWidget);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
-        sizePolicy1.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
-        toolButton_3->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
+        toolButton_3->setSizePolicy(sizePolicy2);
         toolButton_3->setMinimumSize(QSize(0, 30));
         toolButton_3->setMaximumSize(QSize(16777215, 30));
         toolButton_3->setFont(font3);
@@ -1571,8 +1602,8 @@ public:
 
         toolButton_ascii2unicode = new QToolButton(gridWidget);
         toolButton_ascii2unicode->setObjectName(QStringLiteral("toolButton_ascii2unicode"));
-        sizePolicy1.setHeightForWidth(toolButton_ascii2unicode->sizePolicy().hasHeightForWidth());
-        toolButton_ascii2unicode->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(toolButton_ascii2unicode->sizePolicy().hasHeightForWidth());
+        toolButton_ascii2unicode->setSizePolicy(sizePolicy2);
         toolButton_ascii2unicode->setMinimumSize(QSize(0, 30));
         toolButton_ascii2unicode->setMaximumSize(QSize(16777215, 30));
         toolButton_ascii2unicode->setFont(font3);
@@ -1596,8 +1627,8 @@ public:
 
         toolButton_unicode2ascii = new QToolButton(gridWidget);
         toolButton_unicode2ascii->setObjectName(QStringLiteral("toolButton_unicode2ascii"));
-        sizePolicy1.setHeightForWidth(toolButton_unicode2ascii->sizePolicy().hasHeightForWidth());
-        toolButton_unicode2ascii->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(toolButton_unicode2ascii->sizePolicy().hasHeightForWidth());
+        toolButton_unicode2ascii->setSizePolicy(sizePolicy2);
         toolButton_unicode2ascii->setMinimumSize(QSize(0, 30));
         toolButton_unicode2ascii->setMaximumSize(QSize(16777215, 30));
         toolButton_unicode2ascii->setFont(font3);
@@ -1621,8 +1652,8 @@ public:
 
         toolButton_hex2unicode = new QToolButton(gridWidget);
         toolButton_hex2unicode->setObjectName(QStringLiteral("toolButton_hex2unicode"));
-        sizePolicy1.setHeightForWidth(toolButton_hex2unicode->sizePolicy().hasHeightForWidth());
-        toolButton_hex2unicode->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(toolButton_hex2unicode->sizePolicy().hasHeightForWidth());
+        toolButton_hex2unicode->setSizePolicy(sizePolicy2);
         toolButton_hex2unicode->setMinimumSize(QSize(0, 30));
         toolButton_hex2unicode->setMaximumSize(QSize(16777215, 30));
         toolButton_hex2unicode->setFont(font3);
@@ -1646,8 +1677,8 @@ public:
 
         toolButton_hex2cn = new QToolButton(gridWidget);
         toolButton_hex2cn->setObjectName(QStringLiteral("toolButton_hex2cn"));
-        sizePolicy1.setHeightForWidth(toolButton_hex2cn->sizePolicy().hasHeightForWidth());
-        toolButton_hex2cn->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(toolButton_hex2cn->sizePolicy().hasHeightForWidth());
+        toolButton_hex2cn->setSizePolicy(sizePolicy2);
         toolButton_hex2cn->setMinimumSize(QSize(0, 30));
         toolButton_hex2cn->setMaximumSize(QSize(16777215, 30));
         toolButton_hex2cn->setFont(font3);
@@ -1674,8 +1705,8 @@ public:
 
         lineEdit_encoding_in = new QLineEdit(page_19);
         lineEdit_encoding_in->setObjectName(QStringLiteral("lineEdit_encoding_in"));
-        sizePolicy1.setHeightForWidth(lineEdit_encoding_in->sizePolicy().hasHeightForWidth());
-        lineEdit_encoding_in->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_encoding_in->sizePolicy().hasHeightForWidth());
+        lineEdit_encoding_in->setSizePolicy(sizePolicy2);
         lineEdit_encoding_in->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
@@ -1687,8 +1718,8 @@ public:
 
         lineEdit_encoding_out = new QLineEdit(page_19);
         lineEdit_encoding_out->setObjectName(QStringLiteral("lineEdit_encoding_out"));
-        sizePolicy1.setHeightForWidth(lineEdit_encoding_out->sizePolicy().hasHeightForWidth());
-        lineEdit_encoding_out->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_encoding_out->sizePolicy().hasHeightForWidth());
+        lineEdit_encoding_out->setSizePolicy(sizePolicy2);
         lineEdit_encoding_out->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
@@ -1973,8 +2004,8 @@ public:
 
         lineEdit_encode_in = new QLineEdit(page_22);
         lineEdit_encode_in->setObjectName(QStringLiteral("lineEdit_encode_in"));
-        sizePolicy1.setHeightForWidth(lineEdit_encode_in->sizePolicy().hasHeightForWidth());
-        lineEdit_encode_in->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_encode_in->sizePolicy().hasHeightForWidth());
+        lineEdit_encode_in->setSizePolicy(sizePolicy2);
         lineEdit_encode_in->setMinimumSize(QSize(0, 100));
         lineEdit_encode_in->setFont(font3);
         lineEdit_encode_in->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
@@ -1988,8 +2019,8 @@ public:
 
         lineEdit_decode_out = new QLineEdit(page_22);
         lineEdit_decode_out->setObjectName(QStringLiteral("lineEdit_decode_out"));
-        sizePolicy1.setHeightForWidth(lineEdit_decode_out->sizePolicy().hasHeightForWidth());
-        lineEdit_decode_out->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_decode_out->sizePolicy().hasHeightForWidth());
+        lineEdit_decode_out->setSizePolicy(sizePolicy2);
         lineEdit_decode_out->setMinimumSize(QSize(0, 100));
         lineEdit_decode_out->setFont(font3);
         lineEdit_decode_out->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
@@ -2086,8 +2117,8 @@ public:
 
         lineEdit_source_data = new QLineEdit(page_23);
         lineEdit_source_data->setObjectName(QStringLiteral("lineEdit_source_data"));
-        sizePolicy1.setHeightForWidth(lineEdit_source_data->sizePolicy().hasHeightForWidth());
-        lineEdit_source_data->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_source_data->sizePolicy().hasHeightForWidth());
+        lineEdit_source_data->setSizePolicy(sizePolicy2);
         lineEdit_source_data->setMinimumSize(QSize(0, 100));
         lineEdit_source_data->setFont(font3);
         lineEdit_source_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
@@ -2109,8 +2140,8 @@ public:
 
         lineEdit_reg = new QLineEdit(page_23);
         lineEdit_reg->setObjectName(QStringLiteral("lineEdit_reg"));
-        sizePolicy1.setHeightForWidth(lineEdit_reg->sizePolicy().hasHeightForWidth());
-        lineEdit_reg->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_reg->sizePolicy().hasHeightForWidth());
+        lineEdit_reg->setSizePolicy(sizePolicy2);
         lineEdit_reg->setMinimumSize(QSize(0, 50));
         lineEdit_reg->setFont(font3);
         lineEdit_reg->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
@@ -2168,8 +2199,8 @@ public:
 
         lineEdit_match_result = new QLineEdit(page_23);
         lineEdit_match_result->setObjectName(QStringLiteral("lineEdit_match_result"));
-        sizePolicy1.setHeightForWidth(lineEdit_match_result->sizePolicy().hasHeightForWidth());
-        lineEdit_match_result->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_match_result->sizePolicy().hasHeightForWidth());
+        lineEdit_match_result->setSizePolicy(sizePolicy2);
         lineEdit_match_result->setMinimumSize(QSize(0, 100));
         lineEdit_match_result->setFont(font3);
         lineEdit_match_result->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
@@ -2250,11 +2281,11 @@ public:
         verticalLayout_11->setContentsMargins(9, 0, -1, 0);
         widget_welcome_body_widget2_info_widget = new QWidget(widget_welcome_body_widget2_info);
         widget_welcome_body_widget2_info_widget->setObjectName(QStringLiteral("widget_welcome_body_widget2_info_widget"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy2.setHorizontalStretch(48);
-        sizePolicy2.setVerticalStretch(48);
-        sizePolicy2.setHeightForWidth(widget_welcome_body_widget2_info_widget->sizePolicy().hasHeightForWidth());
-        widget_welcome_body_widget2_info_widget->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(48);
+        sizePolicy3.setVerticalStretch(48);
+        sizePolicy3.setHeightForWidth(widget_welcome_body_widget2_info_widget->sizePolicy().hasHeightForWidth());
+        widget_welcome_body_widget2_info_widget->setSizePolicy(sizePolicy3);
         widget_welcome_body_widget2_info_widget->setMinimumSize(QSize(80, 80));
         widget_welcome_body_widget2_info_widget->setMaximumSize(QSize(16777215, 80));
         horizontalLayout_3 = new QHBoxLayout(widget_welcome_body_widget2_info_widget);
@@ -2338,8 +2369,8 @@ public:
 
         widget_welcome_body_widget2_newCreate = new QWidget(widget_17);
         widget_welcome_body_widget2_newCreate->setObjectName(QStringLiteral("widget_welcome_body_widget2_newCreate"));
-        sizePolicy1.setHeightForWidth(widget_welcome_body_widget2_newCreate->sizePolicy().hasHeightForWidth());
-        widget_welcome_body_widget2_newCreate->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(widget_welcome_body_widget2_newCreate->sizePolicy().hasHeightForWidth());
+        widget_welcome_body_widget2_newCreate->setSizePolicy(sizePolicy2);
         widget_welcome_body_widget2_newCreate->setMinimumSize(QSize(260, 150));
         widget_welcome_body_widget2_newCreate->setMaximumSize(QSize(260, 150));
         widget_welcome_body_widget2_newCreate->setCursor(QCursor(Qt::PointingHandCursor));
@@ -2352,11 +2383,11 @@ public:
         verticalLayout_10->setContentsMargins(15, 15, 15, 15);
         widget_welcome_body_widget2_newCreate_newTerminal = new QToolButton(widget_welcome_body_widget2_newCreate);
         widget_welcome_body_widget2_newCreate_newTerminal->setObjectName(QStringLiteral("widget_welcome_body_widget2_newCreate_newTerminal"));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(50);
-        sizePolicy3.setVerticalStretch(50);
-        sizePolicy3.setHeightForWidth(widget_welcome_body_widget2_newCreate_newTerminal->sizePolicy().hasHeightForWidth());
-        widget_welcome_body_widget2_newCreate_newTerminal->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(50);
+        sizePolicy4.setVerticalStretch(50);
+        sizePolicy4.setHeightForWidth(widget_welcome_body_widget2_newCreate_newTerminal->sizePolicy().hasHeightForWidth());
+        widget_welcome_body_widget2_newCreate_newTerminal->setSizePolicy(sizePolicy4);
         widget_welcome_body_widget2_newCreate_newTerminal->setMinimumSize(QSize(0, 0));
         widget_welcome_body_widget2_newCreate_newTerminal->setMaximumSize(QSize(16777215, 585858));
         widget_welcome_body_widget2_newCreate_newTerminal->setFont(font3);
@@ -2378,9 +2409,7 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon17;
-        icon17.addFile(QStringLiteral(":/lib/add1.png"), QSize(), QIcon::Normal, QIcon::Off);
-        widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon17);
+        widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon15);
         widget_welcome_body_widget2_newCreate_newTerminal->setIconSize(QSize(20, 20));
         widget_welcome_body_widget2_newCreate_newTerminal->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -2388,8 +2417,8 @@ public:
 
         toolButton_zk_tool = new QToolButton(widget_welcome_body_widget2_newCreate);
         toolButton_zk_tool->setObjectName(QStringLiteral("toolButton_zk_tool"));
-        sizePolicy3.setHeightForWidth(toolButton_zk_tool->sizePolicy().hasHeightForWidth());
-        toolButton_zk_tool->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(toolButton_zk_tool->sizePolicy().hasHeightForWidth());
+        toolButton_zk_tool->setSizePolicy(sizePolicy4);
         toolButton_zk_tool->setFont(font3);
         toolButton_zk_tool->setLayoutDirection(Qt::LeftToRight);
         toolButton_zk_tool->setStyleSheet(QLatin1String("QToolButton {\n"
@@ -2416,8 +2445,8 @@ public:
 
         toolButton_thrift_tool = new QToolButton(widget_welcome_body_widget2_newCreate);
         toolButton_thrift_tool->setObjectName(QStringLiteral("toolButton_thrift_tool"));
-        sizePolicy3.setHeightForWidth(toolButton_thrift_tool->sizePolicy().hasHeightForWidth());
-        toolButton_thrift_tool->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(toolButton_thrift_tool->sizePolicy().hasHeightForWidth());
+        toolButton_thrift_tool->setSizePolicy(sizePolicy4);
         toolButton_thrift_tool->setFont(font3);
         toolButton_thrift_tool->setLayoutDirection(Qt::LeftToRight);
         toolButton_thrift_tool->setStyleSheet(QLatin1String("QToolButton {\n"
@@ -2574,11 +2603,11 @@ public:
 
         widget_25 = new QWidget(widget_welcome_body_widget2);
         widget_25->setObjectName(QStringLiteral("widget_25"));
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(widget_25->sizePolicy().hasHeightForWidth());
-        widget_25->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(widget_25->sizePolicy().hasHeightForWidth());
+        widget_25->setSizePolicy(sizePolicy5);
         widget_25->setMinimumSize(QSize(0, 200));
         widget_25->setMaximumSize(QSize(16777215, 200));
         widget_25->setStyleSheet(QLatin1String("#widget_25{\n"
@@ -2759,7 +2788,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -170, 828, 518));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 828, 518));
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 6000));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
@@ -3436,8 +3465,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
-        tabWidget->setCurrentIndex(-1);
+        stackedWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_tool->setCurrentIndex(0);
 
 
@@ -3503,9 +3532,13 @@ public:
         toolButton_max->setText(QString());
         toolButton_close->setText(QString());
         label_3->setText(QApplication::translate("MainWindow", "Thrift\346\216\245\345\217\243\346\265\213\350\257\225\345\267\245\345\205\267", nullptr));
+        toolButton_25->setText(QString());
         toolButton_top_back->setText(QString());
         toolButton->setText(QString());
         label_2->setText(QApplication::translate("MainWindow", "\347\202\271\345\207\273\347\231\273\345\275\225", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\351\241\265", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\351\241\265", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\260\217\345\267\245\345\205\267\351\233\206\345\220\210", nullptr));
         comboBox_tool->setItemText(0, QApplication::translate("MainWindow", "\344\276\277\347\255\276", nullptr));
         comboBox_tool->setItemText(1, QApplication::translate("MainWindow", "\350\277\233\345\210\266\350\275\254\346\215\242", nullptr));

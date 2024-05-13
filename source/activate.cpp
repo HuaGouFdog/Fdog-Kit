@@ -9,7 +9,7 @@ Activate::Activate(QWidget *parent) :
     ui->setupUi(this);
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &Activate::updateBarValue);
-    m_timer->start(5);
+    m_timer->start(20);
     this->setWindowFlag(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     //设置边框阴影

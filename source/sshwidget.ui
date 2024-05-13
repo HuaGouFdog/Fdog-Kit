@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(30, 45, 54);</string>
+   <string notr="true"/>
   </property>
   <property name="locale">
    <locale language="English" country="Kenya"/>
@@ -1109,7 +1109,7 @@ QProgressBar:chunk{
                      <x>0</x>
                      <y>0</y>
                      <width>1231</width>
-                     <height>381</height>
+                     <height>339</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1704,7 +1704,7 @@ QToolButton:hover {
          <property name="styleSheet">
           <string notr="true">/*#widget_bottom {
 	
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(10, 31, 57);
 	border-radius: 10px;
 }*/
 QToolButton {
@@ -1785,7 +1785,7 @@ QMenu::separator {
             <property name="styleSheet">
              <string notr="true">#widget_3 {
 	
-	background-color: rgba(255, 255, 255, 100);
+	background-color: rgb(10, 31, 57);
 	border-radius: 10px;
 }
 </string>
@@ -1837,7 +1837,9 @@ QTabBar::tab{
 	border-top-left-radius: 2px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 2px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
-	padding: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	height:25;
 	/*margin-right:5px;
 	margin-left: 5px;*/
 	

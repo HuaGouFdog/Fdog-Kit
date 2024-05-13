@@ -57,11 +57,11 @@ int main(int argc, char *argv[])
         qDebug() << "错误";
     }
 
-#if 0
+#if 1
     MainWindow w;
     w.show();
 #endif
-#if 1
+#if 0
     Activate aw;
     aw.show();
     while(!signalReceived) {

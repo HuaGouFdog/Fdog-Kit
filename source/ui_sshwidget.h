@@ -145,7 +145,7 @@ public:
         if (sshwidget->objectName().isEmpty())
             sshwidget->setObjectName(QStringLiteral("sshwidget"));
         sshwidget->resize(1391, 699);
-        sshwidget->setStyleSheet(QStringLiteral("background-color: rgb(30, 45, 54);"));
+        sshwidget->setStyleSheet(QStringLiteral(""));
         sshwidget->setLocale(QLocale(QLocale::English, QLocale::Kenya));
         horizontalLayout_19 = new QHBoxLayout(sshwidget);
         horizontalLayout_19->setSpacing(0);
@@ -573,7 +573,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1231, 381));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1231, 339));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -949,7 +949,7 @@ public:
         widget_bottom->setMinimumSize(QSize(0, 0));
         widget_bottom->setStyleSheet(QLatin1String("/*#widget_bottom {\n"
 "	\n"
-"	background-color: rgb(255, 255, 255);\n"
+"	background-color: rgb(10, 31, 57);\n"
 "	border-radius: 10px;\n"
 "}*/\n"
 "QToolButton {\n"
@@ -993,8 +993,8 @@ public:
 "QMenu::icon:checked {\n"
 "    background: rgb(253,253,254);\n"
 "    position: absolute;\n"
-"  "
-                        "  top: 1px;\n"
+"    t"
+                        "op: 1px;\n"
 "    right: 1px;\n"
 "    bottom: 1px;\n"
 "    left: 1px;\n"
@@ -1017,7 +1017,7 @@ public:
         widget_3->setObjectName(QStringLiteral("widget_3"));
         widget_3->setStyleSheet(QLatin1String("#widget_3 {\n"
 "	\n"
-"	background-color: rgba(255, 255, 255, 100);\n"
+"	background-color: rgb(10, 31, 57);\n"
 "	border-radius: 10px;\n"
 "}\n"
 ""));
@@ -1048,7 +1048,9 @@ public:
 "	border-top-right-radius: 2px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211"
                         "*/\n"
 "	/*width:120px;*/\n"
-"	padding: 5px;\n"
+"	padding-left: 5px;\n"
+"	padding-right: 5px;\n"
+"	height:25;\n"
 "	/*margin-right:5px;\n"
 "	margin-left: 5px;*/\n"
 "	\n"
@@ -1069,8 +1071,8 @@ public:
 "	/*background-color: rgb(100, 117, 125, 255);*/\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217"
-                        "*/\n"
+"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271"
+                        "\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
 "   border-top:2px solid rgb(108, 117, 125, 65); \n"
 "   border-bottom:1px solid rgb(108, 117, 125, 65); \n"
