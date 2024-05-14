@@ -1740,7 +1740,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1991,7 +1991,7 @@ public:
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
         QFont font7;
         font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font7.setPointSize(10);
+        font7.setPointSize(11);
         font7.setStyleStrategy(QFont::PreferAntialias);
         textEdit_data->setFont(font7);
         textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
@@ -2063,7 +2063,7 @@ public:
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
         QFont font10;
         font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font10.setPointSize(10);
+        font10.setPointSize(11);
         plainTextEdit->setFont(font10);
         plainTextEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;"));
@@ -2380,8 +2380,8 @@ public:
         textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B';\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "  Data  ", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

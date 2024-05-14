@@ -456,6 +456,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
     int objectLent = object.length();
     for (QJsonObject::const_iterator it = object.constBegin(); it != object.constEnd(); ++it)
     {
+        qDebug() << "it.key() = " << it.key() << " objectLent = " << objectLent << " index = " << index;
         if(index < objectLent)
             endingSymbol = QStringLiteral(",");
         else
@@ -487,13 +488,13 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         {
             QString obj = QString("%1").arg(value.toDouble(), 0, 'f', 9);
             //QString obj = value.toString();
-            qDebug() << "obj = " << obj;
+            //qDebug() << "obj = " << obj;
             //判断倒数9位有没有非零，如果都是零，显示整数
             if (!containsNonZeroDigit(obj.mid(obj.length() - 10))) {
                 //全是0
                 obj = obj.mid(0,obj.length()- 10);
             }
-            qDebug() << "obj2 = " << obj;
+            //qDebug() << "obj2 = " << obj;
             textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:<span style='color:#128BF1;'>%3</span>%4").arg(spacing).arg(it.key()).arg(obj).arg(endingSymbol));
         }
         else if(value.isBool())
@@ -512,12 +513,19 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
             textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
             QJsonObject obj = value.toObject();
             utils_parsingJsonObject(textEdit,obj,nextLayers);
-        }
-        else if(value.isArray())
+            if(index < objectLent) {
+                endingSymbol = QStringLiteral(",");
+                textEdit->insertPlainText(endingSymbol);
+            }
+        } else if(value.isArray())
         {
             textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
             QJsonArray arr = value.toArray();
             utils_parsingJsonArray(textEdit,arr,nextLayers);
+            if(index < objectLent) {
+                endingSymbol = QStringLiteral(",");
+                textEdit->insertPlainText(endingSymbol);
+            }
         }
         else
         {
@@ -594,29 +602,38 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
         {
             QString obj = QString("%1").arg(ref.toDouble(), 0, 'f', 9);
             //QString obj = ref.toString();
-            qDebug() << "obj = " << obj;
+            //qDebug() << "obj = " << obj;
             //判断倒数9位有没有非零，如果都是零，显示整数
             if (!containsNonZeroDigit(obj.mid(obj.length()-10))) {
                 //全是0
                 obj = obj.mid(0, obj.length()- 10);
             }
-            qDebug() << "obj2 = " << obj;
+            //qDebug() << "obj2 = " << obj;
             textEdit->append(QString("<span style='white-space:pre;color:#128BF1;'>%1%2</span>%3").arg(spacing).arg(obj).arg(endingSymbol));
         }
         else if(jsonValueType == QJsonValue::Array)
         {
             QJsonArray arr = ref.toArray();
             utils_parsingJsonArray(textEdit,arr,nextLayers);
+            if(index < arrayLent) {
+                endingSymbol = QStringLiteral(",");
+                textEdit->insertPlainText(endingSymbol);
+            }
         }
         else if(jsonValueType == QJsonValue::Object)
         {
             QJsonObject obj = ref.toObject();
             utils_parsingJsonObject(textEdit,obj,nextLayers);
+            if(index < arrayLent) {
+                endingSymbol = QStringLiteral(",");
+                textEdit->insertPlainText(endingSymbol);
+            }
         }
         else
         {
             textEdit->append(QString("<span style='white-space:pre;color:#128BF1;'>%1%2</span>%3").arg(spacing).arg(ref.toInt()).arg(endingSymbol));
         }
+        ++index;
     }
     spacingBeforeBrackets.replace("[","]");
     textEdit->append(spacingBeforeBrackets);

@@ -707,17 +707,16 @@ public:
         plainTextEdit_json_source = new QPlainTextEdit(splitter);
         plainTextEdit_json_source->setObjectName(QStringLiteral("plainTextEdit_json_source"));
         QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(10);
+        font3.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font3.setPointSize(11);
         font3.setBold(false);
         font3.setItalic(false);
         font3.setWeight(50);
         plainTextEdit_json_source->setFont(font3);
         plainTextEdit_json_source->setStyleSheet(QLatin1String("QPlainTextEdit{\n"
 "color: rgb(38, 38, 38);\n"
-"font: 10pt \"OPPOSans B\";\n"
 "border-radius: 14px;\n"
-"background-color: rgba(255, 255, 255,200);\n"
+"	background-color: rgb(255, 255, 255);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding:5px;\n"
@@ -728,9 +727,9 @@ public:
         textEdit_json_target->setFont(font3);
         textEdit_json_target->setStyleSheet(QLatin1String("QTextEdit{\n"
 "color: rgb(56, 56, 56);\n"
-"font: 10pt \"OPPOSans B\";\n"
+"\n"
 "border-radius: 14px;\n"
-"background-color: rgba(255, 255, 255,200);\n"
+"	background-color: rgb(255, 255, 255);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding:5px;\n"
@@ -828,8 +827,8 @@ public:
         textEdit_json_target->setHtml(QApplication::translate("toolswidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:15pt;\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:15pt;\"><br /></p></body></html>", nullptr));
     } // retranslateUi
 
 };
