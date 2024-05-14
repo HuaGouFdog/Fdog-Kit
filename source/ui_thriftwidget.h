@@ -835,6 +835,7 @@ public:
         comboBox_port->addItem(QString());
         comboBox_port->addItem(QString());
         comboBox_port->addItem(QString());
+        comboBox_port->addItem(QString());
         comboBox_port->setObjectName(QStringLiteral("comboBox_port"));
         sizePolicy.setHeightForWidth(comboBox_port->sizePolicy().hasHeightForWidth());
         comboBox_port->setSizePolicy(sizePolicy);
@@ -1988,7 +1989,11 @@ public:
         verticalLayout_8->setContentsMargins(-1, 9, -1, -1);
         textEdit_data = new QTextEdit(tab_3);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
-        textEdit_data->setFont(font);
+        QFont font7;
+        font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font7.setPointSize(10);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        textEdit_data->setFont(font7);
         textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;"));
         textEdit_data->setFrameShape(QFrame::Box);
@@ -2022,13 +2027,13 @@ public:
 
         textEdit = new QTextEdit(tab_source);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        QFont font7;
-        font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font7.setPointSize(10);
-        font7.setBold(false);
-        font7.setItalic(false);
-        font7.setWeight(7);
-        textEdit->setFont(font7);
+        QFont font8;
+        font8.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font8.setPointSize(10);
+        font8.setBold(false);
+        font8.setItalic(false);
+        font8.setWeight(7);
+        textEdit->setFont(font8);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;\n"
@@ -2047,19 +2052,19 @@ public:
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         label_4 = new QLabel(widget_2);
         label_4->setObjectName(QStringLiteral("label_4"));
-        QFont font8;
-        font8.setFamily(QStringLiteral("OPPOSans B"));
-        font8.setPointSize(11);
-        label_4->setFont(font8);
+        QFont font9;
+        font9.setFamily(QStringLiteral("OPPOSans B"));
+        font9.setPointSize(11);
+        label_4->setFont(font9);
 
         verticalLayout_4->addWidget(label_4);
 
         plainTextEdit = new QPlainTextEdit(widget_2);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        QFont font9;
-        font9.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font9.setPointSize(10);
-        plainTextEdit->setFont(font9);
+        QFont font10;
+        font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font10.setPointSize(10);
+        plainTextEdit->setFont(font10);
         plainTextEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;"));
 
@@ -2097,7 +2102,7 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setFont(font8);
+        label_13->setFont(font9);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
 
@@ -2142,7 +2147,7 @@ public:
 
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font8);
+        label_11->setFont(font9);
         label_11->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_11->setAlignment(Qt::AlignCenter);
 
@@ -2257,7 +2262,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(1);
+        tabWidget_response->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -2271,56 +2276,57 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("thriftwidget", "\346\216\245\345\217\243\345\210\227\350\241\250", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("thriftwidget", "\345\216\206\345\217\262\350\256\260\345\275\225", nullptr));
         label_2->setText(QApplication::translate("thriftwidget", "\344\270\273\346\234\272", nullptr));
-        lineEdit_host->setText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
+        lineEdit_host->setText(QApplication::translate("thriftwidget", "192.168.85.38", nullptr));
         lineEdit_host->setPlaceholderText(QApplication::translate("thriftwidget", "172.16.8.154", nullptr));
         label->setText(QApplication::translate("thriftwidget", "\347\253\257\345\217\243", nullptr));
-        comboBox_port->setItemText(0, QApplication::translate("thriftwidget", "ap(4031)", nullptr));
-        comboBox_port->setItemText(1, QApplication::translate("thriftwidget", "badword(11040)", nullptr));
-        comboBox_port->setItemText(2, QApplication::translate("thriftwidget", "user(11241)", nullptr));
-        comboBox_port->setItemText(3, QApplication::translate("thriftwidget", "buddy(11201)", nullptr));
-        comboBox_port->setItemText(4, QApplication::translate("thriftwidget", "chat(11203)", nullptr));
-        comboBox_port->setItemText(5, QApplication::translate("thriftwidget", "login(11225)", nullptr));
-        comboBox_port->setItemText(6, QApplication::translate("thriftwidget", "cloud(11204)", nullptr));
-        comboBox_port->setItemText(7, QApplication::translate("thriftwidget", "cache(11202)", nullptr));
-        comboBox_port->setItemText(8, QApplication::translate("thriftwidget", "collection(11205)", nullptr));
-        comboBox_port->setItemText(9, QApplication::translate("thriftwidget", "customer(11207)", nullptr));
-        comboBox_port->setItemText(10, QApplication::translate("thriftwidget", "dbconfig(11208)", nullptr));
-        comboBox_port->setItemText(11, QApplication::translate("thriftwidget", "emoticon(11209)", nullptr));
-        comboBox_port->setItemText(12, QApplication::translate("thriftwidget", "commentcenter(11206)", nullptr));
-        comboBox_port->setItemText(13, QApplication::translate("thriftwidget", "analysiswebsite(11200)", nullptr));
-        comboBox_port->setItemText(14, QApplication::translate("thriftwidget", "enterprisedictionary(11210)", nullptr));
-        comboBox_port->setItemText(15, QApplication::translate("thriftwidget", "enterpriseorganization(11211)", nullptr));
-        comboBox_port->setItemText(16, QApplication::translate("thriftwidget", "enterpriseregister(11212)", nullptr));
-        comboBox_port->setItemText(17, QApplication::translate("thriftwidget", "enterpriserolemenu(11213)", nullptr));
-        comboBox_port->setItemText(18, QApplication::translate("thriftwidget", "enterprisestatistics(11214)", nullptr));
-        comboBox_port->setItemText(19, QApplication::translate("thriftwidget", "enterpriseTask(11215)", nullptr));
-        comboBox_port->setItemText(20, QApplication::translate("thriftwidget", "enterpriseuser(11216)", nullptr));
-        comboBox_port->setItemText(21, QApplication::translate("thriftwidget", "feedback(11217)", nullptr));
-        comboBox_port->setItemText(22, QApplication::translate("thriftwidget", "fullsearch(11218)", nullptr));
-        comboBox_port->setItemText(23, QApplication::translate("thriftwidget", "group(11219)", nullptr));
-        comboBox_port->setItemText(24, QApplication::translate("thriftwidget", "groupfile(11220)", nullptr));
-        comboBox_port->setItemText(25, QApplication::translate("thriftwidget", "groupmember(11221)", nullptr));
-        comboBox_port->setItemText(26, QApplication::translate("thriftwidget", "imageverify(11222)", nullptr));
-        comboBox_port->setItemText(27, QApplication::translate("thriftwidget", "iosnotice-new(11223)", nullptr));
-        comboBox_port->setItemText(28, QApplication::translate("thriftwidget", "lbs(11224)", nullptr));
-        comboBox_port->setItemText(29, QApplication::translate("thriftwidget", "memo(11226)", nullptr));
-        comboBox_port->setItemText(30, QApplication::translate("thriftwidget", "messagestorage(11227)", nullptr));
-        comboBox_port->setItemText(31, QApplication::translate("thriftwidget", "online(11228)", nullptr));
-        comboBox_port->setItemText(32, QApplication::translate("thriftwidget", "operationlog(11229)", nullptr));
-        comboBox_port->setItemText(33, QApplication::translate("thriftwidget", "platform(11230)", nullptr));
-        comboBox_port->setItemText(34, QApplication::translate("thriftwidget", "platform-business(11231)", nullptr));
-        comboBox_port->setItemText(35, QApplication::translate("thriftwidget", "platform-database(11232)", nullptr));
-        comboBox_port->setItemText(36, QApplication::translate("thriftwidget", "platformstatistics(11233)", nullptr));
-        comboBox_port->setItemText(37, QApplication::translate("thriftwidget", "recommend(11234)", nullptr));
-        comboBox_port->setItemText(38, QApplication::translate("thriftwidget", "registeruser(11235)", nullptr));
-        comboBox_port->setItemText(39, QApplication::translate("thriftwidget", "route(11236)", nullptr));
-        comboBox_port->setItemText(40, QApplication::translate("thriftwidget", "setting(11237)", nullptr));
-        comboBox_port->setItemText(41, QApplication::translate("thriftwidget", "sharecomment(11238)", nullptr));
-        comboBox_port->setItemText(42, QApplication::translate("thriftwidget", "sharecontent(11239)", nullptr));
-        comboBox_port->setItemText(43, QApplication::translate("thriftwidget", "timestamp(11240)", nullptr));
-        comboBox_port->setItemText(44, QApplication::translate("thriftwidget", "userbase(11242)", nullptr));
-        comboBox_port->setItemText(45, QApplication::translate("thriftwidget", "verifycode(11243)", nullptr));
-        comboBox_port->setItemText(46, QApplication::translate("thriftwidget", "verifymessage(11244)", nullptr));
+        comboBox_port->setItemText(0, QApplication::translate("thriftwidget", "imnotify(11226)", nullptr));
+        comboBox_port->setItemText(1, QApplication::translate("thriftwidget", "ap(4031)", nullptr));
+        comboBox_port->setItemText(2, QApplication::translate("thriftwidget", "badword(11040)", nullptr));
+        comboBox_port->setItemText(3, QApplication::translate("thriftwidget", "user(11241)", nullptr));
+        comboBox_port->setItemText(4, QApplication::translate("thriftwidget", "buddy(11201)", nullptr));
+        comboBox_port->setItemText(5, QApplication::translate("thriftwidget", "chat(11203)", nullptr));
+        comboBox_port->setItemText(6, QApplication::translate("thriftwidget", "login(11225)", nullptr));
+        comboBox_port->setItemText(7, QApplication::translate("thriftwidget", "cloud(11204)", nullptr));
+        comboBox_port->setItemText(8, QApplication::translate("thriftwidget", "cache(11202)", nullptr));
+        comboBox_port->setItemText(9, QApplication::translate("thriftwidget", "collection(11205)", nullptr));
+        comboBox_port->setItemText(10, QApplication::translate("thriftwidget", "customer(11207)", nullptr));
+        comboBox_port->setItemText(11, QApplication::translate("thriftwidget", "dbconfig(11208)", nullptr));
+        comboBox_port->setItemText(12, QApplication::translate("thriftwidget", "emoticon(11209)", nullptr));
+        comboBox_port->setItemText(13, QApplication::translate("thriftwidget", "commentcenter(11206)", nullptr));
+        comboBox_port->setItemText(14, QApplication::translate("thriftwidget", "analysiswebsite(11200)", nullptr));
+        comboBox_port->setItemText(15, QApplication::translate("thriftwidget", "enterprisedictionary(11210)", nullptr));
+        comboBox_port->setItemText(16, QApplication::translate("thriftwidget", "enterpriseorganization(11211)", nullptr));
+        comboBox_port->setItemText(17, QApplication::translate("thriftwidget", "enterpriseregister(11212)", nullptr));
+        comboBox_port->setItemText(18, QApplication::translate("thriftwidget", "enterpriserolemenu(11213)", nullptr));
+        comboBox_port->setItemText(19, QApplication::translate("thriftwidget", "enterprisestatistics(11214)", nullptr));
+        comboBox_port->setItemText(20, QApplication::translate("thriftwidget", "enterpriseTask(11215)", nullptr));
+        comboBox_port->setItemText(21, QApplication::translate("thriftwidget", "enterpriseuser(11216)", nullptr));
+        comboBox_port->setItemText(22, QApplication::translate("thriftwidget", "feedback(11217)", nullptr));
+        comboBox_port->setItemText(23, QApplication::translate("thriftwidget", "fullsearch(11218)", nullptr));
+        comboBox_port->setItemText(24, QApplication::translate("thriftwidget", "group(11219)", nullptr));
+        comboBox_port->setItemText(25, QApplication::translate("thriftwidget", "groupfile(11220)", nullptr));
+        comboBox_port->setItemText(26, QApplication::translate("thriftwidget", "groupmember(11221)", nullptr));
+        comboBox_port->setItemText(27, QApplication::translate("thriftwidget", "imageverify(11222)", nullptr));
+        comboBox_port->setItemText(28, QApplication::translate("thriftwidget", "iosnotice-new(11223)", nullptr));
+        comboBox_port->setItemText(29, QApplication::translate("thriftwidget", "lbs(11224)", nullptr));
+        comboBox_port->setItemText(30, QApplication::translate("thriftwidget", "memo(11226)", nullptr));
+        comboBox_port->setItemText(31, QApplication::translate("thriftwidget", "messagestorage(11227)", nullptr));
+        comboBox_port->setItemText(32, QApplication::translate("thriftwidget", "online(11228)", nullptr));
+        comboBox_port->setItemText(33, QApplication::translate("thriftwidget", "operationlog(11229)", nullptr));
+        comboBox_port->setItemText(34, QApplication::translate("thriftwidget", "platform(11230)", nullptr));
+        comboBox_port->setItemText(35, QApplication::translate("thriftwidget", "platform-business(11231)", nullptr));
+        comboBox_port->setItemText(36, QApplication::translate("thriftwidget", "platform-database(11232)", nullptr));
+        comboBox_port->setItemText(37, QApplication::translate("thriftwidget", "platformstatistics(11233)", nullptr));
+        comboBox_port->setItemText(38, QApplication::translate("thriftwidget", "recommend(11234)", nullptr));
+        comboBox_port->setItemText(39, QApplication::translate("thriftwidget", "registeruser(11235)", nullptr));
+        comboBox_port->setItemText(40, QApplication::translate("thriftwidget", "route(11236)", nullptr));
+        comboBox_port->setItemText(41, QApplication::translate("thriftwidget", "setting(11237)", nullptr));
+        comboBox_port->setItemText(42, QApplication::translate("thriftwidget", "sharecomment(11238)", nullptr));
+        comboBox_port->setItemText(43, QApplication::translate("thriftwidget", "sharecontent(11239)", nullptr));
+        comboBox_port->setItemText(44, QApplication::translate("thriftwidget", "timestamp(11240)", nullptr));
+        comboBox_port->setItemText(45, QApplication::translate("thriftwidget", "userbase(11242)", nullptr));
+        comboBox_port->setItemText(46, QApplication::translate("thriftwidget", "verifycode(11243)", nullptr));
+        comboBox_port->setItemText(47, QApplication::translate("thriftwidget", "verifymessage(11244)", nullptr));
 
         lineEdit_port->setText(QApplication::translate("thriftwidget", "11040", nullptr));
         lineEdit_port->setPlaceholderText(QApplication::translate("thriftwidget", "9090", nullptr));
@@ -2374,8 +2380,8 @@ public:
         textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B';\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "  Data  ", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -2431,19 +2437,7 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:24;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "  \344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256  ", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "\347\274\226\350\276\221\345\214\272", nullptr));
-        plainTextEdit->setPlainText(QApplication::translate("thriftwidget", "\350\257\267\346\261\202\346\272\220\346\225\260\346\215\256\357\274\232\n"
-"00000022  80010001  0000000a  67657442  6164776f  72640000  00000a00  01000000  \n"
-"00000001  2c000000  \n"
-"------------------------------------------------------------------------------\n"
-"\350\257\267\346\261\202\347\273\223\346\236\234\346\225\260\346\215\256\357\274\232\n"
-"0000004d  80010002  0000000a  67657442  6164776f  72640000  00000c00  000c0001  \n"
-"08000100  0000000b  00020000  00026f6b  0a000300  00000000  00010e00  0a000200  \n"
-"00000000  00010e0f  00030c00  00000000  0000\n"
-"------------------------------------------------------------------------------\n"
-"\346\237\223\350\211\262\346\225\260\346\215\256(\351\242\234\350\211\262\344\277\241\346\201\257\345\217\257\346\237\245\347\234\213thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216):\n"
-"0000004d800100020000000a676574426164776f7264000000000c00000c0001080001000000000b0002000000026f6b0a0003000000000000010e000a0002000000000000010e0f00"
-                        "030c00000000000000\n"
-"------------------------------------------------------------------------------", nullptr));
+        plainTextEdit->setPlainText(QApplication::translate("thriftwidget", "4611686027042922249", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));
         label_10->setText(QString());

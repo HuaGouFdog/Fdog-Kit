@@ -861,11 +861,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_thrift_api->setGraphicsEffect(effect14);
 
-    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
-    effect15->setOffset(-2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_in_param->setGraphicsEffect(effect15);
+    // QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
+    // effect15->setOffset(-2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->widget_in_param->setGraphicsEffect(effect15);
 
     // QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect();
     // effect16->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
@@ -873,11 +873,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
     // effect16->setBlurRadius(5);        //设定阴影的模糊半径，数值越大越模糊
     // ui->treeWidget->setGraphicsEffect(effect16);
 
-    QGraphicsDropShadowEffect *effect17 = new QGraphicsDropShadowEffect();
-    effect17->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect17->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect17->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_outparam->setGraphicsEffect(effect17);
+    // QGraphicsDropShadowEffect *effect17 = new QGraphicsDropShadowEffect();
+    // effect17->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect17->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect17->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->widget_outparam->setGraphicsEffect(effect17);
 }
 
 QString thriftwidget::getType(int index)
@@ -2103,9 +2103,11 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         //读取序号
         QString value_sn = str.mid(0, 4);
         //需要转
+        bool ok; // 用于标识转换是否成功
         qDebug() << "outParam = " << outParam << " hexToLongNumber(value_sn) = " << hexToLongNumber(value_sn) << " value_sn = " << value_sn;
-        QString paramName_ = structParamMap.value(outType).value(value_sn.toInt()).paramName;
-        QString paramType_ = structParamMap.value(outType).value(value_sn.toInt()).paramType;
+        qDebug() << "outType = " << outType <<  " value_sn.toInt() = " << value_sn.toInt(&ok, 16);
+        QString paramName_ = structParamMap.value(outType).value(value_sn.toInt(&ok, 16)).paramName;
+        QString paramType_ = structParamMap.value(outType).value(value_sn.toInt(&ok, 16)).paramType;
 
         str = str.mid(4);
         temp = temp + addColorHtml(value_sn, sourceColorMap[THRIFT_VALUE_SN]);

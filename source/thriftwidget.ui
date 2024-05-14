@@ -858,7 +858,7 @@ padding-right:10px;
 }</string>
             </property>
             <property name="text">
-             <string>172.16.8.154</string>
+             <string>192.168.85.38</string>
             </property>
             <property name="placeholderText">
              <string>172.16.8.154</string>
@@ -930,6 +930,11 @@ padding-right:10px;
             <property name="editable">
              <bool>true</bool>
             </property>
+            <item>
+             <property name="text">
+              <string>imnotify(11226)</string>
+             </property>
+            </item>
             <item>
              <property name="text">
               <string>ap(4031)</string>
@@ -3415,7 +3420,7 @@ QTabBar QToolButton:hover {
 }</string>
                          </property>
                          <property name="currentIndex">
-                          <number>1</number>
+                          <number>0</number>
                          </property>
                          <widget class="QWidget" name="tab_3">
                           <property name="sizePolicy">
@@ -3441,7 +3446,7 @@ QTabBar QToolButton:hover {
                             <widget class="QTextEdit" name="textEdit_data">
                              <property name="font">
                               <font>
-                               <family>OPPOSans B</family>
+                               <family>Cascadia Code SemiBold</family>
                                <pointsize>10</pointsize>
                                <stylestrategy>PreferAntialias</stylestrategy>
                               </font>
@@ -3460,8 +3465,8 @@ border-radius: 2px;</string>
                               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
@@ -3646,18 +3651,7 @@ p, li { white-space: pre-wrap; }
 border-radius: 2px;</string>
                             </property>
                             <property name="plainText">
-                             <string>请求源数据：
-00000022  80010001  0000000a  67657442  6164776f  72640000  00000a00  01000000  
-00000001  2c000000  
-------------------------------------------------------------------------------
-请求结果数据：
-0000004d  80010002  0000000a  67657442  6164776f  72640000  00000c00  000c0001  
-08000100  0000000b  00020000  00026f6b  0a000300  00000000  00010e00  0a000200  
-00000000  00010e0f  00030c00  00000000  0000
-------------------------------------------------------------------------------
-染色数据(颜色信息可查看thrift协议报文说明):
-0000004d800100020000000a676574426164776f7264000000000c00000c0001080001000000000b0002000000026f6b0a0003000000000000010e000a0002000000000000010e0f00030c00000000000000
-------------------------------------------------------------------------------</string>
+                             <string>4611686027042922249</string>
                             </property>
                            </widget>
                           </item>

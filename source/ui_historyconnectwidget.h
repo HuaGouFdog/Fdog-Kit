@@ -28,10 +28,8 @@ class Ui_historyconnectwidget
 {
 public:
     QHBoxLayout *horizontalLayout_5;
-    QSpacerItem *horizontalSpacer_2;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout;
-    QSpacerItem *verticalSpacer;
     QLabel *label;
     QTableWidget *tableWidget_history;
     QWidget *widget;
@@ -39,8 +37,6 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QToolButton *toolButton_clear_3;
     QToolButton *toolButton_clear;
-    QSpacerItem *verticalSpacer_2;
-    QSpacerItem *horizontalSpacer_8;
 
     void setupUi(QWidget *historyconnectwidget)
     {
@@ -51,20 +47,12 @@ public:
 "color: rgb(255, 255, 255);"));
         horizontalLayout_5 = new QHBoxLayout(historyconnectwidget);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalSpacer_2 = new QSpacerItem(149, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_2);
-
         widget_2 = new QWidget(historyconnectwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         verticalLayout = new QVBoxLayout(widget_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(20, 20, 20, 20);
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
-
         label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(0, 30));
@@ -256,23 +244,11 @@ public:
 
         verticalLayout->addWidget(widget);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_2);
-
-        verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(2, 30);
-        verticalLayout->setStretch(4, 3);
+        verticalLayout->setStretch(1, 30);
 
         horizontalLayout_5->addWidget(widget_2);
 
-        horizontalSpacer_8 = new QSpacerItem(149, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_8);
-
-        horizontalLayout_5->setStretch(0, 2);
-        horizontalLayout_5->setStretch(1, 8);
-        horizontalLayout_5->setStretch(2, 2);
+        horizontalLayout_5->setStretch(0, 8);
 
         retranslateUi(historyconnectwidget);
 

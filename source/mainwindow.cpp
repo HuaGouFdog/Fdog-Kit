@@ -947,13 +947,13 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
         int8_t connectType = 0;
         ui->stackedWidget->setCurrentIndex(2);
         //创建连接窗口
-        //hcwidget = new historyconnectwidget(connectType);
+        hcwidget = new historyconnectwidget(connectType);
         //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        //ui->tabWidget->addTab(hcwidget, "快速连接");
-        //ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-        //ui->stackedWidget->setCurrentIndex(0);
-        //hcwidget->show();
-        //ui->stackedWidget->setCurrentIndex(2);
+        ui->tabWidget->addTab(hcwidget, "快速连接");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        ui->stackedWidget->setCurrentIndex(0);
+        hcwidget->show();
+        ui->stackedWidget->setCurrentIndex(2);
     }
 }
 
