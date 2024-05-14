@@ -2056,6 +2056,12 @@ QString thriftwidget::handleString(QString &str, QString isEnd, QString resType,
 
 QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType, QString outParam)
 {
+    qDebug() << " outType = " << outType;
+    if (outType.contains(".")) {
+        int index = outType.lastIndexOf(".");
+        outType = outType.mid(index + 1);
+        qDebug() << "发现非本文件结构体，删除前缀后=" << outType;
+    }
     if (outParam == "") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
     } else {
