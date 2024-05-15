@@ -141,18 +141,18 @@ public:
     QWidget *page;
     QHBoxLayout *horizontalLayout_15;
     QSplitter *splitter_4;
-    QTabWidget *tabWidget_response;
-    QWidget *tab_3;
-    QVBoxLayout *verticalLayout_8;
-    QTextEdit *textEdit_data;
-    QWidget *tab_source;
-    QHBoxLayout *horizontalLayout_12;
-    QTextEdit *textEdit_info;
-    QTextEdit *textEdit;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
+    QTextEdit *textEdit_data;
+    QTabWidget *tabWidget_response;
+    QWidget *tab_3;
+    QVBoxLayout *verticalLayout_8;
     QPlainTextEdit *plainTextEdit;
+    QWidget *tab_source;
+    QHBoxLayout *horizontalLayout_12;
+    QTextEdit *textEdit;
+    QTextEdit *textEdit_info;
     QWidget *page_request;
     QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_15;
@@ -892,7 +892,7 @@ public:
 " \n"
 "QToolButton:hover {\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 170, 255);\n"
+"	background-color: rgb(250, 118, 0);\n"
 "}"));
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/lib/node2.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -1740,7 +1740,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(false);
+        treeWidget->header()->setVisible(true);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1777,7 +1777,10 @@ public:
 "QScrollBar::handle:vertical{\n"
 "    width: 12px;\n"
 "	\n"
-"	background-color: rgba(0, 41, 69, 255);\n"
+"	/*background-color: rgba(0, 41, 69, 255);*/\n"
+"	\n"
+"	\n"
+"	background-color: rgb(79, 79, 79);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
 "    min-height: 0;\n"
@@ -1799,10 +1802,10 @@ public:
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
-"    border: none;\n"
+"    b"
+                        "order: none;\n"
 "    height: 0px;\n"
-"    subcontrol-pos"
-                        "ition: top;\n"
+"    subcontrol-position: top;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
 "\n"
@@ -1899,15 +1902,44 @@ public:
         splitter_4 = new QSplitter(page);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);
-        tabWidget_response = new QTabWidget(splitter_4);
-        tabWidget_response->setObjectName(QStringLiteral("tabWidget_response"));
+        widget_2 = new QWidget(splitter_4);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        verticalLayout_4 = new QVBoxLayout(widget_2);
+        verticalLayout_4->setSpacing(8);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        label_4 = new QLabel(widget_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
         QFont font6;
         font6.setFamily(QStringLiteral("OPPOSans B"));
         font6.setPointSize(11);
-        font6.setBold(false);
-        font6.setUnderline(false);
-        font6.setWeight(50);
-        tabWidget_response->setFont(font6);
+        label_4->setFont(font6);
+
+        verticalLayout_4->addWidget(label_4);
+
+        textEdit_data = new QTextEdit(widget_2);
+        textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
+        QFont font7;
+        font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font7.setPointSize(11);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        textEdit_data->setFont(font7);
+        textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+"border-radius: 2px;"));
+        textEdit_data->setFrameShape(QFrame::Box);
+        textEdit_data->setReadOnly(true);
+
+        verticalLayout_4->addWidget(textEdit_data);
+
+        splitter_4->addWidget(widget_2);
+        tabWidget_response = new QTabWidget(splitter_4);
+        tabWidget_response->setObjectName(QStringLiteral("tabWidget_response"));
+        QFont font8;
+        font8.setFamily(QStringLiteral("OPPOSans B"));
+        font8.setPointSize(11);
+        font8.setBold(false);
+        font8.setUnderline(false);
+        font8.setWeight(50);
+        tabWidget_response->setFont(font8);
         tabWidget_response->setStyleSheet(QString::fromUtf8("/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab{\n"
 "    \n"
@@ -1986,20 +2018,17 @@ public:
         verticalLayout_8 = new QVBoxLayout(tab_3);
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(-1, 9, -1, -1);
-        textEdit_data = new QTextEdit(tab_3);
-        textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
-        QFont font7;
-        font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font7.setPointSize(11);
-        font7.setStyleStrategy(QFont::PreferAntialias);
-        textEdit_data->setFont(font7);
-        textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+        verticalLayout_8->setContentsMargins(0, 5, 9, 9);
+        plainTextEdit = new QPlainTextEdit(tab_3);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        QFont font9;
+        font9.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font9.setPointSize(11);
+        plainTextEdit->setFont(font9);
+        plainTextEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;"));
-        textEdit_data->setFrameShape(QFrame::Box);
-        textEdit_data->setReadOnly(true);
 
-        verticalLayout_8->addWidget(textEdit_data);
+        verticalLayout_8->addWidget(plainTextEdit);
 
         tabWidget_response->addTab(tab_3, QString());
         tab_source = new QWidget();
@@ -2010,7 +2039,25 @@ public:
         horizontalLayout_12 = new QHBoxLayout(tab_source);
         horizontalLayout_12->setSpacing(0);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
-        horizontalLayout_12->setContentsMargins(9, 9, 9, 9);
+        horizontalLayout_12->setContentsMargins(0, 5, 9, 9);
+        textEdit = new QTextEdit(tab_source);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        QFont font10;
+        font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font10.setPointSize(10);
+        font10.setBold(false);
+        font10.setItalic(false);
+        font10.setWeight(7);
+        textEdit->setFont(font10);
+        textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+"border-radius: 2px;\n"
+"font: 63 10pt \"Cascadia Code SemiBold\";"));
+        textEdit->setFrameShape(QFrame::Box);
+        textEdit->setReadOnly(true);
+
+        horizontalLayout_12->addWidget(textEdit);
+
         textEdit_info = new QTextEdit(tab_source);
         textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
         textEdit_info->setMinimumSize(QSize(400, 0));
@@ -2025,52 +2072,8 @@ public:
 
         horizontalLayout_12->addWidget(textEdit_info);
 
-        textEdit = new QTextEdit(tab_source);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        QFont font8;
-        font8.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font8.setPointSize(10);
-        font8.setBold(false);
-        font8.setItalic(false);
-        font8.setWeight(7);
-        textEdit->setFont(font8);
-        textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
-"border-radius: 2px;\n"
-"font: 63 10pt \"Cascadia Code SemiBold\";"));
-        textEdit->setFrameShape(QFrame::Box);
-        textEdit->setReadOnly(true);
-
-        horizontalLayout_12->addWidget(textEdit);
-
         tabWidget_response->addTab(tab_source, QString());
         splitter_4->addWidget(tabWidget_response);
-        widget_2 = new QWidget(splitter_4);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        verticalLayout_4 = new QVBoxLayout(widget_2);
-        verticalLayout_4->setSpacing(8);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_4 = new QLabel(widget_2);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        QFont font9;
-        font9.setFamily(QStringLiteral("OPPOSans B"));
-        font9.setPointSize(11);
-        label_4->setFont(font9);
-
-        verticalLayout_4->addWidget(label_4);
-
-        plainTextEdit = new QPlainTextEdit(widget_2);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        QFont font10;
-        font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font10.setPointSize(11);
-        plainTextEdit->setFont(font10);
-        plainTextEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
-"border-radius: 2px;"));
-
-        verticalLayout_4->addWidget(plainTextEdit);
-
-        splitter_4->addWidget(widget_2);
 
         horizontalLayout_15->addWidget(splitter_4);
 
@@ -2102,7 +2105,7 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setFont(font9);
+        label_13->setFont(font6);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
 
@@ -2147,7 +2150,7 @@ public:
 
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font9);
+        label_11->setFont(font6);
         label_11->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_11->setAlignment(Qt::AlignCenter);
 
@@ -2262,7 +2265,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(0);
+        tabWidget_response->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -2377,12 +2380,19 @@ public:
         label_response_param->setText(QApplication::translate("thriftwidget", "\347\273\223\346\236\234", nullptr));
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
+        label_4->setText(QApplication::translate("thriftwidget", "Data", nullptr));
         textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "  Data  ", nullptr));
+        plainTextEdit->setPlainText(QApplication::translate("thriftwidget", "4611686027042922249", nullptr));
+        tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "  \347\274\226\350\276\221\345\214\272  ", nullptr));
+        textEdit->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:56; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:24;\"><br /></p></body></html>", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2430,14 +2440,7 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\347\273\223\346\235\237\347\254\246\357\274\21000\357\274\211</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; m"
                         "argin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\345\200\274</span></p></body></html>", nullptr));
-        textEdit->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:56; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:24;\"><br /></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "  \344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256  ", nullptr));
-        label_4->setText(QApplication::translate("thriftwidget", "\347\274\226\350\276\221\345\214\272", nullptr));
-        plainTextEdit->setPlainText(QApplication::translate("thriftwidget", "4611686027042922249", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));
         label_10->setText(QString());

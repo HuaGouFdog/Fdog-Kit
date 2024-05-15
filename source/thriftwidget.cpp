@@ -483,6 +483,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         if (baseType.contains(key)) {
             //基础类型
             comboBoxKey->setCurrentText(key);
+            comboBoxKey->show();
             qDebug() << "基础类型";
         } else {
             qDebug() << "出错";
@@ -492,6 +493,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
             //基础类型
             comboBoxValue->setCurrentText(value);
             qDebug() << "基础类型";
+            comboBoxValue->show();
         } else {
             //复杂类型
             qDebug() << "进入" << "setParamValue_interior_map";
@@ -510,6 +512,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         if (baseType.contains(type_s)) {
             //基础类型
             comboBoxValue->setCurrentText(type_s);
+            comboBoxValue->show();
             qDebug() << "基础类型";
         } else {
             //复杂类型
@@ -527,7 +530,9 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         if (baseType.contains(type_s)) {
             //基础类型
             comboBoxValue->setCurrentText(type_s);
+            comboBoxValue->show();
             qDebug() << "基础类型";
+
         } else {
             //复杂类型
             setParamValue_interior(p, type_s);
@@ -1738,7 +1743,7 @@ void thriftwidget::handleMessage(QString &data)
     QString func_len = data.mid(0, 8);
     QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
     //qDebug() << "方法长度 = " << headers_func_length;
-    label_headers = label_headers + "方法长度:" + headers_func_length + "   ";
+    //label_headers = label_headers + "方法长度:" + headers_func_length + "   ";
     temp = temp + addColorHtml(func_len, sourceColorMap[THRIFT_FUNC_LENGTH]);
     bool ok;
     int len = func_len.toInt(&ok, 16) * 2;
@@ -1748,7 +1753,7 @@ void thriftwidget::handleMessage(QString &data)
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
     //qDebug() << "方法名 = " << hexToString(fun_name);
-    label_headers = label_headers + "方法名称:" + hexToString(fun_name) + "   ";
+    label_headers = label_headers + "接口名:" + hexToString(fun_name) + "   ";
     data = data.mid(len);
     //流水号
     QString func_sn = data.mid(0, 8);
@@ -1756,7 +1761,7 @@ void thriftwidget::handleMessage(QString &data)
     data = data.mid(8);
     QString headers_data_sn = QString::number(strtol(func_sn.toStdString().c_str(), nullptr, 16));
     //qDebug() << "流水号 = " << headers_data_sn;
-    label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
+    //label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
 
 
     label_headers = label_headers + "返回值类型:" + funcParamOutMap.value(hexToString(fun_name)).value(1).paramType + "   ";
@@ -1827,7 +1832,10 @@ void thriftwidget::handleMessage(QString &data)
                 temp = temp + handleSet(data, isEnd);
             } else if (value_type == "0f") {
                 //list
-                temp = temp + handleList(data, isEnd);
+                ui->textEdit_data->append(addColorBracketsHtml("{\"list\":"));
+                temp = temp + handleList(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
+                ui->textEdit_data->append(addColorBracketsHtml("}"));
             }
         }
     } else if (type_data == "80010003") {
@@ -2742,13 +2750,16 @@ QMap<int, paramInfo> thriftwidget::getFuncOutParams(QString data)
     } else if (data.startsWith("list")) {
         //复杂类型
         qDebug() << "list类型";
+        paramsMap_.insert(1, {data, "", "opt-in, req-out"});
+        qDebug() << "getFuncOutParams2 data =" << data;
+        //获取list成员类型
     } else if (baseType.contains(data)) {
         qDebug() << "基础类型";
         //基础类型
     } else {
         //struct
-        qDebug() << "getFuncOutParams2 data =" << data;
         paramsMap_.insert(1, {data, "", "opt-in, req-out"});
+        qDebug() << "getFuncOutParams2 data =" << data;
     }
 
     return paramsMap_;
@@ -3125,6 +3136,7 @@ void thriftwidget::on_toolButton_test_clicked()
 void thriftwidget::on_toolButton_show_thrift_info_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->tabWidget_response->setCurrentIndex(1);
     if(ui->textEdit_info->isHidden()) {
         ui->textEdit_info->show();
         //ui->toolButton_show_thrift_info->setText("关闭thrift协议说明");

@@ -157,7 +157,7 @@ public:
         horizontalLayout_4 = new QHBoxLayout(widget_side_top);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 5, 11, 5);
+        horizontalLayout_4->setContentsMargins(0, 5, 0, 5);
         label_zk_icon = new QLabel(widget_side_top);
         label_zk_icon->setObjectName(QStringLiteral("label_zk_icon"));
         label_zk_icon->setStyleSheet(QStringLiteral("image: url(:/lib/Zookeeper21.png);"));
