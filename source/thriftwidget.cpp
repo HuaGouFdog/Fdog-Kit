@@ -20,6 +20,8 @@
 #include <QGraphicsDropShadowEffect>
 #include <QFontDatabase>
 #include "utils.h"
+#include <QClipboard>
+#include <QMimeData>
 #pragma comment(lib, "ws2_32.lib")
 
 
@@ -768,6 +770,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->textEdit_info->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->textEdit_data->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->plainTextEdit_edit->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -3153,15 +3156,47 @@ void thriftwidget::on_textEdit_customContextMenuRequested(const QPoint &pos)
     QMenu *menu = new QMenu(ui->textEdit);
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction *copy1 = new QAction("复制", ui->textEdit);
-    QAction *all1 = new QAction("选择全部", ui->textEdit);
-    //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
-    //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
-    menu->addAction(copy1);
+    QAction *copy = new QAction("复制", ui->textEdit);
+    //QAction *paste = new QAction("粘贴", ui->textEdit);
+    QAction *all = new QAction("选择全部", ui->textEdit);
+    connect (copy,SIGNAL(triggered()),this,SLOT(rece_textEditCopy()));
+    //connect (paste,SIGNAL(triggered()),this,SLOT(rece_textEditPaste()));
+    menu->addAction(copy);
     menu->addSeparator();
-    menu->addAction(all1);
+//    menu->addAction(paste);
+//    menu->addSeparator();
+    menu->addAction(all);
     menu->move(cursor().pos());
     menu->show();
+}
+
+void thriftwidget::rece_textEditCopy()
+{
+    QString copyData = ui->textEdit->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(copyData);
+    QTextCursor cursor = ui->textEdit->textCursor();
+    ui->textEdit->setTextCursor(cursor);
+    ui->textEdit->setFocus();
+}
+
+void thriftwidget::rece_textEditPaste()
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+
+    if (mimeData->hasText()) {
+        QString clipboardText = mimeData->text();
+        //qDebug() << "剪贴板内容：" << clipboardText;
+        ui->textEdit->setText(clipboardText);
+    }
+    ui->textEdit->setFocus();
+}
+
+void thriftwidget::rece_textEditAll()
+{
+
 }
 
 void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
@@ -3261,18 +3296,43 @@ void thriftwidget::on_checkBox_show_source_stateChanged(int arg1)
 
 void thriftwidget::on_textEdit_data_customContextMenuRequested(const QPoint &pos)
 {
-    QMenu *menu = new QMenu(ui->textEdit_data);
+    //定义右键弹出菜单
+    QMenu *menu = new QMenu(ui->textEdit);
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction *copy1 = new QAction("复制", ui->textEdit_data);
-    QAction *all1 = new QAction("选择全部", ui->textEdit_data);
-    //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
+    QAction *copy = new QAction("复制", ui->textEdit_data);
+    //QAction *paste = new QAction("粘贴", ui->textEdit_data);
+    QAction *all = new QAction("选择全部", ui->textEdit_data);
+    connect (copy,SIGNAL(triggered()),this,SLOT(rece_textEdit_dataCopy()));
     //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
-    menu->addAction(copy1);
+    menu->addAction(copy);
     menu->addSeparator();
-    menu->addAction(all1);
+//    menu->addAction(paste);
+//    menu->addSeparator();
+    menu->addAction(all);
     menu->move(cursor().pos());
     menu->show();
+}
+
+void thriftwidget::rece_textEdit_dataCopy()
+{
+    QString copyData = ui->textEdit_data->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(copyData);
+    QTextCursor cursor = ui->textEdit_data->textCursor();
+    ui->textEdit_data->setTextCursor(cursor);
+    ui->textEdit_data->setFocus();
+}
+
+void thriftwidget::rece_textEdit_dataPaste()
+{
+
+}
+
+void thriftwidget::rece_textEdit_dataAll()
+{
+
 }
 
 void thriftwidget::on_toolButton_inportFile_clicked()
@@ -3374,4 +3434,53 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
 //            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
 //            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
 //    }
+}
+
+void thriftwidget::on_plainTextEdit_edit_customContextMenuRequested(const QPoint &pos)
+{
+    //定义右键弹出菜单
+    QMenu *menu = new QMenu(ui->textEdit);
+    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    menu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction *copy = new QAction("复制", ui->plainTextEdit_edit);
+    QAction *paste = new QAction("粘贴", ui->plainTextEdit_edit);
+    QAction *all = new QAction("选择全部", ui->plainTextEdit_edit);
+    connect (copy,SIGNAL(triggered()),this,SLOT(rece_plainTextEdit_editCopy()));
+    connect (paste,SIGNAL(triggered()),this,SLOT(rece_plainTextEdit_editPaste()));
+    menu->addAction(copy);
+    menu->addSeparator();
+    menu->addAction(paste);
+    menu->addSeparator();
+    menu->addAction(all);
+    menu->move(cursor().pos());
+    menu->show();
+}
+
+void thriftwidget::rece_plainTextEdit_editCopy()
+{
+    QString copyData = ui->plainTextEdit_edit->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(copyData);
+    QTextCursor cursor = ui->plainTextEdit_edit->textCursor();
+    ui->plainTextEdit_edit->setTextCursor(cursor);
+    ui->plainTextEdit_edit->setFocus();
+}
+
+void thriftwidget::rece_plainTextEdit_editPaste()
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+
+    if (mimeData->hasText()) {
+        QString clipboardText = mimeData->text();
+        //qDebug() << "剪贴板内容：" << clipboardText;
+        ui->plainTextEdit_edit->appendPlainText(clipboardText);
+    }
+    ui->plainTextEdit_edit->setFocus();
+}
+
+void thriftwidget::rece_plainTextEdit_editAll()
+{
+
 }

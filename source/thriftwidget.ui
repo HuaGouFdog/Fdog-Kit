@@ -101,6 +101,11 @@ QMenu::separator {
    </property>
    <item>
     <widget class="QSplitter" name="splitter_3">
+     <property name="font">
+      <font>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -120,6 +125,7 @@ QMenu::separator {
       <property name="font">
        <font>
         <family>OPPOSans B</family>
+        <stylestrategy>PreferAntialias</stylestrategy>
        </font>
       </property>
       <property name="styleSheet">
@@ -198,6 +204,11 @@ QScrollBar::up-arrow:vertical {
            <height>44</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <property name="spacing">
            <number>30</number>
@@ -227,6 +238,11 @@ QScrollBar::up-arrow:vertical {
               <width>100</width>
               <height>40</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
             </property>
             <property name="styleSheet">
              <string notr="true">image: url(:/lib/Thrift.png);</string>
@@ -297,6 +313,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_23">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -318,6 +339,11 @@ QToolButton:hover {
            <width>0</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_14">
           <property name="leftMargin">
@@ -368,6 +394,11 @@ padding-right:10px;
        </item>
        <item>
         <widget class="QWidget" name="widget_thrift_api" native="true">
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
          <property name="styleSheet">
           <string notr="true">#widget_thrift_api {
 background-color: rgb(54, 81, 97);
@@ -603,6 +634,11 @@ QScrollBar::up-arrow:horizontal {
       </layout>
      </widget>
      <widget class="QWidget" name="widget_right" native="true">
+      <property name="font">
+       <font>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">
 QComboBox{
@@ -714,6 +750,11 @@ QScrollBar::up-arrow:vertical {
            <width>16777215</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">QComboBox{
@@ -867,6 +908,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_3">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -923,6 +969,16 @@ padding-right:10px;
               <width>230</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
             </property>
             <property name="styleSheet">
              <string notr="true">color:#ced4da;</string>
@@ -1214,6 +1270,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_4">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1243,6 +1304,7 @@ padding-right:10px;
               <weight>50</weight>
               <italic>false</italic>
               <bold>false</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
             <property name="styleSheet">
@@ -1278,6 +1340,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_2">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1305,6 +1372,11 @@ QToolButton:hover {
            <width>16777215</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">QComboBox{
@@ -1448,6 +1520,11 @@ QComboBox QAbstractItemView::item:selected {
           </item>
           <item>
            <spacer name="horizontalSpacer_10">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1512,6 +1589,11 @@ QComboBox QAbstractItemView::item:selected {
           </item>
           <item>
            <spacer name="horizontalSpacer_11">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1584,6 +1666,11 @@ QComboBox QAbstractItemView::item:selected {
           </item>
           <item>
            <spacer name="horizontalSpacer_16">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1659,6 +1746,11 @@ QComboBox QAbstractItemView::item:selected {
           </item>
           <item>
            <spacer name="horizontalSpacer_9">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1689,6 +1781,11 @@ QComboBox QAbstractItemView::item:selected {
            <width>16777215</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">color:#ced4da;</string>
@@ -1777,6 +1874,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_8">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1830,6 +1932,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_27">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1884,6 +1991,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_22">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1914,6 +2026,11 @@ QToolButton:hover {
            <width>16777215</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <property name="spacing">
@@ -2002,6 +2119,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_17">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2087,6 +2209,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_18">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2148,6 +2275,7 @@ padding-right:10px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
             <property name="styleSheet">
@@ -2200,6 +2328,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_19">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2285,6 +2418,11 @@ padding-right:10px;
           </item>
           <item>
            <spacer name="horizontalSpacer_21">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2344,6 +2482,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_26">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2404,6 +2547,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_28">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2471,6 +2619,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_25">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2487,6 +2640,11 @@ QToolButton:hover {
           </item>
           <item>
            <spacer name="horizontalSpacer_20">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2512,6 +2670,11 @@ QToolButton:hover {
            <height>315</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -2534,6 +2697,11 @@ QToolButton:hover {
            </property>
            <item>
             <widget class="QSplitter" name="splitter_2">
+             <property name="font">
+              <font>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2541,6 +2709,11 @@ QToolButton:hover {
               <number>0</number>
              </property>
              <widget class="QWidget" name="widget_inparam" native="true">
+              <property name="font">
+               <font>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">#widget_inparam{
 /*border-right:2px solid rgb(54, 81, 97); */
@@ -2645,6 +2818,11 @@ QToolButton:hover {
                </property>
                <item>
                 <widget class="QSplitter" name="splitter">
+                 <property name="font">
+                  <font>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -2657,6 +2835,11 @@ QToolButton:hover {
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
                   </property>
                   <property name="styleSheet">
                    <string notr="true"/>
@@ -2684,6 +2867,11 @@ QToolButton:hover {
                        <width>0</width>
                        <height>30</height>
                       </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">#widget_in_param{
@@ -2774,6 +2962,11 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                       </item>
                       <item>
                        <spacer name="horizontalSpacer">
+                        <property name="font">
+                         <font>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
                         <property name="orientation">
                          <enum>Qt::Horizontal</enum>
                         </property>
@@ -3037,6 +3230,11 @@ border-radius: 2px;
               </layout>
              </widget>
              <widget class="QWidget" name="widget_outparam" native="true">
+              <property name="font">
+               <font>
+                <stylestrategy>PreferAntialias</stylestrategy>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(113, 113, 113);</string>
               </property>
@@ -3066,11 +3264,17 @@ border-radius: 2px;
                  </property>
                  <property name="font">
                   <font>
-                   <stylestrategy>PreferDefault</stylestrategy>
+                   <stylestrategy>PreferAntialias</stylestrategy>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QScrollBar:vertical{
+                  <string notr="true">QTextEdit{
+border: 1px solid rgba(199, 199, 199, 150);
+border-radius: 2px;
+font: 63 11pt &quot;Cascadia Code SemiBold&quot;;
+}
+
+QScrollBar:vertical{
     width: 12px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
@@ -3154,6 +3358,7 @@ QScrollBar::up-arrow:vertical {
                      <font>
                       <family>OPPOSans B</family>
                       <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
                      </font>
                     </property>
                     <property name="styleSheet">
@@ -3291,6 +3496,11 @@ QToolButton:hover {
                      </item>
                      <item>
                       <spacer name="horizontalSpacer_5">
+                       <property name="font">
+                        <font>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -3312,6 +3522,11 @@ QToolButton:hover {
                       <width>0</width>
                       <height>200</height>
                      </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">#stackedWidget{
@@ -3341,10 +3556,20 @@ color: rgb(79, 79, 79);
                       </property>
                       <item>
                        <widget class="QSplitter" name="splitter_4">
+                        <property name="font">
+                         <font>
+                          <stylestrategy>PreferAntialias</stylestrategy>
+                         </font>
+                        </property>
                         <property name="orientation">
                          <enum>Qt::Horizontal</enum>
                         </property>
                         <widget class="QWidget" name="widget_2" native="true">
+                         <property name="font">
+                          <font>
+                           <stylestrategy>PreferAntialias</stylestrategy>
+                          </font>
+                         </property>
                          <layout class="QVBoxLayout" name="verticalLayout_4">
                           <property name="spacing">
                            <number>8</number>
@@ -3355,6 +3580,7 @@ color: rgb(79, 79, 79);
                              <font>
                               <family>OPPOSans B</family>
                               <pointsize>11</pointsize>
+                              <stylestrategy>PreferAntialias</stylestrategy>
                              </font>
                             </property>
                             <property name="text">
@@ -3368,12 +3594,14 @@ color: rgb(79, 79, 79);
                              <font>
                               <family>Cascadia Code SemiBold</family>
                               <pointsize>11</pointsize>
+                              <weight>7</weight>
+                              <italic>false</italic>
+                              <bold>false</bold>
                               <stylestrategy>PreferAntialias</stylestrategy>
                              </font>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
-border-radius: 2px;</string>
+                             <string notr="true"/>
                             </property>
                             <property name="frameShape">
                              <enum>QFrame::Box</enum>
@@ -3385,8 +3613,8 @@ border-radius: 2px;</string>
                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:400;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                             </property>
                            </widget>
                           </item>
@@ -3400,6 +3628,7 @@ p, li { white-space: pre-wrap; }
                            <weight>50</weight>
                            <bold>false</bold>
                            <underline>false</underline>
+                           <stylestrategy>PreferAntialias</stylestrategy>
                           </font>
                          </property>
                          <property name="styleSheet">
@@ -3470,7 +3699,7 @@ QTabBar QToolButton:hover {
 }</string>
                          </property>
                          <property name="currentIndex">
-                          <number>1</number>
+                          <number>0</number>
                          </property>
                          <widget class="QWidget" name="tab_3">
                           <property name="sizePolicy">
@@ -3502,11 +3731,12 @@ QTabBar QToolButton:hover {
                             <number>9</number>
                            </property>
                            <item>
-                            <widget class="QPlainTextEdit" name="plainTextEdit">
+                            <widget class="QPlainTextEdit" name="plainTextEdit_edit">
                              <property name="font">
                               <font>
                                <family>Cascadia Code SemiBold</family>
                                <pointsize>11</pointsize>
+                               <stylestrategy>PreferAntialias</stylestrategy>
                               </font>
                              </property>
                              <property name="styleSheet">
@@ -3539,7 +3769,7 @@ border-radius: 2px;</string>
                           </attribute>
                           <layout class="QHBoxLayout" name="horizontalLayout_12">
                            <property name="spacing">
-                            <number>0</number>
+                            <number>9</number>
                            </property>
                            <property name="leftMargin">
                             <number>0</number>
@@ -3558,19 +3788,18 @@ border-radius: 2px;</string>
                              <property name="font">
                               <font>
                                <family>Cascadia Code SemiBold</family>
-                               <pointsize>10</pointsize>
+                               <pointsize>11</pointsize>
                                <weight>7</weight>
                                <italic>false</italic>
                                <bold>false</bold>
+                               <stylestrategy>PreferAntialias</stylestrategy>
                               </font>
                              </property>
                              <property name="cursor" stdset="0">
                               <cursorShape>ArrowCursor</cursorShape>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
-border-radius: 2px;
-font: 63 10pt &quot;Cascadia Code SemiBold&quot;;</string>
+                              <string notr="true"/>
                              </property>
                              <property name="frameShape">
                               <enum>QFrame::Box</enum>
@@ -3582,8 +3811,8 @@ font: 63 10pt &quot;Cascadia Code SemiBold&quot;;</string>
                               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:56; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:24;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:24;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
@@ -3603,17 +3832,18 @@ p, li { white-space: pre-wrap; }
                              </property>
                              <property name="font">
                               <font>
-                               <family>OPPOSans B</family>
-                               <pointsize>10</pointsize>
-                               <stylestrategy>PreferAntialias</stylestrategy>
+                               <family>Cascadia Code SemiBold</family>
+                               <pointsize>11</pointsize>
+                               <weight>7</weight>
+                               <italic>false</italic>
+                               <bold>false</bold>
                               </font>
                              </property>
                              <property name="cursor" stdset="0">
                               <cursorShape>ArrowCursor</cursorShape>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
-border-radius: 2px;</string>
+                              <string notr="true"/>
                              </property>
                              <property name="frameShape">
                               <enum>QFrame::Box</enum>
@@ -3625,40 +3855,40 @@ border-radius: 2px;</string>
                               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt; thrift协议报文说明&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;一. &lt;/span&gt;&lt;span style=&quot; color:#ff7373;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;消息长度/string长度&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;二. &lt;/span&gt;&lt;span style=&quot; color:#ffaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;消息类型&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;CALL（80010001），调用方法，并希望获取返回消。	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;REPLY（80010002），来自服务端返回的消息。	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;EXCEPTION（80010003），服务器处理请求时出现异常。	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;ONEWAY（80010004），单向请求，不需要返回数据。&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;三.&lt;/span&gt;&lt;span style=&quot; color:#ffaa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;方法名长度&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;四.【表示颜色】方法名&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;五.&lt;/span&gt;&lt;span style=&quot; color:#55007f;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;流水号&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;六. 数据类型&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;bool类型（类型2）   &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#500a0a;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;byte类型（类型3）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000082;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;double类型（类型4）	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00aaff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;i16类型（类型6）      &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff00ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;i32类型（类型8）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00a096;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;i64类型（类型10）    &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aaaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;string类型（类型11）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#0055ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;struct类型（类型12）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#5500ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;map类型（类型13）  &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff7300;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;set类型（类型14）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55aa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;list类型（类型15）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#505050;&quot;&gt;七. 其他&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;字段序号&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;结束符（00）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; color:#505050;&quot;&gt;值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt; thrift协议报文说明&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;一. &lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7373;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;消息长度/string长度&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;二. &lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;消息类型&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;CALL（80010001），调用方法，并希望获取返回消。	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;REPLY（80010002），来自服务端返回的消息。	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;EXCEPTION（80010003），服务器处理请求时出现异常。	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;ONEWAY（80010004），单向请求，不需要返回数据。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;三.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;方法名长度&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;四.【表示颜色】方法名&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;五.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55007f;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;流水号&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;六. 数据类型&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#005500;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;bool类型（类型2）   &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#500a0a;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;byte类型（类型3）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000082;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;double类型（类型4）	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aaff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;i16类型（类型6）      &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff00ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;i32类型（类型8）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00a096;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;i64类型（类型10）    &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#aaaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;string类型（类型11）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#0055ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;struct类型（类型12）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#5500ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;map类型（类型13）  &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7300;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;set类型（类型14）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55aa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;list类型（类型15）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;七. 其他&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;字段序号&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;结束符（00）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff0000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                              <property name="cursorWidth">
                               <number>2</number>
@@ -3955,6 +4185,11 @@ p, li { white-space: pre-wrap; }
                      </property>
                      <item>
                       <spacer name="horizontalSpacer_29">
+                       <property name="font">
+                        <font>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -3991,6 +4226,11 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                      </item>
                      <item>
                       <spacer name="horizontalSpacer_7">
+                       <property name="font">
+                        <font>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -4039,6 +4279,11 @@ padding-right:10px;</string>
                      </item>
                      <item>
                       <spacer name="horizontalSpacer_24">
+                       <property name="font">
+                        <font>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -4093,6 +4338,11 @@ padding-right:10px;</string>
                      </item>
                      <item>
                       <spacer name="horizontalSpacer_6">
+                       <property name="font">
+                        <font>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>

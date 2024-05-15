@@ -148,7 +148,7 @@ public:
     QTabWidget *tabWidget_response;
     QWidget *tab_3;
     QVBoxLayout *verticalLayout_8;
-    QPlainTextEdit *plainTextEdit;
+    QPlainTextEdit *plainTextEdit_edit;
     QWidget *tab_source;
     QHBoxLayout *horizontalLayout_12;
     QTextEdit *textEdit;
@@ -260,14 +260,18 @@ public:
         horizontalLayout_4->setContentsMargins(20, 0, 5, 5);
         splitter_3 = new QSplitter(thriftwidget);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
+        QFont font1;
+        font1.setStyleStrategy(QFont::PreferAntialias);
+        splitter_3->setFont(font1);
         splitter_3->setOrientation(Qt::Horizontal);
         widget_left = new QWidget(splitter_3);
         widget_left->setObjectName(QStringLiteral("widget_left"));
         widget_left->setMinimumSize(QSize(260, 0));
         widget_left->setMaximumSize(QSize(500, 16777215));
-        QFont font1;
-        font1.setFamily(QStringLiteral("OPPOSans B"));
-        widget_left->setFont(font1);
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans B"));
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        widget_left->setFont(font2);
         widget_left->setStyleSheet(QString::fromUtf8("#widget_left{\n"
 "border-right:0px solid rgba(108, 117, 125, 65); \n"
 "}\n"
@@ -326,6 +330,7 @@ public:
         widget_imprt_thrift = new QWidget(widget_left);
         widget_imprt_thrift->setObjectName(QStringLiteral("widget_imprt_thrift"));
         widget_imprt_thrift->setMinimumSize(QSize(0, 44));
+        widget_imprt_thrift->setFont(font1);
         horizontalLayout_7 = new QHBoxLayout(widget_imprt_thrift);
         horizontalLayout_7->setSpacing(30);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
@@ -334,6 +339,7 @@ public:
         widget_7->setObjectName(QStringLiteral("widget_7"));
         widget_7->setMinimumSize(QSize(100, 40));
         widget_7->setMaximumSize(QSize(100, 40));
+        widget_7->setFont(font1);
         widget_7->setStyleSheet(QStringLiteral("image: url(:/lib/Thrift.png);"));
 
         horizontalLayout_7->addWidget(widget_7);
@@ -381,6 +387,7 @@ public:
         widget_thrift_search = new QWidget(widget_left);
         widget_thrift_search->setObjectName(QStringLiteral("widget_thrift_search"));
         widget_thrift_search->setMinimumSize(QSize(0, 40));
+        widget_thrift_search->setFont(font1);
         horizontalLayout_14 = new QHBoxLayout(widget_thrift_search);
         horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
         horizontalLayout_14->setContentsMargins(0, -1, 0, -1);
@@ -388,11 +395,11 @@ public:
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
         lineEdit_find->setMinimumSize(QSize(250, 30));
         lineEdit_find->setMaximumSize(QSize(5999, 30));
-        QFont font2;
-        font2.setFamily(QStringLiteral("OPPOSans"));
-        font2.setPointSize(10);
-        font2.setStyleStrategy(QFont::PreferAntialias);
-        lineEdit_find->setFont(font2);
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans"));
+        font3.setPointSize(10);
+        font3.setStyleStrategy(QFont::PreferAntialias);
+        lineEdit_find->setFont(font3);
         lineEdit_find->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color: rgb(231, 238, 244);\n"
 "border-radius: 14px;\n"
@@ -410,6 +417,7 @@ public:
 
         widget_thrift_api = new QWidget(widget_left);
         widget_thrift_api->setObjectName(QStringLiteral("widget_thrift_api"));
+        widget_thrift_api->setFont(font1);
         widget_thrift_api->setStyleSheet(QLatin1String("#widget_thrift_api {\n"
 "background-color: rgb(54, 81, 97);\n"
 "border-radius: 10px;\n"
@@ -592,6 +600,7 @@ public:
         splitter_3->addWidget(widget_left);
         widget_right = new QWidget(splitter_3);
         widget_right->setObjectName(QStringLiteral("widget_right"));
+        widget_right->setFont(font1);
         widget_right->setStyleSheet(QString::fromUtf8("\n"
 "QComboBox{\n"
 "	color:#ffffff;\n"
@@ -681,6 +690,7 @@ public:
         widget_6->setObjectName(QStringLiteral("widget_6"));
         widget_6->setMinimumSize(QSize(0, 40));
         widget_6->setMaximumSize(QSize(16777215, 40));
+        widget_6->setFont(font1);
         widget_6->setStyleSheet(QString::fromUtf8("QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:0px solid #8a8a8a;\n"
@@ -841,6 +851,14 @@ public:
         comboBox_port->setSizePolicy(sizePolicy);
         comboBox_port->setMinimumSize(QSize(100, 30));
         comboBox_port->setMaximumSize(QSize(230, 16777215));
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(10);
+        font4.setBold(false);
+        font4.setItalic(false);
+        font4.setWeight(50);
+        font4.setStyleStrategy(QFont::PreferAntialias);
+        comboBox_port->setFont(font4);
         comboBox_port->setStyleSheet(QStringLiteral("color:#ced4da;"));
         comboBox_port->setEditable(true);
 
@@ -870,13 +888,7 @@ public:
         toolButton_test = new QToolButton(widget_6);
         toolButton_test->setObjectName(QStringLiteral("toolButton_test"));
         toolButton_test->setMinimumSize(QSize(68, 30));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(10);
-        font3.setBold(false);
-        font3.setItalic(false);
-        font3.setWeight(50);
-        toolButton_test->setFont(font3);
+        toolButton_test->setFont(font4);
         toolButton_test->setStyleSheet(QLatin1String("QToolButton {\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "	color: rgb(255, 255, 255);\n"
@@ -912,6 +924,7 @@ public:
         horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
         horizontalWidget_2->setMinimumSize(QSize(0, 40));
         horizontalWidget_2->setMaximumSize(QSize(16777215, 40));
+        horizontalWidget_2->setFont(font1);
         horizontalWidget_2->setStyleSheet(QString::fromUtf8("QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:0px solid #8a8a8a;\n"
@@ -1077,6 +1090,7 @@ public:
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
         horizontalWidget->setMinimumSize(QSize(0, 40));
         horizontalWidget->setMaximumSize(QSize(16777215, 40));
+        horizontalWidget->setFont(font1);
         horizontalWidget->setStyleSheet(QStringLiteral("color:#ced4da;"));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setSpacing(5);
@@ -1114,7 +1128,7 @@ public:
         toolButton_request = new QToolButton(horizontalWidget);
         toolButton_request->setObjectName(QStringLiteral("toolButton_request"));
         toolButton_request->setMinimumSize(QSize(90, 30));
-        toolButton_request->setFont(font2);
+        toolButton_request->setFont(font3);
         toolButton_request->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(250, 118, 0);\n"
@@ -1140,7 +1154,7 @@ public:
         toolButton_save = new QToolButton(horizontalWidget);
         toolButton_save->setObjectName(QStringLiteral("toolButton_save"));
         toolButton_save->setMinimumSize(QSize(90, 30));
-        toolButton_save->setFont(font2);
+        toolButton_save->setFont(font3);
         toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -1171,6 +1185,7 @@ public:
         widget_property->setObjectName(QStringLiteral("widget_property"));
         widget_property->setMinimumSize(QSize(0, 40));
         widget_property->setMaximumSize(QSize(16777215, 40));
+        widget_property->setFont(font1);
         horizontalLayout_13 = new QHBoxLayout(widget_property);
         horizontalLayout_13->setSpacing(5);
         horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
@@ -1248,10 +1263,7 @@ public:
         checkBox->setObjectName(QStringLiteral("checkBox"));
         checkBox->setMinimumSize(QSize(55, 20));
         checkBox->setMaximumSize(QSize(55, 20));
-        QFont font4;
-        font4.setFamily(QStringLiteral("OPPOSans B"));
-        font4.setPointSize(10);
-        checkBox->setFont(font4);
+        checkBox->setFont(font);
         checkBox->setStyleSheet(QStringLiteral("color:#ced4da;"));
 
         horizontalLayout_13->addWidget(checkBox);
@@ -1311,7 +1323,7 @@ public:
         toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
         toolButton_5->setMinimumSize(QSize(70, 30));
         toolButton_5->setMaximumSize(QSize(70, 16777215));
-        toolButton_5->setFont(font2);
+        toolButton_5->setFont(font3);
         toolButton_5->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(250, 118, 0);\n"
@@ -1338,7 +1350,7 @@ public:
         toolButton_save_2->setObjectName(QStringLiteral("toolButton_save_2"));
         toolButton_save_2->setMinimumSize(QSize(70, 30));
         toolButton_save_2->setMaximumSize(QSize(70, 16777215));
-        toolButton_save_2->setFont(font2);
+        toolButton_save_2->setFont(font3);
         toolButton_save_2->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -1366,7 +1378,7 @@ public:
         toolButton_switch->setObjectName(QStringLiteral("toolButton_switch"));
         toolButton_switch->setMinimumSize(QSize(100, 30));
         toolButton_switch->setMaximumSize(QSize(100, 16777215));
-        toolButton_switch->setFont(font2);
+        toolButton_switch->setFont(font3);
         toolButton_switch->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -1404,6 +1416,7 @@ public:
         stackedWidget_2 = new QStackedWidget(widget_right);
         stackedWidget_2->setObjectName(QStringLiteral("stackedWidget_2"));
         stackedWidget_2->setMinimumSize(QSize(0, 315));
+        stackedWidget_2->setFont(font1);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
         verticalLayout_11 = new QVBoxLayout(page_2);
@@ -1412,10 +1425,12 @@ public:
         verticalLayout_11->setContentsMargins(0, 0, 0, 0);
         splitter_2 = new QSplitter(page_2);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
+        splitter_2->setFont(font1);
         splitter_2->setOrientation(Qt::Vertical);
         splitter_2->setHandleWidth(0);
         widget_inparam = new QWidget(splitter_2);
         widget_inparam->setObjectName(QStringLiteral("widget_inparam"));
+        widget_inparam->setFont(font1);
         widget_inparam->setStyleSheet(QString::fromUtf8("#widget_inparam{\n"
 "/*border-right:2px solid rgb(54, 81, 97); */\n"
 "/*border-left:2px solid rgb(54, 81, 97); */\n"
@@ -1508,6 +1523,7 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         splitter = new QSplitter(widget_inparam);
         splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setFont(font1);
         splitter->setOrientation(Qt::Horizontal);
         splitter->setHandleWidth(0);
         widget = new QWidget(splitter);
@@ -1517,6 +1533,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
         widget->setSizePolicy(sizePolicy1);
+        widget->setFont(font1);
         widget->setStyleSheet(QStringLiteral(""));
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(0);
@@ -1525,6 +1542,7 @@ public:
         widget_in_param = new QWidget(widget);
         widget_in_param->setObjectName(QStringLiteral("widget_in_param"));
         widget_in_param->setMinimumSize(QSize(0, 30));
+        widget_in_param->setFont(font1);
         widget_in_param->setStyleSheet(QLatin1String("#widget_in_param{\n"
 "	background-color: rgb(54, 81, 97);\n"
 "	border-top-left-radius: 15px;\n"
@@ -1567,11 +1585,14 @@ public:
         verticalLayout_2->addWidget(widget_in_param);
 
         treeWidget = new QTreeWidget(widget);
+        QFont font5;
+        font5.setFamily(QStringLiteral("OPPOSans B"));
+        font5.setPointSize(10);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem();
         __qtreewidgetitem1->setFont(3, font);
         __qtreewidgetitem1->setFont(2, font);
         __qtreewidgetitem1->setFont(1, font);
-        __qtreewidgetitem1->setFont(0, font4);
+        __qtreewidgetitem1->setFont(0, font5);
         treeWidget->setHeaderItem(__qtreewidgetitem1);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         treeWidget->setFont(font);
@@ -1754,6 +1775,7 @@ public:
         splitter_2->addWidget(widget_inparam);
         widget_outparam = new QWidget(splitter_2);
         widget_outparam->setObjectName(QStringLiteral("widget_outparam"));
+        widget_outparam->setFont(font1);
         widget_outparam->setStyleSheet(QStringLiteral("color: rgb(113, 113, 113);"));
         verticalLayout_6 = new QVBoxLayout(widget_outparam);
         verticalLayout_6->setSpacing(0);
@@ -1762,10 +1784,14 @@ public:
         widget_5 = new QWidget(widget_outparam);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setMinimumSize(QSize(0, 0));
-        QFont font5;
-        font5.setStyleStrategy(QFont::PreferDefault);
-        widget_5->setFont(font5);
-        widget_5->setStyleSheet(QString::fromUtf8("QScrollBar:vertical{\n"
+        widget_5->setFont(font1);
+        widget_5->setStyleSheet(QString::fromUtf8("QTextEdit{\n"
+"border: 1px solid rgba(199, 199, 199, 150);\n"
+"border-radius: 2px;\n"
+"font: 63 11pt \"Cascadia Code SemiBold\";\n"
+"}\n"
+"\n"
+"QScrollBar:vertical{\n"
 "    width: 12px;\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
@@ -1778,7 +1804,6 @@ public:
 "    width: 12px;\n"
 "	\n"
 "	/*background-color: rgba(0, 41, 69, 255);*/\n"
-"	\n"
 "	\n"
 "	background-color: rgb(79, 79, 79);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
@@ -1797,13 +1822,13 @@ public:
 "\n"
 "QScrollBar::add-line:vertical {\n"
 "	border: none;\n"
-"    height: 0px;\n"
+"  "
+                        "  height: 0px;\n"
 "    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
-"    b"
-                        "order: none;\n"
+"    border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: top;\n"
 "    subcontrol-origin: margin;\n"
@@ -1824,7 +1849,7 @@ public:
         widget_response->setObjectName(QStringLiteral("widget_response"));
         widget_response->setMinimumSize(QSize(0, 30));
         widget_response->setMaximumSize(QSize(16777215, 30));
-        widget_response->setFont(font4);
+        widget_response->setFont(font);
         widget_response->setStyleSheet(QStringLiteral("background-color: rgb(54, 81, 97);"));
         horizontalLayout_5 = new QHBoxLayout(widget_response);
         horizontalLayout_5->setSpacing(0);
@@ -1887,6 +1912,7 @@ public:
         stackedWidget = new QStackedWidget(widget_5);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setMinimumSize(QSize(0, 200));
+        stackedWidget->setFont(font1);
         stackedWidget->setStyleSheet(QLatin1String("#stackedWidget{\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(79, 79, 79);\n"
@@ -1901,9 +1927,11 @@ public:
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
         splitter_4 = new QSplitter(page);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
+        splitter_4->setFont(font1);
         splitter_4->setOrientation(Qt::Horizontal);
         widget_2 = new QWidget(splitter_4);
         widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setFont(font1);
         verticalLayout_4 = new QVBoxLayout(widget_2);
         verticalLayout_4->setSpacing(8);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -1912,6 +1940,7 @@ public:
         QFont font6;
         font6.setFamily(QStringLiteral("OPPOSans B"));
         font6.setPointSize(11);
+        font6.setStyleStrategy(QFont::PreferAntialias);
         label_4->setFont(font6);
 
         verticalLayout_4->addWidget(label_4);
@@ -1921,10 +1950,12 @@ public:
         QFont font7;
         font7.setFamily(QStringLiteral("Cascadia Code SemiBold"));
         font7.setPointSize(11);
+        font7.setBold(false);
+        font7.setItalic(false);
+        font7.setWeight(7);
         font7.setStyleStrategy(QFont::PreferAntialias);
         textEdit_data->setFont(font7);
-        textEdit_data->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
-"border-radius: 2px;"));
+        textEdit_data->setStyleSheet(QStringLiteral(""));
         textEdit_data->setFrameShape(QFrame::Box);
         textEdit_data->setReadOnly(true);
 
@@ -1939,6 +1970,7 @@ public:
         font8.setBold(false);
         font8.setUnderline(false);
         font8.setWeight(50);
+        font8.setStyleStrategy(QFont::PreferAntialias);
         tabWidget_response->setFont(font8);
         tabWidget_response->setStyleSheet(QString::fromUtf8("/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab{\n"
@@ -2019,16 +2051,17 @@ public:
         verticalLayout_8->setSpacing(0);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 5, 9, 9);
-        plainTextEdit = new QPlainTextEdit(tab_3);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit_edit = new QPlainTextEdit(tab_3);
+        plainTextEdit_edit->setObjectName(QStringLiteral("plainTextEdit_edit"));
         QFont font9;
         font9.setFamily(QStringLiteral("Cascadia Code SemiBold"));
         font9.setPointSize(11);
-        plainTextEdit->setFont(font9);
-        plainTextEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
+        font9.setStyleStrategy(QFont::PreferAntialias);
+        plainTextEdit_edit->setFont(font9);
+        plainTextEdit_edit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
 "border-radius: 2px;"));
 
-        verticalLayout_8->addWidget(plainTextEdit);
+        verticalLayout_8->addWidget(plainTextEdit_edit);
 
         tabWidget_response->addTab(tab_3, QString());
         tab_source = new QWidget();
@@ -2037,22 +2070,14 @@ public:
         tab_source->setSizePolicy(sizePolicy2);
         tab_source->setFont(font);
         horizontalLayout_12 = new QHBoxLayout(tab_source);
-        horizontalLayout_12->setSpacing(0);
+        horizontalLayout_12->setSpacing(9);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
         horizontalLayout_12->setContentsMargins(0, 5, 9, 9);
         textEdit = new QTextEdit(tab_source);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        QFont font10;
-        font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font10.setPointSize(10);
-        font10.setBold(false);
-        font10.setItalic(false);
-        font10.setWeight(7);
-        textEdit->setFont(font10);
+        textEdit->setFont(font7);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
-"border-radius: 2px;\n"
-"font: 63 10pt \"Cascadia Code SemiBold\";"));
+        textEdit->setStyleSheet(QStringLiteral(""));
         textEdit->setFrameShape(QFrame::Box);
         textEdit->setReadOnly(true);
 
@@ -2062,10 +2087,15 @@ public:
         textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
         textEdit_info->setMinimumSize(QSize(400, 0));
         textEdit_info->setMaximumSize(QSize(400, 16777215));
-        textEdit_info->setFont(font);
+        QFont font10;
+        font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font10.setPointSize(11);
+        font10.setBold(false);
+        font10.setItalic(false);
+        font10.setWeight(7);
+        textEdit_info->setFont(font10);
         textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        textEdit_info->setStyleSheet(QLatin1String("border: 1px solid rgba(199, 199, 199, 150);\n"
-"border-radius: 2px;"));
+        textEdit_info->setStyleSheet(QStringLiteral(""));
         textEdit_info->setFrameShape(QFrame::Box);
         textEdit_info->setReadOnly(true);
         textEdit_info->setCursorWidth(2);
@@ -2105,7 +2135,10 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setFont(font6);
+        QFont font11;
+        font11.setFamily(QStringLiteral("OPPOSans B"));
+        font11.setPointSize(11);
+        label_13->setFont(font11);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
 
@@ -2150,7 +2183,7 @@ public:
 
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font6);
+        label_11->setFont(font11);
         label_11->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_11->setAlignment(Qt::AlignCenter);
 
@@ -2265,7 +2298,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(1);
+        tabWidget_response->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -2384,62 +2417,65 @@ public:
         textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        plainTextEdit->setPlainText(QApplication::translate("thriftwidget", "4611686027042922249", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:400;\"><br /></p></body></html>", nullptr));
+        plainTextEdit_edit->setPlainText(QApplication::translate("thriftwidget", "4611686027042922249", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_3), QApplication::translate("thriftwidget", "  \347\274\226\350\276\221\345\214\272  ", nullptr));
         textEdit->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:56; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:24;\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:24;\"><br /></p></body></html>", nullptr));
         textEdit_info->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\"> thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\200. </span><span style=\" color:#ff7373;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262"
-                        "\343\200\221</span><span style=\" color:#505050;\">\346\266\210\346\201\257\351\225\277\345\272\246/string\351\225\277\345\272\246</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\214. </span><span style=\" color:#ffaa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\346\266\210\346\201\257\347\261\273\345\236\213</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">CALL\357\274\21080010001\357\274\211\357\274\214\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\345\270\214\346\234\233\350\216\267\345\217\226\350"
-                        "\277\224\345\233\236\346\266\210\343\200\202	</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">REPLY\357\274\21080010002\357\274\211\357\274\214\346\235\245\350\207\252\346\234\215\345\212\241\347\253\257\350\277\224\345\233\236\347\232\204\346\266\210\346\201\257\343\200\202	</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">EXCEPTION\357\274\21080010003\357\274\211\357\274\214\346\234\215\345\212\241\345\231\250\345\244\204\347\220\206\350\257\267\346\261\202\346\227\266\345\207\272\347\216\260\345\274\202\345\270\270\343\200\202	</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">ONEWAY\357\274\21080010004\357\274\211\357\274\214\345\215\225\345\220\221\350\257"
-                        "\267\346\261\202\357\274\214\344\270\215\351\234\200\350\246\201\350\277\224\345\233\236\346\225\260\346\215\256\343\200\202</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\211.</span><span style=\" color:#ffaa82;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\346\226\271\346\263\225\345\220\215\351\225\277\345\272\246</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color"
-                        ":#505050;\">\345\233\233.\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221\346\226\271\346\263\225\345\220\215</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\272\224.</span><span style=\" color:#55007f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\346\265\201\346\260\264\345\217\267</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\345"
-                        "\205\255. \346\225\260\346\215\256\347\261\273\345\236\213</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#005500;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">bool\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2132\357\274\211   </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#500a0a;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">byte\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2133\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000082;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><s"
-                        "pan style=\" color:#505050;\">double\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2134\357\274\211	</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#00aaff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">i16\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2136\357\274\211      </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff00ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">i32\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2138\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#00a096;\">\343\200\220\350\241\250\347"
-                        "\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">i64\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21310\357\274\211    </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#aaaa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">string\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21311\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#0055ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">struct\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21312\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><spa"
-                        "n style=\" color:#5500ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">map\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21313\357\274\211  </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff7300;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">set\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21314\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#55aa82;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">list\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21315\357\274\211</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; marg"
-                        "in-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#505050;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#505050;\">\344\270\203. \345\205\266\344\273\226</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#00aa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\345\255\227\346\256\265\345\272\217\345\217\267</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\347\273\223\346\235\237\347\254\246\357\274\21000\357\274\211</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; m"
-                        "argin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" color:#505050;\">\345\200\274</span></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"> thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\""
+                        " font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\344\270\200. </span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7373;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\346\266\210\346\201\257\351\225\277\345\272\246/string\351\225\277\345\272\246</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\344\272\214. </span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa00;\">\343\200\220"
+                        "\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\346\266\210\346\201\257\347\261\273\345\236\213</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">CALL\357\274\21080010001\357\274\211\357\274\214\350\260\203\347\224\250\346\226\271\346\263\225\357\274\214\345\271\266\345\270\214\346\234\233\350\216\267\345\217\226\350\277\224\345\233\236\346\266\210\343\200\202	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">REPLY\357\274\21080010002\357\274\211\357\274\214\346\235\245\350\207\252\346\234\215\345\212\241\347\253\257\350\277\224\345\233\236\347\232\204\346"
+                        "\266\210\346\201\257\343\200\202	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">EXCEPTION\357\274\21080010003\357\274\211\357\274\214\346\234\215\345\212\241\345\231\250\345\244\204\347\220\206\350\257\267\346\261\202\346\227\266\345\207\272\347\216\260\345\274\202\345\270\270\343\200\202	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">ONEWAY\357\274\21080010004\357\274\211\357\274\214\345\215\225\345\220\221\350\257\267\346\261\202\357\274\214\344\270\215\351\234\200\350\246\201\350\277\224\345\233\236\346\225\260\346\215\256\343\200\202</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0p"
+                        "x; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\344\270\211.</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa82;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\346\226\271\346\263\225\345\220\215\351\225\277\345\272\246</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bloc"
+                        "k-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\345\233\233.\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221\346\226\271\346\263\225\345\220\215</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\344\272\224.</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55007f;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\346\265\201\346\260\264\345\217\267</"
+                        "span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\345\205\255. \346\225\260\346\215\256\347\261\273\345\236\213</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#005500;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">bool\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2132\357\274\211   </span></p>\n"
+"<p style"
+                        "=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#500a0a;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">byte\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2133\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000082;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">double\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2134\357\274\211	</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px"
+                        "; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aaff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">i16\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2136\357\274\211      </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff00ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">i32\347\261\273\345\236\213\357\274\210\347\261\273\345\236\2138\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OP"
+                        "POSans B'; font-size:10pt; font-weight:400; color:#00a096;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">i64\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21310\357\274\211    </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#aaaa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">string\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21311\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#0055ff;\">\343\200"
+                        "\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">struct\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21312\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#5500ff;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">map\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21313\357\274\211  </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7300;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span"
+                        "><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">set\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21314\357\274\211</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55aa82;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">list\347\261\273\345\236\213\357\274\210\347\261\273\345\236\21315\357\274\211</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span st"
+                        "yle=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\344\270\203. \345\205\266\344\273\226</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aa00;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\345\255\227\346\256\265\345\272\217\345\217\267</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\347\273\223\346\235\237\347\254\246\357\274\21000\357\274\211"
+                        "</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff0000;\">\343\200\220\350\241\250\347\244\272\351\242\234\350\211\262\343\200\221</span><span style=\" font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;\">\345\200\274</span></p></body></html>", nullptr));
         tabWidget_response->setTabText(tabWidget_response->indexOf(tab_source), QApplication::translate("thriftwidget", "  \344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256  ", nullptr));
         label_12->setText(QString());
         label_13->setText(QApplication::translate("thriftwidget", "\346\216\245\345\217\243\350\257\267\346\261\202\344\270\255", nullptr));

@@ -410,8 +410,6 @@ private slots:
 
     void on_toolButton_show_thrift_info_clicked();
 
-    void on_textEdit_customContextMenuRequested(const QPoint &pos);
-
     void on_comboBox_testType_currentIndexChanged(int index);
 
     void on_toolButton_request_clicked();
@@ -424,11 +422,28 @@ private slots:
 
     void on_checkBox_show_source_stateChanged(int arg1);
 
-    void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
-
+    
     void on_toolButton_inportFile_clicked();
 
     void on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+
+    void on_textEdit_customContextMenuRequested(const QPoint &pos);
+
+    void rece_textEditCopy();
+    void rece_textEditPaste();
+    void rece_textEditAll();
+
+    void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
+
+    void rece_textEdit_dataCopy();
+    void rece_textEdit_dataPaste();
+    void rece_textEdit_dataAll();
+
+    void on_plainTextEdit_edit_customContextMenuRequested(const QPoint &pos);
+
+    void rece_plainTextEdit_editCopy();
+    void rece_plainTextEdit_editPaste();
+    void rece_plainTextEdit_editAll();
 
 private:
     QVector<QString> dataList;
