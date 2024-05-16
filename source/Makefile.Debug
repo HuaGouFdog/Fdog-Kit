@@ -372,6 +372,7 @@ debug\qrc_lib.obj: lib.qrc \
 		lib\github.png \
 		lib\jiazai3.gif \
 		lib\XML-Local-hover.png \
+		lib\back2.png \
 		lib\Thrift2.png \
 		lib\icon-close42.png \
 		lib\icon6.png \
@@ -6667,8 +6668,6 @@ debug\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSlider \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpinBox \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
@@ -6682,7 +6681,8 @@ debug\settingwidget.obj: settingwidget.cpp settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QFontDatabase \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\Qdebug
 
 debug\secretkeywidget.obj: secretkeywidget.cpp secretkeywidget.h \
 		keywidget.h \
@@ -8849,7 +8849,13 @@ debug\thriftwidget.obj: thriftwidget.cpp thriftwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QFontDatabase
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QFontDatabase \
+		utils.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QMimeData \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmimedata.h
 
 debug\zookeepertipswidget.obj: zookeepertipswidget.cpp zookeepertipswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -9187,7 +9193,9 @@ debug\zookeepermanagewidget.obj: zookeepermanagewidget.cpp zookeepermanagewidget
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QDesktopServices \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qdesktopservices.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
 
 debug\flowlayout.obj: flowlayout.cpp ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QtWidgets \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QtWidgetsDepends \

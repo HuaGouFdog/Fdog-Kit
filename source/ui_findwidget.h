@@ -59,7 +59,7 @@ public:
         horizontalWidget->setMinimumSize(QSize(0, 28));
         horizontalWidget->setMaximumSize(QSize(16777215, 25));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
-        horizontalLayout->setSpacing(0);
+        horizontalLayout->setSpacing(3);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 10, 0);
         widget_4 = new QWidget(horizontalWidget);
@@ -184,7 +184,7 @@ public:
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/icon-close4.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_close->setIcon(icon2);
-        toolButton_close->setIconSize(QSize(25, 25));
+        toolButton_close->setIconSize(QSize(20, 20));
 
         horizontalLayout->addWidget(toolButton_close);
 

@@ -265,14 +265,14 @@ MainWindow::MainWindow(QWidget *parent) :
     //confInfo->writeSettingConf();
     qRegisterAnimationInterpolator<QString>(mySheetStyle);
 
-    QToolButton *button1 = new QToolButton();
-    button1->setIcon(QIcon(":/lib/add1.png"));
+    //QToolButton *button1 = new QToolButton();
+    //button1->setIcon(QIcon(":/lib/download.png"));
     // button1->setStyleSheet("QToolButton {\
     //                        color: rgb(255, 255, 255);\
     //                        background-color: rgb(94, 255, 210);\
     //                        border: none;}");
     
-    ui->tabWidget->setCornerWidget(button1, Qt::TopLeftCorner);
+    //ui->tabWidget->setCornerWidget(button1, Qt::TopRightCorner);
 
     // QPushButton *b2 = new QPushButton(QString::fromStdWString(L"设置"));
     // b2->setObjectName("settingButton");

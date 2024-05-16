@@ -56,18 +56,22 @@
 //#define DA      ""  //设备属性报告 终端标识，将发出“\x1b[？1;0c”，指示“VT101 无选项”。
 
 
+static QString lastM = "";
+
 class datahandle : public QObject
 {
     Q_OBJECT
 public:
     explicit datahandle(QObject *parent = nullptr);
-    void stringToHtmlFilter(QString &str);
+    static void stringToHtmlFilter(QString &str);
+    static QString replaceAmpersand(QString original);
+    static void stringToHtmlFilter_s(QString &str);
     void stringToHtmlFilter2(QString &str);
     void stringToHtmlFilter3(QString &str);
     void stringToHtmlFilter4(QString &str);
     void stringToHtmlFilter5(QString &str);
     void stringToHtmlFilter6(QString &str);
-    void stringToHtml(QString &str, QColor *fontCrl = NULL, QColor *backCrl = NULL);
+    static void stringToHtml(QString &str, QColor *fontCrl = NULL, QColor *backCrl = NULL);
     QString processDataStatsAndColor(QString & head, QString & commond, QString data);
     QString processData(QString data);
     QStringList processDataS(QString data);

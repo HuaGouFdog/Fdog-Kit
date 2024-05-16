@@ -5,7 +5,7 @@
 #include <iostream>
 #include <QMap>
 #include <QColor>
-
+#include <QRegularExpression>
 
 
 
@@ -54,7 +54,6 @@ m	SGR                     (*)     设置SGR
 
 A等等类似于函数
 */
-
 
 
 
@@ -119,6 +118,22 @@ void datahandle::stringToHtmlFilter(QString &str)
     str.replace("\r\r\n","<br>");
     str.replace("\r\n","<br>");
     str.replace("\n","<br>");
+}
+
+QString datahandle::replaceAmpersand(QString original) {
+    QRegularExpression regex("&(?!((amp;)|(nbsp;)|(gt;)|(lt;)|(quot;)|(apos;)|(#39;)))");
+    return original.replace(regex, "&amp;");
+}
+void datahandle::stringToHtmlFilter_s(QString &str) {
+    str = replaceAmpersand(str);
+    str.replace(">","&gt;");
+    str.replace("<","&lt;");
+    str.replace("\"","&quot;");
+    str.replace("\'","&#39;");
+    str.replace(" ","&nbsp;");
+    str.replace("\r\r\n","<br>");
+    str.replace("\r\n","<br>");
+    str.replace("\n","<br>"); 
 }
 
 void datahandle::stringToHtmlFilter2(QString &str)
@@ -268,15 +283,17 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //qDebug() << "Pos = " << pos;
         isRegex = true;
         QString match = regex.cap(0); // 获取完整的匹配项
+        
         qDebug() << "Matched all:" << match;
-        //qDebug() << "Matched email 1:" << regex.cap(1);
-        //qDebug() << "Matched email 2:" << regex.cap(2);
-        //qDebug() << "Matched email 3:" << regex.cap(3);
-        //qDebug() << "Matched email 4:" << regex.cap(4);
-        //qDebug() << "Matched email 5:" << regex.cap(5);
-        //qDebug() << "Matched email 6:" << regex.cap(6);
-        //qDebug() << "Matched email 7:" << regex.cap(7);
-        //qDebug() << "Matched email 8:" << regex.cap(8);
+        qDebug() << "Matched email 1:" << regex.cap(1);
+        qDebug() << "Matched email 2:" << regex.cap(2);
+        qDebug() << "Matched email 3:" << regex.cap(3);
+        qDebug() << "Matched email 4:" << regex.cap(4);
+        qDebug() << "Matched email 5:" << regex.cap(5);
+        qDebug() << "Matched email 6:" << regex.cap(6);
+        qDebug() << "Matched email 7:" << regex.cap(7);
+        qDebug() << "Matched email 8:" << regex.cap(8);
+        lastM = regex.cap(7);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
         qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
 
@@ -286,23 +303,23 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         auto it1 = fontColorMap.find(regex.cap(3).toInt());
         if (it1 != fontColorMap.end()) {
             fontCrl = *it1;
-            //qDebug() << "找到字体颜色1";
+            qDebug() << "找到字体颜色1";
         }
         auto it2 = fontColorMap.find(regex.cap(4).toInt());
         if (it2 != fontColorMap.end()) {
             fontCrl = *it2;
-            //qDebug() << "找到字体颜色2";
+            qDebug() << "找到字体颜色2";
         }
 
         auto it3 = backColorMap.find(regex.cap(3).toInt());
         if (it3 != backColorMap.end()) {
             backCrl = *it3;
-            //qDebug() << "找到背景颜色3";
+            qDebug() << "找到背景颜色3";
         }
         auto it4 = backColorMap.find(regex.cap(4).toInt());
         if (it4 != backColorMap.end()) {
             backCrl = *it4;
-            //qDebug() << "找到背景颜色4";
+            qDebug() << "找到背景颜色4";
         }
 
         //设置颜色
@@ -325,10 +342,26 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         pos2 = pos;
     }
 
+    if (lastM != "" && lastM == "34") {
+        //后面颜色全部为这个
+        QString endStr = data.mid(pos2);
+        qDebug() << "最后需要34染色的数据为 = " << endStr;
+    }
+    //如果最后一串是颜色代码，则后面都应该是这个颜色
+    // QRegExp regex2("(\\x001B\\[(1)m\\x001B\\[(34)m)");
+    // int pos3 = pos2;
+    // while ((pos2 = regex2.indexIn(lastM, pos2)) != -1) {
+    //     QString match = regex2.cap(0); // 获取完整的匹配项
+
+    //     qDebug() << "找到:" << match << "后续颜色应该都是这个";
+
+    //     pos2 += match.length();
+    // }
+    // pos2 = pos3;
     //走到这里说明没有颜色参数了，处理空白符  但是如果两段颜色间有呢
     QString endStr = data.mid(pos2);
     qDebug() << "blankChar.mid(pos2) = " << endStr;
-    stringToHtmlFilter(endStr);
+    stringToHtmlFilter_s(endStr);
     data = data.mid(0, pos2) + endStr;
     qDebug() << "最后data 数据为" << data;
     // if (!isRegex) {
@@ -940,3 +973,6 @@ void datahandle::stringToHtmlFilter6(QString &str)
         pos += regExp.matchedLength();
     }
 }
+
+
+

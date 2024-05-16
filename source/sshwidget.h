@@ -245,6 +245,8 @@ public:
 
     void sendData(QString data);
 
+    void sendData2(QString data);
+
     void setData(QString data);
 
     //向上移动
@@ -278,6 +280,13 @@ public:
     void movePositionRemoveRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //获取当前行位置
     int getCurrentRowPosition();
+
+    void setCurrentRowPosition(int n);
+
+    void setCurrentRowPositionToZero();
+
+    int getCurrentRowPositionByLocal();
+
     //获取当前列位置
     int getCurrentColumnPosition();
     //获取当前列对于行尾长度
@@ -359,7 +368,7 @@ private slots:
 
     void rece_ssh_sftp_init();
 
-    void rece_addCommond(QString name, QString data);
+    void rece_addCommond(QString name, QString data, QString oldData);
 
     void rece_mkdirFolder(QString data);
 
@@ -446,7 +455,9 @@ private:
     int firstS2 = 0;
     int firstE2 = 0;
 
-    int currentLine = -1;
+    int currentLine = 1;  //这个记录的是终端本身的位置
+
+    int currentLineLocal = -1;  //这个记录的是控件本身的位置
 
     int currentLineC = -1;
 

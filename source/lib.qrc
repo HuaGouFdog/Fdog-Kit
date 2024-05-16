@@ -170,5 +170,8 @@
         <file>lib/left1.png</file>
         <file>lib/linux.png</file>
         <file>lib/qssmaihua.png</file>
+        <file>lib/back1.png</file>
+        <file>lib/back2.png</file>
+        <file>lib/setting3.png</file>
     </qresource>
 </RCC>

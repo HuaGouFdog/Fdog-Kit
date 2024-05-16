@@ -9249,7 +9249,7 @@ p, li { white-space: pre-wrap; }
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>612</width>
+                <width>602</width>
                 <height>20</height>
                </size>
               </property>
@@ -9302,7 +9302,7 @@ QToolButton:hover {
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>10</width>
+                <width>20</width>
                 <height>20</height>
                </size>
               </property>

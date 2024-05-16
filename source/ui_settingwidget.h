@@ -4306,7 +4306,7 @@ public:
         horizontalLayout = new QHBoxLayout(widget_8);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(-1, -1, 60, 9);
-        horizontalSpacer_30 = new QSpacerItem(612, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_30 = new QSpacerItem(602, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_30);
 
@@ -4336,7 +4336,7 @@ public:
 
         horizontalLayout->addWidget(toolButton_save);
 
-        horizontalSpacer_56 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_56 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_56);
 

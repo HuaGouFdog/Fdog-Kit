@@ -17,6 +17,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,16 +25,18 @@ QT_BEGIN_NAMESPACE
 class Ui_mkdirfolderwidget
 {
 public:
-    QLabel *label;
-    QLineEdit *lineEdit_name;
-    QToolButton *toolButton_ok;
+    QVBoxLayout *verticalLayout;
+    QWidget *widget;
     QToolButton *toolButton_cancel;
+    QToolButton *toolButton_ok;
+    QLineEdit *lineEdit_name;
+    QLabel *label;
 
     void setupUi(QWidget *mkdirfolderwidget)
     {
         if (mkdirfolderwidget->objectName().isEmpty())
             mkdirfolderwidget->setObjectName(QStringLiteral("mkdirfolderwidget"));
-        mkdirfolderwidget->resize(252, 104);
+        mkdirfolderwidget->resize(249, 105);
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans B"));
         font.setPointSize(10);
@@ -42,26 +45,37 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/icon9.png"), QSize(), QIcon::Normal, QIcon::Off);
         mkdirfolderwidget->setWindowIcon(icon);
-        mkdirfolderwidget->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
+        mkdirfolderwidget->setStyleSheet(QLatin1String("\n"
 "color: rgb(255, 255, 255);"));
-        label = new QLabel(mkdirfolderwidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 10, 54, 31));
-        label->setFont(font);
-        lineEdit_name = new QLineEdit(mkdirfolderwidget);
-        lineEdit_name->setObjectName(QStringLiteral("lineEdit_name"));
-        lineEdit_name->setGeometry(QRect(60, 10, 171, 31));
-        lineEdit_name->setFont(font);
-        lineEdit_name->setStyleSheet(QLatin1String("QLineEdit{\n"
-"color:#ced4da;\n"
-"border-radius: 14px;\n"
-"background-color: rgb(25, 25, 25, 155);\n"
-"border: 0px solid rgba(255, 255, 255, 0);\n"
-"border-radius: 5px;\n"
-"padding-left:10px;\n"
-"padding-right:10px;\n"
+        verticalLayout = new QVBoxLayout(mkdirfolderwidget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        widget = new QWidget(mkdirfolderwidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setStyleSheet(QLatin1String("#widget{\n"
+"border-image: url(:/lib/back1.png);\n"
 "}"));
-        toolButton_ok = new QToolButton(mkdirfolderwidget);
+        toolButton_cancel = new QToolButton(widget);
+        toolButton_cancel->setObjectName(QStringLiteral("toolButton_cancel"));
+        toolButton_cancel->setGeometry(QRect(170, 60, 61, 31));
+        toolButton_cancel->setFont(font);
+        toolButton_cancel->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(67, 67, 67);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(67, 67, 67);\n"
+"}"));
+        toolButton_ok = new QToolButton(widget);
         toolButton_ok->setObjectName(QStringLiteral("toolButton_ok"));
         toolButton_ok->setGeometry(QRect(90, 60, 61, 30));
         toolButton_ok->setMinimumSize(QSize(0, 30));
@@ -82,26 +96,26 @@ public:
 "	color: rgb(26, 26, 26);\n"
 "	background-color: rgb(113, 212, 219);\n"
 "}"));
-        toolButton_cancel = new QToolButton(mkdirfolderwidget);
-        toolButton_cancel->setObjectName(QStringLiteral("toolButton_cancel"));
-        toolButton_cancel->setGeometry(QRect(170, 60, 61, 31));
-        toolButton_cancel->setFont(font);
-        toolButton_cancel->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color: rgb(67, 67, 67);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(67, 67, 67);\n"
+        lineEdit_name = new QLineEdit(widget);
+        lineEdit_name->setObjectName(QStringLiteral("lineEdit_name"));
+        lineEdit_name->setGeometry(QRect(60, 10, 171, 31));
+        lineEdit_name->setFont(font);
+        lineEdit_name->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color:#ced4da;\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 5px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
 "}"));
+        label = new QLabel(widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(13, 10, 51, 31));
+        label->setFont(font);
+
+        verticalLayout->addWidget(widget);
+
 
         retranslateUi(mkdirfolderwidget);
 
@@ -111,9 +125,9 @@ public:
     void retranslateUi(QWidget *mkdirfolderwidget)
     {
         mkdirfolderwidget->setWindowTitle(QApplication::translate("mkdirfolderwidget", "\345\210\233\345\273\272\345\210\206\347\261\273", nullptr));
-        label->setText(QApplication::translate("mkdirfolderwidget", "\345\220\215\347\247\260\357\274\232", nullptr));
-        toolButton_ok->setText(QApplication::translate("mkdirfolderwidget", "\347\241\256\345\256\232", nullptr));
         toolButton_cancel->setText(QApplication::translate("mkdirfolderwidget", "\345\217\226\346\266\210", nullptr));
+        toolButton_ok->setText(QApplication::translate("mkdirfolderwidget", "\347\241\256\345\256\232", nullptr));
+        label->setText(QApplication::translate("mkdirfolderwidget", "\345\220\215\347\247\260\357\274\232", nullptr));
     } // retranslateUi
 
 };

@@ -180,7 +180,7 @@ public:
 "	border: none;\n"
 "}"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/setting2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/lib/setting3.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_file_2->setIcon(icon2);
         toolButton_file_2->setIconSize(QSize(20, 20));
 

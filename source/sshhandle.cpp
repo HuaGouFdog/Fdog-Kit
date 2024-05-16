@@ -83,45 +83,66 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
     int rc;
 
     // 创建套接字并建立连接
-
-    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
+    
+    sockfd = createSocket(host.toStdString().c_str(), port.toInt());
     if (sockfd == INVALID_SOCKET) {
+        qDebug() << "createSocket sockfd";
     }
 
     // 初始化 libssh2 库
     rc = libssh2_init(0);
     if (rc != 0) {
-        qWarning() << "libssh2 initialization failed";
+        qDebug() << "libssh2 initialization failed";
         return;
     }
 
     // 创建 SSH session
     session_ssh = libssh2_session_init();
-    if (!session_ssh) {
-        qWarning() << "Failed to create SSH session";
+    if (session_ssh == nullptr) {
+        qDebug() << "Failed to create SSH session";
         return;
     }
 
     // 设置会话选项
     libssh2_session_set_blocking(session_ssh, 1);
-    libssh2_session_set_timeout(session_ssh, 10000);
+    //libssh2_session_set_timeout(session_ssh, 1000);
 
     // 建立 SSH 连接
-    rc = libssh2_session_handshake(session_ssh, sockfd);
-    if (rc) {
-        qWarning() << "SSH handshake failed";
-        libssh2_session_free(session_ssh);
-        return;
+    
+    for (int i = 0; i < 10; i++) {
+        rc = libssh2_session_handshake(session_ssh, sockfd);
+        if (rc == 0) {
+            qDebug() << "SSH handshake ok";
+            break;
+        } else {
+            qDebug() << "SSH handshake failed rc = " << rc << " i = " << i;
+        }
     }
-
+    if (rc) {
+        qDebug() << "SSH handshake failed rc = " << rc;
+        libssh2_session_disconnect(session_ssh, "Goodbye");
+        libssh2_session_free(session_ssh);
+        return; 
+    }
+    qDebug() << "sockfd addr = " << &sockfd << " sockfd = " << sockfd;
+    qDebug() << "session_ssh addr = " << &session_ssh << " session_ssh = " << session_ssh;
     // 进行身份验证
     qDebug() << "user = " << username << " password = " << password;
-    rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
+    for (int i = 0; i < 10; i++) {
+        rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
+        if (rc == 0) {
+            qDebug() << "initSSH Authentication ok";
+            break;
+        } else {
+            qDebug() << "initSSH Authentication failed rc = " << rc << " i = " << i;
+        }
+    }
+    
     if (rc) {
-        qWarning() << "initSSH Authentication failed rc = " << rc;
-        // libssh2_session_disconnect(session_ssh, "Authentication failed");
-        // libssh2_session_free(session_ssh);
-        // close(sockfd);
+        qDebug() << "initSSH Authentication failed rc = " << rc;
+        //libssh2_session_disconnect(session_ssh, "Authentication failed");
+        //libssh2_session_free(session_ssh);
+        //close(sockfd);
         return;
     }
 

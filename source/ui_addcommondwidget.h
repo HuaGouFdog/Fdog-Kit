@@ -69,11 +69,7 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/icon9.png"), QSize(), QIcon::Normal, QIcon::Off);
         addcommondwidget->setWindowIcon(icon);
-        addcommondwidget->setStyleSheet(QLatin1String("#addcommondwidget{\n"
-"background-color: rgb(30, 45, 54);\n"
-"color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
+        addcommondwidget->setStyleSheet(QLatin1String("\n"
 "QLabel {\n"
 "color: rgb(255, 255, 255);\n"
 "}\n"
@@ -95,11 +91,15 @@ public:
 "}"));
         verticalLayout_3 = new QVBoxLayout(addcommondwidget);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         widget_body = new QWidget(addcommondwidget);
         widget_body->setObjectName(QStringLiteral("widget_body"));
+        widget_body->setStyleSheet(QLatin1String("#widget_body{\n"
+"border-image: url(:/lib/back1.png);\n"
+"}"));
         verticalLayout_2 = new QVBoxLayout(widget_body);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(-1, -1, -1, 1);
+        verticalLayout_2->setContentsMargins(-1, -1, -1, 9);
         widget = new QWidget(widget_body);
         widget->setObjectName(QStringLiteral("widget"));
         horizontalLayout = new QHBoxLayout(widget);

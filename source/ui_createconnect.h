@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -30,13 +31,9 @@ QT_BEGIN_NAMESPACE
 class Ui_createconnect
 {
 public:
-    QWidget *widget_bottom;
-    QHBoxLayout *horizontalLayout_3;
-    QSpacerItem *widget_bottom_horizontalSpacer_left;
-    QToolButton *widget_bottom_toolButton_connect;
-    QToolButton *widget_bottom_toolButton_save;
-    QToolButton *widget_bottom_toolButton_close;
-    QSpacerItem *widget_bottom_horizontalSpacer_right;
+    QHBoxLayout *horizontalLayout;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout_8;
     QWidget *widget_body;
     QHBoxLayout *horizontalLayout_6;
     QWidget *widget_body_left;
@@ -116,6 +113,13 @@ public:
     QLabel *label_host_ssh_2;
     QLabel *widget_dynamic_title_label_2;
     QWidget *tab_4;
+    QWidget *widget_bottom;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *widget_bottom_horizontalSpacer_left;
+    QToolButton *widget_bottom_toolButton_connect;
+    QToolButton *widget_bottom_toolButton_save;
+    QToolButton *widget_bottom_toolButton_close;
+    QSpacerItem *widget_bottom_horizontalSpacer_right;
 
     void setupUi(QWidget *createconnect)
     {
@@ -136,118 +140,23 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/icon9.png"), QSize(), QIcon::Normal, QIcon::Off);
         createconnect->setWindowIcon(icon);
-        createconnect->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
-"color: rgb(255, 255, 255);"));
-        widget_bottom = new QWidget(createconnect);
-        widget_bottom->setObjectName(QStringLiteral("widget_bottom"));
-        widget_bottom->setGeometry(QRect(0, 400, 701, 40));
-        widget_bottom->setMinimumSize(QSize(0, 40));
-        widget_bottom->setMaximumSize(QSize(16777215, 40));
-        widget_bottom->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
-"color: rgb(255, 255, 255);"));
-        horizontalLayout_3 = new QHBoxLayout(widget_bottom);
-        horizontalLayout_3->setSpacing(10);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(9, 0, 9, 0);
-        widget_bottom_horizontalSpacer_left = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_left);
-
-        widget_bottom_toolButton_connect = new QToolButton(widget_bottom);
-        widget_bottom_toolButton_connect->setObjectName(QStringLiteral("widget_bottom_toolButton_connect"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_connect->sizePolicy().hasHeightForWidth());
-        widget_bottom_toolButton_connect->setSizePolicy(sizePolicy1);
-        widget_bottom_toolButton_connect->setMinimumSize(QSize(60, 30));
-        widget_bottom_toolButton_connect->setMaximumSize(QSize(60, 30));
-        QFont font1;
-        font1.setFamily(QStringLiteral("OPPOSans B"));
-        font1.setPointSize(10);
-        font1.setStyleStrategy(QFont::PreferAntialias);
-        widget_bottom_toolButton_connect->setFont(font1);
-        widget_bottom_toolButton_connect->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 214, 103);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(0, 214, 103);\n"
+        createconnect->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(createconnect);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        frame = new QFrame(createconnect);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setStyleSheet(QLatin1String("#frame{ \n"
+"border-image: url(:/lib/back1.png);\n"
 "}"));
-
-        horizontalLayout_3->addWidget(widget_bottom_toolButton_connect);
-
-        widget_bottom_toolButton_save = new QToolButton(widget_bottom);
-        widget_bottom_toolButton_save->setObjectName(QStringLiteral("widget_bottom_toolButton_save"));
-        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_save->sizePolicy().hasHeightForWidth());
-        widget_bottom_toolButton_save->setSizePolicy(sizePolicy1);
-        widget_bottom_toolButton_save->setMinimumSize(QSize(60, 30));
-        widget_bottom_toolButton_save->setMaximumSize(QSize(60, 30));
-        QFont font2;
-        font2.setFamily(QStringLiteral("OPPOSans B"));
-        font2.setPointSize(10);
-        font2.setBold(false);
-        font2.setWeight(50);
-        font2.setStyleStrategy(QFont::PreferAntialias);
-        widget_bottom_toolButton_save->setFont(font2);
-        widget_bottom_toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(7, 143, 255);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(7, 143, 255);\n"
-"}"));
-
-        horizontalLayout_3->addWidget(widget_bottom_toolButton_save);
-
-        widget_bottom_toolButton_close = new QToolButton(widget_bottom);
-        widget_bottom_toolButton_close->setObjectName(QStringLiteral("widget_bottom_toolButton_close"));
-        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_close->sizePolicy().hasHeightForWidth());
-        widget_bottom_toolButton_close->setSizePolicy(sizePolicy1);
-        widget_bottom_toolButton_close->setMinimumSize(QSize(60, 30));
-        widget_bottom_toolButton_close->setMaximumSize(QSize(60, 30));
-        widget_bottom_toolButton_close->setFont(font1);
-        widget_bottom_toolButton_close->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-
-        horizontalLayout_3->addWidget(widget_bottom_toolButton_close);
-
-        widget_bottom_horizontalSpacer_right = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_right);
-
-        widget_body = new QWidget(createconnect);
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout_8 = new QVBoxLayout(frame);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 9);
+        widget_body = new QWidget(frame);
         widget_body->setObjectName(QStringLiteral("widget_body"));
-        widget_body->setGeometry(QRect(0, 0, 701, 402));
+        widget_body->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         horizontalLayout_6 = new QHBoxLayout(widget_body);
         horizontalLayout_6->setSpacing(20);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
@@ -387,10 +296,10 @@ public:
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setMinimumSize(QSize(90, 30));
         lineEdit->setMaximumSize(QSize(90, 30));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans"));
-        font3.setPointSize(10);
-        lineEdit->setFont(font3);
+        QFont font1;
+        font1.setFamily(QStringLiteral("OPPOSans"));
+        font1.setPointSize(10);
+        lineEdit->setFont(font1);
         lineEdit->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
@@ -419,7 +328,11 @@ public:
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         widget_dynamic_title_checkBox = new QCheckBox(widget_dynamic_title);
         widget_dynamic_title_checkBox->setObjectName(QStringLiteral("widget_dynamic_title_checkBox"));
-        widget_dynamic_title_checkBox->setFont(font1);
+        QFont font2;
+        font2.setFamily(QStringLiteral("OPPOSans B"));
+        font2.setPointSize(10);
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        widget_dynamic_title_checkBox->setFont(font2);
         widget_dynamic_title_checkBox->setContextMenuPolicy(Qt::DefaultContextMenu);
         widget_dynamic_title_checkBox->setStyleSheet(QLatin1String("QCheckBox::indicator{\n"
 "                width:16px;\n"
@@ -441,10 +354,10 @@ public:
         widget_dynamic_title_label->setObjectName(QStringLiteral("widget_dynamic_title_label"));
         widget_dynamic_title_label->setMinimumSize(QSize(100, 25));
         widget_dynamic_title_label->setMaximumSize(QSize(180, 16777215));
-        QFont font4;
-        font4.setFamily(QStringLiteral("OPPOSans B"));
-        font4.setPointSize(9);
-        widget_dynamic_title_label->setFont(font4);
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(9);
+        widget_dynamic_title_label->setFont(font3);
         widget_dynamic_title_label->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
 
         verticalLayout_6->addWidget(widget_dynamic_title_label);
@@ -473,7 +386,13 @@ public:
         verticalLayout_4->setContentsMargins(-1, -1, -1, 0);
         tabWidget = new QTabWidget(widget_body_right);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setFont(font2);
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(10);
+        font4.setBold(false);
+        font4.setWeight(50);
+        font4.setStyleStrategy(QFont::PreferAntialias);
+        tabWidget->setFont(font4);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
@@ -590,7 +509,7 @@ public:
         tabWidget_2 = new QTabWidget(tab);
         tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
         tabWidget_2->setGeometry(QRect(0, 160, 431, 170));
-        tabWidget_2->setFont(font1);
+        tabWidget_2->setFont(font2);
         tabWidget_2->setStyleSheet(QString::fromUtf8("\n"
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
@@ -677,17 +596,20 @@ public:
         tab_passowrd_checkBox_remember_password = new QCheckBox(tab_passowrd);
         tab_passowrd_checkBox_remember_password->setObjectName(QStringLiteral("tab_passowrd_checkBox_remember_password"));
         tab_passowrd_checkBox_remember_password->setGeometry(QRect(0, 80, 81, 16));
-        tab_passowrd_checkBox_remember_password->setFont(font1);
+        tab_passowrd_checkBox_remember_password->setFont(font2);
         tab_passowrd_checkBox_remember_password->setStyleSheet(QStringLiteral(""));
         tab_passowrd_checkBox_remember_password->setChecked(true);
         tab_passowrd_toolButton_show = new QToolButton(tab_passowrd);
         tab_passowrd_toolButton_show->setObjectName(QStringLiteral("tab_passowrd_toolButton_show"));
         tab_passowrd_toolButton_show->setGeometry(QRect(380, 40, 40, 30));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(tab_passowrd_toolButton_show->sizePolicy().hasHeightForWidth());
         tab_passowrd_toolButton_show->setSizePolicy(sizePolicy1);
         tab_passowrd_toolButton_show->setMinimumSize(QSize(30, 30));
         tab_passowrd_toolButton_show->setMaximumSize(QSize(40, 30));
-        tab_passowrd_toolButton_show->setFont(font1);
+        tab_passowrd_toolButton_show->setFont(font2);
         tab_passowrd_toolButton_show->setStyleSheet(QLatin1String("QToolButton {\n"
 "background-color: rgba(25, 25, 25,0);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
@@ -737,7 +659,7 @@ public:
         toolButton_browse->setSizePolicy(sizePolicy1);
         toolButton_browse->setMinimumSize(QSize(70, 30));
         toolButton_browse->setMaximumSize(QSize(70, 30));
-        toolButton_browse->setFont(font1);
+        toolButton_browse->setFont(font2);
         toolButton_browse->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
@@ -756,7 +678,7 @@ public:
         checkBox_2 = new QCheckBox(tab_secretkey);
         checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
         checkBox_2->setGeometry(QRect(0, 80, 71, 16));
-        checkBox_2->setFont(font1);
+        checkBox_2->setFont(font2);
         checkBox_2->setChecked(true);
         tabWidget_2->addTab(tab_secretkey, QString());
         tab_keyboard = new QWidget();
@@ -768,7 +690,7 @@ public:
         toolButton_6->setSizePolicy(sizePolicy1);
         toolButton_6->setMinimumSize(QSize(30, 30));
         toolButton_6->setMaximumSize(QSize(40, 30));
-        toolButton_6->setFont(font1);
+        toolButton_6->setFont(font2);
         toolButton_6->setStyleSheet(QLatin1String("QToolButton {\n"
 "background-color: rgba(25, 25, 25,0);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
@@ -796,7 +718,7 @@ public:
         checkBox_remember_password_2 = new QCheckBox(tab_keyboard);
         checkBox_remember_password_2->setObjectName(QStringLiteral("checkBox_remember_password_2"));
         checkBox_remember_password_2->setGeometry(QRect(0, 80, 71, 16));
-        checkBox_remember_password_2->setFont(font1);
+        checkBox_remember_password_2->setFont(font2);
         checkBox_remember_password_2->setChecked(true);
         lineEdit_password_data_2 = new QLineEdit(tab_keyboard);
         lineEdit_password_data_2->setObjectName(QStringLiteral("lineEdit_password_data_2"));
@@ -856,7 +778,7 @@ public:
         tab_passowrd_toolButton_show_2->setSizePolicy(sizePolicy1);
         tab_passowrd_toolButton_show_2->setMinimumSize(QSize(30, 30));
         tab_passowrd_toolButton_show_2->setMaximumSize(QSize(40, 30));
-        tab_passowrd_toolButton_show_2->setFont(font1);
+        tab_passowrd_toolButton_show_2->setFont(font2);
         tab_passowrd_toolButton_show_2->setStyleSheet(QLatin1String("QToolButton {\n"
 "background-color: rgba(25, 25, 25,0);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
@@ -892,7 +814,7 @@ public:
         tab_passowrd_checkBox_remember_password_2 = new QCheckBox(tab_2);
         tab_passowrd_checkBox_remember_password_2->setObjectName(QStringLiteral("tab_passowrd_checkBox_remember_password_2"));
         tab_passowrd_checkBox_remember_password_2->setGeometry(QRect(0, 220, 81, 16));
-        tab_passowrd_checkBox_remember_password_2->setFont(font1);
+        tab_passowrd_checkBox_remember_password_2->setFont(font2);
         tab_passowrd_checkBox_remember_password_2->setChecked(true);
         tab_passowrd_lineEdit_password_data_2 = new QLineEdit(tab_2);
         tab_passowrd_lineEdit_password_data_2->setObjectName(QStringLiteral("tab_passowrd_lineEdit_password_data_2"));
@@ -938,7 +860,7 @@ public:
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setMinimumSize(QSize(0, 28));
         comboBox->setMaximumSize(QSize(120, 28));
-        comboBox->setFont(font1);
+        comboBox->setFont(font2);
         comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
 "	color:#ffffff;\n"
 "	border:1px solid rgb(13, 13, 13);\n"
@@ -976,14 +898,14 @@ public:
         tab_passowrd_checkBox_remember_password_3 = new QCheckBox(tab_2);
         tab_passowrd_checkBox_remember_password_3->setObjectName(QStringLiteral("tab_passowrd_checkBox_remember_password_3"));
         tab_passowrd_checkBox_remember_password_3->setGeometry(QRect(348, 250, 61, 31));
-        tab_passowrd_checkBox_remember_password_3->setFont(font1);
+        tab_passowrd_checkBox_remember_password_3->setFont(font2);
         tab_passowrd_checkBox_remember_password_3->setChecked(false);
         widget_dynamic_title_label_3 = new QLabel(tab_2);
         widget_dynamic_title_label_3->setObjectName(QStringLiteral("widget_dynamic_title_label_3"));
         widget_dynamic_title_label_3->setGeometry(QRect(0, 290, 400, 25));
         widget_dynamic_title_label_3->setMinimumSize(QSize(100, 25));
         widget_dynamic_title_label_3->setMaximumSize(QSize(400, 16777215));
-        widget_dynamic_title_label_3->setFont(font4);
+        widget_dynamic_title_label_3->setFont(font3);
         widget_dynamic_title_label_3->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
         lineEdit_port_ssh_data_4 = new QLineEdit(tab_2);
         lineEdit_port_ssh_data_4->setObjectName(QStringLiteral("lineEdit_port_ssh_data_4"));
@@ -1056,7 +978,7 @@ public:
         widget_dynamic_title_label_2->setGeometry(QRect(0, 90, 300, 25));
         widget_dynamic_title_label_2->setMinimumSize(QSize(100, 25));
         widget_dynamic_title_label_2->setMaximumSize(QSize(300, 16777215));
-        widget_dynamic_title_label_2->setFont(font4);
+        widget_dynamic_title_label_2->setFont(font3);
         widget_dynamic_title_label_2->setStyleSheet(QStringLiteral("color: rgba(223, 223, 223, 150);"));
         tabWidget->addTab(tab_3, QString());
         tab_4 = new QWidget();
@@ -1067,6 +989,108 @@ public:
 
 
         horizontalLayout_6->addWidget(widget_body_right);
+
+
+        verticalLayout_8->addWidget(widget_body);
+
+        widget_bottom = new QWidget(frame);
+        widget_bottom->setObjectName(QStringLiteral("widget_bottom"));
+        widget_bottom->setMinimumSize(QSize(0, 40));
+        widget_bottom->setMaximumSize(QSize(16777215, 40));
+        widget_bottom->setStyleSheet(QLatin1String("\n"
+"color: rgb(255, 255, 255);"));
+        horizontalLayout_3 = new QHBoxLayout(widget_bottom);
+        horizontalLayout_3->setSpacing(10);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(9, 0, 9, 0);
+        widget_bottom_horizontalSpacer_left = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_left);
+
+        widget_bottom_toolButton_connect = new QToolButton(widget_bottom);
+        widget_bottom_toolButton_connect->setObjectName(QStringLiteral("widget_bottom_toolButton_connect"));
+        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_connect->sizePolicy().hasHeightForWidth());
+        widget_bottom_toolButton_connect->setSizePolicy(sizePolicy1);
+        widget_bottom_toolButton_connect->setMinimumSize(QSize(60, 30));
+        widget_bottom_toolButton_connect->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_connect->setFont(font2);
+        widget_bottom_toolButton_connect->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(0, 214, 103);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(0, 214, 103);\n"
+"}"));
+
+        horizontalLayout_3->addWidget(widget_bottom_toolButton_connect);
+
+        widget_bottom_toolButton_save = new QToolButton(widget_bottom);
+        widget_bottom_toolButton_save->setObjectName(QStringLiteral("widget_bottom_toolButton_save"));
+        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_save->sizePolicy().hasHeightForWidth());
+        widget_bottom_toolButton_save->setSizePolicy(sizePolicy1);
+        widget_bottom_toolButton_save->setMinimumSize(QSize(60, 30));
+        widget_bottom_toolButton_save->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_save->setFont(font4);
+        widget_bottom_toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(7, 143, 255);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(7, 143, 255);\n"
+"}"));
+
+        horizontalLayout_3->addWidget(widget_bottom_toolButton_save);
+
+        widget_bottom_toolButton_close = new QToolButton(widget_bottom);
+        widget_bottom_toolButton_close->setObjectName(QStringLiteral("widget_bottom_toolButton_close"));
+        sizePolicy1.setHeightForWidth(widget_bottom_toolButton_close->sizePolicy().hasHeightForWidth());
+        widget_bottom_toolButton_close->setSizePolicy(sizePolicy1);
+        widget_bottom_toolButton_close->setMinimumSize(QSize(60, 30));
+        widget_bottom_toolButton_close->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_close->setFont(font2);
+        widget_bottom_toolButton_close->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+
+        horizontalLayout_3->addWidget(widget_bottom_toolButton_close);
+
+        widget_bottom_horizontalSpacer_right = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_right);
+
+
+        verticalLayout_8->addWidget(widget_bottom);
+
+
+        horizontalLayout->addWidget(frame);
 
 
         retranslateUi(createconnect);
@@ -1081,9 +1105,6 @@ public:
     void retranslateUi(QWidget *createconnect)
     {
         createconnect->setWindowTitle(QApplication::translate("createconnect", "\346\226\260\345\273\272\347\273\210\347\253\257", nullptr));
-        widget_bottom_toolButton_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
-        widget_bottom_toolButton_save->setText(QApplication::translate("createconnect", "\344\277\235\345\255\230", nullptr));
-        widget_bottom_toolButton_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
         widget_name_label_name->setText(QApplication::translate("createconnect", "\345\220\215\347\247\260", nullptr));
         widget_name_lineEdit_name_data->setText(QString());
         widget_name_lineEdit_name_data->setPlaceholderText(QApplication::translate("createconnect", "\347\273\210\347\253\257\350\277\236\346\216\245", nullptr));
@@ -1162,6 +1183,9 @@ public:
         widget_dynamic_title_label_2->setText(QApplication::translate("createconnect", "\345\260\206\345\210\233\345\273\272\345\217\257\350\247\206\345\214\226zk\344\277\241\346\201\257\347\225\214\351\235\242\357\274\214\350\277\233\350\241\214\345\277\253\351\200\237\344\276\277\346\215\267\347\232\204\345\242\236\345\210\240\346\224\271\346\237\245", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("createconnect", "   zookeeper   ", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("createconnect", "   Redis   ", nullptr));
+        widget_bottom_toolButton_connect->setText(QApplication::translate("createconnect", "\350\277\236\346\216\245", nullptr));
+        widget_bottom_toolButton_save->setText(QApplication::translate("createconnect", "\344\277\235\345\255\230", nullptr));
+        widget_bottom_toolButton_close->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
     } // retranslateUi
 
 };

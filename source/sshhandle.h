@@ -93,6 +93,7 @@ public:
     explicit sshhandle(QObject *parent = nullptr);
     ~sshhandle();
     datahandle ac;
+    SOCKET sockfd;
     LIBSSH2_SESSION *session_ssh = nullptr;  //ssh session
     LIBSSH2_CHANNEL *channel_ssh = nullptr;  //ssh channel
 

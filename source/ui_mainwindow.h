@@ -1355,6 +1355,9 @@ public:
         splitter->setHandleWidth(0);
         widget_main = new QWidget(splitter);
         widget_main->setObjectName(QStringLiteral("widget_main"));
+        QFont font5;
+        font5.setStyleStrategy(QFont::PreferAntialias);
+        widget_main->setFont(font5);
         widget_main->setStyleSheet(QLatin1String("QMenu {\n"
 "\n"
 "background-color:rgb(253,253,254);\n"
@@ -1406,11 +1409,11 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
         tabWidget->setSizePolicy(sizePolicy1);
-        QFont font5;
-        font5.setFamily(QStringLiteral("OPPOSans B"));
-        font5.setPointSize(11);
-        font5.setStyleStrategy(QFont::PreferAntialias);
-        tabWidget->setFont(font5);
+        QFont font6;
+        font6.setFamily(QStringLiteral("OPPOSans B"));
+        font6.setPointSize(11);
+        font6.setStyleStrategy(QFont::PreferAntialias);
+        tabWidget->setFont(font6);
         tabWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         tabWidget->setStyleSheet(QString::fromUtf8("\n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255tab_1\347\232\204\346\240\267\345\274\217*/\n"
@@ -1489,12 +1492,15 @@ public:
         tabWidget->setMovable(true);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
+        tab->setFont(font5);
         tabWidget->addTab(tab, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
+        tab_3->setFont(font5);
         tabWidget->addTab(tab_3, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        tab_2->setFont(font5);
         tabWidget->addTab(tab_2, QString());
 
         verticalLayout_4->addWidget(tabWidget);
@@ -1652,11 +1658,11 @@ public:
         verticalLayout_22->setContentsMargins(5, 5, 2, 0);
         textEdit = new QTextEdit(page_4);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        QFont font6;
-        font6.setFamily(QStringLiteral("OPPOSans B"));
-        font6.setPointSize(12);
-        font6.setStyleStrategy(QFont::PreferAntialias);
-        textEdit->setFont(font6);
+        QFont font7;
+        font7.setFamily(QStringLiteral("OPPOSans B"));
+        font7.setPointSize(12);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        textEdit->setFont(font7);
         textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
@@ -2532,11 +2538,11 @@ public:
         widget_welcome_body_widget2_info_widget_icon->setObjectName(QStringLiteral("widget_welcome_body_widget2_info_widget_icon"));
         widget_welcome_body_widget2_info_widget_icon->setMinimumSize(QSize(80, 80));
         widget_welcome_body_widget2_info_widget_icon->setMaximumSize(QSize(80, 80));
-        QFont font7;
-        font7.setFamily(QStringLiteral("OPPOSans B"));
-        font7.setPointSize(20);
-        font7.setStyleStrategy(QFont::PreferAntialias);
-        widget_welcome_body_widget2_info_widget_icon->setFont(font7);
+        QFont font8;
+        font8.setFamily(QStringLiteral("OPPOSans B"));
+        font8.setPointSize(20);
+        font8.setStyleStrategy(QFont::PreferAntialias);
+        widget_welcome_body_widget2_info_widget_icon->setFont(font8);
         widget_welcome_body_widget2_info_widget_icon->setStyleSheet(QStringLiteral("border-image: url(:/lib/icon_80.png);"));
 
         horizontalLayout_3->addWidget(widget_welcome_body_widget2_info_widget_icon);
@@ -2548,14 +2554,14 @@ public:
         widget_welcome_body_widget2_info_text->setObjectName(QStringLiteral("widget_welcome_body_widget2_info_text"));
         widget_welcome_body_widget2_info_text->setMinimumSize(QSize(0, 45));
         widget_welcome_body_widget2_info_text->setMaximumSize(QSize(16777215, 45));
-        QFont font8;
-        font8.setFamily(QStringLiteral("OPPOSans B"));
-        font8.setPointSize(14);
-        font8.setBold(false);
-        font8.setItalic(false);
-        font8.setWeight(50);
-        font8.setStyleStrategy(QFont::PreferAntialias);
-        widget_welcome_body_widget2_info_text->setFont(font8);
+        QFont font9;
+        font9.setFamily(QStringLiteral("OPPOSans B"));
+        font9.setPointSize(14);
+        font9.setBold(false);
+        font9.setItalic(false);
+        font9.setWeight(50);
+        font9.setStyleStrategy(QFont::PreferAntialias);
+        widget_welcome_body_widget2_info_text->setFont(font9);
         widget_welcome_body_widget2_info_text->setStyleSheet(QLatin1String("color: qlineargradient(spread:pad, x1:0.789318, y1:0.358, x2:1, y2:1, stop:0 rgba(0, 213, 205, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "color: rgb(242, 245, 255);"));
         widget_welcome_body_widget2_info_text->setAlignment(Qt::AlignCenter);
@@ -2595,10 +2601,10 @@ public:
         label_13->setObjectName(QStringLiteral("label_13"));
         label_13->setMinimumSize(QSize(0, 30));
         label_13->setMaximumSize(QSize(16777215, 30));
-        QFont font9;
-        font9.setFamily(QStringLiteral("OPPOSans B"));
-        font9.setPointSize(11);
-        label_13->setFont(font9);
+        QFont font10;
+        font10.setFamily(QStringLiteral("OPPOSans B"));
+        font10.setPointSize(11);
+        label_13->setFont(font10);
 
         verticalLayout_17->addWidget(label_13);
 
@@ -2717,7 +2723,7 @@ public:
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setMinimumSize(QSize(0, 30));
         label_8->setMaximumSize(QSize(16777215, 30));
-        label_8->setFont(font9);
+        label_8->setFont(font10);
 
         verticalLayout_17->addWidget(label_8);
 
@@ -2852,13 +2858,13 @@ public:
         widget_4 = new QWidget(widget_25);
         widget_4->setObjectName(QStringLiteral("widget_4"));
         widget_4->setGeometry(QRect(1230, 80, 311, 361));
-        QFont font10;
-        font10.setFamily(QStringLiteral("OPPOSans B"));
-        font10.setPointSize(10);
-        font10.setBold(false);
-        font10.setItalic(false);
-        font10.setWeight(50);
-        widget_4->setFont(font10);
+        QFont font11;
+        font11.setFamily(QStringLiteral("OPPOSans B"));
+        font11.setPointSize(10);
+        font11.setBold(false);
+        font11.setItalic(false);
+        font11.setWeight(50);
+        widget_4->setFont(font11);
         widget_4->setStyleSheet(QLatin1String("background-color: rgb(217, 217, 217);\n"
 "font: 10pt \"OPPOSans B\";\n"
 "color: rgb(115, 115, 115);"));
@@ -2893,10 +2899,10 @@ public:
         horizontalLayout_5->setContentsMargins(9, 0, 9, 0);
         label_7 = new QLabel(widget_top_find);
         label_7->setObjectName(QStringLiteral("label_7"));
-        QFont font11;
-        font11.setFamily(QStringLiteral("OPPOSans B"));
-        font11.setPointSize(16);
-        label_7->setFont(font11);
+        QFont font12;
+        font12.setFamily(QStringLiteral("OPPOSans B"));
+        font12.setPointSize(16);
+        label_7->setFont(font12);
 
         horizontalLayout_5->addWidget(label_7);
 
@@ -3701,7 +3707,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
         stackedWidget_tool->setCurrentIndex(0);
 
 

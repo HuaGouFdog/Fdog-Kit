@@ -1981,6 +1981,11 @@ color: rgb(255, 255, 255);</string>
                  <number>0</number>
                 </property>
                 <widget class="QWidget" name="widget_main" native="true">
+                 <property name="font">
+                  <font>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QMenu {
 
@@ -2128,7 +2133,7 @@ QTabBar QToolButton:hover {
 }</string>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>2</number>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -2146,16 +2151,31 @@ QTabBar QToolButton:hover {
                      <bool>true</bool>
                     </property>
                     <widget class="QWidget" name="tab">
+                     <property name="font">
+                      <font>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
+                     </property>
                      <attribute name="title">
                       <string/>
                      </attribute>
                     </widget>
                     <widget class="QWidget" name="tab_3">
+                     <property name="font">
+                      <font>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
+                     </property>
                      <attribute name="title">
                       <string>页</string>
                      </attribute>
                     </widget>
                     <widget class="QWidget" name="tab_2">
+                     <property name="font">
+                      <font>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
+                     </property>
                      <attribute name="title">
                       <string>页</string>
                      </attribute>

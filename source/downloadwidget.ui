@@ -277,7 +277,7 @@ QToolButton:hover {
            </property>
            <property name="icon">
             <iconset resource="lib.qrc">
-             <normaloff>:/lib/setting2.png</normaloff>:/lib/setting2.png</iconset>
+             <normaloff>:/lib/setting3.png</normaloff>:/lib/setting3.png</iconset>
            </property>
            <property name="iconSize">
             <size>
