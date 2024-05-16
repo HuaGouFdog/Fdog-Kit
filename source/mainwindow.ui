@@ -132,39 +132,6 @@ border-radius:10px;
 	
 	
 	background-color: rgb(10, 31, 57);
-}
-
-
-QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QLabel {
-color: rgb(255, 255, 255);
-border: none;
-background-color: rgba(255, 255, 255, 0);
-}
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
 }</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -245,7 +212,31 @@ border-radius: 2px;
           <string>首页</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>首页</string>
@@ -292,7 +283,31 @@ border-radius: 2px;
           <string>终端连接</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>终端</string>
@@ -339,7 +354,31 @@ border-radius: 2px;
           <string>thrift接口测试</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>thrift</string>
@@ -386,7 +425,31 @@ border-radius: 2px;
           <string>数据库连接</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="locale">
           <locale language="English" country="UnitedStates"/>
@@ -436,7 +499,31 @@ border-radius: 2px;
           <string>zk连接</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>zk</string>
@@ -483,7 +570,31 @@ border-radius: 2px;
           <string>工具箱</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>工具箱</string>
@@ -530,7 +641,31 @@ border-radius: 2px;
           <string>扩展</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>扩展</string>
@@ -577,7 +712,31 @@ border-radius: 2px;
           <string>设置</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>设置</string>
@@ -624,7 +783,31 @@ border-radius: 2px;
           <string>关于</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>关于</string>
@@ -671,7 +854,31 @@ border-radius: 2px;
           <string>github</string>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>GitHub</string>
@@ -718,7 +925,31 @@ border-radius: 2px;
           <number>-1</number>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
          </property>
          <property name="text">
           <string>暗黑</string>
@@ -767,7 +998,11 @@ border-radius: 2px;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QLabel {
+color: rgb(255, 255, 255);
+border: none;
+background-color: rgba(255, 255, 255, 0);
+}</string>
          </property>
          <property name="text">
           <string>V1.0.3</string>

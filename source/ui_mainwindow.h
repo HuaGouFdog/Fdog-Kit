@@ -377,39 +377,6 @@ public:
 "	\n"
 "	\n"
 "	background-color: rgb(10, 31, 57);\n"
-"}\n"
-"\n"
-"\n"
-"QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgba(94, 255, 210, 0);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	\n"
-"	background-color: rgb(26, 53, 83);\n"
-"	border: none;\n"
-"}\n"
-"\n"
-"\n"
-"QLabel {\n"
-"color: rgb(255, 255, 255);\n"
-"border: none;\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"color:#ced4da;\n"
-"background-color: rgb(108, 117, 125, 65);\n"
-"border-radius: 2px;\n"
 "}"));
         verticalLayout_12 = new QVBoxLayout(widget_side);
         verticalLayout_12->setSpacing(0);
@@ -436,7 +403,31 @@ public:
         font1.setFamily(QStringLiteral("OPPOSans B"));
         font1.setPointSize(10);
         toolButton_side_home->setFont(font1);
-        toolButton_side_home->setStyleSheet(QStringLiteral(""));
+        toolButton_side_home->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/home.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_home->setIcon(icon1);
@@ -451,7 +442,31 @@ public:
         toolButton_side_shell->setMinimumSize(QSize(50, 50));
         toolButton_side_shell->setMaximumSize(QSize(50, 50));
         toolButton_side_shell->setFont(font1);
-        toolButton_side_shell->setStyleSheet(QStringLiteral(""));
+        toolButton_side_shell->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/shell_side.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_shell->setIcon(icon2);
@@ -466,7 +481,31 @@ public:
         toolButton_side_thrift->setMinimumSize(QSize(50, 50));
         toolButton_side_thrift->setMaximumSize(QSize(50, 50));
         toolButton_side_thrift->setFont(font1);
-        toolButton_side_thrift->setStyleSheet(QStringLiteral(""));
+        toolButton_side_thrift->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/lib/func.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_thrift->setIcon(icon3);
@@ -481,7 +520,31 @@ public:
         toolButton_side_mysql->setMinimumSize(QSize(50, 50));
         toolButton_side_mysql->setMaximumSize(QSize(50, 50));
         toolButton_side_mysql->setFont(font1);
-        toolButton_side_mysql->setStyleSheet(QStringLiteral(""));
+        toolButton_side_mysql->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         toolButton_side_mysql->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/lib/mysql.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -497,7 +560,31 @@ public:
         toolButton_side_zookeeper->setMinimumSize(QSize(50, 50));
         toolButton_side_zookeeper->setMaximumSize(QSize(50, 50));
         toolButton_side_zookeeper->setFont(font1);
-        toolButton_side_zookeeper->setStyleSheet(QStringLiteral(""));
+        toolButton_side_zookeeper->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/lib/Zookeeper.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_zookeeper->setIcon(icon5);
@@ -512,7 +599,31 @@ public:
         toolButton_side_tool->setMinimumSize(QSize(50, 50));
         toolButton_side_tool->setMaximumSize(QSize(50, 50));
         toolButton_side_tool->setFont(font1);
-        toolButton_side_tool->setStyleSheet(QStringLiteral(""));
+        toolButton_side_tool->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon6;
         icon6.addFile(QStringLiteral(":/lib/tool2.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_tool->setIcon(icon6);
@@ -527,7 +638,31 @@ public:
         toolButton_side_plugIn->setMinimumSize(QSize(50, 50));
         toolButton_side_plugIn->setMaximumSize(QSize(50, 50));
         toolButton_side_plugIn->setFont(font1);
-        toolButton_side_plugIn->setStyleSheet(QStringLiteral(""));
+        toolButton_side_plugIn->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/lib/tool_plugIn.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_plugIn->setIcon(icon7);
@@ -542,7 +677,31 @@ public:
         toolButton_side_setting->setMinimumSize(QSize(50, 50));
         toolButton_side_setting->setMaximumSize(QSize(50, 50));
         toolButton_side_setting->setFont(font1);
-        toolButton_side_setting->setStyleSheet(QStringLiteral(""));
+        toolButton_side_setting->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/lib/setting2.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_setting->setIcon(icon8);
@@ -557,7 +716,31 @@ public:
         toolButton_side_about->setMinimumSize(QSize(50, 50));
         toolButton_side_about->setMaximumSize(QSize(50, 50));
         toolButton_side_about->setFont(font1);
-        toolButton_side_about->setStyleSheet(QStringLiteral(""));
+        toolButton_side_about->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/lib/about.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_about->setIcon(icon9);
@@ -572,7 +755,31 @@ public:
         toolButton_side_github->setMinimumSize(QSize(50, 50));
         toolButton_side_github->setMaximumSize(QSize(50, 50));
         toolButton_side_github->setFont(font1);
-        toolButton_side_github->setStyleSheet(QStringLiteral(""));
+        toolButton_side_github->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon10;
         icon10.addFile(QStringLiteral(":/lib/github.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_github->setIcon(icon10);
@@ -587,7 +794,31 @@ public:
         toolButton_side_theme->setMaximumSize(QSize(50, 50));
         toolButton_side_theme->setFont(font1);
         toolButton_side_theme->setToolTipDuration(-1);
-        toolButton_side_theme->setStyleSheet(QStringLiteral(""));
+        toolButton_side_theme->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	background-color: rgb(26, 53, 83);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"\n"
+"QToolTip {\n"
+"color:#ced4da;\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
+"}"));
         QIcon icon11;
         icon11.addFile(QStringLiteral(":/lib/black_mode.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_side_theme->setIcon(icon11);
@@ -608,7 +839,11 @@ public:
         font2.setPointSize(9);
         font2.setStyleStrategy(QFont::PreferAntialias);
         label_side_version->setFont(font2);
-        label_side_version->setStyleSheet(QStringLiteral(""));
+        label_side_version->setStyleSheet(QLatin1String("QLabel {\n"
+"color: rgb(255, 255, 255);\n"
+"border: none;\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"}"));
         label_side_version->setAlignment(Qt::AlignCenter);
 
         verticalLayout_12->addWidget(label_side_version);
