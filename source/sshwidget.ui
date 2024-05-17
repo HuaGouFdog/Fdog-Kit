@@ -70,13 +70,13 @@ color: rgb(255, 255, 255);
        <number>7</number>
       </property>
       <property name="leftMargin">
-       <number>10</number>
+       <number>3</number>
       </property>
       <property name="topMargin">
        <number>10</number>
       </property>
       <property name="rightMargin">
-       <number>7</number>
+       <number>3</number>
       </property>
       <property name="bottomMargin">
        <number>5</number>
@@ -599,13 +599,13 @@ QToolButton:hover {
           <widget class="QProgressBar" name="progressBar_cpu">
            <property name="minimumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
@@ -698,13 +698,13 @@ QProgressBar:chunk{
           <widget class="QProgressBar" name="progressBar_disk">
            <property name="minimumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
@@ -799,13 +799,13 @@ QProgressBar:chunk{
           <widget class="QProgressBar" name="progressBar_mem">
            <property name="minimumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
@@ -900,13 +900,13 @@ QProgressBar:chunk{
           <widget class="QProgressBar" name="progressBar_swap">
            <property name="minimumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>130</width>
+             <width>140</width>
              <height>18</height>
             </size>
            </property>
@@ -999,7 +999,7 @@ QProgressBar:chunk{
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>10</number>
+       <number>3</number>
       </property>
       <property name="topMargin">
        <number>0</number>
@@ -1108,8 +1108,8 @@ QProgressBar:chunk{
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1231</width>
-                     <height>339</height>
+                     <width>1238</width>
+                     <height>343</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">

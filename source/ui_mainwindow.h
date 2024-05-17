@@ -1401,7 +1401,7 @@ public:
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_4->setContentsMargins(9, 0, 0, 0);
         tabWidget = new QTabWidget(widget_main);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -1436,7 +1436,7 @@ public:
 "	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350"
                         "\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	padding-left: 5px;\n"
+"	/*padding-left: 5px;*/\n"
 "    padding-right: 5px;\n"
 "	/*width:150;*/\n"
 "	height:25;\n"
@@ -1454,8 +1454,8 @@ public:
 "	background-color: rgb(100, 117, 125, 255);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347\232"
-                        "\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\347"
+                        "\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
 "    border-top:0px solid rgb(108, 117, 125, 65); \n"
 "}\n"
@@ -3707,7 +3707,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_tool->setCurrentIndex(0);
 
 

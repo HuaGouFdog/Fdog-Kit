@@ -573,7 +573,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
     qDebug() << "执行sshHandleExec init2";
     // 设置会话选项
     libssh2_session_set_blocking(session_exec, 1);
-    libssh2_session_set_timeout(session_exec, 10000);
+    //libssh2_session_set_timeout(session_exec, 10000);
 
     // 建立 SSH 连接
     rc = libssh2_session_handshake(session_exec, sockfd);
@@ -994,7 +994,7 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
 
     // 设置会话选项
     libssh2_session_set_blocking(session_ssh_sftp, 1);
-    libssh2_session_set_timeout(session_ssh_sftp, 10000);
+    //libssh2_session_set_timeout(session_ssh_sftp, 10000);
 
     // 建立 SSH 连接
     rc = libssh2_session_handshake(session_ssh_sftp, sockfd);

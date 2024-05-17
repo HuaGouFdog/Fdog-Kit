@@ -170,7 +170,7 @@ public:
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(7);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(10, 10, 7, 5);
+        verticalLayout_3->setContentsMargins(3, 10, 3, 5);
         widget_server_info = new QWidget(widget);
         widget_server_info->setObjectName(QStringLiteral("widget_server_info"));
         widget_server_info->setMinimumSize(QSize(0, 30));
@@ -355,8 +355,8 @@ public:
 
         progressBar_cpu = new QProgressBar(widget_cpu_info);
         progressBar_cpu->setObjectName(QStringLiteral("progressBar_cpu"));
-        progressBar_cpu->setMinimumSize(QSize(130, 18));
-        progressBar_cpu->setMaximumSize(QSize(130, 18));
+        progressBar_cpu->setMinimumSize(QSize(140, 18));
+        progressBar_cpu->setMaximumSize(QSize(140, 18));
         progressBar_cpu->setFont(font1);
         progressBar_cpu->setStyleSheet(QLatin1String("QProgressBar {\n"
 "	border: 0px solid;\n"
@@ -398,8 +398,8 @@ public:
 
         progressBar_disk = new QProgressBar(widget_mem_info_2);
         progressBar_disk->setObjectName(QStringLiteral("progressBar_disk"));
-        progressBar_disk->setMinimumSize(QSize(130, 18));
-        progressBar_disk->setMaximumSize(QSize(130, 18));
+        progressBar_disk->setMinimumSize(QSize(140, 18));
+        progressBar_disk->setMaximumSize(QSize(140, 18));
         QFont font3;
         font3.setFamily(QStringLiteral("OPPOSans B"));
         font3.setPointSize(9);
@@ -445,8 +445,8 @@ public:
 
         progressBar_mem = new QProgressBar(widget_mem_info);
         progressBar_mem->setObjectName(QStringLiteral("progressBar_mem"));
-        progressBar_mem->setMinimumSize(QSize(130, 18));
-        progressBar_mem->setMaximumSize(QSize(130, 18));
+        progressBar_mem->setMinimumSize(QSize(140, 18));
+        progressBar_mem->setMaximumSize(QSize(140, 18));
         progressBar_mem->setFont(font3);
         progressBar_mem->setLayoutDirection(Qt::LeftToRight);
         progressBar_mem->setStyleSheet(QLatin1String("QProgressBar {\n"
@@ -489,8 +489,8 @@ public:
 
         progressBar_swap = new QProgressBar(widget_swap_info);
         progressBar_swap->setObjectName(QStringLiteral("progressBar_swap"));
-        progressBar_swap->setMinimumSize(QSize(130, 18));
-        progressBar_swap->setMaximumSize(QSize(130, 18));
+        progressBar_swap->setMinimumSize(QSize(140, 18));
+        progressBar_swap->setMaximumSize(QSize(140, 18));
         progressBar_swap->setFont(font3);
         progressBar_swap->setLayoutDirection(Qt::LeftToRight);
         progressBar_swap->setStyleSheet(QLatin1String("QProgressBar {\n"
@@ -538,7 +538,7 @@ public:
         verticalLayout_6 = new QVBoxLayout(widget_26);
         verticalLayout_6->setSpacing(0);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(10, 0, 0, 0);
+        verticalLayout_6->setContentsMargins(3, 0, 0, 0);
         splitter_2 = new QSplitter(widget_26);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Vertical);
@@ -573,7 +573,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1231, 339));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1238, 343));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
