@@ -924,7 +924,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             if (!isBuffer && clearSPos == 0) {
                 //是否主缓冲区
                 qDebug() << "向下移动一行";
-                qDebug() << "向下前行数 = " << getCurrentRowPositionByLocal();
+                qDebug() << "向下前行数 = " << getCurrentRowPosition();
                 qDebug() << "当前行数据 =" << movePositionEndLineSelect();
                 // // 获取当前文本光标
                 // QTextCursor cursor = ui->textEdit->textCursor();
@@ -942,12 +942,20 @@ void sshwidget::rece_channel_readS(QStringList data)
                 // cursor2.movePosition(QTextCursor::NextBlock);
                 // // 设置文本光标
                 // textEdit_s->setTextCursor(cursor2);
-                QString a = QString::number(getCurrentRowPosition());
+                //QString a = QString::number(getCurrentRowPosition());
                 //sendData2("xxxxxxxxxxxxxxxxxxx-" + a +"-xxxxxxxxxxxxxxxxxxxxxxxxxxx <br>");
-                sendData2(" <br>");
+                //sendData2(" <br>");
+                int cpos = getCurrentRowPositionByLocal();
+                movePositionDown(sshwidget::MoveAnchor, 1);
+                int cpos2 = getCurrentRowPositionByLocal();
+                if (cpos2 - cpos == 0) {
+                    sendData(" <br>");
+                } else {
+                    setCurrentRowPosition(1);
+                }
                 qDebug() << "向下后行数 = " << getCurrentRowPositionByLocal();
                 qDebug() << "当前行数据 =" << movePositionEndLineSelect();
-                setCurrentRowPosition(1);
+                //setCurrentRowPosition(1);
             } else if (isBuffer && isfirstR2) {
                 //是否副缓冲区，并且有二级滚动区域
                 // QTextCursor tc = ui->textEdit->textCursor(); //当前光标
@@ -1271,8 +1279,8 @@ void sshwidget::rece_channel_readS(QStringList data)
                 int columnCount = regExp2.cap(2).toInt() - 1;
                 //第一个参数是移动到第几行，第二个参数是第几位
                 if (moveCount > 0) {
-                    QString a = QString::number(getCurrentRowPosition());
-                    //sendData2(" <br>");
+                    //QString a = QString::number(getCurrentRowPosition());
+                    //sendData(" <br>");
                     //sendData2("xxxxxxxxxxxxxxxxxxx-" + a +"-xxxxxxxxxxxxxxxxxxxxxxxxxxx <br>");
                     //setCurrentRowPosition(1);
                     qDebug() << "移动" << moveCount << "行2";
@@ -1282,7 +1290,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     // }
                     int cpos = getCurrentRowPositionByLocal();
                     movePositionDown(sshwidget::MoveAnchor, moveCount);
-                    movePositionStartLine(sshwidget::MoveAnchor);
+                    //movePositionStartLine(sshwidget::MoveAnchor);
                     // QTextCursor tc = ui->textEdit->textCursor(); //当前光标
                     // QTextLayout *lay = tc.block().layout();
                     // int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
@@ -1293,18 +1301,30 @@ void sshwidget::rece_channel_readS(QStringList data)
                     qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
                     if (cpos2 - cpos != moveCount && cpos2 - cpos < moveCount) {
                         for (int i = cpos2 - cpos; i<moveCount; i++) {
-                            sendData(" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-                            if (cpos2 - cpos < moveCount - 1) {
-                                qDebug() << "使用换行符移动 打印<br>";
+                            if (isBuffer) {
+                                sendData(" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                                if (cpos2 - cpos < moveCount - 1) {
+                                    qDebug() << "使用换行符移动 打印<br>";
+                                    sendData("<br>");
+                                    qDebug() << "使用换行符移动 打印<br>结束";
+                                } 
+                            } else {
+                                //movePositionEndLine();
+                                qDebug() << "当前行数据 =" << movePositionEndLineSelect();
                                 sendData("<br>");
-                                qDebug() << "使用换行符移动 打印<br>结束";
+                                // if (cpos2 - cpos < moveCount && !isBuffer) {
+                                //     qDebug() << "非缓冲区模式使用换行符移动 打印<br>";
+                                //     sendData("<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                                qDebug() << "非缓冲区模式使用换行符移动 打印<br>结束";
+                                //movePositionStartLine();
+                                qDebug() << "当前行数据 =" << movePositionEndLineSelect();
+                                // }
                             }
-                            
                         }
                     }
 
                     //setCurrentRowPosition(cpos2 - cpos);
-                    qDebug() << "A当前光标所在行数(相对于终端内部)2 =" << getCurrentRowPosition() << "  R当前行数 =" << cpos;
+                    qDebug() << "A当前光标所在行数(相对于终端内部)2 =" << getCurrentRowPosition() << "  R当前行数 =" << getCurrentRowPositionByLocal();
                     // if (cpos == cpos2) {
                     //     QString a = QString::number(getCurrentRowPosition());
                     //     sendData2(" <br>");
