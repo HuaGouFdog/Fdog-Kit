@@ -251,12 +251,20 @@ public:
 
     //向上移动
     void movePositionUp(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
+    void movePositionUp_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //向下移动
     void movePositionDown(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
+    void movePositionDown_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //向左移动
     void movePositionLeft(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
+    void movePositionLeft_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //向右移动
     void movePositionRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
+    void movePositionRight_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     //行开始
     void movePositionStartLine(sshwidget::MoveMode mode = sshwidget::MoveAnchor);
     //行结尾
@@ -287,11 +295,19 @@ public:
 
     int getCurrentRowPositionByLocal();
 
+    int getCurrentRowPositionByLocal_s();
+
     //获取当前列位置
     int getCurrentColumnPosition();
+
+    int getCurrentColumnPositionByLocal();
+
+    int getCurrentColumnPositionByLocal_s();
     //获取当前列对于行尾长度
     int getTolineLength();
     //获取当前行对于底部长度
+
+    void amendPosition();
 
 signals:
     void send_toolButton_toolkit_sign();

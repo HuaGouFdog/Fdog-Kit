@@ -543,12 +543,26 @@ void sshwidget::movePositionUp(sshwidget::MoveMode mode, int n)
     textEdit_s->setTextCursor(cursor2);
 }
 
+void sshwidget::movePositionUp_s(sshwidget::MoveMode mode, int n)
+{
+    QTextCursor cursor2 = textEdit_s->textCursor();
+    cursor2.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, n);
+    textEdit_s->setTextCursor(cursor2);
+}
+
 void sshwidget::movePositionDown(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, n);
     ui->textEdit->setTextCursor(cursor);
 
+    QTextCursor cursor2 = textEdit_s->textCursor();
+    cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, n);
+    textEdit_s->setTextCursor(cursor2);
+}
+
+void sshwidget::movePositionDown_s(sshwidget::MoveMode mode, int n)
+{
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, n);
     textEdit_s->setTextCursor(cursor2);
@@ -565,12 +579,26 @@ void sshwidget::movePositionLeft(sshwidget::MoveMode mode, int n)
     textEdit_s->setTextCursor(cursor2);
 }
 
+void sshwidget::movePositionLeft_s(sshwidget::MoveMode mode, int n)
+{
+    QTextCursor cursor2 = textEdit_s->textCursor();
+    cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, n);
+    textEdit_s->setTextCursor(cursor2);
+}
+
 void sshwidget::movePositionRight(sshwidget::MoveMode mode, int n)
 {
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, n);
     ui->textEdit->setTextCursor(cursor);
 
+    QTextCursor cursor2 = textEdit_s->textCursor();
+    cursor2.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, n);
+    textEdit_s->setTextCursor(cursor2);
+}
+
+void sshwidget::movePositionRight_s(sshwidget::MoveMode mode, int n)
+{
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, n);
     textEdit_s->setTextCursor(cursor2);
@@ -611,20 +639,20 @@ void sshwidget::movePositionEnd(sshwidget::MoveMode mode)
 
 QString sshwidget::movePositionLeftSelect(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = textEdit_s->textCursor();
+    QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
 
 QString sshwidget::movePositionEndLineSelect(sshwidget::MoveMode mode, int n) {
-    QTextCursor cursor = textEdit_s->textCursor();
+    QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
 
 QString sshwidget::movePositionRightSelect(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = textEdit_s->textCursor();
+    QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
@@ -723,15 +751,38 @@ int sshwidget::getCurrentRowPositionByLocal() {
     return currentLineLocal + 1;
 }
 
+int sshwidget::getCurrentRowPositionByLocal_s() {
+    QTextCursor tc = textEdit_s->textCursor(); //当前光标
+    QTextLayout *lay = tc.block().layout();
+    int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+    int currentLineLocal = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
+    //qDebug() << "当前行数 =" << currentLineLocal + 1;
+    return currentLineLocal + 1;
+}
+
 //获取当前列位置
 int sshwidget::getCurrentColumnPosition() {
     QTextCursor tc = ui->textEdit->textCursor(); //当前光标
     QTextLayout *lay = tc.block().layout();
     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
-    //int currentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
-    //qDebug() << "当前列数 =" << iCurPos;
     return iCurPos; 
 }
+
+int sshwidget::getCurrentColumnPositionByLocal() {
+    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextLayout *lay = tc.block().layout();
+    int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+    return iCurPos; 
+}
+
+int sshwidget::getCurrentColumnPositionByLocal_s() {
+    QTextCursor tc = textEdit_s->textCursor(); //当前光标
+    QTextLayout *lay = tc.block().layout();
+    int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
+    return iCurPos; 
+}
+
+
 //获取当前列对于行尾长度
 int sshwidget::getTolineLength() {
     //获取当前光标位置
@@ -748,9 +799,47 @@ int sshwidget::getTolineLength() {
     return length;
 }
 
+void sshwidget::amendPosition() {
+    //获取两个文本框的位置
+    int testEdit_s_r = getCurrentRowPositionByLocal_s();
+    int testEdit_r = getCurrentRowPositionByLocal();
+    qDebug() << "testEdit_s 的位置位于 " << testEdit_s_r;
+    qDebug() << "testEdit   的位置位于 " << testEdit_r;
+    if (testEdit_r != testEdit_s_r) {
+        qDebug() << "两个光标不在同一行，修正";
+        if (testEdit_r - testEdit_s_r > 0) {
+            //说明testEdit_s_r光标往上跑了
+            movePositionDown_s(sshwidget::MoveAnchor, testEdit_r - testEdit_s_r);
+            qDebug() << "向下移动" << testEdit_r - testEdit_s_r;
+        } else if (testEdit_r - testEdit_s_r < 0) {
+            //说明testEdit_s_r光标往下跑了
+            movePositionUp_s(sshwidget::MoveAnchor, testEdit_s_r - testEdit_r);
+            qDebug() << "向上移动" << testEdit_s_r - testEdit_r;
+        }
+    }
+
+    int testEdit_s_c = getCurrentColumnPositionByLocal_s();
+    int testEdit_c = getCurrentColumnPositionByLocal();
+    qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c;
+    qDebug() << "testEdit_c   的位置位于 " << testEdit_c;
+    if (testEdit_c != testEdit_s_c) {
+        qDebug() << "两个光标不在同一列，修正";
+        if (testEdit_c - testEdit_s_c > 0) {
+            //说明testEdit_s_c光标往左跑了
+            movePositionLeft_s(sshwidget::MoveAnchor, testEdit_c - testEdit_s_c);
+            qDebug() << "向右移动" << testEdit_c - testEdit_s_c;
+        } else if (testEdit_c - testEdit_s_c < 0) {
+            //说明testEdit_s_c光标往右跑了
+            movePositionRight_s(sshwidget::MoveAnchor, testEdit_s_c - testEdit_c);
+            qDebug() << "向左移动" << testEdit_s_c - testEdit_c;
+        }
+    }
+
+}
+
 void sshwidget::on_textEdit_cursorPositionChanged()
 {
-
+    qDebug() << "光标位置改变";
 }
 
 void sshwidget::rece_init()
@@ -1634,6 +1723,8 @@ void sshwidget::rece_channel_readS(QStringList data)
 void sshwidget::rece_key_sign(QString key)
 {
     qDebug() << "触发rece_key_sign = " << key;
+    //调用前修正光标位置
+    amendPosition();
     if (key == "") {
         return;
     }
