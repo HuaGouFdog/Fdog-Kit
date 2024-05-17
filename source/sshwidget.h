@@ -18,6 +18,7 @@
 #include "mkdirfolderwidget.h"
 #include "addcommondwidget.h"
 #include "config.h"
+#include "utils.h"
 class CustomTextEdit : public QTextEdit {
     Q_OBJECT
 public:
@@ -64,23 +65,40 @@ protected:
             QTextCursor cursor = textCursor();
 
             QString text = document()->toPlainText();
-                int start, end;
 
-                // 向前查找空格字符或行首
-                for (start = cursor.position() - 1; start >= 0 && text.mid(start, 1) != " " && text.mid(end, 1) != "\r\n" && text.mid(end, 1) != "\n"; start--)
-                {
-                }
+            int start, end;
+            start = cursor.position() - 1;
+            end = cursor.position();
+            getNonnullString(text, start, end);
+            // //替换不可见字符
+            // text.replace(QChar(0xA0), ' ');
 
-                // 向后查找空格字符或行尾
-                for (end = cursor.position(); end < text.length() && text.mid(end, 1) != " " && text.mid(end, 1) != "\n"; end++)
-                {
-                }
+            // text.replace(QChar(0x2028), ' ');
+            // int start, end;
 
-                // 设置光标选中范围
-                cursor.setPosition(start + 1);
-                cursor.setPosition(end, QTextCursor::KeepAnchor);
-                setTextCursor(cursor);
-                qDebug() << textCursor().selectedText();
+            // // 向前查找空格字符或行首
+            // for (start = cursor.position() - 1; 
+            //     start >= 0 && text.mid(start, 1) != " " && text.mid(start, 1) != "\r\n" &&
+            //      text.mid(start, 1) != "\n" && text.mid(start, 1).at(0).unicode() != 0x2028; 
+            //     start--)
+            // {
+            // }
+
+            // // 向后查找空格字符或行尾
+            // for (end = cursor.position(); 
+            //     end < text.length() && text.mid(end, 1) != " " && text.mid(end, 1) != "\n" && text.mid(end, 1).at(0).unicode() != 0x2028; 
+            //     end++)
+            // {
+            // }
+
+            // 设置光标选中范围
+            cursor.setPosition(start + 1);
+            cursor.setPosition(end, QTextCursor::KeepAnchor);
+            setTextCursor(cursor);
+            QString a = textCursor().selectedText();
+            qDebug() <<  " 选中字符" << a;
+
+            //CoutCharacterEncoding(a);
 
             return;
         }
@@ -277,6 +295,9 @@ public:
     QString movePositionLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     QString movePositionEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+    
+    //获取选中文本
+    QString getSelectText_s();
 
     //删除文本
     void movePositionRemoveLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
@@ -347,6 +368,8 @@ private slots:
     void rece_copy_sgin();
 
     void rece_paste_sgin();
+
+    void rece_pasteSelect_sgin();
 
     void rece_resize_sign();
 

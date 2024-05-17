@@ -275,6 +275,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     //pasteAction->setShortcut(QKeySequence::Copy);
     pasteAction->setShortcutContext(Qt::WidgetShortcut);
 
+    QAction *pasteActionSelect = new QAction(tr("粘贴选中"), textEdit_s);
+
     QAction *downloadAction = new QAction(tr("下载"), textEdit_s);
     //downloadAction->setShortcut(QKeySequence::Copy);
     downloadAction->setShortcutContext(Qt::WidgetShortcut);
@@ -298,6 +300,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     contextMenu->addSeparator();
     contextMenu->addAction(pasteAction);
     contextMenu->addSeparator();
+    contextMenu->addAction(pasteActionSelect);
+    contextMenu->addSeparator();
     contextMenu->addAction(downloadAction);
     contextMenu->addSeparator();
     contextMenu->addAction(uploadAction);
@@ -309,6 +313,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect (findAction,SIGNAL(triggered()),this,SLOT(rece_find_sgin()));
     connect (copyAction,SIGNAL(triggered()),this,SLOT(rece_copy_sgin()));
     connect (pasteAction,SIGNAL(triggered()),this,SLOT(rece_paste_sgin()));
+    connect (pasteActionSelect,SIGNAL(triggered()),this,SLOT(rece_pasteSelect_sgin()));
     connect (downloadAction,SIGNAL(triggered()),this,SLOT(rece_downloadFile_sgin()));
     connect (uploadAction,SIGNAL(triggered()),this,SLOT(on_toolButton_upload_clicked()));
     QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
@@ -647,6 +652,11 @@ QString sshwidget::movePositionLeftSelect(sshwidget::MoveMode mode, int n)
 QString sshwidget::movePositionEndLineSelect(sshwidget::MoveMode mode, int n) {
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor, n);
+    return cursor.selectedText();
+}
+
+QString sshwidget::getSelectText_s() {
+    QTextCursor cursor = textEdit_s->textCursor();
     return cursor.selectedText();
 }
 
@@ -1905,6 +1915,8 @@ void sshwidget::rece_copy_sgin()
 
 void sshwidget::rece_paste_sgin()
 {
+    //以防光标不一致
+    amendPosition();
     QClipboard *clipboard = QGuiApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
 
@@ -1912,7 +1924,19 @@ void sshwidget::rece_paste_sgin()
         QString clipboardText = mimeData->text();
         //qDebug() << "剪贴板内容：" << clipboardText;
         sendCommandData(clipboardText);
+        //sendData(clipboardText);
     }
+    ui->textEdit->setFocus();
+}
+
+void sshwidget::rece_pasteSelect_sgin()
+{
+    //这个时候textEdit_s的光标必然和textEdit不同
+    //获取选中数据后，进行光标修正
+    QString selectText = getSelectText_s();
+    qDebug() << "选中文本 =" << selectText;
+    amendPosition();
+    sendCommandData(selectText);
     ui->textEdit->setFocus();
 }
 

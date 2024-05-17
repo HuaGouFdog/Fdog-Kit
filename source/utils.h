@@ -60,6 +60,12 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
 bool containsNonZeroDigit(const QString &str);
 
 
+//打印字符串字符编码
+void CoutCharacterEncoding(QString str);
+
+//获取非空字符串起点和结尾
+void getNonnullString(QString text, int & start, int & end);
+
 class utils : public QWidget
 {
     Q_OBJECT

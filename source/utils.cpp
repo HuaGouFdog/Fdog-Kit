@@ -649,3 +649,28 @@ bool containsNonZeroDigit(const QString &str) {
     }
     return false; // 如果字符串中没有非零数字，返回false
 }
+
+void CoutCharacterEncoding(QString str) {
+    for (int i = 0; i < str.length(); ++i) {
+        ushort unicode = str.at(i).unicode();
+        qDebug() << "Character: " << str.at(i) << " Unicode: " << unicode;
+    }    
+}
+
+void getNonnullString(QString text, int & start, int & end) {
+    text.replace(QChar(0xA0), ' ');
+    // 向前查找空格字符或行首
+    for (start; 
+         start >= 0 && text.mid(start, 1) != " " && text.mid(start, 1) != "\r\n" &&
+         text.mid(start, 1) != "\n" && text.mid(start, 1).at(0).unicode() != 0x2028; 
+         start--)
+    {
+    }
+    // 向后查找空格字符或行尾
+    for (end; 
+         end < text.length() && text.mid(end, 1) != " " && text.mid(end, 1) != "\n" &&
+         text.mid(end, 1).at(0).unicode() != 0x2028; 
+         end++)
+    {
+    }
+}
