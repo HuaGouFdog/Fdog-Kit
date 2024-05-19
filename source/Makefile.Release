@@ -282,7 +282,7 @@ release\FdogShell_resource.res: FdogShell_resource.rc
 	rc /NOLOGO $(DEFINES) -fo release\FdogShell_resource.res FdogShell_resource.rc
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Release FdogShell.pro -spec win32-msvc
+	@$(QMAKE) -o Makefile.Release FdogShell.pro -spec win32-msvc "CONFIG+=debug"
 
 qmake_all: FORCE
 
@@ -325,6 +325,7 @@ release\qrc_lib.obj: lib.qrc \
 		lib\server.png \
 		lib\icon-close4.png \
 		lib\zhankai.png \
+		lib\setting3.png \
 		lib\Redis.png \
 		lib\addM.png \
 		lib\t2.png \
@@ -804,14 +805,14 @@ release\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QM
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
-		toolswidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		settingwidget.h \
 		utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		toolswidget.h \
+		settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSystemTrayIcon \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsystemtrayicon.h \
 		aboutwidget.h \
@@ -1476,6 +1477,12 @@ release\moc_sshwidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWi
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		utils.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
 		sshwidget.h \
 		release\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -4190,14 +4197,14 @@ release\moc_activate.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWid
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
-		toolswidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		settingwidget.h \
 		utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		toolswidget.h \
+		settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSystemTrayIcon \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsystemtrayicon.h \
 		aboutwidget.h \
@@ -4608,14 +4615,14 @@ release\main.obj: main.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
-		toolswidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		settingwidget.h \
 		utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		toolswidget.h \
+		settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSystemTrayIcon \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsystemtrayicon.h \
 		aboutwidget.h \
@@ -4923,14 +4930,14 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
-		toolswidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		settingwidget.h \
 		utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		toolswidget.h \
+		settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSystemTrayIcon \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsystemtrayicon.h \
 		aboutwidget.h \
@@ -5421,6 +5428,7 @@ release\createconnect.obj: createconnect.cpp createconnect.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QFrame \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
@@ -5911,6 +5919,12 @@ release\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		utils.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
 		ui_sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QLocale \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
@@ -5936,9 +5950,11 @@ release\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollArea \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
@@ -6249,7 +6265,9 @@ release\datahandle.obj: datahandle.cpp datahandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtguiglobal.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtgui-config.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgb.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgba64.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QRegularExpression \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregularexpression.h
 
 release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -6370,18 +6388,8 @@ release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QButtonGroup \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QComboBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcombobox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstyleoption.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
@@ -6393,6 +6401,19 @@ release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qitemselectionmodel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
@@ -6439,7 +6460,9 @@ release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h
 
 release\toolshandle.obj: toolshandle.cpp toolshandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
@@ -7756,7 +7779,8 @@ release\findwidget.obj: findwidget.cpp findwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug
 
 release\aboutwidget.obj: aboutwidget.cpp aboutwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -8070,7 +8094,11 @@ release\downloadwidget.obj: downloadwidget.cpp downloadwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qeasingcurve.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractanimation.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsOpacityEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl
 
 release\mkdirfolderwidget.obj: mkdirfolderwidget.cpp mkdirfolderwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -8219,7 +8247,12 @@ release\mkdirfolderwidget.obj: mkdirfolderwidget.cpp mkdirfolderwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h
 
 release\addcommondwidget.obj: addcommondwidget.cpp addcommondwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -9940,14 +9973,14 @@ release\activate.obj: activate.cpp activate.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
-		toolswidget.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
-		settingwidget.h \
 		utils.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		toolswidget.h \
+		settingwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSystemTrayIcon \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsystemtrayicon.h \
 		aboutwidget.h \

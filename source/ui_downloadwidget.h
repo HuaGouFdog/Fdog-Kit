@@ -37,13 +37,11 @@ public:
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
-    QToolButton *toolButton_file_3;
-    QToolButton *toolButton_file_2;
+    QToolButton *toolButton_file_open;
+    QToolButton *toolButton_file_setting;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_3;
-    QWidget *widget;
-    QVBoxLayout *verticalLayout_4;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *downloadwidget)
@@ -132,11 +130,11 @@ public:
 
         horizontalLayout_2->addWidget(label_2);
 
-        toolButton_file_3 = new QToolButton(widget_3);
-        toolButton_file_3->setObjectName(QStringLiteral("toolButton_file_3"));
-        toolButton_file_3->setMinimumSize(QSize(22, 25));
-        toolButton_file_3->setMaximumSize(QSize(22, 25));
-        toolButton_file_3->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_file_open = new QToolButton(widget_3);
+        toolButton_file_open->setObjectName(QStringLiteral("toolButton_file_open"));
+        toolButton_file_open->setMinimumSize(QSize(22, 25));
+        toolButton_file_open->setMaximumSize(QSize(22, 25));
+        toolButton_file_open->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border: none;\n"
@@ -154,16 +152,16 @@ public:
 "}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/lib/file.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_file_3->setIcon(icon1);
-        toolButton_file_3->setIconSize(QSize(20, 20));
+        toolButton_file_open->setIcon(icon1);
+        toolButton_file_open->setIconSize(QSize(20, 20));
 
-        horizontalLayout_2->addWidget(toolButton_file_3);
+        horizontalLayout_2->addWidget(toolButton_file_open);
 
-        toolButton_file_2 = new QToolButton(widget_3);
-        toolButton_file_2->setObjectName(QStringLiteral("toolButton_file_2"));
-        toolButton_file_2->setMinimumSize(QSize(22, 25));
-        toolButton_file_2->setMaximumSize(QSize(22, 25));
-        toolButton_file_2->setStyleSheet(QLatin1String("QToolButton {\n"
+        toolButton_file_setting = new QToolButton(widget_3);
+        toolButton_file_setting->setObjectName(QStringLiteral("toolButton_file_setting"));
+        toolButton_file_setting->setMinimumSize(QSize(22, 25));
+        toolButton_file_setting->setMaximumSize(QSize(22, 25));
+        toolButton_file_setting->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border: none;\n"
@@ -181,10 +179,10 @@ public:
 "}"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/lib/setting3.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_file_2->setIcon(icon2);
-        toolButton_file_2->setIconSize(QSize(20, 20));
+        toolButton_file_setting->setIcon(icon2);
+        toolButton_file_setting->setIconSize(QSize(20, 20));
 
-        horizontalLayout_2->addWidget(toolButton_file_2);
+        horizontalLayout_2->addWidget(toolButton_file_setting);
 
 
         verticalLayout_2->addWidget(widget_3);
@@ -202,26 +200,14 @@ public:
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 268, 236));
-        scrollAreaWidgetContents->setMinimumSize(QSize(0, 200));
+        scrollAreaWidgetContents->setMinimumSize(QSize(0, 0));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 150);"));
         verticalLayout_3 = new QVBoxLayout(scrollAreaWidgetContents);
-        verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        widget = new QWidget(scrollAreaWidgetContents);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(0, 200));
-        widget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 50);"));
-        verticalLayout_4 = new QVBoxLayout(widget);
-        verticalLayout_4->setSpacing(3);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        verticalSpacer = new QSpacerItem(20, 235, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 233, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_4->addItem(verticalSpacer);
-
-
-        verticalLayout_3->addWidget(widget);
+        verticalLayout_3->addItem(verticalSpacer);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 

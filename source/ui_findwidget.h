@@ -67,8 +67,9 @@ public:
         widget_4->setMinimumSize(QSize(53, 25));
         widget_4->setMaximumSize(QSize(16777215, 25));
         widget_4->setStyleSheet(QLatin1String("#widget_4{\n"
-"background-color: rgba(144, 144, 144, 150);\n"
+"background-color: rgb(15, 37, 64);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
+"	color: rgb(255, 255, 255);\n"
 "border-radius: 8px;\n"
 "}\n"
 "\n"
@@ -83,21 +84,22 @@ public:
         lineEdit_search->setMaximumSize(QSize(140, 25));
         lineEdit_search->setFont(font);
         lineEdit_search->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
-"border: 0px solid rgba(255, 255, 255, 0);"));
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"color: rgb(255, 255, 255);"));
 
         horizontalLayout_3->addWidget(lineEdit_search);
 
         label_conut = new QLabel(widget_4);
         label_conut->setObjectName(QStringLiteral("label_conut"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(label_conut->sizePolicy().hasHeightForWidth());
         label_conut->setSizePolicy(sizePolicy);
-        label_conut->setMinimumSize(QSize(30, 25));
+        label_conut->setMinimumSize(QSize(0, 25));
         label_conut->setMaximumSize(QSize(1555555, 25));
         label_conut->setFont(font);
-        label_conut->setStyleSheet(QLatin1String("\n"
+        label_conut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "\n"
 ""));

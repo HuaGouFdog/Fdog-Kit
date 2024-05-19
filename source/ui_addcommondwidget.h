@@ -215,7 +215,20 @@ public:
         checkBox_enter = new QCheckBox(widget_body);
         checkBox_enter->setObjectName(QStringLiteral("checkBox_enter"));
         checkBox_enter->setFont(font);
-        checkBox_enter->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        checkBox_enter->setStyleSheet(QLatin1String("QCheckBox{\n"
+"color: rgb(255, 255, 255);\n"
+"}\n"
+"QCheckBox::indicator{\n"
+"	width:16px;\n"
+"	height:16px;\n"
+"}\n"
+"QCheckBox::indicator::unchecked{\n"
+"	image:url(:/lib/gouxuan2.png);\n"
+"}\n"
+"QCheckBox::indicator::checked{\n"
+"     image:url(:/lib/gouxuan.png);\n"
+"}\n"
+""));
         checkBox_enter->setChecked(true);
 
         verticalLayout_2->addWidget(checkBox_enter);
