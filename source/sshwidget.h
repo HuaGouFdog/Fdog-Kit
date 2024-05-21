@@ -330,9 +330,15 @@ public:
 
     void amendPosition();
 
+    void sendBuffData();
+
+    void appendData(QString data);
+    void appendData_s(QString data);
+
 signals:
     void send_toolButton_toolkit_sign();
     void send_toolButton_fullScreen_sign();
+    void send_searchTextNumbers(int sn, int sum);
 private slots:
     void on_textEdit_cursorPositionChanged();
 
@@ -372,6 +378,8 @@ private slots:
     void rece_pasteSelect_sgin();
 
     void rece_resize_sign();
+
+    void rece_searchTextChanged(const QString data);
 
     void on_toolButton_toolkit_clicked();
 
@@ -508,6 +516,8 @@ private:
     int clearSPos = 0;
 
     connnectInfoStruct cInfoStruct;
+
+    QString buffData; //存普通数据
 };
 
 #endif // SSHWIDGET_H

@@ -67,7 +67,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -97,8 +97,9 @@
         </property>
         <property name="styleSheet">
          <string notr="true">#widget_4{
-background-color: rgba(144, 144, 144, 150);
+background-color: rgb(15, 37, 64);
 border: 0px solid rgba(255, 255, 255, 0);
+	color: rgb(255, 255, 255);
 border-radius: 8px;
 }
 
@@ -143,7 +144,8 @@ border-radius: 8px;
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgba(255, 255, 255, 0);
-border: 0px solid rgba(255, 255, 255, 0);</string>
+border: 0px solid rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
            </property>
            <property name="placeholderText">
             <string>搜索</string>
@@ -153,14 +155,14 @@ border: 0px solid rgba(255, 255, 255, 0);</string>
          <item>
           <widget class="QLabel" name="label_conut">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
-             <width>30</width>
+             <width>0</width>
              <height>25</height>
             </size>
            </property>
@@ -178,7 +180,7 @@ border: 0px solid rgba(255, 255, 255, 0);</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">
+            <string notr="true">color: rgb(255, 255, 255);
 border: 1px solid rgba(255, 255, 255, 0);
 
 </string>
@@ -323,8 +325,8 @@ QToolButton:hover {
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
        </widget>

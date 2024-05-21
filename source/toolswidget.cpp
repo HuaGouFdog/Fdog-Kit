@@ -1,4 +1,5 @@
-﻿#include "toolswidget.h"
+﻿#pragma execution_character_set("utf-8")
+#include "toolswidget.h"
 #include "ui_toolswidget.h"
 #include <QTimer>
 #include <QDateTime>
@@ -8,6 +9,7 @@
 #include <QXmlStreamReader>
 #include "utils.h"
 #include <QGraphicsDropShadowEffect>
+#include <QThread>
 toolswidget::toolswidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::toolswidget)
@@ -104,4 +106,53 @@ void toolswidget::on_plainTextEdit_json_source_textChanged()
 {
     ui->textEdit_json_target->clear();
     utils_parsingJsonInfo(ui->textEdit_json_target, ui->plainTextEdit_json_source->toPlainText());
+}
+
+void toolswidget::on_toolButton_25_clicked()
+{
+    //ui->textEdit->setLineWrapMode(QTextEdit::FixedPixelWidth);
+    //ui->textEdit->setLineWrapColumnOrWidth(50);
+    //ui->textEdit->setUndoRedoEnabled(false);
+    //ui->textEdit->document ()->setMaximumBlockCount(50);
+    int sum = ui->lineEdit_2->text().toInt();
+    QString a = ui->lineEdit->text();
+    int j = 0;
+    QString aSum;
+
+    QTextCursor cursor_s = ui->textEdit->textCursor();
+    cursor_s.beginEditBlock();
+    for(int i =0; i<sum; i++) {
+        j++;
+        cursor_s.insertText("05/11/24 22:16:06.825.398 [140703302276864] INFO  root  "\
+                        "[/data/badword/badword/badword/badwordservicehandler.cpp:414]- getBadwordinfo=getBadword_end&size=0\n");
+        //qDebug() << "打印" << a;
+        //QThread::msleep(1000);
+    }
+    cursor_s.endEditBlock();
+}
+
+void toolswidget::on_textEdit_textChanged()
+{
+    // 获取文本编辑框的视口大小
+    QSize viewportSize = ui->textEdit->viewport()->size();
+
+    // 获取字体的行高和字符宽度
+    QFontMetrics metrics(ui->textEdit->font());
+    int lineHeight = metrics.lineSpacing();
+    int charWidth = metrics.averageCharWidth();
+    qDebug() << "字体 高 = " << lineHeight;
+    qDebug() << "字体 宽 = " << charWidth;
+    qDebug() << "视图 高 = " << viewportSize.height();
+    qDebug() << "视图 宽 = " << viewportSize.width();
+
+//    // 检查垂直滚动条的可见性
+    //bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
+    // 显示垂直滚动条的可见性状态
+    //qDebug() << "Vertical Scrollbar Visible:" << isScrollBarVisible;
+
+    // 计算可见行数和列数
+    int visibleLines = viewportSize.height() / lineHeight - 1;
+    int visibleColumns = viewportSize.width() / charWidth - 5;
+    qDebug() << "可见行数 = " << visibleLines;
+    qDebug() << "可见列数 = " << visibleColumns;
 }

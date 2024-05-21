@@ -634,7 +634,7 @@ QProgressBar:chunk{
 }</string>
            </property>
            <property name="value">
-            <number>25</number>
+            <number>0</number>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1109,7 +1109,7 @@ QProgressBar:chunk{
                      <x>0</x>
                      <y>0</y>
                      <width>1238</width>
-                     <height>343</height>
+                     <height>155</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1205,10 +1205,10 @@ QMenu::separator {
                        </property>
                        <property name="geometry">
                         <rect>
-                         <x>620</x>
+                         <x>410</x>
                          <y>30</y>
-                         <width>451</width>
-                         <height>301</height>
+                         <width>371</width>
+                         <height>91</height>
                         </rect>
                        </property>
                        <property name="sizePolicy">
@@ -1236,13 +1236,14 @@ QMenu::separator {
                        <property name="styleSheet">
                         <string notr="true">QTextEdit{
 	background-color: rgba(0, 41, 69, 0);
+
 	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 	border: none;
 	padding-top:0px;
     padding-bottom:0px;
 	padding-left:0px;
     padding-right:0px;
-color: rgba(255, 255, 255, 255, 0);
+color: rgba(255, 255, 255, 255, 255);
 border-radius: 5px;
 }
 
@@ -1306,6 +1307,9 @@ QScrollBar::up-arrow:vertical {
                        </property>
                        <property name="lineWrapMode">
                         <enum>QTextEdit::NoWrap</enum>
+                       </property>
+                       <property name="lineWrapColumnOrWidth">
+                        <number>100</number>
                        </property>
                        <property name="readOnly">
                         <bool>false</bool>
@@ -1395,7 +1399,7 @@ border-bottom:0px solid rgb(108, 117, 125, 65);
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgba(11, 11, 11,150);
+                   <string notr="true">background-color: rgba(10, 31, 57, 200);
 border-radius: 10px;</string>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -1795,13 +1799,13 @@ QMenu::separator {
               <number>0</number>
              </property>
              <property name="leftMargin">
-              <number>5</number>
+              <number>9</number>
              </property>
              <property name="topMargin">
-              <number>5</number>
+              <number>0</number>
              </property>
              <property name="rightMargin">
-              <number>5</number>
+              <number>9</number>
              </property>
              <property name="bottomMargin">
               <number>5</number>
@@ -1830,7 +1834,9 @@ QTabWidget::tab-bar {
 /*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
     /*background-color: rgba(11, 11, 11,150);*/
-	background-color: rgb(30, 45, 54);
+	
+	
+	background-color: rgb(10, 31, 57);
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
@@ -1890,7 +1896,7 @@ QTabBar QToolButton:hover {
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="tab">
                 <attribute name="title">
@@ -1901,6 +1907,21 @@ QTabBar QToolButton:hover {
                 <attribute name="title">
                  <string> minic </string>
                 </attribute>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QTextEdit" name="textEdit_5">
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+                 </item>
+                </layout>
                </widget>
                <widget class="QWidget" name="tab_3">
                 <attribute name="title">
@@ -2366,6 +2387,16 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;q&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
+               </widget>
+               <widget class="QWidget" name="tab_5">
+                <attribute name="title">
+                 <string>页</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <item>
+                  <widget class="QPlainTextEdit" name="plainTextEdit"/>
+                 </item>
+                </layout>
                </widget>
               </widget>
              </item>

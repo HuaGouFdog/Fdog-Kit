@@ -301,7 +301,7 @@ void sshhandle::init_poll()
             if (fds->revents & LIBSSH2_POLLFD_POLLIN) {
                 // 可读事件发生，可以读取数据
                 // 使用libssh2_channel_read等函数读取数据
-                char buffer[4096] = {0};
+                char buffer[4096 * 10] = {0};
                 int bytesRead;
                 //int c = 0;
                 //while (c++ < 2) {
@@ -1022,3 +1022,4 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
     }
     qDebug() << " 执行sshHandleSftp init 完成";
 }
+

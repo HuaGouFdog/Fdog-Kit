@@ -103,6 +103,8 @@ public:
     LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
     LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp
     LIBSSH2_SFTP_HANDLE *   handle_sftp = nullptr;        //sftp
+
+    //void handlechannel_readS(QStringList data);
 signals:
     void send_init();
     void send_init_poll();

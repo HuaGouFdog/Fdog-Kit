@@ -1,7 +1,7 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "findwidget.h"
 #include "ui_findwidget.h"
-
+#include <QDebug>
 findwidget::findwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::findwidget)
@@ -29,7 +29,23 @@ findwidget::~findwidget()
     delete ui;
 }
 
+QString findwidget::gitSearchText()
+{
+    return ui->lineEdit_search->text();
+}
+
 void findwidget::on_toolButton_close_clicked()
 {
     this->hide();
+}
+
+void findwidget::on_lineEdit_search_textChanged(const QString &arg1)
+{
+    emit send_searchTextChanged(arg1);
+}
+
+void findwidget::rece_searchTextNumbers(int sn, int sum) {
+    qDebug() << "搜索到" << sum << "个";
+    QString data = QString::number(sn) + "/" + QString::number(sum);
+    ui->label_conut->setText(data);
 }

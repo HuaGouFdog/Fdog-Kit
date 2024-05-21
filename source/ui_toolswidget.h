@@ -1033,9 +1033,13 @@ public:
 
         textEdit = new QTextEdit(page_3);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        QFont font6;
+        font6.setFamily(QStringLiteral("Cascadia Code SemiBold"));
+        font6.setPointSize(10);
+        textEdit->setFont(font6);
         textEdit->setStyleSheet(QStringLiteral("background-color: rgb(113, 108, 255);"));
-        textEdit->setLineWrapMode(QTextEdit::FixedColumnWidth);
-        textEdit->setLineWrapColumnOrWidth(500);
+        textEdit->setLineWrapMode(QTextEdit::WidgetWidth);
+        textEdit->setLineWrapColumnOrWidth(50);
 
         verticalLayout_4->addWidget(textEdit);
 
@@ -1322,15 +1326,15 @@ public:
         splitter_2->setOrientation(Qt::Horizontal);
         textEdit_xml_source = new QTextEdit(splitter_2);
         textEdit_xml_source->setObjectName(QStringLiteral("textEdit_xml_source"));
-        QFont font6;
-        font6.setFamily(QStringLiteral("OPPOSans"));
-        font6.setPointSize(12);
-        font6.setStyleStrategy(QFont::PreferAntialias);
-        textEdit_xml_source->setFont(font6);
+        QFont font7;
+        font7.setFamily(QStringLiteral("OPPOSans"));
+        font7.setPointSize(12);
+        font7.setStyleStrategy(QFont::PreferAntialias);
+        textEdit_xml_source->setFont(font7);
         splitter_2->addWidget(textEdit_xml_source);
         textEdit_xml_target = new QTextEdit(splitter_2);
         textEdit_xml_target->setObjectName(QStringLiteral("textEdit_xml_target"));
-        textEdit_xml_target->setFont(font6);
+        textEdit_xml_target->setFont(font7);
         splitter_2->addWidget(textEdit_xml_target);
 
         horizontalLayout_3->addWidget(splitter_2);
@@ -1345,11 +1349,11 @@ public:
         splitter_3->setOrientation(Qt::Horizontal);
         textEdit_diff_source = new QTextEdit(splitter_3);
         textEdit_diff_source->setObjectName(QStringLiteral("textEdit_diff_source"));
-        textEdit_diff_source->setFont(font6);
+        textEdit_diff_source->setFont(font7);
         splitter_3->addWidget(textEdit_diff_source);
         textEdit_diff_target = new QTextEdit(splitter_3);
         textEdit_diff_target->setObjectName(QStringLiteral("textEdit_diff_target"));
-        textEdit_diff_target->setFont(font6);
+        textEdit_diff_target->setFont(font7);
         splitter_3->addWidget(textEdit_diff_target);
 
         horizontalLayout->addWidget(splitter_3);
@@ -1420,6 +1424,11 @@ public:
 "</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         toolButton_25->setText(QApplication::translate("toolswidget", "...", nullptr));
+        textEdit->setHtml(QApplication::translate("toolswidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cascadia Code SemiBold'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial';\"><br /></p></body></html>", nullptr));
         comboBox_time2date->setItemText(0, QApplication::translate("toolswidget", "\347\247\222", nullptr));
         comboBox_time2date->setItemText(1, QApplication::translate("toolswidget", "\346\257\253\347\247\222", nullptr));
 

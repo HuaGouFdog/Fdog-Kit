@@ -20,12 +20,13 @@ public slots:
 
 private slots:
 
-
-    void on_textEdit_json_source_textChanged();
-
     void on_textEdit_xml_source_textChanged();
 
     void on_plainTextEdit_json_source_textChanged();
+
+    void on_toolButton_25_clicked();
+
+    void on_textEdit_textChanged();
 
 private:
     Ui::toolswidget *ui;

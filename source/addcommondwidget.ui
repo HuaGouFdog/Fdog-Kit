@@ -366,7 +366,20 @@ padding-right:5px;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
+         <string notr="true">QCheckBox{
+color: rgb(255, 255, 255);
+}
+QCheckBox::indicator{
+	width:16px;
+	height:16px;
+}
+QCheckBox::indicator::unchecked{
+	image:url(:/lib/gouxuan2.png);
+}
+QCheckBox::indicator::checked{
+     image:url(:/lib/gouxuan.png);
+}
+</string>
         </property>
         <property name="text">
          <string>末尾添加回车符</string>

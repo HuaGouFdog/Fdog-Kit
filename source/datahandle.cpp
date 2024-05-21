@@ -112,12 +112,12 @@ void datahandle::stringToHtmlFilter(QString &str)
     str.replace("&","&amp;");
     str.replace(">","&gt;");
     str.replace("<","&lt;");
-    str.replace("\"","&quot;");
+    //str.replace("\"","&quot;");
     str.replace("\'","&#39;");
-    str.replace(" ","&nbsp;");
-    str.replace("\r\r\n","<br>");
-    str.replace("\r\n","<br>");
-    str.replace("\n","<br>");
+    //str.replace(" ","&nbsp;");
+    //str.replace("\r\r\n","<br>");
+    //str.replace("\r\n","<br>");
+    //str.replace("\n","<br>");
 }
 
 QString datahandle::replaceAmpersand(QString original) {
@@ -128,19 +128,22 @@ void datahandle::stringToHtmlFilter_s(QString &str) {
     str = replaceAmpersand(str);
     str.replace(">","&gt;");
     str.replace("<","&lt;");
-    str.replace("\"","&quot;");
+    //str.replace("\"","&quot;");
     str.replace("\'","&#39;");
-    str.replace(" ","&nbsp;");
-    str.replace("\r\r\n","<br>");
-    str.replace("\r\n","<br>");
-    str.replace("\n","<br>"); 
+    //str.replace(" ","&nbsp;");
+    //str.replace("\r\r\n","<br>");
+    //str.replace("\r\n","<br>");
+    //str.replace("\n","<br>"); 
 }
 
 void datahandle::stringToHtmlFilter2(QString &str)
 {
-    str.replace("\r\r\n","<br>");
-    str.replace("\r\n","<br>");
-    str.replace("\n","<br>");
+    // str.replace("\r\r\n","<br>");
+    // str.replace("\r\n","<br>");
+    // str.replace("\n","<br>");
+
+    str.replace("\r\r\n","\n");
+    str.replace("\r\n","\n");
 }
 
 void datahandle::stringToHtmlFilter3(QString &str)
@@ -250,21 +253,21 @@ void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
         array2.append(backCrl->blue());
         QString strC2(array2.toHex());
         //qDebug() << "stringToHtml" << "设置字体颜色和背景颜色";
-        str = QString("<span style=\" color:#%1; background-color:#%2;opacity: 1;\">%3</span>").arg(strC).arg(strC2).arg(str);
+        //str = QString("<span style=\" color:#%1; background-color:#%2;opacity: 1;\">%3</span>").arg(strC).arg(strC2).arg(str);
     } else if (fontCrl != NULL) {
         QByteArray array;
         array.append(fontCrl->red());
         array.append(fontCrl->green());
         array.append(fontCrl->blue());
         QString strC(array.toHex());
-        str = QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
+        //str = QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
     } else if (backCrl != NULL) {
         QByteArray array;
         array.append(backCrl->red());
         array.append(backCrl->green());
         array.append(backCrl->blue());
         QString strC(array.toHex());
-        str = QString("<span style=\" background-color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
+        //str = QString("<span style=\" background-color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
     }
 }
 
@@ -284,18 +287,18 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         isRegex = true;
         QString match = regex.cap(0); // 获取完整的匹配项
         
-        qDebug() << "Matched all:" << match;
-        qDebug() << "Matched email 1:" << regex.cap(1);
-        qDebug() << "Matched email 2:" << regex.cap(2);
-        qDebug() << "Matched email 3:" << regex.cap(3);
-        qDebug() << "Matched email 4:" << regex.cap(4);
-        qDebug() << "Matched email 5:" << regex.cap(5);
-        qDebug() << "Matched email 6:" << regex.cap(6);
-        qDebug() << "Matched email 7:" << regex.cap(7);
-        qDebug() << "Matched email 8:" << regex.cap(8);
+        //qDebug() << "Matched all:" << match;
+        //qDebug() << "Matched email 1:" << regex.cap(1);
+        //qDebug() << "Matched email 2:" << regex.cap(2);
+        //qDebug() << "Matched email 3:" << regex.cap(3);
+        //qDebug() << "Matched email 4:" << regex.cap(4);
+        //qDebug() << "Matched email 5:" << regex.cap(5);
+        //qDebug() << "Matched email 6:" << regex.cap(6);
+        //qDebug() << "Matched email 7:" << regex.cap(7);
+        //qDebug() << "Matched email 8:" << regex.cap(8);
         lastM = regex.cap(7);
         //2 重置 3 颜色代码 4 颜色代码 6 文件名字 7 重置
-        qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
+        //qDebug() << "processDataStatsAndColor修改前数据：" << regex.cap(6) << " regex.cap(4).toInt() =" <<regex.cap(4).toInt();
 
         QColor *fontCrl = NULL;
         QColor *backCrl = NULL;
@@ -327,18 +330,18 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         //regex.cap(8) 是空白符;
         QString blankChar = regex.cap(8);
         stringToHtmlFilter(blankChar);
-        qDebug() << "cc = " << cc;
+        //qDebug() << "cc = " << cc;
         stringToHtmlFilter(cc);
         stringToHtml(cc, fontCrl, backCrl);
         //替换
         cc = cc + blankChar;
-        qDebug() << "替换前pos = " << pos << " 后面字符为" << data.mid(pos);
-        qDebug() << "由" << match << " 替换为 " << cc;
+        //qDebug() << "替换前pos = " << pos << " 后面字符为" << data.mid(pos);
+        //qDebug() << "由" << match << " 替换为 " << cc;
         data.replace(match, cc);
         //这里有问题
         //pos += regex.matchedLength();
         pos += cc.length();
-        qDebug() << "替换后pos = " << pos << " 后面字符为" << data.mid(pos);
+        //qDebug() << "替换后pos = " << pos << " 后面字符为" << data.mid(pos);
         pos2 = pos;
     }
 
@@ -360,10 +363,10 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     // pos2 = pos3;
     //走到这里说明没有颜色参数了，处理空白符  但是如果两段颜色间有呢
     QString endStr = data.mid(pos2);
-    qDebug() << "blankChar.mid(pos2) = " << endStr;
+    //qDebug() << "blankChar.mid(pos2) = " << endStr;
     stringToHtmlFilter_s(endStr);
     data = data.mid(0, pos2) + endStr;
-    qDebug() << "最后data 数据为" << data;
+    //qDebug() << "最后data 数据为" << data;
     // if (!isRegex) {
     //     data.replace(">","&gt;");
     //     data.replace("<","&lt;");
@@ -378,7 +381,7 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    qDebug() << "processData修改前数据：" << data;
+    //qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {
@@ -465,7 +468,7 @@ QString datahandle::processData(QString data)
 QStringList datahandle::processDataS(QString data)
 {   
     int sum = 0; //记录有多少连续的\b
-    qDebug() << "processDataS data = " << data;
+    //qDebug() << "processDataS data = " << data;
     QStringList dataS;
     //对内容进行分组
     while(1) {
@@ -810,6 +813,8 @@ QStringList datahandle::processDataS(QString data)
                 pos = 0;
                 //break;
             }
+
+
 
             dataS.append(data);
             break;

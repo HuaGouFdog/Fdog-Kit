@@ -90,9 +90,6 @@ public:
     QWidget *widget_main;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
-    QWidget *tab;
-    QWidget *tab_3;
-    QWidget *tab_2;
     QWidget *widget_tool;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
@@ -1436,12 +1433,13 @@ public:
 "	border-top-left-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350"
                         "\247\222\357\274\211*/\n"
 "	border-top-right-radius: 5px;    /*\350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	/*padding-left: 5px;*/\n"
-"    padding-right: 5px;\n"
+"	padding-left: 5px;\n"
+"    /*padding-right: 5px*/\n"
 "	/*width:150;*/\n"
 "	height:25;\n"
-"	/*margin-right:0px;\n"
-"	margin-left: 0px;*/\n"
+"	/*spacing: 20px;*/\n"
+"	/*margin-right:0px;*/\n"
+"	/*margin-left: 0px;*/\n"
 "}\n"
 " \n"
 "/*\350\256\276\347\275\256TabWidget\344\270\255QTabBar\347\232\204tab\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\240\267\345\274\217*/\n"
@@ -1454,8 +1452,8 @@ public:
 "	background-color: rgb(100, 117, 125, 255);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\347"
-                        "\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256"
+                        "\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
 "    border-top:0px solid rgb(108, 117, 125, 65); \n"
 "}\n"
@@ -1484,24 +1482,13 @@ public:
 "}\n"
 " \n"
 "QTabBar QToolButton:hover {\n"
-"	background-color: rgba(100, 117, 125, 0);\n"
+"	background-color: rgba(100, 11"
+                        "7, 125, 0);\n"
 "}"));
         tabWidget->setIconSize(QSize(16, 16));
         tabWidget->setDocumentMode(false);
         tabWidget->setTabsClosable(true);
         tabWidget->setMovable(true);
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        tab->setFont(font5);
-        tabWidget->addTab(tab, QString());
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QStringLiteral("tab_3"));
-        tab_3->setFont(font5);
-        tabWidget->addTab(tab_3, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        tab_2->setFont(font5);
-        tabWidget->addTab(tab_2, QString());
 
         verticalLayout_4->addWidget(tabWidget);
 
@@ -3707,8 +3694,8 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(0);
-        stackedWidget_tool->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(-1);
+        stackedWidget_tool->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -3777,9 +3764,6 @@ public:
         toolButton_top_back->setText(QString());
         toolButton->setText(QString());
         label_2->setText(QApplication::translate("MainWindow", "\347\202\271\345\207\273\347\231\273\345\275\225", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\351\241\265", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\351\241\265", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\260\217\345\267\245\345\205\267\351\233\206\345\220\210", nullptr));
         comboBox_tool->setItemText(0, QApplication::translate("MainWindow", "\344\276\277\347\255\276", nullptr));
         comboBox_tool->setItemText(1, QApplication::translate("MainWindow", "\350\277\233\345\210\266\350\275\254\346\215\242", nullptr));

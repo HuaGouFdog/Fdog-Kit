@@ -688,6 +688,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui(new Ui::thriftwidget)
 {
     ui->setupUi(this);
+    setSupportStretch(this, true);
     //ui->treeWidget->setStyle(QStyleFactory::create("windows"));
     // 设置树的列数（如果需要多列）
     ui->treeWidget->setColumnCount(4);

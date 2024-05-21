@@ -66,6 +66,8 @@ void CoutCharacterEncoding(QString str);
 //获取非空字符串起点和结尾
 void getNonnullString(QString text, int & start, int & end);
 
+void setSupportStretch(QWidget * this_, bool isSupportStretch);
+
 class utils : public QWidget
 {
     Q_OBJECT

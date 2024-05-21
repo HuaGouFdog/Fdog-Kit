@@ -53,6 +53,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //透明背景
     this->setAttribute(Qt::WA_TranslucentBackground);
 
+    int a;
+    a =a=5;
+
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
@@ -342,7 +345,7 @@ WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos)
     {
         stretchState = NO_SELECT;
     }
-    //qDebug() << "stretchState 值为" << stretchState;
+    qDebug() << "stretchState 值为" << stretchState;
 
     return stretchState;
 
