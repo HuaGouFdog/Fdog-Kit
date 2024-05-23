@@ -9,12 +9,15 @@
 #include <QXmlStreamReader>
 #include "utils.h"
 #include <QGraphicsDropShadowEffect>
+#include <QCryptographicHash>
 #include <QThread>
+#include <QClipboard>
 toolswidget::toolswidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::toolswidget)
 {
     ui->setupUi(this);
+    setSupportStretch(this, true);
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
@@ -31,6 +34,7 @@ toolswidget::toolswidget(int8_t connectType, QWidget *parent) :
     ui(new Ui::toolswidget)
 {
     ui->setupUi(this);
+    setSupportStretch(this, true);
     ui->stackedWidget->setCurrentIndex(connectType - 1);
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
@@ -155,4 +159,56 @@ void toolswidget::on_textEdit_textChanged()
     int visibleColumns = viewportSize.width() / charWidth - 5;
     qDebug() << "可见行数 = " << visibleLines;
     qDebug() << "可见列数 = " << visibleColumns;
+}
+
+
+void toolswidget::on_toolButton_encipher_clicked()
+{
+    QString str = ui->plainTextEdit_data->toPlainText();
+    QString md5Str = QCryptographicHash::hash(str.toLatin1(),QCryptographicHash::Md5).toHex();
+    ui->plainTextEdit_32Lower->setPlainText(md5Str);
+    ui->plainTextEdit_32->setPlainText(md5Str.toUpper());
+
+    QString md5Str16 = md5Str.mid(8, 16);//md5Str.left(16);
+    ui->plainTextEdit_16Lower->setPlainText(md5Str16);
+    ui->plainTextEdit_16->setPlainText(md5Str16.toUpper());
+}
+
+void toolswidget::on_toolButton_clear_clicked()
+{
+    ui->plainTextEdit_data->clear();
+    ui->plainTextEdit_32Lower->clear();
+    ui->plainTextEdit_32->clear();
+    ui->plainTextEdit_16Lower->clear();
+    ui->plainTextEdit_16->clear();
+}
+
+void toolswidget::on_toolButton_32Lower_10_clicked()
+{
+    on_toolButton_encipher_clicked();
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->plainTextEdit_32Lower->toPlainText().left(10));
+}
+
+void toolswidget::on_toolButton_32_10_clicked()
+{
+    on_toolButton_encipher_clicked();
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->plainTextEdit_32->toPlainText().left(10));
+}
+
+void toolswidget::on_toolButton_16Lower_10_clicked()
+{
+    on_toolButton_encipher_clicked();
+
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->plainTextEdit_16Lower->toPlainText().left(10));
+}
+
+void toolswidget::on_toolButton_16_10_clicked()
+{
+    on_toolButton_encipher_clicked();
+
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->plainTextEdit_16->toPlainText().left(10));
 }

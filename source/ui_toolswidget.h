@@ -70,30 +70,30 @@ public:
     QLineEdit *lineEdit_find;
     QStackedWidget *stackedWidget;
     QWidget *page_md5;
-    QPlainTextEdit *plainTextEdit;
+    QPlainTextEdit *plainTextEdit_data;
     QWidget *widget_5;
     QHBoxLayout *horizontalLayout_7;
-    QToolButton *toolButton_2;
-    QToolButton *toolButton_5;
+    QToolButton *toolButton_encipher;
+    QToolButton *toolButton_clear;
     QWidget *gridWidget;
     QGridLayout *gridLayout;
+    QLabel *label_4;
+    QLabel *label_3;
+    QPlainTextEdit *plainTextEdit_16Lower;
+    QPlainTextEdit *plainTextEdit_16;
+    QLabel *label_6;
+    QToolButton *toolButton_12;
     QToolButton *toolButton_13;
     QToolButton *toolButton_10;
-    QToolButton *toolButton_12;
-    QPlainTextEdit *plainTextEdit_4;
-    QPlainTextEdit *plainTextEdit_5;
-    QToolButton *toolButton_6;
-    QLabel *label_4;
     QLabel *label_5;
-    QLabel *label_3;
-    QLabel *label_6;
-    QPlainTextEdit *plainTextEdit_2;
-    QPlainTextEdit *plainTextEdit_3;
+    QToolButton *toolButton_6;
+    QPlainTextEdit *plainTextEdit_32Lower;
+    QPlainTextEdit *plainTextEdit_32;
     QLabel *label_7;
-    QToolButton *toolButton_16;
-    QToolButton *toolButton_22;
-    QToolButton *toolButton_23;
-    QToolButton *toolButton_24;
+    QToolButton *toolButton_32Lower_10;
+    QToolButton *toolButton_32_10;
+    QToolButton *toolButton_16Lower_10;
+    QToolButton *toolButton_16_10;
     QWidget *page_json;
     QHBoxLayout *horizontalLayout_2;
     QSplitter *splitter;
@@ -761,16 +761,16 @@ public:
 "border-radius: 5px;\n"
 "padding:5px;\n"
 "}"));
-        plainTextEdit = new QPlainTextEdit(page_md5);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(10, 10, 320, 311));
-        plainTextEdit->setMinimumSize(QSize(320, 0));
-        plainTextEdit->setMaximumSize(QSize(320, 16777215));
+        plainTextEdit_data = new QPlainTextEdit(page_md5);
+        plainTextEdit_data->setObjectName(QStringLiteral("plainTextEdit_data"));
+        plainTextEdit_data->setGeometry(QRect(10, 10, 320, 311));
+        plainTextEdit_data->setMinimumSize(QSize(320, 0));
+        plainTextEdit_data->setMaximumSize(QSize(320, 16777215));
         QFont font3;
         font3.setFamily(QStringLiteral("OPPOSans"));
         font3.setPointSize(10);
         font3.setStyleStrategy(QFont::PreferAntialias);
-        plainTextEdit->setFont(font3);
+        plainTextEdit_data->setFont(font3);
         widget_5 = new QWidget(page_md5);
         widget_5->setObjectName(QStringLiteral("widget_5"));
         widget_5->setGeometry(QRect(10, 340, 321, 30));
@@ -785,21 +785,21 @@ public:
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        toolButton_2 = new QToolButton(widget_5);
-        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
-        toolButton_2->setMinimumSize(QSize(100, 30));
-        toolButton_2->setMaximumSize(QSize(200, 30));
-        toolButton_2->setFont(font1);
+        toolButton_encipher = new QToolButton(widget_5);
+        toolButton_encipher->setObjectName(QStringLiteral("toolButton_encipher"));
+        toolButton_encipher->setMinimumSize(QSize(100, 30));
+        toolButton_encipher->setMaximumSize(QSize(200, 30));
+        toolButton_encipher->setFont(font1);
 
-        horizontalLayout_7->addWidget(toolButton_2);
+        horizontalLayout_7->addWidget(toolButton_encipher);
 
-        toolButton_5 = new QToolButton(widget_5);
-        toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
-        toolButton_5->setMinimumSize(QSize(100, 30));
-        toolButton_5->setMaximumSize(QSize(200, 30));
-        toolButton_5->setFont(font1);
+        toolButton_clear = new QToolButton(widget_5);
+        toolButton_clear->setObjectName(QStringLiteral("toolButton_clear"));
+        toolButton_clear->setMinimumSize(QSize(100, 30));
+        toolButton_clear->setMaximumSize(QSize(200, 30));
+        toolButton_clear->setFont(font1);
 
-        horizontalLayout_7->addWidget(toolButton_5);
+        horizontalLayout_7->addWidget(toolButton_clear);
 
         gridWidget = new QWidget(page_md5);
         gridWidget->setObjectName(QStringLiteral("gridWidget"));
@@ -814,54 +814,6 @@ public:
         gridLayout->setHorizontalSpacing(20);
         gridLayout->setVerticalSpacing(6);
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        toolButton_13 = new QToolButton(gridWidget);
-        toolButton_13->setObjectName(QStringLiteral("toolButton_13"));
-        toolButton_13->setMinimumSize(QSize(60, 30));
-        toolButton_13->setMaximumSize(QSize(60, 30));
-        toolButton_13->setFont(font1);
-
-        gridLayout->addWidget(toolButton_13, 4, 2, 1, 1);
-
-        toolButton_10 = new QToolButton(gridWidget);
-        toolButton_10->setObjectName(QStringLiteral("toolButton_10"));
-        toolButton_10->setMinimumSize(QSize(60, 30));
-        toolButton_10->setMaximumSize(QSize(60, 30));
-        toolButton_10->setFont(font1);
-
-        gridLayout->addWidget(toolButton_10, 1, 2, 1, 1);
-
-        toolButton_12 = new QToolButton(gridWidget);
-        toolButton_12->setObjectName(QStringLiteral("toolButton_12"));
-        toolButton_12->setMinimumSize(QSize(60, 30));
-        toolButton_12->setMaximumSize(QSize(60, 30));
-        toolButton_12->setFont(font1);
-
-        gridLayout->addWidget(toolButton_12, 2, 2, 1, 1);
-
-        plainTextEdit_4 = new QPlainTextEdit(gridWidget);
-        plainTextEdit_4->setObjectName(QStringLiteral("plainTextEdit_4"));
-        plainTextEdit_4->setMinimumSize(QSize(0, 70));
-        plainTextEdit_4->setMaximumSize(QSize(450, 70));
-        plainTextEdit_4->setFont(font1);
-
-        gridLayout->addWidget(plainTextEdit_4, 2, 1, 1, 1);
-
-        plainTextEdit_5 = new QPlainTextEdit(gridWidget);
-        plainTextEdit_5->setObjectName(QStringLiteral("plainTextEdit_5"));
-        plainTextEdit_5->setMinimumSize(QSize(0, 70));
-        plainTextEdit_5->setMaximumSize(QSize(450, 70));
-        plainTextEdit_5->setFont(font1);
-
-        gridLayout->addWidget(plainTextEdit_5, 4, 1, 1, 1);
-
-        toolButton_6 = new QToolButton(gridWidget);
-        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
-        toolButton_6->setMinimumSize(QSize(60, 30));
-        toolButton_6->setMaximumSize(QSize(60, 30));
-        toolButton_6->setFont(font1);
-
-        gridLayout->addWidget(toolButton_6, 0, 2, 1, 1);
-
         label_4 = new QLabel(gridWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setMinimumSize(QSize(60, 0));
@@ -873,16 +825,7 @@ public:
         label_4->setFont(font4);
         label_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
 
-        gridLayout->addWidget(label_4, 2, 0, 1, 1);
-
-        label_5 = new QLabel(gridWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setMinimumSize(QSize(60, 0));
-        label_5->setMaximumSize(QSize(60, 16777215));
-        label_5->setFont(font4);
-        label_5->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-
-        gridLayout->addWidget(label_5, 1, 0, 1, 1);
+        gridLayout->addWidget(label_4, 5, 0, 1, 1);
 
         label_3 = new QLabel(gridWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -891,7 +834,25 @@ public:
         label_3->setFont(font4);
         label_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
 
-        gridLayout->addWidget(label_3, 4, 0, 1, 1);
+        gridLayout->addWidget(label_3, 3, 0, 1, 1);
+
+        plainTextEdit_16Lower = new QPlainTextEdit(gridWidget);
+        plainTextEdit_16Lower->setObjectName(QStringLiteral("plainTextEdit_16Lower"));
+        plainTextEdit_16Lower->setMinimumSize(QSize(0, 70));
+        plainTextEdit_16Lower->setMaximumSize(QSize(450, 70));
+        plainTextEdit_16Lower->setFont(font1);
+        plainTextEdit_16Lower->setReadOnly(true);
+
+        gridLayout->addWidget(plainTextEdit_16Lower, 0, 1, 1, 1);
+
+        plainTextEdit_16 = new QPlainTextEdit(gridWidget);
+        plainTextEdit_16->setObjectName(QStringLiteral("plainTextEdit_16"));
+        plainTextEdit_16->setMinimumSize(QSize(0, 70));
+        plainTextEdit_16->setMaximumSize(QSize(450, 70));
+        plainTextEdit_16->setFont(font1);
+        plainTextEdit_16->setReadOnly(true);
+
+        gridLayout->addWidget(plainTextEdit_16, 1, 1, 1, 1);
 
         label_6 = new QLabel(gridWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
@@ -902,21 +863,64 @@ public:
 
         gridLayout->addWidget(label_6, 0, 0, 1, 1);
 
-        plainTextEdit_2 = new QPlainTextEdit(gridWidget);
-        plainTextEdit_2->setObjectName(QStringLiteral("plainTextEdit_2"));
-        plainTextEdit_2->setMinimumSize(QSize(0, 70));
-        plainTextEdit_2->setMaximumSize(QSize(450, 70));
-        plainTextEdit_2->setFont(font1);
+        toolButton_12 = new QToolButton(gridWidget);
+        toolButton_12->setObjectName(QStringLiteral("toolButton_12"));
+        toolButton_12->setMinimumSize(QSize(60, 30));
+        toolButton_12->setMaximumSize(QSize(60, 30));
+        toolButton_12->setFont(font1);
 
-        gridLayout->addWidget(plainTextEdit_2, 0, 1, 1, 1);
+        gridLayout->addWidget(toolButton_12, 3, 2, 1, 1);
 
-        plainTextEdit_3 = new QPlainTextEdit(gridWidget);
-        plainTextEdit_3->setObjectName(QStringLiteral("plainTextEdit_3"));
-        plainTextEdit_3->setMinimumSize(QSize(0, 70));
-        plainTextEdit_3->setMaximumSize(QSize(450, 70));
-        plainTextEdit_3->setFont(font1);
+        toolButton_13 = new QToolButton(gridWidget);
+        toolButton_13->setObjectName(QStringLiteral("toolButton_13"));
+        toolButton_13->setMinimumSize(QSize(60, 30));
+        toolButton_13->setMaximumSize(QSize(60, 30));
+        toolButton_13->setFont(font1);
 
-        gridLayout->addWidget(plainTextEdit_3, 1, 1, 1, 1);
+        gridLayout->addWidget(toolButton_13, 5, 2, 1, 1);
+
+        toolButton_10 = new QToolButton(gridWidget);
+        toolButton_10->setObjectName(QStringLiteral("toolButton_10"));
+        toolButton_10->setMinimumSize(QSize(60, 30));
+        toolButton_10->setMaximumSize(QSize(60, 30));
+        toolButton_10->setFont(font1);
+
+        gridLayout->addWidget(toolButton_10, 1, 2, 1, 1);
+
+        label_5 = new QLabel(gridWidget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setMinimumSize(QSize(60, 0));
+        label_5->setMaximumSize(QSize(60, 16777215));
+        label_5->setFont(font4);
+        label_5->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+
+        gridLayout->addWidget(label_5, 1, 0, 1, 1);
+
+        toolButton_6 = new QToolButton(gridWidget);
+        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
+        toolButton_6->setMinimumSize(QSize(60, 30));
+        toolButton_6->setMaximumSize(QSize(60, 30));
+        toolButton_6->setFont(font1);
+
+        gridLayout->addWidget(toolButton_6, 0, 2, 1, 1);
+
+        plainTextEdit_32Lower = new QPlainTextEdit(gridWidget);
+        plainTextEdit_32Lower->setObjectName(QStringLiteral("plainTextEdit_32Lower"));
+        plainTextEdit_32Lower->setMinimumSize(QSize(0, 70));
+        plainTextEdit_32Lower->setMaximumSize(QSize(450, 70));
+        plainTextEdit_32Lower->setFont(font1);
+        plainTextEdit_32Lower->setReadOnly(true);
+
+        gridLayout->addWidget(plainTextEdit_32Lower, 3, 1, 1, 1);
+
+        plainTextEdit_32 = new QPlainTextEdit(gridWidget);
+        plainTextEdit_32->setObjectName(QStringLiteral("plainTextEdit_32"));
+        plainTextEdit_32->setMinimumSize(QSize(0, 70));
+        plainTextEdit_32->setMaximumSize(QSize(450, 70));
+        plainTextEdit_32->setFont(font1);
+        plainTextEdit_32->setReadOnly(true);
+
+        gridLayout->addWidget(plainTextEdit_32, 5, 1, 1, 1);
 
         label_7 = new QLabel(page_md5);
         label_7->setObjectName(QStringLiteral("label_7"));
@@ -924,30 +928,30 @@ public:
         label_7->setMinimumSize(QSize(50, 0));
         label_7->setMaximumSize(QSize(50, 16777215));
         label_7->setFont(font4);
-        toolButton_16 = new QToolButton(page_md5);
-        toolButton_16->setObjectName(QStringLiteral("toolButton_16"));
-        toolButton_16->setGeometry(QRect(10, 440, 138, 30));
-        toolButton_16->setMinimumSize(QSize(100, 30));
-        toolButton_16->setMaximumSize(QSize(200, 30));
-        toolButton_16->setFont(font1);
-        toolButton_22 = new QToolButton(page_md5);
-        toolButton_22->setObjectName(QStringLiteral("toolButton_22"));
-        toolButton_22->setGeometry(QRect(160, 440, 138, 30));
-        toolButton_22->setMinimumSize(QSize(100, 30));
-        toolButton_22->setMaximumSize(QSize(200, 30));
-        toolButton_22->setFont(font1);
-        toolButton_23 = new QToolButton(page_md5);
-        toolButton_23->setObjectName(QStringLiteral("toolButton_23"));
-        toolButton_23->setGeometry(QRect(310, 440, 138, 30));
-        toolButton_23->setMinimumSize(QSize(100, 30));
-        toolButton_23->setMaximumSize(QSize(200, 30));
-        toolButton_23->setFont(font1);
-        toolButton_24 = new QToolButton(page_md5);
-        toolButton_24->setObjectName(QStringLiteral("toolButton_24"));
-        toolButton_24->setGeometry(QRect(460, 440, 138, 30));
-        toolButton_24->setMinimumSize(QSize(100, 30));
-        toolButton_24->setMaximumSize(QSize(200, 30));
-        toolButton_24->setFont(font1);
+        toolButton_32Lower_10 = new QToolButton(page_md5);
+        toolButton_32Lower_10->setObjectName(QStringLiteral("toolButton_32Lower_10"));
+        toolButton_32Lower_10->setGeometry(QRect(10, 440, 138, 30));
+        toolButton_32Lower_10->setMinimumSize(QSize(100, 30));
+        toolButton_32Lower_10->setMaximumSize(QSize(200, 30));
+        toolButton_32Lower_10->setFont(font1);
+        toolButton_32_10 = new QToolButton(page_md5);
+        toolButton_32_10->setObjectName(QStringLiteral("toolButton_32_10"));
+        toolButton_32_10->setGeometry(QRect(160, 440, 138, 30));
+        toolButton_32_10->setMinimumSize(QSize(100, 30));
+        toolButton_32_10->setMaximumSize(QSize(200, 30));
+        toolButton_32_10->setFont(font1);
+        toolButton_16Lower_10 = new QToolButton(page_md5);
+        toolButton_16Lower_10->setObjectName(QStringLiteral("toolButton_16Lower_10"));
+        toolButton_16Lower_10->setGeometry(QRect(310, 440, 138, 30));
+        toolButton_16Lower_10->setMinimumSize(QSize(100, 30));
+        toolButton_16Lower_10->setMaximumSize(QSize(200, 30));
+        toolButton_16Lower_10->setFont(font1);
+        toolButton_16_10 = new QToolButton(page_md5);
+        toolButton_16_10->setObjectName(QStringLiteral("toolButton_16_10"));
+        toolButton_16_10->setGeometry(QRect(460, 440, 138, 30));
+        toolButton_16_10->setMinimumSize(QSize(100, 30));
+        toolButton_16_10->setMaximumSize(QSize(200, 30));
+        toolButton_16_10->setFont(font1);
         stackedWidget->addWidget(page_md5);
         page_json = new QWidget();
         page_json->setObjectName(QStringLiteral("page_json"));
@@ -1370,7 +1374,7 @@ public:
 
         retranslateUi(toolswidget);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(toolswidget);
@@ -1401,22 +1405,22 @@ public:
         toolButton_4->setText(QString());
         label->setText(QApplication::translate("toolswidget", "MD5\345\212\240\345\257\206", nullptr));
         lineEdit_find->setPlaceholderText(QApplication::translate("toolswidget", "\346\220\234\347\264\242\345\267\245\345\205\267", nullptr));
-        toolButton_2->setText(QApplication::translate("toolswidget", "\350\275\254\346\215\242", nullptr));
-        toolButton_5->setText(QApplication::translate("toolswidget", "\346\270\205\347\251\272", nullptr));
+        toolButton_encipher->setText(QApplication::translate("toolswidget", "\345\212\240\345\257\206", nullptr));
+        toolButton_clear->setText(QApplication::translate("toolswidget", "\346\270\205\347\251\272", nullptr));
+        label_4->setText(QApplication::translate("toolswidget", "32\344\275\215\345\244\247\345\206\231\357\274\232", nullptr));
+        label_3->setText(QApplication::translate("toolswidget", "32\344\275\215\345\260\217\345\206\231\357\274\232", nullptr));
+        plainTextEdit_16Lower->setPlainText(QString());
+        label_6->setText(QApplication::translate("toolswidget", "16\344\275\215\345\260\217\345\206\231\357\274\232", nullptr));
+        toolButton_12->setText(QApplication::translate("toolswidget", "\345\244\215\345\210\266", nullptr));
         toolButton_13->setText(QApplication::translate("toolswidget", "\345\244\215\345\210\266", nullptr));
         toolButton_10->setText(QApplication::translate("toolswidget", "\345\244\215\345\210\266", nullptr));
-        toolButton_12->setText(QApplication::translate("toolswidget", "\345\244\215\345\210\266", nullptr));
-        toolButton_6->setText(QApplication::translate("toolswidget", "\345\244\215\345\210\266", nullptr));
-        label_4->setText(QApplication::translate("toolswidget", "32\344\275\215\345\244\247\345\206\231\357\274\232", nullptr));
         label_5->setText(QApplication::translate("toolswidget", "16\344\275\215\345\244\247\345\206\231\357\274\232", nullptr));
-        label_3->setText(QApplication::translate("toolswidget", "32\344\275\215\345\260\217\345\206\231\357\274\232", nullptr));
-        label_6->setText(QApplication::translate("toolswidget", "16\344\275\215\345\260\217\345\206\231\357\274\232", nullptr));
-        plainTextEdit_2->setPlainText(QApplication::translate("toolswidget", "7B9B929BFB5D0009143F16B56FD55ED87B9B929BFB5D0009143F16B56FD55ED8", nullptr));
+        toolButton_6->setText(QApplication::translate("toolswidget", "\345\244\215\345\210\266", nullptr));
         label_7->setText(QApplication::translate("toolswidget", "\346\211\251\345\261\225\357\274\232", nullptr));
-        toolButton_16->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22632\344\275\215\345\260\217\345\206\231\345\211\21510\344\275\215", nullptr));
-        toolButton_22->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22632\344\275\215\345\244\247\345\206\231\345\211\21510\344\275\215", nullptr));
-        toolButton_23->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22616\344\275\215\345\244\247\345\206\231\345\211\21510\344\275\215", nullptr));
-        toolButton_24->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22616\344\275\215\345\244\247\345\206\231\345\211\21510\344\275\215", nullptr));
+        toolButton_32Lower_10->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22632\344\275\215\345\260\217\345\206\231\345\211\21510\344\275\215", nullptr));
+        toolButton_32_10->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22632\344\275\215\345\244\247\345\206\231\345\211\21510\344\275\215", nullptr));
+        toolButton_16Lower_10->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22616\344\275\215\345\244\247\345\206\231\345\211\21510\344\275\215", nullptr));
+        toolButton_16_10->setText(QApplication::translate("toolswidget", "\350\216\267\345\217\22616\344\275\215\345\244\247\345\206\231\345\211\21510\344\275\215", nullptr));
         plainTextEdit_json_source->setPlainText(QString());
         textEdit_json_target->setHtml(QApplication::translate("toolswidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

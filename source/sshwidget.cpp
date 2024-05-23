@@ -69,7 +69,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     ui(new Ui::sshwidget)
 {
     ui->setupUi(this);
-
+    setSupportStretch(this, true);
     this->cInfoStruct = cInfoStruct;
 
     ui->textEdit_2->setOverwriteMode(true);
@@ -159,7 +159,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
                                     padding-bottom:0px;\
                                     padding-left:0px;\
                                     padding-right:0px;\
-                                    border-radius: 5px;\
+                                    border-radius: 0px;\
                                 color: rgba(255, 255, 255, 255);\
                                 }\
                                 QScrollBar:vertical {\
@@ -278,15 +278,15 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     ui->textEdit->document ()->setMaximumBlockCount(500);
     textEdit_s->document ()->setMaximumBlockCount(500);
 
-    QAction *findAction = new QAction(tr("查找   Ctrl+Shift+F"), textEdit_s);
+    QAction *findAction = new QAction(tr("查找     Ctrl+Shift+F"), textEdit_s);
     //findAction->setShortcut(QKeySequence::Copy);
     findAction->setShortcutContext(Qt::WidgetShortcut);
 
-    QAction *copyAction = new QAction(tr("复制   Ctrl+Shift+C"), textEdit_s);
+    QAction *copyAction = new QAction(tr("复制     Ctrl+Shift+C"), textEdit_s);
     //copyAction->setShortcut(QKeySequence::Copy);
     copyAction->setShortcutContext(Qt::WidgetShortcut);
 
-    QAction *pasteAction = new QAction(tr("粘贴   Ctrl+Shift+V"), textEdit_s);
+    QAction *pasteAction = new QAction(tr("粘贴     Ctrl+Shift+V"), textEdit_s);
     //pasteAction->setShortcut(QKeySequence::Copy);
     pasteAction->setShortcutContext(Qt::WidgetShortcut);
 
@@ -309,20 +309,27 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     QMenu *contextMenu = new QMenu(textEdit_s);
     contextMenu->setWindowFlags(contextMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     contextMenu->setAttribute(Qt::WA_TranslucentBackground);
+
+   QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+   effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+   effect->setColor(QColor(30, 30, 30));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+   effect->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+   contextMenu->setGraphicsEffect(effect);
+
     contextMenu->addAction(findAction);
-    contextMenu->addSeparator();
+    //contextMenu->addSeparator();
     contextMenu->addAction(copyAction);
-    contextMenu->addSeparator();
+    //contextMenu->addSeparator();
     contextMenu->addAction(pasteAction);
-    contextMenu->addSeparator();
+    //contextMenu->addSeparator();
     contextMenu->addAction(pasteActionSelect);
     contextMenu->addSeparator();
     contextMenu->addAction(downloadAction);
-    contextMenu->addSeparator();
+    //contextMenu->addSeparator();
     contextMenu->addAction(uploadAction);
     contextMenu->addSeparator();
     contextMenu->addAction(selectAllAction);
-    contextMenu->addSeparator();
+    //contextMenu->addSeparator();
     contextMenu->addAction(clearAction);
 
     connect (findAction,SIGNAL(triggered()),this,SLOT(rece_find_sgin()));

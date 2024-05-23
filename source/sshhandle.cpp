@@ -708,18 +708,18 @@ void sshHandleExec::getServerInfo()
         double mem_g =0.0;
         if (mem_m >= 1024) {
             mem_g = mem_m / 1024;
-            serverInfo.memUse = "/" + QString::number(mem_g, 'f', 1) + "G";
+            serverInfo.memUse = "/" + QString::number(mem_g, 'f', 1) + "G ";
         } else {
-            serverInfo.memUse = "/" + QString::number(mem_m, 'f', 1) + "M";
+            serverInfo.memUse = "/" + QString::number(mem_m, 'f', 1) + "M ";
         }
 
         double mem_mf = (reMem.cap(1).toDouble() - reMem.cap(2).toDouble()) / 1024;
         double mem_gf =0.0;
         if (mem_mf >= 1024) {
             mem_gf = mem_mf / 1024;
-            serverInfo.memUse = QString::number(mem_gf, 'f', 1) + "G" + serverInfo.memUse;
+            serverInfo.memUse = QString::number(mem_gf, 'f', 1) + "G " + serverInfo.memUse;
         } else {
-            serverInfo.memUse = QString::number(mem_mf, 'f', 1) + "M" + serverInfo.memUse;
+            serverInfo.memUse = QString::number(mem_mf, 'f', 1) + "M " + serverInfo.memUse;
         }
         //qDebug() << "内存总共" << mem_g << "G";
         //qDebug() << "当前可用" << mem_gf << "G";

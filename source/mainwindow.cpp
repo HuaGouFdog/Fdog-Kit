@@ -345,7 +345,7 @@ WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos)
     {
         stretchState = NO_SELECT;
     }
-    qDebug() << "stretchState 值为" << stretchState;
+    //qDebug() << "stretchState 值为" << stretchState;
 
     return stretchState;
 
