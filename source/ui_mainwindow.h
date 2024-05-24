@@ -90,6 +90,7 @@ public:
     QWidget *widget_main;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *tabWidget;
+    QWidget *tab;
     QWidget *widget_tool;
     QVBoxLayout *verticalLayout_21;
     QWidget *widget_6;
@@ -1398,7 +1399,7 @@ public:
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(9, 0, 0, 0);
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(widget_main);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -1455,6 +1456,7 @@ public:
 "/*\350\256"
                         "\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217*/\n"
 "QTabWidget::pane {\n"
+"	\n"
 "    border-top:0px solid rgb(108, 117, 125, 65); \n"
 "}\n"
 " \n"
@@ -1482,13 +1484,16 @@ public:
 "}\n"
 " \n"
 "QTabBar QToolButton:hover {\n"
-"	background-color: rgba(100, 11"
-                        "7, 125, 0);\n"
+"	background-color: rgba(1"
+                        "00, 117, 125, 0);\n"
 "}"));
         tabWidget->setIconSize(QSize(16, 16));
         tabWidget->setDocumentMode(false);
         tabWidget->setTabsClosable(true);
         tabWidget->setMovable(true);
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
+        tabWidget->addTab(tab, QString());
 
         verticalLayout_4->addWidget(tabWidget);
 
@@ -3016,7 +3021,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 828, 518));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 823, 518));
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 6000));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
@@ -3694,7 +3699,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(-1);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_tool->setCurrentIndex(3);
 
 
@@ -3764,6 +3769,7 @@ public:
         toolButton_top_back->setText(QString());
         toolButton->setText(QString());
         label_2->setText(QApplication::translate("MainWindow", "\347\202\271\345\207\273\347\231\273\345\275\225", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\351\241\265", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\260\217\345\267\245\345\205\267\351\233\206\345\220\210", nullptr));
         comboBox_tool->setItemText(0, QApplication::translate("MainWindow", "\344\276\277\347\255\276", nullptr));
         comboBox_tool->setItemText(1, QApplication::translate("MainWindow", "\350\277\233\345\210\266\350\275\254\346\215\242", nullptr));

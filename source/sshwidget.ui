@@ -999,7 +999,7 @@ QProgressBar:chunk{
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
        <number>0</number>
@@ -1075,7 +1075,7 @@ QProgressBar:chunk{
                  <number>0</number>
                 </property>
                 <property name="rightMargin">
-                 <number>0</number>
+                 <number>12</number>
                 </property>
                 <property name="bottomMargin">
                  <number>0</number>
@@ -1108,7 +1108,7 @@ QProgressBar:chunk{
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1238</width>
+                     <width>1229</width>
                      <height>155</height>
                     </rect>
                    </property>
@@ -1134,7 +1134,7 @@ QProgressBar:chunk{
                     <string notr="true">border-color: rgba(255, 255, 255, 0);
 background:transparent;</string>
                    </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_8">
+                   <layout class="QHBoxLayout" name="horizontalLayout_8">
                     <property name="spacing">
                      <number>0</number>
                     </property>
@@ -1160,7 +1160,6 @@ background:transparent;</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QMenu {
-
 background-color: rgb(30, 34, 39);
 padding:10px;
 margin:10px;
@@ -1240,7 +1239,8 @@ QMenu::separator {
                         <string notr="true">QTextEdit{
 	/*background-color: rgba(0, 41, 69, 0);*/
 	
-	background-color: rgb(35, 39, 46);
+	
+	background-color: rgb(48, 10, 36);
 	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 	border: none;
 	padding-top:0px;
@@ -1248,7 +1248,7 @@ QMenu::separator {
 	padding-left:0px;
     padding-right:0px;
 	border-radius: 0px;
-color: rgba(255, 255, 255, 255, 255);
+    color: rgba(0,0,0,0);
 }
 
 QTextEdit::cursor {
@@ -1329,6 +1329,74 @@ p, li { white-space: pre-wrap; }
                         <set>Qt::TextEditorInteraction</set>
                        </property>
                       </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QScrollBar" name="verticalScrollBar">
+                      <property name="font">
+                       <font>
+                        <stylestrategy>PreferAntialias</stylestrategy>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QScrollBar:vertical{
+    width: 10px;
+	/*background-color: rgba(0, 41, 69, 0);*/
+	
+	background-color: rgb(48, 10, 36);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+
+QScrollBar::handle:vertical{
+    width: 10px;
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+                      </property>
+                      <property name="maximum">
+                       <number>5000</number>
+                      </property>
+                      <property name="singleStep">
+                       <number>1</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
                      </widget>
                     </item>
                    </layout>
@@ -1900,7 +1968,7 @@ QTabBar QToolButton:hover {
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>3</number>
                </property>
                <widget class="QWidget" name="tab">
                 <attribute name="title">
@@ -2389,6 +2457,22 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;qe&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;wqe&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;q&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+                <widget class="QToolButton" name="toolButton_2">
+                 <property name="geometry">
+                  <rect>
+                   <x>380</x>
+                   <y>110</y>
+                   <width>91</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(96, 255, 216);</string>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
                  </property>
                 </widget>
                </widget>

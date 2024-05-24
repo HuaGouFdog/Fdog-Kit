@@ -272,8 +272,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     textEdit_s->setUndoRedoEnabled(false);
     ui->textEdit->setUndoRedoEnabled(false);
-    // textEdit_s->setLineWrapMode(QTextEdit::FixedPixelWidth);
-    // ui->textEdit->setLineWrapMode(QTextEdit::FixedPixelWidth);
+    textEdit_s->setLineWrapMode(QTextEdit::NoWrap);
+    ui->textEdit->setLineWrapMode(QTextEdit::NoWrap);
 
     ui->textEdit->document ()->setMaximumBlockCount(500);
     textEdit_s->document ()->setMaximumBlockCount(500);
@@ -348,11 +348,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     //ui->widget_4->hide();
     //ui->horizontalWidget->hide();
 
-    //ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //textEdit_s->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    textEdit_s->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    //ui->textEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //textEdit_s->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->textEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    textEdit_s->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     isScrollBar = false;
     /*
@@ -475,14 +475,7 @@ void sshwidget::sendData(QString data)
     if (data == "") {
         return;
     }
-//    if (data[0] == '~') {
-//        data = data + "<br>";
-//    }
-    // QTextCursor cursor = ui->textEdit->textCursor();
-    // int currentPosition = cursor.position();
-    // QTextCursor cursor_s = textEdit_s->textCursor();
-    // cursor_s.setPosition(currentPosition);
-    // textEdit_s->setTextCursor(cursor_s);
+
     lastM = "34";
     //qDebug() << "lastM = " << lastM;
     if (lastM != "" && lastM == "34" && data.mid(0,1) == "~") {
@@ -492,12 +485,8 @@ void sshwidget::sendData(QString data)
         datahandle::stringToHtml(data, fontCrl);
         //qDebug() << "现数据 = " << data;
     }
-    //qDebug() << "写入数据 = " << data;
 
-    //ui->textEdit_5->insertHtml(data);
     QString data2 =data;
-    //data2.replace("color:#ff0000;opacity: 1;","opacity: 0;");
-
 
     // QRegularExpression regex("<span style=\\\" color:#\\w{6};opacity: 1;");
     data.replace("<br>", "\n");
@@ -505,104 +494,41 @@ void sshwidget::sendData(QString data)
     // data2.replace(regex, "<span style=\\\" opacity: 0;");
     data2.replace("<br>", "\n");
     data2.replace("&nbsp;", " ");
-    //qDebug() << "写入数据2 = " << data2;
-    //记录当前光标
-    // int cursorPosition = ui->textEdit->textCursor().position();
-    // int cursorPosition_s = textEdit_s->textCursor().position();
-    // qDebug() << "cursorPosition = " << cursorPosition;
-    // qDebug() << "cursorPosition_s = " << cursorPosition_s;
-    // qDebug() << "当前所在行1" << getCurrentRowPositionByLocal();
+
     setUpdatesEnabled(false);
-
+    
     QTextCursor cursor_s = textEdit_s->textCursor();
-    cursor_s.insertText(data);
+    
     QTextCursor cursor = ui->textEdit->textCursor();
-    cursor.insertText(data2);
-    // // 设置光标位置
-    // cursor_s.movePosition(QTextCursor::End);
+    // QPalette palette2 = textEdit_s->palette();
+    // palette2.setColor(QPalette::Text, Qt::red);
+    // textEdit_s->setPalette(palette2);
+    cursor_s.beginEditBlock();
+    cursor.beginEditBlock();
 
-    // // QTextCursor cursor = ui->textEdit->textCursor();
-    // // // 设置光标位置
-    // cursor.movePosition(QTextCursor::End);
+    
+    cursor_s.insertText(data);
 
-    //textEdit_s->insertHtml(data);
-        //textEdit_s->moveCursor(QTextCursor::End);
 
-    // qDebug() << "sendData 1";
-    //ui->textEdit->insertHtml(data2);
+    cursor.insertText(data2); //color:ffffff:
 
+    cursor_s.endEditBlock();
+    cursor.endEditBlock();  
 
 
     setUpdatesEnabled(true);
-        //ui->textEdit->moveCursor(QTextCursor::End);
-    // textEdit_s->textCursor().deletePreviousChar();
-    // ui->textEdit->textCursor().deletePreviousChar();
-//    appendData_s(data);
-//    appendData(data2);
 
-    // int cursorPosition2 = ui->textEdit->textCursor().position();
-    // int cursorPosition_s2 = textEdit_s->textCursor().position();
-    // qDebug() << "cursorPosition2 = " << cursorPosition2;
-    // qDebug() << "cursorPosition_s2 = " << cursorPosition_s2;
-    // int cpos2 = getCurrentRowPositionByLocal();
     int cpos2 = getCurrentRowPositionByLocal();
-//    movePositionUp(sshwidget::MoveAnchor, cpos2 - cpos);
-//    movePositionStartLine();
-//    qDebug() << "当前行内容为" << movePositionEndLineSelect();
-//    // // movePositionEndLine(sshwidget::MoveAnchor);
-
-//    movePositionRemoveEndLineSelect(sshwidget::KeepAnchor);
-
-//    movePositionDown(sshwidget::MoveAnchor, cpos2 - cpos);
-//    movePositionEndLine(sshwidget::MoveAnchor);
 
 
-    // int cursorPosition3 = ui->textEdit->textCursor().position();
-    // int cursorPosition_s3 = textEdit_s->textCursor().position();
-    // qDebug() << "cursorPosition3 = " << cursorPosition3;
-    // qDebug() << "cursorPosition_s3 = " << cursorPosition_s3;
-
-    //ui->textEdit->textCursor().setPosition(cursorPosition);
-    //textEdit_s->textCursor().setPosition(cursorPosition_s);
-
-    // qDebug() << "当前所在行2" << getCurrentRowPositionByLocal();
-    // movePositionStartLine();
-    // qDebug() << "当前行内容为" << movePositionEndLineSelect();
-    // //qDebug() << "当前行内容为" << movePositionUp(QTextCursor::MoveAnchor, 1);
-    // movePositionStartLine();
-    // qDebug() << "当前行内容为" << movePositionEndLineSelect();
-    //删除换行符
-    //movePositionRemoveLeftSelect(sshwidget::MoveAnchor, 2);
-
-    //ui->textEdit->textCursor().setPosition(cursorPosition2 - 2);
-    //textEdit_s->textCursor().setPosition(cursorPosition_s2- 2);
-    //qDebug() << "当前所在行3" << getCurrentRowPositionByLocal();
-    //删除换行符
-
-    QPalette palette = ui->textEdit->palette();
-    palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-    ui->textEdit->setPalette(palette);
+    // QPalette palette = ui->textEdit->palette();
+    // palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
+    // ui->textEdit->setPalette(palette);
 
     cpos2 = getCurrentRowPositionByLocal();
     qDebug() << "移动了" << cpos2 - cpos << "行";
     setCurrentRowPosition(cpos2 - cpos);
-    // movePositionUp(sshwidget::MoveAnchor, cpos2 - cpos);
-    // movePositionEndLine(sshwidget::MoveAnchor);
 
-    // movePositionRemoveRightSelect(sshwidget::KeepAnchor, 1);
-
-    // movePositionDown(sshwidget::MoveAnchor, cpos2 - cpos);
-    // movePositionEndLine(sshwidget::MoveAnchor);
-
-//    ui->textEdit->textCursor().setPosition(cursorPosition);
-//    textEdit_s->textCursor().setPosition(cursorPosition_s);
-    //qDebug() << "变化后光标改变 " << cpos2 - cpos << "行";
-
-    //rece_searchTextChanged(fwidget->gitSearchText());
-    // QTextCursor tc = ui->textEdit->textCursor(); //当前光标
-    // QTextLayout *lay = tc.block().layout();
-    // int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
-    // int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
     qDebug() << "sendData 当前光标所在行数(相对于终端内部) =" << getCurrentRowPosition() << "  当前行数 =" << cpos2;
 }
 
@@ -1078,6 +1004,11 @@ void sshwidget::rece_channel_readS(QStringList data)
     data = data.mid(1);
     int i = 0;
     for(i = 0; i < data.length(); i++) {
+        //如果有颜色参数，则直接打印，如果没有就累加输出
+        bool isSend = false;
+        if (data.at(i).contains("color:")) {
+            isSend = true;
+        }
         //QCoreApplication::processEvents();
         if (data[i] == "\u001B[m") {
             qDebug() << "检测到\u001B[m" << "跳过";
@@ -1818,6 +1749,11 @@ void sshwidget::rece_channel_readS(QStringList data)
     scrollBar_textEdit_s_h->setValue(0);
     qint64 elapsedMilliseconds = timer.elapsed();
     qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
+    ui->verticalScrollBar->setMinimum(ui->textEdit->verticalScrollBar()->minimum());
+    ui->verticalScrollBar->setSingleStep(ui->textEdit->verticalScrollBar()->singleStep());
+    ui->verticalScrollBar->setPageStep(ui->textEdit->verticalScrollBar()->pageStep());
+    ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
+    ui->verticalScrollBar->setValue(ui->textEdit->verticalScrollBar()->value());
 }
 
 void sshwidget::rece_key_sign(QString key)
@@ -1965,6 +1901,7 @@ void sshwidget::scrollBarValueChanged2(int value)
     //qDebug() << "当前值：" << scrollBar_textEdit->value();
     //QScrollBar *scrollBar = ui->textEdit_6->verticalScrollBar();
     //scrollBar->setValue(value);
+
 }
 
 void sshwidget::on_textEdit_textChanged()
@@ -1974,6 +1911,8 @@ void sshwidget::on_textEdit_textChanged()
         scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
     }
     //获取最后一行数据放在textEdit_6
+    //ui->verticalScrollBar->setValue(ui->textEdit->verticalScrollBar()->value());
+    //ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
 }
 
 void sshwidget::rece_send_mousePress_sign()
@@ -2455,4 +2394,15 @@ void sshwidget::on_toolButton_edit_clicked()
     //addcwidget->textEdit_date
     connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString)),this,SLOT(rece_addCommond(QString, QString, QString)));
     addcwidget->show();
+}
+
+void sshwidget::on_toolButton_2_clicked()
+{
+    ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
+}
+
+void sshwidget::on_verticalScrollBar_valueChanged(int value)
+{
+    ui->textEdit->verticalScrollBar()->setValue(value);
+    textEdit_s->verticalScrollBar()->setValue(value);
 }

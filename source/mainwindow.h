@@ -89,6 +89,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event);     //鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放
     void mouseDoubleClickEvent(QMouseEvent *event); //鼠标双击
+    void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
 
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
@@ -97,6 +98,9 @@ public:
 
     //创建托盘显示
     void createSystemTray();
+
+    //根据设置窗口样式
+    void setWindowsByConf();
 
 private slots:
     void on_toolButton_close_clicked();
@@ -191,6 +195,8 @@ private slots:
     void on_toolButton_side_home_clicked();
 
     void on_toolButton_side_shell_clicked();
+
+    void on_toolButton_side_tool_clicked();
 
 private:
     Ui::MainWindow *ui;

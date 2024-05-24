@@ -2032,7 +2032,7 @@ QMenu::separator {
                    <number>0</number>
                   </property>
                   <property name="leftMargin">
-                   <number>9</number>
+                   <number>0</number>
                   </property>
                   <property name="topMargin">
                    <number>0</number>
@@ -2082,12 +2082,13 @@ QTabBar::tab{
 	color:#ced4da;    /*设置tab中的文本的颜色*/
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
-	/*padding-left: 5px;*/
-    padding-right: 5px;
+	padding-left: 5px;
+    /*padding-right: 5px*/
 	/*width:150;*/
 	height:25;
-	/*margin-right:0px;
-	margin-left: 0px;*/
+	/*spacing: 20px;*/
+	/*margin-right:0px;*/
+	/*margin-left: 0px;*/
 }
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
@@ -2102,6 +2103,7 @@ QTabBar::tab:hover:!selected {
  
 /*设置TabWidget的边框的样式*/
 QTabWidget::pane {
+	
     border-top:0px solid rgb(108, 117, 125, 65); 
 }
  
@@ -2151,31 +2153,6 @@ QTabBar QToolButton:hover {
                      <bool>true</bool>
                     </property>
                     <widget class="QWidget" name="tab">
-                     <property name="font">
-                      <font>
-                       <stylestrategy>PreferAntialias</stylestrategy>
-                      </font>
-                     </property>
-                     <attribute name="title">
-                      <string/>
-                     </attribute>
-                    </widget>
-                    <widget class="QWidget" name="tab_3">
-                     <property name="font">
-                      <font>
-                       <stylestrategy>PreferAntialias</stylestrategy>
-                      </font>
-                     </property>
-                     <attribute name="title">
-                      <string>页</string>
-                     </attribute>
-                    </widget>
-                    <widget class="QWidget" name="tab_2">
-                     <property name="font">
-                      <font>
-                       <stylestrategy>PreferAntialias</stylestrategy>
-                      </font>
-                     </property>
                      <attribute name="title">
                       <string>页</string>
                      </attribute>
@@ -2488,7 +2465,7 @@ QToolButton:hover {
 color: rgb(255, 255, 255);</string>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>3</number>
                     </property>
                     <widget class="QWidget" name="page_4">
                      <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -5349,7 +5326,7 @@ QScrollBar::up-arrow:horizontal {
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>828</width>
+                          <width>823</width>
                           <height>518</height>
                          </rect>
                         </property>

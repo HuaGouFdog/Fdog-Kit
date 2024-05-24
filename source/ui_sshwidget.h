@@ -22,6 +22,7 @@
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
@@ -90,9 +91,10 @@ public:
     QVBoxLayout *verticalLayout_5;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QVBoxLayout *verticalLayout_8;
+    QHBoxLayout *horizontalLayout_8;
     QWidget *widget_9;
     QTextEdit *textEdit;
+    QScrollBar *verticalScrollBar;
     QWidget *widget_toolbar;
     QHBoxLayout *horizontalLayout_7;
     QSpacerItem *horizontalSpacer_2;
@@ -136,6 +138,7 @@ public:
     QProgressBar *progressBar_disk_2;
     QProgressBar *progressBar;
     QTextEdit *textEdit_4;
+    QToolButton *toolButton_2;
     QWidget *tab_5;
     QVBoxLayout *verticalLayout_9;
     QPlainTextEdit *plainTextEdit;
@@ -545,7 +548,7 @@ public:
         verticalLayout_6 = new QVBoxLayout(widget_26);
         verticalLayout_6->setSpacing(0);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(3, 0, 0, 0);
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         splitter_2 = new QSplitter(widget_26);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Vertical);
@@ -569,7 +572,7 @@ public:
         verticalLayout_5 = new QVBoxLayout(widget_10);
         verticalLayout_5->setSpacing(0);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_5->setContentsMargins(0, 0, 12, 0);
         scrollArea = new QScrollArea(widget_10);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setMinimumSize(QSize(0, 0));
@@ -580,7 +583,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1238, 155));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1229, 155));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -590,10 +593,10 @@ public:
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 1080));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("border-color: rgba(255, 255, 255, 0);\n"
 "background:transparent;"));
-        verticalLayout_8 = new QVBoxLayout(scrollAreaWidgetContents);
-        verticalLayout_8->setSpacing(0);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_8 = new QHBoxLayout(scrollAreaWidgetContents);
+        horizontalLayout_8->setSpacing(0);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
         widget_9 = new QWidget(scrollAreaWidgetContents);
         widget_9->setObjectName(QStringLiteral("widget_9"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -602,7 +605,6 @@ public:
         sizePolicy1.setHeightForWidth(widget_9->sizePolicy().hasHeightForWidth());
         widget_9->setSizePolicy(sizePolicy1);
         widget_9->setStyleSheet(QLatin1String("QMenu {\n"
-"\n"
 "background-color: rgb(30, 34, 39);\n"
 "padding:10px;\n"
 "margin:10px;\n"
@@ -641,9 +643,9 @@ public:
 "    height: 1px;\n"
 "    background: rgb(214, 233, 234);\n"
 "    /*margin-left: 10px;*/\n"
-"    /*margin-right: 10px;"
-                        "*/\n"
-"}"));
+"    /*margin-right: 10px;*/\n"
+""
+                        "}"));
         textEdit = new QTextEdit(widget_9);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setEnabled(true);
@@ -662,7 +664,8 @@ public:
         textEdit->setStyleSheet(QString::fromUtf8("QTextEdit{\n"
 "	/*background-color: rgba(0, 41, 69, 0);*/\n"
 "	\n"
-"	background-color: rgb(35, 39, 46);\n"
+"	\n"
+"	background-color: rgb(48, 10, 36);\n"
 "	font: 12pt \"Cascadia Mono,OPPOSans B\";\n"
 "	border: none;\n"
 "	padding-top:0px;\n"
@@ -670,7 +673,7 @@ public:
 "	padding-left:0px;\n"
 "    padding-right:0px;\n"
 "	border-radius: 0px;\n"
-"color: rgba(255, 255, 255, 255, 255);\n"
+"    color: rgba(0,0,0,0);\n"
 "}\n"
 "\n"
 "QTextEdit::cursor {\n"
@@ -696,9 +699,9 @@ public:
 "}\n"
 "\n"
 "QScrollBar::sub-page:vertical {\n"
+"    \n"
 ""
-                        "    \n"
-"	background-color: rgba(255, 255, 255, 0);\n"
+                        "	background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "QScrollBar::add-page:vertical \n"
 "{\n"
@@ -732,7 +735,67 @@ public:
         textEdit->setReadOnly(false);
         textEdit->setTextInteractionFlags(Qt::TextEditorInteraction);
 
-        verticalLayout_8->addWidget(widget_9);
+        horizontalLayout_8->addWidget(widget_9);
+
+        verticalScrollBar = new QScrollBar(scrollAreaWidgetContents);
+        verticalScrollBar->setObjectName(QStringLiteral("verticalScrollBar"));
+        QFont font5;
+        font5.setStyleStrategy(QFont::PreferAntialias);
+        verticalScrollBar->setFont(font5);
+        verticalScrollBar->setStyleSheet(QString::fromUtf8("QScrollBar:vertical{\n"
+"    width: 10px;\n"
+"	/*background-color: rgba(0, 41, 69, 0);*/\n"
+"	\n"
+"	background-color: rgb(48, 10, 36);\n"
+"    margin: 0px,0px,0px,0px;\n"
+"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-bottom: 0px;\n"
+"}\n"
+"\n"
+"\n"
+"QScrollBar::handle:vertical{\n"
+"    width: 10px;\n"
+"	background-color: rgb(239, 239, 239);\n"
+"    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
+"    border-radius: 2px;\n"
+"    min-height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-page:vertical {\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QScrollBar::add-page:vertical \n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"    height: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+""
+                        "    height: 0px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::down-arrow:vertical {\n"
+"    border:none;\n"
+"}\n"
+"\n"
+"QScrollBar::up-arrow:vertical {\n"
+"    border:none;\n"
+"}"));
+        verticalScrollBar->setMaximum(5000);
+        verticalScrollBar->setSingleStep(1);
+        verticalScrollBar->setOrientation(Qt::Vertical);
+
+        horizontalLayout_8->addWidget(verticalScrollBar);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 
@@ -1284,6 +1347,10 @@ public:
         textEdit_4->setObjectName(QStringLiteral("textEdit_4"));
         textEdit_4->setGeometry(QRect(630, 10, 471, 211));
         textEdit_4->setFont(font);
+        toolButton_2 = new QToolButton(tab_4);
+        toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
+        toolButton_2->setGeometry(QRect(380, 110, 91, 31));
+        toolButton_2->setStyleSheet(QStringLiteral("background-color: rgb(96, 255, 216);"));
         tabWidget->addTab(tab_4, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QStringLiteral("tab_5"));
@@ -1382,7 +1449,7 @@ public:
 
         retranslateUi(sshwidget);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(sshwidget);
@@ -1471,6 +1538,7 @@ public:
                         "lor:#ff0000;\">qe</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">wqe</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">q</span></p></body></html>", nullptr));
+        toolButton_2->setText(QApplication::translate("sshwidget", "...", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("sshwidget", " \346\211\223\345\214\205 ", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("sshwidget", "\351\241\265", nullptr));
         label_command->setText(QApplication::translate("sshwidget", "\346\211\247\350\241\214\345\244\207\344\273\275", nullptr));

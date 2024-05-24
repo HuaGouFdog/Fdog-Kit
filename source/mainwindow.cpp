@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent) :
     effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
 
-    ui->widget_side->setGraphicsEffect(effect);
+    //ui->widget_side->setGraphicsEffect(effect);
 
 
     QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
@@ -99,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent) :
     effect2->setColor(QColor(30, 45, 54));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect2->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
 
-    ui->widget_body_left->setGraphicsEffect(effect2);
+    //ui->widget_body_left->setGraphicsEffect(effect2);
 
 
 
@@ -703,6 +703,12 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
     }
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    qDebug() << "resizeEvent 被调用";
+    //QTextEdit::resizeEvent(event);
+}
+
 void MainWindow::showEvent(QShowEvent *event)
 {
     calculateCurrentStrechRect();
@@ -948,8 +954,8 @@ void MainWindow::on_toolButton_max_clicked()
     //qDebug() << "显示最大化";
     //最大化
     if (!showFlag) {
-        setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
+        //setContentsMargins(0, 0, 0, 0);
+        // ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
         ui->widget_side->setStyleSheet("#widget_side { \
                                             color: rgb(255, 255, 255); \
                                             border-top-left-radius: 0px; \
@@ -961,22 +967,14 @@ void MainWindow::on_toolButton_max_clicked()
                                                 border-top-right-radius: 0px;\
                                                 background-color: rgba(94, 255, 210, 0);\
                                                 border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
                                             }");
-        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        // ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
         this->showMaximized();
         isMaxShow = true;
         showFlag = true;
     } else {
-        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
+        //setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
+        // ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->widget_side->setStyleSheet("#widget_side { \
                                             color: rgb(255, 255, 255); \
                                             border-top-left-radius: 10px; \
@@ -987,14 +985,6 @@ void MainWindow::on_toolButton_max_clicked()
                                                 color: rgb(255, 255, 255);\
                                                 border-top-right-radius: 9px;\
                                                 background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
                                                 border: none;\
                                             }");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));

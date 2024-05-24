@@ -275,7 +275,7 @@ void sshhandle::initSFTP(int connrectType, QString host, QString port, QString u
 
 void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password)
 {
-    qDebug() << "执行initSSH";
+    qDebug() << "执行initSSH" << " host = " << host << " port = " << port << " username = " << username << " password = " << password;
     initSSH(connrectType, host, port, username, password);
     qDebug() << "执行initSSH init 完成";
     ////发送信号
@@ -507,7 +507,7 @@ void sshhandle::getServerInfo()
         }
 
     } else {
-        qDebug() << "未找到交换.";
+        //qDebug() << "未找到交换.";
     }
 
     //获取服务器信息
@@ -756,7 +756,7 @@ void sshHandleExec::getServerInfo()
         }
 
     } else {
-        qDebug() << "未找到交换.";
+        //qDebug() << "未找到交换.";
     }
 
     //获取服务器信息

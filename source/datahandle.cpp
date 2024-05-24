@@ -260,6 +260,7 @@ void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
         array.append(fontCrl->green());
         array.append(fontCrl->blue());
         QString strC(array.toHex());
+        str = "color:"+strC + ":" + str;
         //str = QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
     } else if (backCrl != NULL) {
         QByteArray array;

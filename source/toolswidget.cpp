@@ -12,12 +12,14 @@
 #include <QCryptographicHash>
 #include <QThread>
 #include <QClipboard>
+#include <QElapsedTimer>
 toolswidget::toolswidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::toolswidget)
 {
     ui->setupUi(this);
     setSupportStretch(this, true);
+    ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
@@ -35,6 +37,7 @@ toolswidget::toolswidget(int8_t connectType, QWidget *parent) :
 {
     ui->setupUi(this);
     setSupportStretch(this, true);
+    ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->stackedWidget->setCurrentIndex(connectType - 1);
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
@@ -211,4 +214,40 @@ void toolswidget::on_toolButton_16_10_clicked()
 
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(ui->plainTextEdit_16->toPlainText().left(10));
+}
+
+void toolswidget::on_verticalScrollBar_valueChanged(int value)
+{
+    ui->textEdit->verticalScrollBar()->setValue(value);
+}
+
+void toolswidget::on_toolButton_2_clicked()
+{
+    QElapsedTimer timer;
+    timer.start();
+    QTextCursor cursor_s = ui->textEdit->textCursor();
+    cursor_s.beginEditBlock();
+    QString a = "05/11/24 22:16:06.825.398 [140703302276864] INFO  root  "\
+                "[/data/badword/badword/badword/badwordservicehandler.cpp:414]- getBadwordinfo=getBadword_end&size=0\n";
+    QString sum;
+    int j =0;
+    for(int i =0; i<500; i++) {
+        if (j > 5) {
+            cursor_s.insertText(sum);
+            j=0;
+            sum = "";
+        } else {
+            sum =sum + a;
+            j++;
+        }
+
+        //ui->textEdit->insertHtml("05/11/24 22:16:06.825.398 [140703302276864] INFO  root  "\
+        //                         "[/data/badword/badword/badword/badwordservicehandler.cpp:414]- getBadwordinfo=getBadword_end&size=0\n");
+        qDebug() << i;
+    }
+    cursor_s.endEditBlock();
+    //on_toolButton_clicked();
+    qint64 elapsedMilliseconds = timer.elapsed();
+    qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
+    ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
 }

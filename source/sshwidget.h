@@ -109,7 +109,8 @@ protected:
 
     void resizeEvent(QResizeEvent *event) override
     {
-        QTextEdit::resizeEvent(event);
+        qDebug() << "resizeEvent 被调用";
+        //QTextEdit::resizeEvent(event);
         emit send_resize_sign();
         QTextEdit::resizeEvent(event);
     }
@@ -424,6 +425,10 @@ private slots:
     void rece_clicked_edit();
 
     void on_toolButton_edit_clicked();
+
+    void on_toolButton_2_clicked();
+
+    void on_verticalScrollBar_valueChanged(int value);
 
 private:
     Ui::sshwidget *ui;
