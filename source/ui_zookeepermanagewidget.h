@@ -625,7 +625,7 @@ public:
         lineEdit_remark_zk->setPlaceholderText(QApplication::translate("zookeepermanagewidget", "\346\265\213\350\257\225", nullptr));
         label_remark_zk->setText(QApplication::translate("zookeepermanagewidget", "\345\244\207\346\263\250", nullptr));
         label_host_zk->setText(QApplication::translate("zookeepermanagewidget", "\344\270\273\346\234\272", nullptr));
-        lineEdit_host_zk_data->setText(QApplication::translate("zookeepermanagewidget", "172.16.8.153", nullptr));
+        lineEdit_host_zk_data->setText(QApplication::translate("zookeepermanagewidget", "172.16.8.156", nullptr));
         lineEdit_host_zk_data->setPlaceholderText(QApplication::translate("zookeepermanagewidget", "127.0.0.1", nullptr));
         label_timeout_zk->setText(QApplication::translate("zookeepermanagewidget", "\350\266\205\346\227\266\346\227\266\351\227\264", nullptr));
         lineEdit_timeout_zk->setText(QApplication::translate("zookeepermanagewidget", "5000", nullptr));

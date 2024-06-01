@@ -49,25 +49,27 @@ QCheckBox::indicator{
 
 
 QMenu {
-
-background-color:rgb(253,253,254);
-/*padding:5px;*/
-padding: 3px 0px 3px 0px;
+background-color: rgb(30, 34, 39);
+padding:10px;
+margin:10px;
+/*padding: 3px 0px 3px 0px;*/
 border-radius:6px;
-border:2px solid rgb(108, 117, 125, 65); 
+border:0px solid rgb(108, 117, 125, 65); 
 }
 QMenu::item {
 	font-size: 10pt;
-	
 	font: 10pt &quot;OPPOSans B&quot;;
 	
-	color: rgb(63, 63, 63);
-    background-color:rgb(253,253,254);
-    padding: 5px 25px 5px 25px;
-    /*margin: 2px 2px 2px 2px;*/
+	color: rgb(214, 233, 234);
+    background-color: rgb(30, 34, 39);
+    /*padding: 5px 25px 5px 25px;*/
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
 }
 QMenu::item:selected {
-    background-color : rgb(236,236,237);
+	background-color: rgba(44, 49, 58, 250);
+	border-radius:6px;
+
 }
 QMenu::icon:checked {
     background: rgb(253,253,254);
@@ -82,8 +84,8 @@ QMenu::icon:checked:selected {
     background-image: url(:/space_selected.png);
 }
 QMenu::separator {
-    height: 2px;
-    background: rgb(235,235,236);
+    height: 1px;
+    background: rgb(214, 233, 234);
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }</string>
@@ -127,6 +129,9 @@ border-right:2px solid rgba(108, 117, 125, 65);
 }</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="spacing">
+        <number>6</number>
+       </property>
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
@@ -159,6 +164,231 @@ border-right:2px solid rgba(108, 117, 125, 65);
           <property name="bottomMargin">
            <number>0</number>
           </property>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="horizontalWidget_1_3_l" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget_1_3_l_1" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>68</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#widget_1_3_l_1{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 10px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_search">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>27</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>OPPOSans B</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="placeholderText">
+                <string>搜索</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_clear">
+               <property name="styleSheet">
+                <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 95, 95, 0);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 95, 95, 0);
+}</string>
+               </property>
+               <property name="text">
+                <string>清除</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>18</width>
+                 <height>18</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_sensitive">
+               <property name="styleSheet">
+                <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+QToolButton::checked{
+	color: rgb(255, 255, 255);
+	border-radius: 2px;
+	
+	border: 1px solid rgb(143, 143, 143);
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_unfold">
+            <property name="minimumSize">
+             <size>
+              <width>85</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>85</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+}</string>
+            </property>
+            <property name="text">
+             <string>全部折叠</string>
+            </property>
+            <property name="icon">
+             <iconset resource="lib.qrc">
+              <normaloff>:/lib/zhedie.png</normaloff>:/lib/zhedie.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>18</width>
+              <height>18</height>
+             </size>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -434,231 +664,6 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="horizontalWidget_1_3_l" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <property name="spacing">
-           <number>16</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QWidget" name="widget_1_3_l_1" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>68</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#widget_1_3_l_1{
-color: rgb(231, 238, 244);
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 10px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
-             <property name="leftMargin">
-              <number>10</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>10</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_search">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>27</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>OPPOSans B</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgba(255, 255, 255, 0);
-color: rgb(255, 255, 255);</string>
-               </property>
-               <property name="placeholderText">
-                <string>搜索</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_clear">
-               <property name="styleSheet">
-                <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 95, 95, 0);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 95, 95, 0);
-}</string>
-               </property>
-               <property name="text">
-                <string>清除</string>
-               </property>
-               <property name="icon">
-                <iconset resource="lib.qrc">
-                 <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>18</width>
-                 <height>18</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_sensitive">
-               <property name="styleSheet">
-                <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-QToolButton::checked{
-	color: rgb(255, 255, 255);
-	border-radius: 2px;
-	
-	border: 1px solid rgb(143, 143, 143);
-}</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="lib.qrc">
-                 <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
-               </property>
-               <property name="checkable">
-                <bool>true</bool>
-               </property>
-               <property name="checked">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="toolButton_unfold">
-            <property name="minimumSize">
-             <size>
-              <width>85</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>85</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>10</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-}</string>
-            </property>
-            <property name="text">
-             <string>全部折叠</string>
-            </property>
-            <property name="icon">
-             <iconset resource="lib.qrc">
-              <normaloff>:/lib/zhedie.png</normaloff>:/lib/zhedie.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>18</width>
-              <height>18</height>
-             </size>
-            </property>
-            <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextBesideIcon</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QWidget" name="verticalWidget_1_4_l" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="leftMargin">
@@ -685,13 +690,12 @@ QToolButton:hover {
              <enum>Qt::CustomContextMenu</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">QToolTip{
-	color: rgb(43, 43, 43);
-    font-size:12px;
-	width:1024;
-	height:40;
+             <string notr="true">
+QToolTip {
+color: rgb(255, 255, 255);
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
 }
-
 
 QTreeWidget#treeWidget {
 	border: 0px solid #D3D6DD;
@@ -731,6 +735,14 @@ QTreeWidget::branch {
 	height: 28px;
 	width: 28px;
 }
+QTreeView::branch:selected {
+}
+
+QTreeWidget::branch:!has-children:selected {
+}
+QTreeWidget::branch:!has-children:!selected {
+}
+
 QTreeWidget::branch:closed:has-children:!has-siblings,
 QTreeWidget::branch:closed:has-children:has-siblings {
 	border-image: none;
@@ -741,6 +753,7 @@ QTreeWidget::branch:open:has-children:!has-siblings,
 QTreeWidget::branch:open:has-children:has-siblings  {
 	border-image: none;
     image: url(:/lib/tree_open.png);
+    
 }
 
 QScrollBar:vertical{
@@ -836,25 +849,27 @@ QScrollBar::up-arrow:horizontal {
 }
 
 QMenu {
-
-background-color:rgb(253,253,254);
-/*padding:5px;*/
-padding: 5px 0px 5px 0px;
+background-color: rgb(30, 34, 39);
+padding:10px;
+margin:10px;
+/*padding: 3px 0px 3px 0px;*/
 border-radius:6px;
-border:2px solid rgb(108, 117, 125, 65); 
+border:0px solid rgb(108, 117, 125, 65); 
 }
 QMenu::item {
 	font-size: 10pt;
-	
 	font: 10pt &quot;OPPOSans B&quot;;
 	
-	color: rgb(63, 63, 63);
-    background-color:rgb(253,253,254);
-    padding: 5px 25px 5px 25px;
-    /*margin: 2px 2px 2px 2px;*/
+	color: rgb(214, 233, 234);
+    background-color: rgb(30, 34, 39);
+    /*padding: 5px 25px 5px 25px;*/
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
 }
 QMenu::item:selected {
-    background-color : rgb(236,236,237);
+	background-color: rgba(44, 49, 58, 250);
+	border-radius:6px;
+
 }
 QMenu::icon:checked {
     background: rgb(253,253,254);
@@ -869,8 +884,8 @@ QMenu::icon:checked:selected {
     background-image: url(:/space_selected.png);
 }
 QMenu::separator {
-    height: 2px;
-    background: rgb(235,235,236);
+    height: 1px;
+    background: rgb(214, 233, 234);
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }</string>
@@ -1775,18 +1790,18 @@ padding-right:10px;
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #8a8a8a;
+	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
 	border-radius:5px;
-	background:transparent;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
 }
 
-QComboBox QAbstractItemView::item
-{
-height:28px;
-}
+
 QComboBox:disabled{
-	border:1px solid gray;
+	border:0px solid gray;
 	color:gray;
 }
 
@@ -1794,23 +1809,47 @@ QComboBox::drop-down{
 	background:transparent;
 }
 QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
+	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
+	margin-right: 10px;
 }
 
 
 QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
+
+
 QComboBox QAbstractItemView{
-	outline:0px solid gray;
+	font: 10pt &quot;OPPOSans B&quot;;
+	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
 }
 
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
 </string>
                </property>
                <item>
@@ -1928,18 +1967,18 @@ QComboBox QAbstractItemView{
                <property name="styleSheet">
                 <string notr="true">QComboBox{
 	color:#ffffff;
-	border:1px solid #8a8a8a;
+	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
 	border-radius:5px;
-	background:transparent;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
 }
 
-QComboBox QAbstractItemView::item
-{
-height:28px;
-}
+
 QComboBox:disabled{
-	border:1px solid gray;
+	border:0px solid gray;
 	color:gray;
 }
 
@@ -1947,23 +1986,47 @@ QComboBox::drop-down{
 	background:transparent;
 }
 QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
+	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
+	margin-right: 10px;
 }
 
 
 QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
+
+
 QComboBox QAbstractItemView{
-	outline:0px solid gray;
+	font: 10pt &quot;OPPOSans B&quot;;
+	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
 	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
 }
 
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgb(37, 84, 138);
+}
 </string>
                </property>
                <item>
@@ -2070,6 +2133,8 @@ QComboBox QAbstractItemView{
                   <property name="styleSheet">
                    <string notr="true">#textEdit_data{
 	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 50);
 	border-radius: 5px;
 }
 
@@ -2267,6 +2332,58 @@ QToolButton:hover {
                   </property>
                   <property name="text">
                    <string>创建</string>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>14</width>
+                    <height>14</height>
+                   </size>
+                  </property>
+                  <property name="toolButtonStyle">
+                   <enum>Qt::ToolButtonTextBesideIcon</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolButton_cancel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>28</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>60</width>
+                    <height>28</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>取消</string>
                   </property>
                   <property name="iconSize">
                    <size>

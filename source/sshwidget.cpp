@@ -275,8 +275,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     textEdit_s->setLineWrapMode(QTextEdit::NoWrap);
     ui->textEdit->setLineWrapMode(QTextEdit::NoWrap);
 
-    ui->textEdit->document ()->setMaximumBlockCount(500);
-    textEdit_s->document ()->setMaximumBlockCount(500);
+    ui->textEdit->document ()->setMaximumBlockCount(10000);
+    textEdit_s->document ()->setMaximumBlockCount(10000);
 
     QAction *findAction = new QAction(tr("查找     Ctrl+Shift+F"), textEdit_s);
     //findAction->setShortcut(QKeySequence::Copy);
@@ -503,8 +503,8 @@ void sshwidget::sendData(QString data)
     // QPalette palette2 = textEdit_s->palette();
     // palette2.setColor(QPalette::Text, Qt::red);
     // textEdit_s->setPalette(palette2);
-    cursor_s.beginEditBlock();
-    cursor.beginEditBlock();
+    // cursor_s.beginEditBlock();
+    // cursor.beginEditBlock();
 
     
     cursor_s.insertText(data);
@@ -512,9 +512,8 @@ void sshwidget::sendData(QString data)
 
     cursor.insertText(data2); //color:ffffff:
 
-    cursor_s.endEditBlock();
-    cursor.endEditBlock();  
-
+    // cursor_s.endEditBlock();
+    // cursor.endEditBlock();  
 
     setUpdatesEnabled(true);
 
@@ -1004,6 +1003,15 @@ void sshwidget::rece_channel_readS(QStringList data)
     data = data.mid(1);
     int i = 0;
     for(i = 0; i < data.length(); i++) {
+        if (gsum++ % 5 == 0) {
+            qDebug() << "刷新";
+            ui->textEdit->repaint();
+            textEdit_s->repaint();
+        }
+        if (gsum++ % 50 == 0) {
+            qDebug() << "刷新";
+            qApp->processEvents();
+        }
         //如果有颜色参数，则直接打印，如果没有就累加输出
         bool isSend = false;
         if (data.at(i).contains("color:")) {

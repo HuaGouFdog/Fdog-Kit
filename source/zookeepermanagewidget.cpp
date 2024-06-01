@@ -4,11 +4,13 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QGraphicsDropShadowEffect>
+#include "utils.h"
 zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::zookeepermanagewidget)
 {
     ui->setupUi(this);
+    setSupportStretch(this, true);
     lastIndex = 0;
     count = 0;
     m_buttonGroup = new QButtonGroup(this);
@@ -34,6 +36,7 @@ zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QW
     ui(new Ui::zookeepermanagewidget)
 {
     ui->setupUi(this);
+    setSupportStretch(this, true);
     lastIndex = 0;
     count = 0;
     m_buttonGroup = new QButtonGroup(this);

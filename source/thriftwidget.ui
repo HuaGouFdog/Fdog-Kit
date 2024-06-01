@@ -3163,7 +3163,7 @@ border-radius: 2px;
                       <bool>false</bool>
                      </property>
                      <attribute name="headerVisible">
-                      <bool>true</bool>
+                      <bool>false</bool>
                      </attribute>
                      <attribute name="headerDefaultSectionSize">
                       <number>100</number>
@@ -3597,7 +3597,6 @@ color: rgb(79, 79, 79);
                               <weight>7</weight>
                               <italic>false</italic>
                               <bold>false</bold>
-                              <stylestrategy>PreferAntialias</stylestrategy>
                              </font>
                             </property>
                             <property name="styleSheet">
@@ -3792,7 +3791,6 @@ border-radius: 2px;</string>
                                <weight>7</weight>
                                <italic>false</italic>
                                <bold>false</bold>
-                               <stylestrategy>PreferAntialias</stylestrategy>
                               </font>
                              </property>
                              <property name="cursor" stdset="0">

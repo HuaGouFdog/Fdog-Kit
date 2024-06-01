@@ -1761,7 +1761,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1953,7 +1953,6 @@ public:
         font7.setBold(false);
         font7.setItalic(false);
         font7.setWeight(7);
-        font7.setStyleStrategy(QFont::PreferAntialias);
         textEdit_data->setFont(font7);
         textEdit_data->setStyleSheet(QStringLiteral(""));
         textEdit_data->setFrameShape(QFrame::Box);
@@ -2087,13 +2086,7 @@ public:
         textEdit_info->setObjectName(QStringLiteral("textEdit_info"));
         textEdit_info->setMinimumSize(QSize(400, 0));
         textEdit_info->setMaximumSize(QSize(400, 16777215));
-        QFont font10;
-        font10.setFamily(QStringLiteral("Cascadia Code SemiBold"));
-        font10.setPointSize(11);
-        font10.setBold(false);
-        font10.setItalic(false);
-        font10.setWeight(7);
-        textEdit_info->setFont(font10);
+        textEdit_info->setFont(font7);
         textEdit_info->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         textEdit_info->setStyleSheet(QStringLiteral(""));
         textEdit_info->setFrameShape(QFrame::Box);
@@ -2135,10 +2128,10 @@ public:
 
         label_13 = new QLabel(widget_13);
         label_13->setObjectName(QStringLiteral("label_13"));
-        QFont font11;
-        font11.setFamily(QStringLiteral("OPPOSans B"));
-        font11.setPointSize(11);
-        label_13->setFont(font11);
+        QFont font10;
+        font10.setFamily(QStringLiteral("OPPOSans B"));
+        font10.setPointSize(11);
+        label_13->setFont(font10);
         label_13->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_13->setAlignment(Qt::AlignCenter);
 
@@ -2183,7 +2176,7 @@ public:
 
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setFont(font11);
+        label_11->setFont(font10);
         label_11->setStyleSheet(QStringLiteral("color: rgb(106, 106, 106);"));
         label_11->setAlignment(Qt::AlignCenter);
 

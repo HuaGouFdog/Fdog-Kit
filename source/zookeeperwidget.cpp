@@ -15,16 +15,16 @@
 #include "zookeeperhandle.h"
 #include "zookeepertipswidget.h"
 #include "ui_zookeeperwidget.h"
-
+#include "utils.h"
 zookeeperwidget::zookeeperwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::zookeeperwidget), isUnfold(false)
 {
     ui->setupUi(this);
-
+    setSupportStretch(this, true);
     hideButton();
     hideCreateWidget(); //隐藏修改按钮
-    setMouseTracking(true);
+    
 
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -33,7 +33,7 @@ zookeeperwidget::zookeeperwidget(QWidget *parent) :
     //设置水平滑动条
     QHeaderView *pHeader=ui->treeWidget->header();
     pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
-    pHeader->setStretchLastSection(false);
+    //pHeader->setStretchLastSection(false);
 
     ui->splitter->setStretchFactor(0, 5);
     ui->splitter->setStretchFactor(1, 1);
@@ -43,8 +43,8 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     QWidget(parent),
     ui(new Ui::zookeeperwidget), isUnfold(false)
 {
-    ui->setupUi(this);
-
+    ui->setupUi(this);  
+    setMouseTracking(true);
     //QAction *action = new QAction(this);
     //action->setIcon(QIcon(":/lib/soucuo.png"));
     //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
@@ -54,7 +54,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
 
     hideButton();
     hideCreateWidget(); //隐藏修改按钮
-    setMouseTracking(true);
+    
 
     ui->textEdit_data->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -65,7 +65,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
     //设置水平滑动条
     QHeaderView *pHeader=ui->treeWidget->header();
     pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
-    pHeader->setStretchLastSection(false);
+    //pHeader->setStretchLastSection(false);
 
     //ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -134,16 +134,23 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
     } else {
         String_vector children = varValue.value<String_vector>();
         for (int i = 0; i < children.count; ++i) {
+            //获取父节点信息
+
             QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
             QString children_path;
             if (path != "/") {
-                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
-
+                //children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+                children_path = children.data[i];
             } else {
-                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+                //children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+                children_path = children.data[i];
             }
             itemChild->setText(0, children_path);
             itemChild->setToolTip(0, children_path);
+            qDebug() << "path = " << path;
+            
+            getParentNode(item, children_path);
+            qDebug() << "children_path = " << children_path;
             ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, children_path, itemChild);
             threadpool.start(m_pRunnable);
         }
@@ -209,6 +216,7 @@ void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path
         nodeData = formattedJson;
         nodeDataPath = path;
         ui->toolButton_saveData->setEnabled(false);
+        //utils_parsingJsonInfo(ui->textEdit_data, data);
         ui->label_data_type->setText("数据类型：json");
     } else {
         ui->textEdit_data->insertPlainText(data.toUtf8());
@@ -233,11 +241,11 @@ void zookeeperwidget::rece_setNodeData(int code, QString message)
 void zookeeperwidget::addNode(QString &path)
 {
     ui->textEdit_data->clear();
-    QString rootPath = ui->treeWidget->currentItem()->text(0);
-    if ( rootPath == "/") {
-        ui->lineEdit_node_create->setText(rootPath + "newNode");
+    //QString rootPath = ui->treeWidget->currentItem()->text(0);
+    if ( path == "/") {
+        ui->lineEdit_node_create->setText(path + "newNode");
     } else {
-        ui->lineEdit_node_create->setText(rootPath + "/newNode");
+        ui->lineEdit_node_create->setText(path + "/newNode");
     }
     ui->lineEdit_node_create->setFocus();
     showCreateWidget();
@@ -403,18 +411,23 @@ void zookeeperwidget::deleteTreeNode(QTreeWidgetItem* item)
     while (item->childCount() > 0) {
         deleteTreeNode(item->child(0));
     }
-    QString path = item->text(0);
+    QString path;
+    getParentNode(item, path);
+    qDebug() << "调用deleteNode" << path;
     QTreeWidgetItem* parent = NULL;
     parent= item->parent();
     if (parent != NULL) {
         parent->removeChild(item);
         ui->treeWidget->setCurrentItem(parent);
         //显示父节点数据
-        getNodeInfo(parent->text(0));
+        QString path2;
+        getParentNode(parent, path2);
+        qDebug() << "path2 = " << path2;
+        getNodeInfo(path2);
     } else {
         delete item;
     }
-    qDebug() << "调用deleteNode" << path;
+    
     QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
 }
 
@@ -443,16 +456,19 @@ void zookeeperwidget::deleteTreeItem(QTreeWidgetItem *item)
 
 void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
+    QString url;// = item->text(column);
+    getParentNode(item, url);
     //ui->lineEdit_node->setText(item->text(column));
     if (ui->checkBox_auto_url->isChecked()) {
-        QString url = item->text(column);
+        //QString url = item->text(column);
         QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
         ui->label_node->setText(decodedUrl);
     } else {
-        ui->label_node->setText(item->text(column));
+        ui->label_node->setText(url);
     }
     ui->label_node->setWordWrap(true);
-    QString path = item->text(column);
+    QString path = url;
+    qDebug() << "on_treeWidget_itemClicked path = " << path;
     getNodeInfo(path);
 }
 
@@ -495,9 +511,9 @@ void zookeeperwidget::on_treeWidget_customContextMenuRequested(const QPoint &pos
     popMenu = new QMenu(this);
     popMenu->setWindowFlags(popMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     popMenu->setAttribute(Qt::WA_TranslucentBackground);
-    popMenu->addAction(m_action_copy);
-    popMenu->addSeparator();
     popMenu->addAction(m_action_add);
+    popMenu->addSeparator();
+    popMenu->addAction(m_action_copy);
     popMenu->addSeparator();
     //popMenu->addAction(m_action_refresh);
     popMenu->addAction(m_action_delete);
@@ -512,7 +528,9 @@ void zookeeperwidget::on_treeWidget_customContextMenuRequested(const QPoint &pos
 void zookeeperwidget::on_nodeAction()
 {
     QString actionText = qobject_cast<QAction*>(sender())->text();
-    QString node = ui->treeWidget->currentItem()->text(0);
+    QString node;
+    getParentNode(ui->treeWidget->currentItem(), node);
+    qDebug() << "node = " << node;
     if (actionText == "添加") {
         addNode(node);
     } else if (actionText == "删除") {
@@ -601,9 +619,15 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
 {
     //孩子节点数据发生变化
     qDebug() << "rece_children_event 接收到数据" << path;
+    QStringList pathList = path.split("/");
     //遍历treewidget 查找 path 的子节点，有没有没存在的
     //获取节点层级
-    QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path, Qt::MatchExactly|Qt::MatchRecursive, 0);
+    QString path2 = pathList.at(pathList.length()-1);
+    qDebug() << "pathList.at(pathList.length()-1 = " << path2;
+    if (path == "/") {
+        path2 = path;
+    }
+    QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path2, Qt::MatchExactly|Qt::MatchRecursive, 0);
     if (!items.isEmpty()) {
         //qDebug() << " 长度为" << items.length();
         QTreeWidgetItem * item = items.first();
@@ -611,25 +635,32 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
         //QVector<QString> children_path_list;
         for (int i = 0; i < children.count; ++i) {
             QString children_path;
-            if (path != "/") {
-                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
-                //children_path_list.push_back(children_path);
-            } else {
-                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
-                //children_path_list.push_back(children_path);
-            }
-            //qDebug() << "节点" << children_path;
+            // if (path != "/") {
+            //     //children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
+            //     children_path = children.data[i];
+            //     //children_path_list.push_back(children_path);
+            // } else {
+            //     //children_path = QString::fromStdString(path.toStdString() + children.data[i]);
+            //     children_path = children.data[i];
+            //     //children_path_list.push_back(children_path);
+            // }
+            children_path = children.data[i];
+            qDebug() << "children_path " << children_path;
+            
+            QString path3 = children_path;
+            getParentNode(item, path3);
+            qDebug() << "rece_children_event path3 = " << path3;
             QList<QTreeWidgetItem*> items_c = ui->treeWidget->findItems(children_path, Qt::MatchExactly|Qt::MatchRecursive, 0);
             if (items_c.isEmpty()) {
                 qDebug() << "未找到，创建这个值" << children_path;
                 QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
                 itemChild->setText(0, children_path);
                 itemChild->setToolTip(0, children_path);
-                QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,children_path),Q_ARG(void*,this));
+                QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
             }
         }
     } else{
-        qDebug() << "输错";
+        qDebug() << "项为空 (节点可能被删除，正常)";
     }
 }
 
@@ -642,7 +673,17 @@ void zookeeperwidget::rece_delete_event(int code, QString message, QString path)
 {
     //节点被删除
     qDebug() << "删除事件，删除" << path;
-    QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path, Qt::MatchExactly|Qt::MatchRecursive, 0);
+
+    QStringList pathList = path.split("/");
+    //遍历treewidget 查找 path 的子节点，有没有没存在的
+    //获取节点层级
+    QString path2 = pathList.at(pathList.length()-1);
+    qDebug() << "pathList.at(pathList.length()-1 = " << path2;
+    if (path == "/") {
+        path2 = path;
+    }
+
+    QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path2, Qt::MatchExactly|Qt::MatchRecursive, 0);
     if (!items.isEmpty()) {
         qDebug() << "删除" << path;
         QTreeWidgetItem* parent = NULL;
@@ -663,7 +704,9 @@ void zookeeperwidget::rece_chanage_event(int code, QString message, QString path
     qDebug() << "节点变化" << path;
     //节点数据被改变
     //判断当前数据变化的节点是否属于当前展示节点，若不是，则忽略
-    QString path_ = ui->treeWidget->currentItem()->text(0);
+    QString path_;
+    getParentNode(ui->treeWidget->currentItem(), path_);
+    ui->treeWidget->currentItem()->text(0);
     qDebug() << "节点变化" << path << " "<<  path_;
     if (path_ == path && ui->checkBox_auto->isChecked()) {
         //获取节点信息
@@ -688,6 +731,7 @@ void zookeeperwidget::hideCreateWidget()
     ui->horizontalWidget_1_2_3_r->hide();
     ui->toolButton_createData->hide();
     ui->toolButton_saveData->hide();
+    ui->toolButton_cancel->hide();
 }
 
 void zookeeperwidget::showCreateWidget()
@@ -697,6 +741,8 @@ void zookeeperwidget::showCreateWidget()
     ui->horizontalWidget_1_2_3_r->show();
     ui->toolButton_createData->show();
     ui->toolButton_saveData->hide();
+    ui->toolButton_cancel->show();
+    setSupportStretch(this, true);
 }
 
 //void zookeeperwidget::hideCreateZkWidget()
@@ -735,6 +781,28 @@ void zookeeperwidget::showMessage(QString message, bool isSuccess)
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
     pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+void zookeeperwidget::getParentNode(QTreeWidgetItem *item, QString &data) {
+    QTreeWidgetItem *item_p = NULL;
+    item_p = item->parent();
+    if (item_p != NULL) {
+        qDebug() << "有父节点";
+        if (data == "") {
+            data = item->text(0);
+        } else {
+            data = item->text(0) + "/" + data;
+        }
+        getParentNode(item_p, data);
+
+    } else {
+        if (data == "") {
+            data = item->text(0);
+        } else {
+            data = "/"+ data;
+        }
+    }
+    return;
 }
 
 // void zookeeperwidget::on_toolButton_6_clicked()
@@ -802,4 +870,11 @@ void zookeeperwidget::on_toolButton_clear_clicked()
 void zookeeperwidget::on_toolButton_sensitive_clicked()
 {
 
+}
+
+void zookeeperwidget::on_toolButton_cancel_clicked()
+{
+    //取消
+    showNodeInfoWidget();
+    hideCreateWidget();
 }

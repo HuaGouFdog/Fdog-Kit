@@ -789,63 +789,63 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect->setColor(QColor(20, 30, 36));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->toolButton_inportFile->setGraphicsEffect(effect);
+    //ui->toolButton_inportFile->setGraphicsEffect(effect);
 
     QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect(this);
     effect2->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect2->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect2->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->lineEdit_find->setGraphicsEffect(effect2);
+    //ui->lineEdit_find->setGraphicsEffect(effect2);
 
     QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect(this);
     effect3->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect3->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect3->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->lineEdit_host->setGraphicsEffect(effect3);
+    //ui->lineEdit_host->setGraphicsEffect(effect3);
 
     QGraphicsDropShadowEffect *effect4 = new QGraphicsDropShadowEffect(this);
     effect4->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect4->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect4->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->comboBox_port->setGraphicsEffect(effect4);
+    //ui->comboBox_port->setGraphicsEffect(effect4);
 
     QGraphicsDropShadowEffect *effect5 = new QGraphicsDropShadowEffect(this);
     effect5->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect5->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect5->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->comboBox_transport->setGraphicsEffect(effect5);
+    //ui->comboBox_transport->setGraphicsEffect(effect5);
 
     QGraphicsDropShadowEffect *effect6 = new QGraphicsDropShadowEffect(this);
     effect6->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect6->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect6->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->comboBox_protocol->setGraphicsEffect(effect6);
+    //ui->comboBox_protocol->setGraphicsEffect(effect6);
 
     QGraphicsDropShadowEffect *effect7 = new QGraphicsDropShadowEffect(this);
     effect7->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect7->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect7->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->comboBox_reqType->setGraphicsEffect(effect7);
+    //ui->comboBox_reqType->setGraphicsEffect(effect7);
 
 
     QGraphicsDropShadowEffect *effect8 = new QGraphicsDropShadowEffect(this);
     effect8->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect8->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect8->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->comboBox_testType->setGraphicsEffect(effect8);
+    //ui->comboBox_testType->setGraphicsEffect(effect8);
 
     QGraphicsDropShadowEffect *effect9 = new QGraphicsDropShadowEffect(this);
     effect9->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect9->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect9->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->lineEdit_funcName->setGraphicsEffect(effect9);
+    //ui->lineEdit_funcName->setGraphicsEffect(effect9);
 
 
     QGraphicsDropShadowEffect *effect10 = new QGraphicsDropShadowEffect(this);
     effect10->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect10->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect10->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->comboBox_testType->setGraphicsEffect(effect10);
+    //ui->comboBox_testType->setGraphicsEffect(effect10);
 
     QGraphicsDropShadowEffect *effect11 = new QGraphicsDropShadowEffect(this);
     effect11->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
@@ -869,7 +869,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_thrift_api->setGraphicsEffect(effect14);
+    //ui->widget_thrift_api->setGraphicsEffect(effect14);
 
     // QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
     // effect15->setOffset(-2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散

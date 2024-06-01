@@ -68,6 +68,8 @@ public:
     void hideButton();
 
     void showMessage(QString message, bool isSuccess = true); //显示操作信息
+
+    void getParentNode(QTreeWidgetItem *item, QString &data);
 signals:
     void send_init(int buttonSid, int code);
 private slots:
@@ -136,6 +138,8 @@ private slots:
     void on_toolButton_clear_clicked();
 
     void on_toolButton_sensitive_clicked();
+
+    void on_toolButton_cancel_clicked();
 
 private:
     Ui::zookeeperwidget *ui;

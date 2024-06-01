@@ -39,6 +39,14 @@ public:
     QVBoxLayout *verticalLayout_9;
     QWidget *horizontalWidget_1_1_l;
     QHBoxLayout *horizontalLayout_2;
+    QWidget *horizontalWidget_1_3_l;
+    QHBoxLayout *horizontalLayout_3;
+    QWidget *widget_1_3_l_1;
+    QHBoxLayout *horizontalLayout_6;
+    QLineEdit *lineEdit_search;
+    QToolButton *toolButton_clear;
+    QToolButton *toolButton_sensitive;
+    QToolButton *toolButton_unfold;
     QWidget *horizontalWidget_1_2_l;
     QHBoxLayout *horizontalLayout;
     QLabel *label_node_head;
@@ -48,14 +56,6 @@ public:
     QToolButton *toolButton_add;
     QToolButton *toolButton__delete;
     QToolButton *toolButton_refresh;
-    QWidget *horizontalWidget_1_3_l;
-    QHBoxLayout *horizontalLayout_3;
-    QWidget *widget_1_3_l_1;
-    QHBoxLayout *horizontalLayout_6;
-    QLineEdit *lineEdit_search;
-    QToolButton *toolButton_clear;
-    QToolButton *toolButton_sensitive;
-    QToolButton *toolButton_unfold;
     QWidget *verticalWidget_1_4_l;
     QVBoxLayout *verticalLayout_2;
     QTreeWidget *treeWidget;
@@ -118,6 +118,7 @@ public:
     QToolButton *toolButton_copy_data;
     QSpacerItem *horizontalSpacer_2;
     QToolButton *toolButton_createData;
+    QToolButton *toolButton_cancel;
     QToolButton *toolButton_saveData;
 
     void setupUi(QWidget *zookeeperwidget)
@@ -148,32 +149,34 @@ public:
 "\n"
 "\n"
 "QMenu {\n"
-"\n"
-"background-color:rgb(253,253,254);\n"
-"/*padding:5px;*/\n"
-"padding: 3px 0px 3px 0px;\n"
+"background-color: rgb(30, 34, 39);\n"
+"padding:10px;\n"
+"margin:10px;\n"
+"/*padding: 3px 0px 3px 0px;*/\n"
 "border-radius:6px;\n"
-"border:2px solid rgb(108, 117, 125, 65); \n"
+"border:0px solid rgb(108, 117, 125, 65); \n"
 "}\n"
 "QMenu::item {\n"
 "	font-size: 10pt;\n"
-"	\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "	\n"
-"	color: rgb(63, 63, 63);\n"
-"    background-color:rgb(253,253,254);\n"
-"    padding: 5px 25px 5px 25px;\n"
-"    /*margin: 2px 2px 2px 2px;*/\n"
+"	color: rgb(214, 233, 234);\n"
+"    background-color: rgb(30, 34, 39);\n"
+"    /*padding: 5px 25px 5px 25px;*/\n"
+"    /*margin-left: 10px;*/\n"
+"    /*margin-right: 10px;*/\n"
 "}\n"
 "QMenu::item:selected {\n"
-"    background-color : rgb(236,236,237);\n"
+"	background-color: rgba(44, 49, 58, 250);\n"
+"	border-radius:6px;\n"
+"\n"
 "}\n"
 "QMenu::icon:checked {\n"
-"    background: rgb(253,253,254);\n"
+"    background: rgb(253,253,2"
+                        "54);\n"
 "    position: absolute;\n"
 "    top: 1px;\n"
-"    right: 1px;"
-                        "\n"
+"    right: 1px;\n"
 "    bottom: 1px;\n"
 "    left: 1px;\n"
 "}\n"
@@ -182,8 +185,8 @@ public:
 "    background-image: url(:/space_selected.png);\n"
 "}\n"
 "QMenu::separator {\n"
-"    height: 2px;\n"
-"    background: rgb(235,235,236);\n"
+"    height: 1px;\n"
+"    background: rgb(214, 233, 234);\n"
 "    /*margin-left: 10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
@@ -207,6 +210,7 @@ public:
 "border-right:2px solid rgba(108, 117, 125, 65); \n"
 "}"));
         verticalLayout_9 = new QVBoxLayout(verticalWidget_1_l);
+        verticalLayout_9->setSpacing(6);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         verticalLayout_9->setSizeConstraint(QLayout::SetDefaultConstraint);
         verticalLayout_9->setContentsMargins(-1, 9, 9, 9);
@@ -220,134 +224,6 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
 
         verticalLayout_9->addWidget(horizontalWidget_1_1_l);
-
-        horizontalWidget_1_2_l = new QWidget(verticalWidget_1_l);
-        horizontalWidget_1_2_l->setObjectName(QStringLiteral("horizontalWidget_1_2_l"));
-        horizontalWidget_1_2_l->setMinimumSize(QSize(0, 22));
-        horizontalLayout = new QHBoxLayout(horizontalWidget_1_2_l);
-        horizontalLayout->setSpacing(10);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_node_head = new QLabel(horizontalWidget_1_2_l);
-        label_node_head->setObjectName(QStringLiteral("label_node_head"));
-        label_node_head->setMaximumSize(QSize(40, 16777215));
-        QFont font3;
-        font3.setFamily(QStringLiteral("OPPOSans B"));
-        font3.setPointSize(10);
-        font3.setStyleStrategy(QFont::PreferAntialias);
-        label_node_head->setFont(font3);
-
-        horizontalLayout->addWidget(label_node_head);
-
-        label_node = new QLabel(horizontalWidget_1_2_l);
-        label_node->setObjectName(QStringLiteral("label_node"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(label_node->sizePolicy().hasHeightForWidth());
-        label_node->setSizePolicy(sizePolicy);
-        label_node->setFont(font3);
-        label_node->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-
-        horizontalLayout->addWidget(label_node);
-
-        horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
-        checkBox_auto_url = new QCheckBox(horizontalWidget_1_2_l);
-        checkBox_auto_url->setObjectName(QStringLiteral("checkBox_auto_url"));
-        checkBox_auto_url->setFont(font3);
-        checkBox_auto_url->setChecked(true);
-
-        horizontalLayout->addWidget(checkBox_auto_url);
-
-        toolButton_add = new QToolButton(horizontalWidget_1_2_l);
-        toolButton_add->setObjectName(QStringLiteral("toolButton_add"));
-        toolButton_add->setMinimumSize(QSize(60, 30));
-        toolButton_add->setMaximumSize(QSize(60, 30));
-        toolButton_add->setFont(font3);
-        toolButton_add->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_add->setIcon(icon);
-        toolButton_add->setIconSize(QSize(12, 12));
-        toolButton_add->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        horizontalLayout->addWidget(toolButton_add);
-
-        toolButton__delete = new QToolButton(horizontalWidget_1_2_l);
-        toolButton__delete->setObjectName(QStringLiteral("toolButton__delete"));
-        toolButton__delete->setMinimumSize(QSize(60, 30));
-        toolButton__delete->setMaximumSize(QSize(60, 30));
-        toolButton__delete->setFont(font3);
-        toolButton__delete->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/lib/delete2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton__delete->setIcon(icon1);
-        toolButton__delete->setIconSize(QSize(14, 14));
-        toolButton__delete->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        horizontalLayout->addWidget(toolButton__delete);
-
-        toolButton_refresh = new QToolButton(horizontalWidget_1_2_l);
-        toolButton_refresh->setObjectName(QStringLiteral("toolButton_refresh"));
-        toolButton_refresh->setMinimumSize(QSize(60, 30));
-        toolButton_refresh->setMaximumSize(QSize(60, 30));
-        toolButton_refresh->setFont(font3);
-        toolButton_refresh->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/lib/update2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_refresh->setIcon(icon2);
-        toolButton_refresh->setIconSize(QSize(14, 14));
-        toolButton_refresh->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-        horizontalLayout->addWidget(toolButton_refresh);
-
-
-        verticalLayout_9->addWidget(horizontalWidget_1_2_l);
 
         horizontalWidget_1_3_l = new QWidget(verticalWidget_1_l);
         horizontalWidget_1_3_l->setObjectName(QStringLiteral("horizontalWidget_1_3_l"));
@@ -376,10 +252,10 @@ public:
         lineEdit_search = new QLineEdit(widget_1_3_l_1);
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
         lineEdit_search->setMinimumSize(QSize(0, 27));
-        QFont font4;
-        font4.setFamily(QStringLiteral("OPPOSans B"));
-        font4.setPointSize(10);
-        lineEdit_search->setFont(font4);
+        QFont font3;
+        font3.setFamily(QStringLiteral("OPPOSans B"));
+        font3.setPointSize(10);
+        lineEdit_search->setFont(font3);
         lineEdit_search->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
 "color: rgb(255, 255, 255);"));
 
@@ -402,9 +278,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 95, 95, 0);\n"
 "}"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/lib/icon-close4.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_clear->setIcon(icon3);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/lib/icon-close4.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_clear->setIcon(icon);
         toolButton_clear->setIconSize(QSize(18, 18));
 
         horizontalLayout_6->addWidget(toolButton_clear);
@@ -433,9 +309,9 @@ public:
 "	\n"
 "	border: 1px solid rgb(143, 143, 143);\n"
 "}"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/lib/daxiao.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_sensitive->setIcon(icon4);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/daxiao.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_sensitive->setIcon(icon1);
         toolButton_sensitive->setCheckable(true);
         toolButton_sensitive->setChecked(false);
 
@@ -448,7 +324,11 @@ public:
         toolButton_unfold->setObjectName(QStringLiteral("toolButton_unfold"));
         toolButton_unfold->setMinimumSize(QSize(85, 28));
         toolButton_unfold->setMaximumSize(QSize(85, 28));
-        toolButton_unfold->setFont(font3);
+        QFont font4;
+        font4.setFamily(QStringLiteral("OPPOSans B"));
+        font4.setPointSize(10);
+        font4.setStyleStrategy(QFont::PreferAntialias);
+        toolButton_unfold->setFont(font4);
         toolButton_unfold->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
@@ -464,9 +344,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/lib/zhedie.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_unfold->setIcon(icon5);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/lib/zhedie.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_unfold->setIcon(icon2);
         toolButton_unfold->setIconSize(QSize(18, 18));
         toolButton_unfold->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -474,6 +354,130 @@ public:
 
 
         verticalLayout_9->addWidget(horizontalWidget_1_3_l);
+
+        horizontalWidget_1_2_l = new QWidget(verticalWidget_1_l);
+        horizontalWidget_1_2_l->setObjectName(QStringLiteral("horizontalWidget_1_2_l"));
+        horizontalWidget_1_2_l->setMinimumSize(QSize(0, 22));
+        horizontalLayout = new QHBoxLayout(horizontalWidget_1_2_l);
+        horizontalLayout->setSpacing(10);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label_node_head = new QLabel(horizontalWidget_1_2_l);
+        label_node_head->setObjectName(QStringLiteral("label_node_head"));
+        label_node_head->setMaximumSize(QSize(40, 16777215));
+        label_node_head->setFont(font4);
+
+        horizontalLayout->addWidget(label_node_head);
+
+        label_node = new QLabel(horizontalWidget_1_2_l);
+        label_node->setObjectName(QStringLiteral("label_node"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_node->sizePolicy().hasHeightForWidth());
+        label_node->setSizePolicy(sizePolicy);
+        label_node->setFont(font4);
+        label_node->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout->addWidget(label_node);
+
+        horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        checkBox_auto_url = new QCheckBox(horizontalWidget_1_2_l);
+        checkBox_auto_url->setObjectName(QStringLiteral("checkBox_auto_url"));
+        checkBox_auto_url->setFont(font4);
+        checkBox_auto_url->setChecked(true);
+
+        horizontalLayout->addWidget(checkBox_auto_url);
+
+        toolButton_add = new QToolButton(horizontalWidget_1_2_l);
+        toolButton_add->setObjectName(QStringLiteral("toolButton_add"));
+        toolButton_add->setMinimumSize(QSize(60, 30));
+        toolButton_add->setMaximumSize(QSize(60, 30));
+        toolButton_add->setFont(font4);
+        toolButton_add->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/lib/add2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_add->setIcon(icon3);
+        toolButton_add->setIconSize(QSize(12, 12));
+        toolButton_add->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout->addWidget(toolButton_add);
+
+        toolButton__delete = new QToolButton(horizontalWidget_1_2_l);
+        toolButton__delete->setObjectName(QStringLiteral("toolButton__delete"));
+        toolButton__delete->setMinimumSize(QSize(60, 30));
+        toolButton__delete->setMaximumSize(QSize(60, 30));
+        toolButton__delete->setFont(font4);
+        toolButton__delete->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/lib/delete2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton__delete->setIcon(icon4);
+        toolButton__delete->setIconSize(QSize(14, 14));
+        toolButton__delete->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout->addWidget(toolButton__delete);
+
+        toolButton_refresh = new QToolButton(horizontalWidget_1_2_l);
+        toolButton_refresh->setObjectName(QStringLiteral("toolButton_refresh"));
+        toolButton_refresh->setMinimumSize(QSize(60, 30));
+        toolButton_refresh->setMaximumSize(QSize(60, 30));
+        toolButton_refresh->setFont(font4);
+        toolButton_refresh->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/lib/update2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_refresh->setIcon(icon5);
+        toolButton_refresh->setIconSize(QSize(14, 14));
+        toolButton_refresh->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout->addWidget(toolButton_refresh);
+
+
+        verticalLayout_9->addWidget(horizontalWidget_1_2_l);
 
         verticalWidget_1_4_l = new QWidget(verticalWidget_1_l);
         verticalWidget_1_4_l->setObjectName(QStringLiteral("verticalWidget_1_4_l"));
@@ -485,15 +489,14 @@ public:
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        treeWidget->setFont(font4);
+        treeWidget->setFont(font3);
         treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-        treeWidget->setStyleSheet(QString::fromUtf8("QToolTip{\n"
-"	color: rgb(43, 43, 43);\n"
-"    font-size:12px;\n"
-"	width:1024;\n"
-"	height:40;\n"
+        treeWidget->setStyleSheet(QString::fromUtf8("\n"
+"QToolTip {\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(108, 117, 125, 65);\n"
+"border-radius: 2px;\n"
 "}\n"
-"\n"
 "\n"
 "QTreeWidget#treeWidget {\n"
 "	border: 0px solid #D3D6DD;\n"
@@ -533,9 +536,17 @@ public:
 "	height: 28px;\n"
 "	width: 28px;\n"
 "}\n"
+"QTreeView::branch:selected {\n"
+"}\n"
+"\n"
+"QTreeWidget::branch:!has-children:sele"
+                        "cted {\n"
+"}\n"
+"QTreeWidget::branch:!has-children:!selected {\n"
+"}\n"
+"\n"
 "QTreeWidget::branch:closed:has-children:!has-siblings,\n"
-"QTreeWidget::branch:closed:has-children"
-                        ":has-siblings {\n"
+"QTreeWidget::branch:closed:has-children:has-siblings {\n"
 "	border-image: none;\n"
 "    image: url(:/lib/tree_close.png);\n"
 "}\n"
@@ -544,6 +555,7 @@ public:
 "QTreeWidget::branch:open:has-children:has-siblings  {\n"
 "	border-image: none;\n"
 "    image: url(:/lib/tree_open.png);\n"
+"    \n"
 "}\n"
 "\n"
 "QScrollBar:vertical{\n"
@@ -561,7 +573,8 @@ public:
 "	background-color: rgb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
-"    min-height: 0;\n"
+"    min-height"
+                        ": 0;\n"
 "}\n"
 "\n"
 "QScrollBar::sub-page:vertical {\n"
@@ -570,8 +583,7 @@ public:
 "}\n"
 "QScrollBar::add-page:vertical \n"
 "{\n"
-"    background-color: rgba"
-                        "(255, 255, 255, 0);\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical {\n"
@@ -605,11 +617,11 @@ public:
 "\n"
 "QScrollBar::handle:horizontal {\n"
 "    height: 8px;\n"
-"	background-color: rgb(239, 239, 239);\n"
+"	background-color: r"
+                        "gb(239, 239, 239);\n"
 "    /*\346\273\232\345\212\250\346\235\241\344\270\244\347\253\257\345\217\230\346\210\220\346\244\255\345\234\206 */\n"
 "    border-radius: 2px;\n"
-"    min-heig"
-                        "ht: 0;\n"
+"    min-height: 0;\n"
 "}\n"
 "\n"
 "QScrollBar::sub-page:horizontal {\n"
@@ -641,26 +653,28 @@ public:
 "}\n"
 "\n"
 "QMenu {\n"
-"\n"
-"background-color:rgb(253,253,254);\n"
-"/*padding:5px;*/\n"
-"padding: 5px 0px 5px 0px;\n"
+"background-color: rgb(30, 34, 39);\n"
+"padding:10px;\n"
+"margin:10px;\n"
+"/*padding: 3px 0px 3px 0px;*/\n"
 "border-radius:6px;\n"
-"border:2px solid rgb(108, 117, 125, 65); \n"
+"border:0px solid rgb(108, "
+                        "117, 125, 65); \n"
 "}\n"
 "QMenu::item {\n"
 "	font-size: 10pt;\n"
-"	\n"
 "	font: 10pt \"OPPOSans B\";\n"
 "	\n"
-"	color: rgb(63, 63, 63);\n"
-"    background-color:rgb(253,253,254);\n"
-"    padding: 5px"
-                        " 25px 5px 25px;\n"
-"    /*margin: 2px 2px 2px 2px;*/\n"
+"	color: rgb(214, 233, 234);\n"
+"    background-color: rgb(30, 34, 39);\n"
+"    /*padding: 5px 25px 5px 25px;*/\n"
+"    /*margin-left: 10px;*/\n"
+"    /*margin-right: 10px;*/\n"
 "}\n"
 "QMenu::item:selected {\n"
-"    background-color : rgb(236,236,237);\n"
+"	background-color: rgba(44, 49, 58, 250);\n"
+"	border-radius:6px;\n"
+"\n"
 "}\n"
 "QMenu::icon:checked {\n"
 "    background: rgb(253,253,254);\n"
@@ -675,8 +689,8 @@ public:
 "    background-image: url(:/space_selected.png);\n"
 "}\n"
 "QMenu::separator {\n"
-"    height: 2px;\n"
-"    background: rgb(235,235,236);\n"
+"    height: 1px;\n"
+"    background: rgb(214, 233, 234);\n"
 "    /*margin-left: 10px;*/\n"
 "    /*margin-right: 10px;*/\n"
 "}"));
@@ -734,7 +748,7 @@ public:
 
         checkBox_auto = new QCheckBox(horizontalWidget_1_2_4_r);
         checkBox_auto->setObjectName(QStringLiteral("checkBox_auto"));
-        checkBox_auto->setFont(font3);
+        checkBox_auto->setFont(font4);
         checkBox_auto->setChecked(true);
 
         horizontalLayout_10->addWidget(checkBox_auto);
@@ -755,7 +769,7 @@ public:
         lineEdit_mzxid->setObjectName(QStringLiteral("lineEdit_mzxid"));
         lineEdit_mzxid->setMinimumSize(QSize(60, 0));
         lineEdit_mzxid->setMaximumSize(QSize(60, 16777215));
-        lineEdit_mzxid->setFont(font3);
+        lineEdit_mzxid->setFont(font4);
         lineEdit_mzxid->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_mzxid, 3, 1, 1, 1);
@@ -764,7 +778,7 @@ public:
         lineEdit_pzxid->setObjectName(QStringLiteral("lineEdit_pzxid"));
         lineEdit_pzxid->setMinimumSize(QSize(60, 0));
         lineEdit_pzxid->setMaximumSize(QSize(60, 16777215));
-        lineEdit_pzxid->setFont(font3);
+        lineEdit_pzxid->setFont(font4);
         lineEdit_pzxid->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_pzxid, 4, 1, 1, 1);
@@ -773,7 +787,7 @@ public:
         lineEdit_version->setObjectName(QStringLiteral("lineEdit_version"));
         lineEdit_version->setMinimumSize(QSize(60, 0));
         lineEdit_version->setMaximumSize(QSize(60, 16777215));
-        lineEdit_version->setFont(font3);
+        lineEdit_version->setFont(font4);
         lineEdit_version->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_version, 5, 1, 1, 1);
@@ -782,20 +796,20 @@ public:
         lineEdit_aversion->setObjectName(QStringLiteral("lineEdit_aversion"));
         lineEdit_aversion->setMinimumSize(QSize(60, 0));
         lineEdit_aversion->setMaximumSize(QSize(60, 16777215));
-        lineEdit_aversion->setFont(font3);
+        lineEdit_aversion->setFont(font4);
         lineEdit_aversion->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_aversion, 6, 1, 1, 1);
 
         label_cversion = new QLabel(gridWidget_1_1_r);
         label_cversion->setObjectName(QStringLiteral("label_cversion"));
-        label_cversion->setFont(font3);
+        label_cversion->setFont(font4);
 
         gridLayout->addWidget(label_cversion, 7, 0, 1, 1);
 
         label_aversion = new QLabel(gridWidget_1_1_r);
         label_aversion->setObjectName(QStringLiteral("label_aversion"));
-        label_aversion->setFont(font3);
+        label_aversion->setFont(font4);
 
         gridLayout->addWidget(label_aversion, 6, 0, 1, 1);
 
@@ -803,20 +817,20 @@ public:
         lineEdit_cversion->setObjectName(QStringLiteral("lineEdit_cversion"));
         lineEdit_cversion->setMinimumSize(QSize(60, 0));
         lineEdit_cversion->setMaximumSize(QSize(60, 16777215));
-        lineEdit_cversion->setFont(font3);
+        lineEdit_cversion->setFont(font4);
         lineEdit_cversion->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_cversion, 7, 1, 1, 1);
 
         label_pzxid = new QLabel(gridWidget_1_1_r);
         label_pzxid->setObjectName(QStringLiteral("label_pzxid"));
-        label_pzxid->setFont(font3);
+        label_pzxid->setFont(font4);
 
         gridLayout->addWidget(label_pzxid, 4, 0, 1, 1);
 
         label_version = new QLabel(gridWidget_1_1_r);
         label_version->setObjectName(QStringLiteral("label_version"));
-        label_version->setFont(font3);
+        label_version->setFont(font4);
 
         gridLayout->addWidget(label_version, 5, 0, 1, 1);
 
@@ -824,20 +838,20 @@ public:
         lineEdit_czxid->setObjectName(QStringLiteral("lineEdit_czxid"));
         lineEdit_czxid->setMinimumSize(QSize(60, 0));
         lineEdit_czxid->setMaximumSize(QSize(60, 16777215));
-        lineEdit_czxid->setFont(font3);
+        lineEdit_czxid->setFont(font4);
         lineEdit_czxid->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_czxid, 2, 1, 1, 1);
 
         label_mzxid = new QLabel(gridWidget_1_1_r);
         label_mzxid->setObjectName(QStringLiteral("label_mzxid"));
-        label_mzxid->setFont(font3);
+        label_mzxid->setFont(font4);
 
         gridLayout->addWidget(label_mzxid, 3, 0, 1, 1);
 
         label_dataLength = new QLabel(gridWidget_1_1_r);
         label_dataLength->setObjectName(QStringLiteral("label_dataLength"));
-        label_dataLength->setFont(font3);
+        label_dataLength->setFont(font4);
 
         gridLayout->addWidget(label_dataLength, 8, 0, 1, 1);
 
@@ -845,20 +859,20 @@ public:
         lineEdit_dataLength->setObjectName(QStringLiteral("lineEdit_dataLength"));
         lineEdit_dataLength->setMinimumSize(QSize(60, 0));
         lineEdit_dataLength->setMaximumSize(QSize(60, 16777215));
-        lineEdit_dataLength->setFont(font3);
+        lineEdit_dataLength->setFont(font4);
         lineEdit_dataLength->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_dataLength, 8, 1, 1, 1);
 
         label_czxid = new QLabel(gridWidget_1_1_r);
         label_czxid->setObjectName(QStringLiteral("label_czxid"));
-        label_czxid->setFont(font3);
+        label_czxid->setFont(font4);
 
         gridLayout->addWidget(label_czxid, 2, 0, 1, 1);
 
         label_mtime = new QLabel(gridWidget_1_1_r);
         label_mtime->setObjectName(QStringLiteral("label_mtime"));
-        label_mtime->setFont(font3);
+        label_mtime->setFont(font4);
 
         gridLayout->addWidget(label_mtime, 12, 0, 1, 1);
 
@@ -866,20 +880,20 @@ public:
         lineEdit_mtime->setObjectName(QStringLiteral("lineEdit_mtime"));
         lineEdit_mtime->setMinimumSize(QSize(155, 0));
         lineEdit_mtime->setMaximumSize(QSize(155, 16777215));
-        lineEdit_mtime->setFont(font3);
+        lineEdit_mtime->setFont(font4);
         lineEdit_mtime->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_mtime, 12, 1, 1, 1);
 
         label_numChildren = new QLabel(gridWidget_1_1_r);
         label_numChildren->setObjectName(QStringLiteral("label_numChildren"));
-        label_numChildren->setFont(font3);
+        label_numChildren->setFont(font4);
 
         gridLayout->addWidget(label_numChildren, 13, 0, 1, 1);
 
         label_ctime = new QLabel(gridWidget_1_1_r);
         label_ctime->setObjectName(QStringLiteral("label_ctime"));
-        label_ctime->setFont(font3);
+        label_ctime->setFont(font4);
 
         gridLayout->addWidget(label_ctime, 11, 0, 1, 1);
 
@@ -887,14 +901,14 @@ public:
         lineEdit_ctime->setObjectName(QStringLiteral("lineEdit_ctime"));
         lineEdit_ctime->setMinimumSize(QSize(155, 0));
         lineEdit_ctime->setMaximumSize(QSize(155, 16777215));
-        lineEdit_ctime->setFont(font3);
+        lineEdit_ctime->setFont(font4);
         lineEdit_ctime->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_ctime, 11, 1, 1, 1);
 
         label_ephemeralOwner = new QLabel(gridWidget_1_1_r);
         label_ephemeralOwner->setObjectName(QStringLiteral("label_ephemeralOwner"));
-        label_ephemeralOwner->setFont(font3);
+        label_ephemeralOwner->setFont(font4);
 
         gridLayout->addWidget(label_ephemeralOwner, 14, 0, 1, 1);
 
@@ -902,7 +916,7 @@ public:
         lineEdit_numChildren->setObjectName(QStringLiteral("lineEdit_numChildren"));
         lineEdit_numChildren->setMinimumSize(QSize(60, 0));
         lineEdit_numChildren->setMaximumSize(QSize(60, 16777215));
-        lineEdit_numChildren->setFont(font3);
+        lineEdit_numChildren->setFont(font4);
         lineEdit_numChildren->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_numChildren, 13, 1, 1, 1);
@@ -911,7 +925,7 @@ public:
         lineEdit_ephemeralOwner->setObjectName(QStringLiteral("lineEdit_ephemeralOwner"));
         lineEdit_ephemeralOwner->setMinimumSize(QSize(155, 0));
         lineEdit_ephemeralOwner->setMaximumSize(QSize(60, 16777215));
-        lineEdit_ephemeralOwner->setFont(font3);
+        lineEdit_ephemeralOwner->setFont(font4);
         lineEdit_ephemeralOwner->setReadOnly(true);
 
         gridLayout->addWidget(lineEdit_ephemeralOwner, 14, 1, 1, 1);
@@ -943,7 +957,7 @@ public:
         label_node_create->setObjectName(QStringLiteral("label_node_create"));
         label_node_create->setMinimumSize(QSize(100, 0));
         label_node_create->setMaximumSize(QSize(100, 16777215));
-        label_node_create->setFont(font3);
+        label_node_create->setFont(font4);
 
         horizontalLayout_7->addWidget(label_node_create);
 
@@ -951,7 +965,7 @@ public:
         lineEdit_node_create->setObjectName(QStringLiteral("lineEdit_node_create"));
         lineEdit_node_create->setMinimumSize(QSize(200, 28));
         lineEdit_node_create->setMaximumSize(QSize(200, 16777215));
-        lineEdit_node_create->setFont(font3);
+        lineEdit_node_create->setFont(font4);
         lineEdit_node_create->setStyleSheet(QLatin1String("QLineEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
@@ -982,7 +996,7 @@ public:
         label_node_type->setObjectName(QStringLiteral("label_node_type"));
         label_node_type->setMinimumSize(QSize(100, 0));
         label_node_type->setMaximumSize(QSize(100, 16777215));
-        label_node_type->setFont(font3);
+        label_node_type->setFont(font4);
 
         horizontalLayout_8->addWidget(label_node_type);
 
@@ -994,21 +1008,21 @@ public:
         comboBox_node_type->setObjectName(QStringLiteral("comboBox_node_type"));
         comboBox_node_type->setMinimumSize(QSize(200, 28));
         comboBox_node_type->setMaximumSize(QSize(200, 16777215));
-        comboBox_node_type->setFont(font3);
-        comboBox_node_type->setStyleSheet(QLatin1String("QComboBox{\n"
+        comboBox_node_type->setFont(font4);
+        comboBox_node_type->setStyleSheet(QString::fromUtf8("QComboBox{\n"
 "	color:#ffffff;\n"
-"	border:1px solid #8a8a8a;\n"
+"	border:0px solid #8a8a8a;\n"
 "	color: rgb(138, 138, 138);\n"
 "	border-radius:5px;\n"
-"	background:transparent;\n"
+"	background-color: rgb(25, 25, 25, 155);\n"
+"	padding-left:10px;\n"
+"	\n"
+"	font: 10pt \"OPPOSans B\";\n"
 "}\n"
 "\n"
-"QComboBox QAbstractItemView::item\n"
-"{\n"
-"height:28px;\n"
-"}\n"
+"\n"
 "QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
+"	border:0px solid gray;\n"
 "	color:gray;\n"
 "}\n"
 "\n"
@@ -1016,23 +1030,48 @@ public:
 "	background:transparent;\n"
 "}\n"
 "QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
+"	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
+"	margin-right: 10px;\n"
 "}\n"
 "\n"
 "\n"
 "QComboBox::down-arrow:enabled{\n"
 "	color:#52DCFE;\n"
 "}\n"
+"\n"
+"\n"
 "QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	outline: 0px solid gray;   /* \351\200\211\345\256\232\351\241\271\347\232\204\350\231\232\346\241\206 */\n"
 "	border:1px solid #1e2d36;\n"
 "	color:#ffffff;\n"
 "	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
+"	selection-background-color:rgb(37, 84, 138);\n"
+"	border-radius:0px;\n"
+"	padding-bottom:2px;\n"
+"	padding-top:2px;\n"
 "}\n"
 "\n"
+"QComboBox QAbstractItemView::item\n"
+""
+                        "{\n"
+"	height:30px;\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	border-radius:5px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item:hover {\n"
+"    color:rgb(255,255,255);\n"
+"	background-color: rgb(37, 84, 138);\n"
+"}\n"
+" \n"
+"/* \344\270\213\346\213\211\345\220\216\357\274\214\346\225\264\344\270\252\344\270\213\346\213\211\347\252\227\344\275\223\350\242\253\351\200\211\346\213\251\347\232\204\346\257\217\351\241\271\347\232\204\346\240\267\345\274\217 */\n"
+"QComboBox QAbstractItemView::item:selected {\n"
+"    color:rgb(255,255,255);\n"
+"	background-color: rgb(37, 84, 138);\n"
+"}\n"
 ""));
 
         horizontalLayout_8->addWidget(comboBox_node_type);
@@ -1055,7 +1094,7 @@ public:
         label_node_acl->setObjectName(QStringLiteral("label_node_acl"));
         label_node_acl->setMinimumSize(QSize(100, 0));
         label_node_acl->setMaximumSize(QSize(100, 16777215));
-        label_node_acl->setFont(font3);
+        label_node_acl->setFont(font4);
 
         horizontalLayout_9->addWidget(label_node_acl);
 
@@ -1067,21 +1106,21 @@ public:
         comboBox_node_acl->setObjectName(QStringLiteral("comboBox_node_acl"));
         comboBox_node_acl->setMinimumSize(QSize(200, 28));
         comboBox_node_acl->setMaximumSize(QSize(200, 16777215));
-        comboBox_node_acl->setFont(font3);
-        comboBox_node_acl->setStyleSheet(QLatin1String("QComboBox{\n"
+        comboBox_node_acl->setFont(font4);
+        comboBox_node_acl->setStyleSheet(QString::fromUtf8("QComboBox{\n"
 "	color:#ffffff;\n"
-"	border:1px solid #8a8a8a;\n"
+"	border:0px solid #8a8a8a;\n"
 "	color: rgb(138, 138, 138);\n"
 "	border-radius:5px;\n"
-"	background:transparent;\n"
+"	background-color: rgb(25, 25, 25, 155);\n"
+"	padding-left:10px;\n"
+"	\n"
+"	font: 10pt \"OPPOSans B\";\n"
 "}\n"
 "\n"
-"QComboBox QAbstractItemView::item\n"
-"{\n"
-"height:28px;\n"
-"}\n"
+"\n"
 "QComboBox:disabled{\n"
-"	border:1px solid gray;\n"
+"	border:0px solid gray;\n"
 "	color:gray;\n"
 "}\n"
 "\n"
@@ -1089,23 +1128,48 @@ public:
 "	background:transparent;\n"
 "}\n"
 "QComboBox::down-arrow{\n"
-"	border-image: url(:/lib/up.png);\n"
+"	image: url(:/lib/tree_open.png);\n"
 "    width:20px;\n"
 "	height:20px;\n"
+"	margin-right: 10px;\n"
 "}\n"
 "\n"
 "\n"
 "QComboBox::down-arrow:enabled{\n"
 "	color:#52DCFE;\n"
 "}\n"
+"\n"
+"\n"
 "QComboBox QAbstractItemView{\n"
-"	outline:0px solid gray;\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	outline: 0px solid gray;   /* \351\200\211\345\256\232\351\241\271\347\232\204\350\231\232\346\241\206 */\n"
 "	border:1px solid #1e2d36;\n"
 "	color:#ffffff;\n"
 "	background-color:#1e2d36;\n"
-"	selection-background-color:#52DCFE;\n"
+"	selection-background-color:rgb(37, 84, 138);\n"
+"	border-radius:0px;\n"
+"	padding-bottom:2px;\n"
+"	padding-top:2px;\n"
 "}\n"
 "\n"
+"QComboBox QAbstractItemView::item\n"
+""
+                        "{\n"
+"	height:30px;\n"
+"	font: 10pt \"OPPOSans B\";\n"
+"	border-radius:5px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item:hover {\n"
+"    color:rgb(255,255,255);\n"
+"	background-color: rgb(37, 84, 138);\n"
+"}\n"
+" \n"
+"/* \344\270\213\346\213\211\345\220\216\357\274\214\346\225\264\344\270\252\344\270\213\346\213\211\347\252\227\344\275\223\350\242\253\351\200\211\346\213\251\347\232\204\346\257\217\351\241\271\347\232\204\346\240\267\345\274\217 */\n"
+"QComboBox QAbstractItemView::item:selected {\n"
+"    color:rgb(255,255,255);\n"
+"	background-color: rgb(37, 84, 138);\n"
+"}\n"
 ""));
 
         horizontalLayout_9->addWidget(comboBox_node_acl);
@@ -1125,7 +1189,7 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         verticalWidget_1_2_5_2_r = new QWidget(verticalWidget_1_2_5_r);
         verticalWidget_1_2_5_2_r->setObjectName(QStringLiteral("verticalWidget_1_2_5_2_r"));
-        verticalWidget_1_2_5_2_r->setFont(font4);
+        verticalWidget_1_2_5_2_r->setFont(font3);
         verticalWidget_1_2_5_2_r->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(verticalWidget_1_2_5_2_r);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -1138,9 +1202,11 @@ public:
         sizePolicy1.setHeightForWidth(textEdit_data->sizePolicy().hasHeightForWidth());
         textEdit_data->setSizePolicy(sizePolicy1);
         textEdit_data->setMinimumSize(QSize(0, 0));
-        textEdit_data->setFont(font3);
+        textEdit_data->setFont(font4);
         textEdit_data->setStyleSheet(QString::fromUtf8("#textEdit_data{\n"
 "	border: 1px solid rgba(197, 197, 197,50);\n"
+"	\n"
+"	background-color: rgba(255, 255, 255, 50);\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -1174,11 +1240,11 @@ public:
 "QScrollBar::add-line:vertical {\n"
 "	border: none;\n"
 "    height: 0px;\n"
-"    subcontrol-position: bottom;\n"
+"    subcontrol-position"
+                        ": bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-""
-                        "QScrollBar::sub-line:vertical {\n"
+"QScrollBar::sub-line:vertical {\n"
 "    border: none;\n"
 "    height: 0px;\n"
 "    subcontrol-position: top;\n"
@@ -1206,7 +1272,7 @@ public:
         horizontalLayout_4->setContentsMargins(5, 6, 5, 0);
         label_data_type = new QLabel(horizontalWidget_1_2_5_1r);
         label_data_type->setObjectName(QStringLiteral("label_data_type"));
-        label_data_type->setFont(font3);
+        label_data_type->setFont(font4);
         label_data_type->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         horizontalLayout_4->addWidget(label_data_type);
@@ -1248,7 +1314,7 @@ public:
         toolButton_createData->setObjectName(QStringLiteral("toolButton_createData"));
         toolButton_createData->setMinimumSize(QSize(60, 28));
         toolButton_createData->setMaximumSize(QSize(60, 28));
-        toolButton_createData->setFont(font3);
+        toolButton_createData->setFont(font4);
         toolButton_createData->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
@@ -1269,11 +1335,36 @@ public:
 
         horizontalLayout_4->addWidget(toolButton_createData);
 
+        toolButton_cancel = new QToolButton(horizontalWidget_1_2_5_1r);
+        toolButton_cancel->setObjectName(QStringLiteral("toolButton_cancel"));
+        toolButton_cancel->setMinimumSize(QSize(60, 28));
+        toolButton_cancel->setMaximumSize(QSize(60, 28));
+        toolButton_cancel->setFont(font4);
+        toolButton_cancel->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        toolButton_cancel->setIconSize(QSize(14, 14));
+        toolButton_cancel->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout_4->addWidget(toolButton_cancel);
+
         toolButton_saveData = new QToolButton(horizontalWidget_1_2_5_1r);
         toolButton_saveData->setObjectName(QStringLiteral("toolButton_saveData"));
         toolButton_saveData->setMinimumSize(QSize(60, 28));
         toolButton_saveData->setMaximumSize(QSize(60, 28));
-        toolButton_saveData->setFont(font3);
+        toolButton_saveData->setFont(font4);
         toolButton_saveData->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
@@ -1316,16 +1407,16 @@ public:
     void retranslateUi(QWidget *zookeeperwidget)
     {
         zookeeperwidget->setWindowTitle(QApplication::translate("zookeeperwidget", "Form", nullptr));
+        lineEdit_search->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242", nullptr));
+        toolButton_clear->setText(QApplication::translate("zookeeperwidget", "\346\270\205\351\231\244", nullptr));
+        toolButton_sensitive->setText(QString());
+        toolButton_unfold->setText(QApplication::translate("zookeeperwidget", "\345\205\250\351\203\250\346\212\230\345\217\240", nullptr));
         label_node_head->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\357\274\232", nullptr));
         label_node->setText(QApplication::translate("zookeeperwidget", "/", nullptr));
         checkBox_auto_url->setText(QApplication::translate("zookeeperwidget", "\350\207\252\345\212\250url\350\247\243\347\240\201", nullptr));
         toolButton_add->setText(QApplication::translate("zookeeperwidget", "\346\267\273\345\212\240", nullptr));
         toolButton__delete->setText(QApplication::translate("zookeeperwidget", "\345\210\240\351\231\244", nullptr));
         toolButton_refresh->setText(QApplication::translate("zookeeperwidget", "\345\210\267\346\226\260", nullptr));
-        lineEdit_search->setPlaceholderText(QApplication::translate("zookeeperwidget", "\346\220\234\347\264\242", nullptr));
-        toolButton_clear->setText(QApplication::translate("zookeeperwidget", "\346\270\205\351\231\244", nullptr));
-        toolButton_sensitive->setText(QString());
-        toolButton_unfold->setText(QApplication::translate("zookeeperwidget", "\345\205\250\351\203\250\346\212\230\345\217\240", nullptr));
         label_data->setText(QApplication::translate("zookeeperwidget", "\350\212\202\347\202\271\346\225\260\346\215\256", nullptr));
         checkBox_auto->setText(QApplication::translate("zookeeperwidget", "\350\207\252\345\212\250\345\210\267\346\226\260", nullptr));
         lineEdit_mzxid->setText(QApplication::translate("zookeeperwidget", "0", nullptr));
@@ -1371,6 +1462,7 @@ public:
         label_data_type->setText(QApplication::translate("zookeeperwidget", "\346\225\260\346\215\256\347\261\273\345\236\213\357\274\232json", nullptr));
         toolButton_copy_data->setText(QString());
         toolButton_createData->setText(QApplication::translate("zookeeperwidget", "\345\210\233\345\273\272", nullptr));
+        toolButton_cancel->setText(QApplication::translate("zookeeperwidget", "\345\217\226\346\266\210", nullptr));
         toolButton_saveData->setText(QApplication::translate("zookeeperwidget", "\344\277\256\346\224\271", nullptr));
     } // retranslateUi
 
