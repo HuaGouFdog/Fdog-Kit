@@ -8,6 +8,18 @@ addcommondwidget::addcommondwidget(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::WindowCloseButtonHint);
+    isEdit = false;
+}
+
+addcommondwidget::addcommondwidget(QString name, QString data, bool isLineFeed) :
+    ui(new Ui::addcommondwidget)
+{
+    ui->setupUi(this);
+    setWindowFlags(Qt::WindowCloseButtonHint);
+    ui->lineEdit_name->setText(name);
+    ui->textEdit_date->append(data);
+    ui->checkBox_enter->setChecked(isLineFeed);
+    isEdit = true;
 }
 
 addcommondwidget::~addcommondwidget()
@@ -52,6 +64,11 @@ void addcommondwidget::on_toolButton_cancel_clicked()
 
 void addcommondwidget::on_toolButton_ok_clicked()
 {
-    emit send_addCommond(ui->lineEdit_name->text(), ui->textEdit_date->toPlainText());
+    if (isEdit) {
+        emit send_addCommond(ui->lineEdit_name->text(), ui->textEdit_date->toPlainText(), ui->lineEdit_name->text(), ui->checkBox_enter->isChecked());
+    } else {
+        emit send_addCommond(ui->lineEdit_name->text(), ui->textEdit_date->toPlainText(), "", ui->checkBox_enter->isChecked());
+    }
+    
     this->hide();
 }

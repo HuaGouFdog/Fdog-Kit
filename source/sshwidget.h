@@ -254,7 +254,7 @@ public:
         KeepAnchor
     };
 
-    QWidget * createCommand(QString name, QString data);
+    QWidget * createCommand(QString name, QString data, bool isLineFeed);
 
     //发送命令
     void sendCommandData(QString data);
@@ -417,7 +417,7 @@ private slots:
 
     void rece_ssh_sftp_init();
 
-    void rece_addCommond(QString name, QString data, QString oldData);
+    void rece_addCommond(QString name, QString data, QString oldData, bool isLineFeed);
 
     void rece_mkdirFolder(QString data);
 
@@ -464,7 +464,12 @@ private:
     addcommondwidget * addcwidget = NULL;
     mkdirfolderwidget * mkdirfwidget = NULL;
 
-    QMap<QString, QString> commondList;
+    struct commondInfo {
+        QString commond;
+        bool isLineFeed;
+    };
+
+    QMap<QString, commondInfo> commondList;
 
     QString lastCommondS; //上一条命令
     QString lastData;  //上一条返回的数据

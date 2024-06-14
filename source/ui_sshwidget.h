@@ -1220,7 +1220,8 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	color: rgb(208, 208, 208);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));

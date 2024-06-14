@@ -13,10 +13,11 @@ class addcommondwidget : public QWidget
 
 public:
     explicit addcommondwidget(QWidget *parent = 0);
+    explicit addcommondwidget(QString name, QString data, bool isLineFeed);
     ~addcommondwidget();
 
 signals:
-    void send_addCommond(QString, QString);
+    void send_addCommond(QString, QString, QString, bool);
 
 private slots:
     void on_toolButton_param1_clicked();
@@ -37,6 +38,7 @@ private slots:
 
 private:
     Ui::addcommondwidget *ui;
+    bool isEdit = false;
 };
 
 #endif // ADDCOMMONDWIDGET_H

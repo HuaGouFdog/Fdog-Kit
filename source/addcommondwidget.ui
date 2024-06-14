@@ -167,6 +167,12 @@ padding-right:10px;
       </item>
       <item>
        <widget class="QTextEdit" name="textEdit_date">
+        <property name="font">
+         <font>
+          <family>OPPOSans B</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">QTextEdit{
 color:#ced4da;

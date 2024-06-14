@@ -384,7 +384,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     QWidget * cWidget = ui->tabWidget->currentWidget();
     FlowLayout *flowLayout = new FlowLayout(5, 0, 0);
     for(int i = 0; i< 20; i++) {
-        flowLayout->addWidget(createCommand("命令" + QString::number(i), "xxxxxxxxxxxxxxxxxxx"));
+        flowLayout->addWidget(createCommand("命令" + QString::number(i), "cd /data/linkdood", true));
        //flowLayout->addWidget(new QPushButton("命令" + QString::number(i)));
     }
     flowLayout->setSpacing(30);
@@ -401,7 +401,7 @@ sshwidget::~sshwidget()
     delete ui;
 }
 
-QWidget * sshwidget::createCommand(QString name, QString data) {
+QWidget * sshwidget::createCommand(QString name, QString data, bool isLineFeed) {
     QWidget * widget = new QWidget();
     widget->setObjectName(name);
     //widget->setText(name);
@@ -417,7 +417,11 @@ QWidget * sshwidget::createCommand(QString name, QString data) {
     button->setStyleSheet("background-color: rgba(200, 200, 200, 0);");
     connect (button,SIGNAL(clicked()),this,SLOT(rece_clicked_edit()));
 
-    commondList[name] = data;
+    commondInfo cinfo;
+    cinfo.commond = data;
+    cinfo.isLineFeed = isLineFeed;
+
+    commondList[name] = cinfo;
     QHBoxLayout* layout = new QHBoxLayout();
     layout->setSpacing(0);
     layout->setContentsMargins(2, 2, 2, 2);
@@ -2212,7 +2216,7 @@ void sshwidget::rece_addCommond_sgin()
 {
     //添加命令
     addcwidget = new addcommondwidget();
-    connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString)),this,SLOT(rece_addCommond(QString, QString, QString)));
+    connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString, bool)),this,SLOT(rece_addCommond(QString, QString, QString, bool)));
     addcwidget->show();
 }
 
@@ -2319,12 +2323,12 @@ void sshwidget::rece_ssh_sftp_init()
     //初始化完成
 }
 
-void sshwidget::rece_addCommond(QString name, QString data, QString oldData) {
+void sshwidget::rece_addCommond(QString name, QString data, QString oldData, bool isLineFeed) {
     //添加命令
     qDebug() << "rece_addCommond name = " << name  << " data = " << data;
     if (oldData == "") {
         qDebug() << "新增";
-        QWidget * commondWidget = createCommand(name, data);
+        QWidget * commondWidget = createCommand(name, data, isLineFeed);
         QWidget * cWidget = ui->tabWidget->currentWidget();
         cWidget->layout()->addWidget(commondWidget);
     } else {
@@ -2350,7 +2354,10 @@ void sshwidget::rece_addCommond(QString name, QString data, QString oldData) {
                                 button->setText(name);
                                 //删除旧数据
                                 commondList.remove(oldName);
-                                commondList[name] = data;
+                                commondInfo cInfo;
+                                cInfo.commond = data;
+                                cInfo.isLineFeed = isLineFeed;
+                                commondList[name] = cInfo;
                                 ui->label_command->setText(name);
                                 ui->label_edit->setText(data);
                             }
@@ -2386,9 +2393,14 @@ void sshwidget::rece_clicked_run()
     if (button) {
         ui->label_command->setText(button->text());
         ui->label_edit->clear();
-        ui->label_edit->setText(commondList[button->text()]);
-        qDebug() << "执行" << button->text() << "命令:" << commondList[button->text()];
-        sendCommandData(commondList[button->text()]);
+        ui->label_edit->setText(commondList[button->text()].commond);
+        qDebug() << "执行" << button->text() << "命令:" << commondList[button->text()].commond;
+        if (commondList[button->text()].isLineFeed) {
+            sendCommandData(commondList[button->text()].commond + "\n");
+        } else {
+            sendCommandData(commondList[button->text()].commond);
+        }
+        
     }
 }
 
@@ -2398,7 +2410,7 @@ void sshwidget::rece_clicked_edit()
     if (button) {
         ui->label_command->setText(button->text());
         ui->label_edit->clear();
-        ui->label_edit->setText(commondList[button->text()]);
+        ui->label_edit->setText(commondList[button->text()].commond);
         //qDebug() << "执行" << button->text() << "命令:" << commondList[button->text()];
     }
 }
@@ -2406,9 +2418,9 @@ void sshwidget::rece_clicked_edit()
 void sshwidget::on_toolButton_edit_clicked()
 {
     //修改
-    addcwidget = new addcommondwidget(ui->label_command->text(), ui->label_edit->text());
+    addcwidget = new addcommondwidget(ui->label_command->text(), ui->label_edit->text(), commondList[ui->label_command->text()].isLineFeed);
     //addcwidget->textEdit_date
-    connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString)),this,SLOT(rece_addCommond(QString, QString, QString)));
+    connect(addcwidget,SIGNAL(send_addCommond(QString, QString, QString, bool)),this,SLOT(rece_addCommond(QString, QString, QString, bool)));
     addcwidget->show();
 }
 

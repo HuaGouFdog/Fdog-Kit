@@ -139,6 +139,10 @@ public:
 
         textEdit_date = new QTextEdit(widget_body);
         textEdit_date->setObjectName(QStringLiteral("textEdit_date"));
+        QFont font1;
+        font1.setFamily(QStringLiteral("OPPOSans B"));
+        font1.setPointSize(10);
+        textEdit_date->setFont(font1);
         textEdit_date->setStyleSheet(QLatin1String("QTextEdit{\n"
 "color:#ced4da;\n"
 "border-radius: 14px;\n"
