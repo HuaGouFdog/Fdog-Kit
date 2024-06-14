@@ -309,6 +309,7 @@ public:
         icon.addFile(QStringLiteral(":/lib/icon9.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QLatin1String("QMainWindow,QWidget#centralWidget {\n"
+"background-color: rgb(67, 67, 67);\n"
 "border-radius:10px;\n"
 "}\n"
 "\n"
@@ -348,9 +349,9 @@ public:
 "QMenu::separator {\n"
 "    height: 2px;\n"
 "    background: rgb(235,235,236);\n"
-"    /*margin-left: 10px;*/\n"
-"    /*margin-right: 10px;*/"
-                        "\n"
+"    /*margin-left: "
+                        "10px;*/\n"
+"    /*margin-right: 10px;*/\n"
 "}"));
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         centralWidget = new QWidget(MainWindow);
@@ -3021,7 +3022,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 823, 518));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 828, 518));
         scrollAreaWidgetContents->setMaximumSize(QSize(16777215, 6000));
         scrollAreaWidgetContents->setStyleSheet(QStringLiteral(""));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
@@ -3698,7 +3699,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(0);
         stackedWidget_tool->setCurrentIndex(3);
 

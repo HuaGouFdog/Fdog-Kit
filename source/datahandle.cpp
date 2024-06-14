@@ -109,11 +109,11 @@ void datahandle::stringToHtmlFilter(QString &str)
     //qDebug() << "对数据进行替换:" << str;
     //这里有个问题，有些空格会被包含在里面，如果背景有颜色，空格也会有颜色
     //注意这几行代码的顺序不能乱，否则会造成多次替换
-    str.replace("&","&amp;");
-    str.replace(">","&gt;");
-    str.replace("<","&lt;");
+    // str.replace("&","&amp;");
+    // str.replace(">","&gt;");
+    // str.replace("<","&lt;");
     //str.replace("\"","&quot;");
-    str.replace("\'","&#39;");
+    //str.replace("\'","&#39;");
     //str.replace(" ","&nbsp;");
     //str.replace("\r\r\n","<br>");
     //str.replace("\r\n","<br>");
@@ -126,10 +126,10 @@ QString datahandle::replaceAmpersand(QString original) {
 }
 void datahandle::stringToHtmlFilter_s(QString &str) {
     str = replaceAmpersand(str);
-    str.replace(">","&gt;");
-    str.replace("<","&lt;");
+    //str.replace(">","&gt;");
+    //str.replace("<","&lt;");
     //str.replace("\"","&quot;");
-    str.replace("\'","&#39;");
+    //str.replace("\'","&#39;");
     //str.replace(" ","&nbsp;");
     //str.replace("\r\r\n","<br>");
     //str.replace("\r\n","<br>");
@@ -330,10 +330,10 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
         QString cc = regex.cap(6);
         //regex.cap(8) 是空白符;
         QString blankChar = regex.cap(8);
-        stringToHtmlFilter(blankChar);
+        //stringToHtmlFilter(blankChar);
         //qDebug() << "cc = " << cc;
-        stringToHtmlFilter(cc);
-        stringToHtml(cc, fontCrl, backCrl);
+        //stringToHtmlFilter(cc);
+        //stringToHtml(cc, fontCrl, backCrl);
         //替换
         cc = cc + blankChar;
         //qDebug() << "替换前pos = " << pos << " 后面字符为" << data.mid(pos);
@@ -365,7 +365,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     //走到这里说明没有颜色参数了，处理空白符  但是如果两段颜色间有呢
     QString endStr = data.mid(pos2);
     //qDebug() << "blankChar.mid(pos2) = " << endStr;
-    stringToHtmlFilter_s(endStr);
+    //stringToHtmlFilter_s(endStr);
     data = data.mid(0, pos2) + endStr;
     //qDebug() << "最后data 数据为" << data;
     // if (!isRegex) {
@@ -438,22 +438,22 @@ QString datahandle::processData(QString data)
     //\u001B[01;34mzx_test\u001B[0m
 
     //stringToHtmlFilter3(data);
-    if (data.contains(">")) {
-        //光标左移动
-        int position = data.indexOf(">");
-        if (data.mid((position - 1), position) != "\u001B") {
-            data.replace(">","&gt;");
-        }
-    }
-    //data.replace(">","&gt;");
-    data.replace("<","&lt;");
+    // if (data.contains(">")) {
+    //     //光标左移动
+    //     int position = data.indexOf(">");
+    //     if (data.mid((position - 1), position) != "\u001B") {
+    //         data.replace(">","&gt;");
+    //     }
+    // }
+    // //data.replace(">","&gt;");
+    // data.replace("<","&lt;");
 
     data = processDataStatsAndColor(head, commond, data);
 
     stringToHtmlFilter2(data);
     
     //处理默认属性
-    stringToHtmlFilter4(data);
+    //stringToHtmlFilter4(data);
 
     //清除光标
     //stringToHtmlFilter5(data);

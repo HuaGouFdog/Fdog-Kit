@@ -301,7 +301,7 @@ void sshhandle::init_poll()
             if (fds->revents & LIBSSH2_POLLFD_POLLIN) {
                 // 可读事件发生，可以读取数据
                 // 使用libssh2_channel_read等函数读取数据
-                char buffer[4096 * 10] = {0};
+                char buffer[4096 * 100] = {0};
                 int bytesRead;
                 //int c = 0;
                 //while (c++ < 2) {
@@ -310,7 +310,7 @@ void sshhandle::init_poll()
                     buffer[bytesRead] = '\0';
                     //qDebug() << buffer;
                     //a = buffer;
-                    QTest::qSleep(100);
+                    //QTest::qSleep(100);
                     //通知ui
                     //processData只处理颜色，属性，类似退格等由sshwidget完成
                     //对内容进行分组处理

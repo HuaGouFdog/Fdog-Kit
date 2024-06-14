@@ -1109,7 +1109,7 @@ QProgressBar:chunk{
                      <x>0</x>
                      <y>0</y>
                      <width>1229</width>
-                     <height>155</height>
+                     <height>349</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1160,25 +1160,28 @@ background:transparent;</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QMenu {
-background-color: rgb(30, 34, 39);
+background-color: rgb(255, 255, 255);
 padding:10px;
 margin:10px;
 /*padding: 3px 0px 3px 0px;*/
 border-radius:6px;
 border:0px solid rgb(108, 117, 125, 65); 
+	
 }
 QMenu::item {
 	font-size: 10pt;
 	font: 10pt &quot;OPPOSans B&quot;;
 	
-	color: rgb(214, 233, 234);
-    background-color: rgb(30, 34, 39);
+	
+	color: rgb(59, 59, 59);
+    background-color: rgb(255, 255, 255);
     /*padding: 5px 25px 5px 25px;*/
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }
 QMenu::item:selected {
-	background-color: rgba(44, 49, 58, 250);
+	
+	background-color: rgba(167, 167, 167, 200);
 	border-radius:6px;
 
 }
@@ -1196,12 +1199,12 @@ QMenu::icon:checked:selected {
 }
 QMenu::separator {
     height: 1px;
-    background: rgb(214, 233, 234);
+    background: rgb(80, 80, 80,200);
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }</string>
                       </property>
-                      <widget class="QTextEdit" name="textEdit">
+                      <widget class="QPlainTextEdit" name="plainTextEdit">
                        <property name="enabled">
                         <bool>true</bool>
                        </property>
@@ -1236,11 +1239,8 @@ QMenu::separator {
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">QTextEdit{
+                        <string notr="true">QPlainTextEdit{
 	/*background-color: rgba(0, 41, 69, 0);*/
-	
-	
-	background-color: rgb(48, 10, 36);
 	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
 	border: none;
 	padding-top:0px;
@@ -1251,7 +1251,7 @@ QMenu::separator {
     color: rgba(0,0,0,0);
 }
 
-QTextEdit::cursor {
+QPlainTextEdit::cursor {
      background-color: red;
 }
 
@@ -1309,25 +1309,6 @@ QScrollBar::up-arrow:vertical {
                        <property name="lineWidth">
                         <number>1</number>
                        </property>
-                       <property name="lineWrapMode">
-                        <enum>QTextEdit::NoWrap</enum>
-                       </property>
-                       <property name="lineWrapColumnOrWidth">
-                        <number>100</number>
-                       </property>
-                       <property name="readOnly">
-                        <bool>false</bool>
-                       </property>
-                       <property name="html">
-                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                       </property>
-                       <property name="textInteractionFlags">
-                        <set>Qt::TextEditorInteraction</set>
-                       </property>
                       </widget>
                      </widget>
                     </item>
@@ -1343,7 +1324,8 @@ p, li { white-space: pre-wrap; }
     width: 10px;
 	/*background-color: rgba(0, 41, 69, 0);*/
 	
-	background-color: rgb(48, 10, 36);
+	
+	background-color: rgb(57, 91, 121);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
     padding-bottom: 0px;
@@ -1860,8 +1842,7 @@ QMenu::separator {
            <widget class="QWidget" name="widget_3" native="true">
             <property name="styleSheet">
              <string notr="true">#widget_3 {
-	
-	background-color: rgb(10, 31, 57);
+	background-color: rgba(10, 31, 57, 200);
 	border-radius: 10px;
 }
 </string>
@@ -1871,16 +1852,16 @@ QMenu::separator {
               <number>0</number>
              </property>
              <property name="leftMargin">
-              <number>9</number>
+              <number>10</number>
              </property>
              <property name="topMargin">
-              <number>0</number>
+              <number>5</number>
              </property>
              <property name="rightMargin">
-              <number>9</number>
+              <number>10</number>
              </property>
              <property name="bottomMargin">
-              <number>5</number>
+              <number>0</number>
              </property>
              <item>
               <widget class="QTabWidget" name="tabWidget">
@@ -1968,7 +1949,7 @@ QTabBar QToolButton:hover {
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="tab">
                 <attribute name="title">
@@ -1979,512 +1960,23 @@ QTabBar QToolButton:hover {
                 <attribute name="title">
                  <string> minic </string>
                 </attribute>
-                <layout class="QHBoxLayout" name="horizontalLayout_3">
-                 <item>
-                  <widget class="QTextEdit" name="textEdit_5">
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
-                 </item>
-                </layout>
+                <layout class="QHBoxLayout" name="horizontalLayout_3"/>
                </widget>
                <widget class="QWidget" name="tab_3">
                 <attribute name="title">
                  <string> java </string>
                 </attribute>
-                <widget class="QTextEdit" name="textEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>10</y>
-                   <width>561</width>
-                   <height>211</height>
-                  </rect>
-                 </property>
-                 <property name="readOnly">
-                  <bool>false</bool>
-                 </property>
-                 <property name="html">
-                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cascadia Mono,OPPOSans B'; font-size:12pt;&quot;&gt;1\\b1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                </widget>
-                <widget class="QScrollArea" name="scrollArea_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>580</x>
-                   <y>160</y>
-                   <width>461</width>
-                   <height>61</height>
-                  </rect>
-                 </property>
-                 <property name="widgetResizable">
-                  <bool>true</bool>
-                 </property>
-                 <widget class="QWidget" name="scrollAreaWidgetContents_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>500</width>
-                    <height>89</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>500</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_23">
-                   <item>
-                    <widget class="QTextEdit" name="textEdit_3">
-                     <property name="html">
-                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111111111111111111111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111111111111111111111111111111111111111111111111&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;111111111111111&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit">
-                 <property name="geometry">
-                  <rect>
-                   <x>610</x>
-                   <y>20</y>
-                   <width>221</width>
-                   <height>31</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="pushButton">
-                 <property name="geometry">
-                  <rect>
-                   <x>850</x>
-                   <y>20</y>
-                   <width>75</width>
-                   <height>31</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>PushButton</string>
-                 </property>
-                </widget>
                </widget>
                <widget class="QWidget" name="tab_4">
                 <attribute name="title">
                  <string> 打包 </string>
                 </attribute>
-                <widget class="QProgressBar" name="progressBar_swap_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>200</y>
-                   <width>120</width>
-                   <height>14</height>
-                  </rect>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QProgressBar {
-	border: 0px solid;
-	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
-	text-align:center; 
-	color: rgba(0, 0, 0, 200);
-}
-
-QProgressBar:chunk{
-	border-radius:2px;
-	
-	background-color: rgb(0, 255, 0);
-}</string>
-                 </property>
-                 <property name="value">
-                  <number>0</number>
-                 </property>
-                 <property name="textDirection">
-                  <enum>QProgressBar::TopToBottom</enum>
-                 </property>
-                 <property name="format">
-                  <string>%p%</string>
-                 </property>
-                </widget>
-                <widget class="QProgressBar" name="progressBar_cpu_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>50</y>
-                   <width>120</width>
-                   <height>14</height>
-                  </rect>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QProgressBar {
-	border: 0px solid;
-	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
-	text-align:right; 
-	color: rgba(0, 0, 0, 200);
-}
-
-QProgressBar:chunk{
-	border-radius:2px;
-	
-	background-color: rgb(0, 255, 0);
-}</string>
-                 </property>
-                 <property name="value">
-                  <number>29</number>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="textDirection">
-                  <enum>QProgressBar::TopToBottom</enum>
-                 </property>
-                 <property name="format">
-                  <string>%p%</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_swap_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>170</y>
-                   <width>30</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>交换</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_cpu_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>20</y>
-                   <width>30</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>cpu</string>
-                 </property>
-                </widget>
-                <widget class="QProgressBar" name="progressBar_mem_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>150</y>
-                   <width>120</width>
-                   <height>14</height>
-                  </rect>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QProgressBar {
-	border: 0px solid;
-	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
-	text-align:center; 
-	color: rgba(0, 0, 0, 200);
-}
-
-QProgressBar:chunk{
-	border-radius:2px;
-	
-	background-color: rgb(0, 255, 0);
-}</string>
-                 </property>
-                 <property name="value">
-                  <number>0</number>
-                 </property>
-                 <property name="format">
-                  <string>%p%</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_disk_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>70</y>
-                   <width>30</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>磁盘</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_mem_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>120</y>
-                   <width>30</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>内存</string>
-                 </property>
-                </widget>
-                <widget class="QProgressBar" name="progressBar_disk_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>100</y>
-                   <width>120</width>
-                   <height>14</height>
-                  </rect>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>120</width>
-                   <height>14</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QProgressBar {
-	border: 0px solid;
-	
-	border-color: rgb(180, 180, 180);
-	border-radius: 2px; 
-	background-color: #FFFFFF; 
-	text-align:center; 
-	color: rgba(0, 0, 0, 200);
-}
-
-QProgressBar:chunk{
-	border-radius:2px;
-	
-	background-color: rgb(0, 255, 0);
-}</string>
-                 </property>
-                 <property name="value">
-                  <number>0</number>
-                 </property>
-                 <property name="format">
-                  <string>%p%</string>
-                 </property>
-                </widget>
-                <widget class="QProgressBar" name="progressBar">
-                 <property name="geometry">
-                  <rect>
-                   <x>190</x>
-                   <y>70</y>
-                   <width>121</width>
-                   <height>23</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="maximum">
-                  <number>100</number>
-                 </property>
-                 <property name="value">
-                  <number>0</number>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                 </property>
-                 <property name="invertedAppearance">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-                <widget class="QTextEdit" name="textEdit_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>630</x>
-                   <y>10</y>
-                   <width>471</width>
-                   <height>211</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                   <stylestrategy>PreferAntialias</stylestrategy>
-                  </font>
-                 </property>
-                 <property name="html">
-                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;123.tar.gz111111111111111111111111&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ew&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ewq&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;eq&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ewq&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ewq&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ew&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;qe&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;qe&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;qe&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;wqe&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;q&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                </widget>
-                <widget class="QToolButton" name="toolButton_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>380</x>
-                   <y>110</y>
-                   <width>91</width>
-                   <height>31</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(96, 255, 216);</string>
-                 </property>
-                 <property name="text">
-                  <string>...</string>
-                 </property>
-                </widget>
                </widget>
                <widget class="QWidget" name="tab_5">
                 <attribute name="title">
                  <string>页</string>
                 </attribute>
-                <layout class="QVBoxLayout" name="verticalLayout_9">
-                 <item>
-                  <widget class="QPlainTextEdit" name="plainTextEdit"/>
-                 </item>
-                </layout>
+                <layout class="QVBoxLayout" name="verticalLayout_9"/>
                </widget>
               </widget>
              </item>

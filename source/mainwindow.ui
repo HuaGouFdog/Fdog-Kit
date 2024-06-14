@@ -41,6 +41,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow,QWidget#centralWidget {
+background-color: rgb(67, 67, 67);
 border-radius:10px;
 }
 
@@ -1949,7 +1950,7 @@ color: rgb(255, 255, 255);</string>
              <number>1</number>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="page">
              <property name="styleSheet">
@@ -5326,7 +5327,7 @@ QScrollBar::up-arrow:horizontal {
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>823</width>
+                          <width>828</width>
                           <height>518</height>
                          </rect>
                         </property>

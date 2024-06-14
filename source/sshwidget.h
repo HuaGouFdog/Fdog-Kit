@@ -10,6 +10,7 @@
 #include <QThread>
 #include <QScrollBar>
 #include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QClipboard>
 #include <QTextCursor>
 #include <QInputMethodEvent>
@@ -19,10 +20,10 @@
 #include "addcommondwidget.h"
 #include "config.h"
 #include "utils.h"
-class CustomTextEdit : public QTextEdit {
+class CustomPlainTextEdit : public QPlainTextEdit {
     Q_OBJECT
 public:
-    CustomTextEdit(QWidget *parent = nullptr) : QTextEdit(parent) {}
+    CustomPlainTextEdit(QWidget *parent = nullptr) : QPlainTextEdit(parent) {}
 
 signals:
     void send_mousePress_sign();
@@ -56,7 +57,7 @@ protected:
             emit send_mousePress_sign();
 //        }
         // 将事件传递给父类的实现
-        QTextEdit::mousePressEvent(event);
+        QPlainTextEdit::mousePressEvent(event);
     }
 
     void mouseDoubleClickEvent(QMouseEvent *event) override {
@@ -104,7 +105,7 @@ protected:
         }
 
            // 如果没有找到非空字符，则继续默认的双击事件处理
-           QTextEdit::mouseDoubleClickEvent(event);
+           QPlainTextEdit::mouseDoubleClickEvent(event);
     }
 
     void resizeEvent(QResizeEvent *event) override
@@ -112,7 +113,7 @@ protected:
         qDebug() << "resizeEvent 被调用";
         //QTextEdit::resizeEvent(event);
         emit send_resize_sign();
-        QTextEdit::resizeEvent(event);
+        QPlainTextEdit::resizeEvent(event);
     }
 
 private:
@@ -220,7 +221,7 @@ protected:
             if (mouseEvent->button() == Qt::LeftButton) {
                 //qDebug("Mouse clicked inside QTextEdit!");
                 // 获取 QTextEdit 控件
-                QTextEdit *textEdit = qobject_cast<QTextEdit *>(obj);
+                QPlainTextEdit *textEdit = qobject_cast<QPlainTextEdit *>(obj);
 
                 // 获取 QTextEdit 控件的矩形区域
                 QRect textEditRect = textEdit->rect();
@@ -454,7 +455,7 @@ private:
 
     QScrollBar *scrollBar_textEdit = NULL;
     QScrollBar *scrollBar_textEdit_s = NULL;
-    CustomTextEdit *textEdit_s;
+    CustomPlainTextEdit *textEdit_s;
     findwidget * fwidget = NULL;
     QVector<fileProgressWidget *> fwidgetList;
     downloadwidget * dlwidget = NULL;
@@ -523,6 +524,8 @@ private:
     connnectInfoStruct cInfoStruct;
 
     QString buffData; //存普通数据
+
+    int gsum = 0;
 };
 
 #endif // SSHWIDGET_H

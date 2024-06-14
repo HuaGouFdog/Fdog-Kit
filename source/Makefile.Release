@@ -282,7 +282,7 @@ release\FdogShell_resource.res: FdogShell_resource.rc
 	rc /NOLOGO $(DEFINES) -fo release\FdogShell_resource.res FdogShell_resource.rc
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Release FdogShell.pro -spec win32-msvc "CONFIG+=debug"
+	@$(QMAKE) -o Makefile.Release FdogShell.pro -spec win32-msvc
 
 qmake_all: FORCE
 
@@ -780,6 +780,9 @@ release\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QM
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \
@@ -1452,6 +1455,9 @@ release\moc_sshwidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWi
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \
@@ -4172,6 +4178,9 @@ release\moc_activate.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWid
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \
@@ -4590,6 +4599,9 @@ release\main.obj: main.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \
@@ -4905,6 +4917,9 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \
@@ -5287,7 +5302,9 @@ release\zookeeperwidget.obj: zookeeperwidget.cpp ..\..\Qt5.12\5.10.0\msvc2015_64
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTreeWidget \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		utils.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect
 
 release\createconnect.obj: createconnect.cpp createconnect.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -5894,6 +5911,9 @@ release\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \
@@ -5948,13 +5968,6 @@ release\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollArea \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
@@ -5968,6 +5981,8 @@ release\sshwidget.obj: sshwidget.cpp sshwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCharFormat \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextOption \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTextCodec \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextcodec.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QElapsedTimer \
@@ -6403,12 +6418,11 @@ release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qframe.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractitemview.h \
@@ -6433,6 +6447,8 @@ release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontdatabase.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollArea \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollarea.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QScrollBar \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qscrollbar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSplitter \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsplitter.h \
@@ -6461,8 +6477,14 @@ release\toolswidget.obj: toolswidget.cpp toolswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QCryptographicHash \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcryptographichash.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QThread \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qthread.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QElapsedTimer \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qelapsedtimer.h
 
 release\toolshandle.obj: toolshandle.cpp toolshandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
@@ -9035,7 +9057,21 @@ release\zookeepertipswidget.obj: zookeepertipswidget.cpp zookeepertipswidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		utils.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h
 
 release\zookeepermanagewidget.obj: zookeepermanagewidget.cpp zookeepermanagewidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -9228,7 +9264,13 @@ release\zookeepermanagewidget.obj: zookeepermanagewidget.cpp zookeepermanagewidg
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstandardpaths.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QUrl \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QGraphicsDropShadowEffect \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
+		utils.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h
 
 release\flowlayout.obj: flowlayout.cpp ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QtWidgets \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QtWidgetsDepends \
@@ -9948,6 +9990,9 @@ release\activate.obj: activate.cpp activate.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QPlainTextEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QClipboard \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qclipboard.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\QTextCursor \

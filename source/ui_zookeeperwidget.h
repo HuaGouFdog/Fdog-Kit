@@ -1206,7 +1206,7 @@ public:
         textEdit_data->setStyleSheet(QString::fromUtf8("#textEdit_data{\n"
 "	border: 1px solid rgba(197, 197, 197,50);\n"
 "	\n"
-"	background-color: rgba(255, 255, 255, 50);\n"
+"	background-color: rgba(255, 255, 255, 20);\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"

@@ -40,6 +40,10 @@ private slots:
 
     void on_toolButton_16_10_clicked();
 
+    void on_verticalScrollBar_valueChanged(int value);
+
+    void on_toolButton_2_clicked();
+
 private:
     Ui::toolswidget *ui;
 };

@@ -72,12 +72,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     setSupportStretch(this, true);
     this->cInfoStruct = cInfoStruct;
 
-    ui->textEdit_2->setOverwriteMode(true);
 
     ui->splitter_2->setStretchFactor(0,5);
     ui->splitter_2->setStretchFactor(1,1);
 
-    ui->textEdit->viewport()->setCursor(Qt::ArrowCursor);
+    ui->plainTextEdit->viewport()->setCursor(Qt::ArrowCursor);
     //表格自适应
     //ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
@@ -145,12 +144,12 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     threadSftp->start();
     qDebug("执行3");
     //QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-    textEdit_s = new CustomTextEdit(this);
+    textEdit_s = new CustomPlainTextEdit(this);
     textEdit_s->setReadOnly(true);
     textEdit_s->viewport()->setCursor(Qt::ArrowCursor);
-    textEdit_s->setLineWrapMode(QTextEdit::NoWrap); //自动换行
+    textEdit_s->setLineWrapMode(QPlainTextEdit::NoWrap); //自动换行
     //textEdit_s->setLineWrapColumnOrWidth(200);
-    textEdit_s->setStyleSheet("CustomTextEdit{ \
+    textEdit_s->setStyleSheet("CustomPlainTextEdit{ \
                                 background-color: rgb(0, 41, 169, 0);\
                                 selection-background-color: rgb(50, 130, 190);\
                                 font: 12pt \"Cascadia Mono,OPPOSans B\";\
@@ -208,11 +207,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
                                 }");
 
 
-    QString cc = "连接主机中...<br>";
-    ui->textEdit->insertHtml(cc);
-    QString cc2 = "连接主机中...<br>";
+    QString cc = "连接主机中...";
+    ui->plainTextEdit->appendPlainText(cc);
+    QString cc2 = "连接主机中...";
     movePositionEnd();
-    textEdit_s->insertHtml(cc2);
+    textEdit_s->appendPlainText(cc2);
 
     QPalette palette = textEdit_s->palette();
     palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
@@ -223,16 +222,16 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(keyFilter,SIGNAL(send_key_sign(QString)),this,
             SLOT(rece_key_sign(QString)));
 
-    ui->textEdit->installEventFilter(keyFilter);
+    ui->plainTextEdit->installEventFilter(keyFilter);
 
     mouseFilter = new MouseFilter(this);
-    QTextCursor cursor2=ui->textEdit->textCursor();
+    QTextCursor cursor2=ui->plainTextEdit->textCursor();
     lineNumber = cursor2.blockNumber() + 1;
     columnNumber = cursor2.columnNumber();
 
     movePos = false;
 
-    ui->textEdit->setCursorWidth(2);
+    ui->plainTextEdit->setCursorWidth(2);
 
     dlwidget = new downloadwidget(textEdit_s);
     fwidget = new findwidget(textEdit_s);
@@ -250,7 +249,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     Layout->setStackingMode(QStackedLayout::StackAll);
     Layout->setContentsMargins(0,0,0,0);
     Layout->addWidget(textEdit_s);
-    Layout->addWidget(ui->textEdit);
+    Layout->addWidget(ui->plainTextEdit);
 
     ui->widget_9->setLayout(Layout);
 
@@ -261,7 +260,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(textEdit_s,SIGNAL(send_resize_sign()),this,
             SLOT(rece_resize_sign()));
 
-    scrollBar_textEdit = ui->textEdit->verticalScrollBar();
+    scrollBar_textEdit = ui->plainTextEdit->verticalScrollBar();
 
     scrollBar_textEdit_s = textEdit_s->verticalScrollBar();
     connect(scrollBar_textEdit_s,SIGNAL(valueChanged(int)),this,
@@ -271,11 +270,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     //textEdit_s->setContextMenuPolicy(Qt::NoContextMenu);
 
     textEdit_s->setUndoRedoEnabled(false);
-    ui->textEdit->setUndoRedoEnabled(false);
-    textEdit_s->setLineWrapMode(QTextEdit::NoWrap);
-    ui->textEdit->setLineWrapMode(QTextEdit::NoWrap);
+    ui->plainTextEdit->setUndoRedoEnabled(false);
+    textEdit_s->setLineWrapMode(QPlainTextEdit::NoWrap);
+    ui->plainTextEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
 
-    ui->textEdit->document ()->setMaximumBlockCount(10000);
+    ui->plainTextEdit->document ()->setMaximumBlockCount(10000);
     textEdit_s->document ()->setMaximumBlockCount(10000);
 
     QAction *findAction = new QAction(tr("查找     Ctrl+Shift+F"), textEdit_s);
@@ -312,8 +311,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
    effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-   effect->setColor(QColor(30, 30, 30));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-   effect->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+   effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+   effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
    contextMenu->setGraphicsEffect(effect);
 
     contextMenu->addAction(findAction);
@@ -348,10 +347,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     //ui->widget_4->hide();
     //ui->horizontalWidget->hide();
 
-    ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->plainTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     textEdit_s->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    ui->textEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->plainTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     textEdit_s->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     isScrollBar = false;
@@ -380,10 +379,6 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
         ui->widget->hide();
         ui->toolButton_conectStats->hide();
     }
-
-    ui->textEdit_4->append("<scrollRegion top=\"1\" bottom=\"26\"/>\n");
-    ui->textEdit_4->append("Hello, world!\n");
-    ui->textEdit_4->append("<scrollDown/>\n");
 
     //获取当前tab页widget
     QWidget * cWidget = ui->tabWidget->currentWidget();
@@ -425,7 +420,7 @@ QWidget * sshwidget::createCommand(QString name, QString data) {
     commondList[name] = data;
     QHBoxLayout* layout = new QHBoxLayout();
     layout->setSpacing(0);
-    layout->setContentsMargins(4, 2, 2, 2);
+    layout->setContentsMargins(2, 2, 2, 2);
     layout->addWidget(button_name);
     layout->addWidget(button);
     widget->setLayout(layout);
@@ -461,7 +456,7 @@ void sshwidget::sendData(QString data)
     //str.replace("&nbsp;", " ");
     //qDebug() << "当前数据 = " << textEdit_s->toPlainText();
     //记录当前终端图标位置
-    //ui->textEdit->setHtml("");
+    //ui->plainTextEdit->setHtml("");
     //textEdit_s->setHtml("");
     int cpos = getCurrentRowPositionByLocal();
 
@@ -499,12 +494,12 @@ void sshwidget::sendData(QString data)
     
     QTextCursor cursor_s = textEdit_s->textCursor();
     
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     // QPalette palette2 = textEdit_s->palette();
     // palette2.setColor(QPalette::Text, Qt::red);
     // textEdit_s->setPalette(palette2);
-    // cursor_s.beginEditBlock();
-    // cursor.beginEditBlock();
+    cursor_s.beginEditBlock();
+    cursor.beginEditBlock();
 
     
     cursor_s.insertText(data);
@@ -512,17 +507,17 @@ void sshwidget::sendData(QString data)
 
     cursor.insertText(data2); //color:ffffff:
 
-    // cursor_s.endEditBlock();
-    // cursor.endEditBlock();  
+    cursor_s.endEditBlock();
+    cursor.endEditBlock();  
 
     setUpdatesEnabled(true);
 
     int cpos2 = getCurrentRowPositionByLocal();
 
 
-    // QPalette palette = ui->textEdit->palette();
-    // palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-    // ui->textEdit->setPalette(palette);
+    QPalette palette = ui->plainTextEdit->palette();
+    palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
+    ui->plainTextEdit->setPalette(palette);
 
     cpos2 = getCurrentRowPositionByLocal();
     qDebug() << "移动了" << cpos2 - cpos << "行";
@@ -538,7 +533,7 @@ void sshwidget::sendData2(QString data) {
         return;
     }
 
-    // QTextCursor cursor = ui->textEdit->textCursor();
+    // QTextCursor cursor = ui->plainTextEdit->textCursor();
     // int currentPosition = cursor.position();
     // QTextCursor cursor_s = textEdit_s->textCursor();
     // cursor_s.setPosition(currentPosition);
@@ -553,36 +548,36 @@ void sshwidget::sendData2(QString data) {
         qDebug() << "现数据 = " << data;
     }
 
-    textEdit_s->insertHtml(data);
+    textEdit_s->appendPlainText(data);
     QString data2 =data;
     //qDebug()<< "data = " << data;
     //data2.replace("opacity: 1;","opacity: 0;");
-    ui->textEdit->insertHtml(data2);
+    ui->plainTextEdit->appendPlainText(data2);
 
 
     //qDebug()<< "data2 = " << data2;
-    QPalette palette = ui->textEdit->palette();
+    QPalette palette = ui->plainTextEdit->palette();
     palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-    ui->textEdit->setPalette(palette);
+    ui->plainTextEdit->setPalette(palette);
     qDebug() << "sendData2 当前行数据 =" << movePositionEndLineSelect();
 }
 
 void sshwidget::setData(QString data)
 {
 
-    ui->textEdit->setHtml("");
-    ui->textEdit->setHtml(data);
+    ui->plainTextEdit->appendPlainText("");
+    ui->plainTextEdit->appendPlainText(data);
 
-    textEdit_s->setHtml("");
-    textEdit_s->setHtml(data);
+    textEdit_s->appendPlainText("");
+    textEdit_s->appendPlainText(data);
     movePositionEnd();
 }
 
 void sshwidget::movePositionUp(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, n);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, n);
@@ -598,9 +593,9 @@ void sshwidget::movePositionUp_s(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionDown(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, n);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, n);
@@ -616,9 +611,9 @@ void sshwidget::movePositionDown_s(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionLeft(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, n);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, n);
@@ -634,9 +629,9 @@ void sshwidget::movePositionLeft_s(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRight(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, n);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, n);
@@ -652,9 +647,9 @@ void sshwidget::movePositionRight_s(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionStartLine(sshwidget::MoveMode mode)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::StartOfLine);
@@ -663,9 +658,9 @@ void sshwidget::movePositionStartLine(sshwidget::MoveMode mode)
 
 void sshwidget::movePositionEndLine(sshwidget::MoveMode mode)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::EndOfLine);
@@ -674,9 +669,9 @@ void sshwidget::movePositionEndLine(sshwidget::MoveMode mode)
 
 void sshwidget::movePositionEnd(sshwidget::MoveMode mode)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::End);
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::End);
@@ -685,13 +680,13 @@ void sshwidget::movePositionEnd(sshwidget::MoveMode mode)
 
 QString sshwidget::movePositionLeftSelect(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
 
 QString sshwidget::movePositionEndLineSelect(sshwidget::MoveMode mode, int n) {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     return cursor.selectedText();
 }
@@ -703,7 +698,7 @@ QString sshwidget::getSelectText_s() {
 
 QString sshwidget::movePositionRightSelect(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     return cursor.selectedText();
 }
@@ -711,11 +706,11 @@ QString sshwidget::movePositionRightSelect(sshwidget::MoveMode mode, int n)
 void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 {
 
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
     //qDebug() << "选择删除 = " << cursor.selectedText();
     cursor.removeSelectedText();
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
@@ -726,10 +721,10 @@ void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRemoveRightSelect(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     cursor.removeSelectedText();
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
@@ -739,7 +734,7 @@ void sshwidget::movePositionRemoveRightSelect(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 {
-    // QTextCursor cursor3 = ui->textEdit->textCursor();
+    // QTextCursor cursor3 = ui->plainTextEdit->textCursor();
     // cursor3.movePosition(QTextCursor::StartOfLine);
     // cursor3.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     // QString currentLine = cursor3.selectedText();
@@ -747,11 +742,11 @@ void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
     // // 输出到控制台
     // qDebug() << "当前光标所在行的内容：" << currentLine;
 
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     qDebug() << "选择删除 = " << cursor.selectedText();
     cursor.removeSelectedText();
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
@@ -761,10 +756,10 @@ void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRemoveRight(sshwidget::MoveMode mode, int n)
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
     cursor.deletePreviousChar();
-    ui->textEdit->setTextCursor(cursor);
+    ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
@@ -790,7 +785,7 @@ void sshwidget::setCurrentRowPositionToZero() {
 
 //获取当前光标对于控件位置
 int sshwidget::getCurrentRowPositionByLocal() {
-    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
     QTextLayout *lay = tc.block().layout();
     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
     int currentLineLocal = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
@@ -809,14 +804,14 @@ int sshwidget::getCurrentRowPositionByLocal_s() {
 
 //获取当前列位置
 int sshwidget::getCurrentColumnPosition() {
-    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
     QTextLayout *lay = tc.block().layout();
     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
     return iCurPos;
 }
 
 int sshwidget::getCurrentColumnPositionByLocal() {
-    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
     QTextLayout *lay = tc.block().layout();
     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
     return iCurPos;
@@ -833,13 +828,13 @@ int sshwidget::getCurrentColumnPositionByLocal_s() {
 //获取当前列对于行尾长度
 int sshwidget::getTolineLength() {
     //获取当前光标位置
-    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+    QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
     // 移动光标到行尾
     //tc.movePosition(QTextCursor::EndOfLine);
     tc.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     //qDebug() << "选择的字符 = " << tc.selectedText();
     // 计算光标当前位置到行尾的长度
-    int length = tc.position() - ui->textEdit->textCursor().position();
+    int length = tc.position() - ui->plainTextEdit->textCursor().position();
     //qDebug() << "当前光标距离尾行长度为 =" << length;
 
 
@@ -894,21 +889,21 @@ void sshwidget::sendBuffData() {
 
 void sshwidget::appendData(QString data) {
     //获取滚动条位置
-    bool atEnd = ui->textEdit->verticalScrollBar()->value() >= ui->textEdit->verticalScrollBar()->maximum();
+    bool atEnd = ui->plainTextEdit->verticalScrollBar()->value() >= ui->plainTextEdit->verticalScrollBar()->maximum();
     QTextCharFormat fmt;
 
-    QTextCursor tmp(ui->textEdit->document());
+    QTextCursor tmp(ui->plainTextEdit->document());
 
     tmp.beginEditBlock();
     tmp.movePosition(QTextCursor::End);
 
-    if (!ui->textEdit->document()->isEmpty())
+    if (!ui->plainTextEdit->document()->isEmpty())
     {
-        tmp.insertBlock(ui->textEdit->textCursor().blockFormat(), ui->textEdit->textCursor().charFormat());
+        tmp.insertBlock(ui->plainTextEdit->textCursor().blockFormat(), ui->plainTextEdit->textCursor().charFormat());
     }
     else {
 
-        tmp.setCharFormat(ui->textEdit->textCursor().charFormat());
+        tmp.setCharFormat(ui->plainTextEdit->textCursor().charFormat());
     }
 
     tmp.movePosition(QTextCursor::End);
@@ -917,14 +912,14 @@ void sshwidget::appendData(QString data) {
     tmp.insertText(data, fmt);
 
     // preserve the char format
-    QTextCharFormat oldCharFormat = ui->textEdit->textCursor().charFormat();
+    QTextCharFormat oldCharFormat = ui->plainTextEdit->textCursor().charFormat();
 
-    if (!ui->textEdit->textCursor().hasSelection())
-        ui->textEdit->textCursor().setCharFormat(oldCharFormat);
+    if (!ui->plainTextEdit->textCursor().hasSelection())
+        ui->plainTextEdit->textCursor().setCharFormat(oldCharFormat);
 
     tmp.endEditBlock();
     if (atEnd)
-        ui->textEdit->verticalScrollBar()->setValue(ui->textEdit->verticalScrollBar()->maximum());
+        ui->plainTextEdit->verticalScrollBar()->setValue(ui->plainTextEdit->verticalScrollBar()->maximum());
 }
 
 
@@ -971,13 +966,13 @@ void sshwidget::on_textEdit_cursorPositionChanged()
 void sshwidget::rece_init()
 {
     // 设置焦点策略为强制获取焦点
-    ui->textEdit->setFocusPolicy(Qt::NoFocus);
-    ui->textEdit->setFocus();
+    ui->plainTextEdit->setFocusPolicy(Qt::NoFocus);
+    ui->plainTextEdit->setFocus();
     qDebug("开始调用init_poll");
-    QString cc = "主机连接成功<br>";
-    ui->textEdit->insertHtml(cc);
+    QString cc = "主机连接成功\n";
+    ui->plainTextEdit->appendPlainText(cc);
     movePositionEnd();
-    textEdit_s->insertHtml(cc);
+    textEdit_s->appendPlainText(cc);
 
     QPalette palette = textEdit_s->palette();
     palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
@@ -1003,12 +998,12 @@ void sshwidget::rece_channel_readS(QStringList data)
     data = data.mid(1);
     int i = 0;
     for(i = 0; i < data.length(); i++) {
-        if (gsum++ % 5 == 0) {
+        if (gsum++ % 20 == 0) {
             qDebug() << "刷新";
-            ui->textEdit->repaint();
+            ui->plainTextEdit->repaint();
             textEdit_s->repaint();
         }
-        if (gsum++ % 50 == 0) {
+        if (gsum++ % 100 == 0) {
             qDebug() << "刷新";
             qApp->processEvents();
         }
@@ -1093,7 +1088,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
                 while ((pos = regExp2.indexIn(data[i], pos)) != -1) {
                     sendBuffData();
-                    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+                    QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
                     QTextLayout *lay = tc.block().layout();
                     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                     int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
@@ -1281,7 +1276,7 @@ void sshwidget::rece_channel_readS(QStringList data)
         } else if (data[i] == "\u001B[?1049h") {
             //qDebug()<< "开启副缓冲区";
             //保存主缓存区位置
-            ZData = ui->textEdit->toHtml();
+            ZData = ui->plainTextEdit->toPlainText();
             //切换到备缓冲区
             isBuffer = true;
             continue;
@@ -1415,14 +1410,14 @@ void sshwidget::rece_channel_readS(QStringList data)
                 sendBuffData();
                 qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                 //原位置
-                int pos1  = ui->textEdit->textCursor().position();
+                int pos1  = ui->plainTextEdit->textCursor().position();
                 int pos2  = textEdit_s->textCursor().position();
                 movePositionEndLine(sshwidget::MoveAnchor);
                 movePositionRemoveRight(sshwidget::KeepAnchor, match.toInt());
 
-                QTextCursor cursor = ui->textEdit->textCursor();
+                QTextCursor cursor = ui->plainTextEdit->textCursor();
                 cursor.setPosition(pos1);
-                ui->textEdit->setTextCursor(cursor);
+                ui->plainTextEdit->setTextCursor(cursor);
                 QTextCursor cursor2 = textEdit_s->textCursor();
                 cursor2.setPosition(pos2);
                 textEdit_s->setTextCursor(cursor2);
@@ -1510,7 +1505,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                         movePositionLeft(sshwidget::MoveAnchor, columnCount);
                     }
 
-                    QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+                    QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
                     QTextLayout *lay = tc.block().layout();
                     int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                     int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
@@ -1588,19 +1583,19 @@ void sshwidget::rece_channel_readS(QStringList data)
                     qDebug() << "走到这里7";
                     sendBuffData();
                     qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                    QTextCursor cursor4 = ui->textEdit->textCursor();
+                    QTextCursor cursor4 = ui->plainTextEdit->textCursor();
                     int cursorPos = cursor4.position();
-                    int textLength = ui->textEdit->toPlainText().length();
+                    int textLength = ui->plainTextEdit->toPlainText().length();
                     int charsToEnd = textLength - cursorPos;
 
                     //覆盖 如果data[i]有数据就覆盖几个，剩下的继续覆盖
                     if (sum != 0) {
                         qDebug() << "走到这里8";
 
-                        QTextCursor cursor = ui->textEdit->textCursor();
+                        QTextCursor cursor = ui->plainTextEdit->textCursor();
                         cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
                         cursor.deletePreviousChar();
-                        ui->textEdit->setTextCursor(cursor);
+                        ui->plainTextEdit->setTextCursor(cursor);
 
                         QTextCursor cursor2 = textEdit_s->textCursor();
                         cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, sum);
@@ -1643,7 +1638,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                                 //qDebug() << "总行数为" << lineCount << " data[i].mid(0, position2) = " << data[i].mid(0, position2);
                                 sendBuffData();
                                 qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                                QTextCursor tc = ui->textEdit->textCursor(); //当前光标
+                                QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
                                 QTextLayout *lay = tc.block().layout();
                                 int iCurPos= tc.position() - tc.block().position();//当前光标在本BLOCK内的相对位置
                                 int acurrentLine = lay->lineForTextPosition(iCurPos).lineNumber() + tc.block().firstLineNumber();
@@ -1751,17 +1746,17 @@ void sshwidget::rece_channel_readS(QStringList data)
         scrollBar_textEdit->setValue(scrollBar_textEdit->maximum());
         scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
     }
-    QScrollBar * scrollBar_textEdit_h = ui->textEdit->horizontalScrollBar();
+    QScrollBar * scrollBar_textEdit_h = ui->plainTextEdit->horizontalScrollBar();
     scrollBar_textEdit_h->setValue(0);
     QScrollBar * scrollBar_textEdit_s_h = textEdit_s->horizontalScrollBar();
     scrollBar_textEdit_s_h->setValue(0);
     qint64 elapsedMilliseconds = timer.elapsed();
     qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
-    ui->verticalScrollBar->setMinimum(ui->textEdit->verticalScrollBar()->minimum());
-    ui->verticalScrollBar->setSingleStep(ui->textEdit->verticalScrollBar()->singleStep());
-    ui->verticalScrollBar->setPageStep(ui->textEdit->verticalScrollBar()->pageStep());
-    ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
-    ui->verticalScrollBar->setValue(ui->textEdit->verticalScrollBar()->value());
+    ui->verticalScrollBar->setMinimum(ui->plainTextEdit->verticalScrollBar()->minimum());
+    ui->verticalScrollBar->setSingleStep(ui->plainTextEdit->verticalScrollBar()->singleStep());
+    ui->verticalScrollBar->setPageStep(ui->plainTextEdit->verticalScrollBar()->pageStep());
+    ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
+    ui->verticalScrollBar->setValue(ui->plainTextEdit->verticalScrollBar()->value());
 }
 
 void sshwidget::rece_key_sign(QString key)
@@ -1832,7 +1827,7 @@ void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize)
 void sshwidget::on_pushButton_clicked()
 {
 
-    //    QTextCursor cursor(ui->textEdit->document());
+    //    QTextCursor cursor(ui->plainTextEdit->document());
     //    cursor.movePosition(QTextCursor::Start);
 
     //    for (int i = 0; i < 5 - 1; ++i)
@@ -1840,55 +1835,55 @@ void sshwidget::on_pushButton_clicked()
     //        cursor.movePosition(QTextCursor::Down);
     //    }
 
-    //    ui->textEdit->setTextCursor(cursor);
-    //    ui->textEdit->ensureCursorVisible();
-    //    ui->textEdit->setFocusPolicy(Qt::StrongFocus);
-    //    ui->textEdit->setFocus();
+    //    ui->plainTextEdit->setTextCursor(cursor);
+    //    ui->plainTextEdit->ensureCursorVisible();
+    //    ui->plainTextEdit->setFocusPolicy(Qt::StrongFocus);
+    //    ui->plainTextEdit->setFocus();
 
     // 保存原始的文本格式
-    //    cursor_s = ui->textEdit->textCursor();
+    //    cursor_s = ui->plainTextEdit->textCursor();
     //    originalFormat_s = cursor_s.charFormat();
 
     /* 需要搜索的文本 */
-    QString searchString = ui->lineEdit->text();
+    //QString searchString = ui->lineEdit->text();
     /* 文本框的全部内容 */
-    QTextDocument *document = ui->textEdit->document();
+//    QTextDocument *document = ui->plainTextEdit->document();
 
-    document->undo();
+//    document->undo();
 
-    bool found = false;
+//    bool found = false;
 
-    if (searchString.isEmpty()) {
+//    if (searchString.isEmpty()) {
 
-    } else {
-        /* 高亮本文配置 */
-        QTextCursor highlightCursor(document);
+//    } else {
+//        /* 高亮本文配置 */
+//        QTextCursor highlightCursor(document);
 
-        QTextCharFormat plainFormat(highlightCursor.charFormat());
+//        QTextCharFormat plainFormat(highlightCursor.charFormat());
 
-        QTextCharFormat colorFormat = plainFormat;
-        colorFormat.setForeground(Qt::black);
-        colorFormat.setBackground(Qt::yellow);
+//        QTextCharFormat colorFormat = plainFormat;
+//        colorFormat.setForeground(Qt::black);
+//        colorFormat.setBackground(Qt::yellow);
 
-        while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
-            /* 搜索给定文本的位置 */
-            highlightCursor = document->find(searchString, highlightCursor,
-                                             QTextDocument::FindWholeWords);
+//        while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
+//            /* 搜索给定文本的位置 */
+//            highlightCursor = document->find(searchString, highlightCursor,
+//                                             QTextDocument::FindWholeWords);
 
-            if (!highlightCursor.isNull()) {
-                found = true;
-                highlightCursor.movePosition(QTextCursor::WordRight,
-                                             QTextCursor::KeepAnchor);
-                /* 设置高亮文本 */
-                highlightCursor.mergeCharFormat(colorFormat);
-            }
-        }
-    }
+//            if (!highlightCursor.isNull()) {
+//                found = true;
+//                highlightCursor.movePosition(QTextCursor::WordRight,
+//                                             QTextCursor::KeepAnchor);
+//                /* 设置高亮文本 */
+//                highlightCursor.mergeCharFormat(colorFormat);
+//            }
+//        }
+//    }
 }
 
 void sshwidget::on_textEdit_selectionChanged()
 {
-    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
 
     if (!cursor.hasSelection()) {
         return;
@@ -1899,7 +1894,7 @@ void sshwidget::on_textEdit_selectionChanged()
 void sshwidget::scrollBarValueChanged(int value)
 {
     //qDebug() << "滑动条值改变为1：" << value;
-    QScrollBar *scrollBar = ui->textEdit->verticalScrollBar();
+    QScrollBar *scrollBar = ui->plainTextEdit->verticalScrollBar();
     scrollBar->setValue(value);
 }
 
@@ -1919,14 +1914,14 @@ void sshwidget::on_textEdit_textChanged()
         scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
     }
     //获取最后一行数据放在textEdit_6
-    //ui->verticalScrollBar->setValue(ui->textEdit->verticalScrollBar()->value());
-    //ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
+    //ui->verticalScrollBar->setValue(ui->plainTextEdit->verticalScrollBar()->value());
+    //ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
 }
 
 void sshwidget::rece_send_mousePress_sign()
 {
-    ui->textEdit->setFocusPolicy(Qt::NoFocus);
-    ui->textEdit->setFocus();
+    ui->plainTextEdit->setFocusPolicy(Qt::NoFocus);
+    ui->plainTextEdit->setFocus();
     //qDebug() << "textEdit_s_cursorPositionChanged设置焦点";
 }
 
@@ -1947,7 +1942,7 @@ void sshwidget::rece_copy_sgin()
     QTextCursor cursor = textEdit_s->textCursor();
     //cursor.clearSelection();
     textEdit_s->setTextCursor(cursor);
-    ui->textEdit->setFocus();
+    ui->plainTextEdit->setFocus();
 }
 
 void sshwidget::rece_paste_sgin()
@@ -1961,7 +1956,7 @@ void sshwidget::rece_paste_sgin()
         QString clipboardText = mimeData->text();
         sendCommandData(clipboardText);
     }
-    ui->textEdit->setFocus();
+    ui->plainTextEdit->setFocus();
 }
 
 void sshwidget::rece_pasteSelect_sgin()
@@ -1972,7 +1967,7 @@ void sshwidget::rece_pasteSelect_sgin()
     qDebug() << "选中文本 =" << selectText;
     amendPosition();
     sendCommandData(selectText);
-    ui->textEdit->setFocus();
+    ui->plainTextEdit->setFocus();
 }
 
 void sshwidget::rece_resize_sign()
@@ -2037,10 +2032,10 @@ void sshwidget::rece_resize_sign()
         //setTerminalSize(visibleLines, visibleColumns);
         qDebug() << "触发";
     //    textEdit_s->setLineWrapColumnOrWidth(viewportSize.width());
-    //    ui->textEdit->setLineWrapColumnOrWidth(viewportSize.width());
-       QPalette palette = ui->textEdit->palette();
+    //    ui->plainTextEdit->setLineWrapColumnOrWidth(viewportSize.width());
+       QPalette palette = ui->plainTextEdit->palette();
        palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-       ui->textEdit->setPalette(palette);
+       ui->plainTextEdit->setPalette(palette);
 
 //        QPalette palette2 = ui->textEdit_6->palette();
 //        palette2.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
@@ -2051,15 +2046,15 @@ void sshwidget::rece_resize_sign()
 }
 
 void sshwidget::rece_searchTextChanged(const QString data) {
-    QPalette palette = ui->textEdit->palette();
+    QPalette palette = ui->plainTextEdit->palette();
     palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-    ui->textEdit->setPalette(palette);
+    ui->plainTextEdit->setPalette(palette);
 
-    qDebug() << "toHtml = " << ui->textEdit->toHtml();
+    //qDebug() << "toHtml = " << ui->plainTextEdit->toHtml();
 
     qDebug() << "搜索内容为" << data;
     QString searchString = data;
-    QTextDocument *document = ui->textEdit->document();
+    QTextDocument *document = ui->plainTextEdit->document();
     int sum = 0;
     bool found = false;
 //    bool isFirstTime = true;
@@ -2164,6 +2159,13 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         QMenu *menu = new QMenu(ui->tabWidget);
         menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
         menu->setAttribute(Qt::WA_TranslucentBackground);
+
+        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+        effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+        effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
+        menu->setGraphicsEffect(effect);
+
         QAction *pnew = new QAction("添加命令", ui->tabWidget);
         QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
         QAction *pnew2 = new QAction("重命名", ui->tabWidget);
@@ -2184,6 +2186,13 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         QMenu *menu = new QMenu(ui->tabWidget);
         menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
         menu->setAttribute(Qt::WA_TranslucentBackground);
+
+        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+        effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+        effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
+        menu->setGraphicsEffect(effect);
+
         QAction *pnew = new QAction("添加命令", ui->tabWidget);
         QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
         connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
@@ -2273,14 +2282,13 @@ void sshwidget::rece_downloadFile_sgin(QString fileName)
 void sshwidget::rece_ssh_init()
 {
     // 设置焦点策略为强制获取焦点
-    ui->textEdit->setFocusPolicy(Qt::NoFocus);
-    ui->textEdit->setFocus();
+    ui->plainTextEdit->setFocusPolicy(Qt::NoFocus);
+    ui->plainTextEdit->setFocus();
     qDebug("开始调用init_poll");
-    QString cc = "主机连接成功<br>";
-    ui->textEdit->insertHtml(cc);
+    QString cc = "主机连接成功\n";
+    ui->plainTextEdit->appendPlainText(cc);
     movePositionEnd();
-
-    textEdit_s->insertHtml(cc);
+    textEdit_s->appendPlainText(cc);
 
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
@@ -2406,11 +2414,11 @@ void sshwidget::on_toolButton_edit_clicked()
 
 void sshwidget::on_toolButton_2_clicked()
 {
-    ui->verticalScrollBar->setMaximum(ui->textEdit->verticalScrollBar()->maximum());
+    ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
 }
 
 void sshwidget::on_verticalScrollBar_valueChanged(int value)
 {
-    ui->textEdit->verticalScrollBar()->setValue(value);
+    ui->plainTextEdit->verticalScrollBar()->setValue(value);
     textEdit_s->verticalScrollBar()->setValue(value);
 }

@@ -869,7 +869,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    //ui->widget_thrift_api->setGraphicsEffect(effect14);
+    ui->widget_thrift_api->setGraphicsEffect(effect14);
 
     // QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect();
     // effect15->setOffset(-2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散

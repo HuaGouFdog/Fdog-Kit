@@ -37,6 +37,8 @@ private slots:
 private:
     Ui::zookeepermanagewidget *ui;
     QButtonGroup * m_buttonGroup;
+
+    QMenu *zktoolMenu;
     
     int count; //连接总数
     int lastIndex;

@@ -92,6 +92,17 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
     connectManager.insert(count-1, ui->stackedWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
     m_buttonGroup->button(count-1)->setChecked(true);
+
+    qDebug() << "走这里";
+    QMenu *menu = new QMenu(qbutton);
+    QAction *clearAction = new QAction(tr("删除"), qbutton);
+    // 将菜单与按钮关联
+    menu->addAction(clearAction);
+    qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
+    qbutton->setMenu(menu);
+    QObject::connect(clearAction, &QAction::triggered, [](){
+        qDebug("删除被点击");
+    });
 }
 
 zookeepermanagewidget::~zookeepermanagewidget()
@@ -156,6 +167,26 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     connectManager.insert(count-1, ui->stackedWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
     m_buttonGroup->button(count-1)->setChecked(true);
+
+    qDebug() << "走这里";
+    qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
+    zktoolMenu = new QMenu(qbutton);
+    zktoolMenu->setWindowFlags(zktoolMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    zktoolMenu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction *clearAction = new QAction(tr("删除"), qbutton);
+    // 将菜单与按钮关联
+    zktoolMenu->addAction(clearAction);
+    qbutton->setMenu(zktoolMenu);
+    QObject::connect(clearAction, &QAction::triggered, [](){
+        qDebug("删除被点击");
+    });
+
+    QObject::connect(qbutton, &QToolButton::customContextMenuRequested, [=]()
+    {
+        qDebug() << "点击";
+        zktoolMenu->move(cursor().pos());
+        zktoolMenu->show(); 
+    });
 }
 
 void zookeepermanagewidget::rece_buttonClicked(int index)

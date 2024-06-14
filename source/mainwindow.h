@@ -89,7 +89,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event);     //鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放
     void mouseDoubleClickEvent(QMouseEvent *event); //鼠标双击
-    void resizeEvent(QResizeEvent *event);
+    //void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
 
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);

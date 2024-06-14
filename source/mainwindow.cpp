@@ -47,34 +47,27 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
     ui->setupUi(this);
-    //this->setAttribute(Qt::WA_DeleteOnClose);
-    //透明背景
-    this->setAttribute(Qt::WA_TranslucentBackground);
-
-    int a;
-    a =a=5;
 
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     setContentsMargins(10, 10, 10, 10);
-    //ui->centralWidget->setStyleSheet("QMainWindow,QWidget#centralWidget {background-color: rgb(30, 45, 54);border-radius:10px;}");
     ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
 
-    //this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
+    
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
+
+    //this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
 
     //设置无边框
     //setWindowFlag(Qt::FramelessWindowHint);
     //setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::FramelessWindowHint);
     //
     //设置内边距
-    setContentsMargins(10, 10, 10, 10);
     //设置阴影效果
     defaultShadow = new QGraphicsDropShadowEffect();
     //模糊半径
@@ -91,13 +84,13 @@ MainWindow::MainWindow(QWidget *parent) :
     effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
 
-    //ui->widget_side->setGraphicsEffect(effect);
+    ui->widget_side->setGraphicsEffect(effect);
 
 
-    QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
-    effect2->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect2->setColor(QColor(30, 45, 54));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect2->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
+    // QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
+    // effect2->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect2->setColor(QColor(30, 45, 54));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect2->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
 
     //ui->widget_body_left->setGraphicsEffect(effect2);
 
@@ -105,8 +98,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     isPressedWidget = false;
     m_isMousePressed = false;
-
-    setSupportStretch(true);
     ui->splitter->setStretchFactor(0,20);
     ui->splitter->setStretchFactor(1,2);
     //快捷键 F11 全屏
@@ -156,36 +147,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->widget_9->installEventFilter(wfFilter);
 
-    flowLayout->addWidget(ui->widget_9);
-    getGraphicsEffectUtils(ui->widget_9, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_12);
-    getGraphicsEffectUtils(ui->widget_12, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_15);
-    getGraphicsEffectUtils(ui->widget_15, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_18);
-    getGraphicsEffectUtils(ui->widget_18, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_21);
-    getGraphicsEffectUtils(ui->widget_21, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_23);
-    getGraphicsEffectUtils(ui->widget_23, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_26);
-    getGraphicsEffectUtils(ui->widget_26, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_33);
-    getGraphicsEffectUtils(ui->widget_33, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_35);
-    getGraphicsEffectUtils(ui->widget_35, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_31);
-    getGraphicsEffectUtils(ui->widget_31, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_29);
-    getGraphicsEffectUtils(ui->widget_29, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_37);
-    getGraphicsEffectUtils(ui->widget_37, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_39);
-    getGraphicsEffectUtils(ui->widget_39, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_41);
-    getGraphicsEffectUtils(ui->widget_41, 0, 0, 20, QColor(50,50,50));
-    flowLayout->addWidget(ui->widget_43);
-    getGraphicsEffectUtils(ui->widget_43, 0, 0, 20, QColor(50,50,50));
     //flowLayout->addWidget(new QPushButton(tr("More text")));
     //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
     //flowLayout->setSpacing(50);
@@ -281,6 +242,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // b2->setObjectName("settingButton");
     // ui->tabWidget->setTabEnabled(0, false);
     // ui->tabWidget->tabBar()->setTabButton(0, QTabBar::RightSide, b2);
+    setSupportStretch(true);
 }
 
 MainWindow::~MainWindow()
@@ -672,7 +634,7 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
                                                 background-color: rgb(200, 0, 0);\
                                                 border: none;\
                                             }");
-        this->showMaximized();
+        setWindowState(Qt::WindowMaximized);
         showFlag = true;
     } else if (ui->widget_title->underMouse() && showFlag) {
         setContentsMargins(10, 10, 10, 10);
@@ -703,16 +665,16 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
     }
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-    qDebug() << "resizeEvent 被调用";
-    //QTextEdit::resizeEvent(event);
-}
+// void MainWindow::resizeEvent(QResizeEvent *event)
+// {
+//     qDebug() << "resizeEvent 被调用";
+//     //QTextEdit::resizeEvent(event);
+// }
 
 void MainWindow::showEvent(QShowEvent *event)
 {
+    qDebug() << "showEvent 被调用";
     calculateCurrentStrechRect();
-
     //return MainWindow::showEvent(event);
 }
 
@@ -798,7 +760,8 @@ void MainWindow::setWindowsByConf()
         ui->toolButton_min->hide();
         ui->toolButton_max->hide();
         ui->toolButton_close->hide();
-        this->showFullScreen();
+        //this->showFullScreen();
+        setWindowState(Qt::WindowFullScreen);
         isFullScreen = true;
     }
 
@@ -954,8 +917,11 @@ void MainWindow::on_toolButton_max_clicked()
     //qDebug() << "显示最大化";
     //最大化
     if (!showFlag) {
-        //setContentsMargins(0, 0, 0, 0);
-        // ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
+        //ui->centralWidget->setEnabled(false);
+        setContentsMargins(0, 0, 0, 0);
+        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
+        this->showMaximized();    
+        this->setWindowState(Qt::WindowState::WindowMaximized);
         ui->widget_side->setStyleSheet("#widget_side { \
                                             color: rgb(255, 255, 255); \
                                             border-top-left-radius: 0px; \
@@ -967,14 +933,24 @@ void MainWindow::on_toolButton_max_clicked()
                                                 border-top-right-radius: 0px;\
                                                 background-color: rgba(94, 255, 210, 0);\
                                                 border: none;\
+                                            }\
+                                            QToolButton::menu-indicator { \
+                                                image: None;\
+                                            }\
+                                            QToolButton:hover {\
+                                                color: rgb(255, 255, 255);\
+                                                background-color: rgb(200, 0, 0);\
+                                                border: none;\
                                             }");
-        // ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
-        this->showMaximized();
+        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        //ui->centralWidget->setEnabled(true);
         isMaxShow = true;
         showFlag = true;
     } else {
-        //setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        // ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
+        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
+        this->showNormal();
+        this->setWindowState(Qt::WindowState::WindowNoState);
+        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->widget_side->setStyleSheet("#widget_side { \
                                             color: rgb(255, 255, 255); \
                                             border-top-left-radius: 10px; \
@@ -986,9 +962,17 @@ void MainWindow::on_toolButton_max_clicked()
                                                 border-top-right-radius: 9px;\
                                                 background-color: rgba(94, 255, 210, 0);\
                                                 border: none;\
+                                            }\
+                                            QToolButton::menu-indicator { \
+                                                image: None;\
+                                            }\
+                                            QToolButton:hover {\
+                                                color: rgb(255, 255, 255);\
+                                                background-color: rgb(200, 0, 0);\
+                                                border: none;\
                                             }");
         ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
-        this->showNormal();
+
         isMaxShow = false;
         showFlag = false;
     }
@@ -1615,7 +1599,7 @@ void MainWindow::on_toolButton_side_theme_clicked()
         effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
         effect->setColor(QColor(0, 170, 255));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
         effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-        ui->widget_side->setGraphicsEffect(effect);
+        //ui->widget_side->setGraphicsEffect(effect);
     } else {
         //暗黑qss
         currentTheme = 0;
@@ -1624,7 +1608,7 @@ void MainWindow::on_toolButton_side_theme_clicked()
         effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
         effect->setColor(QColor(20, 30, 36));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
         effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-        ui->widget_side->setGraphicsEffect(effect);
+        //ui->widget_side->setGraphicsEffect(effect);
     }
     //改变子组件
     QList<QToolButton *> buttons = ui->widget_side->findChildren<QToolButton *>();
