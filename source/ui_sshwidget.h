@@ -601,7 +601,6 @@ public:
 "    /*margin-right: 10px;*/\n"
 "}\n"
 "QMenu::item:selected {\n"
-"	\n"
 "	background-color: rgba(167, 167, 167, 200);\n"
 "	border-radius:6px;\n"
 "\n"
@@ -622,8 +621,8 @@ public:
 "    height: 1px;\n"
 "    background: rgb(80, 80, 80,200);\n"
 "    /*margin-left: 10px;*/\n"
-"    /"
-                        "*margin-right: 10px;*/\n"
+"    /*margi"
+                        "n-right: 10px;*/\n"
 "}"));
         plainTextEdit = new QPlainTextEdit(widget_9);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
@@ -1220,8 +1219,7 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	\n"
-"	color: rgb(208, 208, 208);\n"
+"	color: rgb(255, 255, 255);\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));

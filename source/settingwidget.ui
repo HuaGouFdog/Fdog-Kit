@@ -30,7 +30,7 @@
     <number>10</number>
    </property>
    <property name="bottomMargin">
-    <number>10</number>
+    <number>0</number>
    </property>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
@@ -70,6 +70,7 @@
         <property name="styleSheet">
          <string notr="true">#widget_left {
 border-image: url(:/lib/back2.png);
+border-top-right-radius: 10px;
 }
 
 QToolButton {
@@ -2567,7 +2568,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>772</width>
+                  <width>264</width>
                   <height>750</height>
                  </rect>
                 </property>
@@ -3386,7 +3387,7 @@ border-radius: 5px;}
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>772</width>
+                  <width>70</width>
                   <height>800</height>
                  </rect>
                 </property>
@@ -4197,8 +4198,8 @@ QComboBox QAbstractItemView::item:selected {
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>-782</y>
-                  <width>763</width>
+                  <y>0</y>
+                  <width>593</width>
                   <height>1310</height>
                  </rect>
                 </property>
@@ -6059,7 +6060,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>742</width>
+                  <width>407</width>
                   <height>830</height>
                  </rect>
                 </property>

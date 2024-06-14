@@ -480,7 +480,7 @@ public:
         verticalLayout_2 = new QVBoxLayout(settingwidget);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 10, 10);
+        verticalLayout_2->setContentsMargins(0, 0, 10, 0);
         widget_2 = new QWidget(settingwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setStyleSheet(QStringLiteral(""));
@@ -494,6 +494,7 @@ public:
         widget_left->setMaximumSize(QSize(230, 16777215));
         widget_left->setStyleSheet(QLatin1String("#widget_left {\n"
 "border-image: url(:/lib/back2.png);\n"
+"border-top-right-radius: 10px;\n"
 "}\n"
 "\n"
 "QToolButton {\n"
@@ -1608,7 +1609,7 @@ public:
         scrollArea_4->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 772, 750));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 264, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         QFont font3;
         font3.setPointSize(7);
@@ -2060,7 +2061,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 772, 800));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 70, 800));
         scrollAreaWidgetContents_2->setMinimumSize(QSize(0, 800));
         verticalLayout_19 = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout_19->setSpacing(20);
@@ -2396,7 +2397,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, -782, 763, 1310));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 593, 1310));
         scrollAreaWidgetContents_3->setMinimumSize(QSize(0, 0));
         scrollAreaWidgetContents_3->setStyleSheet(QString::fromUtf8("QScrollArea{\n"
 "	border: none;\n"
@@ -3222,7 +3223,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 742, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 407, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"

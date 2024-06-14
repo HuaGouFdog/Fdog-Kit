@@ -97,7 +97,7 @@ border-radius:10px;
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_12">
     <property name="spacing">
-     <number>0</number>
+     <number>5</number>
     </property>
     <property name="leftMargin">
      <number>0</number>

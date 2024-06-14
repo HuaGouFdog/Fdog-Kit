@@ -49,26 +49,26 @@ QCheckBox::indicator{
 
 
 QMenu {
-background-color: rgb(30, 34, 39);
-padding:10px;
-margin:10px;
-/*padding: 3px 0px 3px 0px;*/
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 3px 0px 3px 0px;
 border-radius:6px;
-border:0px solid rgb(108, 117, 125, 65); 
+border:2px solid rgb(108, 117, 125, 65); 
 }
 QMenu::item {
 	font-size: 10pt;
+	
 	font: 10pt &quot;OPPOSans B&quot;;
 	
-	color: rgb(214, 233, 234);
-    background-color: rgb(30, 34, 39);
-    /*padding: 5px 25px 5px 25px;*/
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 25px 5px 25px;
+    /*margin: 2px 2px 2px 2px;*/
 }
 QMenu::item:selected {
-	background-color: rgba(44, 49, 58, 250);
-	border-radius:6px;
+​	background-color: rgba(167, 167, 167, 200);
+​	border-radius:6px;
 
 }
 QMenu::icon:checked {
@@ -84,8 +84,8 @@ QMenu::icon:checked:selected {
     background-image: url(:/space_selected.png);
 }
 QMenu::separator {
-    height: 1px;
-    background: rgb(214, 233, 234);
+    height: 2px;
+    background: rgb(235,235,236);
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }</string>
@@ -849,26 +849,26 @@ QScrollBar::up-arrow:horizontal {
 }
 
 QMenu {
-background-color: rgb(30, 34, 39);
-padding:10px;
-margin:10px;
-/*padding: 3px 0px 3px 0px;*/
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 3px 0px 3px 0px;
 border-radius:6px;
-border:0px solid rgb(108, 117, 125, 65); 
+border:2px solid rgb(108, 117, 125, 65); 
 }
 QMenu::item {
 	font-size: 10pt;
+	
 	font: 10pt &quot;OPPOSans B&quot;;
 	
-	color: rgb(214, 233, 234);
-    background-color: rgb(30, 34, 39);
-    /*padding: 5px 25px 5px 25px;*/
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 25px 5px 25px;
+    /*margin: 2px 2px 2px 2px;*/
 }
 QMenu::item:selected {
-	background-color: rgba(44, 49, 58, 250);
-	border-radius:6px;
+​	background-color: rgba(167, 167, 167, 200);
+​	border-radius:6px;
 
 }
 QMenu::icon:checked {
@@ -884,8 +884,8 @@ QMenu::icon:checked:selected {
     background-image: url(:/space_selected.png);
 }
 QMenu::separator {
-    height: 1px;
-    background: rgb(214, 233, 234);
+    height: 2px;
+    background: rgb(235,235,236);
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }</string>
@@ -2094,7 +2094,45 @@ QComboBox QAbstractItemView::item:selected {
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true"/>
+                <string notr="true">QMenu {
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 3px 0px 3px 0px;
+border-radius:6px;
+border:2px solid rgb(108, 117, 125, 65); 
+}
+QMenu::item {
+	font-size: 10pt;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+	
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 25px 5px 25px;
+    /*margin: 2px 2px 2px 2px;*/
+}
+QMenu::item:selected {
+    background-color : rgb(236,236,237);
+}
+QMenu::icon:checked {
+    background: rgb(253,253,254);
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+}
+QMenu::icon:checked:selected {
+    background-color : rgb(236,236,237);
+    background-image: url(:/space_selected.png);
+}
+QMenu::separator {
+    height: 2px;
+    background: rgb(235,235,236);
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+}</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <property name="leftMargin">

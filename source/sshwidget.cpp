@@ -309,11 +309,11 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     contextMenu->setWindowFlags(contextMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     contextMenu->setAttribute(Qt::WA_TranslucentBackground);
 
-   QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+   QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(contextMenu);
    effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
    effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
    effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-   contextMenu->setGraphicsEffect(effect);
+   //contextMenu->setGraphicsEffect(effect);
 
     contextMenu->addAction(findAction);
     //contextMenu->addSeparator();
@@ -342,6 +342,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
         qDebug() << "点击";
         contextMenu->move(cursor().pos());
         contextMenu->show(); });
+
+
     //ui->widget->hide();
     //ui->widget_3->hide();
     //ui->widget_4->hide();
@@ -2168,7 +2170,7 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
         effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
         effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-        menu->setGraphicsEffect(effect);
+        //menu->setGraphicsEffect(effect);
 
         QAction *pnew = new QAction("添加命令", ui->tabWidget);
         QAction *pnew1 = new QAction("创建分类", ui->tabWidget);
@@ -2195,7 +2197,7 @@ void sshwidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         effect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
         effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
         effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-        menu->setGraphicsEffect(effect);
+        //menu->setGraphicsEffect(effect);
 
         QAction *pnew = new QAction("添加命令", ui->tabWidget);
         QAction *pnew1 = new QAction("创建分类", ui->tabWidget);

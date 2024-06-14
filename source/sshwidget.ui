@@ -1180,7 +1180,6 @@ QMenu::item {
     /*margin-right: 10px;*/
 }
 QMenu::item:selected {
-	
 	background-color: rgba(167, 167, 167, 200);
 	border-radius:6px;
 
@@ -2097,8 +2096,7 @@ QToolButton::menu-indicator {
 
  
 QToolButton:hover {
-	
-	color: rgb(208, 208, 208);
+	color: rgb(255, 255, 255);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
 }</string>

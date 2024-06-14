@@ -361,7 +361,7 @@ public:
 "border-radius:10px;\n"
 "}"));
         horizontalLayout_12 = new QHBoxLayout(centralWidget);
-        horizontalLayout_12->setSpacing(0);
+        horizontalLayout_12->setSpacing(5);
         horizontalLayout_12->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
         horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
