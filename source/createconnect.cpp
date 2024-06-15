@@ -3,6 +3,7 @@
 #include "ui_createconnect.h"
 #include "secretkeywidget.h"
 #include <QMovie>
+#include <QDateTime>
 createconnect::createconnect(int8_t connectType, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::createconnect)
@@ -66,6 +67,13 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         }
         cInfo.password = ui->tab_passowrd_lineEdit_password_data->text();
         cInfo.isSavePassword = ui->tab_passowrd_checkBox_remember_password->isChecked();
+        //备注
+        cInfo.remark = ui->widget_group_lineEdit_group_data_2->text();
+
+        //最近连接时间
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        cInfo.nearest_connection = currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
+
     } else if (ui->tabWidget->currentIndex() == 2) {
         cInfo.connectType = 3;//this->connectType;
         cInfo.name = ui->widget_name_lineEdit_name_data->text();

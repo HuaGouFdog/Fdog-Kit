@@ -86,6 +86,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     QString username = cInfoStruct.userName;
     QString password = cInfoStruct.password;
 
+    qDebug() << "sshwidget host = " << host;
+    qDebug() << "sshwidget port = " << port;
+    qDebug() << "sshwidget username = " << username;
+    qDebug() << "sshwidget password = " << password;
 
     //快捷键 ctrl + shift + F 查找
     QShortcut *shortcutF = new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_F), this);
@@ -113,12 +117,13 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
             SLOT(rece_getServerInfo(ServerInfoStruct)));
     thread->start();
-    qDebug("执行0");
+    //qDebug("执行0");
     //这里设置初始化方式
     //密码
     //密钥 Path name of the public key file. (e.g. /etc/ssh/hostkey.pub). If libssh2 is built against OpenSSL, this option can be set to NULL.
+    
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
-    qDebug("执行01");
+    //qDebug("执行01");
 
     //exec
     threadExec = new QThread();
@@ -142,7 +147,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     connect(sshSftp, SIGNAL(send_createNewFile_sgin(QString,QString,int,int64_t)),this,
             SLOT(rece_createNewFile_sgin(QString,QString,int,int64_t)));
     threadSftp->start();
-    qDebug("执行3");
+    //qDebug("执行3");
     //QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
     textEdit_s = new CustomPlainTextEdit(this);
     textEdit_s->setReadOnly(true);
@@ -974,7 +979,7 @@ void sshwidget::rece_init()
     // 设置焦点策略为强制获取焦点
     ui->plainTextEdit->setFocusPolicy(Qt::NoFocus);
     ui->plainTextEdit->setFocus();
-    qDebug("开始调用init_poll");
+    //qDebug("开始调用init_poll");
     QString cc = "主机连接成功\n";
     ui->plainTextEdit->appendPlainText(cc);
     movePositionEnd();
@@ -987,7 +992,7 @@ void sshwidget::rece_init()
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
     //通知页面，连接成功，可以使用
-    qDebug("开始调用init_poll完成");
+    //qDebug("开始调用init_poll完成");
 }
 
 void sshwidget::rece_channel_readS(QStringList data)
@@ -1004,15 +1009,19 @@ void sshwidget::rece_channel_readS(QStringList data)
     data = data.mid(1);
     int i = 0;
     for(i = 0; i < data.length(); i++) {
-        if (gsum++ % 20 == 0) {
-            qDebug() << "刷新";
-            ui->plainTextEdit->repaint();
-            textEdit_s->repaint();
+        //这块还要优化才行
+        if (lastCommondS.contains("cat")) {
+            if (gsum++ % 20 == 0) {
+                //qDebug() << "刷新";
+                ui->plainTextEdit->repaint();
+                textEdit_s->repaint();
+            }
+            if (gsum++ % 100 == 0) {
+                //qDebug() << "刷新";
+                qApp->processEvents();
+            }
         }
-        if (gsum++ % 100 == 0) {
-            qDebug() << "刷新";
-            qApp->processEvents();
-        }
+
         //如果有颜色参数，则直接打印，如果没有就累加输出
         bool isSend = false;
         if (data.at(i).contains("color:")) {
@@ -1060,7 +1069,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 // }
             } else if (data[i] == "<br>") {
                 sendBuffData();
-                qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                 movePositionDown(sshwidget::MoveAnchor, 1);
                 setCurrentRowPosition(1);
                 movePositionStartLine(sshwidget::MoveAnchor);
@@ -1068,7 +1077,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 int position = data[i].indexOf("<br>");
                 if (position == 0) {
                     sendBuffData();
-                    qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+                    //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                     movePositionDown(sshwidget::MoveAnchor, 1);
                     movePositionStartLine(sshwidget::MoveAnchor);
                     // 获取选定文本
@@ -1275,7 +1284,7 @@ void sshwidget::rece_channel_readS(QStringList data)
         } else if (data[i] == "\u001B[K") {
             qDebug() << "删除光标后面的数据";
             sendBuffData();
-            qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+            //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
             movePositionRemoveEndLineSelect(sshwidget::KeepAnchor, -1);
             sum = 0;
             continue;
@@ -1403,6 +1412,8 @@ void sshwidget::rece_channel_readS(QStringList data)
         } else if (data[i] == "\u001B[H") {
             continue;
         }  else if (data[i] == "\u001B(B") {
+            continue;
+        } else if (data[i] == "\u001B[1@") {
             continue;
         } else {
             //qDebug() << "走到这里1 data[i] = " << data[i];
@@ -1745,7 +1756,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             }
         }
     }
-    qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+    //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
     sendBuffData();
     if (scrollBar_textEdit && scrollBar_textEdit_s) {
         //qDebug() << "设置滑动条 read " << scrollBar_textEdit->value();

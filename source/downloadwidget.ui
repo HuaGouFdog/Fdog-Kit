@@ -200,7 +200,7 @@ border-radius:6px;
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_file_3">
+          <widget class="QToolButton" name="toolButton_file_open">
            <property name="minimumSize">
             <size>
              <width>22</width>
@@ -244,7 +244,7 @@ QToolButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_file_2">
+          <widget class="QToolButton" name="toolButton_file_setting">
            <property name="minimumSize">
             <size>
              <width>22</width>
@@ -321,16 +321,13 @@ QToolButton:hover {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>200</height>
+           <height>0</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 150);</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
-          <property name="spacing">
-           <number>0</number>
-          </property>
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -344,47 +341,20 @@ QToolButton:hover {
            <number>0</number>
           </property>
           <item>
-           <widget class="QWidget" name="widget" native="true">
-            <property name="minimumSize">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>0</width>
-              <height>200</height>
+              <width>20</width>
+              <height>233</height>
              </size>
             </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255, 50);</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <property name="spacing">
-              <number>3</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <spacer name="verticalSpacer">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>235</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
+           </spacer>
           </item>
          </layout>
         </widget>

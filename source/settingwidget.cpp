@@ -113,36 +113,61 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     ui(new Ui::settingwidget)
 {
     ui->setupUi(this);
-
+    setSupportStretch(this, true);
     confInfo = confInfo_;
+    //自启动开关
     selfStart = new AnimatedCheckBox(confInfo_->selfStart, this);
     ui->verticalLayout_selfStart->addWidget(selfStart);
     
+    //托盘开关
     trayDisplay = new AnimatedCheckBox(confInfo_->trayDisplay, this);
     ui->verticalLayout_trayDisplay->addWidget(trayDisplay);
 
+    //居中开关
     startCenter = new AnimatedCheckBox(confInfo_->startCenter, this);
     ui->verticalLayout_startCenter->addWidget(startCenter);
 
+    //启动模式
+    ui->comboBox_startMode->setCurrentIndex(confInfo_->startMode);
+
+    //窗口大小
+    ui->lineEdit_startPositionX->setText(QString::number(confInfo_->startPositionX));
+    ui->lineEdit_startPositionY->setText(QString::number(confInfo_->startPositionY));
+
+
+    //顶层窗口
     topDisplay = new AnimatedCheckBox(confInfo_->topDisplay, this);
     ui->verticalLayout_topDisplay->addWidget(topDisplay);
+    //Qt::WindowStaysOnTopHint
 
+    //语言
+    if (confInfo_->language== "cn") {
+        ui->comboBox_language->setCurrentIndex(0);
+    } else {
+        ui->comboBox_language->setCurrentIndex(1);
+    }
+
+    //新建标签位置
+    ui->comboBox_newLabelLocation->setCurrentIndex(confInfo_->newLabelLocation);
+
+    //标签宽度
+    ui->comboBox_labelWidth->setCurrentIndex(confInfo_->labelWidth);
+
+    //工具栏-信息
     infoDisplay = new AnimatedCheckBox(confInfo_->infoDisplay, this);
     ui->verticalLayout_infoDisplay->addWidget(infoDisplay);
 
+    //工具栏-历史
     historyDisplay = new AnimatedCheckBox(confInfo_->historyDisplay, this);
     ui->verticalLayout_historyDisplay->addWidget(historyDisplay);
 
+    //工具栏-快捷命令
     commandDisplay = new AnimatedCheckBox(confInfo_->commandDisplay, this);
     ui->verticalLayout_commandDisplay->addWidget(commandDisplay);
 
+    //工具栏-属性
     conectStatsDisplay = new AnimatedCheckBox(confInfo_->conectStatsDisplay, this);
     ui->verticalLayout_conectStatsDisplay->addWidget(conectStatsDisplay);
-
-
-
-
-
 
     colormatch * cm_ = new colormatch("Campbell", campbell, this);
     ui->verticalWidget_15->layout()->addWidget(cm_);

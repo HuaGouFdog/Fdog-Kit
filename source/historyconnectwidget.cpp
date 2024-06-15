@@ -4,25 +4,32 @@
 #include <QDebug>
 #include <QToolButton>
 #include <QIcon>
-historyconnectwidget::historyconnectwidget(int8_t connectType, QWidget *parent) :
+#include "utils.h"
+historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectInfoStruct> cInfoStructList, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::historyconnectwidget)
 {
     ui->setupUi(this);
+    setSupportStretch(this, true);
      //ui->tableWidget_history->horizontalHeader()->setVisible(true);
      //ui->tableWidget_history->verticalHeader()->setVisible(false);
 
     //设置初始表格行列都为0
-        ui->tableWidget_history->setRowCount(20); //设置行数为20
-        ui->tableWidget_history->setColumnCount(4); //设置列数为5
-        ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
-        ui->tableWidget_history->setHorizontalHeaderLabels(QStringList() << "          名称          "
-                                                           << "          主机          "
-                                                           << "          分组          "
-                                                           << "      备注      ");
+        ui->tableWidget_history->setRowCount(cInfoStructList.length()); //设置行数为20
+        ui->tableWidget_history->setColumnCount(6); //设置列数为5
+        ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        //ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
+        ui->tableWidget_history->setHorizontalHeaderLabels(QStringList() << "                              名称                              "
+                                                           << "                              主机                              "
+                                                           << "                              用户名                              "
+                                                           << "                              分组                              "
+                                                           << "                          备注                          "<< "      最近连接      ");
         ui->tableWidget_history->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-        for (int row = 0; row < 20; ++row) {
-            for (int col = 0; col < 4; ++col) {
+        
+        
+
+        for (int row = 0; row < cInfoStructList.length(); ++row) {
+            for (int col = 0; col < 6; ++col) {
                 QString headerData;
                 if (col == 0) {
                     QLabel * label = new QLabel();
@@ -30,19 +37,22 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QWidget *parent) 
                     QPixmap icon(":/lib/diann3.png");
                      QPixmap scaledIcon = icon.scaled(16, 16, Qt::KeepAspectRatio);
                     label->setPixmap(scaledIcon);
-                    headerData = QString("终端连接%1").arg(row);
+                    headerData = cInfoStructList.at(row).name;
                     label->setStyleSheet("background-color: rgba(0, 214, 103, 0);");
                 ui->tableWidget_history->setCellWidget(row, 0, label);
                 } else if (col == 1) {
-                    headerData = QString("172.16.8.%1").arg(row);
+                    headerData = cInfoStructList.at(row).host;
                 } else if (col == 2) {
-                    headerData = QString("默认%1").arg(row);
+                    headerData = cInfoStructList.at(row).userName;
                 } else if (col == 3) {
-                    headerData = QString("默认%1").arg(row);
-                } /*else if (col == 4) {
-                    headerData = QString("");
-
+                    headerData = cInfoStructList.at(row).group;
+                } else if (col == 4) {
+                    headerData = cInfoStructList.at(row).remark;
                 } else if (col == 5) {
+                    qDebug() << "nearest_connection = " << cInfoStructList.at(row).nearest_connection;
+                    headerData = cInfoStructList.at(row).nearest_connection;
+
+                } /*else if (col == 5) {
                     headerData = QString("");
                     QToolButton* button = new QToolButton();
                     button->setText("连接");
@@ -140,7 +150,24 @@ historyconnectwidget::~historyconnectwidget()
 void historyconnectwidget::on_tableWidget_history_itemDoubleClicked(QTableWidgetItem *item)
 {
     int currentRow = ui->tableWidget_history->currentIndex().row();
+    qDebug() << "双击1";
+    connnectInfoStruct cInfo;
+    cInfo.name = ui->tableWidget_history->item(currentRow, 0)->text();
+    cInfo.host = ui->tableWidget_history->item(currentRow, 1)->text();
+    cInfo.userName = ui->tableWidget_history->item(currentRow, 2)->text();
+    cInfo.port = "22";
+    //cInfo.password = ui->tableWidget_history->item(currentRow, 2)->text();
+    //cInfo.group = ui->tableWidget_history->item(currentRow, 3)->text();
+    //cInfo.remark = ui->tableWidget_history->item(currentRow, 4)->text();
+    //cInfo.nearest_connection = ui->tableWidget_history->item(currentRow, 5)->text();
+    qDebug() << "双击2";
+    emit send_fastConnection(cInfo);
     // qDebug() << ui->tableWidget_history->item(currentRow,0)->text();
     // qDebug() << ui->tableWidget_history->item(currentRow,1)->text();
     // qDebug() << ui->tableWidget_history->item(currentRow,2)->text();
+}
+
+void historyconnectwidget::on_tableWidget_history_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous)
+{
+    qDebug() << "单击";
 }

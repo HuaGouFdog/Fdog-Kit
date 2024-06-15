@@ -10,6 +10,7 @@
 #define REDIS_CONNECT_TYPE 4
 #define KAFKA_CONNECT_TYPE 5
 #define DB_CONNECT_TYPE 6
+
 struct connnectInfoStruct
 {
     int8_t connectType;
@@ -19,6 +20,8 @@ struct connnectInfoStruct
     QString port;
     QString userName;
     QString password;
+    QString remark;
+    QString nearest_connection;
     bool isSavePassword;
     int8_t buttonSid;
     int timeout;

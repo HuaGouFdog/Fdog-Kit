@@ -1,16 +1,16 @@
 {
     "activate": {
         "selfStart": 0,
-        "startCenter": 0,
+        "startCenter": 1,
         "startMode": 0,
-        "startPositionX": 200,
-        "startPositionY": 100,
+        "startPositionX": 1200,
+        "startPositionY": 800,
         "trayDisplay": 1
     },
     "appearance": {
         "labelWidth": 0,
         "language": "cn",
-        "newLabelLocation": 0,
+        "newLabelLocation": 1,
         "topDisplay": 1
     },
     "colorSchemes": [
@@ -240,7 +240,7 @@
         "backgroundTransparency": 1,
         "commandDisplay": 1,
         "conectStatsDisplay": 0,
-        "currentBackground": "",
+        "currentBackground": "xxxxxxxxxxxxxxx",
         "historyDisplay": 1,
         "infoDisplay": 1,
         "mouseRightClick": 0,
@@ -254,6 +254,6 @@
     "typeface": {
         "fontChinese": "中文字体",
         "fontEnglish": "英文字体",
-        "fontSize": 0
+        "fontSize": 10
     }
 }

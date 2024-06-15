@@ -32,6 +32,8 @@
 #include <QFormLayout>
 #include <QDesktopWidget>
 
+#include "sqlhandle.h"
+
 QVariant mySheetStyle(const QString & start, const QString & end, qreal progress)
 {
     int red   = 255 - (int)(235 * progress);
@@ -60,6 +62,8 @@ MainWindow::MainWindow(QWidget *parent) :
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
+
+    ui->label_time->hide();
 
     //this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
 
@@ -145,7 +149,7 @@ MainWindow::MainWindow(QWidget *parent) :
     WidgetMouseFilter * wfFilter;
     wfFilter = new WidgetMouseFilter();
 
-    ui->widget_9->installEventFilter(wfFilter);
+    //ui->widget_9->installEventFilter(wfFilter);
 
     //flowLayout->addWidget(new QPushButton(tr("More text")));
     //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
@@ -153,9 +157,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //flowLayout->horizontalSpacing(10);
     //flowLayout->verticalSpacing(10);
     flowLayout->setSpacing(30);
-    ui->widget_2->setLayout(flowLayout);
+    //ui->widget_2->setLayout(flowLayout);
 
-    ui->widget_4->layout()->addWidget(new parsingJsonTextEdit());
+    //ui->widget_4->layout()->addWidget(new parsingJsonTextEdit());
 
     //ui->widget_welcome_body_widget2->hide();
 
@@ -189,12 +193,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_about->hide();
     ui->widget_top_tool->hide();
     ui->toolButton_side_about->hide();
-    ui->widget_25->hide();
+    //ui->widget_25->hide();
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo2.png"));
 
-    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
     //ui->widget_welcome_body_widget2_newCreate_newTool->hide();
     //ui->widget_welcome_body_widget2_newCreate_setting->hide();
     //ui->widget_welcome_body_widget2_info_text->hide();
@@ -243,6 +247,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // ui->tabWidget->setTabEnabled(0, false);
     // ui->tabWidget->tabBar()->setTabButton(0, QTabBar::RightSide, b2);
     setSupportStretch(true);
+
+    //打开数据库
+    db_ = new sqlhandle();
 }
 
 MainWindow::~MainWindow()
@@ -769,10 +776,11 @@ void MainWindow::setWindowsByConf()
         QDesktopWidget dw;
         int deskWidth = dw.width();
         int deskHeight = dw.height();
-        this->setGeometry(deskWidth/2 - 1100/2,deskHeight/2 - 750/2,1100,750);
+
+        this->setGeometry(deskWidth/2 - confInfo->startPositionX/2, deskHeight/2 - confInfo->startPositionY/2, confInfo->startPositionX,confInfo->startPositionY);
         qDebug() << "居中显示";
     } else {
-        this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),1100,750);
+        this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),confInfo->startPositionX,confInfo->startPositionY);
         qDebug() << "不居中显示";
     }
 }
@@ -919,9 +927,8 @@ void MainWindow::on_toolButton_max_clicked()
     if (!showFlag) {
         //ui->centralWidget->setEnabled(false);
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
-        this->showMaximized();    
         this->setWindowState(Qt::WindowState::WindowMaximized);
+        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
         ui->widget_side->setStyleSheet("#widget_side { \
                                             color: rgb(255, 255, 255); \
                                             border-top-left-radius: 0px; \
@@ -943,6 +950,7 @@ void MainWindow::on_toolButton_max_clicked()
                                                 border: none;\
                                             }");
         ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        //this->showMaximized();
         //ui->centralWidget->setEnabled(true);
         isMaxShow = true;
         showFlag = true;
@@ -1001,15 +1009,15 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
     if(ui->tabWidget->count() == 0) {
         //创建快速连接
         int8_t connectType = 0;
-        ui->stackedWidget->setCurrentIndex(2);
         //创建连接窗口
-        hcwidget = new historyconnectwidget(connectType);
-        //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+        QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+        hcwidget = new historyconnectwidget(connectType, cInfoStructList);
+        connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
         ui->tabWidget->addTab(hcwidget, "快速连接");
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         ui->stackedWidget->setCurrentIndex(0);
         hcwidget->show();
-        ui->stackedWidget->setCurrentIndex(2);
+        //ui->stackedWidget->setCurrentIndex(2);
     }
 }
 
@@ -1118,6 +1126,8 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         sshWidgetList.push_back(sshWidget);
         ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
+        //插入数据
+        db_->ssh_insertSSHInfo(cInfoStruct);
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
 
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
@@ -1142,8 +1152,32 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
+
+
     //ui->widget_line->show();
     //qDebug() << "on_newConnnect调用结束";
+}
+
+
+void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
+    //双击快速连接
+    connnectInfoStruct cInfo_ = db_->ssh_getSSHInfoByHost(cInfoStruct.host);
+    cInfoStruct.password = cInfo_.password;
+
+    qDebug() << "收到双击数据" << cInfoStruct.host << " " << cInfoStruct.password;
+    QSize iconSize(16, 16); // 设置图标的大小
+
+    if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
+        qDebug() << "调用ssh " << cInfoStruct.host << " " << cInfoStruct.password;
+        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo);
+        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
+        connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
+        sshWidgetList.push_back(sshWidget);
+        ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
+    }
+    //这里是添加在最后一个标签页，后面要根据设置来
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_newClose()
@@ -1291,6 +1325,11 @@ void MainWindow::rece_showtimestamp()
 
     // 在标签上显示时间戳
     ui->lineEdit_now_timestamp->setText(timestampStr);
+
+    //下面只是在界面显示时间
+    QTime currentTime2 = QTime::currentTime();
+    QString timeString = currentTime2.toString("hh:mm:ss");
+    ui->label_time->setText(timeString);
 }
 
 void MainWindow::on_toolButton_time2date_clicked()
@@ -1458,11 +1497,12 @@ void MainWindow::on_toolButton_about_clicked()
 
 void MainWindow::on_toolButton_manage_clicked()
 {
+    QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
     int8_t connectType = 0;
     //创建连接窗口
-    hcwidget = new historyconnectwidget(connectType);
-    //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    hcwidget = new historyconnectwidget(connectType, cInfoStructList);
     ui->tabWidget->addTab(hcwidget, "快速连接");
+    connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(0);
     hcwidget->show();
@@ -1711,6 +1751,19 @@ void MainWindow::on_toolButton_side_home_clicked()
 void MainWindow::on_toolButton_side_shell_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    if (!isFirst) {
+        QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+        isFirst = true;
+        //创建快速连接
+        //创建快速连接
+        int8_t connectType = 0;
+        //创建连接窗口
+        hcwidget = new historyconnectwidget(connectType, cInfoStructList);
+        connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
+        ui->tabWidget->addTab(hcwidget, "快速连接");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+        hcwidget->show();
+    }
 }
 
 void MainWindow::on_toolButton_side_tool_clicked()

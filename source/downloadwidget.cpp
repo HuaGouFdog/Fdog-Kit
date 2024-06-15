@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
+#include <QDesktopServices>
+#include <QUrl>
 downloadwidget::downloadwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::downloadwidget)
@@ -46,8 +48,8 @@ downloadwidget::downloadwidget(QWidget *parent) :
 
 void downloadwidget::createNewFile(QString filePath, QString fileName, int fileType, int64_t fileSize)
 {
-    fwidget = new fileProgressWidget(filePath, fileName, fileType, fileSize, ui->widget);
-    QVBoxLayout * vLayout = qobject_cast<QVBoxLayout*>(ui->widget->layout());
+    fwidget = new fileProgressWidget(filePath, fileName, fileType, fileSize, ui->scrollAreaWidgetContents);
+    QVBoxLayout * vLayout = qobject_cast<QVBoxLayout*>(ui->scrollAreaWidgetContents->layout());
     vLayout->insertWidget(0, fwidget->widgetf);
 }
 
@@ -197,4 +199,15 @@ void fileProgressWidget::rece_file_progress_sgin(int64_t sumSize, int64_t fileSi
     if (sumSize == fileSize) {
         progressBar->setFormat("已完成 ");
     }
+}
+
+void downloadwidget::on_toolButton_file_open_clicked()
+{
+    //打开文件
+    QDesktopServices::openUrl(QUrl("file:C:/Users/张旭/Desktop/fsdownload", QUrl::TolerantMode));
+}
+
+void downloadwidget::on_toolButton_file_setting_clicked()
+{
+    //设置
 }

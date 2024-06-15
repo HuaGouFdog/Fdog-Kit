@@ -56,6 +56,10 @@ public:
 private slots:
     void on_toolButton_file_clicked();
 
+    void on_toolButton_file_open_clicked();
+
+    void on_toolButton_file_setting_clicked();
+
 private:
     Ui::downloadwidget *ui;
 

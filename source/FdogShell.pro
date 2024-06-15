@@ -52,7 +52,8 @@ SOURCES += \
     zookeepertipswidget.cpp \
     zookeepermanagewidget.cpp \
     flowlayout.cpp \
-    activate.cpp
+    activate.cpp \
+    sqlhandle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -82,7 +83,8 @@ HEADERS += \
     zookeepertipswidget.h \
     zookeepermanagewidget.h \
     flowlayout.h \
-    activate.h
+    activate.h \
+    sqlhandle.h
 
 FORMS += \
         mainwindow.ui \
@@ -136,3 +138,5 @@ RC_ICONS = lib/Fdogicon.ico
 QT.testlib.CONFIG -= console
 CONFIG += console
 CONFIG += resources_big
+
+QT += sql
