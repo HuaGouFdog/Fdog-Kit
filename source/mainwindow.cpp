@@ -1557,19 +1557,23 @@ void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         QMenu *menu = new QMenu(ui->tabWidget);
         menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
         menu->setAttribute(Qt::WA_TranslucentBackground);
-        QAction *pnew = new QAction("复制标签", ui->tabWidget);
-        QAction *pnew1 = new QAction("关闭", ui->tabWidget);
-        QAction *pnew2 = new QAction("关闭其他", ui->tabWidget);
-        QAction *pnew3 = new QAction("关闭全部", ui->tabWidget);
-        //connect (pnew,SIGNAL(triggered()),this,SLOT(rece_addCommond_sgin()));
-        //connect (pnew1,SIGNAL(triggered()),this,SLOT(rece_mkdirFolder_sgin()));
-        menu->addAction(pnew);
-        menu->addSeparator();
-        menu->addAction(pnew1);
-        menu->addSeparator();
-        menu->addAction(pnew2);
-        menu->addSeparator();
-        menu->addAction(pnew3);
+        QAction *action_reconnection = new QAction("重连", ui->tabWidget);
+        QAction *action_copyTag = new QAction("复制标签", ui->tabWidget);
+        QAction *action_close = new QAction("关闭", ui->tabWidget);
+        QAction *action_closeOther = new QAction("关闭其他标签", ui->tabWidget);
+        QAction *action_closeAll = new QAction("关闭全部标签", ui->tabWidget);
+
+        connect (action_reconnection,SIGNAL(triggered()),this,SLOT(rece_reconnection_sgin()));
+        connect (action_copyTag,SIGNAL(triggered()),this,SLOT(rece_copyTag_sgin()));
+        connect (action_close,SIGNAL(triggered()),this,SLOT(rece_close_sgin()));
+        connect (action_closeOther,SIGNAL(triggered()),this,SLOT(rece_closeOther_sgin()));
+        connect (action_closeAll,SIGNAL(triggered()),this,SLOT(rece_closeAll_sgin()));
+
+        menu->addAction(pnaction_reconnectionew4);
+        menu->addAction(action_copyTag);
+        menu->addAction(action_close);
+        menu->addAction(action_closeOther);
+        menu->addAction(action_closeAll);
         menu->move(cursor().pos());
         menu->show();
     }
@@ -1827,4 +1831,24 @@ void MainWindow::on_toolButton_side_tool_clicked()
             }
         }
     }
+}
+
+void MainWindow::rece_reconnection_sgin() {
+
+}
+
+void MainWindow::rece_copyTag_sgin() {
+
+}
+
+void MainWindow::rece_close_sgin() {
+
+}
+
+void MainWindow::rece_closeOther_sgin() {
+
+}
+
+void MainWindow::rece_closeAll_sgin() {
+    
 }

@@ -207,6 +207,16 @@ private slots:
 
     void on_toolButton_side_tool_clicked();
 
+    void rece_reconnection_sgin();
+
+    void rece_copyTag_sgin();
+
+    void rece_close_sgin();
+
+    void rece_closeOther_sgin();
+    
+    void rece_closeAll_sgin();
+
 private:
     Ui::MainWindow *ui;
 
