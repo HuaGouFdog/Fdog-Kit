@@ -78,9 +78,9 @@ sshhandle::~sshhandle()
     qDebug() << "释放连接句柄结束";
 }
 
-void sshhandle::initSSH(int connrectType, QString host, QString port, QString username, QString password)
+void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password)
 {
-    qDebug() << "initSSH host = " << host;
+    qDebug() << "init host = " << host;
     int rc;
 
     // 创建套接字并建立连接
@@ -106,44 +106,27 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
 
     // 设置会话选项
     libssh2_session_set_blocking(session_ssh, 1);
-    //libssh2_session_set_timeout(session_ssh, 1000);
+    libssh2_session_set_timeout(session_ssh, 20000);
 
     // 建立 SSH 连接
-    
-    for (int i = 0; i < 10; i++) {
-        rc = libssh2_session_handshake(session_ssh, sockfd);
-        if (rc == 0) {
-            qDebug() << "SSH handshake ok";
-            break;
-        } else {
-            qDebug() << "SSH handshake failed rc = " << rc << " i = " << i;
-        }
-    }
+    rc = libssh2_session_handshake(session_ssh, sockfd);
     if (rc) {
         qDebug() << "SSH handshake failed rc = " << rc;
         libssh2_session_disconnect(session_ssh, "Goodbye");
         libssh2_session_free(session_ssh);
+        emit send_init(false);
         return; 
     }
-    qDebug() << "sockfd addr = " << &sockfd << " sockfd = " << sockfd;
-    qDebug() << "session_ssh addr = " << &session_ssh << " session_ssh = " << session_ssh;
+
     // 进行身份验证
-    qDebug() << "user = " << username << " password = " << password;
-    for (int i = 0; i < 10; i++) {
-        rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
-        if (rc == 0) {
-            qDebug() << "initSSH Authentication ok";
-            break;
-        } else {
-            qDebug() << "initSSH Authentication failed rc = " << rc << " i = " << i;
-        }
-    }
-    
+    rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
+
     if (rc) {
         qDebug() << "initSSH Authentication failed rc = " << rc;
         //libssh2_session_disconnect(session_ssh, "Authentication failed");
         //libssh2_session_free(session_ssh);
         //close(sockfd);
+        emit send_init(false);
         return;
     }
 
@@ -161,127 +144,12 @@ void sshhandle::initSSH(int connrectType, QString host, QString port, QString us
     //ret = libssh2_channel_request_pty_size(channel_ssh, 200, 24);
     //libssh2_channel_handle_extended_data2(channel, SSH_EXTENDED_DATA_STDIN, &handlePseudoTerminalData);
     libssh2_channel_shell(channel_ssh);
-    emit send_init();
+    emit send_init(true);
 
 //	connect(monitor_thread__, SIGNAL(started()), monitor_timer__, SLOT(start()));
 //	connect(monitor_thread__, SIGNAL(finished()), monitor_timer__, SLOT(stop()));
 
     //getServerInfo();
-}
-
-void sshhandle::initEXEC(int connrectType, QString host, QString port, QString username, QString password)
-{
-    int rc;
-
-    // 创建套接字并建立连接
-
-    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
-    if (sockfd == INVALID_SOCKET) {
-    }
-
-    // 初始化 libssh2 库
-    rc = libssh2_init(0);
-    if (rc != 0) {
-        qWarning() << "libssh2 initialization failed";
-        return;
-    }
-
-    // 创建 SSH session
-    session_exec = libssh2_session_init();
-    if (!session_exec) {
-        qWarning() << "Failed to create SSH session";
-        return;
-    }
-
-    // 设置会话选项
-    libssh2_session_set_blocking(session_exec, 1);
-    libssh2_session_set_timeout(session_exec, 10000);
-
-    // 建立 SSH 连接
-    rc = libssh2_session_handshake(session_exec, sockfd);
-    if (rc) {
-        qWarning() << "SSH handshake failed";
-        libssh2_session_free(session_exec);
-        close(sockfd);
-        return;
-    }
-
-    // 进行身份验证
-    rc = libssh2_userauth_password(session_exec, username.toUtf8().constData(), password.toUtf8().constData());
-    if (rc) {
-        qWarning() << "initEXEC Authentication failed";
-        // libssh2_session_disconnect(session_exec, "Authentication failed");
-        // libssh2_session_free(session_exec);
-        return;
-    }
-
-    channel_exec = libssh2_channel_open_session(session_exec);
-    qDebug() << "exec初始化完成";
-}
-
-void sshhandle::initSFTP(int connrectType, QString host, QString port, QString username, QString password)
-{
-    int rc;
-
-    // 创建套接字并建立连接
-
-    SOCKET sockfd = createSocket(host.toStdString().c_str(), port.toInt());
-    if (sockfd == INVALID_SOCKET) {
-    }
-
-    // 初始化 libssh2 库
-    rc = libssh2_init(0);
-    if (rc != 0) {
-        qWarning() << "libssh2 initialization failed";
-        return;
-    }
-
-    // 创建 SSH_STFP session
-    session_ssh_sftp = libssh2_session_init();
-    if (!session_ssh_sftp) {
-        qWarning() << "Failed to create SSH session";
-        return;
-    }
-
-    // 设置会话选项
-    libssh2_session_set_blocking(session_ssh_sftp, 1);
-    libssh2_session_set_timeout(session_ssh_sftp, 10000);
-
-    // 建立 SSH 连接
-    rc = libssh2_session_handshake(session_ssh_sftp, sockfd);
-    if (rc) {
-        qWarning() << "SSH handshake failed";
-        libssh2_session_free(session_ssh_sftp);
-        return;
-    }
-
-    // 进行身份验证
-    rc = libssh2_userauth_password(session_ssh_sftp, username.toUtf8().constData(), password.toUtf8().constData());
-    if (rc) {
-        qWarning() << "initSFTP Authentication failed";
-        // libssh2_session_disconnect(session_ssh_sftp, "Authentication failed");
-        // libssh2_session_free(session_ssh_sftp);
-        return;
-    }
-    //初始化 SFTP 会话
-    session_sftp = NULL;
-    session_sftp = libssh2_sftp_init(session_ssh_sftp);
-    if (session_sftp == NULL) {
-        qDebug() << "sftp初始化失败";
-        return;
-    }
-    qDebug() << "sftp初始化完成";
-    //getServerInfo();
-}
-
-void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password)
-{
-    //qDebug() << "执行initSSH" << " host = " << host << " port = " << port << " username = " << username << " password = " << password;
-    qDebug() << "init host = " << host;
-    initSSH(connrectType, host, port, username, password);
-    //qDebug() << "执行initSSH init 完成";
-    ////发送信号
-    //emit send_init_ssh_done();
     return;
 }
 
@@ -594,6 +462,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
         // libssh2_session_disconnect(session_exec, "Authentication failed");
         // libssh2_session_free(session_exec);
         // close(sockfd);
+        //emit send_init(false);
         return;
     }
 
@@ -606,7 +475,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
     }
 
     //qDebug() << "执行sshHandleExec init 完成";
-    emit send_init();
+    emit send_init(true);
 }
 
 void sshHandleExec::getServerInfo()
@@ -1013,6 +882,7 @@ void sshHandleSftp::init(int connrectType, QString host, QString port, QString u
         // libssh2_session_disconnect(session_ssh_sftp, "Authentication failed");
         // libssh2_session_free(session_ssh_sftp);
         // close(sockfd);
+        //emit send_init(false);
         return;
     }
     //qDebug() << " 执行sshHandleSftp init3";

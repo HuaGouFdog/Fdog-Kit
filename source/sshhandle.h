@@ -48,7 +48,7 @@ public:
     QString commondExec(QString commond);
 signals:
     void send_getServerInfo(ServerInfoStruct serverInfo);
-    void send_init();
+    void send_init(bool isok);
 public slots:
     void init(int connrectType, QString host, QString port, QString username, QString password);
 private:
@@ -106,18 +106,13 @@ public:
 
     //void handlechannel_readS(QStringList data);
 signals:
-    void send_init();
+    void send_init(bool isok);
     void send_init_poll();
     void send_channel_write(QString data);
     void send_channel_read(QString data);
     void send_channel_readS(QStringList data);
     void send_getServerInfo(ServerInfoStruct serverInfo);
 public slots:
-    //connectAndExecuteCommand(host, port, username, password, command);
-    void initSSH(int connrectType, QString host, QString port, QString username, QString password);
-    void initEXEC(int connrectType, QString host, QString port, QString username, QString password);
-    void initSFTP(int connrectType, QString host, QString port, QString username, QString password);
-
 
     void init(int connrectType, QString host, QString port, QString username, QString password);
     void init_poll();

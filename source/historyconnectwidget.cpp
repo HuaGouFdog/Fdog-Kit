@@ -33,9 +33,9 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
                 QString headerData;
                 if (col == 0) {
                     QLabel * label = new QLabel();
-                    label->setFixedSize(30,30);
+                    label->setFixedSize(100,30);
                     QPixmap icon(":/lib/diann3.png");
-                     QPixmap scaledIcon = icon.scaled(16, 16, Qt::KeepAspectRatio);
+                     QPixmap scaledIcon = icon.scaled(50, 16, Qt::KeepAspectRatio);
                     label->setPixmap(scaledIcon);
                     headerData = cInfoStructList.at(row).name;
                     label->setStyleSheet("background-color: rgba(0, 214, 103, 0);");

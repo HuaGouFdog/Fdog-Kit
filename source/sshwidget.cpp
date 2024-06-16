@@ -64,7 +64,7 @@ void stringToHtmlFilter(QString &str)
 //     str = QString("<span style=\" color:#%1;\">%2</span>").arg(strC).arg(str);
 // }
 
-sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget *parent) :
+sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString sign, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::sshwidget)
 {
@@ -72,7 +72,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     setSupportStretch(this, true);
     this->cInfoStruct = cInfoStruct;
 
-
+    m_sign = sign;
     ui->splitter_2->setStretchFactor(0,5);
     ui->splitter_2->setStretchFactor(1,1);
 
@@ -112,8 +112,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
 
     connect(m_sshhandle,SIGNAL(send_channel_readS(QStringList)),this,
             SLOT(rece_channel_readS(QStringList)), Qt::QueuedConnection);
-    connect(m_sshhandle,SIGNAL(send_init()),this,
-            SLOT(rece_ssh_init()));
+    connect(m_sshhandle,SIGNAL(send_init(bool)),this,
+            SLOT(rece_ssh_init(bool)));
     connect(m_sshhandle,SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
             SLOT(rece_getServerInfo(ServerInfoStruct)));
     thread->start();
@@ -131,8 +131,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget
     sshExec->moveToThread(threadExec);
     connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
             SLOT(rece_getServerInfo(ServerInfoStruct)));
-    connect(sshExec,SIGNAL(send_init()),this,
-            SLOT(rece_ssh_exec_init()));
+    connect(sshExec,SIGNAL(send_init(bool)),this,
+            SLOT(rece_ssh_exec_init(bool)));
     threadExec->start();
     //在其他地方调用
     //QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
@@ -972,27 +972,6 @@ void sshwidget::appendData_s(QString data) {
 void sshwidget::on_textEdit_cursorPositionChanged()
 {
     //qDebug() << "光标位置改变";
-}
-
-void sshwidget::rece_init()
-{
-    // 设置焦点策略为强制获取焦点
-    ui->plainTextEdit->setFocusPolicy(Qt::NoFocus);
-    ui->plainTextEdit->setFocus();
-    //qDebug("开始调用init_poll");
-    QString cc = "主机连接成功\n";
-    ui->plainTextEdit->appendPlainText(cc);
-    movePositionEnd();
-    textEdit_s->appendPlainText(cc);
-
-    QPalette palette = textEdit_s->palette();
-    palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-    textEdit_s->setPalette(palette);
-
-    //初始化完成调用
-    QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
-    //通知页面，连接成功，可以使用
-    //qDebug("开始调用init_poll完成");
 }
 
 void sshwidget::rece_channel_readS(QStringList data)
@@ -2296,16 +2275,31 @@ void sshwidget::rece_downloadFile_sgin(QString fileName)
     QMetaObject::invokeMethod(sshSftp,"downloadFile", Qt::QueuedConnection, Q_ARG(QString, remote_file_path), Q_ARG(QString,local_file_path), Q_ARG(QString,fileName2));
 }
 
-void sshwidget::rece_ssh_init()
+void sshwidget::rece_ssh_init(bool isok)
 {
     // 设置焦点策略为强制获取焦点
     ui->plainTextEdit->setFocusPolicy(Qt::NoFocus);
     ui->plainTextEdit->setFocus();
+    if (!isok) {
+        QString cc = "主机连接失败\n";
+        ui->plainTextEdit->appendPlainText(cc);
+        movePositionEnd();
+        textEdit_s->appendPlainText(cc);
+        //更新状态图标
+        qDebug("发送更新图标状态");
+        emit send_connection_fail(this);
+        return;
+    }
+
     qDebug("开始调用init_poll");
     QString cc = "主机连接成功\n";
     ui->plainTextEdit->appendPlainText(cc);
     movePositionEnd();
     textEdit_s->appendPlainText(cc);
+
+    //更新状态图标
+    qDebug("发送更新图标状态");
+    emit send_connection_success(this);
 
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
@@ -2321,7 +2315,7 @@ void sshwidget::rece_ssh_init()
     QMetaObject::invokeMethod(sshSftp,"init", Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
 }
 
-void sshwidget::rece_ssh_exec_init()
+void sshwidget::rece_ssh_exec_init(bool isok)
 {
     QString host = cInfoStruct.host;
     QString port = cInfoStruct.port;

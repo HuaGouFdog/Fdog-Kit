@@ -17,23 +17,119 @@
    <string notr="true">color: rgb(255, 255, 255);</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="8">
+   <property name="leftMargin">
+    <number>50</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>50</number>
+   </property>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
        <number>6</number>
       </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="widget_search" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>262</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_find">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>5999</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 10px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+           </property>
+           <property name="placeholderText">
+            <string>搜索连接</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>262</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
       <item>
        <widget class="QWidget" name="widget_3" native="true">
         <property name="styleSheet">
          <string notr="true">#widget_3{
 background-color: rgb(10, 31, 57,100);
-border-radius:10px;
+border-radius:15px;
 }</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="leftMargin">
+          <number>15</number>
+         </property>
          <property name="topMargin">
-          <number>5</number>
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>15</number>
          </property>
          <item>
           <widget class="QTableWidget" name="tableWidget_history">
@@ -74,28 +170,22 @@ border-radius:10px;
 	color: rgb(255, 255, 255);
 }
 
-QHeaderView::section {
-    padding-left: 2px;
-    margin: 0px;
-	background-color: rgb(52, 160, 255);
-    height: 20px;
-    font-weight: bold;
-}
 QTableWidget::item:hover{
 	background-color: rgba(10, 31, 57,0);
 }
 QTableWidget::item:selected{
 	
-	color: rgb(255, 255, 255);
-	border-radius: 5px;
+	
+	color: rgb(22, 22, 22);
 	background-color: rgb(72, 141, 193);
 }
 
 QHeaderView::section,QTableCornerButton:section{
     padding:5px; 
     margin:0px; 
-    
+    height: 30px;
 	font: 10pt &quot;OPPOSans B&quot;;
+	
 	color: rgb(255, 255, 255);
     border:1px solid #242424;
     border-left-width:0px; 
@@ -257,6 +347,21 @@ QScrollBar::up-arrow:vertical {
          <string notr="true"/>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
@@ -293,9 +398,8 @@ QScrollBar::up-arrow:vertical {
            </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgb(67, 67, 67);
+	color: rgb(26, 26, 26);
+	background-color: rgb(113, 212, 219);
 	border-radius: 5px;
 }
 
@@ -305,8 +409,8 @@ QToolButton::menu-indicator {
 
  
 QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(67, 67, 67);
+	color: rgb(26, 26, 26);
+	background-color: rgb(113, 212, 219);
 }</string>
            </property>
            <property name="text">
@@ -337,9 +441,8 @@ QToolButton:hover {
            </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgb(67, 67, 67);
+	color: rgb(26, 26, 26);
+	background-color: rgb(113, 212, 219);
 	border-radius: 5px;
 }
 
@@ -349,8 +452,8 @@ QToolButton::menu-indicator {
 
  
 QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(67, 67, 67);
+	color: rgb(26, 26, 26);
+	background-color: rgb(113, 212, 219);
 }</string>
            </property>
            <property name="text">

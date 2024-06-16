@@ -1121,11 +1121,14 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     QSize iconSize(16, 16); // 设置图标的大小
 
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
-        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo);
+        QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
         connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
+        connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
+        connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
         sshWidgetList.push_back(sshWidget);
-        ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
+        ui->tabWidget->addTab(sshWidget, QIcon(":lib/node3.png").pixmap(iconSize), cInfoStruct.name);
         //插入数据
         db_->ssh_insertSSHInfo(cInfoStruct);
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
@@ -1166,14 +1169,17 @@ void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
 
     qDebug() << "收到双击数据" << cInfoStruct.host << " " << cInfoStruct.password;
     QSize iconSize(16, 16); // 设置图标的大小
-
+    
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
         qDebug() << "调用ssh " << cInfoStruct.host << " " << cInfoStruct.password;
-        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo);
+        QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
         connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
+        connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
+        connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
         sshWidgetList.push_back(sshWidget);
-        ui->tabWidget->addTab(sshWidget, QIcon(":lib/powershell.png").pixmap(iconSize), cInfoStruct.name);
+        ui->tabWidget->addTab(sshWidget, QIcon(":lib/node3.png").pixmap(iconSize), cInfoStruct.name);
     }
     //这里是添加在最后一个标签页，后面要根据设置来
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
@@ -1450,6 +1456,42 @@ void MainWindow::rece_toolButton_fullScreen_sign()
         isFullScreen = false;
     }
 
+}
+
+void MainWindow::rece_connection_success(sshwidget * sw) {
+    qDebug() << "连接成功,更换标识";
+    for (int i = 0; i < ui->tabWidget->count(); ++i) {
+        sshwidget * swTemp = qobject_cast<sshwidget*>(ui->tabWidget->widget(i));
+        if (swTemp) {
+            //转换成功
+            if (swTemp->m_sign == sw->m_sign) {
+                qDebug() << "找到对应页，更新状态图标";
+                QSize iconSize(16, 16); // 设置图标的大小
+                ui->tabWidget->setTabIcon(i, QIcon(":lib/node.png").pixmap(iconSize));
+                break;
+            }
+        } else {
+            qDebug() << "转换失败";
+        }
+    }
+}
+
+void MainWindow::rece_connection_fail(sshwidget * sw) {
+    qDebug() << "连接失败,更换标识";
+    for (int i = 0; i < ui->tabWidget->count(); ++i) {
+        sshwidget * swTemp = qobject_cast<sshwidget*>(ui->tabWidget->widget(i));
+        if (swTemp) {
+            //转换成功
+            if (swTemp->m_sign == sw->m_sign) {
+                qDebug() << "找到对应页，更新状态图标";
+                QSize iconSize(16, 16); // 设置图标的大小
+                ui->tabWidget->setTabIcon(i, QIcon(":lib/node2.png").pixmap(iconSize));
+                break;
+            }
+        } else {
+            qDebug() << "转换失败";
+        }
+    }
 }
 
 void MainWindow::on_toolButton_setting_clicked()

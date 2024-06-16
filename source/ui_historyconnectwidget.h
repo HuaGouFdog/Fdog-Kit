@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolButton>
@@ -29,6 +30,11 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout;
+    QWidget *widget_search;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer;
+    QLineEdit *lineEdit_find;
+    QSpacerItem *horizontalSpacer_2;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_2;
     QTableWidget *tableWidget_history;
@@ -47,20 +53,60 @@ public:
         historyconnectwidget->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         horizontalLayout_5 = new QHBoxLayout(historyconnectwidget);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(50, 0, 50, -1);
         widget_2 = new QWidget(historyconnectwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         verticalLayout = new QVBoxLayout(widget_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(-1, 0, -1, -1);
+        widget_search = new QWidget(widget_2);
+        widget_search->setObjectName(QStringLiteral("widget_search"));
+        widget_search->setMinimumSize(QSize(0, 50));
+        horizontalLayout_2 = new QHBoxLayout(widget_search);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(-1, 0, -1, -1);
+        horizontalSpacer = new QSpacerItem(262, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+        lineEdit_find = new QLineEdit(widget_search);
+        lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
+        lineEdit_find->setMinimumSize(QSize(250, 30));
+        lineEdit_find->setMaximumSize(QSize(5999, 30));
+        QFont font;
+        font.setFamily(QStringLiteral("OPPOSans"));
+        font.setPointSize(10);
+        font.setStyleStrategy(QFont::PreferAntialias);
+        lineEdit_find->setFont(font);
+        lineEdit_find->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(231, 238, 244);\n"
+"border-radius: 14px;\n"
+"background-color: rgb(25, 25, 25, 155);\n"
+"border: 0px solid rgba(255, 255, 255, 0);\n"
+"border-radius: 10px;\n"
+"padding-left:10px;\n"
+"padding-right:10px;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(lineEdit_find);
+
+        horizontalSpacer_2 = new QSpacerItem(262, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
+
+
+        verticalLayout->addWidget(widget_search);
+
         widget_3 = new QWidget(widget_2);
         widget_3->setObjectName(QStringLiteral("widget_3"));
         widget_3->setStyleSheet(QLatin1String("#widget_3{\n"
 "background-color: rgb(10, 31, 57,100);\n"
-"border-radius:10px;\n"
+"border-radius:15px;\n"
 "}"));
         verticalLayout_2 = new QVBoxLayout(widget_3);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(-1, 5, -1, -1);
+        verticalLayout_2->setContentsMargins(15, 9, 15, -1);
         tableWidget_history = new QTableWidget(widget_3);
         if (tableWidget_history->columnCount() < 6)
             tableWidget_history->setColumnCount(6);
@@ -84,11 +130,11 @@ public:
         tableWidget_history->setSizePolicy(sizePolicy);
         tableWidget_history->setMinimumSize(QSize(0, 0));
         tableWidget_history->setMaximumSize(QSize(16777215, 16777215));
-        QFont font;
-        font.setFamily(QStringLiteral("OPPOSans B"));
-        font.setPointSize(10);
-        font.setStyleStrategy(QFont::PreferAntialias);
-        tableWidget_history->setFont(font);
+        QFont font1;
+        font1.setFamily(QStringLiteral("OPPOSans B"));
+        font1.setPointSize(10);
+        font1.setStyleStrategy(QFont::PreferAntialias);
+        tableWidget_history->setFont(font1);
         tableWidget_history->setFocusPolicy(Qt::NoFocus);
         tableWidget_history->setStyleSheet(QString::fromUtf8("QTableWidget{\n"
 "	border:none;\n"
@@ -98,28 +144,22 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
-"QHeaderView::section {\n"
-"    padding-left: 2px;\n"
-"    margin: 0px;\n"
-"	background-color: rgb(52, 160, 255);\n"
-"    height: 20px;\n"
-"    font-weight: bold;\n"
-"}\n"
 "QTableWidget::item:hover{\n"
 "	background-color: rgba(10, 31, 57,0);\n"
 "}\n"
 "QTableWidget::item:selected{\n"
 "	\n"
-"	color: rgb(255, 255, 255);\n"
-"	border-radius: 5px;\n"
+"	\n"
+"	color: rgb(22, 22, 22);\n"
 "	background-color: rgb(72, 141, 193);\n"
 "}\n"
 "\n"
 "QHeaderView::section,QTableCornerButton:section{\n"
 "    padding:5px; \n"
 "    margin:0px; \n"
-"    \n"
+"    height: 30px;\n"
 "	font: 10pt \"OPPOSans B\";\n"
+"	\n"
 "	color: rgb(255, 255, 255);\n"
 "    border:1px solid #242424;\n"
 "    border-left-width:0px; \n"
@@ -129,15 +169,15 @@ public:
 "	/*background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); */\n"
 "	\n"
 "	\n"
-"	background-c"
-                        "olor: rgb(10, 31, 57,0);\n"
+"	background-color: rgb(10, 31, 57,0);\n"
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
 "    width: 10px;\n"
 "	background-color: rgba(0, 41, 69, 0);\n"
 "    margin: 0px,0px,0px,0px;\n"
-"    padding-top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
+"    padding-"
+                        "top: 0px;		/*//\351\232\220\350\227\217\344\270\212\344\270\213\347\232\204\347\256\255\345\244\264*/\n"
 "    padding-bottom: 0px;\n"
 "}\n"
 "QScrollBar::handle:vertical {\n"
@@ -166,8 +206,7 @@ public:
 "}\n"
 "QScrollBar::sub-line:vertical {\n"
 "    border: none;\n"
-"    heigh"
-                        "t: 0px;\n"
+"    height: 0px;\n"
 "    subcontrol-position: top;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
@@ -175,7 +214,8 @@ public:
 "QScrollBar::down-arrow:vertical {\n"
 "    border:none;\n"
 "}\n"
-"QScrollBar::up-arrow:vertical {\n"
+"QScrollBar::up-arr"
+                        "ow:vertical {\n"
 "    border:none;\n"
 "}"));
         tableWidget_history->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -209,7 +249,9 @@ public:
         widget->setObjectName(QStringLiteral("widget"));
         widget->setStyleSheet(QStringLiteral(""));
         horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setSpacing(15);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 10, 0, 10);
         horizontalSpacer_3 = new QSpacerItem(395, 10, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_3);
@@ -218,11 +260,10 @@ public:
         toolButton_create->setObjectName(QStringLiteral("toolButton_create"));
         toolButton_create->setMinimumSize(QSize(70, 30));
         toolButton_create->setMaximumSize(QSize(70, 30));
-        toolButton_create->setFont(font);
+        toolButton_create->setFont(font1);
         toolButton_create->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color: rgb(67, 67, 67);\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -232,8 +273,8 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(67, 67, 67);\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
 "}"));
 
         horizontalLayout->addWidget(toolButton_create);
@@ -242,11 +283,10 @@ public:
         toolButton_menger->setObjectName(QStringLiteral("toolButton_menger"));
         toolButton_menger->setMinimumSize(QSize(70, 30));
         toolButton_menger->setMaximumSize(QSize(70, 30));
-        toolButton_menger->setFont(font);
+        toolButton_menger->setFont(font1);
         toolButton_menger->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color: rgb(67, 67, 67);\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -256,8 +296,8 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(67, 67, 67);\n"
+"	color: rgb(26, 26, 26);\n"
+"	background-color: rgb(113, 212, 219);\n"
 "}"));
 
         horizontalLayout->addWidget(toolButton_menger);
@@ -266,7 +306,7 @@ public:
         toolButton_clear->setObjectName(QStringLiteral("toolButton_clear"));
         toolButton_clear->setMinimumSize(QSize(70, 30));
         toolButton_clear->setMaximumSize(QSize(70, 30));
-        toolButton_clear->setFont(font);
+        toolButton_clear->setFont(font1);
         toolButton_clear->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -302,6 +342,7 @@ public:
     void retranslateUi(QWidget *historyconnectwidget)
     {
         historyconnectwidget->setWindowTitle(QApplication::translate("historyconnectwidget", "Form", nullptr));
+        lineEdit_find->setPlaceholderText(QApplication::translate("historyconnectwidget", "\346\220\234\347\264\242\350\277\236\346\216\245", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget_history->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("historyconnectwidget", "\345\220\215\347\247\260", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget_history->horizontalHeaderItem(1);

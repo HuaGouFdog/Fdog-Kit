@@ -246,7 +246,7 @@ class sshwidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QWidget *parent = 0);
+    explicit sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString sign, QWidget *parent = 0);
     ~sshwidget();
 
     enum MoveMode {
@@ -336,15 +336,16 @@ public:
 
     void appendData(QString data);
     void appendData_s(QString data);
-
+    QString m_sign;
 signals:
     void send_toolButton_toolkit_sign();
+    void send_connection_success(sshwidget *);
+    void send_connection_fail(sshwidget *);
     void send_toolButton_fullScreen_sign();
     void send_searchTextNumbers(int sn, int sum);
 private slots:
     void on_textEdit_cursorPositionChanged();
 
-    void rece_init();
     //接收命令
     void rece_channel_readS(QStringList data);
 
@@ -411,9 +412,9 @@ private slots:
 
     void rece_downloadFile_sgin(QString fileName = "");
 
-    void rece_ssh_init();
+    void rece_ssh_init(bool isok);
 
-    void rece_ssh_exec_init();
+    void rece_ssh_exec_init(bool isok);
 
     void rece_ssh_sftp_init();
 
@@ -430,6 +431,7 @@ private slots:
     void on_toolButton_2_clicked();
 
     void on_verticalScrollBar_valueChanged(int value);
+
 
 private:
     Ui::sshwidget *ui;
@@ -531,6 +533,8 @@ private:
     QString buffData; //存普通数据
 
     int gsum = 0;
+
+
 };
 
 #endif // SSHWIDGET_H

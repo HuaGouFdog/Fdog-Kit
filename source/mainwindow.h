@@ -120,7 +120,7 @@ private slots:
     void on_newConnnect(connnectInfoStruct& cInfoStruct);
 
     void rece_fastConnection(connnectInfoStruct& cInfoStruct);
-    
+
     void on_newClose();
 
     void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
@@ -155,6 +155,10 @@ private slots:
     //void on_toolButton_newCreate_2_clicked();
 
     void rece_toolButton_fullScreen_sign();
+
+    void rece_connection_success(sshwidget * sw);
+
+    void rece_connection_fail(sshwidget * sw);
 
     void on_toolButton_setting_clicked();
 
