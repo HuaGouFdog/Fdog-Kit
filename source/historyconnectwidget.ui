@@ -54,7 +54,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>262</width>
+             <width>397</width>
              <height>20</height>
             </size>
            </property>
@@ -96,19 +96,6 @@ padding-right:10px;
             <string>搜索连接</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>262</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>

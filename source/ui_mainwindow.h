@@ -69,6 +69,9 @@ public:
     QLabel *label_time_2;
     QLabel *label_time;
     QSpacerItem *horizontalSpacer;
+    QWidget *widget_download;
+    QHBoxLayout *horizontalLayout_5;
+    QToolButton *toolButton_download;
     QToolButton *toolButton_min;
     QToolButton *toolButton_max;
     QToolButton *toolButton_close;
@@ -1070,6 +1073,32 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
+        widget_download = new QWidget(widget_title);
+        widget_download->setObjectName(QStringLiteral("widget_download"));
+        widget_download->setMinimumSize(QSize(30, 0));
+        horizontalLayout_5 = new QHBoxLayout(widget_download);
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        toolButton_download = new QToolButton(widget_download);
+        toolButton_download->setObjectName(QStringLiteral("toolButton_download"));
+        toolButton_download->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgba(94, 255, 210, 0);\n"
+"	border: none;\n"
+"}"));
+        QIcon icon12;
+        icon12.addFile(QStringLiteral(":/lib/download.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_download->setIcon(icon12);
+        toolButton_download->setIconSize(QSize(22, 23));
+
+        horizontalLayout_5->addWidget(toolButton_download);
+
+
+        horizontalLayout->addWidget(widget_download);
+
         toolButton_min = new QToolButton(widget_title);
         toolButton_min->setObjectName(QStringLiteral("toolButton_min"));
         toolButton_min->setMinimumSize(QSize(40, 29));
@@ -1097,9 +1126,9 @@ public:
 "	background-color: rgb(23, 35, 42);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon12;
-        icon12.addFile(QStringLiteral(":/lib/icon-minus3.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_min->setIcon(icon12);
+        QIcon icon13;
+        icon13.addFile(QStringLiteral(":/lib/icon-minus3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_min->setIcon(icon13);
         toolButton_min->setIconSize(QSize(13, 13));
 
         horizontalLayout->addWidget(toolButton_min);
@@ -1126,9 +1155,9 @@ public:
 "	background-color: rgb(23, 35, 42);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon13;
-        icon13.addFile(QStringLiteral(":/lib/Icon_max4.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_max->setIcon(icon13);
+        QIcon icon14;
+        icon14.addFile(QStringLiteral(":/lib/Icon_max4.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_max->setIcon(icon14);
         toolButton_max->setIconSize(QSize(11, 11));
         toolButton_max->setCheckable(false);
         toolButton_max->setAutoRepeat(false);
@@ -1160,9 +1189,9 @@ public:
 "	background-color: rgb(200, 0, 0);\n"
 "	border: none;\n"
 "}"));
-        QIcon icon14;
-        icon14.addFile(QStringLiteral(":/lib/icon-close8.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_close->setIcon(icon14);
+        QIcon icon15;
+        icon15.addFile(QStringLiteral(":/lib/icon-close8.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_close->setIcon(icon15);
         toolButton_close->setIconSize(QSize(11, 11));
         toolButton_close->setCheckable(false);
 
@@ -1237,9 +1266,9 @@ public:
         toolButton_25->setMinimumSize(QSize(25, 25));
         toolButton_25->setMaximumSize(QSize(25, 25));
         toolButton_25->setStyleSheet(QStringLiteral(""));
-        QIcon icon15;
-        icon15.addFile(QStringLiteral(":/lib/add1.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_25->setIcon(icon15);
+        QIcon icon16;
+        icon16.addFile(QStringLiteral(":/lib/add1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_25->setIcon(icon16);
 
         horizontalLayout_13->addWidget(toolButton_25);
 
@@ -1251,9 +1280,9 @@ public:
         toolButton_top_back->setObjectName(QStringLiteral("toolButton_top_back"));
         toolButton_top_back->setMinimumSize(QSize(20, 20));
         toolButton_top_back->setMaximumSize(QSize(20, 20));
-        QIcon icon16;
-        icon16.addFile(QStringLiteral(":/lib/left.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_top_back->setIcon(icon16);
+        QIcon icon17;
+        icon17.addFile(QStringLiteral(":/lib/left.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_top_back->setIcon(icon17);
         toolButton_top_back->setIconSize(QSize(14, 14));
 
         horizontalLayout_13->addWidget(toolButton_top_back);
@@ -1264,9 +1293,9 @@ public:
         toolButton->setMaximumSize(QSize(20, 20));
         toolButton->setStyleSheet(QLatin1String("border-radius:25px;\n"
 ""));
-        QIcon icon17;
-        icon17.addFile(QStringLiteral(":/lib/login.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton->setIcon(icon17);
+        QIcon icon18;
+        icon18.addFile(QStringLiteral(":/lib/login.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton->setIcon(icon18);
         toolButton->setIconSize(QSize(35, 35));
 
         horizontalLayout_13->addWidget(toolButton);
@@ -2584,7 +2613,7 @@ public:
 "	background-color: rgba(255, 255, 255, 0);\n"
 "	border: none;\n"
 "}"));
-        widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon15);
+        widget_welcome_body_widget2_newCreate_newTerminal->setIcon(icon16);
         widget_welcome_body_widget2_newCreate_newTerminal->setIconSize(QSize(20, 20));
         widget_welcome_body_widget2_newCreate_newTerminal->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
@@ -2697,9 +2726,9 @@ public:
         toolButton_19->setObjectName(QStringLiteral("toolButton_19"));
         toolButton_19->setMinimumSize(QSize(30, 30));
         toolButton_19->setMaximumSize(QSize(30, 30));
-        QIcon icon18;
-        icon18.addFile(QStringLiteral(":/lib/windows.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_19->setIcon(icon18);
+        QIcon icon19;
+        icon19.addFile(QStringLiteral(":/lib/windows.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_19->setIcon(icon19);
         toolButton_19->setIconSize(QSize(20, 20));
 
         horizontalLayout_4->addWidget(toolButton_19);
@@ -2708,9 +2737,9 @@ public:
         toolButton_20->setObjectName(QStringLiteral("toolButton_20"));
         toolButton_20->setMinimumSize(QSize(30, 30));
         toolButton_20->setMaximumSize(QSize(30, 30));
-        QIcon icon19;
-        icon19.addFile(QStringLiteral(":/lib/qssmaihua.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_20->setIcon(icon19);
+        QIcon icon20;
+        icon20.addFile(QStringLiteral(":/lib/qssmaihua.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_20->setIcon(icon20);
         toolButton_20->setIconSize(QSize(20, 20));
 
         horizontalLayout_4->addWidget(toolButton_20);
@@ -2719,9 +2748,9 @@ public:
         toolButton_21->setObjectName(QStringLiteral("toolButton_21"));
         toolButton_21->setMinimumSize(QSize(30, 30));
         toolButton_21->setMaximumSize(QSize(30, 30));
-        QIcon icon20;
-        icon20.addFile(QStringLiteral(":/lib/XML-Local-hover.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_21->setIcon(icon20);
+        QIcon icon21;
+        icon21.addFile(QStringLiteral(":/lib/XML-Local-hover.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_21->setIcon(icon21);
         toolButton_21->setIconSize(QSize(20, 20));
 
         horizontalLayout_4->addWidget(toolButton_21);
@@ -2730,9 +2759,9 @@ public:
         toolButton_22->setObjectName(QStringLiteral("toolButton_22"));
         toolButton_22->setMinimumSize(QSize(30, 30));
         toolButton_22->setMaximumSize(QSize(30, 30));
-        QIcon icon21;
-        icon21.addFile(QStringLiteral(":/lib/Zookeeper2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_22->setIcon(icon21);
+        QIcon icon22;
+        icon22.addFile(QStringLiteral(":/lib/Zookeeper2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_22->setIcon(icon22);
         toolButton_22->setIconSize(QSize(20, 20));
 
         horizontalLayout_4->addWidget(toolButton_22);
@@ -2741,9 +2770,9 @@ public:
         toolButton_23->setObjectName(QStringLiteral("toolButton_23"));
         toolButton_23->setMinimumSize(QSize(30, 30));
         toolButton_23->setMaximumSize(QSize(30, 30));
-        QIcon icon22;
-        icon22.addFile(QStringLiteral(":/lib/linux.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_23->setIcon(icon22);
+        QIcon icon23;
+        icon23.addFile(QStringLiteral(":/lib/linux.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_23->setIcon(icon23);
         toolButton_23->setIconSize(QSize(20, 20));
 
         horizontalLayout_4->addWidget(toolButton_23);
@@ -2885,6 +2914,7 @@ public:
         toolButton_about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", nullptr));
         label_time_2->setText(QString());
         label_time->setText(QApplication::translate("MainWindow", "32131231312312", nullptr));
+        toolButton_download->setText(QApplication::translate("MainWindow", "...", nullptr));
         toolButton_min->setText(QString());
         toolButton_max->setText(QString());
         toolButton_close->setText(QString());

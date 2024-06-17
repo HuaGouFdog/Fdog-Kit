@@ -250,6 +250,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //打开数据库
     db_ = new sqlhandle();
+
+    dlwidget = new downloadwidget(ui->toolButton_download);
 }
 
 MainWindow::~MainWindow()
@@ -1569,7 +1571,7 @@ void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
         connect (action_closeOther,SIGNAL(triggered()),this,SLOT(rece_closeOther_sgin()));
         connect (action_closeAll,SIGNAL(triggered()),this,SLOT(rece_closeAll_sgin()));
 
-        menu->addAction(pnaction_reconnectionew4);
+        menu->addAction(action_reconnection);
         menu->addAction(action_copyTag);
         menu->addAction(action_close);
         menu->addAction(action_closeOther);
@@ -1851,4 +1853,9 @@ void MainWindow::rece_closeOther_sgin() {
 
 void MainWindow::rece_closeAll_sgin() {
     
+}
+
+void MainWindow::on_toolButton_download_clicked()
+{
+
 }

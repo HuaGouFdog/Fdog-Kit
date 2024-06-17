@@ -34,7 +34,6 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
     QLineEdit *lineEdit_find;
-    QSpacerItem *horizontalSpacer_2;
     QWidget *widget_3;
     QVBoxLayout *verticalLayout_2;
     QTableWidget *tableWidget_history;
@@ -66,7 +65,7 @@ public:
         horizontalLayout_2 = new QHBoxLayout(widget_search);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(-1, 0, -1, -1);
-        horizontalSpacer = new QSpacerItem(262, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(397, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
@@ -90,10 +89,6 @@ public:
 "}"));
 
         horizontalLayout_2->addWidget(lineEdit_find);
-
-        horizontalSpacer_2 = new QSpacerItem(262, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_2);
 
 
         verticalLayout->addWidget(widget_search);

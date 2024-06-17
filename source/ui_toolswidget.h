@@ -766,6 +766,9 @@ public:
         font3.setPointSize(10);
         font3.setStyleStrategy(QFont::PreferAntialias);
         plainTextEdit_data->setFont(font3);
+        plainTextEdit_data->setStyleSheet(QLatin1String("	background-color: rgba(255, 255, 255, 20);\n"
+"	border-radius: 5px;\n"
+"color: rgb(255, 255, 255);"));
 
         verticalLayout_6->addWidget(plainTextEdit_data);
 
@@ -835,6 +838,8 @@ public:
         plainTextEdit_16Lower->setMinimumSize(QSize(0, 70));
         plainTextEdit_16Lower->setMaximumSize(QSize(450, 70));
         plainTextEdit_16Lower->setFont(font1);
+        plainTextEdit_16Lower->setStyleSheet(QLatin1String("	background-color: rgba(255, 255, 255, 20);\n"
+"	border-radius: 5px;"));
         plainTextEdit_16Lower->setReadOnly(true);
 
         horizontalLayout_12->addWidget(plainTextEdit_16Lower);
@@ -868,6 +873,8 @@ public:
         plainTextEdit_16->setMinimumSize(QSize(0, 70));
         plainTextEdit_16->setMaximumSize(QSize(450, 70));
         plainTextEdit_16->setFont(font1);
+        plainTextEdit_16->setStyleSheet(QLatin1String("	background-color: rgba(255, 255, 255, 20);\n"
+"	border-radius: 5px;"));
         plainTextEdit_16->setReadOnly(true);
 
         horizontalLayout_11->addWidget(plainTextEdit_16);
@@ -901,6 +908,8 @@ public:
         plainTextEdit_32Lower->setMinimumSize(QSize(0, 70));
         plainTextEdit_32Lower->setMaximumSize(QSize(450, 70));
         plainTextEdit_32Lower->setFont(font1);
+        plainTextEdit_32Lower->setStyleSheet(QLatin1String("	background-color: rgba(255, 255, 255, 20);\n"
+"	border-radius: 5px;"));
         plainTextEdit_32Lower->setReadOnly(true);
 
         horizontalLayout_10->addWidget(plainTextEdit_32Lower);
@@ -934,6 +943,8 @@ public:
         plainTextEdit_32->setMinimumSize(QSize(0, 70));
         plainTextEdit_32->setMaximumSize(QSize(450, 70));
         plainTextEdit_32->setFont(font1);
+        plainTextEdit_32->setStyleSheet(QLatin1String("	background-color: rgba(255, 255, 255, 20);\n"
+"	border-radius: 5px;"));
         plainTextEdit_32->setReadOnly(true);
 
         horizontalLayout_9->addWidget(plainTextEdit_32);

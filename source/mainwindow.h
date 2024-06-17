@@ -18,7 +18,7 @@
 #include "thriftwidget.h"
 #include "flowlayout.h"
 #include "sqlhandle.h"
-
+#include "downloadwidget.h"
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
 
@@ -214,8 +214,10 @@ private slots:
     void rece_close_sgin();
 
     void rece_closeOther_sgin();
-    
+
     void rece_closeAll_sgin();
+
+    void on_toolButton_download_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -285,6 +287,8 @@ private:
 
     //操作数据库
     sqlhandle * db_;
+
+    downloadwidget * dlwidget = NULL;
     
 };
 

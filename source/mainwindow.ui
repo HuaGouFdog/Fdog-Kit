@@ -1555,6 +1555,55 @@ QToolButton:hover {
            </spacer>
           </item>
           <item>
+           <widget class="QWidget" name="widget_download" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>30</width>
+              <height>0</height>
+             </size>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QToolButton" name="toolButton_download">
+               <property name="styleSheet">
+                <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}</string>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="lib.qrc">
+                 <normaloff>:/lib/download.png</normaloff>:/lib/download.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>22</width>
+                 <height>23</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QToolButton" name="toolButton_min">
             <property name="minimumSize">
              <size>

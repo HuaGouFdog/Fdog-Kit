@@ -143,7 +143,11 @@ public:
     QSplitter *splitter_4;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_4;
+    QWidget *widget_4;
+    QHBoxLayout *horizontalLayout_16;
     QLabel *label_4;
+    QCheckBox *checkBox_show_json;
+    QSpacerItem *horizontalSpacer_30;
     QTextEdit *textEdit_data;
     QTabWidget *tabWidget_response;
     QWidget *tab_3;
@@ -1761,7 +1765,7 @@ public:
         treeWidget->setUniformRowHeights(true);
         treeWidget->setSortingEnabled(false);
         treeWidget->setAnimated(false);
-        treeWidget->header()->setVisible(true);
+        treeWidget->header()->setVisible(false);
         treeWidget->header()->setDefaultSectionSize(100);
         treeWidget->header()->setMinimumSectionSize(20);
         treeWidget->header()->setStretchLastSection(true);
@@ -1933,9 +1937,17 @@ public:
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setFont(font1);
         verticalLayout_4 = new QVBoxLayout(widget_2);
-        verticalLayout_4->setSpacing(8);
+        verticalLayout_4->setSpacing(7);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_4 = new QLabel(widget_2);
+        verticalLayout_4->setContentsMargins(-1, 0, -1, -1);
+        widget_4 = new QWidget(widget_2);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setMinimumSize(QSize(0, 30));
+        widget_4->setStyleSheet(QStringLiteral("color: rgb(56, 56, 56);"));
+        horizontalLayout_16 = new QHBoxLayout(widget_4);
+        horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
+        horizontalLayout_16->setContentsMargins(0, 0, 0, 0);
+        label_4 = new QLabel(widget_4);
         label_4->setObjectName(QStringLiteral("label_4"));
         QFont font6;
         font6.setFamily(QStringLiteral("OPPOSans B"));
@@ -1943,7 +1955,23 @@ public:
         font6.setStyleStrategy(QFont::PreferAntialias);
         label_4->setFont(font6);
 
-        verticalLayout_4->addWidget(label_4);
+        horizontalLayout_16->addWidget(label_4);
+
+        checkBox_show_json = new QCheckBox(widget_4);
+        checkBox_show_json->setObjectName(QStringLiteral("checkBox_show_json"));
+        checkBox_show_json->setMaximumSize(QSize(16777215, 30));
+        checkBox_show_json->setFont(font);
+        checkBox_show_json->setStyleSheet(QStringLiteral("color: rgb(56, 56, 56);"));
+        checkBox_show_json->setChecked(true);
+
+        horizontalLayout_16->addWidget(checkBox_show_json);
+
+        horizontalSpacer_30 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_16->addItem(horizontalSpacer_30);
+
+
+        verticalLayout_4->addWidget(widget_4);
 
         textEdit_data = new QTextEdit(widget_2);
         textEdit_data->setObjectName(QStringLiteral("textEdit_data"));
@@ -2291,7 +2319,7 @@ public:
         tabWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
-        tabWidget_response->setCurrentIndex(0);
+        tabWidget_response->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(thriftwidget);
@@ -2407,6 +2435,7 @@ public:
         checkBox_show_source->setText(QApplication::translate("thriftwidget", "\346\230\276\347\244\272\344\272\214\350\277\233\345\210\266\345\216\237\345\247\213\346\225\260\346\215\256", nullptr));
         toolButton_show_thrift_info->setText(QApplication::translate("thriftwidget", "thrift\345\215\217\350\256\256\346\212\245\346\226\207\350\257\264\346\230\216", nullptr));
         label_4->setText(QApplication::translate("thriftwidget", "Data", nullptr));
+        checkBox_show_json->setText(QApplication::translate("thriftwidget", "\346\240\274\345\274\217\345\214\226\344\270\272\346\240\207\345\207\206json(\346\234\211\346\227\266\345\200\231\350\277\224\345\233\236\346\225\260\346\215\256\345\217\257\350\203\275\346\240\274\345\274\217\345\214\226\345\244\261\350\264\245\357\274\214\350\257\267\345\217\226\346\266\210\345\213\276\351\200\211\345\220\216\345\206\215\350\257\225\346\210\226\350\200\205\345\244\232\346\254\241\350\257\267\346\261\202)", nullptr));
         textEdit_data->setHtml(QApplication::translate("thriftwidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

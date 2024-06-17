@@ -4253,7 +4253,9 @@ public:
         font6.setStyleStrategy(QFont::PreferAntialias);
         toolButton_save->setFont(font6);
         toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(26, 26, 26);\n"
+"	\n"
+"	\n"
+"	color: rgb(20, 20, 20);\n"
 "	background-color: rgb(113, 212, 219);\n"
 "	border-radius: 5px;\n"
 "}\n"
@@ -4264,8 +4266,10 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	color: rgb(26, 26, 26);\n"
-"	background-color: rgb(113, 212, 219);\n"
+"	\n"
+"	color: rgb(0, 0, 0);\n"
+"	\n"
+"	background-color: rgb(0, 255, 255);\n"
 "}"));
 
         horizontalLayout->addWidget(toolButton_save);
@@ -4291,7 +4295,9 @@ public:
 "\n"
 " \n"
 "QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	\n"
+"	color: rgb(191, 191, 191);\n"
 "	background-color: rgb(67, 67, 67);\n"
 "}"));
 

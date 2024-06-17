@@ -42,7 +42,7 @@ downloadwidget::downloadwidget(QWidget *parent) :
 //    ui->widget->layout()->addWidget(fwidget4->widget);
     //ui->widget->setLayout(vLayout);
     //默认只显示下载图标
-    ui->widget_body->hide();
+    //ui->widget_body->hide();
     this->setFixedSize(280,25);
 }
 

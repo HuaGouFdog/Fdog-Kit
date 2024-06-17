@@ -1074,11 +1074,12 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
         //对数据进行染色
         qDebug() << "===============2";
         handleMessage(dataTemp_2);
-        //将数据更加细致格式化
-        QString needToJsonData = ui->textEdit_data->toPlainText();
-        ui->textEdit_data->clear();
-        utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
-
+        //将数据更加细致格式化，如果勾选了的话
+        if (ui->checkBox_show_json) {
+            QString needToJsonData = ui->textEdit_data->toPlainText();
+            ui->textEdit_data->clear();
+            utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+        }
 
         ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
         ui->textEdit->append(dataTemp_2);
