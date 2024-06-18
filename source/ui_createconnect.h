@@ -46,17 +46,22 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *widget_group_label_group;
     QLineEdit *widget_group_lineEdit_group_data;
-    QWidget *widget_group_2;
+    QWidget *widget_remark;
     QVBoxLayout *verticalLayout_5;
-    QLabel *widget_group_label_group_2;
-    QLineEdit *widget_group_lineEdit_group_data_2;
+    QLabel *widget_remark_label_remark;
+    QLineEdit *widget_remark_lineEdit_remark_data;
     QWidget *widget;
     QVBoxLayout *verticalLayout_7;
     QWidget *widget_color;
-    QHBoxLayout *horizontalLayout_5;
+    QHBoxLayout *horizontalLayout_7;
     QLabel *widget_color_label_color;
-    QLineEdit *lineEdit;
+    QToolButton *toolButton_color;
     QSpacerItem *widget_color_horizontalSpacer_color;
+    QWidget *widget_transparent;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *widget_transparent_label_color;
+    QLineEdit *lineEdit_transparent;
+    QSpacerItem *widget_transparent_horizontalSpacer_color;
     QWidget *widget_dynamic_title;
     QVBoxLayout *verticalLayout_6;
     QCheckBox *widget_dynamic_title_checkBox;
@@ -125,7 +130,7 @@ public:
     {
         if (createconnect->objectName().isEmpty())
             createconnect->setObjectName(QStringLiteral("createconnect"));
-        createconnect->resize(680, 452);
+        createconnect->resize(699, 473);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -160,24 +165,24 @@ public:
         horizontalLayout_6 = new QHBoxLayout(widget_body);
         horizontalLayout_6->setSpacing(20);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(15, 30, 15, -1);
+        horizontalLayout_6->setContentsMargins(15, 30, 15, 0);
         widget_body_left = new QWidget(widget_body);
         widget_body_left->setObjectName(QStringLiteral("widget_body_left"));
         widget_body_left->setMinimumSize(QSize(190, 0));
         widget_body_left->setMaximumSize(QSize(190, 16777215));
         verticalLayout_3 = new QVBoxLayout(widget_body_left);
-        verticalLayout_3->setSpacing(10);
+        verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(9, 3, 1, 0);
         widget_name = new QWidget(widget_body_left);
         widget_name->setObjectName(QStringLiteral("widget_name"));
-        widget_name->setMinimumSize(QSize(180, 60));
-        widget_name->setMaximumSize(QSize(180, 60));
+        widget_name->setMinimumSize(QSize(180, 70));
+        widget_name->setMaximumSize(QSize(180, 70));
         widget_name->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(widget_name);
         verticalLayout->setSpacing(5);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayout->setContentsMargins(0, 0, 0, 4);
         widget_name_label_name = new QLabel(widget_name);
         widget_name_label_name->setObjectName(QStringLiteral("widget_name_label_name"));
         widget_name_label_name->setMinimumSize(QSize(0, 20));
@@ -205,13 +210,13 @@ public:
 
         widget_group = new QWidget(widget_body_left);
         widget_group->setObjectName(QStringLiteral("widget_group"));
-        widget_group->setMinimumSize(QSize(180, 60));
-        widget_group->setMaximumSize(QSize(180, 60));
+        widget_group->setMinimumSize(QSize(180, 70));
+        widget_group->setMaximumSize(QSize(180, 70));
         widget_group->setStyleSheet(QStringLiteral(""));
         verticalLayout_2 = new QVBoxLayout(widget_group);
         verticalLayout_2->setSpacing(5);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_2->setContentsMargins(0, 0, 0, 1);
         widget_group_label_group = new QLabel(widget_group);
         widget_group_label_group->setObjectName(QStringLiteral("widget_group_label_group"));
         widget_group_label_group->setMinimumSize(QSize(0, 20));
@@ -236,96 +241,137 @@ public:
 
         verticalLayout_3->addWidget(widget_group);
 
-        widget_group_2 = new QWidget(widget_body_left);
-        widget_group_2->setObjectName(QStringLiteral("widget_group_2"));
-        widget_group_2->setMinimumSize(QSize(180, 100));
-        widget_group_2->setMaximumSize(QSize(180, 100));
-        widget_group_2->setStyleSheet(QStringLiteral(""));
-        verticalLayout_5 = new QVBoxLayout(widget_group_2);
+        widget_remark = new QWidget(widget_body_left);
+        widget_remark->setObjectName(QStringLiteral("widget_remark"));
+        widget_remark->setMinimumSize(QSize(180, 110));
+        widget_remark->setMaximumSize(QSize(180, 110));
+        widget_remark->setStyleSheet(QStringLiteral(""));
+        verticalLayout_5 = new QVBoxLayout(widget_remark);
         verticalLayout_5->setSpacing(5);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
-        widget_group_label_group_2 = new QLabel(widget_group_2);
-        widget_group_label_group_2->setObjectName(QStringLiteral("widget_group_label_group_2"));
-        widget_group_label_group_2->setMinimumSize(QSize(0, 20));
-        widget_group_label_group_2->setMaximumSize(QSize(16777215, 20));
-        widget_group_label_group_2->setFont(font);
+        verticalLayout_5->setContentsMargins(0, 0, 0, 4);
+        widget_remark_label_remark = new QLabel(widget_remark);
+        widget_remark_label_remark->setObjectName(QStringLiteral("widget_remark_label_remark"));
+        widget_remark_label_remark->setMinimumSize(QSize(0, 20));
+        widget_remark_label_remark->setMaximumSize(QSize(16777215, 20));
+        widget_remark_label_remark->setFont(font);
 
-        verticalLayout_5->addWidget(widget_group_label_group_2);
+        verticalLayout_5->addWidget(widget_remark_label_remark);
 
-        widget_group_lineEdit_group_data_2 = new QLineEdit(widget_group_2);
-        widget_group_lineEdit_group_data_2->setObjectName(QStringLiteral("widget_group_lineEdit_group_data_2"));
-        widget_group_lineEdit_group_data_2->setMinimumSize(QSize(0, 60));
-        widget_group_lineEdit_group_data_2->setMaximumSize(QSize(16777215, 60));
-        widget_group_lineEdit_group_data_2->setFont(font);
-        widget_group_lineEdit_group_data_2->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        widget_remark_lineEdit_remark_data = new QLineEdit(widget_remark);
+        widget_remark_lineEdit_remark_data->setObjectName(QStringLiteral("widget_remark_lineEdit_remark_data"));
+        widget_remark_lineEdit_remark_data->setMinimumSize(QSize(0, 60));
+        widget_remark_lineEdit_remark_data->setMaximumSize(QSize(16777215, 60));
+        widget_remark_lineEdit_remark_data->setFont(font);
+        widget_remark_lineEdit_remark_data->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding:10px;"));
-        widget_group_lineEdit_group_data_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        widget_remark_lineEdit_remark_data->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
 
-        verticalLayout_5->addWidget(widget_group_lineEdit_group_data_2);
+        verticalLayout_5->addWidget(widget_remark_lineEdit_remark_data);
 
 
-        verticalLayout_3->addWidget(widget_group_2);
+        verticalLayout_3->addWidget(widget_remark);
 
         widget = new QWidget(widget_body_left);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(0, 50));
-        widget->setMaximumSize(QSize(16777215, 50));
+        widget->setMinimumSize(QSize(0, 80));
+        widget->setMaximumSize(QSize(16777215, 80));
         verticalLayout_7 = new QVBoxLayout(widget);
+        verticalLayout_7->setSpacing(0);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
         widget_color = new QWidget(widget);
         widget_color->setObjectName(QStringLiteral("widget_color"));
         widget_color->setMinimumSize(QSize(200, 30));
-        widget_color->setMaximumSize(QSize(200, 35));
-        horizontalLayout_5 = new QHBoxLayout(widget_color);
-        horizontalLayout_5->setSpacing(5);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        widget_color->setMaximumSize(QSize(200, 30));
+        horizontalLayout_7 = new QHBoxLayout(widget_color);
+        horizontalLayout_7->setSpacing(5);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
         widget_color_label_color = new QLabel(widget_color);
         widget_color_label_color->setObjectName(QStringLiteral("widget_color_label_color"));
         widget_color_label_color->setMinimumSize(QSize(85, 0));
         widget_color_label_color->setMaximumSize(QSize(85, 16777215));
         widget_color_label_color->setFont(font);
 
-        horizontalLayout_5->addWidget(widget_color_label_color);
+        horizontalLayout_7->addWidget(widget_color_label_color);
 
-        lineEdit = new QLineEdit(widget_color);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMinimumSize(QSize(90, 30));
-        lineEdit->setMaximumSize(QSize(90, 30));
+        toolButton_color = new QToolButton(widget_color);
+        toolButton_color->setObjectName(QStringLiteral("toolButton_color"));
+        toolButton_color->setMinimumSize(QSize(90, 30));
+        toolButton_color->setMaximumSize(QSize(90, 30));
+        toolButton_color->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(48, 10, 36);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}"));
+
+        horizontalLayout_7->addWidget(toolButton_color);
+
+        widget_color_horizontalSpacer_color = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(widget_color_horizontalSpacer_color);
+
+
+        verticalLayout_7->addWidget(widget_color);
+
+        widget_transparent = new QWidget(widget);
+        widget_transparent->setObjectName(QStringLiteral("widget_transparent"));
+        widget_transparent->setMinimumSize(QSize(200, 30));
+        widget_transparent->setMaximumSize(QSize(200, 30));
+        horizontalLayout_5 = new QHBoxLayout(widget_transparent);
+        horizontalLayout_5->setSpacing(5);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        widget_transparent_label_color = new QLabel(widget_transparent);
+        widget_transparent_label_color->setObjectName(QStringLiteral("widget_transparent_label_color"));
+        widget_transparent_label_color->setMinimumSize(QSize(85, 0));
+        widget_transparent_label_color->setMaximumSize(QSize(85, 16777215));
+        widget_transparent_label_color->setFont(font);
+
+        horizontalLayout_5->addWidget(widget_transparent_label_color);
+
+        lineEdit_transparent = new QLineEdit(widget_transparent);
+        lineEdit_transparent->setObjectName(QStringLiteral("lineEdit_transparent"));
+        lineEdit_transparent->setMinimumSize(QSize(90, 30));
+        lineEdit_transparent->setMaximumSize(QSize(90, 30));
         QFont font1;
         font1.setFamily(QStringLiteral("OPPOSans"));
         font1.setPointSize(10);
-        lineEdit->setFont(font1);
-        lineEdit->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
+        lineEdit_transparent->setFont(font1);
+        lineEdit_transparent->setStyleSheet(QLatin1String("background-color: rgb(25, 25, 25, 155);\n"
 "border: 1px solid rgba(255, 255, 255, 0);\n"
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
 
-        horizontalLayout_5->addWidget(lineEdit);
+        horizontalLayout_5->addWidget(lineEdit_transparent);
 
-        widget_color_horizontalSpacer_color = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        widget_transparent_horizontalSpacer_color = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_5->addItem(widget_color_horizontalSpacer_color);
+        horizontalLayout_5->addItem(widget_transparent_horizontalSpacer_color);
 
 
-        verticalLayout_7->addWidget(widget_color);
+        verticalLayout_7->addWidget(widget_transparent);
 
 
         verticalLayout_3->addWidget(widget);
 
         widget_dynamic_title = new QWidget(widget_body_left);
         widget_dynamic_title->setObjectName(QStringLiteral("widget_dynamic_title"));
-        widget_dynamic_title->setMinimumSize(QSize(200, 50));
-        widget_dynamic_title->setMaximumSize(QSize(200, 50));
+        widget_dynamic_title->setMinimumSize(QSize(180, 50));
+        widget_dynamic_title->setMaximumSize(QSize(180, 50));
         verticalLayout_6 = new QVBoxLayout(widget_dynamic_title);
         verticalLayout_6->setSpacing(5);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_6->setContentsMargins(0, 0, 0, 6);
         widget_dynamic_title_checkBox = new QCheckBox(widget_dynamic_title);
         widget_dynamic_title_checkBox->setObjectName(QStringLiteral("widget_dynamic_title_checkBox"));
         QFont font2;
@@ -987,13 +1033,7 @@ public:
 
         verticalLayout_4->addWidget(tabWidget);
 
-
-        horizontalLayout_6->addWidget(widget_body_right);
-
-
-        verticalLayout_8->addWidget(widget_body);
-
-        widget_bottom = new QWidget(frame);
+        widget_bottom = new QWidget(widget_body_right);
         widget_bottom->setObjectName(QStringLiteral("widget_bottom"));
         widget_bottom->setMinimumSize(QSize(0, 40));
         widget_bottom->setMaximumSize(QSize(16777215, 40));
@@ -1002,7 +1042,7 @@ public:
         horizontalLayout_3 = new QHBoxLayout(widget_bottom);
         horizontalLayout_3->setSpacing(10);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(9, 0, 9, 0);
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         widget_bottom_horizontalSpacer_left = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_left);
@@ -1082,12 +1122,18 @@ public:
 
         horizontalLayout_3->addWidget(widget_bottom_toolButton_close);
 
-        widget_bottom_horizontalSpacer_right = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        widget_bottom_horizontalSpacer_right = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(widget_bottom_horizontalSpacer_right);
 
 
-        verticalLayout_8->addWidget(widget_bottom);
+        verticalLayout_4->addWidget(widget_bottom);
+
+
+        horizontalLayout_6->addWidget(widget_body_right);
+
+
+        verticalLayout_8->addWidget(widget_body);
 
 
         horizontalLayout->addWidget(frame);
@@ -1110,14 +1156,16 @@ public:
         widget_name_lineEdit_name_data->setPlaceholderText(QApplication::translate("createconnect", "\347\273\210\347\253\257\350\277\236\346\216\245", nullptr));
         widget_group_label_group->setText(QApplication::translate("createconnect", "\345\210\206\347\273\204", nullptr));
         widget_group_lineEdit_group_data->setText(QString());
-        widget_group_lineEdit_group_data->setPlaceholderText(QApplication::translate("createconnect", "\345\205\250\351\203\250", nullptr));
-        widget_group_label_group_2->setText(QApplication::translate("createconnect", "\345\244\207\346\263\250", nullptr));
-        widget_group_lineEdit_group_data_2->setText(QString());
-        widget_group_lineEdit_group_data_2->setPlaceholderText(QApplication::translate("createconnect", "\345\244\207\346\263\250", nullptr));
-        widget_color_label_color->setText(QApplication::translate("createconnect", "\347\252\227\345\217\243\351\200\217\346\230\216\345\272\246", nullptr));
-        lineEdit->setText(QApplication::translate("createconnect", "100", nullptr));
-        widget_dynamic_title_checkBox->setText(QApplication::translate("createconnect", "\344\275\277\347\224\250\345\212\250\346\200\201\346\240\207\351\242\230", nullptr));
-        widget_dynamic_title_label->setText(QApplication::translate("createconnect", "\347\246\201\347\224\250\345\220\216\357\274\214\346\240\207\351\242\230\346\240\217\345\260\206\344\270\272\"Fdog-kit\"", nullptr));
+        widget_group_lineEdit_group_data->setPlaceholderText(QApplication::translate("createconnect", "\351\273\230\350\256\244", nullptr));
+        widget_remark_label_remark->setText(QApplication::translate("createconnect", "\345\244\207\346\263\250", nullptr));
+        widget_remark_lineEdit_remark_data->setText(QString());
+        widget_remark_lineEdit_remark_data->setPlaceholderText(QString());
+        widget_color_label_color->setText(QApplication::translate("createconnect", "\347\252\227\345\217\243\351\242\234\350\211\262", nullptr));
+        toolButton_color->setText(QString());
+        widget_transparent_label_color->setText(QApplication::translate("createconnect", "\347\252\227\345\217\243\351\200\217\346\230\216\345\272\246", nullptr));
+        lineEdit_transparent->setText(QApplication::translate("createconnect", "100", nullptr));
+        widget_dynamic_title_checkBox->setText(QApplication::translate("createconnect", "\344\275\277\347\224\250\351\273\230\350\256\244\345\217\202\346\225\260", nullptr));
+        widget_dynamic_title_label->setText(QApplication::translate("createconnect", "\345\213\276\351\200\211\345\220\216\357\274\214\344\275\277\347\224\250\351\273\230\350\256\244\345\217\202\346\225\260\345\210\233\345\273\272\347\273\210\347\253\257", nullptr));
         lineEdit_host_ssh_data->setText(QApplication::translate("createconnect", "192.168.85.205", nullptr));
         lineEdit_host_ssh_data->setPlaceholderText(QApplication::translate("createconnect", "127.0.0.1", nullptr));
         label_host_ssh->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272", nullptr));

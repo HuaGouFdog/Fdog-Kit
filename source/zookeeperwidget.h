@@ -161,6 +161,8 @@ private:
 
     int8_t buttonSid;
 
+    bool isFirst = true;
+
 };
 
 #endif // ZOOKEEPERWIDGET_H

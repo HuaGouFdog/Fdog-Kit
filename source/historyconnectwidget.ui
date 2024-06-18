@@ -16,16 +16,29 @@
   <property name="styleSheet">
    <string notr="true">color: rgb(255, 255, 255);</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="8">
+  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,10,1">
    <property name="leftMargin">
-    <number>50</number>
+    <number>9</number>
    </property>
    <property name="topMargin">
     <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>50</number>
+    <number>9</number>
    </property>
+   <item>
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -45,6 +58,9 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
           <number>0</number>
          </property>
          <item>
@@ -70,7 +86,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>5999</width>
+             <width>250</width>
              <height>30</height>
             </size>
            </property>
@@ -497,6 +513,19 @@ QToolButton:hover {
       </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

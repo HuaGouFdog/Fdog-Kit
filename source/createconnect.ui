@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
-    <height>452</height>
+    <width>699</width>
+    <height>473</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -101,6 +101,9 @@ border-image: url(:/lib/back1.png);
          <property name="rightMargin">
           <number>15</number>
          </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QWidget" name="widget_body_left" native="true">
            <property name="minimumSize">
@@ -117,7 +120,7 @@ border-image: url(:/lib/back1.png);
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <property name="spacing">
-             <number>10</number>
+             <number>0</number>
             </property>
             <property name="leftMargin">
              <number>9</number>
@@ -136,13 +139,13 @@ border-image: url(:/lib/back1.png);
               <property name="minimumSize">
                <size>
                 <width>180</width>
-                <height>60</height>
+                <height>70</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>180</width>
-                <height>60</height>
+                <height>70</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -162,7 +165,7 @@ border-image: url(:/lib/back1.png);
                 <number>0</number>
                </property>
                <property name="bottomMargin">
-                <number>0</number>
+                <number>4</number>
                </property>
                <item>
                 <widget class="QLabel" name="widget_name_label_name">
@@ -235,13 +238,13 @@ padding-right:10px;</string>
               <property name="minimumSize">
                <size>
                 <width>180</width>
-                <height>60</height>
+                <height>70</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>180</width>
-                <height>60</height>
+                <height>70</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -261,7 +264,7 @@ padding-right:10px;</string>
                 <number>0</number>
                </property>
                <property name="bottomMargin">
-                <number>0</number>
+                <number>1</number>
                </property>
                <item>
                 <widget class="QLabel" name="widget_group_label_group">
@@ -319,7 +322,7 @@ padding-right:10px;</string>
                   <string/>
                  </property>
                  <property name="placeholderText">
-                  <string>全部</string>
+                  <string>默认</string>
                  </property>
                 </widget>
                </item>
@@ -327,17 +330,17 @@ padding-right:10px;</string>
              </widget>
             </item>
             <item>
-             <widget class="QWidget" name="widget_group_2" native="true">
+             <widget class="QWidget" name="widget_remark" native="true">
               <property name="minimumSize">
                <size>
                 <width>180</width>
-                <height>100</height>
+                <height>110</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>180</width>
-                <height>100</height>
+                <height>110</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -357,10 +360,10 @@ padding-right:10px;</string>
                 <number>0</number>
                </property>
                <property name="bottomMargin">
-                <number>0</number>
+                <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="widget_group_label_group_2">
+                <widget class="QLabel" name="widget_remark_label_remark">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -385,7 +388,7 @@ padding-right:10px;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="widget_group_lineEdit_group_data_2">
+                <widget class="QLineEdit" name="widget_remark_lineEdit_remark_data">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -417,7 +420,7 @@ padding:10px;</string>
                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                  </property>
                  <property name="placeholderText">
-                  <string>备注</string>
+                  <string/>
                  </property>
                 </widget>
                </item>
@@ -429,16 +432,19 @@ padding:10px;</string>
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>50</height>
+                <height>80</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>50</height>
+                <height>80</height>
                </size>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
+               <property name="spacing">
+                <number>0</number>
+               </property>
                <property name="leftMargin">
                 <number>0</number>
                </property>
@@ -462,10 +468,10 @@ padding:10px;</string>
                  <property name="maximumSize">
                   <size>
                    <width>200</width>
-                   <height>35</height>
+                   <height>30</height>
                   </size>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                   <property name="spacing">
                    <number>5</number>
                   </property>
@@ -502,12 +508,114 @@ padding:10px;</string>
                      </font>
                     </property>
                     <property name="text">
+                     <string>窗口颜色</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButton_color">
+                    <property name="minimumSize">
+                     <size>
+                      <width>90</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>90</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(48, 10, 36);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="widget_color_horizontalSpacer_color">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_transparent" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>200</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>200</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <property name="spacing">
+                   <number>5</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="widget_transparent_label_color">
+                    <property name="minimumSize">
+                     <size>
+                      <width>85</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>85</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
                      <string>窗口透明度</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit">
+                   <widget class="QLineEdit" name="lineEdit_transparent">
                     <property name="minimumSize">
                      <size>
                       <width>90</width>
@@ -539,7 +647,7 @@ padding-right:10px;</string>
                    </widget>
                   </item>
                   <item>
-                   <spacer name="widget_color_horizontalSpacer_color">
+                   <spacer name="widget_transparent_horizontalSpacer_color">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
@@ -561,13 +669,13 @@ padding-right:10px;</string>
              <widget class="QWidget" name="widget_dynamic_title" native="true">
               <property name="minimumSize">
                <size>
-                <width>200</width>
+                <width>180</width>
                 <height>50</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>200</width>
+                <width>180</width>
                 <height>50</height>
                </size>
               </property>
@@ -585,7 +693,7 @@ padding-right:10px;</string>
                 <number>0</number>
                </property>
                <property name="bottomMargin">
-                <number>0</number>
+                <number>6</number>
                </property>
                <item>
                 <widget class="QCheckBox" name="widget_dynamic_title_checkBox">
@@ -613,7 +721,7 @@ padding-right:10px;</string>
 </string>
                  </property>
                  <property name="text">
-                  <string>使用动态标题</string>
+                  <string>使用默认参数</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -647,7 +755,7 @@ padding-right:10px;</string>
                   <string notr="true">color: rgba(223, 223, 223, 150);</string>
                  </property>
                  <property name="text">
-                  <string>禁用后，标题栏将为&quot;Fdog-kit&quot;</string>
+                  <string>勾选后，使用默认参数创建终端</string>
                  </property>
                 </widget>
                </item>
@@ -2210,223 +2318,223 @@ padding-right:10px;</string>
               </widget>
              </widget>
             </item>
+            <item>
+             <widget class="QWidget" name="widget_bottom" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+color: rgb(255, 255, 255);</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <property name="spacing">
+                <number>10</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <spacer name="widget_bottom_horizontalSpacer_left">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QToolButton" name="widget_bottom_toolButton_connect">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 214, 103);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 214, 103);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>连接</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="widget_bottom_toolButton_save">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(7, 143, 255);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(7, 143, 255);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>保存</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="widget_bottom_toolButton_close">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                   <stylestrategy>PreferAntialias</stylestrategy>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 95, 95);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>取消</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="widget_bottom_horizontalSpacer_right">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>10</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="widget_bottom" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
-color: rgb(255, 255, 255);</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <property name="leftMargin">
-          <number>9</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>9</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <spacer name="widget_bottom_horizontalSpacer_left">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QToolButton" name="widget_bottom_toolButton_connect">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 214, 103);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 214, 103);
-}</string>
-           </property>
-           <property name="text">
-            <string>连接</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="widget_bottom_toolButton_save">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(7, 143, 255);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(7, 143, 255);
-}</string>
-           </property>
-           <property name="text">
-            <string>保存</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="widget_bottom_toolButton_close">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
-}</string>
-           </property>
-           <property name="text">
-            <string>取消</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="widget_bottom_horizontalSpacer_right">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>30</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>

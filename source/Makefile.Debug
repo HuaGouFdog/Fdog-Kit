@@ -837,6 +837,14 @@ debug\moc_mainwindow.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QMai
 		flowlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyle \
+		sqlhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h \
 		mainwindow.h \
 		debug\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -2391,6 +2399,9 @@ debug\moc_historyconnectwidget.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWi
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		createconnect.h \
+		secretkeywidget.h \
+		keywidget.h \
 		historyconnectwidget.h \
 		debug\moc_predefs.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\bin\moc.exe
@@ -4235,6 +4246,14 @@ debug\moc_activate.cpp: ..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidge
 		flowlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyle \
+		sqlhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTimer \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
@@ -4656,6 +4675,14 @@ debug\main.obj: main.cpp mainwindow.h \
 		flowlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyle \
+		sqlhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyleFactory \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qstylefactory.h \
@@ -4974,6 +5001,14 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		flowlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyle \
+		sqlhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h \
 		ui_mainwindow.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QLocale \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
@@ -5479,7 +5514,10 @@ debug\createconnect.obj: createconnect.cpp createconnect.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpointer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfactoryinterface.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDateTime \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug
 
 debug\zookeeperhandle.obj: zookeeperhandle.cpp zookeeperhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QObject \
@@ -7161,6 +7199,9 @@ debug\historyconnectwidget.obj: historyconnectwidget.cpp historyconnectwidget.h 
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabbar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
+		createconnect.h \
+		secretkeywidget.h \
+		keywidget.h \
 		ui_historyconnectwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVariant \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QAction \
@@ -7182,6 +7223,12 @@ debug\historyconnectwidget.obj: historyconnectwidget.cpp historyconnectwidget.h 
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTableWidget \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
@@ -7200,11 +7247,7 @@ debug\historyconnectwidget.obj: historyconnectwidget.cpp historyconnectwidget.h 
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgraphicseffect.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpen.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h
 
 debug\keywidget.obj: keywidget.cpp keywidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -10058,6 +10101,14 @@ debug\activate.obj: activate.cpp activate.h \
 		flowlayout.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QStyle \
+		sqlhandle.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlError \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QTimer \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtimer.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbasictimer.h \
@@ -10067,9 +10118,9 @@ debug\activate.obj: activate.cpp activate.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qheaderview.h
 
 debug\sqlhandle.obj: sqlhandle.cpp sqlhandle.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QVector \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvector.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qalgorithms.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qglobal.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -10091,20 +10142,97 @@ debug\sqlhandle.obj: sqlhandle.cpp sqlhandle.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmutex.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qnumeric.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qversiontagging.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrefcount.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qarraydata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhashfunctions.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstring.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qchar.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearray.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrefcount.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qnamespace.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qarraydata.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringliteral.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpair.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qpoint.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlError \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h \
+		createconnect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmargins.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qrect.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsize.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpalette.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qbrush.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qmatrix.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpolygon.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qregion.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdatastream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qiodevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qline.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtransform.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpainterpath.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qimage.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpixelformat.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qpixmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qshareddata.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qhash.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfont.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qfontinfo.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qcursor.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qkeysequence.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qevent.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qvariant.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qmap.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qlocale.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qset.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qurl.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qurlquery.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfile.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qfiledevice.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qvector2d.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtGui\qtouchdevice.h \
+		secretkeywidget.h \
+		keywidget.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 

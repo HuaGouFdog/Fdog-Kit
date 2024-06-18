@@ -28,6 +28,7 @@ class Ui_historyconnectwidget
 {
 public:
     QHBoxLayout *horizontalLayout_5;
+    QSpacerItem *horizontalSpacer_2;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout;
     QWidget *widget_search;
@@ -43,6 +44,7 @@ public:
     QToolButton *toolButton_create;
     QToolButton *toolButton_menger;
     QToolButton *toolButton_clear;
+    QSpacerItem *horizontalSpacer_4;
 
     void setupUi(QWidget *historyconnectwidget)
     {
@@ -52,7 +54,11 @@ public:
         historyconnectwidget->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         horizontalLayout_5 = new QHBoxLayout(historyconnectwidget);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(50, 0, 50, -1);
+        horizontalLayout_5->setContentsMargins(9, 0, 9, -1);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_2);
+
         widget_2 = new QWidget(historyconnectwidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         verticalLayout = new QVBoxLayout(widget_2);
@@ -64,7 +70,7 @@ public:
         widget_search->setMinimumSize(QSize(0, 50));
         horizontalLayout_2 = new QHBoxLayout(widget_search);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(-1, 0, -1, -1);
+        horizontalLayout_2->setContentsMargins(-1, 0, 0, -1);
         horizontalSpacer = new QSpacerItem(397, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
@@ -72,7 +78,7 @@ public:
         lineEdit_find = new QLineEdit(widget_search);
         lineEdit_find->setObjectName(QStringLiteral("lineEdit_find"));
         lineEdit_find->setMinimumSize(QSize(250, 30));
-        lineEdit_find->setMaximumSize(QSize(5999, 30));
+        lineEdit_find->setMaximumSize(QSize(250, 30));
         QFont font;
         font.setFamily(QStringLiteral("OPPOSans"));
         font.setPointSize(10);
@@ -327,7 +333,13 @@ public:
 
         horizontalLayout_5->addWidget(widget_2);
 
-        horizontalLayout_5->setStretch(0, 8);
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_4);
+
+        horizontalLayout_5->setStretch(0, 1);
+        horizontalLayout_5->setStretch(1, 10);
+        horizontalLayout_5->setStretch(2, 1);
 
         retranslateUi(historyconnectwidget);
 

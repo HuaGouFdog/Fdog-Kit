@@ -4,6 +4,7 @@
 #include "secretkeywidget.h"
 #include <QMovie>
 #include <QDateTime>
+#include <QDebug>
 createconnect::createconnect(int8_t connectType, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::createconnect)
@@ -68,7 +69,7 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         cInfo.password = ui->tab_passowrd_lineEdit_password_data->text();
         cInfo.isSavePassword = ui->tab_passowrd_checkBox_remember_password->isChecked();
         //备注
-        cInfo.remark = ui->widget_group_lineEdit_group_data_2->text();
+        cInfo.remark = ui->widget_remark_lineEdit_remark_data->text();
 
         //最近连接时间
         QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -131,4 +132,39 @@ void createconnect::on_toolButton_browse_clicked()
 {
     skwidget = new secretkeywidget();
     skwidget->show();
+}
+
+void createconnect::on_lineEdit_host_ssh_data_textChanged(const QString &arg1)
+{
+    //host被修改，同步到名称(如果没有被设置的话)
+    if (!isEditName) {
+        ui->widget_name_lineEdit_name_data->setText(arg1);
+    }
+}
+
+void createconnect::on_widget_name_lineEdit_name_data_textEdited(const QString &arg1)
+{
+    //使用者修改了名称文本框
+    if (arg1 == "") {
+        isEditName = false;
+    } else {
+        isEditName = true;
+    }
+}
+
+void createconnect::on_tabWidget_currentChanged(int index)
+{
+    qDebug() << "修改" << index;
+    //只有ssh，左侧可以修改
+    if (index == 0) {
+        ui->widget_name_lineEdit_name_data->setEnabled(true);
+        ui->widget_group_lineEdit_group_data->setEnabled(true);
+        ui->widget_remark_lineEdit_remark_data->setEnabled(true);
+        ui->lineEdit_transparent->setEnabled(true);
+    } else {
+        ui->widget_name_lineEdit_name_data->setEnabled(false);
+        ui->widget_group_lineEdit_group_data->setEnabled(false);
+        ui->widget_remark_lineEdit_remark_data->setEnabled(false);
+        ui->lineEdit_transparent->setEnabled(false);
+    }
 }

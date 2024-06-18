@@ -54,11 +54,18 @@ private slots:
 
     void on_toolButton_browse_clicked();
 
+    void on_lineEdit_host_ssh_data_textChanged(const QString &arg1);
+
+    void on_widget_name_lineEdit_name_data_textEdited(const QString &arg1);
+
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::createconnect *ui;
     int8_t connectType = 0;
     bool isShowPassword = false;  //是否显示密码
     secretkeywidget * skwidget;  //密钥
+    bool isEditName = false;
 };
 
 #endif // CREATECONNECT_H

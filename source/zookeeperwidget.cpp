@@ -155,6 +155,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
             threadpool.start(m_pRunnable);
         }
         isUnfold = true;
+        //qDebug() << "这里调用展开节点";
         expandAllItemsOne(ui->treeWidget, isUnfold, 0);
     }
 }
@@ -361,6 +362,7 @@ void zookeeperwidget::showItem(const QString &strText)
 
 void zookeeperwidget::expandAllItems(QTreeWidget *treeWidget, bool isexpand, int sum)
 {
+    qDebug() << "expandAllItems 调用展开节点";
     int topLevelItemCount = treeWidget->topLevelItemCount();
     for (int i = 0; i < topLevelItemCount; ++i) {
         QTreeWidgetItem* item = treeWidget->topLevelItem(i);
@@ -381,11 +383,16 @@ void zookeeperwidget::expandItemAndChildren(QTreeWidgetItem *item, bool isexpand
 
 void zookeeperwidget::expandAllItemsOne(QTreeWidget *treeWidget, bool isexpand, int sum)
 {
-    int topLevelItemCount = treeWidget->topLevelItemCount();
-    for (int i = 0; i < topLevelItemCount; ++i) {
-        QTreeWidgetItem* item = treeWidget->topLevelItem(i);
-        expandItemAndChildrenOne(item, isexpand, sum);
+    if (isFirst) {
+        qDebug() << "expandAllItemsOne 调用展开节点";
+        int topLevelItemCount = treeWidget->topLevelItemCount();
+        for (int i = 0; i < topLevelItemCount; ++i) {
+            QTreeWidgetItem* item = treeWidget->topLevelItem(i);
+            expandItemAndChildrenOne(item, isexpand, sum);
+        }
+        isFirst = false;
     }
+
 }
 
 void zookeeperwidget::expandItemAndChildrenOne(QTreeWidgetItem *item, bool isexpand, int sum)
@@ -690,9 +697,9 @@ void zookeeperwidget::rece_delete_event(int code, QString message, QString path)
         parent= items.first()->parent();
         if (parent != NULL) {
             parent->removeChild(items.first());
-            ui->treeWidget->setCurrentItem(parent);
+            //ui->treeWidget->setCurrentItem(parent);
             //显示父节点数据
-            getNodeInfo(parent->text(0));
+            //getNodeInfo(parent->text(0));
         } else {
             delete items.first();
         }
@@ -787,7 +794,7 @@ void zookeeperwidget::getParentNode(QTreeWidgetItem *item, QString &data) {
     QTreeWidgetItem *item_p = NULL;
     item_p = item->parent();
     if (item_p != NULL) {
-        qDebug() << "有父节点";
+        //qDebug() << "有父节点" << data;
         if (data == "") {
             data = item->text(0);
         } else {
