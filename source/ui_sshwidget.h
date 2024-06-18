@@ -103,6 +103,7 @@ public:
     QToolButton *toolButton_history;
     QToolButton *toolButton_upload;
     QToolButton *toolButton_conectStats;
+    QToolButton *toolButton_zk;
     QToolButton *toolButton_toolkit;
     QToolButton *toolButton_fullScreen;
     QSpacerItem *horizontalSpacer_3;
@@ -796,7 +797,7 @@ public:
         widget_toolbar_s = new QWidget(widget_toolbar);
         widget_toolbar_s->setObjectName(QStringLiteral("widget_toolbar_s"));
         widget_toolbar_s->setMinimumSize(QSize(0, 30));
-        widget_toolbar_s->setMaximumSize(QSize(450, 30));
+        widget_toolbar_s->setMaximumSize(QSize(500, 30));
         widget_toolbar_s->setStyleSheet(QLatin1String("background-color: rgba(10, 31, 57, 200);\n"
 "border-radius: 10px;"));
         horizontalLayout_6 = new QHBoxLayout(widget_toolbar_s);
@@ -934,6 +935,29 @@ public:
 "}"));
 
         horizontalLayout_6->addWidget(toolButton_conectStats);
+
+        toolButton_zk = new QToolButton(widget_toolbar_s);
+        toolButton_zk->setObjectName(QStringLiteral("toolButton_zk"));
+        toolButton_zk->setFont(font);
+        toolButton_zk->setContextMenuPolicy(Qt::DefaultContextMenu);
+        toolButton_zk->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border: none;\n"
+"}"));
+
+        horizontalLayout_6->addWidget(toolButton_zk);
 
         toolButton_toolkit = new QToolButton(widget_toolbar_s);
         toolButton_toolkit->setObjectName(QStringLiteral("toolButton_toolkit"));
@@ -1286,6 +1310,7 @@ public:
         toolButton_history->setText(QApplication::translate("sshwidget", "\345\216\206\345\217\262", nullptr));
         toolButton_upload->setText(QApplication::translate("sshwidget", "\344\270\212\344\274\240", nullptr));
         toolButton_conectStats->setText(QApplication::translate("sshwidget", "\345\261\236\346\200\247", nullptr));
+        toolButton_zk->setText(QApplication::translate("sshwidget", "\350\277\236\346\216\245zk", nullptr));
         toolButton_toolkit->setText(QApplication::translate("sshwidget", "\345\267\245\345\205\267\351\233\206", nullptr));
         toolButton_fullScreen->setText(QApplication::translate("sshwidget", "\345\205\250\345\261\217", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("sshwidget", " \351\273\230\350\256\244\345\210\206\347\261\273 ", nullptr));

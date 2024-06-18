@@ -141,6 +141,8 @@ private slots:
 
     void on_toolButton_cancel_clicked();
 
+    void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
+
 private:
     Ui::zookeeperwidget *ui;
 
@@ -151,6 +153,14 @@ private:
     QAction * m_action_refresh;
     QAction * m_action_delete;
     QAction * m_action_copy;
+
+    QMenu *textMenu;
+    QAction * m_action_text_undo;
+    QAction * m_action_text_redo;
+    QAction * m_action_text_copy;
+    QAction * m_action_text_paste;
+    QAction * m_action_text_delete;
+    QAction * m_action_text_allSelect;
 
     QThread * thread;
     QThreadPool threadpool;

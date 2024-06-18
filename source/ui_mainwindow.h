@@ -2876,7 +2876,7 @@ public:
         toolButton_side_theme->setToolTip(QApplication::translate("MainWindow", "\346\232\227\351\273\221\346\250\241\345\274\217", nullptr));
 #endif // QT_NO_TOOLTIP
         toolButton_side_theme->setText(QApplication::translate("MainWindow", "\346\232\227\351\273\221", nullptr));
-        label_side_version->setText(QApplication::translate("MainWindow", "V1.0.3", nullptr));
+        label_side_version->setText(QApplication::translate("MainWindow", "V1.0.4", nullptr));
         toolButton_newCreate->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272SSH(&N)", nullptr));
         toolButton_manage->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206SSH(&H)", nullptr));
         toolButton_tool->setText(QApplication::translate("MainWindow", "\345\267\245\345\205\267(&T)", nullptr));

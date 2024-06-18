@@ -491,14 +491,23 @@ void zookeeperwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int
 
 void zookeeperwidget::on_textEdit_data_textChanged()
 {
-    //qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
-    if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == ui->treeWidget->currentItem()->text(0)) {
-        //qDebug() << "显示修改按钮";
-        ui->toolButton_saveData->show();
-        ui->toolButton_saveData->setEnabled(true);
+    qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
+    QTreeWidgetItem * currentItem = ui->treeWidget->currentItem();
+    if (currentItem == NULL) {
+        //说明没有点过节点，不加判断会崩溃
     } else {
-        ui->toolButton_saveData->hide();
-        ui->toolButton_saveData->setEnabled(false);
+        qDebug() << "当前数据1=" << ui->textEdit_data->toPlainText();
+        QString path;
+        getParentNode(currentItem, path);
+        qDebug() << "当前数据2=" << path;
+        if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == path) {
+            qDebug() << "显示修改按钮";
+            ui->toolButton_saveData->show();
+            ui->toolButton_saveData->setEnabled(true);
+        } else {
+            ui->toolButton_saveData->hide();
+            ui->toolButton_saveData->setEnabled(false);
+        }
     }
 }
 
@@ -549,7 +558,8 @@ void zookeeperwidget::on_nodeAction()
 
 void zookeeperwidget::on_toolButton_saveData_clicked()
 {
-    QString nodePath = ui->treeWidget->currentItem()->text(0);
+    QString nodePath;
+    getParentNode(ui->treeWidget->currentItem(), nodePath);
     QString nodeData = ui->textEdit_data->toPlainText();
     QMetaObject::invokeMethod(zookhandle,"setNodeData",Qt::QueuedConnection, Q_ARG(QString, nodePath), Q_ARG(QString, nodeData));
 }
@@ -884,4 +894,34 @@ void zookeeperwidget::on_toolButton_cancel_clicked()
     //取消
     showNodeInfoWidget();
     hideCreateWidget();
+}
+
+void zookeeperwidget::on_textEdit_data_customContextMenuRequested(const QPoint &pos)
+{
+    //菜单请求
+    m_action_text_undo = new QAction("撤销", this);
+    m_action_text_redo = new QAction("重做", this);
+    m_action_text_copy = new QAction("复制", this);
+    m_action_text_paste = new QAction("粘贴", this);
+    m_action_text_delete = new QAction("删除", this);
+    m_action_text_allSelect = new QAction("全部选中", this);
+
+    m_action_text_undo->setIconVisibleInMenu(false);
+    m_action_text_redo->setIconVisibleInMenu(false);
+    m_action_text_copy->setIconVisibleInMenu(false);
+    m_action_text_paste->setIconVisibleInMenu(false);
+    m_action_text_delete->setIconVisibleInMenu(false);
+    m_action_text_allSelect->setIconVisibleInMenu(false);
+
+    //定义右键弹出菜单
+    textMenu = new QMenu(this);
+    textMenu->setWindowFlags(textMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    textMenu->setAttribute(Qt::WA_TranslucentBackground);
+    textMenu->addAction(m_action_text_undo);
+    textMenu->addAction(m_action_text_redo);
+    textMenu->addAction(m_action_text_copy);
+    textMenu->addAction(m_action_text_paste);
+    textMenu->addAction(m_action_text_delete);
+    textMenu->addAction(m_action_text_allSelect);
+    textMenu->exec(QCursor::pos());//弹出右键菜单，菜单位置为光标位置
 }

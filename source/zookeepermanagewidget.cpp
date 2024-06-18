@@ -94,11 +94,16 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
 
     qDebug() << "走这里";
     QMenu *menu = new QMenu(qbutton);
+    QAction *closeAction = new QAction(tr("关闭"), qbutton);
     QAction *clearAction = new QAction(tr("删除"), qbutton);
     // 将菜单与按钮关联
+    menu->addAction(closeAction);
     menu->addAction(clearAction);
     qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
     qbutton->setMenu(menu);
+    QObject::connect(closeAction, &QAction::triggered, [](){
+        qDebug("删除被点击");
+    });
     QObject::connect(clearAction, &QAction::triggered, [](){
         qDebug("删除被点击");
     });

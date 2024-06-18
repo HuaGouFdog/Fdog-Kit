@@ -1447,7 +1447,7 @@ border-bottom:0px solid rgb(108, 117, 125, 65);
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>450</width>
+                    <width>500</width>
                     <height>30</height>
                    </size>
                   </property>
@@ -1660,6 +1660,41 @@ QToolButton:hover {
                      </property>
                      <property name="text">
                       <string>属性</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="toolButton_zk">
+                     <property name="font">
+                      <font>
+                       <family>OPPOSans B</family>
+                       <pointsize>10</pointsize>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
+                     </property>
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::DefaultContextMenu</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>连接zk</string>
                      </property>
                     </widget>
                    </item>

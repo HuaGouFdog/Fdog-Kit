@@ -276,8 +276,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
 
     textEdit_s->setUndoRedoEnabled(false);
     ui->plainTextEdit->setUndoRedoEnabled(false);
-    textEdit_s->setLineWrapMode(QPlainTextEdit::NoWrap);
-    ui->plainTextEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
+    textEdit_s->setLineWrapMode(QPlainTextEdit::WidgetWidth);
+    ui->plainTextEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
 
     ui->plainTextEdit->document ()->setMaximumBlockCount(10000);
     textEdit_s->document ()->setMaximumBlockCount(10000);
@@ -2024,8 +2024,8 @@ void sshwidget::rece_resize_sign()
 //                return;
 //            }
 //        }
-        //qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns - 5;
-        //setTerminalSize(visibleLines, visibleColumns);
+        qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns - 5;
+        setTerminalSize(visibleLines, visibleColumns);
         qDebug() << "触发";
     //    textEdit_s->setLineWrapColumnOrWidth(viewportSize.width());
     //    ui->plainTextEdit->setLineWrapColumnOrWidth(viewportSize.width());

@@ -1546,7 +1546,7 @@ public:
         scrollArea_4->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 264, 750));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 765, 750));
         scrollAreaWidgetContents_4->setMinimumSize(QSize(0, 750));
         QFont font3;
         font3.setPointSize(7);
@@ -1998,7 +1998,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 70, 800));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 765, 800));
         scrollAreaWidgetContents_2->setMinimumSize(QSize(0, 800));
         verticalLayout_19 = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout_19->setSpacing(20);
@@ -2378,7 +2378,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 593, 1310));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 763, 1310));
         scrollAreaWidgetContents_3->setMinimumSize(QSize(0, 0));
         scrollAreaWidgetContents_3->setStyleSheet(QStringLiteral(""));
         verticalLayout_27 = new QVBoxLayout(scrollAreaWidgetContents_3);
@@ -3156,7 +3156,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 407, 830));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 735, 830));
         scrollAreaWidgetContents->setMinimumSize(QSize(0, 830));
         scrollAreaWidgetContents->setStyleSheet(QLatin1String("\n"
 "QLineEdit {\n"
@@ -4315,7 +4315,7 @@ public:
 
         retranslateUi(settingwidget);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(7);
 
 
         QMetaObject::connectSlotsByName(settingwidget);
@@ -4512,25 +4512,25 @@ public:
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-weight:600;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
 "<p "
-                        "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\345\237\272\344\272\216Qt5.10.0\357\274\210MSVC2015\357\274\21464\344\275\215\357\274\211\346\236\204\345\273\272</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\347\211\210\346\234\254\357\274\232V1.0.3</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-rig"
-                        "ht:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\344\275\234\350\200\205\357\274\232\350\212\261\347\213\227Fdog</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\350\201\224\347\263\273\346\210\221\357\274\2322506897252@qq.com</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:"
-                        "10pt;\">\351\241\271\347\233\256\346\272\220\347\240\201\345\234\260\345\235\200\357\274\232</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" text-decoration: underline; color:#0000ff;\">https://github.com/HuaGouFdog/Fdog-Kit</span></a></p>\n"
+                        "align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\345\237\272\344\272\216Qt5.10.0\357\274\210MSVC2015\357\274\21464\344\275\215\357\274\211\346\236\204\345\273\272</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\347\211\210\346\234\254\357\274\232V1.0.4</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
+"<p ali"
+                        "gn=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\344\275\234\350\200\205\357\274\232\350\212\261\347\213\227Fdog</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\350\201\224\347\263\273\346\210\221\357\274\2322506897252@qq.com</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-"
+                        "top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'OPPOSans B'; font-size:10pt;\">\351\241\271\347\233\256\346\272\220\347\240\201\345\234\260\345\235\200\357\274\232</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" text-decoration: underline; color:#00aaff;\">https://github.com/HuaGouFdog/Fdog-Kit</span></a></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span"
+                        " style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;\">\345\267\245\345\205\267\344\270\213\350\275\275\357\274\232</span></a></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit/releases\"><span style=\" text-decoration: underline; color:#00aaff;\">https://github.com/HuaGouFdog/Fdog-Kit/releases</span></a></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;\">\345\267\245\345\205\267\344\270\213\350\275\275\357\274\232</span></a></p>\n"
-"<p style=\" margin-top:0px;"
-                        " margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit/releases\"><span style=\" text-decoration: underline; color:#0000ff;\">https://github.com/HuaGouFdog/Fdog-Kit/releases</span></a></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;\">\346\204\237\350\260\242\346\202\250\347\232\204\344\275\277\347\224\250,\346\254\242\350\277\216\347\273\231\346\210\221\346\217\220\346\204\217\350\247\201\357\274\201\360\237\230\212\360\237\230\212\360\237"
-                        "\230\212</span></a></p></body></html>", nullptr));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/HuaGouFdog/Fdog-Kit\"><span style=\" font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; col"
+                        "or:#ffffff;\">\346\204\237\350\260\242\346\202\250\347\232\204\344\275\277\347\224\250,\346\254\242\350\277\216\347\273\231\346\210\221\346\217\220\346\204\217\350\247\201\357\274\201\360\237\230\212\360\237\230\212\360\237\230\212</span></a></p></body></html>", nullptr));
         toolButton_save->setText(QApplication::translate("settingwidget", "\344\277\235\345\255\230", nullptr));
         toolButton_recover->setText(QApplication::translate("settingwidget", "\346\224\276\345\274\203\346\233\264\346\224\271", nullptr));
     } // retranslateUi

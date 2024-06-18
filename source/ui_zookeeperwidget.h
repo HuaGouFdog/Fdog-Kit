@@ -1241,6 +1241,7 @@ public:
         textEdit_data->setSizePolicy(sizePolicy1);
         textEdit_data->setMinimumSize(QSize(0, 0));
         textEdit_data->setFont(font4);
+        textEdit_data->setContextMenuPolicy(Qt::CustomContextMenu);
         textEdit_data->setStyleSheet(QString::fromUtf8("#textEdit_data{\n"
 "	border: 1px solid rgba(197, 197, 197,50);\n"
 "	\n"
@@ -1303,6 +1304,7 @@ public:
 
         horizontalWidget_1_2_5_1r = new QWidget(verticalWidget_1_2_5_r);
         horizontalWidget_1_2_5_1r->setObjectName(QStringLiteral("horizontalWidget_1_2_5_1r"));
+        horizontalWidget_1_2_5_1r->setMinimumSize(QSize(0, 40));
         horizontalWidget_1_2_5_1r->setMaximumSize(QSize(16777215, 40));
         horizontalWidget_1_2_5_1r->setStyleSheet(QStringLiteral(""));
         horizontalLayout_4 = new QHBoxLayout(horizontalWidget_1_2_5_1r);
