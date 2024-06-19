@@ -456,7 +456,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
     int objectLent = object.length();
     for (QJsonObject::const_iterator it = object.constBegin(); it != object.constEnd(); ++it)
     {
-        qDebug() << "it.key() = " << it.key() << " objectLent = " << objectLent << " index = " << index;
+        //qDebug() << "it.key() = " << it.key() << " objectLent = " << objectLent << " index = " << index;
         if(index < objectLent)
             endingSymbol = QStringLiteral(",");
         else

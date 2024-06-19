@@ -1011,94 +1011,164 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
         //没有可读的数据就返回
         //qDebug() << "接收到的数据（十六进制字符串）:";
-        std::array<uint32_t, 2000> receivedDataArray{0};
+        int64_t needRead_ = clientSocket->bytesAvailable();
+        qDebug() << "=====缓冲区还剩数据 = " << needRead_;
+        std::array<uint32_t, 5000> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                   receivedDataArray.size() * sizeof(uint32_t));
-        // 将数据转换为主机字节序
-        QStringList dataList2;
-        QString dataTemp; //输出
-        QString dataTemp_2;
-        int countLength = -1; //设置数据长度，到达后不再读取 加上开头长度数据
-        int nowLength = 0; //设置数据长度，到达后不再读取
-        ui->stackedWidget->setCurrentIndex(0);
-        int sum = 0;
-        int sum_2 =0;
-        for (uint32_t data : receivedDataArray) {
-            data = qFromBigEndian(data);
+        qDebug() << "bytesReceived = " << bytesReceived;
+        int64_t readNum = clientSocket->bytesAvailable();
+        qDebug() << "本次读取剩数据 = " << readNum;
+        int sum2 = 0;
+        int a = (needRead_ - readNum)%4;
+        qDebug() << "数据求余 = " << a;
+        for (const auto& elem : receivedDataArray) {
+            uint32_t data = qFromBigEndian(elem);
             std::stringstream stream;
             //每次读取一个字节
             stream << std::hex << std::setw(8) << std::setfill('0') << data;
-            sum_2++;
-            dataList2.append(QString::fromStdString(stream.str()));
-            QString temp2 = QString::fromStdString(stream.str());
-            dataTemp_2 = dataTemp_2 + temp2;
-            dataTemp = dataTemp + temp2 + "  ";
-            // if (sum_2 == 4) {
-            //     dataTemp = dataTemp + temp2 + "  ";
-            //     sum_2 = 0;
-            //     qDebug() << "dataTemp1 = " << dataTemp;
-            // } else {
-            //     dataTemp = dataTemp + temp2;
-            //     qDebug() << "dataTemp2 = " << dataTemp;
-            // }
-
-            if (countLength == -1) {
-                //读取头获取数据长度
-                countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
-                //qDebug() << "countLength = " << countLength - 4;
-            }
-            nowLength = nowLength + 4;
-            //qDebug() << "nowLength + 4 = " << nowLength;
-
-            sum++;
-            //每8个段进行下一步
-            if (sum == 8) {
-                sum = 0;
-                ui->textEdit->append(dataTemp);
-                //qDebug() << "dataTemp = " << dataTemp;
-                dataTemp = "";
-            }
-
-            if (nowLength > countLength) {
-                qDebug() << "超过有效数据长度 = " << nowLength - countLength;
-                dataTemp_2 = dataTemp_2.mid(0, dataTemp_2.length()-4);
-                //打印剩余dataTemp
-                dataTemp = dataTemp.mid(0, dataTemp.length()-6);
-                ui->textEdit->append(dataTemp);
-                ui->stackedWidget->setCurrentIndex(0);
-                qDebug() << "===============1";
+            //qDebug() << " elem = " << elem << "十六进制为 = " << QString::fromStdString(stream.str());
+            if (sum2++ == (needRead_ - readNum)/4) {
+                //只有最后一个可能存在不对齐的情况，多读取一个，少一位
+                qDebug() << "循环 needRead_ - readNum = " << needRead_ - readNum << " sum2 = " << sum2 << " 余数 = " << a;
+                qDebug() << "达到缓存长度 receivedData 长度 = " << receivedData.length() << " elem = " << QString::fromStdString(stream.str());
+                if (a != 0) {
+                    receivedData.push_back(elem);
+                }
                 break;
             }
+            receivedData.push_back(elem);
         }
-        ui->textEdit->append("------------------------------------------------------------------------------");
-        //对数据进行染色
-        qDebug() << "===============2";
-        handleMessage(dataTemp_2);
-        //将数据更加细致格式化，如果勾选了的话
-        if (ui->checkBox_show_json) {
-            QString needToJsonData = ui->textEdit_data->toPlainText();
-            ui->textEdit_data->clear();
-            utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
-        }
+        
 
-        ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
-        ui->textEdit->append(dataTemp_2);
-        ui->textEdit->append("------------------------------------------------------------------------------");
-        if (dataList2[1] == "80010002") {
-            //结果
-            ui->label_req->show();
-            ui->label_req->setText("REPLY");
-            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
-        } else if (dataList2[1] == "80010003") {
-            //异常
-            ui->label_req->show();
-            ui->label_req->setText("EXCEPTION");
-            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+        if (isFirstRead) {
+            isFirstRead = false;
+            //获取数据长度
+            uint32_t data = qFromBigEndian(receivedDataArray[0]);
+            std::stringstream stream;
+            //每次读取一个字节
+            stream << std::hex << std::setw(8) << std::setfill('0') << data;
+            QString data_ = QString::fromStdString(stream.str());
+            int countLength = 4 + strtol(data_.toStdString().c_str(), nullptr, 16);
+            needRead = countLength;
+            qDebug() << "首次读取，数据总长度为 " << countLength;
+            qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
+            needRead = needRead - (needRead_ - readNum);
+            qDebug() << "协议剩余数据 = " << needRead;
+            if (needRead == 0) {
+                //结束本次读取
+                isFirstRead = true;
+                needRead = 0;
+                qDebug() << "数据读取完毕";
+                qDebug() << "receivedData 长度 = " << receivedData.length();
+                handleBinData();
+                receivedData.clear();
+                clientSocket->close();
+            }
+            qDebug() << "等待下次读取";
         } else {
-            ui->label_req->hide();
-            ui->label_req->setText("");
+            qDebug() << "再次读取剩余数据";
+            qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
+            needRead = needRead - (needRead_ - readNum);
+            qDebug() << "协议剩余数据 = " << needRead;
+            if (needRead == 0) {
+                //结束本次读取
+                isFirstRead = true;
+                needRead = 0;
+                qDebug() << "数据读取完毕";
+                qDebug() << "receivedData 长度 = " << receivedData.length();
+                handleBinData();
+                receivedData.clear();
+                clientSocket->close();
+            }
         }
-        clientSocket->close();
+        return;
+        // // 将数据转换为主机字节序
+        // QStringList dataList2;
+        // QString dataTemp; //输出
+        // QString dataTemp_2;
+        // int countLength = -1; //设置数据长度，到达后不再读取 加上开头长度数据
+        // int nowLength = 0; //设置数据长度，到达后不再读取
+        // ui->stackedWidget->setCurrentIndex(0);
+        // int sum = 0;
+        // int sum_2 =0;
+        // for (uint32_t data : receivedDataArray) {
+        //     data = qFromBigEndian(data);
+        //     std::stringstream stream;
+        //     //每次读取一个字节
+        //     stream << std::hex << std::setw(8) << std::setfill('0') << data;
+        //     sum_2++;
+        //     dataList2.append(QString::fromStdString(stream.str()));
+        //     QString temp2 = QString::fromStdString(stream.str());
+        //     dataTemp_2 = dataTemp_2 + temp2;
+        //     dataTemp = dataTemp + temp2 + "  ";
+        //     // if (sum_2 == 4) {
+        //     //     dataTemp = dataTemp + temp2 + "  ";
+        //     //     sum_2 = 0;
+        //     //     qDebug() << "dataTemp1 = " << dataTemp;
+        //     // } else {
+        //     //     dataTemp = dataTemp + temp2;
+        //     //     qDebug() << "dataTemp2 = " << dataTemp;
+        //     // }
+
+        //     if (countLength == -1) {
+        //         //读取头获取数据长度
+        //         countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
+        //         qDebug() << "countLength = " << countLength - 4;
+        //     }
+        //     nowLength = nowLength + 4;
+        //     //qDebug() << "nowLength + 4 = " << nowLength;
+
+        //     sum++;
+        //     //每8个段进行下一步
+        //     if (sum == 8) {
+        //         sum = 0;
+        //         ui->textEdit->append(dataTemp);
+        //         //qDebug() << "dataTemp = " << dataTemp;
+        //         dataTemp = "";
+        //     }
+
+        //     if (nowLength > countLength) {
+        //         qDebug() << "超过有效数据长度 = " << nowLength - countLength;
+        //         dataTemp_2 = dataTemp_2.mid(0, dataTemp_2.length()-4);
+        //         //打印剩余dataTemp
+        //         dataTemp = dataTemp.mid(0, dataTemp.length()-6);
+        //         ui->textEdit->append(dataTemp);
+        //         ui->stackedWidget->setCurrentIndex(0);
+        //         qDebug() << "===============1";
+        //         break;
+        //     }
+        // }
+        // ui->textEdit->append("------------------------------------------------------------------------------");
+        // //对数据进行染色
+        // qDebug() << "===============2";
+        // handleMessage(dataTemp_2);
+        // //return;
+        // //将数据更加细致格式化，如果勾选了的话
+        // if (ui->checkBox_show_json) {
+        //     QString needToJsonData = ui->textEdit_data->toPlainText();
+        //     ui->textEdit_data->clear();
+        //     utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+        // }
+
+        // ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
+        // ui->textEdit->append(dataTemp_2);
+        // ui->textEdit->append("------------------------------------------------------------------------------");
+        // if (dataList2[1] == "80010002") {
+        //     //结果
+        //     ui->label_req->show();
+        //     ui->label_req->setText("REPLY");
+        //     ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+        // } else if (dataList2[1] == "80010003") {
+        //     //异常
+        //     ui->label_req->show();
+        //     ui->label_req->setText("EXCEPTION");
+        //     ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+        // } else {
+        //     ui->label_req->hide();
+        //     ui->label_req->setText("");
+        // }
+        //clientSocket->close();
     });
     QString port_str = ui->comboBox_port->currentText();
     int index_s = port_str.indexOf("(");
@@ -1726,7 +1796,7 @@ void thriftwidget::handleMessage(QString &data)
 
     QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
     label_headers = label_headers + "数据长度:" + headers_data_length + "   ";
-    //qDebug() << "数据长度 = " << headers_data_length;
+    qDebug() << "需要处理的数据 = " << data;
     //消息类型
     QString type_data = data.mid(0, 8);
     if (type_data == "80010001") {
@@ -1831,10 +1901,16 @@ void thriftwidget::handleMessage(QString &data)
                 break;
             } else if (value_type == "0d") {
                 //map
-                temp = temp + handleMap(data, isEnd);
+                ui->textEdit_data->append(addColorBracketsHtml("{\"map\":"));
+                temp = temp + handleMap(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
+                ui->textEdit_data->append(addColorBracketsHtml("}"));
             } else if (value_type == "0e") {
                 //set
-                temp = temp + handleSet(data, isEnd);
+                ui->textEdit_data->append(addColorBracketsHtml("{\"set\":"));
+                temp = temp + handleList(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
+                ui->textEdit_data->append(addColorBracketsHtml("}"));
             } else if (value_type == "0f") {
                 //list
                 ui->textEdit_data->append(addColorBracketsHtml("{\"list\":"));
@@ -2182,6 +2258,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         } else if (value_type == "0e") {
             //set
             type_ = THRIFT_SET;
+            temp = temp + handleSet(str, isEnd, paramType_, paramName_);
         } else if (value_type == "0f") {
             //list
             type_ = THRIFT_LIST;
@@ -2195,19 +2272,93 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
     return temp;
 }
 
-QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QString paramName)
+QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QString outParam)
 {
     qDebug() << "走这里handleMap";
+    qDebug() << "outType =" << outType;
+    int index_s = outType.indexOf("<");
+    int index_e = outType.lastIndexOf(">");
+    QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
+    qDebug() << "paramType_s =" << paramType_s;
     return "";
 }
 
-QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QString paramName)
+QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QString outParam)
 {
-    //值类型
-    QString value = str.mid(0, 2);
+    //和list处理一致
+    qDebug() << "outType =" << outType;
+    int index_s = outType.indexOf("<");
+    int index_e = outType.lastIndexOf(">");
+    QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
+    qDebug() << "paramType_s =" << paramType_s;
+    if (outParam == "") {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+    } else {
+        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
+    }
+    retractNum++;
+    //值类型 4
+    QString temp;
+    QString value_type = str.mid(0, 2);
+    qDebug() << " handleList value_type = " << value_type;
     str = str.mid(2);
+    temp = temp + addColorHtml(value_type, sourceColorMap[sourceTypeMap[value_type]]);
+    //值长度 8
+    QString value_len = str.mid(0, 8);
+    str = str.mid(8);
+    temp = temp + addColorHtml(value_len, sourceColorMap[THRIFT_MESSAGE_LENGTH]);
+    //值 需要判断是否是基础类型
+    // QString value3 = str.mid(0, 8);
+    // str = str.mid(8);
+    bool ok;
+    int len = value_len.toInt(&ok, 16);
+    qDebug() << "list len = " << len;
+    //QString isEnd = str.mid(0, 2);
 
-    return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
+    for(int i = 1; i <= len; i++) {
+        QString paramName = ""; //structParamMap.value(paramType_s).value(QString::number(i)).paramName;
+        QString paramType = paramType_s; //structParamMap.value(paramType_s).value(QString::number(i)).paramType;
+        qDebug() << " paramName  = " << paramName << " paramType = " << paramType;
+        if (value_type == "02") {
+            //bool
+            temp = temp + handleBool(str, isEnd, paramName);
+        } else if (value_type == "03") {
+            //byte
+            qDebug() << "走这里3";
+            temp = temp + handleByte(str, isEnd, paramName);
+        } else if (value_type == "04") {
+            //double
+            temp = temp + handleDouble(str, isEnd, paramName);
+        } else if (value_type == "06") {
+            //i16
+            temp = temp + handleI16(str, isEnd, paramName);
+        } else if (value_type == "08") {
+            //i32
+            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName);
+        } else if (value_type == "0a") {
+            //i64
+            temp = temp + handleI64(str, isEnd, paramName);
+        } else if (value_type == "0b") {
+            //string
+            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName);
+        } else if (value_type == "0c") {
+            temp = temp + handleStruct(str, isEnd, paramType, paramName);
+        } else if (value_type == "0d") {
+
+        } else if (value_type == "0e") {
+            temp = temp + handleSet(str, isEnd, paramType, paramName);
+        } else if (value_type == "0f") {
+            temp = temp + handleList(str, isEnd, paramType, paramName);
+        }
+    }
+    retractNum--;
+    isEnd = str.mid(0, 2);
+    if (isEnd == "00") {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
+    } else {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
+    }
+    return temp;
 }
 
 QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, QString outParam)
@@ -2270,9 +2421,9 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
         } else if (value_type == "0c") {
             temp = temp + handleStruct(str, isEnd, paramType, paramName);
         } else if (value_type == "0d") {
-
+            
         } else if (value_type == "0e") {
-
+            temp = temp + handleSet(str, isEnd, paramType, paramName);
         } else if (value_type == "0f") {
             temp = temp + handleList(str, isEnd, paramType, paramName);
         }
@@ -2814,6 +2965,94 @@ ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p)
     connect(items, SIGNAL(send_onTextChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_TextChanged(QString, QTreeWidgetItem*)));
     connect(items, SIGNAL(send_currentIndexChanged(QString, QTreeWidgetItem*)), p, SLOT(rece_currentIndexChanged(QString, QTreeWidgetItem*)));
     return items;
+}
+
+void thriftwidget::handleBinData() {
+        // 将数据转换为主机字节序
+        QStringList dataList2;
+        QString dataTemp; //输出
+        QString dataTemp_2;
+        int countLength = -1; //设置数据长度，到达后不再读取 加上开头长度数据
+        int nowLength = 0; //设置数据长度，到达后不再读取
+        ui->stackedWidget->setCurrentIndex(0);
+        int sum = 0;
+        int sum_2 =0;
+        for (uint32_t data : receivedData) {
+            data = qFromBigEndian(data);
+            std::stringstream stream;
+            //每次读取一个字节
+            stream << std::hex << std::setw(8) << std::setfill('0') << data;
+            sum_2++;
+            dataList2.append(QString::fromStdString(stream.str()));
+            QString temp2 = QString::fromStdString(stream.str());
+            dataTemp_2 = dataTemp_2 + temp2;
+            dataTemp = dataTemp + temp2 + "  ";
+            // if (sum_2 == 4) {
+            //     dataTemp = dataTemp + temp2 + "  ";
+            //     sum_2 = 0;
+            //     qDebug() << "dataTemp1 = " << dataTemp;
+            // } else {
+            //     dataTemp = dataTemp + temp2;
+            //     qDebug() << "dataTemp2 = " << dataTemp;
+            // }
+
+            if (countLength == -1) {
+                //读取头获取数据长度
+                countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
+                qDebug() << "countLength = " << countLength - 4;
+            }
+            nowLength = nowLength + 4;
+            //qDebug() << "nowLength + 4 = " << nowLength;
+
+            sum++;
+            //每8个段进行下一步
+            if (sum == 8) {
+                sum = 0;
+                ui->textEdit->append(dataTemp);
+                //qDebug() << "dataTemp = " << dataTemp;
+                dataTemp = "";
+            }
+
+            // if (nowLength > countLength) {
+            //     qDebug() << "超过有效数据长度 = " << nowLength - countLength;
+            //     dataTemp_2 = dataTemp_2.mid(0, dataTemp_2.length()-4);
+            //     //打印剩余dataTemp
+            //     dataTemp = dataTemp.mid(0, dataTemp.length()-6);
+            //     ui->textEdit->append(dataTemp);
+            //     ui->stackedWidget->setCurrentIndex(0);
+            //     qDebug() << "===============1";
+            //     break;
+            // }
+        }
+        ui->textEdit->append("------------------------------------------------------------------------------");
+        //对数据进行染色
+        qDebug() << "===============2";
+        handleMessage(dataTemp_2);
+        //return;
+        //将数据更加细致格式化，如果勾选了的话
+        if (ui->checkBox_show_json) {
+            QString needToJsonData = ui->textEdit_data->toPlainText();
+            ui->textEdit_data->clear();
+            utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+        }
+
+        ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
+        ui->textEdit->append(dataTemp_2);
+        ui->textEdit->append("------------------------------------------------------------------------------");
+        if (dataList2[1] == "80010002") {
+            //结果
+            ui->label_req->show();
+            ui->label_req->setText("REPLY");
+            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+        } else if (dataList2[1] == "80010003") {
+            //异常
+            ui->label_req->show();
+            ui->label_req->setText("EXCEPTION");
+            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+        } else {
+            ui->label_req->hide();
+            ui->label_req->setText("");
+        }
 }
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)

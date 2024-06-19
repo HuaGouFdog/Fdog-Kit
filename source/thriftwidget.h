@@ -356,9 +356,9 @@ public:
 
     QString handleMap(QString &str, QString isEnd, QString outType = "", QString paramName = "");
 
-    QString handleSet(QString &str, QString isEnd, QString outType = "", QString paramName = "");
+    QString handleSet(QString &str, QString isEnd, QString outType = "", QString outParam = "");
 
-    QString handleList(QString &str, QString isEnd, QString outType = "", QString paramName = "");
+    QString handleList(QString &str, QString isEnd, QString outType = "", QString outParam = "");
     
     QString handleEnd(QString &str);
 
@@ -396,6 +396,9 @@ public:
     static ItemWidget* createAndGetNode(thriftwidget * p);
     static ItemWidget* createAndGetNode(thriftwidget * p, QTreeWidget *parent);
     static ItemWidget* createAndGetNode(thriftwidget * p, QTreeWidgetItem *parent);
+
+    //将二进制数据进行解析
+    void handleBinData();
 
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
@@ -450,6 +453,10 @@ private:
     QString lastValue_;
     QString last2Value_;
     Ui::thriftwidget *ui;
+    bool isFirstRead = true;
+    int64_t needRead = 0;
+
+    QVector<uint32_t> receivedData;
 };
 
 #endif // THRIFTWIDGET_H
