@@ -338,27 +338,30 @@ public:
     //添加括号颜色
     QString addColorBracketsHtml(QString str);
 
-    QString handleBool(QString &str, QString isEnd, QString paramName = "");
+    QString handleBool(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
 
-    QString handleByte(QString &str, QString isEnd, QString paramName = "");
+    QString handleByte(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
 
-    QString handleDouble(QString &str, QString isEnd, QString paramName = "");
+    QString handleDouble(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
 
-    QString handleI16(QString &str, QString isEnd, QString paramName = "");
+    QString handleI16(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
 
-    QString handleI32(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "");
+    QString handleI32(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true);
 
-    QString handleI64(QString &str, QString isEnd, QString paramName = "");
+    QString handleI64(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
 
-    QString handleString(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "");
+    QString handleString(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true);
 
-    QString handleStruct(QString &str, QString isEnd, QString outType = "", QString outParam = "");
+    QString handleStruct(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
 
-    QString handleMap(QString &str, QString isEnd, QString outType = "", QString paramName = "");
+    QString handleMap(QString &str, QString isEnd, QString outType = "", QString paramName = "", bool isHandEnd = true);
 
-    QString handleSet(QString &str, QString isEnd, QString outType = "", QString outParam = "");
+    void handleMap_key(QString &str, QString isEnd, QString outType, QString & temp, bool isHandEnd = true);
+    void handleMap_value(QString &str, QString isEnd, QString outType, QString & temp, bool isHandEnd = true);
 
-    QString handleList(QString &str, QString isEnd, QString outType = "", QString outParam = "");
+    QString handleSet(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
+
+    QString handleList(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
     
     QString handleEnd(QString &str);
 

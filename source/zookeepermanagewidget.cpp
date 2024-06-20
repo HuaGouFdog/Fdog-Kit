@@ -177,10 +177,15 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     zktoolMenu = new QMenu(qbutton);
     zktoolMenu->setWindowFlags(zktoolMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     zktoolMenu->setAttribute(Qt::WA_TranslucentBackground);
+    QAction *closeAction = new QAction(tr("关闭"), qbutton);
     QAction *clearAction = new QAction(tr("删除"), qbutton);
     // 将菜单与按钮关联
+    zktoolMenu->addAction(closeAction);
     zktoolMenu->addAction(clearAction);
     qbutton->setMenu(zktoolMenu);
+    QObject::connect(closeAction, &QAction::triggered, [](){
+        qDebug("关闭被点击");
+    });
     QObject::connect(clearAction, &QAction::triggered, [](){
         qDebug("删除被点击");
     });
