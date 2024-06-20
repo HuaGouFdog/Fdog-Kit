@@ -6912,7 +6912,12 @@ debug\secretkeywidget.obj: secretkeywidget.cpp secretkeywidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtableview.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
-		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qgridlayout.h
 
 debug\smalltoolwidget.obj: smalltoolwidget.cpp smalltoolwidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -7402,6 +7407,7 @@ debug\keywidget.obj: keywidget.cpp keywidget.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDebug \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\QDir \
 		..\..\Qt5.12\5.10.0\msvc2015_64\include\QtCore\qdir.h \

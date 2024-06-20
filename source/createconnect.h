@@ -11,6 +11,9 @@
 #define KAFKA_CONNECT_TYPE 5
 #define DB_CONNECT_TYPE 6
 
+#define SSH_PASSWORD  1
+#define SSH_PUBLICKEY  2
+
 struct connnectInfoStruct
 {
     int8_t connectType;
@@ -19,9 +22,12 @@ struct connnectInfoStruct
     QString host;
     QString port;
     QString userName;
-    QString password;
+    QString password; //可能是密码，也可能是私钥密码
     QString remark;
     QString nearest_connection;
+    //登录方式 1密码 2公钥
+    int sshType;
+    QString publickey; //公钥地址
     bool isSavePassword;
     int8_t buttonSid;
     int timeout;

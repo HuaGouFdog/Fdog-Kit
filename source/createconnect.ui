@@ -902,7 +902,7 @@ padding-left:10px;
 padding-right:10px;</string>
                 </property>
                 <property name="text">
-                 <string>192.168.85.205</string>
+                 <string/>
                 </property>
                 <property name="placeholderText">
                  <string>127.0.0.1</string>
@@ -975,7 +975,7 @@ padding-left:10px;
 padding-right:10px;</string>
                 </property>
                 <property name="text">
-                 <string>22</string>
+                 <string/>
                 </property>
                 <property name="placeholderText">
                  <string>22</string>
@@ -1035,7 +1035,7 @@ padding-right:10px;</string>
                  <string>root</string>
                 </property>
                </widget>
-               <widget class="QTabWidget" name="tabWidget_2">
+               <widget class="QTabWidget" name="tabWidget_password">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
@@ -1153,7 +1153,7 @@ padding-left:10px;
 padding-right:10px;</string>
                   </property>
                   <property name="text">
-                   <string>vrv300352</string>
+                   <string/>
                   </property>
                   <property name="echoMode">
                    <enum>QLineEdit::Password</enum>
@@ -1327,10 +1327,10 @@ padding-left:10px;
 padding-right:10px;</string>
                   </property>
                   <property name="text">
-                   <string>******</string>
+                   <string/>
                   </property>
                   <property name="echoMode">
-                   <enum>QLineEdit::Password</enum>
+                   <enum>QLineEdit::Normal</enum>
                   </property>
                  </widget>
                  <widget class="QToolButton" name="toolButton_browse">
@@ -1393,7 +1393,7 @@ QToolButton:hover {
                    <rect>
                     <x>0</x>
                     <y>80</y>
-                    <width>71</width>
+                    <width>81</width>
                     <height>16</height>
                    </rect>
                   </property>
@@ -1538,7 +1538,7 @@ padding-left:10px;
 padding-right:10px;</string>
                   </property>
                   <property name="text">
-                   <string>******</string>
+                   <string/>
                   </property>
                   <property name="echoMode">
                    <enum>QLineEdit::Password</enum>
@@ -2375,13 +2375,13 @@ color: rgb(255, 255, 255);</string>
                  </property>
                  <property name="minimumSize">
                   <size>
-                   <width>60</width>
+                   <width>70</width>
                    <height>30</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>60</width>
+                   <width>70</width>
                    <height>30</height>
                   </size>
                  </property>
@@ -2424,13 +2424,13 @@ QToolButton:hover {
                  </property>
                  <property name="minimumSize">
                   <size>
-                   <width>60</width>
+                   <width>70</width>
                    <height>30</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>60</width>
+                   <width>70</width>
                    <height>30</height>
                   </size>
                  </property>
@@ -2475,13 +2475,13 @@ QToolButton:hover {
                  </property>
                  <property name="minimumSize">
                   <size>
-                   <width>60</width>
+                   <width>70</width>
                    <height>30</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>60</width>
+                   <width>70</width>
                    <height>30</height>
                   </size>
                  </property>

@@ -18,6 +18,10 @@ public:
 private slots:
     void on_toolButton_browse_clicked();
 
+    void on_toolButton_cancel_clicked();
+
+    void on_toolButton_ok_clicked();
+
 private:
     Ui::keywidget *ui;
 };

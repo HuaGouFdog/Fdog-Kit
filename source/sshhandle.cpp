@@ -78,7 +78,7 @@ sshhandle::~sshhandle()
     qDebug() << "释放连接句柄结束";
 }
 
-void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password)
+void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password, int sshType, QString publickey)
 {
     qDebug() << "init host = " << host;
     int rc;
@@ -118,17 +118,33 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
         return; 
     }
 
-    // 进行身份验证
-    rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
+    if (sshType == SSH_PASSWORD) {
+        // 进行身份验证
+        rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
 
-    if (rc) {
-        qDebug() << "initSSH Authentication failed rc = " << rc;
-        //libssh2_session_disconnect(session_ssh, "Authentication failed");
-        //libssh2_session_free(session_ssh);
-        //close(sockfd);
-        emit send_init(false);
-        return;
+        if (rc) {
+            qDebug() << "initSSH password Authentication failed rc = " << rc;
+            //libssh2_session_disconnect(session_ssh, "Authentication failed");
+            //libssh2_session_free(session_ssh);
+            //close(sockfd);
+            emit send_init(false);
+            return;
+        }
+    } else if (sshType == SSH_PUBLICKEY) {
+        qDebug() << "publickey = " << publickey.toUtf8().constData();
+        qDebug() << "password = " << password;
+        rc = libssh2_userauth_publickey_fromfile(session_ssh, username.toUtf8().constData(),
+                                                    NULL, publickey.toUtf8().constData(), password.toUtf8().constData());
+        if (rc) {
+            qDebug() << "initSSH public Authentication failed rc = " << rc;
+            //libssh2_session_disconnect(session_ssh, "Authentication failed");
+            //libssh2_session_free(session_ssh);
+            //close(sockfd);
+            emit send_init(false);
+            return;
+        }
     }
+
 
     channel_ssh = libssh2_channel_open_session(session_ssh);
     // 请求分配伪终端

@@ -5,6 +5,7 @@
 #include <QMovie>
 #include <QDateTime>
 #include <QDebug>
+#include <QTextCodec>
 createconnect::createconnect(int8_t connectType, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::createconnect)
@@ -75,6 +76,17 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         QDateTime currentDateTime = QDateTime::currentDateTime();
         cInfo.nearest_connection = currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
 
+        //判断登录类型 1密码 2公钥
+        if (ui->tabWidget_password->currentIndex() == 0) {
+            qDebug() << "密码登录";
+            cInfo.sshType = SSH_PASSWORD;
+        } else if (ui->tabWidget_password->currentIndex() == 1) {
+            qDebug() << "公钥登录";
+            cInfo.sshType = SSH_PUBLICKEY;
+            cInfo.userName = "zhangxu1";
+            cInfo.password = "8ouey1DN9irBXMnD";
+            cInfo.publickey = "E:/zhangxu1.pem";
+        }
     } else if (ui->tabWidget->currentIndex() == 2) {
         cInfo.connectType = 3;//this->connectType;
         cInfo.name = ui->widget_name_lineEdit_name_data->text();

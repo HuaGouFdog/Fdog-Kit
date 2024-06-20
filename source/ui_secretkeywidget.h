@@ -16,6 +16,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,24 +24,80 @@ QT_BEGIN_NAMESPACE
 class Ui_secretkeywidget
 {
 public:
-    QTableWidget *tableWidget;
-    QToolButton *toolButton_input;
-    QToolButton *toolButton_edit;
-    QToolButton *toolButton_delete;
-    QToolButton *toolButton_ok;
+    QVBoxLayout *verticalLayout;
+    QWidget *widget;
     QToolButton *toolButton_cancel;
+    QToolButton *toolButton_ok;
+    QTableWidget *tableWidget;
+    QToolButton *toolButton_edit;
+    QToolButton *toolButton_input;
+    QToolButton *toolButton_delete;
 
     void setupUi(QWidget *secretkeywidget)
     {
         if (secretkeywidget->objectName().isEmpty())
             secretkeywidget->setObjectName(QStringLiteral("secretkeywidget"));
-        secretkeywidget->resize(435, 290);
+        secretkeywidget->resize(418, 281);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/wicon_46.png"), QSize(), QIcon::Normal, QIcon::Off);
         secretkeywidget->setWindowIcon(icon);
-        secretkeywidget->setStyleSheet(QLatin1String("background-color: rgb(30, 45, 54);\n"
-"color: rgb(255, 255, 255);"));
-        tableWidget = new QTableWidget(secretkeywidget);
+        secretkeywidget->setStyleSheet(QStringLiteral(""));
+        verticalLayout = new QVBoxLayout(secretkeywidget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        widget = new QWidget(secretkeywidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setStyleSheet(QLatin1String("#widget{\n"
+"border-image: url(:/lib/back1.png);\n"
+"color: rgb(255, 255, 255);\n"
+"}"));
+        toolButton_cancel = new QToolButton(widget);
+        toolButton_cancel->setObjectName(QStringLiteral("toolButton_cancel"));
+        toolButton_cancel->setGeometry(QRect(330, 230, 70, 30));
+        toolButton_cancel->setMinimumSize(QSize(70, 30));
+        toolButton_cancel->setMaximumSize(QSize(70, 30));
+        QFont font;
+        font.setFamily(QStringLiteral("OPPOSans B"));
+        font.setPointSize(10);
+        font.setStyleStrategy(QFont::PreferAntialias);
+        toolButton_cancel->setFont(font);
+        toolButton_cancel->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        toolButton_ok = new QToolButton(widget);
+        toolButton_ok->setObjectName(QStringLiteral("toolButton_ok"));
+        toolButton_ok->setGeometry(QRect(240, 230, 70, 30));
+        toolButton_ok->setMinimumSize(QSize(70, 30));
+        toolButton_ok->setMaximumSize(QSize(70, 30));
+        toolButton_ok->setFont(font);
+        toolButton_ok->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        tableWidget = new QTableWidget(widget);
         if (tableWidget->columnCount() < 3)
             tableWidget->setColumnCount(3);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
@@ -62,11 +119,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(4, __qtablewidgetitem7);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(20, 20, 301, 201));
-        QFont font;
-        font.setFamily(QStringLiteral("OPPOSans B"));
-        font.setPointSize(10);
-        font.setStyleStrategy(QFont::PreferAntialias);
+        tableWidget->setGeometry(QRect(10, 10, 301, 201));
         tableWidget->setFont(font);
         tableWidget->setFocusPolicy(Qt::NoFocus);
         tableWidget->setStyleSheet(QString::fromUtf8("QTableWidget::item:hover{\n"
@@ -154,30 +207,9 @@ public:
         tableWidget->verticalHeader()->setHighlightSections(true);
         tableWidget->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         tableWidget->verticalHeader()->setStretchLastSection(false);
-        toolButton_input = new QToolButton(secretkeywidget);
-        toolButton_input->setObjectName(QStringLiteral("toolButton_input"));
-        toolButton_input->setGeometry(QRect(340, 40, 70, 30));
-        toolButton_input->setMinimumSize(QSize(70, 30));
-        toolButton_input->setMaximumSize(QSize(70, 30));
-        toolButton_input->setFont(font);
-        toolButton_input->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-        toolButton_edit = new QToolButton(secretkeywidget);
+        toolButton_edit = new QToolButton(widget);
         toolButton_edit->setObjectName(QStringLiteral("toolButton_edit"));
-        toolButton_edit->setGeometry(QRect(340, 90, 70, 30));
+        toolButton_edit->setGeometry(QRect(330, 80, 70, 30));
         toolButton_edit->setMinimumSize(QSize(70, 30));
         toolButton_edit->setMaximumSize(QSize(70, 30));
         toolButton_edit->setFont(font);
@@ -196,9 +228,30 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        toolButton_delete = new QToolButton(secretkeywidget);
+        toolButton_input = new QToolButton(widget);
+        toolButton_input->setObjectName(QStringLiteral("toolButton_input"));
+        toolButton_input->setGeometry(QRect(330, 30, 70, 30));
+        toolButton_input->setMinimumSize(QSize(70, 30));
+        toolButton_input->setMaximumSize(QSize(70, 30));
+        toolButton_input->setFont(font);
+        toolButton_input->setStyleSheet(QLatin1String("QToolButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolButton::menu-indicator { \n"
+"	image: None;\n"
+"}\n"
+"\n"
+" \n"
+"QToolButton:hover {\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color: rgb(255, 95, 95);\n"
+"}"));
+        toolButton_delete = new QToolButton(widget);
         toolButton_delete->setObjectName(QStringLiteral("toolButton_delete"));
-        toolButton_delete->setGeometry(QRect(340, 140, 70, 30));
+        toolButton_delete->setGeometry(QRect(330, 130, 70, 30));
         toolButton_delete->setMinimumSize(QSize(70, 30));
         toolButton_delete->setMaximumSize(QSize(70, 30));
         toolButton_delete->setFont(font);
@@ -217,48 +270,9 @@ public:
 "	color: rgb(255, 255, 255);\n"
 "	background-color: rgb(255, 95, 95);\n"
 "}"));
-        toolButton_ok = new QToolButton(secretkeywidget);
-        toolButton_ok->setObjectName(QStringLiteral("toolButton_ok"));
-        toolButton_ok->setGeometry(QRect(250, 240, 70, 30));
-        toolButton_ok->setMinimumSize(QSize(70, 30));
-        toolButton_ok->setMaximumSize(QSize(70, 30));
-        toolButton_ok->setFont(font);
-        toolButton_ok->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
-        toolButton_cancel = new QToolButton(secretkeywidget);
-        toolButton_cancel->setObjectName(QStringLiteral("toolButton_cancel"));
-        toolButton_cancel->setGeometry(QRect(340, 240, 70, 30));
-        toolButton_cancel->setMinimumSize(QSize(70, 30));
-        toolButton_cancel->setMaximumSize(QSize(70, 30));
-        toolButton_cancel->setFont(font);
-        toolButton_cancel->setStyleSheet(QLatin1String("QToolButton {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"	border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolButton::menu-indicator { \n"
-"	image: None;\n"
-"}\n"
-"\n"
-" \n"
-"QToolButton:hover {\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(255, 95, 95);\n"
-"}"));
+
+        verticalLayout->addWidget(widget);
+
 
         retranslateUi(secretkeywidget);
 
@@ -268,6 +282,8 @@ public:
     void retranslateUi(QWidget *secretkeywidget)
     {
         secretkeywidget->setWindowTitle(QApplication::translate("secretkeywidget", "\351\200\211\346\213\251\345\257\206\351\222\245", nullptr));
+        toolButton_cancel->setText(QApplication::translate("secretkeywidget", "\345\217\226\346\266\210", nullptr));
+        toolButton_ok->setText(QApplication::translate("secretkeywidget", "\347\241\256\345\256\232", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("secretkeywidget", "\346\230\265\347\247\260", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
@@ -284,11 +300,9 @@ public:
         ___qtablewidgetitem6->setText(QApplication::translate("secretkeywidget", "\346\226\260\345\273\272\350\241\214", nullptr));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->verticalHeaderItem(4);
         ___qtablewidgetitem7->setText(QApplication::translate("secretkeywidget", "\346\226\260\345\273\272\350\241\214", nullptr));
-        toolButton_input->setText(QApplication::translate("secretkeywidget", "\345\257\274\345\205\245", nullptr));
         toolButton_edit->setText(QApplication::translate("secretkeywidget", "\347\274\226\350\276\221", nullptr));
+        toolButton_input->setText(QApplication::translate("secretkeywidget", "\345\257\274\345\205\245", nullptr));
         toolButton_delete->setText(QApplication::translate("secretkeywidget", "\345\210\240\351\231\244", nullptr));
-        toolButton_ok->setText(QApplication::translate("secretkeywidget", "\347\241\256\345\256\232", nullptr));
-        toolButton_cancel->setText(QApplication::translate("secretkeywidget", "\345\217\226\346\266\210", nullptr));
     } // retranslateUi
 
 };

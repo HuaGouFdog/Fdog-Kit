@@ -76,7 +76,7 @@ public:
     QLineEdit *lineEdit_port_ssh_data;
     QLabel *label_user_ssh;
     QLineEdit *lineEdit_user_ssh_data;
-    QTabWidget *tabWidget_2;
+    QTabWidget *tabWidget_password;
     QWidget *tab_passowrd;
     QLineEdit *tab_passowrd_lineEdit_password_data;
     QLabel *tab_passowrd_label_password;
@@ -552,11 +552,11 @@ public:
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        tabWidget_2 = new QTabWidget(tab);
-        tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
-        tabWidget_2->setGeometry(QRect(0, 160, 431, 170));
-        tabWidget_2->setFont(font2);
-        tabWidget_2->setStyleSheet(QString::fromUtf8("\n"
+        tabWidget_password = new QTabWidget(tab);
+        tabWidget_password->setObjectName(QStringLiteral("tabWidget_password"));
+        tabWidget_password->setGeometry(QRect(0, 160, 431, 170));
+        tabWidget_password->setFont(font2);
+        tabWidget_password->setStyleSheet(QString::fromUtf8("\n"
 " QTabWidget::tab-bar {\n"
 "         left:0px;       \n"
 "}\n"
@@ -680,7 +680,7 @@ public:
         icon1.addFile(QStringLiteral(":/lib/eye2.png"), QSize(), QIcon::Normal, QIcon::Off);
         tab_passowrd_toolButton_show->setIcon(icon1);
         tab_passowrd_toolButton_show->setIconSize(QSize(14, 14));
-        tabWidget_2->addTab(tab_passowrd, QString());
+        tabWidget_password->addTab(tab_passowrd, QString());
         tab_secretkey = new QWidget();
         tab_secretkey->setObjectName(QStringLiteral("tab_secretkey"));
         label_zk_host_5 = new QLabel(tab_secretkey);
@@ -697,7 +697,7 @@ public:
 "border-radius: 5px;\n"
 "padding-left:10px;\n"
 "padding-right:10px;"));
-        lineEdit_zk_port_8->setEchoMode(QLineEdit::Password);
+        lineEdit_zk_port_8->setEchoMode(QLineEdit::Normal);
         toolButton_browse = new QToolButton(tab_secretkey);
         toolButton_browse->setObjectName(QStringLiteral("toolButton_browse"));
         toolButton_browse->setGeometry(QRect(350, 40, 70, 30));
@@ -723,10 +723,10 @@ public:
 "}"));
         checkBox_2 = new QCheckBox(tab_secretkey);
         checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
-        checkBox_2->setGeometry(QRect(0, 80, 71, 16));
+        checkBox_2->setGeometry(QRect(0, 80, 81, 16));
         checkBox_2->setFont(font2);
         checkBox_2->setChecked(true);
-        tabWidget_2->addTab(tab_secretkey, QString());
+        tabWidget_password->addTab(tab_secretkey, QString());
         tab_keyboard = new QWidget();
         tab_keyboard->setObjectName(QStringLiteral("tab_keyboard"));
         toolButton_6 = new QToolButton(tab_keyboard);
@@ -781,7 +781,7 @@ public:
         label_password_2->setObjectName(QStringLiteral("label_password_2"));
         label_password_2->setGeometry(QRect(0, 10, 39, 30));
         label_password_2->setFont(font);
-        tabWidget_2->addTab(tab_keyboard, QString());
+        tabWidget_password->addTab(tab_keyboard, QString());
         checkBox_remember_password_2->raise();
         lineEdit_password_data_2->raise();
         label_password_2->raise();
@@ -1051,8 +1051,8 @@ public:
         widget_bottom_toolButton_connect->setObjectName(QStringLiteral("widget_bottom_toolButton_connect"));
         sizePolicy1.setHeightForWidth(widget_bottom_toolButton_connect->sizePolicy().hasHeightForWidth());
         widget_bottom_toolButton_connect->setSizePolicy(sizePolicy1);
-        widget_bottom_toolButton_connect->setMinimumSize(QSize(60, 30));
-        widget_bottom_toolButton_connect->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_connect->setMinimumSize(QSize(70, 30));
+        widget_bottom_toolButton_connect->setMaximumSize(QSize(70, 30));
         widget_bottom_toolButton_connect->setFont(font2);
         widget_bottom_toolButton_connect->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1076,8 +1076,8 @@ public:
         widget_bottom_toolButton_save->setObjectName(QStringLiteral("widget_bottom_toolButton_save"));
         sizePolicy1.setHeightForWidth(widget_bottom_toolButton_save->sizePolicy().hasHeightForWidth());
         widget_bottom_toolButton_save->setSizePolicy(sizePolicy1);
-        widget_bottom_toolButton_save->setMinimumSize(QSize(60, 30));
-        widget_bottom_toolButton_save->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_save->setMinimumSize(QSize(70, 30));
+        widget_bottom_toolButton_save->setMaximumSize(QSize(70, 30));
         widget_bottom_toolButton_save->setFont(font4);
         widget_bottom_toolButton_save->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1101,8 +1101,8 @@ public:
         widget_bottom_toolButton_close->setObjectName(QStringLiteral("widget_bottom_toolButton_close"));
         sizePolicy1.setHeightForWidth(widget_bottom_toolButton_close->sizePolicy().hasHeightForWidth());
         widget_bottom_toolButton_close->setSizePolicy(sizePolicy1);
-        widget_bottom_toolButton_close->setMinimumSize(QSize(60, 30));
-        widget_bottom_toolButton_close->setMaximumSize(QSize(60, 30));
+        widget_bottom_toolButton_close->setMinimumSize(QSize(70, 30));
+        widget_bottom_toolButton_close->setMaximumSize(QSize(70, 30));
         widget_bottom_toolButton_close->setFont(font2);
         widget_bottom_toolButton_close->setStyleSheet(QLatin1String("QToolButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1142,7 +1142,7 @@ public:
         retranslateUi(createconnect);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(0);
+        tabWidget_password->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(createconnect);
@@ -1166,30 +1166,30 @@ public:
         lineEdit_transparent->setText(QApplication::translate("createconnect", "100", nullptr));
         widget_dynamic_title_checkBox->setText(QApplication::translate("createconnect", "\344\275\277\347\224\250\351\273\230\350\256\244\345\217\202\346\225\260", nullptr));
         widget_dynamic_title_label->setText(QApplication::translate("createconnect", "\345\213\276\351\200\211\345\220\216\357\274\214\344\275\277\347\224\250\351\273\230\350\256\244\345\217\202\346\225\260\345\210\233\345\273\272\347\273\210\347\253\257", nullptr));
-        lineEdit_host_ssh_data->setText(QApplication::translate("createconnect", "192.168.85.205", nullptr));
+        lineEdit_host_ssh_data->setText(QString());
         lineEdit_host_ssh_data->setPlaceholderText(QApplication::translate("createconnect", "127.0.0.1", nullptr));
         label_host_ssh->setText(QApplication::translate("createconnect", "\344\270\273\346\234\272", nullptr));
         label_port_ssh->setText(QApplication::translate("createconnect", "\347\253\257\345\217\243", nullptr));
-        lineEdit_port_ssh_data->setText(QApplication::translate("createconnect", "22", nullptr));
+        lineEdit_port_ssh_data->setText(QString());
         lineEdit_port_ssh_data->setPlaceholderText(QApplication::translate("createconnect", "22", nullptr));
         label_user_ssh->setText(QApplication::translate("createconnect", "\347\224\250\346\210\267\345\220\215", nullptr));
         lineEdit_user_ssh_data->setText(QString());
         lineEdit_user_ssh_data->setPlaceholderText(QApplication::translate("createconnect", "root", nullptr));
-        tab_passowrd_lineEdit_password_data->setText(QApplication::translate("createconnect", "vrv300352", nullptr));
+        tab_passowrd_lineEdit_password_data->setText(QString());
         tab_passowrd_label_password->setText(QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
         tab_passowrd_checkBox_remember_password->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\345\257\206\347\240\201", nullptr));
         tab_passowrd_toolButton_show->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_passowrd), QApplication::translate("createconnect", "   \345\257\206\347\240\201   ", nullptr));
+        tabWidget_password->setTabText(tabWidget_password->indexOf(tab_passowrd), QApplication::translate("createconnect", "   \345\257\206\347\240\201   ", nullptr));
         label_zk_host_5->setText(QApplication::translate("createconnect", "\347\247\201\351\222\245", nullptr));
-        lineEdit_zk_port_8->setText(QApplication::translate("createconnect", "******", nullptr));
+        lineEdit_zk_port_8->setText(QString());
         toolButton_browse->setText(QApplication::translate("createconnect", "\346\265\217\350\247\210...", nullptr));
         checkBox_2->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\347\247\201\351\222\245", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_secretkey), QApplication::translate("createconnect", "   \345\205\254\351\222\245   ", nullptr));
+        tabWidget_password->setTabText(tabWidget_password->indexOf(tab_secretkey), QApplication::translate("createconnect", "   \345\205\254\351\222\245   ", nullptr));
         toolButton_6->setText(QApplication::translate("createconnect", "\345\217\226\346\266\210", nullptr));
         checkBox_remember_password_2->setText(QApplication::translate("createconnect", "\350\256\260\344\275\217\345\257\206\347\240\201", nullptr));
-        lineEdit_password_data_2->setText(QApplication::translate("createconnect", "******", nullptr));
+        lineEdit_password_data_2->setText(QString());
         label_password_2->setText(QApplication::translate("createconnect", "\345\257\206\347\240\201", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_keyboard), QApplication::translate("createconnect", "   Keyboard Interactive   ", nullptr));
+        tabWidget_password->setTabText(tabWidget_password->indexOf(tab_keyboard), QApplication::translate("createconnect", "   Keyboard Interactive   ", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("createconnect", "   ssh   ", nullptr));
         lineEdit_port_ssh_data_3->setText(QApplication::translate("createconnect", "22", nullptr));
         lineEdit_port_ssh_data_3->setPlaceholderText(QApplication::translate("createconnect", "22", nullptr));

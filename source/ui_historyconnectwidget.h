@@ -230,7 +230,7 @@ public:
         tableWidget_history->setShowGrid(false);
         tableWidget_history->setGridStyle(Qt::NoPen);
         tableWidget_history->setSortingEnabled(false);
-        tableWidget_history->horizontalHeader()->setVisible(true);
+        tableWidget_history->horizontalHeader()->setVisible(false);
         tableWidget_history->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget_history->horizontalHeader()->setDefaultSectionSize(120);
         tableWidget_history->horizontalHeader()->setHighlightSections(false);

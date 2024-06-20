@@ -85,6 +85,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     QString port = cInfoStruct.port;
     QString username = cInfoStruct.userName;
     QString password = cInfoStruct.password;
+    int sshType = cInfoStruct.sshType;
+    QString publicKey = cInfoStruct.publickey;
 
     qDebug() << "sshwidget host = " << host;
     qDebug() << "sshwidget port = " << port;
@@ -122,7 +124,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     //密码
     //密钥 Path name of the public key file. (e.g. /etc/ssh/hostkey.pub). If libssh2 is built against OpenSSL, this option can be set to NULL.
     
-    QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password));
+    QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), 
+                Q_ARG(QString,port), Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(int,sshType), Q_ARG(QString,publicKey));
     //qDebug("执行01");
 
     //exec

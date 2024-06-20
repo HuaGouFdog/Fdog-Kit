@@ -1157,7 +1157,7 @@ void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
     //双击快速连接
     connnectInfoStruct cInfo_ = db_->ssh_getSSHInfoByHost(cInfoStruct.host);
     cInfoStruct.password = cInfo_.password;
-
+    cInfoStruct.sshType = SSH_PASSWORD;
     qDebug() << "收到双击数据" << cInfoStruct.host << " " << cInfoStruct.password;
     QSize iconSize(16, 16); // 设置图标的大小
     

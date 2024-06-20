@@ -110,10 +110,10 @@ protected:
 
     void resizeEvent(QResizeEvent *event) override
     {
-        //qDebug() << "resizeEvent 被调用";
+        qDebug() << "resizeEvent 被调用";
         //QTextEdit::resizeEvent(event);
-        //emit send_resize_sign();
-        //QPlainTextEdit::resizeEvent(event);
+        emit send_resize_sign();
+        QPlainTextEdit::resizeEvent(event);
     }
 
 private:

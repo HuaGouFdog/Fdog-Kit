@@ -189,6 +189,7 @@ void historyconnectwidget::on_tableWidget_history_itemDoubleClicked(QTableWidget
     cInfo.host = ui->tableWidget_history->item(currentRow, 1)->text();
     cInfo.userName = ui->tableWidget_history->item(currentRow, 2)->text();
     cInfo.port = "22";
+    cInfo.connectType =SSH_CONNECT_TYPE;
     //cInfo.password = ui->tableWidget_history->item(currentRow, 2)->text();
     //cInfo.group = ui->tableWidget_history->item(currentRow, 3)->text();
     //cInfo.remark = ui->tableWidget_history->item(currentRow, 4)->text();
