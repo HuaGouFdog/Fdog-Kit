@@ -712,13 +712,13 @@ QTreeWidget::item:hover {
 	border: 0px;
 	outline: 0px;
     color: rgb(255, 255, 255);
-	background-color: rgba(209, 209, 209, 20);
+	background-color: rgb(51, 79, 108);
 }
 QTreeWidget::item:selected{
     border: 0px;
 	outline: 0px;
     color: #45B2FF;
-	background-color: rgba(209, 209, 209, 20);
+	background-color: rgb(51, 79, 108);
 }
 QTreeWidget::item:selected:active{
     border: 0px;
@@ -731,12 +731,14 @@ QTreeWidget::item:selected:!active {
 	outline: 0px;
     color: #45B2FF;
 }
-QTreeWidget::branch {
-	height: 28px;
-	width: 28px;
-}
-QTreeView::branch:selected {
-}
+QTreeView::branch::hover{
+background-color: rgb(51, 79, 108);
+} 
+
+
+QTreeView::branch::selected{
+background-color: rgb(51, 79, 108);
+} 
 
 QTreeWidget::branch:!has-children:selected {
 }
