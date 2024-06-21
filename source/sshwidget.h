@@ -534,6 +534,9 @@ private:
 
     int gsum = 0;
 
+    int m_visibleLines = 0;  //当前终端高
+    int m_visibleColumns = 0; //当前终端宽
+
 
 };
 

@@ -78,7 +78,7 @@ sshhandle::~sshhandle()
     qDebug() << "释放连接句柄结束";
 }
 
-void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password, int sshType, QString publickey)
+void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password, int sshType, QString publickey, int visibleLines, int visibleColumns)
 {
     qDebug() << "init host = " << host;
     int rc;
@@ -152,7 +152,9 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     //int ret = libssh2_channel_request_pty_size(channel_ssh, 50, 24);
         //qDebug() << "libssh2_channel_request_pty_size = " << ret;
         // 请求伪终端失败，处理错误
-    int ret = libssh2_channel_request_pty(channel_ssh, term);
+    //int ret = libssh2_channel_request_pty(channel_ssh, term); //这个接口有默认宽高
+    qDebug() << "init 设置当前终端高=" << visibleLines << " 宽=" << visibleColumns;
+    int ret = libssh2_channel_request_pty_ex(channel_ssh, term, (unsigned int)strlen(term), NULL, 0, visibleLines, visibleColumns, 0, 0);
     if (ret != 0) {
         qDebug() << "出错" << ret;
         // 请求伪终端失败，处理错误

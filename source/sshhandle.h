@@ -114,7 +114,7 @@ signals:
     void send_getServerInfo(ServerInfoStruct serverInfo);
 public slots:
 
-    void init(int connrectType, QString host, QString port, QString username, QString password, int sshType = SSH_PASSWORD, QString publickey = 0);
+    void init(int connrectType, QString host, QString port, QString username, QString password, int sshType = SSH_PASSWORD, QString publickey = 0, int visibleLines = 24, int visibleColumns = 80);
     void init_poll();
     void channel_write(QString command);
     void channel_read(QString command);
