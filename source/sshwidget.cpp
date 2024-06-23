@@ -1126,7 +1126,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             if (!isBuffer && clearSPos == 0) {
                 //是否主缓冲区
                 //buffData = buffData + " <br>";
-                qDebug() << "走这里";
+                qDebug() << "isBuffer走这里";
                 //sendBuffData();
                 int cpos = getCurrentRowPositionByLocal();
                 movePositionDown(sshwidget::MoveAnchor, 1);
@@ -1134,10 +1134,11 @@ void sshwidget::rece_channel_readS(QStringList data)
                 if (cpos2 - cpos == 0) {
                     sendData(" \n");
                     //buffData = buffData + " <br>";
-                } else {
-                    setCurrentRowPosition(1);
                 }
                 setCurrentRowPosition(1);
+                int acurrentLine = getCurrentRowPosition();
+                int cpos3 = getCurrentRowPositionByLocal();
+                qDebug() << "isBuffer当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos3;
             } else if (isBuffer && isfirstR2) {
                 //是否副缓冲区，并且有二级滚动区域
                 //sendBuffData();
@@ -1177,7 +1178,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             } else {
                 //sendBuffData();
                 //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                //qDebug() << "滚动移动一行";
+                qDebug() << "向下滚动移动一行";
                 movePositionDown(sshwidget::MoveAnchor, 1);
                 if (clearSPos > 0) {
                     clearSPos--;
@@ -1352,8 +1353,36 @@ void sshwidget::rece_channel_readS(QStringList data)
             clearPos = i;
             lastCommondS = "clear";
             qDebug() << "清屏时行数(终端内部) =" << getCurrentRowPosition() << " 当前行数 = " << getCurrentRowPositionByLocal();
+
             setCurrentRowPositionToZero();
-            currentLine = 1;
+            setCurrentRowPosition(1);
+
+            int cpos = getCurrentRowPositionByLocal();
+            movePositionDown(sshwidget::MoveAnchor, 23);
+            int cpos2 = getCurrentRowPositionByLocal();
+
+            setCurrentRowPosition(cpos2 - cpos);
+            qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
+            if (cpos2 - cpos != 23 && cpos2 - cpos < 23) {
+                for (int i = cpos2 - cpos; i<23; i++) {
+                    if (isBuffer) {
+                        sendData("        ");
+                        if (cpos2 - cpos < 23 - 1) {
+                            sendData("\n");
+                        }
+                    } else {
+                        sendData("\n");
+                    }
+                }
+            }
+
+            //滚动条+25
+            // for(int i =0; i < 24 - b; i++) {
+            //     sendData("\n");
+            // }
+            qDebug() << "向上移动" << 23 << "行";
+            movePositionUp(sshwidget::MoveAnchor, 23);
+            setCurrentRowPosition(-23);
             continue;
         } else if (data[i] == "\u001B[L") {
             qDebug() << "遇到[L 向上移动";
@@ -1456,20 +1485,11 @@ void sshwidget::rece_channel_readS(QStringList data)
                         for (int i = cpos2 - cpos; i<moveCount; i++) {
                             if (isBuffer) {
                                 sendData("        ");
-                                //buffData = buffData + "       =";
                                 if (cpos2 - cpos < moveCount - 1) {
-                                    //qDebug() << "使用换行符移动 打印<br>";
                                     sendData("\n");
-                                    //buffData = buffData + "\n";
-                                    //qDebug() << "使用换行符移动 打印<br>结束";
                                 }
                             } else {
-                                //qDebug() << "当前行数据 =" << movePositionEndLineSelect();
                                 sendData("\n");
-                                //buffData = buffData + "\n";
-                                //qDebug() << "非缓冲区模式使用换行符移动 打印<br>结束";
-                                //qDebug() << "当前行数据 =" << movePositionEndLineSelect();
-                                // }
                             }
                         }
                     }

@@ -260,7 +260,7 @@ void datahandle::stringToHtml(QString &str, QColor *fontCrl, QColor *backCrl)
         array.append(fontCrl->green());
         array.append(fontCrl->blue());
         QString strC(array.toHex());
-        str = "color:"+strC + ":" + str;
+        //str = "color:"+strC + ":" + str;
         //str = QString("<span style=\" color:#%1;opacity: 1;\">%2</span>").arg(strC).arg(str);
     } else if (backCrl != NULL) {
         QByteArray array;
@@ -778,7 +778,7 @@ QStringList datahandle::processDataS(QString data)
 
                 //dataS.append(data.mid(0, match.length()));
                 //data = data.mid(position + match.length());
-                qDebug() << "添加m" << match << " position = " << position;
+                //qDebug() << "添加m" << match << " position = " << position;
                 data = data.mid(position + match.length());
                 pos = 0;
                 //break;
