@@ -131,3 +131,8 @@ void qss::on_listWidget_moduleList_currentRowChanged(int currentRow)
 {
     ui->stackedWidget->setCurrentIndex(currentRow);
 }
+
+void qss::on_listWidget_currentRowChanged(int currentRow)
+{
+    ui->stackedWidget_select->setCurrentIndex(currentRow);
+}

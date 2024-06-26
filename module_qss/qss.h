@@ -32,6 +32,8 @@ private slots:
 
     void on_listWidget_moduleList_currentRowChanged(int currentRow);
 
+    void on_listWidget_currentRowChanged(int currentRow);
+
 private:
     Ui::qss *ui;
 };
