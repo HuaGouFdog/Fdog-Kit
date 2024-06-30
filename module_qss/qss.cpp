@@ -21,6 +21,14 @@ qss::qss(QWidget *parent) :
     menu4->addAction("演示1");
     menu4->addAction("演示2");
     ui->toolButton_test_4->setMenu(menu4);
+
+    QMenu * menu_test = new QMenu();
+    menu_test->addAction("演示1");
+    menu_test->addAction("演示2");
+    menu_test->addAction("演示3");
+    menu_test->addAction("演示4");
+    ui->toolButton->setMenu(menu_test);
+
 }
 
 qss::~qss()
@@ -140,4 +148,75 @@ void qss::on_listWidget_currentRowChanged(int currentRow)
 void qss::on_listWidget_qss_currentRowChanged(int currentRow)
 {
     ui->stackedWidget_qss->setCurrentIndex(currentRow);
+}
+
+void qss::on_listWidget_status_2_currentRowChanged(int currentRow)
+{
+    ui->stackedWidget_status_2->setCurrentIndex(currentRow);
+}
+
+void qss::on_toolButton_table_pre1_clicked()
+{
+    ui->label->setStyleSheet("QLabel {\
+                                             color: rgb(255, 255, 255);\
+                                             background-color: rgb(67, 67, 67);\
+                                             border-radius: 5px;\
+                                         }\
+                                         QLabel:hover {\
+                                             color: rgb(240, 240, 240);\
+                                             background-color: rgb(67, 67, 67);\
+                                         }");
+    ui->textEdit_lable->clear();
+    ui->textEdit_lable->append(ui->label->styleSheet());
+}
+
+void qss::on_pushButton_save_2_clicked()
+{
+    ui->label->setStyleSheet(ui->textEdit_lable->toPlainText());
+}
+
+void qss::on_toolButton_table_pre2_clicked()
+{
+    ui->label->setStyleSheet("QLabel {\
+                                         color: rgb(255, 255, 255);\
+                                         background-color: rgb(250, 118, 0);\
+                                         border-radius: 5px;\
+                                     }\
+                                     QLabel:hover {\
+                                         color: rgb(255, 255, 255);\
+                                         background-color: rgb(250, 118, 0);\
+                                     }");
+    ui->textEdit_lable->clear();
+    ui->textEdit_lable->append(ui->label->styleSheet());
+}
+
+void qss::on_toolButton_table_pre3_clicked()
+{
+    ui->label->setStyleSheet("QLabel {\
+                                         color: rgb(255, 255, 255);\
+                                         background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\
+                                         border-radius: 5px;\
+                                     }\
+                                     QLabel:hover {\
+                                         color: rgb(191, 191, 191);\
+                                         background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 180), stop:1 rgba(37, 56, 67, 255));\
+                                     }");
+ui->textEdit_lable->clear();
+ui->textEdit_lable->append(ui->label->styleSheet());
+}
+
+void qss::on_toolButton_table_pre4_clicked()
+{
+    ui->label->setStyleSheet("QLabel {\
+                                         color: rgb(255, 255, 255);\
+                                         background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));\
+                                         border-top-left-radius: 10px;\
+                                         border-top-right-radius: 10px;\
+                                     }\
+                                     QLabel:hover {\
+                                         color: rgb(191, 191, 191);\
+                                         background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 180), stop:1 rgba(37, 56, 67, 255));\
+                                     }");
+ui->textEdit_lable->clear();
+ui->textEdit_lable->append(ui->label->styleSheet());
 }

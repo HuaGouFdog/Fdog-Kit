@@ -36,6 +36,18 @@ private slots:
 
     void on_listWidget_qss_currentRowChanged(int currentRow);
 
+    void on_listWidget_status_2_currentRowChanged(int currentRow);
+
+    void on_toolButton_table_pre1_clicked();
+
+    void on_pushButton_save_2_clicked();
+
+    void on_toolButton_table_pre2_clicked();
+
+    void on_toolButton_table_pre3_clicked();
+
+    void on_toolButton_table_pre4_clicked();
+
 private:
     Ui::qss *ui;
 };
