@@ -14,10 +14,58 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#qss{
-border-image: url(:/lib/back1.png);
+   <string notr="true">
+QListWidget::item{
+height: 22px;
 }
-</string>
+
+QScrollBar:vertical{
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+
+QScrollBar::handle:vertical{
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
    <property name="leftMargin">
@@ -107,6 +155,18 @@ QScrollBar::up-arrow:vertical {
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QScrollArea" name="scrollArea_2">
         <property name="widgetResizable">
@@ -117,11 +177,23 @@ QScrollBar::up-arrow:vertical {
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>280</width>
-           <height>641</height>
+           <width>298</width>
+           <height>659</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QListWidget" name="listWidget_moduleList">
             <property name="font">
@@ -130,9 +202,15 @@ QScrollBar::up-arrow:vertical {
               <pointsize>10</pointsize>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QListWidget::item{
+height: 22px;
+}
+</string>
+            </property>
             <item>
              <property name="text">
-              <string>QSS通用属性</string>
+              <string>通用属性：QSS</string>
              </property>
             </item>
             <item>
@@ -247,6 +325,11 @@ QScrollBar::up-arrow:vertical {
             </item>
             <item>
              <property name="text">
+              <string>表控件：QTableWidget</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>多标签控件：QTabWidget</string>
              </property>
             </item>
@@ -267,7 +350,7 @@ QScrollBar::up-arrow:vertical {
             </item>
             <item>
              <property name="text">
-              <string>带说明文本按钮：QCommandLinkButton</string>
+              <string>文本按钮：QCommandLinkButton</string>
              </property>
             </item>
             <item>
@@ -331,14 +414,45 @@ QScrollBar::up-arrow:vertical {
    </item>
    <item>
     <widget class="QWidget" name="widget_right" native="true">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
+       <number>9</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>9</number>
+      </property>
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
+        <property name="styleSheet">
+         <string notr="true">QStackedWidget{
+background-color: rgb(10, 31, 57);
+border-radius:9px;
+}
+
+QTextEdit{
+background-color: rgb(40, 71, 102);
+border-radius:9px;
+padding:5px;
+	color: rgb(255, 255, 255);
+}</string>
+        </property>
         <property name="currentIndex">
-         <number>24</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_2">
-         <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,2">
+         <layout class="QVBoxLayout" name="verticalLayout_7" stretch="3,5">
+          <property name="spacing">
+           <number>20</number>
+          </property>
           <item>
            <widget class="QGroupBox" name="groupBox_4">
             <property name="font">
@@ -348,7 +462,7 @@ QScrollBar::up-arrow:vertical {
              </font>
             </property>
             <property name="title">
-             <string>选择器  简单扫盲</string>
+             <string>选择器</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <property name="leftMargin">
@@ -382,6 +496,9 @@ QScrollBar::up-arrow:vertical {
                  <family>OPPOSans B</family>
                  <pointsize>10</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
                </property>
                <item>
                 <property name="text">
@@ -423,21 +540,21 @@ QScrollBar::up-arrow:vertical {
              <item>
               <widget class="QStackedWidget" name="stackedWidget_select">
                <property name="currentIndex">
-                <number>6</number>
+                <number>3</number>
                </property>
                <widget class="QWidget" name="page_6">
                 <layout class="QHBoxLayout" name="horizontalLayout_17">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_1">
@@ -455,7 +572,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;通用选择器：匹配所有部件&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;*{ //需要的样式 }&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00ff00;&quot;&gt;* &lt;/span&gt;{&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -464,16 +584,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_7">
                 <layout class="QHBoxLayout" name="horizontalLayout_16">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_2">
@@ -491,7 +611,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;类型选择器：匹配设置类及其子类&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QToolButton{ //需要的样式 }&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#00ff00;&quot;&gt;QToolButton&lt;/span&gt; { &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;将匹配QToolButton及其子类&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
@@ -502,16 +625,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_8">
                 <layout class="QHBoxLayout" name="horizontalLayout_15">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_3">
@@ -528,20 +651,25 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;属性选择器：属性选择器有四种匹配方式，属性值必须时标识符或字符串，常用在有多套qss需要切换的时候，例如不同界面风格，四种匹配方式中，只有第二种是常用的，其他不常用。&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1.  [&lt;span style=&quot; color:#aa0000;&quot;&gt;flat&lt;/span&gt;]  无论值为多少，都匹配。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. [&lt;span style=&quot; color:#aa0000;&quot;&gt;flat&lt;/span&gt; = &lt;span style=&quot; color:#00aa00;&quot;&gt;value&lt;/span&gt;]  当值等于value时，匹配。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. [&lt;span style=&quot; color:#aa0000;&quot;&gt;flat&lt;/span&gt; ~= &lt;span style=&quot; color:#00aa00;&quot;&gt;value&lt;/span&gt;] 当值中包含value时，匹配（以空格分割）。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. [&lt;span style=&quot; color:#aa0000;&quot;&gt;flat&lt;/span&gt; |= &lt;span style=&quot; color:#00aa00;&quot;&gt;value&lt;/span&gt;] 当值的开头包含value时，匹配。&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1.  [&lt;span style=&quot; color:#ff0000;&quot;&gt;flat&lt;/span&gt;]  无论值为多少，都匹配。&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. [&lt;span style=&quot; color:#ff0000;&quot;&gt;flat&lt;/span&gt; = &lt;span style=&quot; color:#55ff00;&quot;&gt;value&lt;/span&gt;]  当值等于value时，匹配。&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. [&lt;span style=&quot; color:#ff0000;&quot;&gt;flat&lt;/span&gt; ~= &lt;span style=&quot; color:#55ff00;&quot;&gt;value&lt;/span&gt;] 当值中包含value时，匹配（以空格分割）。&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. [&lt;span style=&quot; color:#ff0000;&quot;&gt;flat&lt;/span&gt; |= &lt;span style=&quot; color:#55ff00;&quot;&gt;value&lt;/span&gt;] 当值的开头包含value时，匹配。&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qss设置两套样式&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QToolButton[&amp;quot;&lt;span style=&quot; color:#aa0000;&quot;&gt;levle&lt;/span&gt;&amp;quot; = &amp;quot;2&amp;quot;]{ //需要的样式 }&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QToolButton[&amp;quot;&lt;span style=&quot; color:#aa0000;&quot;&gt;levle&lt;/span&gt;&amp;quot; = &amp;quot;1&amp;quot;]{ //需要的样式 }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;[&amp;quot;&lt;span style=&quot; color:#ff0000;&quot;&gt;levle&lt;/span&gt;&amp;quot; = &amp;quot;&lt;span style=&quot; color:#55ff00;&quot;&gt;2&lt;/span&gt;&amp;quot;] {&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;[&amp;quot;&lt;span style=&quot; color:#ff0000;&quot;&gt;levle&lt;/span&gt;&amp;quot; = &amp;quot;&lt;span style=&quot; color:#55ff00;&quot;&gt;1&lt;/span&gt;&amp;quot;] {&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;代码中设置值&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ui-&amp;gt;toolButton-&amp;gt;setProperty(”&lt;span style=&quot; color:#aa0000;&quot;&gt;levle&lt;/span&gt;&amp;quot;, &amp;quot;1&amp;quot;)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;//刷新样式&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ui-&amp;gt;toolButton-&amp;gt;style()-polish(ui-&amp;gt;toolButton)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ui&lt;/span&gt;-&amp;gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;toolButton&lt;/span&gt;-&amp;gt;setProperty(”&lt;span style=&quot; color:#ff0000;&quot;&gt;levle&lt;/span&gt;&amp;quot;, &amp;quot;&lt;span style=&quot; color:#55ff00;&quot;&gt;1&lt;/span&gt;&amp;quot;);&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#a5a5a5;&quot;&gt;//刷新样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;ui&lt;/span&gt;-&amp;gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;toolButton&lt;/span&gt;-&amp;gt;style()-polish(&lt;span style=&quot; color:#ff0000;&quot;&gt;ui&lt;/span&gt;-&amp;gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;toolButton&lt;/span&gt;);&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -550,16 +678,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_9">
                 <layout class="QHBoxLayout" name="horizontalLayout_18">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_4">
@@ -577,11 +705,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;类选择器：匹配当前类，但不包含子类，对应类型选择器，包含子类&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;.QToolButton{ //需要的样式 }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;.QToolButton&lt;/span&gt; {&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;只匹配QToolButton&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;等价于*[class~=&amp;quot;QToolButton&amp;quot;]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;只匹配&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;，等价于&lt;span style=&quot; color:#55ff00;&quot;&gt;*&lt;/span&gt;[&lt;span style=&quot; color:#ff0000;&quot;&gt;class&lt;/span&gt;~=&amp;quot;&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;&amp;quot;]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -590,16 +718,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_10">
                 <layout class="QHBoxLayout" name="horizontalLayout_19">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_5">
@@ -617,9 +745,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ID选择器：匹配当前指定类指定objectName的控件&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QToolButton#toolbutton{ //需要的样式 }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;toolbutton&lt;/span&gt; {&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式  QToolButton也看可以不需要&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QToolButton也看可以不需要&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -628,16 +758,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_11">
                 <layout class="QHBoxLayout" name="horizontalLayout_20">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_6">
@@ -655,9 +785,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;后代选择器：匹配指定类的后代类&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QWidget QToolButton{ //需要的样式 }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QWidget&lt;/span&gt; &lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;{&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;匹配属于QWidget后代（包括孩子，孙子等）所有QToolButton。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;匹配属于&lt;span style=&quot; color:#55ff00;&quot;&gt;QWidget&lt;/span&gt;后代（包括孩子，孙子等）的所有&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;类。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -666,16 +798,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_12">
                 <layout class="QHBoxLayout" name="horizontalLayout_21">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_select_7">
@@ -693,9 +825,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;子选择器：匹配指定类的直接子类（不包括孙子等），很少使用&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;示例：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QWidget&amp;gt;QToolButton{ //需要的样式 }&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton &lt;/span&gt;{&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#a5a5a5;&quot;&gt;//需要的样式&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;匹配属于QWidget直接后代所有QToolButton。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;匹配属于&lt;span style=&quot; color:#55ff00;&quot;&gt;QWidget&lt;/span&gt;直接后代所有&lt;span style=&quot; color:#55ff00;&quot;&gt;QToolButton&lt;/span&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -715,7 +849,7 @@ p, li { white-space: pre-wrap; }
              </font>
             </property>
             <property name="title">
-             <string>通用QSS  简单扫盲  这些字段大多数可以通过右键改变样式表自动生成，不做效果预览</string>
+             <string>通用QSS</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <property name="leftMargin">
@@ -810,16 +944,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page">
                 <layout class="QHBoxLayout" name="horizontalLayout_22">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_9">
@@ -837,29 +971,32 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;字体：&lt;span style=&quot; color:#005500;&quot;&gt;font&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;字体：&lt;span style=&quot; color:#55ff00;&quot;&gt;font&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;font&lt;/span&gt;: &lt;span style=&quot; color:#aa0000;&quot;&gt;style	weight  size   family&lt;/span&gt;;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;分别表示样式，粗细，大小，字体&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;font&lt;/span&gt;: &lt;span style=&quot; color:#ff0000;&quot;&gt;style	weight  size   family&lt;/span&gt;;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;分别表示样式，粗细，大小，字体。&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;font-style&lt;/span&gt;:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#aa0000;&quot;&gt;normal&lt;/span&gt;：正常 	&lt;span style=&quot; color:#aa0000;&quot;&gt;italic&lt;/span&gt;：斜体 		&lt;span style=&quot; color:#aa0000;&quot;&gt;oblique&lt;/span&gt;:  倾斜的字体&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;font-style&lt;/span&gt;:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    可选值：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#ff0000;&quot;&gt;normal&lt;/span&gt;：正常，&lt;span style=&quot; color:#ff0000;&quot;&gt;italic&lt;/span&gt;：斜体，&lt;span style=&quot; color:#ff0000;&quot;&gt;oblique&lt;/span&gt;:  倾斜的字体&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;font-weight&lt;/span&gt;:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#aa0000;&quot;&gt;normal&lt;/span&gt;：正常	&lt;span style=&quot; color:#aa0000;&quot;&gt;bold&lt;/span&gt;：加粗		&lt;span style=&quot; color:#aa0000;&quot;&gt;100&lt;/span&gt;：整数表示，数值越大，字体越粗&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;font-weight&lt;/span&gt;:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    可选值：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#ff0000;&quot;&gt;normal&lt;/span&gt;：正常，&lt;span style=&quot; color:#ff0000;&quot;&gt;bold&lt;/span&gt;：加粗，&lt;span style=&quot; color:#ff0000;&quot;&gt;100&lt;/span&gt;：整数表示，数值越大，字体越粗&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;font-size&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#aa0000;&quot;&gt;px	pt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;font-size&lt;/span&gt;:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; color:#ff0000;&quot;&gt;px&lt;/span&gt;：物理像素，&lt;span style=&quot; color:#ff0000;&quot;&gt;pt&lt;/span&gt;：逻辑像素&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    两种设置方法：例如10pt，10px&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;font-family&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    设置字体，尽量用引号括起来使用，例如 &amp;quot;&lt;span style=&quot; color:#aa0000;&quot;&gt;OPPOSans B&lt;/span&gt;&amp;quot;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;font-family&lt;/span&gt;:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    设置字体，尽量用引号括起来使用，例如 &amp;quot;&lt;span style=&quot; color:#ff0000;&quot;&gt;OPPOSans B&lt;/span&gt;&amp;quot;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用方式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    font&lt;/span&gt;: &lt;span style=&quot; color:#aa0000;&quot;&gt;normal normal 10pt &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;OPPOSans B&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;&amp;quot;&lt;/span&gt;;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;其中style和weight位置可以互换位置或者省略，size不可以省略，family省略后使用默认字体。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;组合使用方式：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;font&lt;/span&gt;: &lt;span style=&quot; color:#ff0000;&quot;&gt;normal normal 10pt&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;OPPOSans B&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;&amp;quot;&lt;/span&gt;;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;其中&lt;span style=&quot; color:#55ff00;&quot;&gt;style&lt;/span&gt;和&lt;span style=&quot; color:#55ff00;&quot;&gt;weight&lt;/span&gt;位置可以互换位置或者省略，&lt;span style=&quot; color:#55ff00;&quot;&gt;size&lt;/span&gt;不可以省略，&lt;span style=&quot; color:#55ff00;&quot;&gt;family&lt;/span&gt;省略后使用默认字体。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -868,16 +1005,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_3">
                 <layout class="QHBoxLayout" name="horizontalLayout_23">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_10">
@@ -895,20 +1032,20 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;文字装饰：&lt;span style=&quot; color:#005500;&quot;&gt;text-decoration&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;文字装饰：&lt;span style=&quot; color:#55ff00;&quot;&gt;text-decoration&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;none&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：没有装饰（默认）&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;underline&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;下划线&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;overline&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;上划线&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;line-through&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;删除线&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;none&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：没有装饰（默认）&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;underline&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：下划线&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;overline&lt;/span&gt;：上划线&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;line-through&lt;/span&gt;：删除线&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;text-decoration&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;underline&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;text-decoration&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;underline&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;效果：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#005500;&quot;&gt;测试&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55ff00;&quot;&gt;测试&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
@@ -918,16 +1055,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_13">
                 <layout class="QHBoxLayout" name="horizontalLayout_24">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_11">
@@ -945,24 +1082,24 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;文字对齐：&lt;span style=&quot; color:#005500;&quot;&gt;text-align&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;文字对齐：&lt;span style=&quot; color:#55ff00;&quot;&gt;text-align&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;top&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向上对齐&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;bottom&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向下对齐&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;left&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向左对齐&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;right&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向右对齐&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;center&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：居中对齐&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;top&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向上对齐&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;bottom&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向下对齐&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;left&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向左对齐&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;right&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：向右对齐&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;center&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;：居中对齐&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;text-align&lt;/span&gt;：&lt;span style=&quot; color:#000000;&quot;&gt;水平对齐方式（&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;left right center&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;） 垂直对齐方式（&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;top bottom center&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;text-align&lt;/span&gt;：&lt;span style=&quot; color:#ffffff;&quot;&gt;水平对齐方式（&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;left right center&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;）&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;垂直对齐方式（&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;top bottom center&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;）&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;例如：&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;向左上对齐&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;text-align&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;left&lt;/span&gt; &lt;span style=&quot; color:#aa0000;&quot;&gt;top&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;text-align&lt;/span&gt;：&lt;span style=&quot; color:#ff0000;&quot;&gt;left top&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;水平，垂直居中对齐&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;text-align&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;center center&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;text-align&lt;/span&gt;：&lt;span style=&quot; color:#ff0000;&quot;&gt;center center&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
@@ -973,16 +1110,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_14">
                 <layout class="QHBoxLayout" name="horizontalLayout_25">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_12">
@@ -1000,38 +1137,37 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片类型1：&lt;span style=&quot; color:#005500;&quot;&gt;image&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;自适应图片，图片按照控件实际大小显示，图片在保证自身比例不变的情况下跟随控件伸缩大小。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;可以理解为前背景图片，因为它最后绘制。&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片类型2：&lt;span style=&quot; color:#005500;&quot;&gt;border-image&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;自适应图片，图片按照控件实际大小显示，控件伸缩对应图片伸缩大小。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;可以理解为边框背景图片，因为它始终根据边框伸缩进行对应伸缩。&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片类型3：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-image&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;不会自适应图片，按照图片实际大小显示，小于控件部分显示空白，多余控件部分不显示。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可以理解为后背景图片。&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;image&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;url(图片资源路径)&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-image&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;url(图片资源路径)&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-image&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;url(图片资源路径)&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;例如：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;: &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;url(:/icon/test.png)&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-image&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;: &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;url(:/icon/test.png)&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-image&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;: &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;url(:/icon/test.png)&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;扩展：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;有时候设置image不生效，例如按钮，在设置image之后就不生效，如何生效呢？&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;需要添加border属性，最简单的使用下面即可&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;none&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;此外，三者可以同时存在，绘制顺序为&lt;span style=&quot; color:#005500;&quot;&gt;background-image-&amp;gt;border-image-&amp;gt;image&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;此外，可以设置图片对齐方式，在下一块知识点&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片类型1：&lt;span style=&quot; color:#55ff00;&quot;&gt;image&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;自适应图片，图片按照控件实际大小显示，图片在保证自身比例不变的情况下跟随控件伸缩大小。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;可以理解为前背景图片，因为它最后绘制。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片类型2：&lt;span style=&quot; color:#55ff00;&quot;&gt;border-image&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;自适应图片，图片按照控件实际大小显示，控件伸缩对应图片伸缩大小。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;可以理解为边框背景图片，因为它始终根据边框伸缩进行对应伸缩。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片类型3：&lt;span style=&quot; color:#55ff00;&quot;&gt;background-image&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;不会自适应图片，按照图片实际大小显示，小于控件部分显示空白，多余控件部分不显示。&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可以理解为后背景图片。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;url(图片资源路径)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;url(图片资源路径)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;url(图片资源路径)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;例如：&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;url(:/icon/test.png)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;url(:/icon/test.png)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;url(:/icon/test.png)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;扩展：&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;有时候设置image不生效，例如按钮，在设置image之后就不生效，如何生效呢？&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;需要添加border属性，最简单的使用下面即可&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;none&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;此外，三者可以同时存在，绘制顺序为&lt;span style=&quot; color:#55ff00;&quot;&gt;background-image&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-image&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;image&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;此外，可以设置图片对齐方式，在下一块知识点&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -1040,16 +1176,16 @@ p, li { white-space: pre-wrap; }
                <widget class="QWidget" name="page_15">
                 <layout class="QHBoxLayout" name="horizontalLayout_26">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="textEdit_13">
@@ -1067,20 +1203,18 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片对齐：&lt;span style=&quot; color:#005500;&quot;&gt;image-position&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;可选值：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;left&lt;/span&gt;：文本左侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      right&lt;/span&gt;：文本右侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      top&lt;/span&gt;：文本上侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      bottom&lt;/span&gt;：文本下侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      only&lt;/span&gt;：只显示图片&lt;span style=&quot; color:#aa0000;&quot;&gt;      center&lt;/span&gt;：居中，文字显示在旁边或者周围&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片对齐：&lt;span style=&quot; color:#55ff00;&quot;&gt;image-position&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    可选值：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;left&lt;/span&gt;：文本左侧，&lt;span style=&quot; color:#aa0000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;right&lt;/span&gt;：文本右侧，&lt;span style=&quot; color:#ff0000;&quot;&gt;top&lt;/span&gt;：文本上侧，&lt;span style=&quot; color:#aa0000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;bottom&lt;/span&gt;：文本下侧，&lt;span style=&quot; color:#ff0000;&quot;&gt;only&lt;/span&gt;：只显示图片，&lt;span style=&quot; color:#ff0000;&quot;&gt;center&lt;/span&gt;：居中，文字显示在旁边或者周围&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;image-position&lt;/span&gt;：可选值&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;image-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;可选值&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;例如：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;image-position&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;left&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;image-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;left&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;小技巧：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;有时候设置&lt;span style=&quot; color:#005500;&quot;&gt;image-position没反应&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;，这个属性只针对设置的&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;生效&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;有时候设置&lt;span style=&quot; color:#55ff00;&quot;&gt;image-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;没反应，因为这个属性只针对设置的&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;生效&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1107,40 +1241,39 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片对齐：&lt;span style=&quot; color:#005500;&quot;&gt;background-position&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;可选值：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;left&lt;/span&gt;：左侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      right&lt;/span&gt;：右侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      top&lt;/span&gt;：上侧&lt;span style=&quot; color:#aa0000;&quot;&gt;      bottom&lt;/span&gt;：下侧&lt;span style=&quot; color:#aa0000;&quot;&gt;    center&lt;/span&gt;：居中&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;图片对齐：&lt;span style=&quot; color:#55ff00;&quot;&gt;background-position&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    可选值：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;left&lt;/span&gt;：左侧，&lt;span style=&quot; color:#ff0000;&quot;&gt;right&lt;/span&gt;：右侧，&lt;span style=&quot; color:#aa0000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;top&lt;/span&gt;：上侧，&lt;span style=&quot; color:#ff0000;&quot;&gt;bottom&lt;/span&gt;：下侧，&lt;span style=&quot; color:#ff0000;&quot;&gt;center&lt;/span&gt;：居中&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用格式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-position&lt;/span&gt;：水平对齐方式() 垂直对齐方式()&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;水平对齐方式() 垂直对齐方式()&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;例如：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-position&lt;/span&gt;：&lt;span style=&quot; color:#aa0000;&quot;&gt;left center&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;   水平方向向左对齐，垂直方向居中对齐&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;left center&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;   水平方向向左对齐，垂直方向居中对齐&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;扩展：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;和&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-position&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;配合的还有几个属性：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;扩展：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;和&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;配合的还有几个属性：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-attachment&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;作用是背景图片在带滚动条控件（QAbstractScrollArea）中是固定在一个位置，还是随着滚动条滚动。&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    可选值：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;scroll：滚动（默认值）  fixed：固定&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-attachment&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：&lt;/span&gt;作用是背景图片在带滚动条控件（QAbstractScrollArea）中是固定在一个位置，还是随着滚动条滚动。&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;scroll&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：滚动（默认值），&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;fixed&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：固定&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;下面三个不常用：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-origin&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ：作用是指定图片的覆盖范围矩形，如果没有指定，默认为padding。&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    可选值：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;margin：外边距矩形    border：边框矩形    padding：内边距矩形    content：内容矩形&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-origin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：作用是指定图片的覆盖范围矩形，如果没有指定，默认为padding。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;margin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：外边距矩形，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：边框矩形，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：内边距矩形，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;content&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：内容矩形&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-repeat&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ：&lt;/span&gt;作用是设置图片平铺方式&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;   &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    repeat-x：在水平方向上平铺&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    repeat-y：在垂直方向上平铺&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    repeat：在水平和垂直方向上都平铺，这是默认值&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    no-repeat：不平铺&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-repeat&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：&lt;/span&gt;作用是设置图片平铺方式&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;   &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;repeat-x&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：在水平方向上平铺&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;repeat-y&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：在垂直方向上平铺&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;repeat&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：在水平和垂直方向上都平铺，这是默认值&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;no-repeat&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：不平铺&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-clip&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ：&lt;/span&gt;作用是设置背景颜色覆盖的区域，默认情况下覆盖内边距矩形，如果没有指定，默认是border&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    可选值：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;margin：外边距矩形    border：边框矩形    padding：内边距矩形    content：内容矩形&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-clip&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：&lt;/span&gt;作用是设置背景颜色覆盖的区域，默认情况下覆盖内边距矩形，如果没有指定，默认是border&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;   &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;margin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：外边距矩形，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：边框矩形，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：内边距矩形，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;content&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：内容矩形&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;意思是从&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-origin&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;区域的&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-position&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;位置开始绘制图片，并以&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-repeat&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;方式进行重复，最后将图片在&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-clip&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;区域以外的范围裁剪掉（即不显示）。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;意思是从&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-origin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;区域的&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-position&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;位置开始绘制图片，并以&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-repeat&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;方式进行重复，最后将图片在&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-clip&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;区域以外的范围裁剪掉（即不显示）。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;想学习详细用法，可以从&lt;/span&gt;&lt;span style=&quot; color:#0055ff;&quot;&gt;https://blog.csdn.net/Mr_robot_strange/article/details/106838353&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;了解。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;想学习详细用法，可以从&lt;/span&gt;&lt;span style=&quot; color:#0055ff;&quot;&gt;https://blog.csdn.net/Mr_robot_strange/article/details/106838353&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;了解。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -1168,34 +1301,34 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;常用颜色&lt;span style=&quot; color:#000000;&quot;&gt;包括三种，分别为&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(文字颜色)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(边框颜色)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(背景颜色)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可选值样式：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    十六进制6位数代码：#ffffff&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    RGB代码：rgb(189, 255, 90)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    RGBA代码：rgba(189, 255, 90,150)   最后的A参数表示透明度，最小值0，最大值255&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    英文代码：red    &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;常用颜色&lt;span style=&quot; color:#ffffff;&quot;&gt;包括三种，分别为&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(文字颜色)，&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(边框颜色)，&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(背景颜色)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值样式：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;英文代码：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;red&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;十六进制6位数代码：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;#ffffff&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;RGB代码：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;rgb(189, 255, 90)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;RGBA代码：&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;rgba(189, 255, 90,150)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#aa0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;RGBA最后的A参数表示透明度，最小值0，最大值255&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;使用方式：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;#ffffff&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;red&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;rgb(189, 255, 90)&lt;/span&gt;;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;：&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;rgba(189, 255, 90,150)&lt;/span&gt;;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;red&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;#ffffff&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;rgb(189, 255, 90)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;rgba(189, 255, 90,150)&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;; &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;扩展：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-color &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;除了设置整体值，也可以分别设置四条边的值&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;border-left-color 边框色左&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;border-top-color 边框色上&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;border-right-color 边框色右&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;border-bottom-color 边框色下&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;gridline-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    网格线颜色&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;selection-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; 选择文字颜色&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;selection-background-color&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;  选择背景颜色&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;alternate-background-color &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;交替色，如果tableWidget中使用的行，设置后可应用&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;除了上面三种颜色设置，还有下面几种：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;gridline-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(网格线颜色)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;selection-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(选择文字颜色)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;selection-background-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(选择背景颜色)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;alternate-background-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;(交替色，如果tableWidget中使用的行，设置后可应用)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;另外&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;除了设置整体值，也可以分别设置四条边的值：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-left-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;边框色左&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-top-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;边框色上&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-right-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;边框色右&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-bottom-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;边框色下&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
@@ -1220,14 +1353,15 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;渐变：&lt;span style=&quot; color:#005500;&quot;&gt;qlineargradient&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;如果纯色背景不好看，可以尝试使用渐变，渐变的字段和上一节的颜色统一，只有参数不同。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;渐变：&lt;span style=&quot; color:#55ff00;&quot;&gt;qlineargradient&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;如果纯色背景不好看，可以尝试使用渐变，渐变的字段和上一节的颜色统一，只有参数不同。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;使用方式：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;背景渐变：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;background-color&lt;/span&gt;: &lt;span style=&quot; color:#aa0000;&quot;&gt;qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255));&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;使用方式：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;背景渐变：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;background-color&lt;/span&gt;: &lt;span style=&quot; color:#ff0000;&quot;&gt;qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 157), stop:1 rgba(37, 56, 67, 255))&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#aa0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;这个参数不需要我们自己生成，右键改变样式表，选择渐变，手动选择想要的颜色即可&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;这个参数不需要我们自己生成，右键改变样式表，选择渐变，手动选择想要的颜色即可，如果预制类型没有我们想要的，可以新建。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -1251,51 +1385,48 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;除了上面说的&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-color&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;还有可以设置边框的样式&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-style&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;样式可选值：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;none: 无样式&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;hidden: 同样是无样式，主要用于解决和表格的边框冲突&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;dotted: 点划线&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;dashed: 虚线&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;solid: 实线；&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;double: 双线,两条线加上中间的空白等于border-width的取值&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;groove: 槽状&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;ridge: 脊状,和groove相反&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;inset: 凹陷&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;outset:凸出,和inset相反&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;属性除了上面说的&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;，还有可以设置边框的样式&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-style&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    none&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：无样式，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;hidden&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：同样是无样式，主要用于解决和表格的边框冲突，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;solid&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：实线&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    dotted&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：点划线，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;dashed&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：虚线，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;double&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：双线，两条线加上中间的空白等于border-width的取值&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    groove&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：槽状，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; ridge&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：脊状，和groove相反，&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt; inset&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：凹陷， outset：凸出，和inset相反&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#ff0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;常用的是solid。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#aa0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;还有可以设置边框的宽度&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-width&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;宽度可选值：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;medium：缺省值（大约2像素）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;thin：比medium细&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;thick：比medium粗&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;绝对长度单位（cm，mm，in，pt，pc）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;相对长度单位（em，ex，px）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可以设置边框的宽度&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-width&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可选值：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    medium&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：缺省值（大约2像素）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    thin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：比medium细&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    thick&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：比medium粗&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    绝对长度单位&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：（cm，mm，in，pt，pc）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;    相对长度单位&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;：（em，ex，px）&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#aa0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;还可以设置边框的圆角&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-radius&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;设置边框的圆角&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-radius&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#aa0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;例如&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-radius&lt;/span&gt;:&lt;span style=&quot; color:#aa0000;&quot;&gt;9px&lt;/span&gt;;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;例如：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-radius&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;9px&lt;/span&gt;;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#aa0000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;扩展：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可以将&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-color，border-style，border-width&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;结合为一种写法：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif'; font-size:16px; color:#005500; background-color:#eef0f4;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif'; font-size:16px; color:#aa0000; background-color:#eef0f4;&quot;&gt;: border-width border-style border-color&lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif'; font-size:16px; color:#000000; background-color:#eef0f4;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif'; font-size:16px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;例如：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;: &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;1px solid #d9d9d9&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;扩展：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;可以将&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;，&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-style&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;，&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-width&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;结合为一种写法：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;对于圆角&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-radius&lt;/span&gt;:&lt;span style=&quot; color:#aa0000;&quot;&gt;9px&lt;/span&gt;; x轴，y轴值相同，都为9px&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-radius&lt;/span&gt;:&lt;span style=&quot; color:#aa0000;&quot;&gt;9px  5px&lt;/span&gt;; x轴为9px，y轴为5px&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;border-width  border-style  border-color&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;例如：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;1px  solid  #d9d9d9&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;对于圆角：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-radius&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;9px&lt;/span&gt;; &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;表示x轴，y轴值相同，都为9px&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-radius&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;9px  5px&lt;/span&gt;; &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;表示x轴为9px，y轴为5px&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;同时，也可以使用:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-top-left-radius&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-top-right-radius&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-bottom-left-radius&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;border-bottom-right-radius&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;分别设置&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-top-left-radius&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-top-right-radius&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-bottom-left-radius&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;border-bottom-right-radius&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;分别设置四个方向的圆角值。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -1323,25 +1454,23 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;宽高：&lt;span style=&quot; color:#005500;&quot;&gt;width heigh&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;宽高：&lt;span style=&quot; color:#55ff00;&quot;&gt;width&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;（宽），&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt; heigh&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;（高）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;对于有宽高要求的控件，可以使用&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;width&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;和&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;heigh&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;对控件做出限制。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;使用方法：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;width&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;:2px&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;heigh&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;:2px&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;使用方法：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;width&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;20px&lt;/span&gt;;&lt;span style=&quot; color:#005500;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;heigh&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;20px&lt;/span&gt;;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;用于某些可以指定宽高的组件&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;内外边距：&lt;span style=&quot; color:#005500;&quot;&gt;padding margin&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;内外边距：&lt;span style=&quot; color:#55ff00;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;（内边距），&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;margin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;（外边距）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;对于有边距要求的控件，可以使用&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;和&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;margin&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;对控件做出限制，例如&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;QTextEdit&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;默认的文本距离边框太近，可以使用边距进行美化。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;使用方法：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;2px&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;margin&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;2x&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;使用方法：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;padding&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;2px&lt;/span&gt;;&lt;span style=&quot; color:#005500;&quot;&gt;   &lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;margin&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;2px&lt;/span&gt;;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;小技巧：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;当按钮按下，文字向下塌陷，就可以利用&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;完成文字塌陷效果&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;padding-left&lt;/span&gt;:&lt;span style=&quot; color:#aa0000;&quot;&gt;2px&lt;/span&gt;; &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;padding-top&lt;/span&gt;:&lt;span style=&quot; color:#aa0000;&quot;&gt;2px&lt;/span&gt;;                                         &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;小技巧：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;当按钮按下，文字向下塌陷，可以使用下面参数，利用&lt;/span&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;padding&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;完成文字塌陷效果。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;padding-left&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;2px&lt;/span&gt;; &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#55ff00;&quot;&gt;padding-top&lt;/span&gt;:&lt;span style=&quot; color:#ff0000;&quot;&gt;2px&lt;/span&gt;;                                         &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -1384,13 +1513,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;窗口：&lt;span style=&quot; color:#005500;&quot;&gt;QWidget&lt;/span&gt;/&lt;span style=&quot; color:#005500;&quot;&gt;QFrame&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可以直接在设计师界面直接拖动到界面&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#005500;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500; background-color:#ffffff;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;这个类是所有窗口类的父类, 可以作为独立窗口使用, 也可以内嵌到其它窗口中使用。&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500; background-color:#ffffff;&quot;&gt;QFrame&lt;/span&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;就是一个升级版的&lt;/span&gt;&lt;span style=&quot; color:#005500; background-color:#ffffff;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;, 它继承了&lt;/span&gt;&lt;span style=&quot; color:#005500; background-color:#ffffff;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;的属性, 并且做了拓展, 这种类型的容器窗口可以提供边框, 并且可以设置边框的样式、宽度以及边框的阴影。&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;可以认为&lt;/span&gt;&lt;span style=&quot; color:#005500; background-color:#ffffff;&quot;&gt;QFrame&lt;/span&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;比&lt;/span&gt;&lt;span style=&quot; color:#005500; background-color:#ffffff;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;多了一个边框&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;这个类是所有窗口类的父类, 可以作为独立窗口使用, 也可以内嵌到其它窗口中使用。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#005500;&quot;&gt;QFrame&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;就是一个升级版的QWidget, 它继承了&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;的属性, 并且做了拓展, 这种类型的容器窗口可以提供边框, 并且可以设置边框的样式、宽度以及边框的阴影。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;可以认为&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;QFrame&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;比&lt;/span&gt;&lt;span style=&quot; color:#005500;&quot;&gt;QWidget&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;多了一个边框&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#000000;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:#ffffff;&quot;&gt;设计师界面效果图如下：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;img src=&quot;:/module_qss/image/QWidgetQFrame.png&quot; /&gt;&lt;/p&gt;
@@ -5909,8 +6038,8 @@ p, li { white-space: pre-wrap; }
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>296</width>
-                     <height>69</height>
+                     <width>100</width>
+                     <height>30</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -5922,8 +6051,8 @@ p, li { white-space: pre-wrap; }
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>296</width>
-                     <height>69</height>
+                     <width>16</width>
+                     <height>16</height>
                     </rect>
                    </property>
                    <attribute name="label">
