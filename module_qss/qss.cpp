@@ -2,6 +2,7 @@
 #include "qss.h"
 #include "ui_qss.h"
 #include<QMenu>
+#include "module_utils/utils.h"
 qss::qss(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::qss)
@@ -31,6 +32,8 @@ qss::qss(QWidget *parent) :
 
     menu_test->setWindowFlags(menu_test->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu_test->setAttribute(Qt::WA_TranslucentBackground);
+
+    setSupportStretch(this, true);
 }
 
 qss::~qss()
