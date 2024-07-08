@@ -147,10 +147,10 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
             }
             itemChild->setText(0, children_path);
             itemChild->setToolTip(0, children_path);
-            qDebug() << "path = " << path;
+            //qDebug() << "path = " << path;
             
             getParentNode(item, children_path);
-            qDebug() << "children_path = " << children_path;
+            //qDebug() << "children_path = " << children_path;
             ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, children_path, itemChild);
             threadpool.start(m_pRunnable);
         }

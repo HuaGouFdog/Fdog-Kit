@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>853</width>
-    <height>520</height>
+    <height>506</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -195,7 +195,7 @@ QToolButton:hover {
             <string>新建连接</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/Zookeeper2.png</normaloff>:/lib/Zookeeper2.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -319,7 +319,7 @@ QScrollBar::up-arrow:vertical {
               <x>0</x>
               <y>0</y>
               <width>180</width>
-              <height>400</height>
+              <height>386</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -450,7 +450,7 @@ QMenu::separator {
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="page_2">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,1,4">
@@ -999,7 +999,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

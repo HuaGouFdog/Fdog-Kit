@@ -5,6 +5,7 @@
 #include "zookeeperwidget.h"
 #include <QButtonGroup>
 #include <QMap>
+#include "module_sql/sqlhandle.h"
 namespace Ui {
 class zookeepermanagewidget;
 }
@@ -43,6 +44,9 @@ private:
     int count; //连接总数
     int lastIndex;
     QMap<int,int> connectManager;
+
+    //操作数据库
+    sqlhandle * db_;
 };
 
 #endif // ZOOKEEPERMANAGEWIDGET_H

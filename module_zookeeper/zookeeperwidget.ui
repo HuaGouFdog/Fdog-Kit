@@ -278,7 +278,7 @@ QToolButton:hover {
                 <string>清除</string>
                </property>
                <property name="icon">
-                <iconset resource="lib.qrc">
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
                </property>
                <property name="iconSize">
@@ -319,7 +319,7 @@ QToolButton::checked{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="lib.qrc">
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
                </property>
                <property name="checkable">
@@ -375,7 +375,7 @@ QToolButton:hover {
              <string>全部折叠</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/zhedie.png</normaloff>:/lib/zhedie.png</iconset>
             </property>
             <property name="iconSize">
@@ -534,7 +534,7 @@ QToolButton:hover {
              <string>添加</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/add2.png</normaloff>:/lib/add2.png</iconset>
             </property>
             <property name="iconSize">
@@ -590,7 +590,7 @@ QToolButton:hover {
              <string>删除</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/delete2.png</normaloff>:/lib/delete2.png</iconset>
             </property>
             <property name="iconSize">
@@ -646,7 +646,7 @@ QToolButton:hover {
              <string>刷新</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/update2.png</normaloff>:/lib/update2.png</iconset>
             </property>
             <property name="iconSize">
@@ -851,7 +851,6 @@ QScrollBar::up-arrow:horizontal {
 }
 
 QMenu {
-
 background-color:rgb(253,253,254);
 /*padding:5px;*/
 padding: 3px 0px 3px 0px;
@@ -2317,7 +2316,7 @@ QToolButton:hover {
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="lib.qrc">
+                   <iconset resource="../lib.qrc">
                     <normaloff>:/lib/copy.png</normaloff>:/lib/copy.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -2513,7 +2512,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

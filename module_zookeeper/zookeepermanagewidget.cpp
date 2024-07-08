@@ -28,6 +28,45 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_left->setGraphicsEffect(effect);
+    //打开数据库
+    db_ = new sqlhandle();
+    QVector<zkInfoStruct> zkInfoList =  db_->zk_getAllZkInfo();
+    for (int i = 0; i <zkInfoList.length();i++) {
+        QString data = zkInfoList[i].host + ":" + zkInfoList[i].port;
+        QToolButton * qbutton = new QToolButton(this);
+        qbutton->setIcon(QIcon(":lib/node2.png"));
+        qbutton->setText(data);
+        qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        qbutton->setMinimumHeight(50);
+        qbutton->setMinimumWidth(180);
+        qbutton->setMaximumWidth(180);
+        qbutton->setCheckable(true);
+        m_buttonGroup->addButton(qbutton, count++);
+        QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
+        layout->insertWidget(layout->count()-1, qbutton);
+        QMenu *menu = new QMenu(qbutton);
+        menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+        menu->setAttribute(Qt::WA_TranslucentBackground);
+        QAction *closeAction = new QAction(tr("关闭1"), qbutton);
+        QAction *clearAction = new QAction(tr("删除1"), qbutton);
+        // 将菜单与按钮关联
+        menu->addAction(closeAction);
+        menu->addAction(clearAction);
+        qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
+        qbutton->setMenu(menu);
+        QObject::connect(closeAction, &QAction::triggered, [](){
+            qDebug("关闭被点击");
+        });
+        QObject::connect(clearAction, &QAction::triggered, [](){
+            qDebug("删除被点击");
+        });
+       QObject::connect(qbutton, &QToolButton::customContextMenuRequested, [=]()
+       {
+           qDebug() << "点击";
+           menu->move(cursor().pos());
+           menu->show();
+       });
+    }
 }
 
 zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QWidget *parent) :
@@ -64,6 +103,8 @@ zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QW
     connectManager.insert(count-1, ui->stackedWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
     m_buttonGroup->button(count-1)->setChecked(true);
+    //打开数据库
+    db_ = new sqlhandle();
 }
 
 void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
@@ -94,15 +135,15 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
 
     qDebug() << "走这里";
     QMenu *menu = new QMenu(qbutton);
-    QAction *closeAction = new QAction(tr("关闭"), qbutton);
-    QAction *clearAction = new QAction(tr("删除"), qbutton);
+    QAction *closeAction = new QAction(tr("关闭2"), qbutton);
+    QAction *clearAction = new QAction(tr("删除2"), qbutton);
     // 将菜单与按钮关联
     menu->addAction(closeAction);
     menu->addAction(clearAction);
     qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
     qbutton->setMenu(menu);
     QObject::connect(closeAction, &QAction::triggered, [](){
-        qDebug("删除被点击");
+        qDebug("关闭被点击");
     });
     QObject::connect(clearAction, &QAction::triggered, [](){
         qDebug("删除被点击");
@@ -159,6 +200,12 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
     layout->insertWidget(layout->count()-1, qbutton);
     //连接
+    zkInfoStruct zkInfo;
+    zkInfo.name = "测试";
+    zkInfo.host = ui->lineEdit_host_zk_data->text();
+    zkInfo.port = ui->lineEdit_port_zk_data->text();
+    db_->zk_insertZkInfo(zkInfo);
+
     connnectInfoStruct cInfoStruct;
     cInfoStruct.host = ui->lineEdit_host_zk_data->text();
     cInfoStruct.port = ui->lineEdit_port_zk_data->text();
@@ -177,8 +224,8 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     zktoolMenu = new QMenu(qbutton);
     zktoolMenu->setWindowFlags(zktoolMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     zktoolMenu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction *closeAction = new QAction(tr("关闭"), qbutton);
-    QAction *clearAction = new QAction(tr("删除"), qbutton);
+    QAction *closeAction = new QAction(tr("关闭3"), qbutton);
+    QAction *clearAction = new QAction(tr("删除3"), qbutton);
     // 将菜单与按钮关联
     zktoolMenu->addAction(closeAction);
     zktoolMenu->addAction(clearAction);
