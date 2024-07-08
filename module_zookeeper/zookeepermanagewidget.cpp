@@ -5,6 +5,8 @@
 #include <QUrl>
 #include <QGraphicsDropShadowEffect>
 #include "module_utils/utils.h"
+#include "zookeepertipswidget.h"
+
 zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::zookeepermanagewidget)
@@ -18,7 +20,7 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(rece_buttonClicked(int)));
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
-    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
     //只是创建一个界面
     zookeeperwidget * zkWidget = new zookeeperwidget();
     ui->stackedWidget->addWidget(zkWidget);
@@ -47,24 +49,42 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
         QMenu *menu = new QMenu(qbutton);
         menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
         menu->setAttribute(Qt::WA_TranslucentBackground);
-        QAction *closeAction = new QAction(tr("关闭1"), qbutton);
-        QAction *clearAction = new QAction(tr("删除1"), qbutton);
+        QAction *closeAction = new QAction(tr("关闭"), qbutton);
+        QAction *clearAction = new QAction(tr("删除"), qbutton);
         // 将菜单与按钮关联
         menu->addAction(closeAction);
         menu->addAction(clearAction);
         qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
         qbutton->setMenu(menu);
-        QObject::connect(closeAction, &QAction::triggered, [](){
+        QObject::connect(closeAction, &QAction::triggered, this, [this](){
             qDebug("关闭被点击");
+            QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
+            QStringList dataList;
+            if (button_ != NULL) {
+                dataList = button_->text().split(":");
+                qDebug() << "text = " << dataList;
+            }
+            //关闭zk连接
         });
-        QObject::connect(clearAction, &QAction::triggered, [](){
+        QObject::connect(clearAction, &QAction::triggered, this, [this](){
             qDebug("删除被点击");
+            QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
+            QStringList dataList;
+            if (button_ != NULL) {
+                dataList = button_->text().split(":");
+                qDebug() << "text = " << dataList;
+            }
+
+            m_buttonGroup->removeButton(button_);
+            delete(button_);
+            //showMessage("删除", true);
         });
-       QObject::connect(qbutton, &QToolButton::customContextMenuRequested, [=]()
+       QObject::connect(qbutton, &QToolButton::customContextMenuRequested, this, [=]()
        {
            qDebug() << "点击";
            menu->move(cursor().pos());
            menu->show();
+           //记录button对应的连接和状态
        });
     }
 }
@@ -135,8 +155,8 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
 
     qDebug() << "走这里";
     QMenu *menu = new QMenu(qbutton);
-    QAction *closeAction = new QAction(tr("关闭2"), qbutton);
-    QAction *clearAction = new QAction(tr("删除2"), qbutton);
+    QAction *closeAction = new QAction(tr("关闭"), qbutton);
+    QAction *clearAction = new QAction(tr("删除"), qbutton);
     // 将菜单与按钮关联
     menu->addAction(closeAction);
     menu->addAction(clearAction);
@@ -153,6 +173,27 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
 zookeepermanagewidget::~zookeepermanagewidget()
 {
     delete ui;
+}
+
+void zookeepermanagewidget::showMessage(QString message, bool isSuccess)
+{
+    // zookeepertipswidget * a = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
+    // //QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+    // int x = (ui->treeWidget->width() - a->width()) / 2;//x坐标
+    // int y = ui->treeWidget->height() - a->height();//y坐标
+    // a->move(x, y);//窗口移动
+    // a->show();
+    // QPropertyAnimation *pAnimation = new QPropertyAnimation(a, "windowOpacity");
+
+    // QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
+    // {
+    //     a->close();
+    // });
+    // pAnimation->setDuration(2000);
+    // pAnimation->setStartValue(1);
+    // pAnimation->setEndValue(0);
+    // pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
+    // pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void zookeepermanagewidget::on_toolButton_newCreate_clicked()
@@ -224,8 +265,8 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     zktoolMenu = new QMenu(qbutton);
     zktoolMenu->setWindowFlags(zktoolMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     zktoolMenu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction *closeAction = new QAction(tr("关闭3"), qbutton);
-    QAction *clearAction = new QAction(tr("删除3"), qbutton);
+    QAction *closeAction = new QAction(tr("关闭"), qbutton);
+    QAction *clearAction = new QAction(tr("删除"), qbutton);
     // 将菜单与按钮关联
     zktoolMenu->addAction(closeAction);
     zktoolMenu->addAction(clearAction);

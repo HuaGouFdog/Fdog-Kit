@@ -6,6 +6,12 @@
 #include <QButtonGroup>
 #include <QMap>
 #include "module_sql/sqlhandle.h"
+
+struct zkStatusStruct{
+    int status;  //1 连接 2 关闭 3 失败
+    zookeeperwidget * zkWidget;
+};
+
 namespace Ui {
 class zookeepermanagewidget;
 }
@@ -19,6 +25,8 @@ public:
     explicit zookeepermanagewidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);//创建zk界面，并进行一个连接
     void newCreate(connnectInfoStruct& cInfoStruct);
     ~zookeepermanagewidget();
+
+    void showMessage(QString message, bool isSuccess = true); //显示操作信息
 
 private slots:
     void on_toolButton_newCreate_clicked();
@@ -47,6 +55,9 @@ private:
 
     //操作数据库
     sqlhandle * db_;
+    QMap<void *, zkStatusStruct> zkStatusInfoMap;
+
+
 };
 
 #endif // ZOOKEEPERMANAGEWIDGET_H
