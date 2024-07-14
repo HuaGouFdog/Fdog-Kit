@@ -10,6 +10,8 @@ keywidget::keywidget(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::WindowCloseButtonHint);
+    //打开数据库
+    db_ = new sqlhandle();
 }
 
 keywidget::~keywidget()
@@ -23,8 +25,12 @@ void keywidget::on_toolButton_browse_clicked()
     QString dlgTitle="选择密钥";   //对话框标题
     QString filter = "所有文件(*.*);;文本文件(*.txt);;图片文件(*.jpg *.gif)";   //文件过滤器
     QString fileName = QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);  //getOpenFileNames返回选择文件的带路径的完整文件名
+    path = fileName;
+    //截取文路径后面的文件名
+    int index = fileName.lastIndexOf("/");
+    fileName = fileName.mid(index + 1);
     qDebug() << "上传文件 文件名" << fileName;
-
+    ui->lineEdit_key->setText(fileName);
 }
 
 void keywidget::on_toolButton_cancel_clicked()
@@ -36,5 +42,16 @@ void keywidget::on_toolButton_cancel_clicked()
 void keywidget::on_toolButton_ok_clicked()
 {
     //确认
-    this->hide();
+    //写入数据库
+    //name path password
+    sshKeyStruct skeyStruct;
+    skeyStruct.name = ui->lineEdit_name->text();
+    skeyStruct.path = path;
+    skeyStruct.password = ui->lineEdit_key_pssword->text();
+
+    db_->sshKey_insertsshKeyInfo(skeyStruct);
+    //通知更新
+    emit send_addsshKey(skeyStruct);
+    this->close();
+
 }

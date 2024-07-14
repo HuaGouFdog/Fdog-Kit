@@ -5,35 +5,34 @@
 
 sqlhandle::sqlhandle()
 {
+    zookeeper_init();
     ssh_init();
+    ssh_key_init();
 }
 
 sqlhandle::~sqlhandle()
 {
-    database.close();
+    database_ssh.close();
+    database_zk.close();
 }
 
 void sqlhandle::ssh_init()
 {
-    if (QSqlDatabase::contains("qt_sql_default_connection"))
-    {
-        database = QSqlDatabase::database("qt_sql_default_connection");
-    }
-    else
-    {
+    if (QSqlDatabase::contains("qt_sql_default_connection_ssh")) {
+        database_ssh = QSqlDatabase::database("qt_sql_default_connection_ssh");
+        qDebug() << "走1";
+    } else {
         // 建立和SQlite数据库的连接
-        database = QSqlDatabase::addDatabase("QSQLITE");
+        database_ssh = QSqlDatabase::addDatabase("QSQLITE");
         // 设置数据库文件的名字
-        database.setDatabaseName("DB_SSHINFO.db");
+        database_ssh.setDatabaseName("DB_SSHINFO.db");
+        qDebug() << "走2";
     }
 
-    if (!database.open())
-    {
-        qDebug() << "Error: Failed to connect database." << database.lastError();
-    }
-    else
-    {
-        qDebug() << "数据库已经打开";
+    if (!database_ssh.open()) {
+        qDebug() << "DB_SSHINFO.db Error: Failed to connect database." << database_ssh.lastError();
+    } else {
+        qDebug() << "DB_SSHINFO.db 数据库已经打开";
         // do something
     }
 
@@ -47,10 +46,131 @@ void sqlhandle::ssh_init()
     // 执行sql语句
     if(!sqlQuery.exec())
     {
-        qDebug() << "Error: Fail to create table. " << sqlQuery.lastError();
+        qDebug() << "DB_SSHINFO.db Error: Fail to create table. " << sqlQuery.lastError();
+    } else {
+        qDebug() << "DB_SSHINFO.db Table created!";
     }
-    else
-    {     qDebug() << "Table created!";
+}
+
+void sqlhandle::ssh_key_init()
+{
+    //创建密钥表
+    if (QSqlDatabase::contains("qt_sql_default_connection_ssh")) {
+        database_ssh = QSqlDatabase::database("qt_sql_default_connection_ssh");
+        qDebug() << "走1";
+    } else {
+        // 建立和SQlite数据库的连接
+        database_ssh = QSqlDatabase::addDatabase("QSQLITE");
+        // 设置数据库文件的名字
+        database_ssh.setDatabaseName("DB_SSHINFO.db");
+        qDebug() << "走2";
+    }
+
+    if (!database_ssh.open()) {
+        qDebug() << "DB_SSHINFO.db Error: Failed to connect database." << database_ssh.lastError();
+    } else {
+        qDebug() << "DB_SSHINFO.db 数据库已经打开";
+        // do something
+    }
+
+    // 用于执行sql语句的对象
+    QSqlQuery sqlQuery;
+    // 构建创建数据库的sql语句字符串
+    QString createSql = QString("CREATE TABLE TB_SSHKEYINFO (name TEXT NOT NULL, path TEXT NOT NULL, password TEXT NOT NULL)");
+
+    sqlQuery.prepare(createSql);
+    // 执行sql语句
+    if(!sqlQuery.exec())
+    {
+        qDebug() << "DB_SSHINFO.db Error: Fail to create table. " << sqlQuery.lastError();
+    } else {
+        qDebug() << "DB_SSHINFO.db Table created!";
+    }
+}
+
+void sqlhandle::zookeeper_init()
+{
+    if (QSqlDatabase::contains("qt_sql_default_connection_zk")) {
+        database_zk = QSqlDatabase::database("qt_sql_default_connection_zk");
+        qDebug() << "走3";
+    } else {
+        // 建立和SQlite数据库的连接
+        database_zk = QSqlDatabase::addDatabase("QSQLITE");
+        // 设置数据库文件的名字
+        database_zk.setDatabaseName("DB_ZKINFO.db");
+        qDebug() << "走4";
+    }
+
+    if (!database_zk.open()) {
+        qDebug() << "Error: Failed to connect database." << database_zk.lastError();
+    } else {
+        qDebug() << "DB_ZKINFO.db数据库已经打开";
+        // do something
+    }
+
+    // 用于执行sql语句的对象
+    QSqlQuery sqlQuery;
+    // 构建创建数据库的sql语句字符串
+    QString createSql = QString("CREATE TABLE TB_ZKINFO (name TEXT NOT NULL, host TEXT NOT NULL, port TEXT NOT NULL)");
+
+    sqlQuery.prepare(createSql);
+    // 执行sql语句
+    if(!sqlQuery.exec())
+    {
+        qDebug() << "DB_ZKINFO.db Error: Fail to create table. " << sqlQuery.lastError();
+    } else {
+        qDebug() << "DB_ZKINFO.db Table created!";
+    }
+}
+
+QVector<zkInfoStruct> sqlhandle::zk_getAllZkInfo()
+{
+    QVector<zkInfoStruct> zkInfoStructList;
+    QSqlQuery sqlQuery;
+    sqlQuery.exec("SELECT * FROM TB_ZKINFO");
+    if(!sqlQuery.exec()) {
+        qDebug() << "Error: Fail to query table. " << sqlQuery.lastError();
+    } else {
+        while(sqlQuery.next())
+        {
+            zkInfoStruct zkInfo;
+            zkInfo.name = sqlQuery.value(0).toString();
+            zkInfo.host = sqlQuery.value(1).toString();
+            zkInfo.port = sqlQuery.value(2).toString();
+            zkInfoStructList.push_back(zkInfo);
+        }
+    }
+    return zkInfoStructList;
+}
+
+void sqlhandle::zk_insertZkInfo(zkInfoStruct zkInfo)
+{
+    QSqlQuery sqlQuery;
+    sqlQuery.prepare("INSERT INTO TB_ZKINFO VALUES(?, ?, ?)");
+    sqlQuery.addBindValue(zkInfo.name);
+    sqlQuery.addBindValue(zkInfo.host);
+    sqlQuery.addBindValue(zkInfo.port);
+    if(!sqlQuery.exec()) {
+        qDebug() << "Error: Fail to insert data. " << sqlQuery.lastError();
+    } else {
+        // do something
+    }
+}
+
+void sqlhandle::zk_updateZkInfo(zkInfoStruct zkInfo)
+{
+
+}
+
+void sqlhandle::zk_deleteZkInfo(zkInfoStruct zkInfo)
+{
+    QSqlQuery sqlQuery;
+    sqlQuery.prepare("DELETE TB_ZKINFO WHERE host=?");
+    sqlQuery.addBindValue(zkInfo.host);
+    if(!sqlQuery.exec()) {
+        qDebug() << "Error: Fail to DELETE table." << sqlQuery.lastError();
+    } else {
+        qDebug() << "updated data success!";
     }
 }
 
@@ -150,4 +270,48 @@ void sqlhandle::ssh_deleteSSHInfo(connnectInfoStruct cInfoStruct)
     } else {
         qDebug() << "updated data success!";
     }
+}
+
+QVector<sshKeyStruct> sqlhandle::sshKey_getAllSSHKeyInfo()
+{
+    QVector<sshKeyStruct> sKeyStructList;
+    QSqlQuery sqlQuery;
+    sqlQuery.exec("SELECT * FROM TB_SSHKEYINFO");
+    if(!sqlQuery.exec()) {
+        qDebug() << "Error: Fail to query table. " << sqlQuery.lastError();
+    } else {
+        while(sqlQuery.next())
+        {
+            sshKeyStruct skeyInfo;
+            skeyInfo.name = sqlQuery.value(0).toString();
+            skeyInfo.path = sqlQuery.value(1).toString();
+            skeyInfo.password = sqlQuery.value(2).toString();
+            sKeyStructList.push_back(skeyInfo);
+        }
+    }
+    return sKeyStructList;
+}
+
+void sqlhandle::sshKey_insertsshKeyInfo(sshKeyStruct skeyStruct)
+{
+    QSqlQuery sqlQuery;
+    sqlQuery.prepare("INSERT INTO TB_SSHKEYINFO VALUES(?, ?, ?)");
+    sqlQuery.addBindValue(skeyStruct.name);
+    sqlQuery.addBindValue(skeyStruct.path);
+    sqlQuery.addBindValue(skeyStruct.password);
+    if(!sqlQuery.exec()) {
+        qDebug() << "Error: Fail to insert data. " << sqlQuery.lastError();
+    } else {
+        // do something
+    }
+}
+
+void sqlhandle::sshKey_updatesshKeyInfo(sshKeyStruct skeyStruct)
+{
+
+}
+
+void sqlhandle::sshKey_deletesshKeyInfo(sshKeyStruct skeyStruct)
+{
+
 }

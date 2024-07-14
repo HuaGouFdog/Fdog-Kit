@@ -2,7 +2,8 @@
 #define KEYWIDGET_H
 
 #include <QWidget>
-
+//#include "createconnect.h"
+#include "module_sql/sqlhandle.h"
 namespace Ui {
 class keywidget;
 }
@@ -15,6 +16,9 @@ public:
     explicit keywidget(QWidget *parent = 0);
     ~keywidget();
 
+signals:
+    void send_addsshKey(sshKeyStruct &);
+
 private slots:
     void on_toolButton_browse_clicked();
 
@@ -24,6 +28,10 @@ private slots:
 
 private:
     Ui::keywidget *ui;
+    QString path;
+
+    //操作数据库
+    sqlhandle * db_;
 };
 
 #endif // KEYWIDGET_H

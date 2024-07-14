@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "createconnect.h"
 #include "secretkeywidget.h"
+#include "module_utils/utils.h"
 #define SSH_CONNECT_TYPE 1
 #define WINDOWS_CONNECT_TYPE 2
 #define ZK_CONNECT_TYPE 3
@@ -14,24 +15,8 @@
 #define SSH_PASSWORD  1
 #define SSH_PUBLICKEY  2
 
-struct connnectInfoStruct
-{
-    int8_t connectType;
-    QString name;
-    QString group;
-    QString host;
-    QString port;
-    QString userName;
-    QString password; //可能是密码，也可能是私钥密码
-    QString remark;
-    QString nearest_connection;
-    //登录方式 1密码 2公钥
-    int sshType;
-    QString publickey; //公钥地址
-    bool isSavePassword;
-    int8_t buttonSid;
-    int timeout;
-};
+
+
 
 namespace Ui {
 class createconnect;

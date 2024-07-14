@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_toolButton_input_clicked();
+    void rece_addsshKey(sshKeyStruct & skeyStruct);
 
 private:
     Ui::secretkeywidget *ui;

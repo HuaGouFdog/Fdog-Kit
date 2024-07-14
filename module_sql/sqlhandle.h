@@ -8,9 +8,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-
-#include "module_connect/createconnect.h"
-
+#include "module_utils/utils.h"
 struct SSHINFO {
     QString name;
     QString ip;
@@ -18,6 +16,12 @@ struct SSHINFO {
     QString ssh_group;
     QString remark;
     QString nearest_connection;
+};
+
+struct sshKeyStruct {
+    QString name;
+    QString path;
+    QString password;
 };
 
 class sqlhandle
@@ -28,10 +32,17 @@ public:
 
 
     void ssh_init();
+    void ssh_key_init();
+    void zookeeper_init();
 
+    QVector<zkInfoStruct> zk_getAllZkInfo();
+    void zk_insertZkInfo(zkInfoStruct zkInfo);
+    void zk_updateZkInfo(zkInfoStruct zkInfo);
+    void zk_deleteZkInfo(zkInfoStruct zkInfo);
+
+    //缺prot
     QVector<connnectInfoStruct> ssh_getAllSSHInfo();
-
-    connnectInfoStruct  ssh_getSSHInfoByHost(QString host);
+    connnectInfoStruct ssh_getSSHInfoByHost(QString host);
     
     void ssh_insertSSHInfo(connnectInfoStruct cInfoStruct);
 
@@ -39,7 +50,16 @@ public:
 
     void ssh_deleteSSHInfo(connnectInfoStruct cInfoStruct);
 
-    QSqlDatabase database;
+    QVector<sshKeyStruct> sshKey_getAllSSHKeyInfo();
+
+    void sshKey_insertsshKeyInfo(sshKeyStruct skeyStruct);
+
+    void sshKey_updatesshKeyInfo(sshKeyStruct skeyStruct);
+
+    void sshKey_deletesshKeyInfo(sshKeyStruct skeyStruct);
+
+    QSqlDatabase database_ssh;
+    QSqlDatabase database_zk;
 };
 
 #endif // SQLHANDLE_H

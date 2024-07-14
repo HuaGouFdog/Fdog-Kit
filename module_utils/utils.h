@@ -79,6 +79,39 @@ signals:
 public slots:
 };
 
-    QString getStyleFile(QString path);
+   QString getStyleFile(QString path);
+
+
+struct connnectInfoStruct {
+    int8_t connectType;
+    QString name;
+    QString group;
+    QString host;
+    QString port;
+    QString userName;
+    QString password; //可能是密码，也可能是私钥密码
+    QString remark;
+    QString nearest_connection;
+    //登录方式 1密码 2公钥
+    int sshType;
+    QString publickey; //公钥地址
+    bool isSavePassword;
+    int8_t buttonSid;
+    int timeout;
+};
+
+//struct sshKeyStruct {
+//    QString name;
+//    QString path;
+//    QString password;
+//};
+
+struct zkInfoStruct {
+    QString name;
+    QString host;
+    QString port;
+};
 
 #endif // UTILS_H
+
+
