@@ -5,6 +5,7 @@
 #include "createconnect.h"
 #include "secretkeywidget.h"
 #include "module_utils/utils.h"
+#include "module_sql/sqlhandle.h"
 #define SSH_CONNECT_TYPE 1
 #define WINDOWS_CONNECT_TYPE 2
 #define ZK_CONNECT_TYPE 3
@@ -51,12 +52,16 @@ private slots:
 
     void on_tabWidget_currentChanged(int index);
 
+    void rece_selectPublicKey(QString text);
+
 private:
     Ui::createconnect *ui;
     int8_t connectType = 0;
     bool isShowPassword = false;  //是否显示密码
-    secretkeywidget * skwidget;  //密钥
+    secretkeywidget * skwidget = NULL;  //密钥
     bool isEditName = false;
+    //操作数据库
+    sqlhandle * db_;
 };
 
 #endif // CREATECONNECT_H

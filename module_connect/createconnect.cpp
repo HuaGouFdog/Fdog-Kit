@@ -14,6 +14,9 @@ createconnect::createconnect(int8_t connectType, QWidget *parent) :
     //ui->label->hide();
     //只显示关闭按钮
     setWindowFlags(Qt::WindowCloseButtonHint);
+
+    //打开数据库
+    db_ = new sqlhandle();
     //选择显示的连接类型
     this->connectType = connectType;
     //setWindowTitle("新建终端");
@@ -83,9 +86,13 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         } else if (ui->tabWidget_password->currentIndex() == 1) {
             qDebug() << "公钥登录";
             cInfo.sshType = SSH_PUBLICKEY;
-            cInfo.userName = "zhangxu1";
-            cInfo.password = "8ouey1DN9irBXMnD";
-            cInfo.publickey = "E:/zhangxu1.pem";
+            //通过数据库查询文件路径和密码
+            cInfo.userName = ui->lineEdit_publicKey->text();
+            db_->sshKey_getAllSSHKeyInfo();
+            sshKeyStruct sshKeyInfo = db_->sshKey_getSSHKeyInfoByName(ui->lineEdit_publicKey->text());
+            cInfo.password = sshKeyInfo.password;
+            cInfo.publickey = sshKeyInfo.path;
+            qDebug() << "password = " << sshKeyInfo.password << " publickey = " << sshKeyInfo.path;
         }
     } else if (ui->tabWidget->currentIndex() == 2) {
         cInfo.connectType = 3;//this->connectType;
@@ -142,7 +149,11 @@ void createconnect::on_tab_passowrd_toolButton_show_clicked()
 
 void createconnect::on_toolButton_browse_clicked()
 {
+    if (skwidget != NULL) {
+        delete(skwidget);
+    }
     skwidget = new secretkeywidget();
+    connect(skwidget,SIGNAL(send_selectPublicKey(QString)),this,SLOT(rece_selectPublicKey(QString)));
     skwidget->show();
 }
 
@@ -179,4 +190,10 @@ void createconnect::on_tabWidget_currentChanged(int index)
         ui->widget_remark_lineEdit_remark_data->setEnabled(false);
         ui->lineEdit_transparent->setEnabled(false);
     }
+}
+
+void createconnect::rece_selectPublicKey(QString text) {
+    //显示数据
+    ui->lineEdit_publicKey->setText(text);
+
 }

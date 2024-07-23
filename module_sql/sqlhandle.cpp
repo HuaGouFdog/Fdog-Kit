@@ -280,8 +280,7 @@ QVector<sshKeyStruct> sqlhandle::sshKey_getAllSSHKeyInfo()
     if(!sqlQuery.exec()) {
         qDebug() << "Error: Fail to query table. " << sqlQuery.lastError();
     } else {
-        while(sqlQuery.next())
-        {
+        while(sqlQuery.next()) {
             sshKeyStruct skeyInfo;
             skeyInfo.name = sqlQuery.value(0).toString();
             skeyInfo.path = sqlQuery.value(1).toString();
@@ -289,7 +288,27 @@ QVector<sshKeyStruct> sqlhandle::sshKey_getAllSSHKeyInfo()
             sKeyStructList.push_back(skeyInfo);
         }
     }
+    qDebug() << "成功";
     return sKeyStructList;
+}
+
+sshKeyStruct sqlhandle::sshKey_getSSHKeyInfoByName(QString text)
+{
+    qDebug() << "name = " << text;
+    sshKeyStruct skeyInfo;
+    QSqlQuery sqlQuery;
+    QString selectSql = "SELECT * FROM TB_SSHKEYINFO WHERE name = \"" + text + "\"";
+    sqlQuery.exec(selectSql);
+    if(!sqlQuery.exec()) {
+        qDebug() << "Error: Fail to query table. " << sqlQuery.lastError();
+    } else {
+        while(sqlQuery.next()) {
+            skeyInfo.name = sqlQuery.value(0).toString();
+            skeyInfo.path = sqlQuery.value(1).toString();
+            skeyInfo.password = sqlQuery.value(2).toString();
+        }
+    }
+    return skeyInfo;
 }
 
 void sqlhandle::sshKey_insertsshKeyInfo(sshKeyStruct skeyStruct)

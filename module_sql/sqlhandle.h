@@ -52,6 +52,8 @@ public:
 
     QVector<sshKeyStruct> sshKey_getAllSSHKeyInfo();
 
+    sshKeyStruct sshKey_getSSHKeyInfoByName(QString text);
+
     void sshKey_insertsshKeyInfo(sshKeyStruct skeyStruct);
 
     void sshKey_updatesshKeyInfo(sshKeyStruct skeyStruct);
