@@ -782,7 +782,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
 //    ui->splitter_response->setStretchFactor(0,10);
 //    ui->splitter_response->setStretchFactor(1,80);
     ui->lineEdit_funcName->installEventFilter(new EnglishOnlyFilter);
-    ui->comboBox_testType->setItemData(1, false, Qt::UserRole - 1);
+    //设置不可选
+    //ui->comboBox_testType->setItemData(1, false, Qt::UserRole - 1);
 
     ui->toolButton_inportFile->setToolTip("导入thrift文件后，可自动生成接口参数");
 
@@ -3756,4 +3757,17 @@ void thriftwidget::rece_plainTextEdit_editPaste()
 void thriftwidget::rece_plainTextEdit_editAll()
 {
 
+}
+
+void thriftwidget::on_toolButton_doc_switch_clicked()
+{
+    if (ui->toolButton_doc_switch->text() == "切换到报告") {
+        //切换到报告
+        ui->toolButton_doc_switch->setText("切换到参数");
+        ui->stackedWidget_2->setCurrentIndex(1);
+    } else {
+        //切换到参数
+        ui->toolButton_doc_switch->setText("切换到报告");
+        ui->stackedWidget_2->setCurrentIndex(0);
+    }
 }

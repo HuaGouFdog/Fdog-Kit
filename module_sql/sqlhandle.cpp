@@ -39,8 +39,8 @@ void sqlhandle::ssh_init()
     // 用于执行sql语句的对象
     QSqlQuery sqlQuery;
     // 构建创建数据库的sql语句字符串
-    QString createSql = QString("CREATE TABLE TB_SSHINFO (name TEXT NOT NULL, ip TEXT NOT NULL, user_name TEXT NOT NULL, password TEXT NOT NULL,\
-                            ssh_group TEXT NOT NULL, remark TEXT NOT NULL, nearest_connection TEXT NOT NULL)");
+    QString createSql = QString("CREATE TABLE TB_SSHINFO (name TEXT NOT NULL, ip TEXT NOT NULL,  port TEXT NOT NULL, connectType TEXT NOT NULL, userName TEXT NOT NULL, password TEXT NOT NULL,\
+                            sshGroup TEXT NOT NULL, remark TEXT NOT NULL, nearestConnection TEXT NOT NULL)");
 
     sqlQuery.prepare(createSql);
     // 执行sql语句
@@ -244,7 +244,7 @@ void sqlhandle::ssh_insertSSHInfo(connnectInfoStruct cInfoStruct)
 void sqlhandle::ssh_updateSSHInfo(connnectInfoStruct cInfoStruct)
 {
     QSqlQuery sqlQuery;
-    sqlQuery.prepare("UPDATE TB_SSHINFO SET name=?, ip=?, user_name=?, password=?, ssh_group=?, remark=?, nearest_connection=? WHERE ip=?");
+    sqlQuery.prepare("UPDATE TB_SSHINFO SET name=?, ip=?, userName=?, password=?, sshGroup=?, remark=?, nearestConnection=? WHERE ip=?");
     sqlQuery.addBindValue(cInfoStruct.name);
     sqlQuery.addBindValue(cInfoStruct.host);
     sqlQuery.addBindValue(cInfoStruct.userName);

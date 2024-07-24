@@ -451,6 +451,8 @@ private slots:
     void rece_plainTextEdit_editPaste();
     void rece_plainTextEdit_editAll();
 
+    void on_toolButton_doc_switch_clicked();
+
 private:
     QVector<QString> dataList;
     QString lastValue_;

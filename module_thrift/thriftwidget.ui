@@ -297,7 +297,7 @@ QToolButton:hover {
              <string> 导入thrift文件</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
             </property>
             <property name="iconSize">
@@ -506,7 +506,7 @@ background-color: rgba(28, 35, 39, 0);
 }</string>
              </property>
              <attribute name="icon">
-              <iconset resource="lib.qrc">
+              <iconset resource="../lib.qrc">
                <normaloff>:/lib/file2.png</normaloff>:/lib/file2.png</iconset>
              </attribute>
              <attribute name="title">
@@ -619,7 +619,7 @@ QScrollBar::up-arrow:horizontal {
             </widget>
             <widget class="QWidget" name="tab">
              <attribute name="icon">
-              <iconset resource="lib.qrc">
+              <iconset resource="../lib.qrc">
                <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
              </attribute>
              <attribute name="title">
@@ -1330,7 +1330,7 @@ QToolButton:hover {
              <string>测试地址</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/node2.png</normaloff>:/lib/node2.png</iconset>
             </property>
             <property name="toolButtonStyle">
@@ -2464,12 +2464,6 @@ padding-right:10px;
 	background-color: rgb(250, 118, 0);
 	border-radius: 5px;
 }
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
 QToolButton:hover {
 	color: rgb(255, 255, 255);
 	background-color: rgb(250, 118, 0);
@@ -2567,7 +2561,7 @@ QToolButton:hover {
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_switch">
+           <widget class="QToolButton" name="toolButton_doc_switch">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -2609,7 +2603,7 @@ QToolButton:hover {
              <string>切换到报告</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
             </property>
             <property name="toolButtonStyle">
@@ -3163,7 +3157,7 @@ border-radius: 2px;
                       <bool>false</bool>
                      </property>
                      <attribute name="headerVisible">
-                      <bool>true</bool>
+                      <bool>false</bool>
                      </attribute>
                      <attribute name="headerDefaultSectionSize">
                       <number>100</number>
@@ -3480,7 +3474,7 @@ QToolButton:hover {
                         <string>thrift协议报文说明</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="lib.qrc">
+                        <iconset resource="../lib.qrc">
                          <normaloff>:/lib/wenhao.png</normaloff>:/lib/wenhao.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -4443,7 +4437,7 @@ padding-right:10px;</string>
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>
