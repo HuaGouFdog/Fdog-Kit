@@ -1818,6 +1818,7 @@ void thriftwidget::handleMessage(QString &data)
                 break;
             } else if (value_type == "0d") {
                 //map
+                
                 ui->textEdit_data->append(addColorBracketsHtml("{\"map\":"));
                 temp = temp + handleMap(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
                     funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
@@ -2173,6 +2174,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
             temp = temp + handleStruct(str, isEnd, paramType_, paramName_);
         } else if (value_type == "0d") {
             //map
+            temp = temp + handleMap(str, isEnd, paramType_, paramName_);
             type_ = THRIFT_MAP;
         } else if (value_type == "0e") {
             //set

@@ -528,7 +528,7 @@ private:
     int clearPos = 0;
     int clearSPos = 0;
 
-    connnectInfoStruct cInfoStruct;
+    connnectInfoStruct  cInfoStruct;
 
     QString buffData; //存普通数据
 

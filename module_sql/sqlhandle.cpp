@@ -187,11 +187,13 @@ QVector<connnectInfoStruct> sqlhandle::ssh_getAllSSHInfo()
             connnectInfoStruct cInfoStruct;
             cInfoStruct.name = sqlQuery.value(0).toString();
             cInfoStruct.host = sqlQuery.value(1).toString();
-            cInfoStruct.userName = sqlQuery.value(2).toString();
-            cInfoStruct.password = sqlQuery.value(3).toString();
-            cInfoStruct.group= sqlQuery.value(4).toString();
-            cInfoStruct.remark= sqlQuery.value(5).toString();
-            cInfoStruct.nearest_connection= sqlQuery.value(6).toString();
+            cInfoStruct.port = sqlQuery.value(2).toString();
+            cInfoStruct.sshType = sqlQuery.value(3).toString();
+            cInfoStruct.userName = sqlQuery.value(4).toString();
+            cInfoStruct.password = sqlQuery.value(5).toString();
+            cInfoStruct.group= sqlQuery.value(6).toString();
+            cInfoStruct.remark= sqlQuery.value(7).toString();
+            cInfoStruct.nearest_connection= sqlQuery.value(8).toString();
             cInfoStructList.push_back(cInfoStruct);
         }
     }
@@ -212,11 +214,13 @@ connnectInfoStruct sqlhandle::ssh_getSSHInfoByHost(QString host) {
         {
             cInfoStruct.name = sqlQuery.value(0).toString();
             cInfoStruct.host = sqlQuery.value(1).toString();
-            cInfoStruct.userName = sqlQuery.value(2).toString();
-            cInfoStruct.password = sqlQuery.value(3).toString();
-            cInfoStruct.group= sqlQuery.value(4).toString();
-            cInfoStruct.remark= sqlQuery.value(5).toString();
-            cInfoStruct.nearest_connection= sqlQuery.value(6).toString();
+            cInfoStruct.port = sqlQuery.value(2).toString();
+            cInfoStruct.sshType = sqlQuery.value(3).toString();
+            cInfoStruct.userName = sqlQuery.value(4).toString();
+            cInfoStruct.password = sqlQuery.value(5).toString();
+            cInfoStruct.group= sqlQuery.value(6).toString();
+            cInfoStruct.remark= sqlQuery.value(7).toString();
+            cInfoStruct.nearest_connection= sqlQuery.value(8).toString();
             qDebug() << "ssh_getSSHInfoByHost host = " << cInfoStruct.host << " password = " << cInfoStruct.password;
         }
     }
@@ -226,9 +230,11 @@ connnectInfoStruct sqlhandle::ssh_getSSHInfoByHost(QString host) {
 void sqlhandle::ssh_insertSSHInfo(connnectInfoStruct cInfoStruct)
 {
     QSqlQuery sqlQuery;
-    sqlQuery.prepare("INSERT INTO TB_SSHINFO VALUES(?, ?, ?, ?, ?, ?, ?)");
+    sqlQuery.prepare("INSERT INTO TB_SSHINFO VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
     sqlQuery.addBindValue(cInfoStruct.name);
     sqlQuery.addBindValue(cInfoStruct.host);
+    sqlQuery.addBindValue(cInfoStruct.port);
+    sqlQuery.addBindValue(cInfoStruct.sshType);
     sqlQuery.addBindValue(cInfoStruct.userName);
     sqlQuery.addBindValue(cInfoStruct.password);
     sqlQuery.addBindValue(cInfoStruct.group);
@@ -244,9 +250,11 @@ void sqlhandle::ssh_insertSSHInfo(connnectInfoStruct cInfoStruct)
 void sqlhandle::ssh_updateSSHInfo(connnectInfoStruct cInfoStruct)
 {
     QSqlQuery sqlQuery;
-    sqlQuery.prepare("UPDATE TB_SSHINFO SET name=?, ip=?, userName=?, password=?, sshGroup=?, remark=?, nearestConnection=? WHERE ip=?");
+    sqlQuery.prepare("UPDATE TB_SSHINFO SET name=?, ip=?, port=?, connectType=?, userName=?, password=?, sshGroup=?, remark=?, nearestConnection=? WHERE ip=?");
     sqlQuery.addBindValue(cInfoStruct.name);
     sqlQuery.addBindValue(cInfoStruct.host);
+    sqlQuery.addBindValue(cInfoStruct.port);
+    sqlQuery.addBindValue(cInfoStruct.connectType);
     sqlQuery.addBindValue(cInfoStruct.userName);
     sqlQuery.addBindValue(cInfoStruct.password);
     sqlQuery.addBindValue(cInfoStruct.group);

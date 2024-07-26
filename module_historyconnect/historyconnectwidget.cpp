@@ -17,43 +17,63 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
     //设置初始表格行列都为0
         ui->tableWidget_history->setRowCount(cInfoStructList.length()); //设置行数为20
         ui->tableWidget_history->setColumnCount(7); //设置列数为5
-        ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        //ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         //ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
         ui->tableWidget_history->setHorizontalHeaderLabels(QStringList() << "                              名称                              "
                                                            << "                              主机                              "
+                                                           << "                              端口                              "
                                                            << "                             用户名                             "
-                                                           << "                            最近连接                            " 
+                                                           << "                              备注                              " 
                                                            << "         分组           "
-                                                           << "         备注           "
-                                                           << "         操作           " );
+                                                           << "         最近连接           ");
+                                                           //<< "         操作           " );
         ui->tableWidget_history->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         
+        // 设置第三列的宽度为 150 像素
+        ui->tableWidget_history->setColumnWidth(0, 250);
+        ui->tableWidget_history->setColumnWidth(1, 200);
+        // 设置第三列的宽度为 150 像素
+        ui->tableWidget_history->setColumnWidth(2, 150);
+        ui->tableWidget_history->setColumnWidth(3, 150);
+        ui->tableWidget_history->setColumnWidth(4, 150);
         
 
         for (int row = 0; row < cInfoStructList.length(); ++row) {
             for (int col = 0; col < 7; ++col) {
                 QString headerData;
                 if (col == 0) {
+                    headerData = cInfoStructList.at(row).name;
                     QLabel * label = new QLabel();
                     label->setFixedSize(50,30);
-                    QPixmap icon(":/lib/diann3.png");
-                     QPixmap scaledIcon = icon.scaled(50, 16, Qt::KeepAspectRatio);
+                    QString path;
+                    if (cInfoStructList.at(row).sshType == "1") {
+                        path = ":/lib/dian5.png";
+                        label->setObjectName("password");
+                    } else if (cInfoStructList.at(row).sshType == "2") {
+                        path = ":/lib/diann3.png";
+                        label->setObjectName("publicKey");
+                    }
+                    QPixmap icon(path);
+                    QPixmap scaledIcon = icon.scaled(50, 16, Qt::KeepAspectRatio);
                     label->setPixmap(scaledIcon);
-                    headerData = cInfoStructList.at(row).name;
                     label->setStyleSheet("background-color: rgba(0, 214, 103, 0);");
-                ui->tableWidget_history->setCellWidget(row, 0, label);
+
+                    ui->tableWidget_history->setCellWidget(row, 0, label);
                 } else if (col == 1) {
                     headerData = cInfoStructList.at(row).host;
                 } else if (col == 2) {
-                    headerData = cInfoStructList.at(row).userName;
+                    headerData = cInfoStructList.at(row).port;
                 } else if (col == 3) {
-                    //qDebug() << "nearest_connection = " << cInfoStructList.at(row).nearest_connection;
-                    headerData = cInfoStructList.at(row).nearest_connection;
+                    headerData = cInfoStructList.at(row).userName;
                 } else if (col == 4) {
-                    headerData = cInfoStructList.at(row).group;
-                } else if (col == 5) {
+                    //qDebug() << "nearest_connection = " << cInfoStructList.at(row).nearest_connection;
                     headerData = cInfoStructList.at(row).remark;
+                } else if (col == 5) {
+                    headerData = cInfoStructList.at(row).group;
                 } else if (col == 6) {
+                    
+                    headerData = cInfoStructList.at(row).nearest_connection;
+                } else if (col == 7) {
                     QWidget *widget;
                     QHBoxLayout *hLayout;
                     hLayout = new QHBoxLayout();  
@@ -187,9 +207,22 @@ void historyconnectwidget::on_tableWidget_history_itemDoubleClicked(QTableWidget
     connnectInfoStruct cInfo;
     cInfo.name = ui->tableWidget_history->item(currentRow, 0)->text();
     cInfo.host = ui->tableWidget_history->item(currentRow, 1)->text();
-    cInfo.userName = ui->tableWidget_history->item(currentRow, 2)->text();
-    cInfo.port = "22";
+    cInfo.port = ui->tableWidget_history->item(currentRow, 2)->text();
+    cInfo.userName = ui->tableWidget_history->item(currentRow, 3)->text();
     cInfo.connectType =SSH_CONNECT_TYPE;
+    QLabel * lable_ = qobject_cast<QLabel*>(ui->tableWidget_history->cellWidget(currentRow, 0));
+    if (lable_ != NULL) {
+        if (lable_->objectName() == "password") {
+            cInfo.sshType = SSH_PASSWORD;
+            qDebug() << "密码连接";
+        } else if (lable_->objectName() == "publicKey") {
+            cInfo.sshType =SSH_PUBLICKEY;
+            qDebug() << "公钥连接";
+        } else {
+
+        }
+    }
+
     //cInfo.password = ui->tableWidget_history->item(currentRow, 2)->text();
     //cInfo.group = ui->tableWidget_history->item(currentRow, 3)->text();
     //cInfo.remark = ui->tableWidget_history->item(currentRow, 4)->text();

@@ -93,7 +93,8 @@ struct connnectInfoStruct {
     QString remark;
     QString nearest_connection;
     //登录方式 1密码 2公钥
-    int sshType;
+    QString sshType;
+    QString publicKeyName;
     QString publickey; //公钥地址
     bool isSavePassword;
     int8_t buttonSid;

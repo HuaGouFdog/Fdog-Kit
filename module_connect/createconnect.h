@@ -13,8 +13,8 @@
 #define KAFKA_CONNECT_TYPE 5
 #define DB_CONNECT_TYPE 6
 
-#define SSH_PASSWORD  1
-#define SSH_PUBLICKEY  2
+#define SSH_PASSWORD  "1"
+#define SSH_PUBLICKEY  "2"
 
 
 

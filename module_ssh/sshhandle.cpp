@@ -78,9 +78,9 @@ sshhandle::~sshhandle()
     qDebug() << "释放连接句柄结束";
 }
 
-void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password, int sshType, QString publickey, int visibleLines, int visibleColumns)
+void sshhandle::init(int connrectType, QString host, QString port, QString username, QString password, QString sshType, QString publickey, int visibleLines, int visibleColumns)
 {
-    qDebug() << "init host = " << host;
+    qDebug() << "init host = " << host << " sshType = " << sshType;
     int rc;
 
     // 创建套接字并建立连接
@@ -121,7 +121,6 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     if (sshType == SSH_PASSWORD) {
         // 进行身份验证
         rc = libssh2_userauth_password(session_ssh, username.toUtf8().constData(), password.toUtf8().constData());
-
         if (rc) {
             qDebug() << "initSSH password Authentication failed rc = " << rc;
             //libssh2_session_disconnect(session_ssh, "Authentication failed");

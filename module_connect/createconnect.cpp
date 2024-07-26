@@ -88,7 +88,7 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
             cInfo.sshType = SSH_PUBLICKEY;
             //通过数据库查询文件路径和密码
             cInfo.userName = ui->lineEdit_publicKey->text();
-            db_->sshKey_getAllSSHKeyInfo();
+            //db_->sshKey_getAllSSHKeyInfo();
             sshKeyStruct sshKeyInfo = db_->sshKey_getSSHKeyInfoByName(ui->lineEdit_publicKey->text());
             cInfo.password = sshKeyInfo.password;
             cInfo.publickey = sshKeyInfo.path;

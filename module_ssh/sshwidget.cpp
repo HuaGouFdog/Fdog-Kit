@@ -85,13 +85,15 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     QString port = cInfoStruct.port;
     QString username = cInfoStruct.userName;
     QString password = cInfoStruct.password;
-    int sshType = cInfoStruct.sshType;
+    QString sshType = cInfoStruct.sshType;
     QString publicKey = cInfoStruct.publickey;
 
     qDebug() << "sshwidget host = " << host;
     qDebug() << "sshwidget port = " << port;
     qDebug() << "sshwidget username = " << username;
     qDebug() << "sshwidget password = " << password;
+    qDebug() << "sshwidget sshType = " << sshType;
+    qDebug() << "sshwidget publicKey = " << publicKey;
 
     //快捷键 ctrl + shift + F 查找
     QShortcut *shortcutF = new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_F), this);
@@ -264,7 +266,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     m_visibleColumns = 120;
     qDebug() << "准备init 设置当前终端高=" << m_visibleLines << " 宽=" << m_visibleColumns;
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), 
-    Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(int,sshType), Q_ARG(QString,publicKey), Q_ARG(int,m_visibleColumns), Q_ARG(int,m_visibleLines));
+    Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(QString,sshType), Q_ARG(QString,publicKey), Q_ARG(int,m_visibleColumns), Q_ARG(int,m_visibleLines));
     //qDebug("执行01");
 
     //exec
