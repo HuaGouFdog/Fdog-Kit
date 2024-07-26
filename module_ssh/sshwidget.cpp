@@ -1911,9 +1911,10 @@ void sshwidget::on_textEdit_selectionChanged()
 
 void sshwidget::scrollBarValueChanged(int value)
 {
-    //qDebug() << "滑动条值改变为1：" << value;
+    qDebug() << "滑动条值改变为1：" << value;
     QScrollBar *scrollBar = ui->plainTextEdit->verticalScrollBar();
     scrollBar->setValue(value);
+    ui->verticalScrollBar->setValue(value);
 }
 
 void sshwidget::scrollBarValueChanged2(int value)
