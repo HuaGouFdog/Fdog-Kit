@@ -2473,3 +2473,9 @@ void sshwidget::on_verticalScrollBar_valueChanged(int value)
     ui->plainTextEdit->verticalScrollBar()->setValue(value);
     textEdit_s->verticalScrollBar()->setValue(value);
 }
+
+void sshwidget::on_toolButton_setting_clicked()
+{
+    //设置
+    emit send_windowsSetting();
+}

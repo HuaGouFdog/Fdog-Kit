@@ -723,7 +723,7 @@ QComboBox QAbstractItemView::item:selected {
 </string>
            </property>
            <property name="currentIndex">
-            <number>6</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="page_activate">
             <property name="styleSheet">
@@ -2407,7 +2407,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>264</width>
+                  <width>772</width>
                   <height>750</height>
                  </rect>
                 </property>
@@ -3226,7 +3226,7 @@ border-radius: 5px;}
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>70</width>
+                  <width>772</width>
                   <height>800</height>
                  </rect>
                 </property>
@@ -4081,7 +4081,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>763</width>
+                  <width>770</width>
                   <height>1310</height>
                  </rect>
                 </property>
@@ -5920,7 +5920,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>735</width>
+                  <width>742</width>
                   <height>830</height>
                  </rect>
                 </property>

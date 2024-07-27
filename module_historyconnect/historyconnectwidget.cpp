@@ -3,6 +3,7 @@
 #include "ui_historyconnectwidget.h"
 #include <QDebug>
 #include <QToolButton>
+#include <QCompleter>
 #include <QIcon>
 #include "module_utils/utils.h"
 historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectInfoStruct> cInfoStructList, QWidget *parent) :
@@ -10,6 +11,7 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
     ui(new Ui::historyconnectwidget)
 {
     ui->setupUi(this);
+
 
      //ui->tableWidget_history->horizontalHeader()->setVisible(true);
      //ui->tableWidget_history->verticalHeader()->setVisible(false);
@@ -42,8 +44,10 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
         ui->tableWidget_history->setItemDelegate(delegate);
 
         
-
+        //暂时使用这种  复杂场景用QAbstractItemModel
+        QStringList dataSource;
         for (int row = 0; row < cInfoStructList.length(); ++row) {
+            dataSource.append(cInfoStructList.at(row).name);
             for (int col = 0; col < 7; ++col) {
                 QString headerData;
                 if (col == 0) {
@@ -147,67 +151,39 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
             }
         }
 
-        //int count =0;
-        //for(int i = 1;i<20;i++) {
+        QCompleter *completer = new QCompleter(dataSource, this);
 
-//            //注意setRowCount里面的函数不是追加，而是总数，很多人最开始都把这个函数以为是总数，造成程序经常崩溃
-//            ui->tableWidget_history->setRowCount(ui->tableWidget_history->rowCount()+1);
-//            for(int j = 1;j<ui->tableWidget_history->columnCount(); j++)
-//            {
-//                if(i == 1)
-//                {
-//                    ui->tableWidget_history->setColumnCount(ui->tableWidget_history->columnCount()+1);
-//                    range = worksheet->querySubObject("Cells(int,int)",i,j); //获取cell的值
-//                    strVal = range->dynamicCall("Value2()").toString();
-//                    header<<strVal;
-//                    //设置表格头
-//                }
-//                else
-//                {
-//                    probar->setValue(++count);
-//                    range = worksheet->querySubObject("Cells(int,int)",i,j); //获取cell的值
-//                    strVal = range->dynamicCall("Value2()").toString();
-//                    ui->tableWidget->setItem(i-2,j-1,new QTableWidgetItem(strVal));
-//                }
-//            }
-//            if(i == 1)
-//            {
-//                ui->tableWidget->setHorizontalHeaderLabels(header);
-//            }
-       // }
-//        ui->tableWidget->setRowCount(ui->tableWidget->rowCount()-1);
-//        }
+        QAbstractItemView* view = completer->popup();
+        view->setItemDelegate(new ComboBoxDelegate());//设置行高
+
+
+        //setup QCompleter's style
+//        completer->popup()->verticalScrollBar()->setStyleSheet(
+//                "QScrollBar:vertical{background: #e2e3e4; width: 16px; margin: 16px 0px 16px 0px;}"
+//                "QScrollBar::handle:vertical{background: #3A72D8;}"
+//                "QScrollBar::handle:vertical:hover{background: #4d96fe;}"
+//                "QScrollBar::handle:vertical:pressed{background: #014cb6;}"
+//                "QScrollBar::add-line:vertical{background: pink; height: 16px; subcontrol-position: bottom; subcontrol-origin: margin;}"
+//                "QScrollBar::sub-line:vertical{background: red; height: 16px; subcontrol-position: top; subcontrol-origin: margin;}"
+//                "QScrollBar:down-arrow:vertical{width: 10px; height: 10px; background: transparent; image: url(:/res/box_down.svg);}"
+//                "QScrollBar:up-arrow:vertical{width: 10px; height: 10px; background: transparent; image: url(:/res/box_up.svg);}"
+//                "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}");
+
+        completer->popup()->setStyleSheet("QListView{background-color: #FFFFFF;"
+                                                "color: #353637;"
+                                                "selection-background-color: #3A72D8;"
+                                                "selection-color: white;"
+                                                "show-decoration-selected: 1;"
+                                                "font-size: 14pt;");
 
 
 
-     //创建20个连接
-     //for (int i=0; i<10; i++) {
-         //QToolButton* button = new QToolButton();
-         //button->setIcon(QIcon((":lib/setting.png")));
-//         button->setStyleSheet("QToolButton {\
-//                               color: rgb(255, 255, 255);\
-//                               background-color: rgba(0, 214, 103, 0);\
-//                               border-radius: 5px;\
-//                           }\
-//                           QToolButton::menu-indicator { \
-//                               image: None;\
-//                           }\
-//                           QToolButton:hover {\
-//                               color: rgb(255, 255, 255);\
-//                               background-color: rgba(0, 214, 103, 0);\
-//                           }");
-         //button->setFixedSize(25,25);
-         //ui->tableWidget_history->setCellWidget(i, 4, button);
-     //}
-    //ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
-    //ui->tableWidget_history->setColumnWidth(5, 20);
-    //ui->tableWidget_history->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //ui->tableWidget_history->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        completer->setCaseSensitivity(Qt::CaseInsensitive); //大小写不敏感
+        completer->setFilterMode(Qt::MatchContains); //内容匹配
+        connect(completer,SIGNAL(activated(const QString)),this,SLOT(rece_activated(const QString)));
+        connect(completer,SIGNAL(highlighted(const QString)),this,SLOT(rece_highlighted(const QString)));
+        ui->lineEdit_find->setCompleter(completer);
 
-//    for (int row = 0; row < ui->tableWidget_history->rowCount(); ++row) {
-//        QTableWidgetItem *item = ui->tableWidget_history->item(row, 1); // 获取第二列的项
-//        item->setTextAlignment(Qt::AlignRight); // 设置对齐方式为居中
-//    }
     setSupportStretch(this, true);
 }
 
@@ -238,19 +214,24 @@ void historyconnectwidget::on_tableWidget_history_itemDoubleClicked(QTableWidget
 
         }
     }
-
-    //cInfo.password = ui->tableWidget_history->item(currentRow, 2)->text();
-    //cInfo.group = ui->tableWidget_history->item(currentRow, 3)->text();
-    //cInfo.remark = ui->tableWidget_history->item(currentRow, 4)->text();
-    //cInfo.nearest_connection = ui->tableWidget_history->item(currentRow, 5)->text();
-    qDebug() << "双击2";
+    //上面这里完全没必要，后面会查数据库的
     emit send_fastConnection(cInfo);
-    // qDebug() << ui->tableWidget_history->item(currentRow,0)->text();
-    // qDebug() << ui->tableWidget_history->item(currentRow,1)->text();
-    // qDebug() << ui->tableWidget_history->item(currentRow,2)->text();
 }
 
 void historyconnectwidget::on_tableWidget_history_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous)
 {
     qDebug() << "单击";
+}
+
+void historyconnectwidget::rece_activated(const QString &text)
+{
+    //选中
+    emit send_findConnection(text);
+    qDebug() << "rece_activated = " << text;
+}
+
+void historyconnectwidget::rece_highlighted(const QString &text)
+{
+    //选择
+    qDebug() << "rece_highlighted = " << text;
 }

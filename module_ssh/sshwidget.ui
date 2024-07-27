@@ -1664,7 +1664,39 @@ QToolButton:hover {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QToolButton" name="toolButton_zk">
+                    <widget class="QToolButton" name="toolButton_toolkit">
+                     <property name="font">
+                      <font>
+                       <family>OPPOSans B</family>
+                       <pointsize>10</pointsize>
+                       <stylestrategy>PreferAntialias</stylestrategy>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>工具集</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="toolButton_setting">
                      <property name="font">
                       <font>
                        <family>OPPOSans B</family>
@@ -1694,39 +1726,7 @@ QToolButton:hover {
 }</string>
                      </property>
                      <property name="text">
-                      <string>连接zk</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="toolButton_toolkit">
-                     <property name="font">
-                      <font>
-                       <family>OPPOSans B</family>
-                       <pointsize>10</pointsize>
-                       <stylestrategy>PreferAntialias</stylestrategy>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
-                     </property>
-                     <property name="text">
-                      <string>工具集</string>
+                      <string>设置</string>
                      </property>
                     </widget>
                    </item>

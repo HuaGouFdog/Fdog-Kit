@@ -436,6 +436,8 @@ private slots:
     void on_verticalScrollBar_valueChanged(int value);
 
 
+    void on_toolButton_setting_clicked();
+
 private:
     Ui::sshwidget *ui;
     int lineNumber;         //记录行号

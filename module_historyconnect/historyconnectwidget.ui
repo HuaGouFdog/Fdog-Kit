@@ -80,13 +80,13 @@
           <widget class="QLineEdit" name="lineEdit_find">
            <property name="minimumSize">
             <size>
-             <width>250</width>
+             <width>400</width>
              <height>30</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>250</width>
+             <width>400</width>
              <height>30</height>
             </size>
            </property>
@@ -106,12 +106,28 @@ border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 10px;
 padding-left:10px;
 padding-right:10px;
-}</string>
+}
+
+
+</string>
            </property>
            <property name="placeholderText">
-            <string>搜索连接</string>
+            <string>搜索名称，快速连接</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>397</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -182,7 +198,8 @@ QTableWidget::item:selected{
 	
 	
 	color: rgb(255, 255, 255);
-	background-color: rgb(10, 31, 57);
+	
+	background-color: rgb(28, 60, 97);
 }
 
 QHeaderView::section,QTableCornerButton:section{
