@@ -338,19 +338,19 @@ public:
     //添加括号颜色
     QString addColorBracketsHtml(QString str);
 
-    QString handleBool(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
+    QString handleBool(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleByte(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
+    QString handleByte(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleDouble(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
+    QString handleDouble(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleI16(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
+    QString handleI16(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleI32(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true);
+    QString handleI32(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleI64(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true);
+    QString handleI64(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleString(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true);
+    QString handleString(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
     QString handleStruct(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
 

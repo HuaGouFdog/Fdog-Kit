@@ -899,7 +899,7 @@ padding-right:10px;
 }</string>
             </property>
             <property name="text">
-             <string>192.168.85.38</string>
+             <string>192.168.0.173</string>
             </property>
             <property name="placeholderText">
              <string>172.16.8.154</string>
@@ -993,7 +993,7 @@ padding-right:10px;
             </item>
             <item>
              <property name="text">
-              <string>ap(4031)</string>
+              <string>ap(11130)</string>
              </property>
             </item>
             <item>

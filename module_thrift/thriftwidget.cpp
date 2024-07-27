@@ -1922,7 +1922,7 @@ QString thriftwidget::addColorBracketsHtml(QString str)
 }
 
 
-QString thriftwidget::handleBool(QString &str, QString isEnd, QString paramName, bool isHandEnd)
+QString thriftwidget::handleBool(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
@@ -1931,7 +1931,13 @@ QString thriftwidget::handleBool(QString &str, QString isEnd, QString paramName,
     if (isEnd == "00" && isHandEnd) {
         end = "";
     }
-    if (paramName != "") {
+
+    if (isLastEnd) {
+        end = "";
+    }
+    if (paramName == "fdog_list" || paramName == "fdog_set") {
+        ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+    } else if (paramName != "") {
         qDebug() << "paramName1";
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
     } else {
@@ -1941,7 +1947,7 @@ QString thriftwidget::handleBool(QString &str, QString isEnd, QString paramName,
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleByte(QString &str, QString isEnd, QString paramName, bool isHandEnd)
+QString thriftwidget::handleByte(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
@@ -1951,7 +1957,13 @@ QString thriftwidget::handleByte(QString &str, QString isEnd, QString paramName,
     if (isEnd == "00" && isHandEnd) {
         end = "";
     }
-    if (paramName != "") {
+
+    if (isLastEnd) {
+        end = "";
+    }
+    if (paramName == "fdog_list" || paramName == "fdog_set") {
+        ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+    } else if (paramName != "") {
         //qDebug() << "paramName1";
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
     } else {
@@ -1961,7 +1973,7 @@ QString thriftwidget::handleByte(QString &str, QString isEnd, QString paramName,
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleDouble(QString &str, QString isEnd, QString paramName, bool isHandEnd)
+QString thriftwidget::handleDouble(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     //这个没处理
     QString value = str.mid(0, 16);
@@ -1970,7 +1982,7 @@ QString thriftwidget::handleDouble(QString &str, QString isEnd, QString paramNam
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName, bool isHandEnd)
+QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 4);
     str = str.mid(4);
@@ -1979,7 +1991,13 @@ QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName, 
     if (isEnd == "00" && isHandEnd) {
         end = "";
     }
-    if (paramName != "") {
+
+    if (isLastEnd) {
+        end = "";
+    }
+    if (paramName == "fdog_list" || paramName == "fdog_set") {
+        ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+    } else if (paramName != "") {
         //qDebug() << "paramName1";
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
     } else {
@@ -1990,7 +2008,7 @@ QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName, 
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd)
+QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 8);
     str = str.mid(8);
@@ -1999,8 +2017,14 @@ QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QS
     if (isEnd == "00" && isHandEnd) {
         end = "";
     }
+    if (isLastEnd) {
+        end = "";
+    }
+
     if (resType == THRIFT_REPLY) {
-        if (paramName != "") {
+        if (paramName == "fdog_list" || paramName == "fdog_set") {
+            ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+        } else if (paramName != "") {
             //qDebug() << "paramName1";
             ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
         } else {
@@ -2015,7 +2039,7 @@ QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QS
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName, bool isHandEnd)
+QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
@@ -2024,8 +2048,14 @@ QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName, 
     if (isEnd == "00" && isHandEnd) {
         end = "";
     }
+
+    if (isLastEnd) {
+        end = "";
+    }
     //qDebug() << "end =" << end << " isEnd = " << isEnd;
-    if (paramName != "") {
+    if (paramName == "fdog_list" || paramName == "fdog_set") {
+            ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+    } else if (paramName != "") {
         //qDebug() << "paramName1";
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
     } else {
@@ -2036,7 +2066,7 @@ QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName, 
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleString(QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd)
+QString thriftwidget::handleString(QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     //长度
     QString value = str.mid(0, 8);
@@ -2049,12 +2079,20 @@ QString thriftwidget::handleString(QString &str, QString isEnd, QString resType,
     QString value2 = str.mid(0, len);
     str = str.mid(len);
     isEnd = str.mid(0,2);
+    qDebug() << "handleString isEnd = " << isEnd;
     QString end = ",";
     if (isEnd == "00" && isHandEnd) {
         end = "";
     }
+
+    if (isLastEnd) {
+        end = "";
+    }
+
     if (resType == THRIFT_REPLY) {
-        if (paramName != "") {
+        if (paramName == "fdog_list" || paramName == "fdog_set") {
+            ui->textEdit_data->append(addColorValueStrHtml("\"" + hexToString(value2) + "\"") + end);
+        } else if (paramName != "") {
             //qDebug() << "paramName1";
             ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\"") + end);
         } else {
@@ -2078,7 +2116,9 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         outType = outType.mid(index + 1);
         qDebug() << "发现非本文件结构体，删除前缀后=" << outType;
     }
-    if (outParam == "") {
+    if (outParam == "fdog_list" || outParam == "fdog_set") {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+    } else if (outParam == "") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
     } else {
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"")  + addColorBracketsHtml(":{"));
@@ -2204,7 +2244,9 @@ QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QS
     QStringList dataList = paramType_s.split(",");
     qDebug() << "key = " << dataList[0];
     qDebug() << "value = " << dataList[1];
-    if (outParam == "") {
+    if (outParam == "fdog_list" || outParam == "fdog_set") {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+    } else if (outParam == "") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
@@ -2322,7 +2364,9 @@ QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QS
     int index_e = outType.lastIndexOf(">");
     QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
     qDebug() << "paramType_s =" << paramType_s;
-    if (outParam == "") {
+    if (outParam == "fdog_list" || outParam == "fdog_set") {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+    } else if (outParam == "") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
@@ -2347,31 +2391,31 @@ QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QS
     //QString isEnd = str.mid(0, 2);
 
     for(int i = 1; i <= len; i++) {
-        QString paramName = ""; //structParamMap.value(paramType_s).value(QString::number(i)).paramName;
+        QString paramName = "fdog_set"; //structParamMap.value(paramType_s).value(QString::number(i)).paramName;
         QString paramType = paramType_s; //structParamMap.value(paramType_s).value(QString::number(i)).paramType;
         qDebug() << " paramName  = " << paramName << " paramType = " << paramType;
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd, paramName);
+            temp = temp + handleBool(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd, paramName);
+            temp = temp + handleByte(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd, paramName);
+            temp = temp + handleDouble(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd, paramName);
+            temp = temp + handleI16(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName);
+            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd, paramName);
+            temp = temp + handleI64(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName);
+            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0c") {
             temp = temp + handleStruct(str, isEnd, paramType, paramName);
         } else if (value_type == "0d") {
@@ -2399,7 +2443,9 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
     int index_e = outType.lastIndexOf(">");
     QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
     qDebug() << "paramType_s =" << paramType_s;
-    if (outParam == "") {
+    if (outParam == "fdog_list" || outParam == "fdog_set") {
+        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+    } else if (outParam == "") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
         ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
@@ -2424,31 +2470,31 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
     //QString isEnd = str.mid(0, 2);
 
     for(int i = 1; i <= len; i++) {
-        QString paramName = ""; //structParamMap.value(paramType_s).value(QString::number(i)).paramName;
+        QString paramName = "fdog_list"; //structParamMap.value(paramType_s).value(QString::number(i)).paramName;
         QString paramType = paramType_s; //structParamMap.value(paramType_s).value(QString::number(i)).paramType;
         qDebug() << " paramName  = " << paramName << " paramType = " << paramType;
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd, paramName);
+            temp = temp + handleBool(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd, paramName);
+            temp = temp + handleByte(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd, paramName);
+            temp = temp + handleDouble(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd, paramName);
+            temp = temp + handleI16(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName);
+            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd, paramName);
+            temp = temp + handleI64(str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName);
+            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0c") {
             temp = temp + handleStruct(str, isEnd, paramType, paramName);
         } else if (value_type == "0d") {
@@ -2480,7 +2526,10 @@ QString thriftwidget::handleEnd(QString &str)
 QString thriftwidget::hexToString(QString &hex)
 {
     QByteArray byteArray = QByteArray::fromHex(hex.toLatin1());
-    return QString(byteArray);
+    QString return_ = QString(byteArray);
+    //将字符串中的"替换为\"
+    return_.replace("\"", "\\\"");
+    return return_;
 }
 
 QString thriftwidget::hexToLongNumber(QString &hex)
