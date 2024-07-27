@@ -176,7 +176,7 @@ QToolButton:checked {
             <string>  启动</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/start.png</normaloff>:/lib/start.png</iconset>
            </property>
            <property name="iconSize">
@@ -227,7 +227,7 @@ QToolButton:checked {
             <string>  外观</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
            </property>
            <property name="iconSize">
@@ -278,7 +278,7 @@ QToolButton:checked {
             <string>  字体</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/font.png</normaloff>:/lib/font.png</iconset>
            </property>
            <property name="iconSize">
@@ -329,7 +329,7 @@ QToolButton:checked {
             <string>  配色</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/theme.png</normaloff>:/lib/theme.png</iconset>
            </property>
            <property name="iconSize">
@@ -380,7 +380,7 @@ QToolButton:checked {
             <string>  主题</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/zhuti.png</normaloff>:/lib/zhuti.png</iconset>
            </property>
            <property name="iconSize">
@@ -434,7 +434,7 @@ QToolButton:checked {
             <string>  终端</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/line-terminal.png</normaloff>:/lib/line-terminal.png</iconset>
            </property>
            <property name="iconSize">
@@ -485,7 +485,7 @@ QToolButton:checked {
             <string>  快捷键</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/keyboard.png</normaloff>:/lib/keyboard.png</iconset>
            </property>
            <property name="iconSize">
@@ -536,7 +536,7 @@ QToolButton:checked {
             <string>  关于</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/about.png</normaloff>:/lib/about.png</iconset>
            </property>
            <property name="iconSize">
@@ -626,7 +626,7 @@ QToolButton:checked {
             <string>打开JSON文件</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/setiing2.png</normaloff>:/lib/setiing2.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -723,7 +723,7 @@ QComboBox QAbstractItemView::item:selected {
 </string>
            </property>
            <property name="currentIndex">
-            <number>5</number>
+            <number>6</number>
            </property>
            <widget class="QWidget" name="page_activate">
             <property name="styleSheet">
@@ -3226,7 +3226,7 @@ border-radius: 5px;}
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>98</width>
+                  <width>70</width>
                   <height>800</height>
                  </rect>
                 </property>
@@ -4080,7 +4080,7 @@ QScrollBar::up-arrow:vertical {
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>-265</y>
+                  <y>0</y>
                   <width>763</width>
                   <height>1310</height>
                  </rect>
@@ -5497,8 +5497,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                        </size>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">
-QSlider::groove:horizontal {
+                       <string notr="true">QSlider::groove:horizontal {
 border: 0px solid #bbb;
 }
 QSlider::sub-page:horizontal {
@@ -6679,7 +6678,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -6727,7 +6726,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -6775,7 +6774,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -6823,7 +6822,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -6871,7 +6870,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -6919,7 +6918,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -6967,7 +6966,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7015,7 +7014,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7063,7 +7062,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7141,7 +7140,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7189,7 +7188,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7237,7 +7236,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7849,7 +7848,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7897,7 +7896,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7945,7 +7944,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -7993,7 +7992,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8041,7 +8040,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8089,7 +8088,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8514,7 +8513,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8562,7 +8561,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8691,7 +8690,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8765,7 +8764,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -8932,7 +8931,7 @@ QToolButton:checked {
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="lib.qrc">
+                       <iconset resource="../lib.qrc">
                         <normaloff>:/lib/bi.png</normaloff>:/lib/bi.png</iconset>
                       </property>
                       <property name="iconSize">
@@ -9226,7 +9225,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

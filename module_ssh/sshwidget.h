@@ -343,6 +343,7 @@ signals:
     void send_connection_fail(sshwidget *);
     void send_toolButton_fullScreen_sign();
     void send_searchTextNumbers(int sn, int sum);
+    void send_windowsSetting();
 private slots:
     void on_textEdit_cursorPositionChanged();
 
@@ -381,6 +382,8 @@ private slots:
     void rece_pasteSelect_sgin();
 
     void rece_resize_sign();
+
+    void rece_setting();
 
     void rece_searchTextChanged(const QString data);
 

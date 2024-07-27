@@ -10,7 +10,7 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
     ui(new Ui::historyconnectwidget)
 {
     ui->setupUi(this);
-    setSupportStretch(this, true);
+
      //ui->tableWidget_history->horizontalHeader()->setVisible(true);
      //ui->tableWidget_history->verticalHeader()->setVisible(false);
 
@@ -30,12 +30,17 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
         ui->tableWidget_history->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         
         // 设置第三列的宽度为 150 像素
-        ui->tableWidget_history->setColumnWidth(0, 250);
-        ui->tableWidget_history->setColumnWidth(1, 200);
+        ui->tableWidget_history->setColumnWidth(0, 220);
+        ui->tableWidget_history->setColumnWidth(1, 220);
         // 设置第三列的宽度为 150 像素
         ui->tableWidget_history->setColumnWidth(2, 150);
         ui->tableWidget_history->setColumnWidth(3, 150);
         ui->tableWidget_history->setColumnWidth(4, 150);
+
+        //解决鼠标滑过，样式表不是整行的问题
+        auto delegate = new HoveredRowItemDelegate(ui->tableWidget_history);
+        ui->tableWidget_history->setItemDelegate(delegate);
+
         
 
         for (int row = 0; row < cInfoStructList.length(); ++row) {
@@ -44,19 +49,21 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
                 if (col == 0) {
                     headerData = cInfoStructList.at(row).name;
                     QLabel * label = new QLabel();
-                    label->setFixedSize(50,30);
-                    QString path;
+                    label->setFixedSize(15,15);
+                    //QString path;
                     if (cInfoStructList.at(row).sshType == "1") {
-                        path = ":/lib/dian5.png";
+                        //path = ":/lib/password.svg";
                         label->setObjectName("password");
+                        //label->setStyleSheet("border-image: url(:/lib/password.svg); background-color: rgba(0, 214, 103, 0);");
                     } else if (cInfoStructList.at(row).sshType == "2") {
-                        path = ":/lib/diann3.png";
+                        //path = ":/lib/key.svg";
                         label->setObjectName("publicKey");
+                        //label->setStyleSheet("border-image: url(:/lib/key.svg); background-color: rgba(0, 214, 103, 0);");
                     }
-                    QPixmap icon(path);
-                    QPixmap scaledIcon = icon.scaled(50, 16, Qt::KeepAspectRatio);
-                    label->setPixmap(scaledIcon);
-                    label->setStyleSheet("background-color: rgba(0, 214, 103, 0);");
+                    //QPixmap icon(path);
+                    //QPixmap scaledIcon = icon.scaled(50, 14, Qt::KeepAspectRatio);
+                    //label->setPixmap(icon);
+
 
                     ui->tableWidget_history->setCellWidget(row, 0, label);
                 } else if (col == 1) {
@@ -128,6 +135,15 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
                 QTableWidgetItem *item = new QTableWidgetItem(headerData);
                 ui->tableWidget_history->setItem(row, col, item);
                 item->setTextAlignment(Qt::AlignCenter); // 设置对齐方式为居中
+                if (col == 0) {
+                    if (cInfoStructList.at(row).sshType == "1") {
+                        QSize iconSize(30, 30);
+                        item->setIcon(QIcon(":/lib/shell.png").pixmap(iconSize));
+                    } else if (cInfoStructList.at(row).sshType == "2") {
+                        QSize iconSize(30, 30);
+                        item->setIcon(QIcon(":/lib/shell.png").pixmap(iconSize));
+                    }
+                }
             }
         }
 
@@ -192,7 +208,7 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
 //        QTableWidgetItem *item = ui->tableWidget_history->item(row, 1); // 获取第二列的项
 //        item->setTextAlignment(Qt::AlignRight); // 设置对齐方式为居中
 //    }
-
+    setSupportStretch(this, true);
 }
 
 historyconnectwidget::~historyconnectwidget()

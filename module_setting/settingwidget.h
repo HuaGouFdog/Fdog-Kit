@@ -17,6 +17,8 @@ public:
     explicit settingwidget(config * confInfo_, QWidget *parent = 0);
     ~settingwidget();
 
+    void getTerminalSetting();
+
 private slots:
     void on_Menu_clicked(int index);
 
@@ -43,6 +45,8 @@ private:
     AnimatedCheckBox * conectStatsDisplay;  //工具栏-连接属性显示
 
     config * confInfo;
+
+    QButtonGroup * m_buttonGroup;
 };
 
 #endif // SETTINGWIDGET_H

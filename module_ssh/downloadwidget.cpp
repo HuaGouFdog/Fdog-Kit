@@ -210,4 +210,5 @@ void downloadwidget::on_toolButton_file_open_clicked()
 void downloadwidget::on_toolButton_file_setting_clicked()
 {
     //设置
+    emit send_setting();
 }

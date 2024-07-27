@@ -199,6 +199,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     ui->plainTextEdit->setCursorWidth(2);
 
     dlwidget = new downloadwidget(textEdit_s);
+    connect(dlwidget,SIGNAL(send_setting()),this,
+        SLOT(rece_setting()));
+
     fwidget = new findwidget(textEdit_s);
     connect(fwidget,SIGNAL(send_searchTextChanged(const QString)),this,
         SLOT(rece_searchTextChanged(const QString)));
@@ -2063,6 +2066,11 @@ void sshwidget::rece_resize_sign()
         columnCount = visibleColumns;
         lineCount = visibleLines;
     }
+}
+
+void sshwidget::rece_setting() {
+    //跳转到设置页面-终端
+    emit send_windowsSetting();
 }
 
 void sshwidget::rece_searchTextChanged(const QString data) {

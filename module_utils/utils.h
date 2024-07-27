@@ -9,6 +9,21 @@
 
 #define UNUSED(x) (void)(x)
 
+#include <QStyledItemDelegate>
+#include <QTableWidget>
+
+class HoveredRowItemDelegate : public QStyledItemDelegate
+{
+public:
+    explicit HoveredRowItemDelegate(QTableWidget *parent = nullptr);
+
+protected:
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
+private:
+    const QTableWidget *tableWidget{};
+};
+
 
 
 //开关组件

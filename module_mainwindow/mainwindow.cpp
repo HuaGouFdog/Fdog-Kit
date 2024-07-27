@@ -1001,9 +1001,11 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
         int8_t connectType = 0;
         //创建连接窗口
         QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+        qDebug() << "sshinfo 1 size = " << cInfoStructList.length();
         hcwidget = new historyconnectwidget(connectType, cInfoStructList);
         connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
-        ui->tabWidget->addTab(hcwidget, "快速连接");
+        QSize iconSize(20, 20); // 设置图标的大小
+        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu.svg").pixmap(iconSize), "快速连接");
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         ui->stackedWidget->setCurrentIndex(1);
         hcwidget->show();
@@ -1116,9 +1118,15 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
         connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
+        connect(sshWidget,SIGNAL(send_windowsSetting()),this,SLOT(rece_windowsSetting()));
         sshWidgetList.push_back(sshWidget);
-        ui->tabWidget->addTab(sshWidget, QIcon(":lib/node3.png").pixmap(iconSize), cInfoStruct.name);
+        ui->tabWidget->addTab(sshWidget, QIcon(":lib/yellow.svg").pixmap(iconSize), cInfoStruct.name);
         //插入数据
+        if (cInfoStruct.sshType == SSH_PASSWORD) {
+
+        } else if (cInfoStruct.sshType == SSH_PUBLICKEY) {
+            cInfoStruct.password = cInfoStruct.userName;
+        }
         db_->ssh_insertSSHInfo(cInfoStruct);
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
 
@@ -1154,8 +1162,16 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
     //双击快速连接
     connnectInfoStruct cInfo_ = db_->ssh_getSSHInfoByHost(cInfoStruct.host);
+    
+    // cInfo.password = sshKeyInfo.password;
+    // cInfo.publickey = sshKeyInfo.path;
     cInfoStruct.password = cInfo_.password;
-    cInfoStruct.sshType = SSH_PASSWORD;
+    if (cInfoStruct.sshType == SSH_PUBLICKEY) {
+        sshKeyStruct sshKeyInfo = db_->sshKey_getSSHKeyInfoByName(cInfoStruct.password);
+        cInfoStruct.password = sshKeyInfo.password;
+        cInfoStruct.publickey = sshKeyInfo.path;
+    }
+    //cInfoStruct.sshType = SSH_PASSWORD;
     qDebug() << "收到双击数据" << cInfoStruct.host << " " << cInfoStruct.password;
     QSize iconSize(16, 16); // 设置图标的大小
     
@@ -1167,12 +1183,21 @@ void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
         connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
+        connect(sshWidget,SIGNAL(send_windowsSetting()),this,SLOT(rece_windowsSetting()));
         sshWidgetList.push_back(sshWidget);
-        ui->tabWidget->addTab(sshWidget, QIcon(":lib/node3.png").pixmap(iconSize), cInfoStruct.name);
+        ui->tabWidget->addTab(sshWidget, QIcon(":lib/yellow.svg").pixmap(iconSize), cInfoStruct.name);
     }
     //这里是添加在最后一个标签页，后面要根据设置来
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::rece_windowsSetting() {
+    //设置终端
+    //切换至设置
+    on_toolButton_side_setting_clicked();
+    //跳转到终端
+    stwidget->getTerminalSetting();
 }
 
 void MainWindow::on_newClose()
@@ -1456,7 +1481,7 @@ void MainWindow::rece_connection_success(sshwidget * sw) {
             if (swTemp->m_sign == sw->m_sign) {
                 qDebug() << "找到对应页，更新状态图标";
                 QSize iconSize(16, 16); // 设置图标的大小
-                ui->tabWidget->setTabIcon(i, QIcon(":lib/node.png").pixmap(iconSize));
+                ui->tabWidget->setTabIcon(i, QIcon(":lib/green.svg").pixmap(iconSize));
                 break;
             }
         } else {
@@ -1474,7 +1499,7 @@ void MainWindow::rece_connection_fail(sshwidget * sw) {
             if (swTemp->m_sign == sw->m_sign) {
                 qDebug() << "找到对应页，更新状态图标";
                 QSize iconSize(16, 16); // 设置图标的大小
-                ui->tabWidget->setTabIcon(i, QIcon(":lib/node2.png").pixmap(iconSize));
+                ui->tabWidget->setTabIcon(i, QIcon(":lib/grey.svg").pixmap(iconSize));
                 break;
             }
         } else {
@@ -1529,6 +1554,7 @@ void MainWindow::on_toolButton_about_clicked()
 void MainWindow::on_toolButton_manage_clicked()
 {
     QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+    qDebug() << "sshinfo 2 size = " << cInfoStructList.length();
     int8_t connectType = 0;
     //创建连接窗口
     hcwidget = new historyconnectwidget(connectType, cInfoStructList);
@@ -1788,6 +1814,7 @@ void MainWindow::on_toolButton_side_shell_clicked()
     ui->stackedWidget->setCurrentIndex(1);
     if (!isFirst) {
         QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+        qDebug() << "sshinfo 3 size = " << cInfoStructList.length();
         isFirst = true;
         //创建快速连接
         //创建快速连接
@@ -1795,7 +1822,8 @@ void MainWindow::on_toolButton_side_shell_clicked()
         //创建连接窗口
         hcwidget = new historyconnectwidget(connectType, cInfoStructList);
         connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
-        ui->tabWidget->addTab(hcwidget, "快速连接");
+        QSize iconSize(20, 20); // 设置图标的大小
+        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu.svg").pixmap(iconSize), "快速连接");
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         hcwidget->show();
     }
@@ -1845,4 +1873,24 @@ void MainWindow::rece_closeAll_sgin() {
 void MainWindow::on_toolButton_download_clicked()
 {
 
+}
+
+void MainWindow::on_toolButton_side_qss_clicked()
+{
+    if (qsswidget == NULL) {
+        qsswidget = new qss();
+        qsswidget->setObjectName("qsswidget");
+        ui->stackedWidget->addWidget(qsswidget);
+        qsswidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            // 获取索引处的widget
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "qsswidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
 }

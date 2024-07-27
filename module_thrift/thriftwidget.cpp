@@ -3400,12 +3400,12 @@ void thriftwidget::on_toolButton_test_clicked()
     clientSocket->connectToHost(ui->lineEdit_host->text(), port);
     if (!clientSocket->waitForConnected(500)) {
         qDebug() << "无法连接到服务器";
-        ui->toolButton_test->setIcon(QIcon(":lib/node2.png"));
+        ui->toolButton_test->setIcon(QIcon(":lib/grey.svg"));
         ui->toolButton_test->setText("测试地址(不可访问，若开启了VPN，关闭后再试)");
         clientSocket->close();
     } else {
         qDebug() << "服务器可用";
-        ui->toolButton_test->setIcon(QIcon(":lib/node.png"));
+        ui->toolButton_test->setIcon(QIcon(":lib/green.svg"));
         ui->toolButton_test->setText("测试地址(可访问)");
         clientSocket->close();
     }

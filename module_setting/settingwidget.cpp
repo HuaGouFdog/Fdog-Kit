@@ -210,7 +210,7 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     ui->verticalWidget_24->layout()->addWidget(cm9);
     cm9->show();
 
-    QButtonGroup * m_buttonGroup = new QButtonGroup(this);
+    m_buttonGroup = new QButtonGroup(this);
     m_buttonGroup->addButton(ui->toolButton_activate, 0);
     m_buttonGroup->addButton(ui->toolButton_appearance, 1);
     m_buttonGroup->addButton(ui->toolButton_typeface, 2);
@@ -254,6 +254,12 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
 settingwidget::~settingwidget()
 {
     delete ui;
+}
+
+void settingwidget::getTerminalSetting() {
+    on_Menu_clicked(5);
+    m_buttonGroup->button(5)->setChecked(true); //设置按钮组第一个按钮高亮显示
+    m_buttonGroup->setExclusive(true);
 }
 
 void settingwidget::on_Menu_clicked(int index)

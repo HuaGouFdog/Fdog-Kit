@@ -18,6 +18,7 @@
 #include "module_flowlayout/flowlayout.h"
 #include "module_sql/sqlhandle.h"
 #include "module_ssh/downloadwidget.h"
+#include "module_qss/qss.h"
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
 
@@ -120,7 +121,11 @@ private slots:
 
     void rece_fastConnection(connnectInfoStruct& cInfoStruct);
 
+    
+    void rece_windowsSetting();
+
     void on_newClose();
+
 
     void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
 
@@ -218,6 +223,8 @@ private slots:
 
     void on_toolButton_download_clicked();
 
+    void on_toolButton_side_qss_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -265,6 +272,7 @@ private:
     createconnect *ccwidget =nullptr; //创建连接窗口
     historyconnectwidget * hcwidget = nullptr; //快速连接
     toolswidget * tswidget = nullptr; //创建工具窗口
+    qss * qsswidget = nullptr;          // 创建qss工具窗口
     settingwidget * stwidget = nullptr; //创建设置窗口
     zookeepermanagewidget * zmanagewidget = nullptr; //zk窗口
     thriftwidget * twidget = nullptr;  //thrift测试工具窗口

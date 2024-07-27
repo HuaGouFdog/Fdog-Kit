@@ -36,7 +36,7 @@
    <string>Fdog-Kit</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="lib.qrc">
+   <iconset resource="../lib.qrc">
     <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
   </property>
   <property name="styleSheet">
@@ -243,79 +243,8 @@ border-radius: 2px;
           <string>首页</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/home.png</normaloff>:/lib/home.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>25</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="toolButton_side_shell">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>终端连接</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string>终端</string>
-         </property>
-         <property name="icon">
-          <iconset resource="lib.qrc">
-           <normaloff>:/lib/shell_side.png</normaloff>:/lib/shell_side.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -385,7 +314,7 @@ border-radius: 2px;
           <string>thrift</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/func.png</normaloff>:/lib/func.png</iconset>
          </property>
          <property name="iconSize">
@@ -403,7 +332,7 @@ border-radius: 2px;
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_qss">
+        <widget class="QToolButton" name="toolButton_side_zookeeper">
          <property name="minimumSize">
           <size>
            <width>50</width>
@@ -423,7 +352,7 @@ border-radius: 2px;
           </font>
          </property>
          <property name="toolTip">
-          <string>qss美化</string>
+          <string>zk连接</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QToolButton {
@@ -452,15 +381,12 @@ background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
 }</string>
          </property>
-         <property name="locale">
-          <locale language="English" country="UnitedStates"/>
-         </property>
          <property name="text">
-          <string>数据库</string>
+          <string>zk</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
-           <normaloff>:/lib/qss.png</normaloff>:/lib/qss.png</iconset>
+          <iconset resource="../lib.qrc">
+           <normaloff>:/lib/Zookeeper.png</normaloff>:/lib/Zookeeper.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -533,7 +459,7 @@ border-radius: 2px;
           <string>数据库</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/mysql.png</normaloff>:/lib/mysql.png</iconset>
          </property>
          <property name="iconSize">
@@ -551,7 +477,7 @@ border-radius: 2px;
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_zookeeper">
+        <widget class="QToolButton" name="toolButton_side_shell">
          <property name="minimumSize">
           <size>
            <width>50</width>
@@ -571,7 +497,7 @@ border-radius: 2px;
           </font>
          </property>
          <property name="toolTip">
-          <string>zk连接</string>
+          <string>终端连接</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QToolButton {
@@ -601,11 +527,85 @@ border-radius: 2px;
 }</string>
          </property>
          <property name="text">
-          <string>zk</string>
+          <string>终端</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
-           <normaloff>:/lib/Zookeeper.png</normaloff>:/lib/Zookeeper.png</iconset>
+          <iconset resource="../lib.qrc">
+           <normaloff>:/lib/shell_side.png</normaloff>:/lib/shell_side.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_qss">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>qss美化</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="text">
+          <string>数据库</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../lib.qrc">
+           <normaloff>:/lib/qss.png</normaloff>:/lib/qss.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -675,7 +675,7 @@ border-radius: 2px;
           <string>工具箱</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/tool2.png</normaloff>:/lib/tool2.png</iconset>
          </property>
          <property name="iconSize">
@@ -746,7 +746,7 @@ border-radius: 2px;
           <string>扩展</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/tool_plugIn.png</normaloff>:/lib/tool_plugIn.png</iconset>
          </property>
          <property name="iconSize">
@@ -817,7 +817,7 @@ border-radius: 2px;
           <string>设置</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/setting2.png</normaloff>:/lib/setting2.png</iconset>
          </property>
          <property name="iconSize">
@@ -888,7 +888,7 @@ border-radius: 2px;
           <string>关于</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/about.png</normaloff>:/lib/about.png</iconset>
          </property>
          <property name="iconSize">
@@ -959,7 +959,7 @@ border-radius: 2px;
           <string>GitHub</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/github.png</normaloff>:/lib/github.png</iconset>
          </property>
          <property name="iconSize">
@@ -1030,7 +1030,7 @@ border-radius: 2px;
           <string>暗黑</string>
          </property>
          <property name="icon">
-          <iconset resource="lib.qrc">
+          <iconset resource="../lib.qrc">
            <normaloff>:/lib/black_mode.png</normaloff>:/lib/black_mode.png</iconset>
          </property>
          <property name="iconSize">
@@ -1673,7 +1673,7 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/icon-minus3.png</normaloff>:/lib/icon-minus3.png</iconset>
             </property>
             <property name="iconSize">
@@ -1727,7 +1727,7 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/Icon_max4.png</normaloff>:/lib/Icon_max4.png</iconset>
             </property>
             <property name="iconSize">
@@ -1794,7 +1794,7 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/icon-close8.png</normaloff>:/lib/icon-close8.png</iconset>
             </property>
             <property name="iconSize">
@@ -1969,7 +1969,7 @@ QToolButton {
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="lib.qrc">
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/add1.png</normaloff>:/lib/add1.png</iconset>
                </property>
               </widget>
@@ -2005,7 +2005,7 @@ QToolButton {
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="lib.qrc">
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/left.png</normaloff>:/lib/left.png</iconset>
                </property>
                <property name="iconSize">
@@ -2038,7 +2038,7 @@ QToolButton {
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="lib.qrc">
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/login.png</normaloff>:/lib/login.png</iconset>
                </property>
                <property name="iconSize">
@@ -2075,7 +2075,7 @@ color: rgb(255, 255, 255);</string>
              <number>1</number>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_main">
              <property name="styleSheet">
@@ -2461,7 +2461,7 @@ QToolButton:hover {
                              <string>  SSH连接</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/add1.png</normaloff>:/lib/add1.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2516,7 +2516,7 @@ QToolButton:hover {
                              <string>  zk连接</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/Zookeeper.png</normaloff>:/lib/Zookeeper.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2571,7 +2571,7 @@ QToolButton:hover {
                              <string>  数据库连接</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/mysql.png</normaloff>:/lib/mysql.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2688,7 +2688,7 @@ QToolButton:hover {
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/windows.png</normaloff>:/lib/windows.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2717,7 +2717,7 @@ QToolButton:hover {
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/qssmaihua.png</normaloff>:/lib/qssmaihua.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2746,7 +2746,7 @@ QToolButton:hover {
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/XML-Local-hover.png</normaloff>:/lib/XML-Local-hover.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2775,7 +2775,7 @@ QToolButton:hover {
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/Zookeeper2.png</normaloff>:/lib/Zookeeper2.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -2804,7 +2804,7 @@ QToolButton:hover {
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="lib.qrc">
+                             <iconset resource="../lib.qrc">
                               <normaloff>:/lib/linux.png</normaloff>:/lib/linux.png</iconset>
                             </property>
                             <property name="iconSize">
@@ -3034,19 +3034,17 @@ QMenu::separator {
                      <string notr="true">/*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
 	
-
-	
 	background-color: rgba(9, 28, 52, 100);
 	
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
-	font-size:10pt;
+	font-size:11pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
 	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
 	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
 	padding-left: 5px;
     /*padding-right: 5px*/
 	/*width:150;*/
-	height:25;
+	height:30;
 	/*spacing: 20px;*/
 	/*margin-right:0px;*/
 	/*margin-left: 0px;*/
@@ -4298,6 +4296,9 @@ border-image: url(:/lib/up.png);
                              <stylestrategy>PreferAntialias</stylestrategy>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true"/>
+                           </property>
                            <property name="text">
                             <string>时间戳转日期</string>
                            </property>
@@ -5223,7 +5224,7 @@ color: rgb(255, 255, 255);</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

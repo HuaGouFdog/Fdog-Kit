@@ -53,6 +53,8 @@ public:
     void updateFileProgress(int64_t sumSize, int64_t fileSize, bool status = true);
     ~downloadwidget();
 
+signals:
+    void send_setting();
 private slots:
     void on_toolButton_file_clicked();
 
