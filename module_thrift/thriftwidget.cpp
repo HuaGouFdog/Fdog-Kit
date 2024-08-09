@@ -2821,7 +2821,8 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
                 funcParamInMap.remove(funcName);
                 funcParamOutMap.remove(funcName);
                 //提醒一下前端
-                ui->label_time->setText("解析thrift文件出现问题！");
+                ui->label_time->setText("解析thrift文件中的" + funcName + "接口出现问题，跳过该接口");
+                qDebug() << "出问题: funcName " << funcName;
                 continue;
             }
 

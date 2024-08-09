@@ -723,7 +723,7 @@ QComboBox QAbstractItemView::item:selected {
 </string>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="page_activate">
             <property name="styleSheet">
@@ -1434,7 +1434,7 @@ padding-right:10px;
                       <string notr="true">color: rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
-                      <string>启动位置</string>
+                      <string>窗口宽高</string>
                      </property>
                     </widget>
                    </item>
@@ -1463,7 +1463,7 @@ padding-right:10px;
                       <string notr="true">color: rgba(223, 223, 223, 150);</string>
                      </property>
                      <property name="text">
-                      <string>应用启动时的初始位置</string>
+                      <string>应用启动时的窗口大小</string>
                      </property>
                     </widget>
                    </item>
@@ -2407,7 +2407,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>772</width>
+                  <width>765</width>
                   <height>750</height>
                  </rect>
                 </property>
@@ -3226,7 +3226,7 @@ border-radius: 5px;}
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>772</width>
+                  <width>765</width>
                   <height>800</height>
                  </rect>
                 </property>
@@ -4081,7 +4081,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>770</width>
+                  <width>763</width>
                   <height>1310</height>
                  </rect>
                 </property>
@@ -5920,7 +5920,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>742</width>
+                  <width>735</width>
                   <height>830</height>
                  </rect>
                 </property>
