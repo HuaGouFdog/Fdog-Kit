@@ -22,6 +22,7 @@
 
 #include <QClipboard>
 #include <QMimeData>
+#include <QCompleter>
 #include "module_utils/utils.h"
 #pragma comment(lib, "ws2_32.lib")
 
@@ -2828,9 +2829,29 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
             QIcon icon1(":/lib/api.png"); // 设置您的图标路径
 
             QTreeWidgetItem *childItem1 = new QTreeWidgetItem(parentItem);
-            childItem1->setText(0, funcName);
+            //添加函数接口
+            childItem1->setText(0, funcName); //funcServerName
             childItem1->setIcon(0, icon1);
+            //暂时使用这种  复杂场景用QAbstractItemModel
+            dataSource.append(funcServerName + "." + funcName);
         }
+
+        QCompleter *completer = new QCompleter(dataSource, this);
+
+        QAbstractItemView* view = completer->popup();
+        view->setItemDelegate(new ComboBoxDelegate());//设置行高
+        completer->popup()->setStyleSheet("QListView{background-color: #FFFFFF;"
+                                                "color: #353637;"
+                                                "selection-background-color: #3A72D8;"
+                                                "selection-color: white;"
+                                                "show-decoration-selected: 1;"
+                                                "font-size: 14pt;");
+
+        completer->setCaseSensitivity(Qt::CaseInsensitive); //大小写不敏感
+        completer->setFilterMode(Qt::MatchContains); //内容匹配
+        connect(completer,SIGNAL(activated(const QString)),this,SLOT(rece_activated(const QString)));
+        connect(completer,SIGNAL(highlighted(const QString)),this,SLOT(rece_highlighted(const QString)));
+        ui->lineEdit_find->setCompleter(completer);
 
     } else {
         fileContent_return = fileContent;
@@ -3704,7 +3725,6 @@ void thriftwidget::on_toolButton_inportFile_clicked()
 void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
     //获取接口服务名，尝试匹配端口
-    qDebug() << "=1";
     if (!current->parent()) {
         return;
     }
@@ -3723,7 +3743,6 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
            break;
        }
     }
-    qDebug() << "=2";
     int index = current->text(0).indexOf(":");
     if (index == 0) {
         index = current->text(0).length();
@@ -3733,8 +3752,6 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
     ui->lineEdit_funcName->setText(funcName2);
     ui->treeWidget->clear();
     //循环获取参数
-    qDebug() << "=3";
-
     if (funcParamInMap.value(funcName2).size() > 0) {
         QMap<int, paramInfo> temp = funcParamInMap.value(funcName2);
         for (const auto &key : temp.keys()) {
@@ -3745,20 +3762,6 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
                         temp[key].typeSign);
         }
     }
-
-//    for(int i =1; i <= funcParamInMap.value(funcName2).size(); i++) {
-//        //QMap<QString, paramInfo>
-//        qDebug() << " sn = " << i
-//                << " paramType = " << funcParamInMap.value(funcName2).value(QString::number(i)).paramType
-//                << " paramName" << funcParamInMap.value(funcName2).value(QString::number(i)).paramName;
-
-
-//        ItemWidget* items = createAndGetNode(this, ui->treeWidget);
-//        items->setParamValue(this, QString::number(i),
-//            funcParamInMap.value(funcName2).value(QString::number(i)).paramName,
-//            funcParamInMap.value(funcName2).value(QString::number(i)).paramType,
-//            funcParamInMap.value(funcName2).value(QString::number(i)).typeSign);
-//    }
 }
 
 void thriftwidget::on_plainTextEdit_edit_customContextMenuRequested(const QPoint &pos)
@@ -3821,4 +3824,54 @@ void thriftwidget::on_toolButton_doc_switch_clicked()
         ui->toolButton_doc_switch->setText("切换到报告");
         ui->stackedWidget_2->setCurrentIndex(0);
     }
+}
+
+
+void thriftwidget::rece_activated(const QString &text)
+{
+    //选中
+    //emit send_findConnection(text);
+    qDebug() << "rece_activated = " << text;
+
+    //获取接口服务名，尝试匹配端口
+    QString port_ = text;
+    int index_port = port_.indexOf("Service.");
+    port_ = port_.mid(0, index_port);
+    //尝试匹配
+    port_ = port_.toLower();
+    int itemCount = ui->comboBox_port->count();
+    for(int i =0; i < itemCount; i++) {
+       QString com_port = ui->comboBox_port->itemText(i).toLower();
+       //qDebug() << " com_port = " << com_port << " port_ = " << port_;
+       if (com_port.contains(port_)) {
+           ui->comboBox_port->setCurrentIndex(i);
+           break;
+       }
+    }
+//    int index = current->text(0).indexOf(":");
+//    if (index == 0) {
+//        index = current->text(0).length();
+//    }
+    int index = text.indexOf("Service.");
+    QString funcName2 = text.mid(index + 8);
+    qDebug() << "funcName2 = " << funcName2;
+    ui->lineEdit_funcName->setText(funcName2);
+    //ui->treeWidget->clear();
+    //循环获取参数
+    if (funcParamInMap.value(funcName2).size() > 0) {
+        QMap<int, paramInfo> temp = funcParamInMap.value(funcName2);
+        for (const auto &key : temp.keys()) {
+            ItemWidget* items = createAndGetNode(this, ui->treeWidget);
+            items->setParamValue(this, key,
+                        temp[key].paramName,
+                        temp[key].paramType,
+                        temp[key].typeSign);
+        }
+    }
+}
+
+void thriftwidget::rece_highlighted(const QString &text)
+{
+    //选择
+    qDebug() << "rece_highlighted = " << text;
 }

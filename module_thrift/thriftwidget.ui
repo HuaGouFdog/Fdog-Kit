@@ -520,7 +520,7 @@ background-color: rgba(28, 35, 39, 0);
                <number>0</number>
               </property>
               <property name="topMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>0</number>
@@ -623,7 +623,7 @@ QScrollBar::up-arrow:horizontal {
                <normaloff>:/lib/history2.png</normaloff>:/lib/history2.png</iconset>
              </attribute>
              <attribute name="title">
-              <string>历史记录</string>
+              <string>文件记录</string>
              </attribute>
             </widget>
            </widget>

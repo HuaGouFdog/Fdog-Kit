@@ -453,6 +453,10 @@ private slots:
 
     void on_toolButton_doc_switch_clicked();
 
+    void rece_activated(const QString & text);
+
+    void rece_highlighted(const QString & text);
+
 private:
     QVector<QString> dataList;
     QString lastValue_;
@@ -460,7 +464,7 @@ private:
     Ui::thriftwidget *ui;
     bool isFirstRead = true;
     int64_t needRead = 0;
-
+    QStringList dataSource;
     QVector<uint32_t> receivedData;
 };
 
