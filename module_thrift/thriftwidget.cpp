@@ -409,7 +409,7 @@ void ItemWidget::copyItem(thriftwidget * p, ItemWidget *item_p, ItemWidget *item
     }
     //this->lineEditParamValue->setPlaceholderText("key");
     //this->lineEditParamValue->setReadOnly(false);
-
+    qDebug()<< "sn2 = " << QString::number(item_p->childCount());
     this->lineEditParamSN->setText(QString::number(item_p->childCount()));
     this->lineEditParamName->setText(item_->lineEditParamName->text());
     this->lineEditParamValue->setText(item_->lineEditParamValue->text());
@@ -722,6 +722,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //获取当前节点的位置索引，显示序号
     int index = ui->treeWidget->indexOfTopLevelItem(item);
     if (index != -1) {
+        qDebug()<< "sn3 = " << QString::number(index + 1);
         item->lineEditParamSN->setText(QString::number(index + 1));
         //qDebug() << "Index of item in treeWidget: " << index;
     } else {
@@ -3220,6 +3221,7 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     //qDebug() << "进入添加元素";
     //复制倒数第一个结构体
     //查找最后一个结构体
+    isCreateNode = true;
     isAddNode = true;
     ItemWidget * item_ = dynamic_cast<ItemWidget*>(item);
     int count = item_->childCount();
@@ -3228,18 +3230,36 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
     //复制成员，这里先只考虑struct
     //获取item_的struct类型
     QString struct_type = dynamic_cast<ItemWidget*>(item_->child(0))->lineEditParamValue->text();
+    //判断一下集合类型是set，list，map
+    qDebug() << "上层类型：" << dynamic_cast<ItemWidget*>(item_)->comboBoxBase->currentText();
+    qDebug()<< "sn = " << QString::number(count + 1);
     items->lineEditParamSN->setText(QString::number(count + 1));
     items->lineEditParamValue->setText(struct_type);
     items->lineEditParamValue->setReadOnly(true);
     items->comboBoxBase->setCurrentIndex(dynamic_cast<ItemWidget*>(item_->child(0))->comboBoxBase->currentIndex());
-    items->keyLabel->show();
-    items->valueLabel->hide();
-    items->classLabel->hide();
-    items->lineEditParamValue->setPlaceholderText("key");
     items->checkBox->setChecked(true);
     qDebug() << "struct type = " << struct_type;
     QString struct_type2 = item_->lineEditParamValue->text();
     qDebug() << "struct type2 = " << struct_type2;
+    if (dynamic_cast<ItemWidget*>(item_)->comboBoxBase->currentText() == "set") {
+        qDebug() << "set类型";
+        items->keyLabel->hide();
+        items->valueLabel->hide();
+        items->classLabel->show();
+        items->lineEditParamValue->setPlaceholderText("value");
+    } else if (dynamic_cast<ItemWidget*>(item_)->comboBoxBase->currentText() == "list") {
+        qDebug() << "list类型";
+        items->keyLabel->hide();
+        items->valueLabel->hide();
+        items->classLabel->show();
+        items->lineEditParamValue->setPlaceholderText("value");
+    } else if (dynamic_cast<ItemWidget*>(item_)->comboBoxBase->currentText() == "map") {
+        qDebug() << "map类型";
+        items->keyLabel->show();
+        items->valueLabel->hide();
+        items->classLabel->hide();
+        items->lineEditParamValue->setPlaceholderText("key");
+    }
     if (struct_type2 == "") {
         items->copyItem(this, items, dynamic_cast<ItemWidget*>(item_->child(0)));
     } else {
@@ -3247,7 +3267,6 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
         if (index_ != -1) {
             struct_type2 = struct_type2.mid(index_ + 1);
         }
-
         if (structParamMap.value(struct_type2).size() > 0) {
             QMap<int, structInfo> temp = structParamMap.value(struct_type2);
             for (const auto &key : temp.keys()) {
@@ -3262,6 +3281,13 @@ void thriftwidget::rece_addItem(QTreeWidgetItem *item)
 
     ItemWidget* items2 = new ItemWidget(item_);
     delete items2;
+    qDebug() << "items->valueLabel hide = " << items->valueLabel->isHidden();
+    qDebug() << "items->classLabel hide = " << items->classLabel->isHidden();
+//    items->keyLabel->hide();
+//    items->valueLabel->hide();
+//    items->classLabel->show();
+    qDebug() << "items->valueLabel hide = " << items->valueLabel->isHidden();
+    qDebug() << "items->classLabel hide = " << items->classLabel->isHidden();
 
 }
 
@@ -3312,19 +3338,21 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
             isChild = true;
         }
     }
-
-    if (!isChild && index >= count) {
+    qDebug() << "rece_TextChanged = " << isCreateNode;
+    if (!isCreateNode && !isChild && index >= count) {
         //顶层
         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
         int index = ui->treeWidget->indexOfTopLevelItem(items);
+        qDebug()<< "sn4 = " << QString::number(index + 1);
         items->lineEditParamSN->setText(QString::number(index + 1));
         //刷新用
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);
         delete items2;
-    } else if (isChild && index >= count) {
+    } else if (!isCreateNode && isChild && index >= count) {
         //子节点
         ItemWidget* items = createAndGetNode(this, parentItem);
         int index = parentItem->indexOfChild(items);
+        qDebug()<< "sn5 = " << QString::number(index + 1);
         items->lineEditParamSN->setText(QString::number(index + 1));
         //刷新用
         ItemWidget* items2 = new ItemWidget(parentItem);
@@ -3417,6 +3445,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         ItemWidget* item2 = createAndGetNode(this, item);
 
         int index = item->indexOfChild(item2);
+        qDebug()<< "sn6 = " << QString::number(index + 1);
         item2->lineEditParamSN->setText(QString::number(index + 1));
 
         item2->setText(0, "");
@@ -3426,6 +3455,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
         //设置序号
         int index2 = ui->treeWidget->indexOfTopLevelItem(items);
+        qDebug()<< "sn7 = " << QString::number(index2 + 1);
         items->lineEditParamSN->setText(QString::number(index2 + 1));
 
         ItemWidget* items2 = new ItemWidget(ui->treeWidget);
@@ -3458,6 +3488,10 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
 
     if (isAddNode == true) {
         isAddNode = false;
+    }
+
+    if (isCreateNode == true) {
+        isCreateNode = false;
     }
 }
 

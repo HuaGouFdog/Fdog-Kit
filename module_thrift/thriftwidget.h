@@ -466,6 +466,7 @@ private:
     int64_t needRead = 0;
     QStringList dataSource;
     QVector<uint32_t> receivedData;
+    bool isCreateNode = false;
 };
 
 #endif // THRIFTWIDGET_H
