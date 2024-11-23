@@ -22,5 +22,9 @@
         <file>lib/gouxuan2.png</file>
         <file>lib/zhedie.png</file>
         <file>lib/copy.png</file>
+        <file>lib/Icon_max4.png</file>
+        <file>lib/icon-close8.png</file>
+        <file>lib/icon-copy.png</file>
+        <file>lib/icon-minus3.png</file>
     </qresource>
 </RCC>

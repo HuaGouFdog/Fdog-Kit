@@ -56,4 +56,7 @@ INCLUDEPATH += $$PWD/../../zookeeper/include
 DEPENDPATH += $$PWD/../../zookeeper/include
 
 RESOURCES += \
-    lib.qrc
+    lib.qrc \
+    fonts.qrc
+
+LIBS += -luser32
