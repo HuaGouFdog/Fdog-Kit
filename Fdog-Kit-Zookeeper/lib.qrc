@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lib/back1.png</file>
+        <file>lib/back2.png</file>
+        <file>lib/node.png</file>
+        <file>lib/node2.png</file>
+        <file>lib/node3.png</file>
+        <file>lib/green.svg</file>
+        <file>lib/grey.svg</file>
+        <file>lib/key.svg</file>
+        <file>lib/kuaisu.svg</file>
+        <file>lib/password.svg</file>
+        <file>lib/red.svg</file>
+        <file>lib/tree_close.png</file>
+        <file>lib/tree_open.png</file>
+        <file>lib/tree_open2.png</file>
+        <file>lib/yellow.svg</file>
+        <file>lib/Zookeeper.png</file>
+        <file>lib/Zookeeper2.png</file>
+        <file>lib/Zookeeper21.png</file>
+        <file>lib/gouxuan.png</file>
+        <file>lib/gouxuan2.png</file>
+        <file>lib/zhedie.png</file>
+        <file>lib/copy.png</file>
+        <file>lib/Icon_max4.png</file>
+        <file>lib/icon-close8.png</file>
+        <file>lib/icon-copy.png</file>
+        <file>lib/icon-minus3.png</file>
+    </qresource>
+</RCC>

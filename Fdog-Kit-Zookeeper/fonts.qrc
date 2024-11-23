@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fonts/CascadiaCode_VTT.ttf</file>
+        <file>fonts/Cascadia-Code-Regular-2.ttf</file>
+        <file>fonts/OPPOSans-B-2.ttf</file>
+        <file>fonts/OPPOSans-R-2.ttf</file>
+        <file>fonts/SourceCodePro-Semibold-13.ttf</file>
+    </qresource>
+</RCC>
