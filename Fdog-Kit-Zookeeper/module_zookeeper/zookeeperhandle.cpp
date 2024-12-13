@@ -95,6 +95,15 @@ zookeeperhandle::zookeeperhandle(QObject * obj_, zhandle_t *zh_)
     qRegisterMetaType<QVector<QString>>("QVector<QString>&");
 }
 
+zookeeperhandle::~zookeeperhandle()
+{
+    if (this->zh != nullptr)
+    {
+        qDebug() << "释放连接";
+        zookeeper_close(this->zh); // 关闭句柄
+    }
+}
+
 void zookeeperhandle::init(QString rootPath, QString host_, QString port_, int timeout)
 {
     QString message;

@@ -40,6 +40,7 @@ private slots:
     void on_toolButton_connect_clicked();
 
     void rece_buttonClicked(int index);
+    void rece_buttonDoubleClicked(int index);
 
     void rece_init(int buttonSid, int code);
 

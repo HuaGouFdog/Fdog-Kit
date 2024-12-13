@@ -427,10 +427,10 @@ QMenu::separator {
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_2">
-         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,1,4">
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,0,1,4">
           <item>
            <spacer name="verticalSpacer_3">
             <property name="orientation">
@@ -449,7 +449,7 @@ QMenu::separator {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>104</height>
+              <height>100</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -459,6 +459,22 @@ QMenu::separator {
              <string/>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QToolButton" name="toolButton">
@@ -472,13 +488,13 @@ QMenu::separator {
              <font>
               <family>OPPOSans B</family>
               <pointsize>12</pointsize>
-              <underline>true</underline>
+              <underline>false</underline>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
             <property name="styleSheet">
              <string notr="true">QToolButton {
-	color: rgb(242, 245, 255, 50);
+	color: rgb(242, 245, 255, 150);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
 }
@@ -489,9 +505,11 @@ QToolButton::menu-indicator {
 
  
 QToolButton:hover {
-	color: rgb(242, 245, 255, 50);
+	color: rgb(242, 245, 255, 150);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
+	font: 12pt &quot;OPPOSans B&quot;;
+	text-decoration: underline;
 }</string>
             </property>
             <property name="text">
