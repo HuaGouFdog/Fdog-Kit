@@ -37,23 +37,24 @@ public:
     }
 
     void run() override {
+        if (zh == nullptr) {
+            qDebug("zh已经被释放");
+            return;
+        } else {
+            //qDebug("调用rece_getChildren1");
+        }
         String_vector children;
         int rc = zoo_wget_children(zh, path.toStdString().c_str(), nodeWatcher, obj, &children);
+       // qDebug("调用rece_getChildren2");
         QVariant varValue = QVariant::fromValue(children);
         QString message;
         if (rc != ZOK) {
             QMetaObject::invokeMethod(obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
                                         Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, item));
+            //qDebug("调用rece_getChildren3");
             return;
         }
-//        for (int i = 0; i < children.count; ++i) {
-//            QString children_path;
-//            if (path != "/") {
-//                children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
-//            } else {
-//                children_path = QString::fromStdString(path.toStdString() + children.data[i]);
-//            }
-//        }
+        //qDebug("调用rece_getChildren4");
         QMetaObject::invokeMethod(obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
                                     Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, item));
         return;
@@ -73,6 +74,8 @@ public:
     explicit zookeeperhandle(QObject *parent);
 
     explicit zookeeperhandle(QObject * obj_ = NULL, zhandle_t *zh_ = NULL);
+
+    ~zookeeperhandle();
 
 signals:
     void send_init(int connectState,int code, QString message, QString path, int count);

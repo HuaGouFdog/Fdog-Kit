@@ -76,6 +76,9 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
 zookeeperwidget::~zookeeperwidget()
 {
     delete ui;
+    threadpool.clear(); //停止所有线程调用
+    delete zookhandle;
+
 }
 
 void zookeeperwidget::init(QString host, QString port, int timeout)
