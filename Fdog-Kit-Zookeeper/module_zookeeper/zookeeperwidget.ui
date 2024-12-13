@@ -144,13 +144,13 @@ border-right:2px solid rgba(108, 117, 125, 65);
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <property name="topMargin">
-        <number>9</number>
+        <number>0</number>
        </property>
        <property name="rightMargin">
         <number>9</number>
        </property>
        <property name="bottomMargin">
-        <number>9</number>
+        <number>10</number>
        </property>
        <item>
         <widget class="QWidget" name="horizontalWidget_1_1_l" native="true">
@@ -220,7 +220,7 @@ border-right:2px solid rgba(108, 117, 125, 65);
              <string notr="true">#widget_1_3_l_1{
 color: rgb(231, 238, 244);
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
+background-color: rgb(25, 25, 25, 120);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 10px;
 padding-left:10px;
@@ -365,7 +365,8 @@ QToolButton::checked{
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	
+	background-color: rgb(0, 182, 143);
 	border-radius: 5px;
 }
 
@@ -376,7 +377,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	background-color: rgb(0, 182, 143);
 }</string>
             </property>
             <property name="text">
@@ -1005,7 +1006,7 @@ QMenu::separator {
         <number>0</number>
        </property>
        <property name="bottomMargin">
-        <number>19</number>
+        <number>10</number>
        </property>
        <item>
         <widget class="QWidget" name="horizontalWidget_1_2_4_r" native="true">
@@ -2202,20 +2203,22 @@ QMenu::separator {
 }
 
 QScrollBar:vertical{
-    width: 8px;
+    width: 10px;
 	
-	background-color: rgb(67, 77, 88);
+	
+	background-color: rgba(255, 255, 255, 50);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
     padding-bottom: 0px;
+border-radius: 4px;
 }
 
 QScrollBar::handle:vertical {
-    width: 8px;
+    width: 10px;
 	
 	background-color: rgb(239, 239, 239);
     /*滚动条两端变成椭圆 */
-    border-radius: 2px;
+    border-radius: 4px;
     min-height: 0;
 }
 
@@ -2393,7 +2396,8 @@ border-radius: 2px;
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	
+	background-color: rgb(0, 182, 143);
 	border-radius: 5px;
 }
 
@@ -2404,7 +2408,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	background-color: rgb(0, 182, 143);
 }</string>
                   </property>
                   <property name="text">
@@ -2497,7 +2501,8 @@ QToolButton:hover {
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	
+	background-color: rgb(0, 182, 143);
 	border-radius: 5px;
 }
 
@@ -2508,7 +2513,7 @@ QToolButton::menu-indicator {
  
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	background-color: rgb(0, 182, 143);
 }</string>
                   </property>
                   <property name="text">

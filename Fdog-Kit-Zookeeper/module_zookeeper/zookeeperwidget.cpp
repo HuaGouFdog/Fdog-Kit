@@ -250,6 +250,9 @@ void zookeeperwidget::addNode(QString &path)
         ui->lineEdit_node_create->setText(path + "/newNode");
     }
     ui->lineEdit_node_create->setFocus();
+    //当前状态是创建
+    isCreate = true;
+
     showCreateWidget();
     hideNodeInfoWidget();
 }
@@ -275,7 +278,9 @@ void zookeeperwidget::rece_createNode(int code, QString message, QString path, Q
 
     } else {
         //创建失败
+        showMessage("创建节点失败", false);
     }
+    isCreate = false;
 }
 
 void zookeeperwidget::deleteNode(QString &path)
@@ -496,11 +501,10 @@ void zookeeperwidget::on_textEdit_data_textChanged()
     QTreeWidgetItem * currentItem = ui->treeWidget->currentItem();
     if (currentItem == NULL) {
         //说明没有点过节点，不加判断会崩溃
-    } else {
-        qDebug() << "当前数据1=" << ui->textEdit_data->toPlainText();
+    } else if (!isCreate) {
         QString path;
         getParentNode(currentItem, path);
-        qDebug() << "当前数据2=" << path;
+        qDebug() << "当前数据1=" << ui->textEdit_data->toPlainText() << "  当前数据2=" << path;
         if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == path) {
             qDebug() << "显示修改按钮";
             ui->toolButton_saveData->show();
@@ -782,17 +786,18 @@ void zookeeperwidget::hideButton()
 
 void zookeeperwidget::showMessage(QString message, bool isSuccess)
 {
-    zookeepertipswidget * a = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
+    tipwidget = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
     //QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-    int x = (ui->treeWidget->width() - a->width()) / 2;//x坐标
-    int y = ui->treeWidget->height() - a->height();//y坐标
-    a->move(x, y);//窗口移动
-    a->show();
-    QPropertyAnimation *pAnimation = new QPropertyAnimation(a, "windowOpacity");
+    int x = (ui->treeWidget->width() - tipwidget->width()) / 2;     //x坐标
+    int y = ui->treeWidget->height() - tipwidget->height() - 10;         //y坐标
+    tipwidget->move(x, y);//窗口移动
+    tipwidget->show();
+    QPropertyAnimation *pAnimation = new QPropertyAnimation(tipwidget, "windowOpacity");
 
     QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
     {
-        a->close();
+        tipwidget->close();
+        tipwidget = nullptr;
     });
     pAnimation->setDuration(2000);
     pAnimation->setStartValue(1);
@@ -925,4 +930,15 @@ void zookeeperwidget::on_textEdit_data_customContextMenuRequested(const QPoint &
     textMenu->addAction(m_action_text_delete);
     textMenu->addAction(m_action_text_allSelect);
     textMenu->exec(QCursor::pos());//弹出右键菜单，菜单位置为光标位置
+}
+
+void zookeeperwidget::resizeEvent(QResizeEvent *event)
+{
+    if (tipwidget != nullptr) {
+        int x = (ui->treeWidget->width() - tipwidget->width()) / 2;     //x坐标
+        int y = ui->treeWidget->height() - tipwidget->height() - 10;         //y坐标
+        tipwidget->move(x, y);//窗口移动
+        tipwidget->show();
+    }
+
 }
