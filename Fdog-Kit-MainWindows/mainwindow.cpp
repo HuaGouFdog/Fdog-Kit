@@ -63,8 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(rece_toolButton_fullScreen_sign()));
 
-    zookeepermanagewidget * zkWidget = new zookeepermanagewidget(this);
-    ui->centralWidget->layout()->addWidget(zkWidget);
+    setSupportStretch(true);
 }
 
 void MainWindow::calculateCurrentStrechRect()
