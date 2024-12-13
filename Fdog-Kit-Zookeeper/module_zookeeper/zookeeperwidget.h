@@ -9,7 +9,7 @@
 #include "zookeeper.h"
 #include "module_zookeeper/zookeeperhandle.h"
 #include "module_utils/utils.h"
-
+#include "zookeepertipswidget.h"
 namespace Ui {
 class zookeeperwidget;
 }
@@ -142,6 +142,9 @@ private slots:
 
     void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
 
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
 private:
     Ui::zookeeperwidget *ui;
 
@@ -171,6 +174,9 @@ private:
     int8_t buttonSid;
 
     bool isFirst = true;
+    bool isCreate = false; //区分创建和修改
+
+    zookeepertipswidget * tipwidget = nullptr;
 
 };
 
