@@ -5,9 +5,7 @@
 
 sqlhandle::sqlhandle()
 {
-    //zookeeper_init();
-    //ssh_init();
-    //ssh_key_init();
+    zookeeper_init();
 }
 
 sqlhandle::~sqlhandle()

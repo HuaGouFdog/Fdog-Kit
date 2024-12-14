@@ -420,9 +420,10 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
                 }
             }
         }
-        qDebug("找不到对应widget");
+        qDebug("找不到对应widget,进行创建");
         //ui->stackedWidget->setCurrentIndex(connectManager.value(index));
-    } else {
+    }
+
         //创建连接
         m_buttonGroup->checkedButton()->setIcon(QIcon(":lib/yellow.svg"));//黄色
 
@@ -435,7 +436,6 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
         zkStatusInfoMap[m_buttonGroup->checkedButton()].status_ = 1;
         zkStatusInfoMap[m_buttonGroup->checkedButton()].zkWidget_ =zkWidget;
         qDebug() << "记录状态 按钮 = " << m_buttonGroup->checkedButton();
-    }
 }
 
 void zookeepermanagewidget::rece_buttonDoubleClicked(int index)
