@@ -6,6 +6,7 @@
 #include <QThread>
 #include <QThreadPool>
 #include <QTreeWidgetItem>
+#include <QListWidgetItem>
 #include "zookeeper.h"
 #include "module_zookeeper/zookeeperhandle.h"
 #include "module_utils/utils.h"
@@ -50,6 +51,11 @@ public:
 
     void expandAllItemsOne(QTreeWidget* treeWidget, bool isexpand, int sum);
     void expandItemAndChildrenOne(QTreeWidgetItem* item, bool isexpand, int sum);
+
+    //展开选中节点
+    void expandSelectItems(QTreeWidget* treeWidget, QString& path, QString& pathAll);
+    void expandSelectItems_s(QTreeWidgetItem* Item, const QString& path, QString& pathAll);
+    void showParent2(QTreeWidgetItem* pItem);
 
     void deleteTreeNode (QTreeWidgetItem* item);
     void deleteTreeItem (QTreeWidgetItem* item);
@@ -143,6 +149,8 @@ private slots:
     void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
 
     void on_toolButton_copy_node_clicked();
+
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

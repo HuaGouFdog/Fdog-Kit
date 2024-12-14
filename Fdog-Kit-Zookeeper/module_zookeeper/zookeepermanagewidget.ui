@@ -24,7 +24,7 @@ border-radius:10px;
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>10</number>
    </property>
    <property name="topMargin">
     <number>10</number>
@@ -33,7 +33,7 @@ border-radius:10px;
     <number>10</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>10</number>
    </property>
    <item>
     <widget class="QWidget" name="widget_left" native="true">
@@ -59,6 +59,9 @@ border-radius:10px;
 border-image: url(:/lib/back2.png);
 border-right:0px solid rgba(108, 117, 125, 65); 
 border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
 }
 QScrollBar:vertical{
     width: 10px;
@@ -293,7 +296,7 @@ QScrollBar::up-arrow:vertical {
               <x>0</x>
               <y>0</y>
               <width>180</width>
-              <height>425</height>
+              <height>415</height>
              </rect>
             </property>
             <property name="styleSheet">

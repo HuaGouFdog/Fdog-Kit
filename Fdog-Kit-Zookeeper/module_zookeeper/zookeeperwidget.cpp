@@ -313,6 +313,7 @@ void zookeeperwidget::copyPath()
 
 void zookeeperwidget::showParent(QTreeWidgetItem *pItem)
 {
+    //pItem->setExpanded(true);
     if (pItem != nullptr) {
         QTreeWidgetItem* pTreeParentItem = pItem->parent();
         if (pTreeParentItem != nullptr) {
@@ -342,14 +343,25 @@ void zookeeperwidget::searchItem(QTreeWidgetItem *tableItem, const QString &strT
             if (pTreeItem != nullptr) {
                 //如何索引项字段部分匹配于输入框字段则设置该项及其父子项显示且展开
                 if (pTreeItem->text(0).contains(strText, ui->toolButton_sensitive->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive)) {
-                    pTreeItem->setHidden(false);
-                    pTreeItem->setExpanded(true);
+                    //pTreeItem->setHidden(false);
+                    //pTreeItem->setExpanded(true);
+
+                    QString url;
+                    getParentNode(pTreeItem, url);
+                    //ui->lineEdit_node->setText(item->text(column));
+                    if (ui->checkBox_auto_url->isChecked()) {
+                        //QString url = item->text(column);
+                        url = QUrl::fromPercentEncoding(url.toUtf8());
+                    }
+                    qDebug() << "找到path2 = " << url;
+                    ui->listWidget->addItem(url);
+                    ui->stackedWidget->setCurrentIndex(1);
                     showSon(pTreeItem);
                     showParent(pTreeItem);
                 } else {
-                    pTreeItem->setHidden(true);//不匹配则隐藏
-                    searchItem(pTreeItem, strText);//递归遍历
+                    //pTreeItem->setHidden(true);//不匹配则隐藏
                 }
+                searchItem(pTreeItem, strText);//递归遍历
             }
         }
     }
@@ -359,9 +371,11 @@ void zookeeperwidget::showItem(const QString &strText)
 {
     for (int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i) {
         if (ui->treeWidget->topLevelItem(i)->text(0).contains(strText, ui->toolButton_sensitive->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive)) {
-            ui->treeWidget->topLevelItem(i)->setHidden(false);
+            //ui->treeWidget->topLevelItem(i)->setHidden(false);
+            qDebug() << "找到path1 = " << ui->treeWidget->topLevelItem(i)->text(0);
+            ui->stackedWidget->setCurrentIndex(1);
         }else {
-            ui->treeWidget->topLevelItem(i)->setHidden(true);
+            //ui->treeWidget->topLevelItem(i)->setHidden(true);
         }
         searchItem(ui->treeWidget->topLevelItem(i), strText);
     }
@@ -414,6 +428,60 @@ void zookeeperwidget::expandItemAndChildrenOne(QTreeWidgetItem *item, bool isexp
        QTreeWidgetItem* childItem = item->child(i);
        expandItemAndChildrenOne(childItem, isexpand, sum);
    }
+}
+
+void zookeeperwidget::expandSelectItems(QTreeWidget *treeWidget, QString& path, QString& pathAll)
+{
+    //展开选中节点
+   for (int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i) {
+       if (ui->treeWidget->topLevelItem(i)->text(0).contains(path, ui->toolButton_sensitive->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive)) {
+           qDebug() << "找到path1 = " << ui->treeWidget->topLevelItem(i)->text(0);
+           //顶层，什么都不做，选中就行
+       }
+       expandSelectItems_s(ui->treeWidget->topLevelItem(i), path, pathAll);
+   }
+}
+
+void zookeeperwidget::expandSelectItems_s(QTreeWidgetItem *tableItem, const QString &path, QString& pathAll)
+{
+    //防止野指针的问题
+    if (tableItem != nullptr) {
+        for (int i = 0; i < tableItem->childCount(); ++i) {
+            QTreeWidgetItem* pTreeItem = tableItem->child(i);
+            if (pTreeItem != nullptr) {
+                //如何索引项字段部分匹配于输入框字段则设置该项及其父子项显示且展开
+                if (pTreeItem->text(0).contains(path, ui->toolButton_sensitive->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive)) {
+                    //节点名会重复，还要判断前面的
+                    QString url;
+                    getParentNode(pTreeItem, url);
+                    if (url == pathAll) {
+                        qDebug() << "找到path4 = " << path << " 完整路径：" << pathAll;
+                        ui->treeWidget->setCurrentItem(pTreeItem);
+                        on_treeWidget_itemClicked(pTreeItem, 0);
+                        showParent2(pTreeItem);
+                        return;
+                    }
+                }
+                expandSelectItems_s(pTreeItem, path, pathAll);//递归遍历
+            }
+        }
+    }
+}
+
+void zookeeperwidget::showParent2(QTreeWidgetItem *pItem)
+{
+    if (pItem != nullptr) {
+        QTreeWidgetItem* pTreeParentItem = pItem->parent();
+        if (pTreeParentItem != nullptr) {
+            pTreeParentItem->setHidden(false);  //将该父级索引项设置为显示
+            pItem->setExpanded(true);
+            qDebug() << "展开" << pTreeParentItem->text(0);
+            showParent2(pTreeParentItem);//直接传入处理过的节点
+            //避免传入该节点后递归后跳转到祖父节点
+        } else {
+             qDebug() << "到达顶层";
+        }
+    }
 }
 
 void zookeeperwidget::deleteTreeNode(QTreeWidgetItem* item)
@@ -607,12 +675,14 @@ void zookeeperwidget::on_toolButton_copy_data_clicked()
 
 void zookeeperwidget::on_lineEdit_search_textChanged(const QString &arg1)
 {
+    ui->listWidget->clear();
+    ui->stackedWidget->setCurrentIndex(0);
     if (arg1 != "") {
         showItem(arg1);
-        expandAllItems(ui->treeWidget, true, 0);
+        //expandAllItems(ui->treeWidget, true, 0);
     } else {
         isUnfold = false;
-        expandAllItems(ui->treeWidget, false, 0);
+        //expandAllItems(ui->treeWidget, false, 0);
         expandAllItemsOne(ui->treeWidget, true, 0);
     }
 }
@@ -949,4 +1019,13 @@ void zookeeperwidget::on_toolButton_copy_node_clicked()
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(ui->lineEdit_node->text());
     showMessage("复制成功", true);
+}
+
+void zookeeperwidget::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    int index = item->text().lastIndexOf("/");
+    //对选中内容进行定位
+    qDebug() << "选中数据为" << item->text().mid(index + 1);
+    expandSelectItems(ui->treeWidget, item->text().mid(index + 1), item->text());
+    ui->stackedWidget->setCurrentIndex(0);
 }
