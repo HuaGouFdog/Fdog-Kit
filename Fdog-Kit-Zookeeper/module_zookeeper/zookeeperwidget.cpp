@@ -109,9 +109,7 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
     } else {
         showMessage("连接成功", true);
         emit send_init(buttonSid, code);
-        //ui->lineEdit_node->setText(path);
-        ui->label_node->setText(path);
-        ui->label_node->setWordWrap(true);
+        ui->lineEdit_node->setText(path);
         QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->treeWidget);
         ui->treeWidget->addTopLevelItem(topItem);
         topItem->setText(0, path);
@@ -478,11 +476,10 @@ void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colum
     if (ui->checkBox_auto_url->isChecked()) {
         //QString url = item->text(column);
         QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
-        ui->label_node->setText(decodedUrl);
+        ui->lineEdit_node->setText(decodedUrl);
     } else {
-        ui->label_node->setText(url);
+        ui->lineEdit_node->setText(url);
     }
-    ui->label_node->setWordWrap(true);
     QString path = url;
     qDebug() << "on_treeWidget_itemClicked path = " << path;
     getNodeInfo(path);
@@ -605,6 +602,7 @@ void zookeeperwidget::on_toolButton_copy_data_clicked()
 {
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(ui->textEdit_data->toPlainText());
+    showMessage("复制成功", true);
 }
 
 void zookeeperwidget::on_lineEdit_search_textChanged(const QString &arg1)
@@ -782,9 +780,9 @@ void zookeeperwidget::showCreateWidget()
 
 void zookeeperwidget::hideButton()
 {
-    ui->toolButton_add->hide();
-    ui->toolButton__delete->hide();
-    ui->toolButton_refresh->hide();
+    //ui->toolButton_add->hide();
+    //ui->toolButton__delete->hide();
+    //ui->toolButton_refresh->hide();
 }
 
 void zookeeperwidget::showMessage(QString message, bool isSuccess)
@@ -882,9 +880,9 @@ void zookeeperwidget::on_treeWidget_itemEntered(QTreeWidgetItem *item, int colum
 void zookeeperwidget::on_checkBox_auto_url_clicked()
 {
     if (ui->checkBox_auto_url->isChecked()) {
-        QString url = ui->label_node->text();
+        QString url = ui->lineEdit_node->text();
         QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
-        ui->label_node->setText(decodedUrl);
+        ui->lineEdit_node->setText(decodedUrl);
     }
 }
 
@@ -944,4 +942,11 @@ void zookeeperwidget::resizeEvent(QResizeEvent *event)
         tipwidget->show();
     }
 
+}
+
+void zookeeperwidget::on_toolButton_copy_node_clicked()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->lineEdit_node->text());
+    showMessage("复制成功", true);
 }
