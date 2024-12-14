@@ -142,6 +142,8 @@ private slots:
 
     void on_textEdit_data_customContextMenuRequested(const QPoint &pos);
 
+    void on_toolButton_copy_node_clicked();
+
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
