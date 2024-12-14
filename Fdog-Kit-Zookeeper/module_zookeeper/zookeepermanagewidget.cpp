@@ -59,7 +59,7 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
         menu->addAction(clearAction);
         qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
         qbutton->setMenu(menu);
-        QObject::connect(againAction, &QAction::triggered, this, [this](){
+        QObject::connect(againAction, &QAction::triggered, this, [=](){
             qDebug("重连被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
             QStringList dataList;
@@ -69,7 +69,7 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
             }
         });
 
-        QObject::connect(closeAction, &QAction::triggered, this, [this](){
+        QObject::connect(closeAction, &QAction::triggered, this, [=](){
             qDebug("关闭被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
             QStringList dataList;
@@ -77,9 +77,19 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
                 dataList = button_->text().split(":");
                 qDebug() << "text = " << dataList;
             }
-            //关闭zk连接
+            qDebug("关闭被点击, 删除zkWidget, 关闭zk连接");
+            //删除zkWidget, 关闭zk连接
+            //delete zkWidget;
+            qDebug("关闭被点击, 删除zkWidget, 关闭zk连接2");
+            ui->stackedWidget->setCurrentIndex(0);
+            zkStatusInfoMap[qbutton].status_ = 2;
+            if (zkStatusInfoMap[qbutton].zkWidget_ != nullptr) {
+                delete zkStatusInfoMap[qbutton].zkWidget_;
+                zkStatusInfoMap[qbutton].zkWidget_ =nullptr;
+            }
+            qbutton->setIcon(QIcon(":lib/grey.svg"));//灰色
         });
-        QObject::connect(clearAction, &QAction::triggered, this, [this](){
+        QObject::connect(clearAction, &QAction::triggered, this, [=](){
             qDebug("删除被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
             QStringList dataList;
@@ -87,6 +97,20 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
                 dataList = button_->text().split(":");
                 qDebug() << "text = " << dataList;
             }
+
+            zkInfoStruct zkInfo;
+            zkInfo.host = dataList[0];
+            zkInfo.port = dataList[1];
+            db_->zk_deleteZkInfo(zkInfo);
+
+            ui->stackedWidget->setCurrentIndex(0);
+            zkStatusInfoMap[qbutton].status_ = 2;
+
+            if (zkStatusInfoMap[qbutton].zkWidget_ != nullptr) {
+                delete zkStatusInfoMap[qbutton].zkWidget_;
+                zkStatusInfoMap[qbutton].zkWidget_ =nullptr;
+            }
+
 
             m_buttonGroup->removeButton(button_);
             delete(button_);
@@ -180,7 +204,7 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
         menu->addAction(clearAction);
         qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
         qbutton->setMenu(menu);
-        QObject::connect(againAction, &QAction::triggered, this, [this](){
+        QObject::connect(againAction, &QAction::triggered, this, [=](){
             qDebug("重连被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
             QStringList dataList;
@@ -190,7 +214,7 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
             }
         });
 
-        QObject::connect(closeAction, &QAction::triggered, this, [this](){
+        QObject::connect(closeAction, &QAction::triggered, this, [=](){
             qDebug("关闭被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
             QStringList dataList;
@@ -200,7 +224,7 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
             }
             //关闭zk连接
         });
-        QObject::connect(clearAction, &QAction::triggered, this, [this](){
+        QObject::connect(clearAction, &QAction::triggered, this, [=](){
             qDebug("删除被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
             QStringList dataList;
@@ -208,6 +232,16 @@ void zookeepermanagewidget::newCreate(connnectInfoStruct &cInfoStruct)
                 dataList = button_->text().split(":");
                 qDebug() << "text = " << dataList;
             }
+
+            zkInfoStruct zkInfo;
+            zkInfo.host = dataList[0];
+            zkInfo.port = dataList[1];
+            db_->zk_deleteZkInfo(zkInfo);
+
+            delete zkWidget;
+            ui->stackedWidget->setCurrentIndex(0);
+            zkStatusInfoMap[qbutton].status_ = 2;
+            zkStatusInfoMap[qbutton].zkWidget_ =nullptr;
 
             m_buttonGroup->removeButton(button_);
             delete(button_);
@@ -367,6 +401,12 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
                 dataList = button_->text().split(":");
                 qDebug() << "text = " << dataList;
             }
+
+            zkInfoStruct zkInfo;
+            zkInfo.host = dataList[0];
+            zkInfo.port = dataList[1];
+            db_->zk_deleteZkInfo(zkInfo);
+
             delete zkWidget;
             ui->stackedWidget->setCurrentIndex(0);
             zkStatusInfoMap[qbutton].status_ = 2;
@@ -420,9 +460,10 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
                 }
             }
         }
-        qDebug("找不到对应widget");
+        qDebug("找不到对应widget,进行创建");
         //ui->stackedWidget->setCurrentIndex(connectManager.value(index));
-    } else {
+    }
+
         //创建连接
         m_buttonGroup->checkedButton()->setIcon(QIcon(":lib/yellow.svg"));//黄色
 
@@ -435,7 +476,6 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
         zkStatusInfoMap[m_buttonGroup->checkedButton()].status_ = 1;
         zkStatusInfoMap[m_buttonGroup->checkedButton()].zkWidget_ =zkWidget;
         qDebug() << "记录状态 按钮 = " << m_buttonGroup->checkedButton();
-    }
 }
 
 void zookeepermanagewidget::rece_buttonDoubleClicked(int index)
@@ -449,7 +489,7 @@ void zookeepermanagewidget::rece_init(int buttonSid, int code)
         m_buttonGroup->button(buttonSid)->setIcon(QIcon(":lib/green.svg"));//绿色
         zkStatusInfoMap[m_buttonGroup->checkedButton()].status_ = 0;
     } else {
-        m_buttonGroup->button(buttonSid)->setIcon(QIcon(":lib/grey.png")); //灰色
+        m_buttonGroup->button(buttonSid)->setIcon(QIcon(":lib/grey.svg")); //灰色
         zkStatusInfoMap[m_buttonGroup->checkedButton()].status_ = 3;
         //移除
         connectManager.remove(buttonSid);

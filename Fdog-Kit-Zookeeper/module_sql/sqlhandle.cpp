@@ -5,9 +5,7 @@
 
 sqlhandle::sqlhandle()
 {
-    //zookeeper_init();
-    //ssh_init();
-    //ssh_key_init();
+    zookeeper_init();
 }
 
 sqlhandle::~sqlhandle()
@@ -121,6 +119,7 @@ void sqlhandle::zookeeper_init()
     } else {
         qDebug() << "DB_ZKINFO.db Table created!";
     }
+    sqlQuery.finish();
 }
 
 void sqlhandle::sql_mysql_init()
@@ -199,8 +198,9 @@ void sqlhandle::zk_insertZkInfo(zkInfoStruct zkInfo)
     if(!sqlQuery.exec()) {
         qDebug() << "Error: Fail to insert data. " << sqlQuery.lastError();
     } else {
-        // do something
+        qDebug() << "insert data success!";
     }
+    sqlQuery.finish();
 }
 
 void sqlhandle::zk_updateZkInfo(zkInfoStruct zkInfo)
@@ -211,13 +211,14 @@ void sqlhandle::zk_updateZkInfo(zkInfoStruct zkInfo)
 void sqlhandle::zk_deleteZkInfo(zkInfoStruct zkInfo)
 {
     QSqlQuery sqlQuery;
-    sqlQuery.prepare("DELETE TB_ZKINFO WHERE host=?");
+    sqlQuery.prepare("DELETE FROM TB_ZKINFO WHERE host = ? ");
     sqlQuery.addBindValue(zkInfo.host);
     if(!sqlQuery.exec()) {
         qDebug() << "Error: Fail to DELETE table." << sqlQuery.lastError();
     } else {
-        qDebug() << "updated data success!";
+        qDebug() << "delete data success!";
     }
+    sqlQuery.finish();
 }
 
 QVector<connnectInfoStruct> sqlhandle::ssh_getAllSSHInfo()
@@ -344,7 +345,7 @@ void sqlhandle::ssh_updateSSHInfo(connnectInfoStruct cInfoStruct)
 void sqlhandle::ssh_deleteSSHInfo(connnectInfoStruct cInfoStruct)
 {
     QSqlQuery sqlQuery;
-    sqlQuery.prepare("DELETE TB_SSHINFO WHERE ip=?");
+    sqlQuery.prepare("DELETE FROM TB_SSHINFO WHERE ip=?");
     sqlQuery.addBindValue(cInfoStruct.host);
     if(!sqlQuery.exec()) {
         qDebug() << "Error: Fail to DELETE table." << sqlQuery.lastError();
