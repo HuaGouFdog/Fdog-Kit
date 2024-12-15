@@ -6,7 +6,7 @@
 
 void initWatcher(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx)
 {
-    qDebug() << "initWatcher ...";
+    qDebug() << "initWatcher ... type = " << type;
     //监听事件回调函数
     if (type ==ZOO_SESSION_EVENT) {
         if (state == ZOO_CONNECTED_STATE) {
@@ -23,7 +23,8 @@ void initWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
             qDebug() << "connectState ZOO_ASSOCIATING_STATE";
         }
     } else {
-        qDebug() << "其他事件";
+        qDebug() << "其他事件2" << path;
+        qDebug() << "type2 = " << type << " state = " << state;
         // 其他类型的事件
         // 在这里处理其他类型的事件
     }
@@ -64,18 +65,17 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
         } 
         QString message;
         QMetaObject::invokeMethod(obj_,"rece_chanage_event",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message), Q_ARG(QString,path_str));
-        qDebug() << "节点数据发生变化2" << path;
     } else if (type == ZOO_DELETED_EVENT) {
-        // 节点被删除
         // 在这里处理节点被删除的逻辑
-        qDebug() << "节点被删除1" << path;
+        qDebug() << "节点被删除" << path;
         QMetaObject::invokeMethod(obj_,"rece_delete_event",Qt::QueuedConnection, Q_ARG(int,0), Q_ARG(QString,message), Q_ARG(QString,path_str));
     } else if (type == ZOO_CREATED_EVENT) {
         qDebug() << "节点被创建" << path;
         // 节点被创建
         // 在这里处理节点被创建的逻辑  
     } else {
-        qDebug() << "其他事件";
+        qDebug() << "其他事件1" << path;
+        qDebug() << "type = " << type << " state = " << state;
         // 其他类型的事件
         // 在这里处理其他类型的事件
     }
@@ -115,6 +115,7 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_, int t
     if (timeout == 0) {
         timeout = 5000;
     }
+    qDebug() << "调用初始化";
     zh = zookeeper_init(host.c_str(), initWatcher, timeout, 0, &connectState, 0);
     QElapsedTimer timer;
     timer.start();
