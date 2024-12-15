@@ -195,9 +195,9 @@ border-right:2px solid rgba(108, 117, 125, 65);
             </property>
             <property name="styleSheet">
              <string notr="true">#widget_1_3_l_1{
-color: rgb(231, 238, 244);
+color: rgb(255, 255, 255);
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 120);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 10px;
 padding-left:10px;
@@ -236,7 +236,7 @@ padding-right:10px;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="placeholderText">
-                <string>搜索</string>
+                <string>搜索节点</string>
                </property>
               </widget>
              </item>
@@ -263,19 +263,22 @@ QToolButton:hover {
                 <string>清除</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>18</width>
-                 <height>18</height>
+                 <width>25</width>
+                 <height>25</height>
                 </size>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QToolButton" name="toolButton_sensitive">
+               <property name="toolTip">
+                <string>区分大小写</string>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
@@ -295,17 +298,29 @@ QToolButton:hover {
 }
 QToolButton::checked{
 	color: rgb(255, 255, 255);
-	border-radius: 2px;
+	border-radius: 0px;
 	
-	border: 1px solid rgb(143, 143, 143);
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+QToolTip {
+color: rgb(255, 255, 255);
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
 }</string>
                </property>
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>18</width>
+                 <height>18</height>
+                </size>
                </property>
                <property name="checkable">
                 <bool>true</bool>
