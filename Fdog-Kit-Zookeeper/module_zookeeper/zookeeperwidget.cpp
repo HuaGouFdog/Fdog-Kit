@@ -349,11 +349,7 @@ void zookeeperwidget::searchItem(QTreeWidgetItem *tableItem, const QString &strT
                     QString url;
                     getParentNode(pTreeItem, url);
                     //ui->lineEdit_node->setText(item->text(column));
-                    if (ui->checkBox_auto_url->isChecked()) {
-                        //QString url = item->text(column);
-                        url = QUrl::fromPercentEncoding(url.toUtf8());
-                    }
-                    qDebug() << "找到path2 = " << url;
+                    //qDebug() << "找到path2 = " << url;
                     ui->listWidget->addItem(url);
                     ui->stackedWidget->setCurrentIndex(1);
                     showSon(pTreeItem);
@@ -461,6 +457,8 @@ void zookeeperwidget::expandSelectItems_s(QTreeWidgetItem *tableItem, const QStr
                         showParent2(pTreeItem);
                         return;
                     }
+                } else {
+                    //qDebug() << "找不到" << pTreeItem->text(0);
                 }
                 expandSelectItems_s(pTreeItem, path, pathAll);//递归遍历
             }
@@ -504,7 +502,7 @@ void zookeeperwidget::deleteTreeNode(QTreeWidgetItem* item)
         //显示父节点数据
         QString path2;
         getParentNode(parent, path2);
-        qDebug() << "path2 = " << path2;
+        //qDebug() << "path2 = " << path2;
         getNodeInfo(path2);
     } else {
         delete item;
