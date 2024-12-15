@@ -150,7 +150,7 @@ border-right:2px solid rgba(108, 117, 125, 65);
         <number>9</number>
        </property>
        <property name="bottomMargin">
-        <number>10</number>
+        <number>0</number>
        </property>
        <item>
         <widget class="QWidget" name="horizontalWidget_1_3_l" native="true">
@@ -195,9 +195,9 @@ border-right:2px solid rgba(108, 117, 125, 65);
             </property>
             <property name="styleSheet">
              <string notr="true">#widget_1_3_l_1{
-color: rgb(231, 238, 244);
+color: rgb(255, 255, 255);
 border-radius: 14px;
-background-color: rgb(25, 25, 25, 120);
+background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
 border-radius: 10px;
 padding-left:10px;
@@ -236,7 +236,7 @@ padding-right:10px;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="placeholderText">
-                <string>搜索</string>
+                <string>搜索节点</string>
                </property>
               </widget>
              </item>
@@ -263,19 +263,22 @@ QToolButton:hover {
                 <string>清除</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>18</width>
-                 <height>18</height>
+                 <width>25</width>
+                 <height>25</height>
                 </size>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QToolButton" name="toolButton_sensitive">
+               <property name="toolTip">
+                <string>区分大小写</string>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
@@ -295,17 +298,29 @@ QToolButton:hover {
 }
 QToolButton::checked{
 	color: rgb(255, 255, 255);
-	border-radius: 2px;
+	border-radius: 0px;
 	
-	border: 1px solid rgb(143, 143, 143);
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+QToolTip {
+color: rgb(255, 255, 255);
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
 }</string>
                </property>
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="../lib.qrc">
                  <normaloff>:/lib/daxiao.png</normaloff>:/lib/daxiao.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>18</width>
+                 <height>18</height>
+                </size>
                </property>
                <property name="checkable">
                 <bool>true</bool>
@@ -394,18 +409,69 @@ QToolButton:hover {
            <number>1</number>
           </property>
           <item>
-           <widget class="QTreeWidget" name="treeWidget">
+           <widget class="QWidget" name="horizontalWidget_1_1_l" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>58</height>
+             </size>
+            </property>
             <property name="font">
              <font>
-              <family>OPPOSans B</family>
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="contextMenuPolicy">
-             <enum>Qt::CustomContextMenu</enum>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#treeWidget {
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QStackedWidget" name="stackedWidget">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <widget class="QWidget" name="page">
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QTreeWidget" name="treeWidget">
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="contextMenuPolicy">
+                    <enum>Qt::CustomContextMenu</enum>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">#treeWidget {
 background-color: rgba(255, 255, 255, 0);
 }
 
@@ -610,94 +676,233 @@ QMenu::separator {
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
 }</string>
-            </property>
-            <property name="lineWidth">
-             <number>1</number>
-            </property>
-            <property name="midLineWidth">
-             <number>0</number>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAsNeeded</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAsNeeded</enum>
-            </property>
-            <property name="autoScrollMargin">
-             <number>20</number>
-            </property>
-            <property name="verticalScrollMode">
-             <enum>QAbstractItemView::ScrollPerItem</enum>
-            </property>
-            <property name="horizontalScrollMode">
-             <enum>QAbstractItemView::ScrollPerItem</enum>
-            </property>
-            <property name="indentation">
-             <number>20</number>
-            </property>
-            <property name="uniformRowHeights">
-             <bool>true</bool>
-            </property>
-            <property name="allColumnsShowFocus">
-             <bool>false</bool>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-            <attribute name="headerVisible">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="headerCascadingSectionResizes">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="headerDefaultSectionSize">
-             <number>100</number>
-            </attribute>
-            <attribute name="headerHighlightSections">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="headerMinimumSectionSize">
-             <number>30</number>
-            </attribute>
-            <attribute name="headerShowSortIndicator" stdset="0">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="headerStretchLastSection">
-             <bool>true</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="horizontalWidget_1_1_l" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>58</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
+                   </property>
+                   <property name="lineWidth">
+                    <number>1</number>
+                   </property>
+                   <property name="midLineWidth">
+                    <number>0</number>
+                   </property>
+                   <property name="verticalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAsNeeded</enum>
+                   </property>
+                   <property name="horizontalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAsNeeded</enum>
+                   </property>
+                   <property name="autoScrollMargin">
+                    <number>20</number>
+                   </property>
+                   <property name="verticalScrollMode">
+                    <enum>QAbstractItemView::ScrollPerItem</enum>
+                   </property>
+                   <property name="horizontalScrollMode">
+                    <enum>QAbstractItemView::ScrollPerItem</enum>
+                   </property>
+                   <property name="indentation">
+                    <number>20</number>
+                   </property>
+                   <property name="uniformRowHeights">
+                    <bool>true</bool>
+                   </property>
+                   <property name="allColumnsShowFocus">
+                    <bool>false</bool>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                   <attribute name="headerVisible">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="headerCascadingSectionResizes">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="headerDefaultSectionSize">
+                    <number>100</number>
+                   </attribute>
+                   <attribute name="headerHighlightSections">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="headerMinimumSectionSize">
+                    <number>30</number>
+                   </attribute>
+                   <attribute name="headerShowSortIndicator" stdset="0">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="headerStretchLastSection">
+                    <bool>true</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string notr="true">1</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="page_2">
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QListWidget" name="listWidget">
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">#listWidget {
+background-color: rgba(255, 255, 255, 0);
+}
+
+QListWidget#listWidget {
+	border: 0px solid #D3D6DD;
+	outline: none;
+}
+QListWidget::item {
+	height: 28px;
+	color: rgb(255, 255, 255);
+	border: 1px;
+	outline: 0px;
+}
+
+QListWidget::item:hover {
+	border: 0px;
+	outline: 0px;
+    color: rgb(255, 255, 255);
+	background-color: rgb(51, 79, 108);
+}
+QListWidget::item:selected{
+    border: 0px;
+	outline: 0px;
+    color: #45B2FF;
+	background-color: rgb(51, 79, 108);
+}
+QListWidget::item:selected:active{
+    border: 0px;
+	outline: 0px;
+    color: #45B2FF;
+}
+ 
+QListWidget::item:selected:!active {
+    border: 0px;
+	outline: 0px;
+    color: #45B2FF;
+}
+
+QScrollBar:vertical{
+    width: 10px;
+	
+	
+	background-color: rgba(255, 255, 255, 50);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+border-radius: 4px;
+}
+
+QScrollBar::handle:vertical {
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 4px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}
+
+
+QScrollBar::horizontal{
+    height: 10px;
+	background-color: rgba(255, 255, 255, 50);
+	margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+border-radius: 4px;
+}
+
+QScrollBar::handle:horizontal {
+    height: 10px;
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 4px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:horizontal {
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:horizontal 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:horizontal {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:horizontal {
+    border:none;
+}
+QScrollBar::up-arrow:horizontal {
+    border:none;
+}</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
              <item>
               <widget class="QLabel" name="label">
                <property name="font">
@@ -839,7 +1044,7 @@ p, li { white-space: pre-wrap; }
         <number>0</number>
        </property>
        <property name="bottomMargin">
-        <number>10</number>
+        <number>0</number>
        </property>
        <item>
         <widget class="QWidget" name="horizontalWidget_1_2_4_r" native="true">
@@ -857,7 +1062,7 @@ p, li { white-space: pre-wrap; }
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <property name="spacing">
-           <number>20</number>
+           <number>0</number>
           </property>
           <property name="leftMargin">
            <number>9</number>
@@ -892,6 +1097,77 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item>
+           <widget class="QToolButton" name="toolButton_have_data">
+            <property name="minimumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>绿色表示当前节点有更新</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+QToolTip {
+color: rgb(255, 255, 255);
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../lib.qrc">
+              <normaloff>:/lib/grey.svg</normaloff>:/lib/grey.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QCheckBox" name="checkBox_auto">
             <property name="font">
              <font>
@@ -917,6 +1193,22 @@ border-radius: 2px;
              <bool>true</bool>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_auto_url">
