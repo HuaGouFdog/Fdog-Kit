@@ -756,6 +756,20 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
                     QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
                     itemChild->setText(0, children_path);
                     itemChild->setToolTip(0, children_path);
+                    
+                    QString url;
+                    getParentNode(itemChild, url);
+                    if (ui->checkBox_auto_url->isChecked()) {
+                        QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+                        ui->lineEdit_node->setText(decodedUrl);
+                    } else {
+                        ui->lineEdit_node->setText(url);
+                    }
+                    QString path = url;
+                    getNodeInfo(path);
+                    ui->treeWidget->setCurrentItem(itemChild);
+
+
                     QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
                 } else {
                     bool isok = true;
@@ -773,6 +787,18 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
                             QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
                             itemChild->setText(0, children_path);
                             itemChild->setToolTip(0, children_path);
+
+                            QString url;
+                            getParentNode(itemChild, url);
+                            if (ui->checkBox_auto_url->isChecked()) {
+                                QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+                                ui->lineEdit_node->setText(decodedUrl);
+                            } else {
+                                ui->lineEdit_node->setText(url);
+                            }
+                            QString path = url;
+                            getNodeInfo(path);
+                            ui->treeWidget->setCurrentItem(itemChild);
                             QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
                         }
                 }
@@ -785,31 +811,6 @@ void zookeeperwidget::rece_children_event(int code, QString message, QString pat
     if (items.isEmpty()) {
         qDebug() << "项为空 (节点可能被删除，正常)";
     }
-
-
-
-    // if (!items.isEmpty()) {
-    //     QTreeWidgetItem * item = items.first();
-    //     String_vector children = varValue.value<String_vector>();
-    //     for (int i = 0; i < children.count; ++i) {
-    //         QString children_path;
-    //         children_path = children.data[i];
-    //         QString path3 = children_path;
-    //         getParentNode(item, path3);
-    //         qDebug() << "rece_children_event path = " << path << ", children_path = " << children_path;
-    //         //不能简单查找子节点，只要父节点不一样就可以创建
-    //         QList<QTreeWidgetItem*> items_c = ui->treeWidget->findItems(children_path, Qt::MatchExactly|Qt::MatchRecursive, 0);
-    //         if (items_c.isEmpty()) {
-    //             qDebug() << "未找到，创建这个值" << children_path;
-    //             QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
-    //             itemChild->setText(0, children_path);
-    //             itemChild->setToolTip(0, children_path);
-    //             QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
-    //         }
-    //     }
-    // } else{
-    //     qDebug() << "项为空 (节点可能被删除，正常)";
-    // }
 }
 
 void zookeeperwidget::rece_create_event(QString path)
@@ -843,6 +844,16 @@ void zookeeperwidget::rece_delete_event(int code, QString message, QString path)
                     parent->removeChild(items[i]);
                     ui->treeWidget->setCurrentItem(parent);
                     //显示父节点数据
+                    qDebug() << "获取父节点信息";
+
+                    QString url;
+                    getParentNode(parent, url);
+                    if (ui->checkBox_auto_url->isChecked()) {
+                        QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+                        ui->lineEdit_node->setText(decodedUrl);
+                    } else {
+                        ui->lineEdit_node->setText(url);
+                    }
                     getNodeInfo(parent->text(i));
                 } else {
                     delete items[i];
