@@ -51,7 +51,7 @@ https://github.com/HuaGouFdog/Fdog-Kit/tree/main/Fdog-Kit-Zookeeper
 
 
 
-### 三. thirft接口测试工具（调试中）
+### 三. thirft接口测试工具（正常使用）
 目前只支持TFramedTransport+TBinaryProtocol协议
 可以自己自定义接口参数请求，也可以导入thrift文件自动生成接口参数，自动识别参数类型等，请求结果会解析为类json，同时支持源文本查看。
 
