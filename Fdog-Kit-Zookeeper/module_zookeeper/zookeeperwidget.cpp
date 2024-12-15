@@ -123,6 +123,7 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
 
 void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
 {
+
     //qDebug() << "Main Thread ID:" << QThread::currentThreadId();
     ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, path, item);
     threadpool.start(m_pRunnable);
@@ -131,6 +132,7 @@ void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
 
 void zookeeperwidget::rece_getChildren(int code, QString message, QString path, const QVariant varValue, QTreeWidgetItem *item)
 {
+
     if (code != ZOK) {
         //调用失败
     } else {
@@ -175,6 +177,7 @@ void zookeeperwidget::rece_getNodeInfo(int code, QString message, QVariant varVa
 
 void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path)
 {
+
     Stat stat = varValue.value<Stat>();
     // 获取节点的创建时间（以毫秒为单位）
     long long createTime = stat.ctime;
@@ -232,6 +235,7 @@ void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path
 
 void zookeeperwidget::rece_setNodeData(int code, QString message)
 {
+
     if (code != ZOK) {
         qDebug() <<"Failed to set node data. Error";
     } else {
@@ -286,11 +290,17 @@ void zookeeperwidget::rece_createNode(int code, QString message, QString path, Q
 
 void zookeeperwidget::deleteNode(QString &path)
 {
-    qDebug() << "delete " << path;
+    //qDebug() << "delete节点" << path;
     //先删除zk，再处理本地
     QTreeWidgetItem* item = ui->treeWidget->currentItem();
     //循环删除
     deleteTreeNode(item);
+    //显示父节点数据
+    // QTreeWidgetItem *parent = ui->treeWidget->currentItem();
+    // QString path2;
+    // getParentNode(parent, path2);
+    // getNodeInfo(path2);
+    qDebug() << "deleteNode调用完成" << path;
 }
 
 void zookeeperwidget::rece_deleteNode(int code, QString message, QTreeWidgetItem *item)
@@ -313,6 +323,7 @@ void zookeeperwidget::copyPath()
 
 void zookeeperwidget::showParent(QTreeWidgetItem *pItem)
 {
+
     //pItem->setExpanded(true);
     if (pItem != nullptr) {
         QTreeWidgetItem* pTreeParentItem = pItem->parent();
@@ -326,6 +337,7 @@ void zookeeperwidget::showParent(QTreeWidgetItem *pItem)
 
 void zookeeperwidget::showSon(QTreeWidgetItem *pItem)
 {
+
     int iChild = pItem->childCount();  //获取该子节点的数目
     //遍历当前项的子节点并设置
     for (int i = 0; i < iChild; ++i) {
@@ -336,6 +348,7 @@ void zookeeperwidget::showSon(QTreeWidgetItem *pItem)
 
 void zookeeperwidget::searchItem(QTreeWidgetItem *tableItem, const QString &strText)
 {
+
     //防止野指针的问题
     if (tableItem != nullptr) {
         for (int i = 0; i < tableItem->childCount(); ++i) {
@@ -484,29 +497,32 @@ void zookeeperwidget::showParent2(QTreeWidgetItem *pItem)
 
 void zookeeperwidget::deleteTreeNode(QTreeWidgetItem* item)
 {
+
     if (!item) {
         return;
     }
     // 递归删除子节点
-    while (item->childCount() > 0) {
-        deleteTreeNode(item->child(0));
+    // while (item->childCount() > 0) {
+    //     qDebug() << "item->childCount() " << item->childCount() << " item->child(0) =" << item->child(0)->text(0);
+    //     deleteTreeNode(item->child(0));
+    // }
+    int count = item->childCount();
+    for (int i = 0; i < count; i++){
+        qDebug() << "item->childCount() " << item->childCount() << " item->child(i) =" << item->child(i)->text(0);
+        deleteTreeNode(item->child(i));
     }
+
     QString path;
     getParentNode(item, path);
-    qDebug() << "调用deleteNode" << path;
-    QTreeWidgetItem* parent = NULL;
-    parent= item->parent();
-    if (parent != NULL) {
-        parent->removeChild(item);
-        ui->treeWidget->setCurrentItem(parent);
-        //显示父节点数据
-        QString path2;
-        getParentNode(parent, path2);
-        //qDebug() << "path2 = " << path2;
-        getNodeInfo(path2);
-    } else {
-        delete item;
-    }
+    qDebug() << "调用deleteNode删除节点 " << path;
+    // QTreeWidgetItem* parent = NULL;
+    // parent= item->parent();
+    // if (parent != NULL) {
+    //     parent->removeChild(item);
+    //     ui->treeWidget->setCurrentItem(parent);
+    // } else {
+    //     delete item;
+    // }
     
     QMetaObject::invokeMethod(zookhandle,"deleteNode",Qt::QueuedConnection, Q_ARG(QString,path), Q_ARG(QTreeWidgetItem*, item));
 }
@@ -564,7 +580,7 @@ void zookeeperwidget::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int
 
 void zookeeperwidget::on_textEdit_data_textChanged()
 {
-    qDebug() << "nodeData = " << nodeData << "& nodeDataPath = " << nodeDataPath;
+    qDebug() << "nodeData = " << nodeData << ", nodeDataPath = " << nodeDataPath;
     QTreeWidgetItem * currentItem = ui->treeWidget->currentItem();
     if (currentItem == NULL) {
         //说明没有点过节点，不加判断会崩溃
@@ -618,7 +634,7 @@ void zookeeperwidget::on_nodeAction()
     QString actionText = qobject_cast<QAction*>(sender())->text();
     QString node;
     getParentNode(ui->treeWidget->currentItem(), node);
-    qDebug() << "node = " << node;
+    //qDebug() << "node = " << node;
     if (actionText == "添加") {
         addNode(node);
     } else if (actionText == "删除") {
@@ -710,48 +726,89 @@ void zookeeperwidget::on_lineEdit_search_returnPressed()
 void zookeeperwidget::rece_children_event(int code, QString message, QString path, const QVariant varValue)
 {
     //孩子节点数据发生变化
-    qDebug() << "rece_children_event 接收到数据" << path;
     QStringList pathList = path.split("/");
     //遍历treewidget 查找 path 的子节点，有没有没存在的
     //获取节点层级
     QString path2 = pathList.at(pathList.length()-1);
-    qDebug() << "pathList.at(pathList.length()-1 = " << path2;
     if (path == "/") {
         path2 = path;
     }
+    qDebug() << "rece_children_event 接收到数据" << path << "最后面分级path = " << path2;
     QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path2, Qt::MatchExactly|Qt::MatchRecursive, 0);
-    if (!items.isEmpty()) {
-        //qDebug() << " 长度为" << items.length();
-        QTreeWidgetItem * item = items.first();
-        String_vector children = varValue.value<String_vector>();
-        //QVector<QString> children_path_list;
-        for (int i = 0; i < children.count; ++i) {
-            QString children_path;
-            // if (path != "/") {
-            //     //children_path = QString::fromStdString(path.toStdString() + "/" + children.data[i]);
-            //     children_path = children.data[i];
-            //     //children_path_list.push_back(children_path);
-            // } else {
-            //     //children_path = QString::fromStdString(path.toStdString() + children.data[i]);
-            //     children_path = children.data[i];
-            //     //children_path_list.push_back(children_path);
-            // }
-            children_path = children.data[i];
-            qDebug() << "children_path " << children_path;
-            
-            QString path3 = children_path;
-            getParentNode(item, path3);
-            qDebug() << "rece_children_event path3 = " << path3;
-            QList<QTreeWidgetItem*> items_c = ui->treeWidget->findItems(children_path, Qt::MatchExactly|Qt::MatchRecursive, 0);
-            if (items_c.isEmpty()) {
-                qDebug() << "未找到，创建这个值" << children_path;
-                QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
-                itemChild->setText(0, children_path);
-                itemChild->setToolTip(0, children_path);
-                QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
+    for(int i =0; i < items.length(); i++) {
+        QString path_;
+        getParentNode(items[i], path_);
+        if (path_ == path) {
+            qDebug() << "找到" << path2 << ", 对应父节点" << path_;
+            QTreeWidgetItem * item = items[i];
+            String_vector children = varValue.value<String_vector>();
+            for (int i = 0; i < children.count; ++i) {
+                QString children_path;
+                children_path = children.data[i];
+                QString path3 = children_path;
+                getParentNode(item, path3);
+                qDebug() << "rece_children_event path = " << path << ", children_path = " << children_path << ", path3 = " << path3;
+                //下面这种不对，只需要查看子节点是否存在
+                //不能简单查找子节点，只要父节点不一样就可以创建
+                QList<QTreeWidgetItem*> items_c = ui->treeWidget->findItems(children_path, Qt::MatchExactly|Qt::MatchRecursive, 0);
+                if (items_c.isEmpty()) {
+                    qDebug() << "未找到，创建这个值" << children_path;
+                    QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
+                    itemChild->setText(0, children_path);
+                    itemChild->setToolTip(0, children_path);
+                    
+                    QString url;
+                    getParentNode(itemChild, url);
+                    if (ui->checkBox_auto_url->isChecked()) {
+                        QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+                        ui->lineEdit_node->setText(decodedUrl);
+                    } else {
+                        ui->lineEdit_node->setText(url);
+                    }
+                    QString path = url;
+                    getNodeInfo(path);
+                    ui->treeWidget->setCurrentItem(itemChild);
+
+
+                    QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
+                } else {
+                    bool isok = true;
+                    for(int i =0; i < items_c.length(); i++) {
+                        QString path_;
+                        getParentNode(items_c[i], path_);
+                        if (path_ == path3) {
+                            //qDebug() << "已经存在" << children_path << " path3 = " << path3;
+                            isok = false;
+                            break;
+                        }
+                    }
+                     if(isok) {
+                            qDebug() << "未找到，创建这个值" << children_path << " path3 = " << path3 << " path_ = " << path_;
+                            QTreeWidgetItem *itemChild = new QTreeWidgetItem(item);
+                            itemChild->setText(0, children_path);
+                            itemChild->setToolTip(0, children_path);
+
+                            QString url;
+                            getParentNode(itemChild, url);
+                            if (ui->checkBox_auto_url->isChecked()) {
+                                QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+                                ui->lineEdit_node->setText(decodedUrl);
+                            } else {
+                                ui->lineEdit_node->setText(url);
+                            }
+                            QString path = url;
+                            getNodeInfo(path);
+                            ui->treeWidget->setCurrentItem(itemChild);
+                            QMetaObject::invokeMethod(zookhandle,"getSingleChildren",Qt::QueuedConnection, Q_ARG(QString,path3),Q_ARG(void*,this));
+                        }
+                }
+
             }
+        } else {
+            qDebug() << "只是子节点相同，过滤";
         }
-    } else{
+    }
+    if (items.isEmpty()) {
         qDebug() << "项为空 (节点可能被删除，正常)";
     }
 }
@@ -764,29 +821,46 @@ void zookeeperwidget::rece_create_event(QString path)
 void zookeeperwidget::rece_delete_event(int code, QString message, QString path)
 {
     //节点被删除
-    qDebug() << "删除事件，删除" << path;
-
     QStringList pathList = path.split("/");
     //遍历treewidget 查找 path 的子节点，有没有没存在的
     //获取节点层级
     QString path2 = pathList.at(pathList.length()-1);
-    qDebug() << "pathList.at(pathList.length()-1 = " << path2;
     if (path == "/") {
         path2 = path;
     }
+    qDebug() << "删除事件，删除" << path << ", 最后面分级path = " << path2;
 
     QList<QTreeWidgetItem*> items = ui->treeWidget->findItems(path2, Qt::MatchExactly|Qt::MatchRecursive, 0);
+    //这里有问题，不能简单判path2，还要看前面path是否与被删除一致
     if (!items.isEmpty()) {
-        qDebug() << "删除" << path;
-        QTreeWidgetItem* parent = NULL;
-        parent= items.first()->parent();
-        if (parent != NULL) {
-            parent->removeChild(items.first());
-            //ui->treeWidget->setCurrentItem(parent);
-            //显示父节点数据
-            //getNodeInfo(parent->text(0));
-        } else {
-            delete items.first();
+        for(int i =0; i < items.length(); i++) {
+            QString path_;
+            getParentNode(items[i], path_);
+            if (path_ == path) {
+                qDebug() << "删除" << path2 << ", 对应父节点" << path_;
+                QTreeWidgetItem* parent = NULL;
+                parent= items[i]->parent();
+                if (parent != NULL) {
+                    parent->removeChild(items[i]);
+                    ui->treeWidget->setCurrentItem(parent);
+                    //显示父节点数据
+                    qDebug() << "获取父节点信息";
+
+                    QString url;
+                    getParentNode(parent, url);
+                    if (ui->checkBox_auto_url->isChecked()) {
+                        QString decodedUrl = QUrl::fromPercentEncoding(url.toUtf8());
+                        ui->lineEdit_node->setText(decodedUrl);
+                    } else {
+                        ui->lineEdit_node->setText(url);
+                    }
+                    getNodeInfo(parent->text(i));
+                } else {
+                    delete items[i];
+                }
+            } else {
+                qDebug() << "只是子节点相同，过滤" << path_;
+            }
         }
     }
 }
@@ -859,20 +933,23 @@ void zookeeperwidget::hideButton()
 
 void zookeeperwidget::showMessage(QString message, bool isSuccess)
 {
-    tipwidget = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
+    if (tipwidget == nullptr) {
+        tipwidget = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
+    } else {
+        return;
+    }
     //QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
     int x = (ui->treeWidget->width() - tipwidget->width()) / 2;     //x坐标
     int y = ui->treeWidget->height() - tipwidget->height() - 10;         //y坐标
     tipwidget->move(x, y);//窗口移动
     tipwidget->show();
     QPropertyAnimation *pAnimation = new QPropertyAnimation(tipwidget, "windowOpacity");
-
     QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
     {
         tipwidget->close();
         tipwidget = nullptr;
     });
-    pAnimation->setDuration(2000);
+    pAnimation->setDuration(1500);
     pAnimation->setStartValue(1);
     pAnimation->setEndValue(0);
     pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -1009,7 +1086,7 @@ void zookeeperwidget::resizeEvent(QResizeEvent *event)
 {
     if (tipwidget != nullptr) {
         int x = (ui->treeWidget->width() - tipwidget->width()) / 2;     //x坐标
-        int y = ui->treeWidget->height() - tipwidget->height() - 10;         //y坐标
+        int y = ui->treeWidget->height() - tipwidget->height() - 10;    //y坐标
         tipwidget->move(x, y);//窗口移动
         tipwidget->show();
     }
