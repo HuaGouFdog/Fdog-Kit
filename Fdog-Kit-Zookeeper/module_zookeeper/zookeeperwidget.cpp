@@ -536,6 +536,7 @@ void zookeeperwidget::deleteTreeItem(QTreeWidgetItem *item)
 
 void zookeeperwidget::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
+    ui->toolButton_have_data->setIcon(QIcon(":lib/grey.svg"));
     QString url;// = item->text(column);
     getParentNode(item, url);
     //ui->lineEdit_node->setText(item->text(column));
@@ -802,6 +803,9 @@ void zookeeperwidget::rece_chanage_event(int code, QString message, QString path
     if (path_ == path && ui->checkBox_auto->isChecked()) {
         //获取节点信息
         getNodeInfo(path);
+        ui->toolButton_have_data->setIcon(QIcon(":lib/grey.svg"));
+    } else {
+        ui->toolButton_have_data->setIcon(QIcon(":lib/green.svg"));
     }
 }
 
