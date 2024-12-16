@@ -170,6 +170,9 @@ void zookeeperhandle::setNodeData(QString nodePath, QString nodeData)
     std::string data = nodeData.toStdString();
     int data_len = strlen(data.c_str());
     int ret = zoo_set(zh, path.c_str(), data.c_str(), data_len, -1);
+    if (ret != ZOK) {
+        qDebug() << "";
+    }
     emit send_setNodeData(ret, message);
     return;
 }

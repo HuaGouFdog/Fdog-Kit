@@ -8,9 +8,10 @@
 #include <QTreeWidgetItem>
 #include <QListWidgetItem>
 #include "zookeeper.h"
-#include "module_zookeeper/zookeeperhandle.h"
-#include "module_utils/utils.h"
 #include "zookeepertipswidget.h"
+#include "module_utils/utils.h"
+#include "module_zookeeper/zookeeperhandle.h"
+
 namespace Ui {
 class zookeeperwidget;
 }
@@ -36,6 +37,11 @@ public:
     void deleteNode(QString &path);
     void searchNode(QString name);
 
+    //展开选中节点
+    void expandSelectItems(QTreeWidget* treeWidget, QString& path, QString& pathAll);
+    void expandSelectItems_s(QTreeWidgetItem* Item, const QString& path, QString& pathAll);
+    void showParent2(QTreeWidgetItem* pItem);
+
     //使用递归实现对查找到的项的父子索引项遍历且设置为可见
     void showParent(QTreeWidgetItem* pItem);
     //对当前的节点进行遍历查找且对遍历的节点进行显示和隐藏的设置
@@ -52,10 +58,6 @@ public:
     void expandAllItemsOne(QTreeWidget* treeWidget, bool isexpand, int sum);
     void expandItemAndChildrenOne(QTreeWidgetItem* item, bool isexpand, int sum);
 
-    //展开选中节点
-    void expandSelectItems(QTreeWidget* treeWidget, QString& path, QString& pathAll);
-    void expandSelectItems_s(QTreeWidgetItem* Item, const QString& path, QString& pathAll);
-    void showParent2(QTreeWidgetItem* pItem);
 
     void deleteTreeNode (QTreeWidgetItem* item);
     void deleteTreeItem (QTreeWidgetItem* item);
@@ -68,10 +70,7 @@ public:
     void hideCreateWidget();//隐藏创建节点控件
     void showCreateWidget();//显示创建节点控件
 
-//    void hideCreateZkWidget();
-//    void showCreateZkWidget();
-    void hideButton();
-
+    //发送弹窗提示
     void showMessage(QString message, bool isSuccess = true); //显示操作信息
 
     void getParentNode(QTreeWidgetItem *item, QString &data);
@@ -81,8 +80,6 @@ private slots:
     void rece_init(int connectState, int code, QString message, QString path, int count);
 
     void rece_getChildren(int code, QString message, QString path, const QVariant varValue, QTreeWidgetItem *item);
-
-//    void rece_getSingleChildren(int code, QString message, QString path, const QVariant varValue);
 
     void rece_getNodeInfo(int code, QString message, QVariant varValue, QString data, QString path);
 
@@ -94,15 +91,11 @@ private slots:
 
     void rece_children_event(int code, QString message, QString path, const QVariant varValue);
 
-    void rece_create_event(QString path);
-
     void rece_delete_event(int code, QString message, QString path);
 
     void rece_chanage_event(int code, QString message, QString path);
 
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
-
-    void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
     void on_textEdit_data_textChanged();
 
@@ -116,8 +109,6 @@ private slots:
 
     void on_toolButton_add_clicked();
 
-    //void on_toolButton_delete_clicked();
-
     void on_toolButton_refresh_clicked();
 
     void on_toolButton_copy_data_clicked();
@@ -128,21 +119,9 @@ private slots:
 
     void on_lineEdit_search_returnPressed();
 
-    //void on_toolButton_6_clicked();
-
-    void on_treeWidget_itemEntered(QTreeWidgetItem *item, int column);
-
-    //void on_toolButton_3_clicked();
-
-    //void on_toolButton_save_clicked();
-
-    //void on_toolButton_close_clicked();
-
     void on_checkBox_auto_url_clicked();
 
     void on_toolButton_clear_clicked();
-
-    void on_toolButton_sensitive_clicked();
 
     void on_toolButton_cancel_clicked();
 
@@ -187,7 +166,6 @@ private:
     bool isCreate = false; //区分创建和修改
 
     zookeepertipswidget * tipwidget = nullptr;
-
 };
 
 #endif // ZOOKEEPERWIDGET_H

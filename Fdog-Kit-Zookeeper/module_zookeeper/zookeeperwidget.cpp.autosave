@@ -162,7 +162,6 @@ void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path
 
     Stat stat = varValue.value<Stat>();
     // 获取节点的创建时间（以毫秒为单位）
-    long long createTime = stat.ctime;
     QDateTime dateTime;
     dateTime = QDateTime::fromMSecsSinceEpoch(stat.ctime); // 将时间戳设置为QDateTime对象的秒数
     QString dateString = dateTime.toString("yyyy-MM-dd"); // 将日期部分格式化为字符串
