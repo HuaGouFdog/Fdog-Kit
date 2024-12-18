@@ -119,7 +119,7 @@ private:
     QPoint m_startPoint;
     QPoint m_endPoint;
     bool showFlag = false; //窗口显示标志位 默认false 正常显示
-    bool isPressedWidget;
+    bool isPressedWidget  = false;
 
     WindowStretchRectState m_stretchRectState;
     bool m_isMousePressed;

@@ -20,16 +20,13 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(rece_buttonClicked(int)));
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
-    //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
-    //只是创建一个界面
-    // zookeeperwidget * zkWidget = new zookeeperwidget();
-    // ui->stackedWidget->addWidget(zkWidget);
 
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_left->setGraphicsEffect(effect);
+
     //打开数据库
     db_ = new sqlhandle();
     QVector<zkInfoStruct> zkInfoList =  db_->zk_getAllZkInfo();
@@ -89,6 +86,7 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
             }
             qbutton->setIcon(QIcon(":lib/grey.svg"));//灰色
         });
+
         QObject::connect(clearAction, &QAction::triggered, this, [=](){
             qDebug("删除被点击");
             QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
@@ -111,20 +109,20 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
                 zkStatusInfoMap[qbutton].zkWidget_ =nullptr;
             }
 
-
             m_buttonGroup->removeButton(button_);
             delete(button_);
             //showMessage("删除", true);
         });
-       QObject::connect(qbutton, &QToolButton::customContextMenuRequested, this, [=]()
-       {
-           qDebug() << "按钮被右击";
-           menu->move(cursor().pos());
-           menu->show();           //记录button对应的连接和状态
-           //zkStatusInfoMap[qbutton].status_ = 1;
-           //zkStatusInfoMap[qbutton].zkWidget_ =zkWidget;
-           qDebug() << "记录状态";
-       });
+
+        QObject::connect(qbutton, &QToolButton::customContextMenuRequested, this, [=]()
+        {
+            qDebug() << "按钮被右击";
+            menu->move(cursor().pos());
+            menu->show();           //记录button对应的连接和状态
+            //zkStatusInfoMap[qbutton].status_ = 1;
+            //zkStatusInfoMap[qbutton].zkWidget_ =zkWidget;
+            qDebug() << "记录状态";
+        });
     }
 }
 
@@ -263,27 +261,6 @@ zookeepermanagewidget::~zookeepermanagewidget()
     delete ui;
 }
 
-void zookeepermanagewidget::showMessage(QString message, bool isSuccess)
-{
-    // zookeepertipswidget * a = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
-    // //QPoint globalPos = ui->treeWidget->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-    // int x = (ui->treeWidget->width() - a->width()) / 2;//x坐标
-    // int y = ui->treeWidget->height() - a->height();//y坐标
-    // a->move(x, y);//窗口移动
-    // a->show();
-    // QPropertyAnimation *pAnimation = new QPropertyAnimation(a, "windowOpacity");
-
-    // QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
-    // {
-    //     a->close();
-    // });
-    // pAnimation->setDuration(2000);
-    // pAnimation->setStartValue(1);
-    // pAnimation->setEndValue(0);
-    // pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
-    // pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
-}
-
 void zookeepermanagewidget::on_toolButton_newCreate_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
@@ -350,7 +327,6 @@ void zookeepermanagewidget::on_toolButton_connect_clicked()
     zkStatusInfoMap[qbutton].status_ = 1;
     zkStatusInfoMap[qbutton].zkWidget_ =zkWidget;
 
-    qDebug() << "走这里";
     qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
     QMenu * menu = new QMenu(qbutton);
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
@@ -440,9 +416,6 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
     cInfoStruct.buttonSid = index;
     cInfoStruct.timeout = 5000;
     qDebug() << "单击按钮 " << index;
-    //判断index有没有连接，没有则连接，有则跳转
-    //bool isok = connectManager.contains(index);
-
     //只有0才是成功
     if (zkStatusInfoMap[m_buttonGroup->checkedButton()].status_ == 0) {
         int widgetCount = ui->stackedWidget->count();
@@ -451,8 +424,6 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
             // 获取索引处的widget
             zookeeperwidget* widget =qobject_cast<zookeeperwidget*>(ui->stackedWidget->widget(i));
             if (widget) {
-                //qDebug() << "找到对应widget "  << i <<  " = " << qobject_cast<zookeeperwidget*>(ui->stackedWidget->widget(i));
-                //qDebug() << "zkStatusInfoMap[m_buttonGroup->checkedButton()].zkWidget_ = " << zkStatusInfoMap[m_buttonGroup->checkedButton()].zkWidget_;
                 if (widget == zkStatusInfoMap[m_buttonGroup->checkedButton()].zkWidget_) {
                     ui->stackedWidget->setCurrentIndex(i);
                     qDebug() << "找到对应widget "  << i <<  " = " << &widget;
@@ -461,9 +432,7 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
             }
         }
         qDebug("找不到对应widget,进行创建");
-        //ui->stackedWidget->setCurrentIndex(connectManager.value(index));
     }
-
         //创建连接
         m_buttonGroup->checkedButton()->setIcon(QIcon(":lib/yellow.svg"));//黄色
 
@@ -478,11 +447,6 @@ void zookeepermanagewidget::rece_buttonClicked(int index)
         qDebug() << "记录状态 按钮 = " << m_buttonGroup->checkedButton();
 }
 
-void zookeepermanagewidget::rece_buttonDoubleClicked(int index)
-{
-    //目前不需要
-}
-
 void zookeepermanagewidget::rece_init(int buttonSid, int code)
 {
     if (code == ZOK) {
@@ -495,7 +459,6 @@ void zookeepermanagewidget::rece_init(int buttonSid, int code)
         connectManager.remove(buttonSid);
     }
 }
-
 
 void zookeepermanagewidget::on_toolButton_clicked()
 {

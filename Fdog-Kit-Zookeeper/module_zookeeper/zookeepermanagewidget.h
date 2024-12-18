@@ -26,8 +26,6 @@ public:
     void newCreate(connnectInfoStruct& cInfoStruct);
     ~zookeepermanagewidget();
 
-    void showMessage(QString message, bool isSuccess = true); //显示操作信息
-
 private slots:
     void on_toolButton_newCreate_clicked();
 
@@ -40,7 +38,6 @@ private slots:
     void on_toolButton_connect_clicked();
 
     void rece_buttonClicked(int index);
-    void rece_buttonDoubleClicked(int index);
 
     void rece_init(int buttonSid, int code);
 

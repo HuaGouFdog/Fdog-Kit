@@ -7,7 +7,6 @@
 void initWatcher(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx)
 {
     qDebug() << "initWatcher ... type = " << type;
-    //监听事件回调函数
     if (type ==ZOO_SESSION_EVENT) {
         if (state == ZOO_CONNECTED_STATE) {
           int * connectState = (int *)watcherCtx;
@@ -23,8 +22,7 @@ void initWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
             qDebug() << "connectState ZOO_ASSOCIATING_STATE";
         }
     } else {
-        qDebug() << "其他事件2" << path;
-        qDebug() << "type2 = " << type << " state = " << state;
+        qDebug() << "其他事件" << path;
         // 其他类型的事件
         // 在这里处理其他类型的事件
     }
@@ -74,8 +72,7 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
         // 节点被创建
         // 在这里处理节点被创建的逻辑  
     } else {
-        qDebug() << "其他事件1" << path;
-        qDebug() << "type = " << type << " state = " << state;
+        qDebug() << "其他事件" << path;
         // 其他类型的事件
         // 在这里处理其他类型的事件
     }
