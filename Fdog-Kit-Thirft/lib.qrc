@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lib/back1.png</file>
+        <file>lib/back2.png</file>
+        <file>lib/copy.png</file>
+        <file>lib/Fdogicon.ico</file>
+        <file>lib/gouxuan.png</file>
+        <file>lib/gouxuan2.png</file>
+        <file>lib/green.svg</file>
+        <file>lib/grey.svg</file>
+        <file>lib/Icon_max4.png</file>
+        <file>lib/icon9.png</file>
+        <file>lib/icon500.png</file>
+        <file>lib/icon-close4.png</file>
+        <file>lib/icon-close8.png</file>
+        <file>lib/icon-copy.png</file>
+        <file>lib/icon-minus3.png</file>
+        <file>lib/key.svg</file>
+        <file>lib/kuaisu.svg</file>
+        <file>lib/node.png</file>
+        <file>lib/node2.png</file>
+        <file>lib/node3.png</file>
+        <file>lib/password.svg</file>
+        <file>lib/red.svg</file>
+        <file>lib/tree_close.png</file>
+        <file>lib/tree_open.png</file>
+        <file>lib/tree_open2.png</file>
+        <file>lib/yellow.svg</file>
+        <file>lib/zhedie.png</file>
+        <file>lib/Thrift.png</file>
+        <file>lib/addM2.png</file>
+        <file>lib/blueres.png</file>
+        <file>lib/greenres.png</file>
+        <file>lib/mast.png</file>
+        <file>lib/purpleres.png</file>
+        <file>lib/api.png</file>
+        <file>lib/func.png</file>
+        <file>lib/redres.png</file>
+    </qresource>
+</RCC>
