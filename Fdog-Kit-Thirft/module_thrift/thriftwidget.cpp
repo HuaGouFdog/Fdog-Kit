@@ -2722,7 +2722,7 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
                 funcParamInMap.remove(funcName);
                 funcParamOutMap.remove(funcName);
                 //提醒一下前端
-                ui->label_time->setText("解析thrift文件中的" + funcName + "接口出现问题，跳过该接口");
+                ui->label_time->setText(funcName + " 接口格式存在问题，解析失败，跳过该接口");
                 qDebug() << "出问题: funcName " << funcName;
                 continue;
             }
@@ -2805,10 +2805,11 @@ bool thriftwidget::containsChinese(QString &str) {
 
 QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
 {
-    //三种解析
+    //四种解析
     //1: SessionTicket st, 2: i64 userID
     //1:ThesaurusPage pageParam
     //1:i64 ct,2:i64 userID
+    //1: SessionTicket st ,2: byte reqType
     isok = true;
 
     QMap<int, paramInfo> paramsMap_;
@@ -2825,19 +2826,14 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
     //先处理:
     //qDebug() << "=========";
     while(data.contains("  ")){
-        //qDebug() << "错误1";
         data.replace("  ", " ");
     }
 
-    //qDebug() << "=========2";
     while(data.contains(" :")){
-        //qDebug() << "错误2";
         data.replace(" :", ":");
     }
     while(data.contains(": ")){
-        //qDebug() << "错误3";
         data.replace(": ", ":");
-        //qDebug() << "错误4";
     }
 
     if (!data.contains(":")) {
@@ -2845,9 +2841,19 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
         isok = false;
         return paramsMap_;
     }
+    
+    while(data.contains(";")){
+        data.replace(";", ",");
+    }
+
     int a =0;
     bool isMap = false;
+
     while(data.contains(":")){
+        //1:SessionTicket st, 2: SettingList settingList 3: list<i64> targetUserIDList  这种也是正常的
+        //可能将2: SettingList settingList 3: list<i64> targetUserIDList解析成一个参数
+        //这种解析失败，进行提示，不做这种解析，
+
         //qDebug() << "while data.length() = " << data.length();
         int sum = 0;
         for(int i = data.length() -1; i >= 0; i--) {
@@ -2871,6 +2877,7 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
                 }
                 QString param1 = data.mid(i + temp);
                 qDebug() << "param1 = " << param1;
+
                 data = data.mid(0, i + temp); //删除逗号
                 qDebug() << "剩下 = " << data;
                 int index = param1.indexOf(":");
@@ -2881,6 +2888,14 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
                 if (Params.length() == 2) {
                     QString paramType = Params[0];
                     QString paramName = Params[1].replace(",", ""); //防止有逗号;
+                    if (paramName == Params[1]) {
+                        QString paramName = Params[1].replace(" ,", ""); //防止有逗号;
+                    }
+                    paramsMap_.insert(sn.toInt(), {paramType, paramName, "opt-in, req-out"});
+                    qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
+                } else if (Params.length() == 3 && Params[2] == ",") {
+                    QString paramType = Params[0];
+                    QString paramName = Params[2].replace(",", ""); //防止有逗号;
                     paramsMap_.insert(sn.toInt(), {paramType, paramName, "opt-in, req-out"});
                     qDebug() << " sn = " << sn << " paramType = " << paramType << " paramName" << paramName;
                 } else {
@@ -2912,7 +2927,7 @@ QMap<int, paramInfo> thriftwidget::getFuncOutParams(QString data)
         //复杂类型
         qDebug() << "list类型";
         paramsMap_.insert(1, {data, "", "opt-in, req-out"});
-        qDebug() << "getFuncOutParams2 data =" << data;
+        //qDebug() << "getFuncOutParams2 data =" << data;
         //获取list成员类型
     } else if (baseType.contains(data)) {
         qDebug() << "基础类型";
@@ -2920,7 +2935,7 @@ QMap<int, paramInfo> thriftwidget::getFuncOutParams(QString data)
     } else {
         //struct
         paramsMap_.insert(1, {data, "", "opt-in, req-out"});
-        qDebug() << "getFuncOutParams2 data =" << data;
+        //qDebug() << "getFuncOutParams2 data =" << data;
     }
 
     return paramsMap_;
@@ -3628,7 +3643,7 @@ void thriftwidget::on_toolButton_inportFile_clicked()
     // 设置只能选择文件
     dialog.setFileMode(QFileDialog::ExistingFiles);
 
-    dialog.setDirectory("E:/ProjectA/thrift");
+    dialog.setDirectory("E:/ProjectA/doc");
     // 打开文件对话框
     if (dialog.exec()) {
         // 获取所选文件的路径
