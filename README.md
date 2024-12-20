@@ -21,9 +21,7 @@
   <h1> </h1>
 </div>
 
-编码中！！！ 
-终端工具（支持ssh，zk可视化访问，thrift接口测试，其他工具集合等）
-目前已基本完成zookeeper可视化工具，thrift接口测试工具编写。
+Qt工具集合：无边框窗口集成（可用）zookeeper可视化操作工具（可用），thrift接口调用工具（可用），ssh，qss工具，其他工具集合等）
 
 Fdog-Kit-xxx为单一项目，可以单独编译
 Fdog-Kit作为集合，包含所有
