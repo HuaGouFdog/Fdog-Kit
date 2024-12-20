@@ -17,13 +17,16 @@
 <img alt="GitHub Downloads (specific asset, all releases)" src="https://img.shields.io/github/downloads/huagouFdog/Fdog-kit/Fdog-Kit-setup.exe">
 </div>
 
+<div align=center>
+  <h1> </h1>
+</div>
 
-
-
-# Fdog-Kit
-
-编码中！！！ 终端工具（支持ssh，zk可视化访问，thrift接口测试，其他工具集合等）
+编码中！！！ 
+终端工具（支持ssh，zk可视化访问，thrift接口测试，其他工具集合等）
 目前已基本完成zookeeper可视化工具，thrift接口测试工具编写。
+
+Fdog-Kit-xxx为单一项目，可以单独编译
+Fdog-Kit作为集合，包含所有
 
 如果有缺少库的问题，可以提。
 
