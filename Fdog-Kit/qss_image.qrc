@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>module_qss/image/QWidgetQFrame.png</file>
+        <file>module_qss/image/QWidgetQFrame2.png</file>
+        <file>module_qss/image/Flayout.png</file>
+        <file>module_qss/image/Glayout.png</file>
+        <file>module_qss/image/Hlayout.png</file>
+        <file>module_qss/image/Vlayout.png</file>
+        <file>module_qss/image/QSlider.png</file>
+        <file>module_qss/image/Qmenu1.png</file>
+        <file>module_qss/image/qss.png</file>
+    </qresource>
+</RCC>
