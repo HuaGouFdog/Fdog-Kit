@@ -1,7 +1,6 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "module_zookeeper/zookeepermanagewidget.h"
 #include <QGraphicsDropShadowEffect>
 #include <QColor>
 #include <QMouseEvent>
