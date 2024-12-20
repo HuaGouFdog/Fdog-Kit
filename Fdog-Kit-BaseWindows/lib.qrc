@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lib/about.png</file>
+        <file>lib/back1.png</file>
+        <file>lib/back2.png</file>
+        <file>lib/black_mode.png</file>
+        <file>lib/func.png</file>
+        <file>lib/github.png</file>
+        <file>lib/home.png</file>
+        <file>lib/mysql.png</file>
+        <file>lib/qss.png</file>
+        <file>lib/setting2.png</file>
+        <file>lib/shell_side.png</file>
+        <file>lib/tool_plugIn.png</file>
+        <file>lib/tool2.png</file>
+        <file>lib/wenhao.png</file>
+        <file>lib/Zookeeper.png</file>
+        <file>lib/Fdogicon.ico</file>
+        <file>lib/icon9.png</file>
+        <file>lib/Icon_max4.png</file>
+        <file>lib/icon-close8.png</file>
+        <file>lib/icon-minus3.png</file>
+    </qresource>
+</RCC>

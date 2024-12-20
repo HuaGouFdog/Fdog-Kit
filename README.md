@@ -1,6 +1,30 @@
-# Fdog-Kit
+<div align=center>
+<img src="https://github.com/user-attachments/assets/cc639845-5eb4-4d3e-b92c-1aba1af4cf2f" width="15%" height="15%">
+<h1>Fdog-Kit</h1>
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/HuaGouFdog/Fdog-Kit">
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/HuaGouFdog/Fdog-Kit">
+</div>
+
+<div align=center>
+<img alt="GitHub Created At" src="https://img.shields.io/github/created-at/HuaGouFdog/Fdog-Kit">
+<img alt="GitHub License" src="https://img.shields.io/github/license/huagouFdog/fdog-kit">
+</div>
+<div align=center>
+  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/HuaGouFdog/Fdog-Kit">
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/HuaGouFdog/Fdog-Kit">
+
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/HuaGouFdog/Fdog-Kit">
+<img alt="GitHub Downloads (specific asset, all releases)" src="https://img.shields.io/github/downloads/huagouFdog/Fdog-kit/Fdog-Kit-setup.exe">
+</div>
+
+<div align=center>
+  <h1> </h1>
+</div>
 
 Qt工具集合：无边框窗口集成（可用）zookeeper可视化操作工具（可用），thrift接口调用工具（可用），ssh，qss工具，其他工具集合等）
+
+Fdog-Kit-xxx为单一项目，可以单独编译
+Fdog-Kit作为集合，包含所有
 
 如果有缺少库的问题，可以联系我
 
