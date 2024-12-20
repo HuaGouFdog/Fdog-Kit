@@ -1,0 +1,1281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1030</width>
+    <height>709</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Fdog-Kit-Zookeeper</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow,QWidget#centralWidget {
+background-color: rgb(67, 67, 67);
+border-radius:10px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">#centralWidget {
+border-image: url(:/lib/back1.png);
+border-radius:10px;
+}</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="widget_side" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>50</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>50</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#widget_side {
+	color: rgb(255, 255, 255);
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	
+	
+	background-color: rgb(10, 31, 57);
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_side_icon">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/lib/icon9.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_side_1">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>60</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_home">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>首页</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>首页</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/home.png</normaloff>:/lib/home.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_thrift">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>thrift接口测试</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>thrift</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/func.png</normaloff>:/lib/func.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_zookeeper">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>zk连接</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>zk</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/Zookeeper.png</normaloff>:/lib/Zookeeper.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_shell">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>终端连接</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>终端</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/shell_side.png</normaloff>:/lib/shell_side.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_mysql">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>数据库连接</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="text">
+          <string>数据库</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/mysql.png</normaloff>:/lib/mysql.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_qss">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>qss美化</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="text">
+          <string>数据库</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/qss.png</normaloff>:/lib/qss.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_tool">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>工具箱</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>工具箱</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/tool2.png</normaloff>:/lib/tool2.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_plugIn">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>扩展</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>扩展</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/tool_plugIn.png</normaloff>:/lib/tool_plugIn.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_setting">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>设置</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>设置</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/setting2.png</normaloff>:/lib/setting2.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_about">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>关于</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>关于</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/about.png</normaloff>:/lib/about.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_github">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>github</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>GitHub</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/github.png</normaloff>:/lib/github.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_theme">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>暗黑模式</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>-1</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(26, 53, 83);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>暗黑</string>
+         </property>
+         <property name="icon">
+          <iconset resource="lib.qrc">
+           <normaloff>:/lib/black_mode.png</normaloff>:/lib/black_mode.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_side_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_side_version">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>9</pointsize>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+color: rgb(255, 255, 255);
+border: none;
+background-color: rgba(255, 255, 255, 0);
+}</string>
+         </property>
+         <property name="text">
+          <string>V1.0.5</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_body" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="widget_title" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(30, 45, 54, 0);
+color: rgb(255, 255, 255);
+</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_min_2">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+
+	
+	background-color: rgb(23, 35, 42);
+	border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>:/lib/icon-minus3.png</normaloff>:/lib/icon-minus3.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>13</width>
+              <height>13</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_max_2">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(23, 35, 42);
+	border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>:/lib/Icon_max4.png</normaloff>:/lib/Icon_max4.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>11</width>
+              <height>11</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoRepeat">
+             <bool>false</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>false</bool>
+            </property>
+            <property name="autoRaise">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_close_2">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	border-top-right-radius: 9px;
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(200, 0, 0);
+	border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>:/lib/icon-close8.png</normaloff>:/lib/icon-close8.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>11</width>
+              <height>11</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="lib.qrc"/>
+ </resources>
+ <connections/>
+</ui>
