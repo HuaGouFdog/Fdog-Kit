@@ -10,7 +10,7 @@ config::config(QWidget *parent) : QWidget(parent)
 
 void config::readSettingConf()
 {
-    QFile file("conf//settings.json");
+    QFile file(":conf/settings.json");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file.";
         return;
