@@ -32,10 +32,10 @@
                 image:url(:/lib/gouxuan.png);
             }
 
-
 #thriftwidget{
 background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0.733682, stop:0 rgba(30, 45, 54, 225), stop:1 rgba(37, 56, 67, 255));
 }
+
 
 QToolTip {
 color:#ced4da;
@@ -3213,7 +3213,7 @@ border-radius: 2px;
                       <bool>false</bool>
                      </property>
                      <attribute name="headerVisible">
-                      <bool>false</bool>
+                      <bool>true</bool>
                      </attribute>
                      <attribute name="headerDefaultSectionSize">
                       <number>100</number>

@@ -127,7 +127,7 @@ ItemWidget::ItemWidget(): QTreeWidgetItem()
 
 void ItemWidget::init()
 {
-    comboBoxBase = new QComboBox();
+    comboBoxBase = new NoWheelQComboBox();
     comboBoxBase->addItem("i64");
     comboBoxBase->addItem("string");
     comboBoxBase->addItem("byte");
@@ -148,7 +148,7 @@ void ItemWidget::init()
         emit send_currentIndexChanged(comboBoxBase->currentText(), this);
     });
 
-    comboBoxKey = new QComboBox();
+    comboBoxKey = new NoWheelQComboBox();
     comboBoxKey->addItem("i64");
     comboBoxKey->addItem("string");
     comboBoxKey->addItem("byte");
@@ -171,7 +171,7 @@ void ItemWidget::init()
         emit send_currentIndexChanged(comboBoxKey->currentText(), this);
     });
 
-    comboBoxValue = new QComboBox();
+    comboBoxValue = new NoWheelQComboBox();
     comboBoxValue->addItem("i64");
     comboBoxValue->addItem("string");
     comboBoxValue->addItem("byte");

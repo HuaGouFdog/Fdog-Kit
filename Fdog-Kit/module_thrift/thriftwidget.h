@@ -146,6 +146,12 @@ protected:
     }
 };
 
+class NoWheelQComboBox : public QComboBox { 
+public:
+    using QComboBox::QComboBox; 
+protected:
+    void wheelEvent(QWheelEvent* event) override { event->ignore(); }
+};
 
 class ItemWidget :public QObject ,public QTreeWidgetItem
  {
@@ -158,9 +164,9 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
      void init2();
      void init3();
      ~ItemWidget();
-      QComboBox* comboBoxBase;    //基础
-      QComboBox* comboBoxKey;     //key
-      QComboBox* comboBoxValue;   //value
+      NoWheelQComboBox* comboBoxBase;    //基础
+      NoWheelQComboBox* comboBoxKey;     //key
+      NoWheelQComboBox* comboBoxValue;   //value
 
       
       QLineEdit* lineEditParamSN;       //参数序号
