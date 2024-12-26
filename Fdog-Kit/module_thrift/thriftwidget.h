@@ -17,6 +17,7 @@
 #include <QDebug>
 #include <QRunnable>
 #include <QTest>
+#include <QtCharts>
 #include <QThreadPool>
 #include <QListWidgetItem>
 #include <QMutex>
@@ -146,6 +147,12 @@ protected:
     }
 };
 
+class NoWheelQComboBox : public QComboBox { 
+public:
+    using QComboBox::QComboBox; 
+protected:
+    void wheelEvent(QWheelEvent* event) override { event->ignore(); }
+};
 
 class ItemWidget :public QObject ,public QTreeWidgetItem
  {
@@ -158,9 +165,9 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
      void init2();
      void init3();
      ~ItemWidget();
-      QComboBox* comboBoxBase;    //基础
-      QComboBox* comboBoxKey;     //key
-      QComboBox* comboBoxValue;   //value
+      NoWheelQComboBox* comboBoxBase;    //基础
+      NoWheelQComboBox* comboBoxKey;     //key
+      NoWheelQComboBox* comboBoxValue;   //value
 
       
       QLineEdit* lineEditParamSN;       //参数序号
@@ -468,6 +475,7 @@ private slots:
 
     void sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
 
+
 public:
     QVector<QString> dataList;
 private:
@@ -487,6 +495,8 @@ private:
     qint64 elapsedMillisecondsAll = 0;
     bool isTestModle = false; //是否压测模式 
     QThreadPool threadpool;
+    QChartView *chartView = nullptr;
+    QChart *chart = nullptr;
 };
 
 Q_DECLARE_METATYPE(QVector<uint32_t>);
@@ -499,6 +509,9 @@ class RequestResults {
 
 
     QVector<int32_t> Results; //每次请求耗时
+
+    QVector<int32_t> connectTime;  //每次连接延时
+
     QString startTime;        //开始时间
     QString requestTime;      //请求到的时间
     QString endTime;          //结束时间
@@ -522,6 +535,7 @@ class RequestResults {
     void setStartTime(const QString &value);
     void setEndTime(const QString &value);
     void setResults(const int32_t  value);
+    void setConnectTime(const int32_t value);
     void setCount(int value);
     void decrease();
     void setRequestTime(const QString &value);

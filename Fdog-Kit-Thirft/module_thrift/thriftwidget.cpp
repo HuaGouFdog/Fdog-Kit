@@ -1,9 +1,11 @@
 ﻿#pragma execution_character_set("utf-8")
+#include <QDateTime>
 #include "thriftwidget.h"
 #include "ui_thriftwidget.h"
 #include <QPushButton>
 #include <QStyleFactory>
 #include <array>
+#include <QProcess>
 #include <sstream>
 #include <iomanip>
 #include <QTcpSocket>
@@ -19,11 +21,14 @@
 #include <cstdlib>
 #include <QGraphicsDropShadowEffect>
 #include <QFontDatabase>
-
 #include <QClipboard>
 #include <QMimeData>
 #include <QCompleter>
+//#include <QtWidgets/QApplication>
+//#include <QtCharts>
 #include "module_utils/utils.h"
+#include <numeric>
+#include <QValueAxis>
 #pragma comment(lib, "ws2_32.lib")
 
 
@@ -124,7 +129,7 @@ ItemWidget::ItemWidget(): QTreeWidgetItem()
 
 void ItemWidget::init()
 {
-    comboBoxBase = new QComboBox();
+    comboBoxBase = new NoWheelQComboBox();
     comboBoxBase->addItem("i64");
     comboBoxBase->addItem("string");
     comboBoxBase->addItem("byte");
@@ -145,7 +150,7 @@ void ItemWidget::init()
         emit send_currentIndexChanged(comboBoxBase->currentText(), this);
     });
 
-    comboBoxKey = new QComboBox();
+    comboBoxKey = new NoWheelQComboBox();
     comboBoxKey->addItem("i64");
     comboBoxKey->addItem("string");
     comboBoxKey->addItem("byte");
@@ -168,7 +173,7 @@ void ItemWidget::init()
         emit send_currentIndexChanged(comboBoxKey->currentText(), this);
     });
 
-    comboBoxValue = new QComboBox();
+    comboBoxValue = new NoWheelQComboBox();
     comboBoxValue->addItem("i64");
     comboBoxValue->addItem("string");
     comboBoxValue->addItem("byte");
@@ -454,7 +459,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
     isAuto = false;
     setExpanded(true);
     //判断typeSign
-    qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
+    //qDebug() << "type =" << type << " name = " << name << " typeSign = " << typeSign;
     if (typeSign == "opt-in, req-out") {
         //必选
         mastLabel->show();
@@ -464,7 +469,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         //可选
         mastLabel->hide();
         checkBox->show();
-        checkBox->setChecked(true);
+        checkBox->setChecked(false);
     }
 
     lineEditParamSN->setText(QString::number(sn));
@@ -473,22 +478,22 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
     if (type.startsWith("map")) {
         //复杂类型
         comboBoxBase->setCurrentText("map");
-        qDebug() << "怀疑";
+        //qDebug() << "怀疑";
         int index_s =  type.indexOf("map<");
         int index_e =  type.indexOf(">", index_s + 4);
         QString type_s = type.mid(index_s + 4, index_e - index_s - 4);
-        qDebug() << "map type_s = " << type_s;
+        //qDebug() << "map type_s = " << type_s;
         //目前只支持基础类型作为key
         QString key = type_s.split(",", QString::SkipEmptyParts)[0].replace(" ", "");
-        qDebug() << "map key = " << key;
+        //qDebug() << "map key = " << key;
 
         QString value = type_s.split(",", QString::SkipEmptyParts)[1].replace(" ", "");
-        qDebug() << "map value = " << value;
+        //qDebug() << "map value = " << value;
         if (baseType.contains(key)) {
             //基础类型
             comboBoxKey->setCurrentText(key);
             comboBoxKey->show();
-            qDebug() << "基础类型";
+            //qDebug() << "基础类型";
         } else {
             qDebug() << "出错";
         }
@@ -496,11 +501,11 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         if (baseType.contains(value)) {
             //基础类型
             comboBoxValue->setCurrentText(value);
-            qDebug() << "基础类型";
+            //qDebug() << "基础类型";
             comboBoxValue->show();
         } else {
             //复杂类型
-            qDebug() << "进入" << "setParamValue_interior_map";
+            //qDebug() << "进入" << "setParamValue_interior_map";
             setParamValue_interior_map(p, value);
         }
 
@@ -512,12 +517,12 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         int index_s =  type.indexOf("set<");
         int index_e =  type.indexOf(">", index_s + 4);
         QString type_s = type.mid(index_s + 4, index_e - index_s - 4);
-        qDebug() << "set type_s = " << type_s;
+        //qDebug() << "set type_s = " << type_s;
         if (baseType.contains(type_s)) {
             //基础类型
             comboBoxValue->setCurrentText(type_s);
             comboBoxValue->show();
-            qDebug() << "基础类型";
+            //qDebug() << "基础类型";
         } else {
             //复杂类型
             setParamValue_interior(p, type_s);
@@ -530,12 +535,12 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         int index_s =  type.indexOf("list<");
         int index_e =  type.indexOf(">", index_s + 5);
         QString type_s = type.mid(index_s + 5, index_e - index_s - 5);
-        qDebug() << "list type_s = " << type_s;
+        //qDebug() << "list type_s = " << type_s;
         if (baseType.contains(type_s)) {
             //基础类型
             comboBoxValue->setCurrentText(type_s);
             comboBoxValue->show();
-            qDebug() << "基础类型";
+            //qDebug() << "基础类型";
 
         } else {
             //复杂类型
@@ -544,7 +549,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
 
     } else if (baseType.contains(type)) {
         //基础类型
-        qDebug() << "设置基础类型";
+        //qDebug() << "设置基础类型";
         comboBoxBase->setCurrentText(type);
     } else {
         //qDebug() << "设置struct1";
@@ -592,7 +597,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
 void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
     isAuto = false;
     comboBoxValue->setCurrentText("struct");
-    qDebug() << "复杂类型";
+    //qDebug() << "复杂类型";
     //创建子节点
     keyLabel->hide();
     valueLabel->hide();
@@ -641,7 +646,7 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     comboBoxValue->setCurrentText("struct");
     comboBoxKey->show();
     comboBoxValue->show();
-    qDebug() << "复杂类型";
+    //qDebug() << "复杂类型";
     //创建子节点
     keyLabel->hide();
     valueLabel->hide();
@@ -767,7 +772,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->textEdit_info->hide();
     ui->label_req->hide();
-    ui->lineEdit_port->hide();
+    //ui->lineEdit_port->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->textEdit_info->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -792,6 +797,65 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_thrift_api->setGraphicsEffect(effect14);
+
+    //获取当前cpu支持线程数
+    ui->lineEdit_thread_cpu->setText(getCpuInfo("wmic cpu get NumberOfLogicalProcessors"));
+
+//    QVector<int64_t> a = {114, 139, 149, 126, 134, 114, 139, 149, 126, 134, 139, 120, 131, 131, 110, 94, 95, 107, 97, 98, 102, 108, 103, 114, 127, 127, 111, 100, 100, 100, 97, 97, 100, 110, 115, 128, 130, 150, 149, 122, 137, 136, 118, 112, 89, 91, 93, 97, 101, 103, 106, 108, 107, 97, 107, 109, 98, 96, 96, 97, 94, 91, 97, 96, 104, 111, 131, 138, 143, 159, 151, 127, 128, 120, 125, 97, 114, 139, 149, 126, 134, 139, 120, 131, 131, 110, 94, 95, 107, 97, 98, 102, 108, 103, 114, 127, 127, 111, 100, 100, 100, 97, 97, 100, 110, 115, 128, 130, 150, 149, 122, 137, 136, 118, 112, 89, 91, 93, 97, 101, 103, 106, 108, 107, 97, 107, 109, 98, 96, 96, 97, 94, 91, 97, 96, 104, 111, 131, 138, 143, 159, 151, 127, 128, 120, 125, 97, 131, 93, 138, 141, 119, 134, 106, 110, 118, 95, 98, 98, 94, 91, 96, 105, 100, 103, 106, 97, 104, 105, 93, 91, 92, 94, 95, 100, 99, 103, 113, 108, 117, 118, 120, 113, 113, 112, 99, 118, 112, 119, 113, 112, 125, 113, 121, 102, 104, 103, 91, 91, 90, 91, 89, 90, 97, 100, 96, 111, 101, 103, 109, 100, 92, 94, 100, 95, 97, 106, 90, 95, 94, 100, 100, 110, 101, 102, 95, 100, 101, 91, 93, 93, 106, 113, 100, 98, 100, 111, 107, 109, 111, 99, 113, 114, 116, 121, 97, 99, 102, 107, 94, 97, 90, 92, 97, 100, 102, 98, 98, 104, 106, 106, 100, 105, 100, 103, 102, 104, 119, 115, 103, 121, 106, 108, 122, 132, 134, 130, 116, 106, 95, 97, 90, 89, 99, 112, 166, 136, 139, 171, 139, 118, 120, 126, 112, 123, 108, 107, 94, 107, 107, 112, 100, 108, 100, 102, 103, 98, 96, 99, 93, 91, 88, 87, 99, 95, 98, 102, 97, 101, 101, 109, 104, 133, 119, 115, 111, 141, 118, 147, 134, 113, 130, 110, 110, 107, 107, 111, 106, 124, 102, 123, 103, 111, 114, 117, 92, 123, 123, 96, 94, 97, 119, 146, 176, 159, 153, 161, 166, 125, 128, 98, 100, 107, 110, 112, 117, 118, 129, 106, 131, 116, 107, 105, 89, 94, 92};
+//    //QVector<int32_t> a = {114, 139, 149, 126};
+//    QLineSeries *lineSeries = new QLineSeries();        //创建折线系列
+//           /*为系列里添加100个数据*/
+//           for(int64_t i=0; i< a.size(); i++)
+//           {
+//               lineSeries->append(i,a[i]);
+//               qDebug() <<"添加" << i;
+//           }
+//     lineSeries->setName("red line");                  //设置系列名称
+//    // 创建一个图表对象
+
+//    QChart *chart = new QChart();
+
+//    QValueAxis *valueAxis = new QValueAxis();
+//    valueAxis->setRange(0, a.size()); // 设置数值轴的范围
+//    chart->addAxis(valueAxis, Qt::AlignBottom);
+
+//    //chart->legend()->hide(); // 隐藏图例
+//    // 将数据系列添加到图表中
+//    chart->addSeries(lineSeries);
+//    chart->legend()->hide();
+//    chart->createDefaultAxes();
+//    chart->setTitle("Simple line chart example");
+//    chartView = new QChartView(this);
+//    chartView->setChart(chart);
+//    chartView->setRenderHint(QPainter::Antialiasing);
+//    chartView->resize(QSize(500,500));
+//    ui->horizontalLayout_19->addWidget(chartView);
+}
+
+QString thriftwidget::getCpuInfo(const QString &cmd)
+{
+    QProcess p;        //启动外部程序
+    p.start(cmd);      //一体式启动，不分离，主程序退出则启动程序退出,使用close关闭
+    //p.startDetached(cmd)  //分离式启动，主程序退出后，外部程序继续运行
+    p.waitForFinished(-1);  //超时等待，设置为-1，直到执行完成
+    QString result = QString::fromLocal8Bit(p.readAllStandardOutput());//读取运行结果
+    QStringList list = cmd.split(" ");  //将cmd按空格拆分
+    result = result.remove(list.last(), Qt::CaseInsensitive);//删除cmd序列中最后一个元素
+    result = result.replace("\r", "");  //删除\r
+    result = result.replace("\n", "");  //删除\n
+    result = result.simplified();       //移除字符串两端的空白字符
+    /*
+        查询CPU型号getInfo("wmic cpu get Name");
+        查询CPU核心数getInfo("wmic cpu get NumberOfCores");
+        查询CPU线程数getInfo("wmic cpu get NumberOfLogicalProcessors");
+        查询CPU处理器标识符getInfo("wmic cpu get processorid");
+        查询主板序列号getInfo("wmic baseboard get serialnumber");
+        查询BIOS序列号getInfo("wmic bios get serialnumber");
+        查询主板唯一标识符getInfo("wmic csproduct get uuid");
+        查询硬盘标识符getInfo("wmic diskdrive get serialnumber");
+     */
+    p.close();
+    return result;
 }
 
 QString thriftwidget::getType(int index)
@@ -826,16 +890,16 @@ uint32_t thriftwidget::string2Uint32(QString data)
 
 QVector<uint32_t> thriftwidget::string2Uint32List(QVector<QString> & data)
 {
-    qDebug() << "最后一个值 = " << last2Value_;
+    //qDebug() << "最后一个值 = " << last2Value_;
     QString lastValue = "";
     if (data.length() > 1) {
         lastValue = data.last();
         if (lastValue.length() < 8) {
             //补位一定要
             lastValue = lastValue.leftJustified(8, '0');
-            qDebug() << "最后小于8" << " data = " << data << " data.size() - 1 = " << data.size() - 1 << " lastValue = " << lastValue;
+            //qDebug() << "最后小于8" << " data = " << data << " data.size() - 1 = " << data.size() - 1 << " lastValue = " << lastValue;
             data.replace(data.size() - 1, lastValue);
-            qDebug() << "改完" << data;
+            //qDebug() << "改完" << data;
         }
     }
     QVector<uint32_t> return_;
@@ -886,46 +950,48 @@ void thriftwidget::string2stringList(QString data)
     }
 }
 
-void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
+void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer)
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    //qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+    //ui->stackedWidget->setCurrentIndex(2);
     QTcpSocket *clientSocket = new QTcpSocket(this);
 
-    connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=]{
-        qDebug() << "发生错误";
-        ui->stackedWidget->setCurrentIndex(2);
+    connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=](QAbstractSocket::SocketError socketError){
+        qDebug() << "发生错误" << socketError;
+        //ui->stackedWidget->setCurrentIndex(2);
     });
 
-//    connect(clientSocket,&QTcpSocket::stateChanged,[=]{
-//        qDebug() << "状态改变";
-//    });
+    connect(clientSocket,&QTcpSocket::stateChanged,[=]{
+        //qDebug() << "状态改变";
+    });
 
-    //&QComboBox::activated
-    //static_cast<void (QComboBox::*)(int)>(&QComboBox::activated)
-//    connect(clientSocket,&QTcpSocket::disconnected,[=]{
-//        qDebug() << "断开连接";
-//    });
+//    &QComboBox::activated
+//    static_cast<void (QComboBox::*)(int)>(&QComboBox::activated)
+    connect(clientSocket,&QTcpSocket::disconnected,[=]{
+        //qDebug() << "断开连接";
+    });
 
-//    connect(clientSocket,&QTcpSocket::connected,[=]{
-//        qDebug() << "已连接";
-//    });
+    connect(clientSocket,&QTcpSocket::connected,[=]{
+        //qDebug() << "已连接";
+    });
 
     //收到数据，触发readyRead
 
-    connect(clientSocket,&QTcpSocket::readyRead,[=]{
+     connect(clientSocket, &QTcpSocket::readyRead,[=]{
+        qDebug() << "接收数据时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
         //没有可读的数据就返回
         //qDebug() << "接收到的数据（十六进制字符串）:";
         int64_t needRead_ = clientSocket->bytesAvailable();
-        qDebug() << "=====缓冲区还剩数据 = " << needRead_;
+        //qDebug() << "=====缓冲区还剩数据 = " << needRead_;
         std::array<uint32_t, 5000> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                   receivedDataArray.size() * sizeof(uint32_t));
-        qDebug() << "bytesReceived = " << bytesReceived;
+        //qDebug() << "bytesReceived = " << bytesReceived;
         int64_t readNum = clientSocket->bytesAvailable();
-        qDebug() << "本次读取剩数据 = " << readNum;
+        //qDebug() << "本次读取剩数据 = " << readNum;
         int sum2 = 0;
         int a = (needRead_ - readNum)%4;
-        qDebug() << "数据求余 = " << a;
+        //qDebug() << "数据求余 = " << a;
         for (const auto& elem : receivedDataArray) {
             uint32_t data = qFromBigEndian(elem);
             std::stringstream stream;
@@ -934,8 +1000,8 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             //qDebug() << " elem = " << elem << "十六进制为 = " << QString::fromStdString(stream.str());
             if (sum2++ == (needRead_ - readNum)/4) {
                 //只有最后一个可能存在不对齐的情况，多读取一个，少一位
-                qDebug() << "循环 needRead_ - readNum = " << needRead_ - readNum << " sum2 = " << sum2 << " 余数 = " << a;
-                qDebug() << "达到缓存长度 receivedData 长度 = " << receivedData.length() << " elem = " << QString::fromStdString(stream.str());
+                //qDebug() << "循环 needRead_ - readNum = " << needRead_ - readNum << " sum2 = " << sum2 << " 余数 = " << a;
+                //qDebug() << "达到缓存长度 receivedData 长度 = " << receivedData.length() << " elem = " << QString::fromStdString(stream.str());
                 if (a != 0) {
                     receivedData.push_back(elem);
                 }
@@ -944,7 +1010,6 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             receivedData.push_back(elem);
         }
         
-
         if (isFirstRead) {
             isFirstRead = false;
             //获取数据长度
@@ -955,37 +1020,51 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
             QString data_ = QString::fromStdString(stream.str());
             int countLength = 4 + strtol(data_.toStdString().c_str(), nullptr, 16);
             needRead = countLength;
-            qDebug() << "首次读取，数据总长度为 " << countLength;
-            qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
+            //qDebug() << "首次读取，数据总长度为 " << countLength;
+            //qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
             needRead = needRead - (needRead_ - readNum);
-            qDebug() << "协议剩余数据 = " << needRead;
+            //qDebug() << "协议剩余数据 = " << needRead;
             if (needRead == 0) {
                 //结束本次读取
                 isFirstRead = true;
                 needRead = 0;
-                qDebug() << "数据读取完毕";
-                qDebug() << "receivedData 长度 = " << receivedData.length();
+                //qDebug() << "数据读取完毕";
+                //qDebug() << "receivedData 长度 = " << receivedData.length();
                 handleBinData();
                 receivedData.clear();
                 clientSocket->close();
+                count = count -1;
+                qint64 elapsedMilliseconds = timer->elapsed();
+                elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
+                qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+                if (!isTestModle) {
+                    ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+                }
                 return;
             }
-            qDebug() << "等待下次读取";
+            //qDebug() << "等待下次读取";
         } else {
-            qDebug() << "再次读取剩余数据";
-            qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
+            //qDebug() << "再次读取剩余数据";
+            //qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
             needRead = needRead - (needRead_ - readNum);
-            qDebug() << "协议剩余数据 = " << needRead;
+            //qDebug() << "协议剩余数据 = " << needRead;
             if (needRead == 0) {
                 //结束本次读取
                 isFirstRead = true;
                 needRead = 0;
-                qDebug() << "数据读取完毕";
-                qDebug() << "receivedData 长度 = " << receivedData.length();
+                //qDebug() << "数据读取完毕";
+                //qDebug() << "receivedData 长度 = " << receivedData.length();
                 handleBinData();
                 receivedData.clear();
                 clientSocket->close();
             }
+        }
+        count = count -1;
+        qint64 elapsedMilliseconds = timer->elapsed();
+        elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
+        qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+        if (!isTestModle) {
+            ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
         }
         return;
     });
@@ -994,33 +1073,33 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray)
     int index_e = port_str.indexOf(")");
     int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
     clientSocket->connectToHost(ui->lineEdit_host->text(), port);
-        if (!clientSocket->waitForConnected()) {
-            qDebug() << "无法连接到服务器";
-            return ;
-        }
-
-        // 检查设备是否打开并处于可读写状态
-        if (!clientSocket->isOpen()) {
-            // 打开设备
-            if (!clientSocket->open(QIODevice::ReadWrite)) {
-                qDebug() << "无法打开设备";
-                return ;
-            }
-        }
-    for (uint32_t& data : dataArray) {
-        data = qToBigEndian(data);
-        qDebug() << data;
+    if (!clientSocket->waitForConnected()) {
+        //qDebug() << "无法连接到服务器";
+        return ;
     }
 
+    // 检查设备是否打开并处于可读写状态
+    if (!clientSocket->isOpen()) {
+        // 打开设备
+        if (!clientSocket->open(QIODevice::ReadWrite)) {
+            //qDebug() << "无法打开设备";
+            return ;
+        }
+    }
+    
+    for (uint32_t& data : dataArray) {
+        data = qToBigEndian(data);
+        //qDebug() << data;
+    }
+    timer->start();
+    qDebug()<< "1进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
     if (bytesSent != dataArray.size() * sizeof(uint32_t)) {
         qDebug() << "发送数据失败";
         //clientSocket.close();
         return ;
     }
-    ui->label_req->hide();
-    ui->label_req->setText("EXCEPTION");
-    ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+    qDebug() << "1数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
 }
 
 void thriftwidget::buildData()
@@ -1043,21 +1122,21 @@ void thriftwidget::buildData()
     int sum = -1;
     for(int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
         ItemWidget * item = dynamic_cast<ItemWidget*>(ui->treeWidget->topLevelItem(i));
-        qDebug() << "参数类型为" << item->comboBoxBase->currentText() << " 参数值为" << item->lineEditParamValue->text();
+        //qDebug() << "参数类型为" << item->comboBoxBase->currentText() << " 参数值为" << item->lineEditParamValue->text();
         if (item->checkBox->isChecked()) {
             sum++;
         } else {
             continue;
         }
         QString valueType = item->comboBoxBase->currentText();
-        qDebug() << "valueType = " << valueType;
+        //qDebug() << "valueType = " << valueType;
         if (baseType.contains(valueType)) {
             baseSerialize(sum + 1, valueType, item->lineEditParamValue->text());
         } else if (containerType.contains(valueType)) {
             containerSerialize(sum + 1, valueType, item->lineEditParamValue->text(), item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
         } else if (valueType == "struct") {
             //
-            qDebug() << "struct类型";
+            //qDebug() << "struct类型";
             structSerialize(sum + 1, valueType, item);
         } else {
 
@@ -1080,7 +1159,7 @@ void thriftwidget::buildData()
 
 void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString value)
 {
-   qDebug() << "serialNumber = " << serialNumber << " valueType = " << valueType << " value = " << value;
+   //qDebug() << "serialNumber = " << serialNumber << " valueType = " << valueType << " value = " << value;
    //设置类型
    QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
    string2stringList(type);
@@ -1128,7 +1207,7 @@ void thriftwidget::baseSerialize(int serialNumber, QString valueType, QString va
 
 void thriftwidget::containerSerialize(int serialNumber, QString valueType, QString value, QString keyType_, QString valyeType_)
 {
-    qDebug() << "containerSerialize value = " << value;
+    //qDebug() << "containerSerialize value = " << value;
     //设置类型
     QString type = QString("%1").arg(mapType.value(valueType), 2, 16, QLatin1Char('0'));
     string2stringList(type);
@@ -1151,7 +1230,7 @@ void thriftwidget::containerSerialize(int serialNumber, QString valueType, QStri
             //key为基础类型
             if (keyType_ == "string") {
                 for (const QString &str : dataList) {
-                    qDebug() << "key = " << str;
+                    //qDebug() << "key = " << str;
                     //设置字符串长度
                     int len = str.length();
                     QString lenData = QString("%1").arg(len, 8, 16, QLatin1Char('0'));
@@ -1164,12 +1243,12 @@ void thriftwidget::containerSerialize(int serialNumber, QString valueType, QStri
             } else {
                 //设置值 获取数值型
                 for (const QString &str : dataList) {
-                    qDebug() << "key = " << str;
+                    //qDebug() << "key = " << str;
                     // QString strData = QString("%1").arg(str, mapSize.value(key_Type), QLatin1Char('0'));
                     // string2stringList(strData);
 
                     int64_t value_i = str.toULongLong();
-                    qDebug() << "int64 = " << value;
+                    //qDebug() << "int64 = " << value;
                     QString valueData = QString("%1").arg(value_i, mapSize.value(valueType), 16, QLatin1Char('0'));
                     string2stringList(valueData);
                 }
@@ -1366,8 +1445,9 @@ void thriftwidget::assembleTBinaryMessage()
         QString valueType = item->comboBoxBase->currentText();
         QString value = item->lineEditParamValue->text();
         QString SN = item->lineEditParamSN->text();
-        if (SN != "") {
-            qDebug() << "出错";
+        //qDebug() << "SN = " << SN;
+        if (SN == "") {
+            qDebug() << "参数名" << value << "获取sn失败，默认+1";
             SN = QString::number(i + 1);
         }
 
@@ -1539,8 +1619,9 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
         QString valueType_ = itemChild->comboBoxBase->currentText();
         QString value_ = itemChild->lineEditParamValue->text();
         QString SN = itemChild->lineEditParamSN->text();
-        if (SN != "") {
-            qDebug() << "出错";
+        //qDebug() << "SN = " << SN;
+        if (SN == "") {
+            qDebug() << "参数名" << value_ << "获取sn失败，默认+1";
             SN = QString::number(serialNumber + 1);
         }
         writeTBinaryTypeAndSerialNumber(valueType_, SN.toInt());
@@ -1560,7 +1641,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
 
 void thriftwidget::writeTBinaryEndMessage()
 {
-    qDebug() << "写入结尾符";
+    //qDebug() << "写入结尾符";
     QString stop = QString("%1").arg(0, 2, 16, QLatin1Char('0'));
     //dataList.append(stop);
     string2stringList(stop);
@@ -1574,8 +1655,8 @@ void thriftwidget::writeTBinarySizeMessage()
         data = data + value;
     }
     QString dataLength = QString("%1").arg(data.length()/2, 8, 16, QLatin1Char('0'));
-    qDebug() << "writeTBinarySizeMessage data = " << data << " Length = " << data.length()/2;
-    qDebug() << "dataLength = " << dataLength;
+    //qDebug() << "writeTBinarySizeMessage data = " << data << " Length = " << data.length()/2;
+    //qDebug() << "dataLength = " << dataLength;
     dataList.insert(0, dataLength);
 }
 
@@ -1590,14 +1671,14 @@ void thriftwidget::writeTBinaryKeySize(QStringList &dataList, QString value)
     QString data = value;//.mid(0, value.length() - 2);
     dataList = data.split(",");
     QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
-    qDebug() << "writeTBinaryKeySize = " << dataList.length() << " lenData = " << lenData;
+    //qDebug() << "writeTBinaryKeySize = " << dataList.length() << " lenData = " << lenData;
     string2stringList(lenData);
 }
 
 void thriftwidget::writeTBinaryValueSize(QStringList &dataList, QString value)
 {
     QString data = value;//.mid(1, value.length() - 2);
-    qDebug() << "writeTBinaryValueSize data = " << data;
+    //qDebug() << "writeTBinaryValueSize data = " << data;
     dataList = data.split(",");
     //map2List(dataList, data);
     QString lenData = QString("%1").arg(dataList.length(), 8, 16, QLatin1Char('0'));
@@ -1615,7 +1696,7 @@ void thriftwidget::handleMessage(QString &data)
 
     QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
     label_headers = label_headers + "数据长度:" + headers_data_length + "   ";
-    qDebug() << "需要处理的数据 = " << data;
+    //qDebug() << "需要处理的数据 = " << data;
     //消息类型
     QString type_data = data.mid(0, 8);
     if (type_data == "80010001") {
@@ -1687,13 +1768,13 @@ void thriftwidget::handleMessage(QString &data)
             //     break;
             // } else
             QString isEnd = data.mid(0, 2);
-            qDebug() << "handleMessage isEnd = " << isEnd;
+            //qDebug() << "handleMessage isEnd = " << isEnd;
             if (value_type == "02") {
                 //bool
                 temp = temp + handleBool(data, isEnd);
             } else if (value_type == "03") {
                 //byte
-                qDebug() << "走这里1";
+                //qDebug() << "走这里1";
                 temp = temp + handleByte(data, isEnd);
             } else if (value_type == "04") {
                 //double
@@ -1712,7 +1793,7 @@ void thriftwidget::handleMessage(QString &data)
                 temp = temp + handleString(data, isEnd);
             } else if (value_type == "0c") {
                 //struct
-                qDebug() << "进入struct";
+                //qDebug() << "进入struct";
                 temp = temp + handleStruct(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
                     funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
                 //固定1
@@ -1981,7 +2062,7 @@ QString thriftwidget::handleString(QString &str, QString isEnd, QString resType,
     QString value2 = str.mid(0, len);
     str = str.mid(len);
     isEnd = str.mid(0,2);
-    qDebug() << "handleString isEnd = " << isEnd;
+    //qDebug() << "handleString isEnd = " << isEnd;
     QString end = ",";
     if (isEnd == "00" && isHandEnd) {
         end = "";
@@ -2012,11 +2093,11 @@ QString thriftwidget::handleString(QString &str, QString isEnd, QString resType,
 
 QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
 {
-    qDebug() << " outType = " << outType;
+    //qDebug() << " outType = " << outType;
     if (outType.contains(".")) {
         int index = outType.lastIndexOf(".");
         outType = outType.mid(index + 1);
-        qDebug() << "发现非本文件结构体，删除前缀后=" << outType;
+        //qDebug() << "发现非本文件结构体，删除前缀后=" << outType;
     }
     if (outParam == "fdog_list" || outParam == "fdog_set") {
         ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
@@ -2068,8 +2149,8 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         QString value_sn = str.mid(0, 4);
         //需要转
         bool ok; // 用于标识转换是否成功
-        qDebug() << "outParam = " << outParam << " hexToLongNumber(value_sn) = " << hexToLongNumber(value_sn) << " value_sn = " << value_sn;
-        qDebug() << "outType = " << outType <<  " value_sn.toInt() = " << value_sn.toInt(&ok, 16);
+        //qDebug() << "outParam = " << outParam << " hexToLongNumber(value_sn) = " << hexToLongNumber(value_sn) << " value_sn = " << value_sn;
+        //qDebug() << "outType = " << outType <<  " value_sn.toInt() = " << value_sn.toInt(&ok, 16);
         QString paramName_ = structParamMap.value(outType).value(value_sn.toInt(&ok, 16)).paramName;
         QString paramType_ = structParamMap.value(outType).value(value_sn.toInt(&ok, 16)).paramType;
 
@@ -2079,7 +2160,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         int type_ = 0;
 
         QString isEnd = str.mid(0, 2);
-        qDebug()<< "paramName_ = " << paramName_ << " isEnd = " << isEnd;
+        //qDebug()<< "paramName_ = " << paramName_ << " isEnd = " << isEnd;
         if (value_type == "02") {
             //bool
             type_ = THRIFT_BOOL;
@@ -2104,7 +2185,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         } else if (value_type == "0a") {
             //i64
             type_ = THRIFT_I32;
-            qDebug() << "0a isEnd = "<< isEnd << " paramName_ = " << paramName_;
+            //qDebug() << "0a isEnd = "<< isEnd << " paramName_ = " << paramName_;
             temp = temp + handleI64(str, isEnd, paramName_);
         } else if (value_type == "0b") {
             //string
@@ -2976,7 +3057,7 @@ QMap<int, structInfo> thriftwidget::getStructParams(QString data)
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p)
 {
-    qDebug() << "createAndGetNode 创建1";
+    //qDebug() << "createAndGetNode 创建1";
     ItemWidget* items = new ItemWidget();
     items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -3007,19 +3088,10 @@ void thriftwidget::handleBinData() {
             QString temp2 = QString::fromStdString(stream.str());
             dataTemp_2 = dataTemp_2 + temp2;
             dataTemp = dataTemp + temp2 + "  ";
-            // if (sum_2 == 4) {
-            //     dataTemp = dataTemp + temp2 + "  ";
-            //     sum_2 = 0;
-            //     qDebug() << "dataTemp1 = " << dataTemp;
-            // } else {
-            //     dataTemp = dataTemp + temp2;
-            //     qDebug() << "dataTemp2 = " << dataTemp;
-            // }
-
             if (countLength == -1) {
                 //读取头获取数据长度
                 countLength = 4 + strtol(dataList2[0].toStdString().c_str(), nullptr, 16);
-                qDebug() << "countLength = " << countLength - 4;
+                //qDebug() << "countLength = " << countLength - 4;
             }
             nowLength = nowLength + 4;
             //qDebug() << "nowLength + 4 = " << nowLength;
@@ -3028,39 +3100,28 @@ void thriftwidget::handleBinData() {
             //每8个段进行下一步
             if (sum == 8) {
                 sum = 0;
-                ui->textEdit->append(dataTemp);
+                if (!isTestModle) {
+                    ui->textEdit->append(dataTemp);
+                }
                 //qDebug() << "dataTemp = " << dataTemp;
                 dataTemp = "";
             }
 
-            // if (nowLength > countLength) {
-            //     qDebug() << "超过有效数据长度 = " << nowLength - countLength;
-            //     dataTemp_2 = dataTemp_2.mid(0, dataTemp_2.length()-4);
-            //     //打印剩余dataTemp
-            //     dataTemp = dataTemp.mid(0, dataTemp.length()-6);
-            //     ui->textEdit->append(dataTemp);
-            //     ui->stackedWidget->setCurrentIndex(0);
-            //     qDebug() << "===============1";
-            //     break;
-            // }
         }
-        ui->textEdit->append("------------------------------------------------------------------------------");
-        //对数据进行染色
-        qDebug() << "===============2";
-        handleMessage(dataTemp_2);
-        //将数据更加细致格式化，如果勾选了的话
-        if (ui->checkBox_show_json->isChecked()) {
-            QString needToJsonData = ui->textEdit_data->toPlainText();
-            ui->textEdit_data->clear();
-            qDebug() << "调用utils_parsingJsonInfo接口";
-            utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
-        } else {
-            qDebug() << "不调用utils_parsingJsonInfo接口";
+        if (!isTestModle) {
+            ui->textEdit->append("------------------------------------------------------------------------------");
+            //对数据进行染色
+            handleMessage(dataTemp_2);
+            //将数据更加细致格式化，如果勾选了的话
+            if (ui->checkBox_show_json->isChecked()) {
+                QString needToJsonData = ui->textEdit_data->toPlainText();
+                ui->textEdit_data->clear();
+                utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+            }
+            ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
+            ui->textEdit->append(dataTemp_2);
+            ui->textEdit->append("------------------------------------------------------------------------------");
         }
-
-        ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
-        ui->textEdit->append(dataTemp_2);
-        ui->textEdit->append("------------------------------------------------------------------------------");
         if (dataList2[1] == "80010002") {
             //结果
             ui->label_req->show();
@@ -3079,7 +3140,7 @@ void thriftwidget::handleBinData() {
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
-    qDebug() << "createAndGetNode 创建2";
+    //qDebug() << "createAndGetNode 创建2";
     ItemWidget* items = new ItemWidget(parent);
     items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -3092,7 +3153,7 @@ ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidgetItem *parent)
 {
-    qDebug() << "createAndGetNode 创建3";
+    //qDebug() << "createAndGetNode 创建3";
     ItemWidget* items = new ItemWidget(parent);
     items->mastLabel->hide();
     connect(items, SIGNAL(send_buttonClicked(QTreeWidgetItem*)), p, SLOT(rece_deleteItem(QTreeWidgetItem*)));
@@ -3247,13 +3308,13 @@ void thriftwidget::rece_TextChanged(QString data, QTreeWidgetItem * item)
         //不是顶层节点，向上查找
         parentItem = dynamic_cast<ItemWidget*>(item->parent());
         if (parentItem) {
-            qDebug() << "找到上层";
+            //qDebug() << "找到上层";
             count = parentItem->childCount() - 1;
             index = parentItem->indexOfChild(item_);
             isChild = true;
         }
     }
-    qDebug() << "rece_TextChanged = " << isCreateNode;
+    //qDebug() << "rece_TextChanged = " << isCreateNode;
     if (!isCreateNode && !isChild && index >= count) {
         //顶层
         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
@@ -3512,6 +3573,11 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
 
 void thriftwidget::on_toolButton_request_clicked()
 {
+    ui->label_req->hide();
+    ui->label_req->setText("EXCEPTION");
+    ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+    elapsedMillisecondsAll = 0;
+    isTestModle = false;
     assembleTBinaryMessage();
     //请求数据
     QVector<uint32_t> sendData = string2Uint32List(dataList);
@@ -3538,14 +3604,14 @@ void thriftwidget::on_toolButton_request_clicked()
     ui->textEdit->append(dataTemp);
     ui->textEdit->append("------------------------------------------------------------------------------");
     ui->textEdit->append("请求结果数据：");
-    qDebug() << "dataList = " << dataList;
-    qDebug() << "sendData = " << sendData;
-    QElapsedTimer timer;
-    timer.start();
+    //qDebug() << "dataList = " << dataList;
+    //qDebug() << "sendData = " << sendData;
+    QElapsedTimer * timer  = new QElapsedTimer();
+    //timer->start();
     retractNum = 0;
-    sendThriftRequest(sendData);
-    qint64 elapsedMilliseconds = timer.elapsed();
-    ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+    sendThriftRequest(sendData, timer);
+    //qint64 elapsedMilliseconds = timer->elapsed();
+    //ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
 }
 
@@ -3824,4 +3890,363 @@ void thriftwidget::rece_highlighted(const QString &text)
 {
     //选择
     qDebug() << "rece_highlighted = " << text;
+}
+
+
+void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t> dataArray, QElapsedTimer* timer, RequestResults * rr)
+{
+  // qDebug() << "进入sendThriftRequest1";
+   //QTcpSocket *clientSocket = new QTcpSocket();
+
+    if (clientSocket == nullptr) {
+        qDebug() << "clientSocket is null";
+        return;
+   }
+
+    //qDebug() << "进入sendThriftRequest2";
+    connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=]{
+       qDebug() << "发生错误";
+    });
+    
+    //创建连接
+    timer->start();
+    if (rr->startTime == "") {
+        rr->setStartTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+    }
+    clientSocket->connectToHost("192.168.0.169", 11130);
+    if (!clientSocket->waitForConnected()) {
+        qDebug() << "无法连接到服务器";
+        return ;
+    }
+
+    // 检查设备是否打开并处于可读写状态
+    if (!clientSocket->isOpen()) {
+        // 打开设备
+        if (!clientSocket->open(QIODevice::ReadWrite)) {
+            qDebug() << "无法打开设备";
+            return ;
+        }
+    }
+    qint64 elapsedMillisecondsConnect = timer->elapsed();
+    rr->setConnectTime(elapsedMillisecondsConnect);
+
+    //qDebug() << "进入sendThriftRequest3";
+    connect(clientSocket,&QTcpSocket::readyRead,[=]{
+        int64_t needRead_ = clientSocket->bytesAvailable();
+        //qDebug() << "=====缓冲区还剩数据 = " << needRead_;
+        std::array<uint32_t, 5000> receivedDataArray{0};
+        qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
+                                                    receivedDataArray.size() * sizeof(uint32_t));
+        qDebug() << "bytesReceived = " << bytesReceived;
+        rr->totalData = rr->totalData + bytesReceived;
+        int64_t readNum = clientSocket->bytesAvailable();
+        //qDebug() << "本次读取剩数据 = " << readNum;
+        int sum2 = 0;
+        int a = (needRead_ - readNum)%4;
+        //qDebug() << "数据求余 = " << a;
+        for (const auto& elem : receivedDataArray) {
+            uint32_t data = qFromBigEndian(elem);
+            std::stringstream stream;
+            //每次读取一个字节
+            stream << std::hex << std::setw(8) << std::setfill('0') << data;
+            //qDebug() << " elem = " << elem << "十六进制为 = " << QString::fromStdString(stream.str());
+            if (sum2++ == (needRead_ - readNum)/4) {
+                //只有最后一个可能存在不对齐的情况，多读取一个，少一位
+                //qDebug() << "循环 needRead_ - readNum = " << needRead_ - readNum << " sum2 = " << sum2 << " 余数 = " << a;
+                //qDebug() << "达到缓存长度 receivedData 长度 = " << receivedData.length() << " elem = " << QString::fromStdString(stream.str());
+                if (a != 0) {
+                    receivedData.push_back(elem);
+                }
+                break;
+            }
+            receivedData.push_back(elem);
+        }
+            
+        if (isFirstRead) {
+            isFirstRead = false;
+            //获取数据长度
+            uint32_t data = qFromBigEndian(receivedDataArray[0]);
+            std::stringstream stream;
+            //每次读取一个字节
+            stream << std::hex << std::setw(8) << std::setfill('0') << data;
+            QString data_ = QString::fromStdString(stream.str());
+            int countLength = 4 + strtol(data_.toStdString().c_str(), nullptr, 16);
+            needRead = countLength;
+            //qDebug() << "首次读取，数据总长度为 " << countLength;
+            //qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
+            needRead = needRead - (needRead_ - readNum);
+            //qDebug() << "协议剩余数据 = " << needRead;
+            if (needRead == 0) {
+                //结束本次读取
+                isFirstRead = true;
+                needRead = 0;
+                receivedData.clear();
+                clientSocket->close();
+                qint64 elapsedMilliseconds = timer->elapsed();
+                elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
+                qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+                count_ = count_ -1;
+                isok = true;
+                rr->setResults(elapsedMilliseconds - elapsedMillisecondsConnect);
+                rr->setEndTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+                rr->setSectionData();
+                return;
+            }
+            //qDebug() << "等待下次读取";
+        } else {
+            //qDebug() << "再次读取剩余数据";
+            //qDebug() << "本次缓冲区数据为 " << needRead_ << "本地读取缓冲区后剩余" << readNum;
+            needRead = needRead - (needRead_ - readNum);
+            //qDebug() << "协议剩余数据 = " << needRead;
+            if (needRead == 0) {
+                //结束本次读取
+                isFirstRead = true;
+                needRead = 0;
+                receivedData.clear();
+                clientSocket->close();
+            }
+        }
+        qint64 elapsedMilliseconds = timer->elapsed();
+        elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
+        qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+        count_ = count_ -1;
+        isok = true;
+        rr->setResults(elapsedMilliseconds);
+        rr->setEndTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+        rr->setSectionData();
+        return;
+    });
+    
+    for (uint32_t& data : dataArray) {
+        data = qToBigEndian(data);
+        //qDebug() << data;
+    }
+    //qDebug() << "进入sendThriftRequest4";
+    qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+    qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
+    if (bytesSent != dataArray.size() * sizeof(uint32_t)) {
+        qDebug() << "发送数据失败";
+        //clientSocket.close();
+        return ;
+    }
+    rr->setRequestTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+    qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+
+}
+
+void thriftwidget::on_toolButton_propertyTest_clicked()
+{
+    threadpool.setMaxThreadCount(ui->lineEdit_thread->text().toInt());
+    isTestModle = true;
+    ui->textEdit->clear();
+    ui->textEdit_data->clear();
+    int64_t loopNum = ui->lineEdit_times->text().toLongLong();
+    count = loopNum;
+    retractNum = 0;
+    elapsedMillisecondsAll = 0;
+    assembleTBinaryMessage();
+    QVector<uint32_t> sendData = string2Uint32List(dataList);
+
+    RequestResults * rr = new RequestResults();
+    rr->setCount(count);
+    QElapsedTimer timer2;
+    timer2.start();
+    for (int64_t i = 0; i < loopNum; i++) {
+        QElapsedTimer * timer  = new QElapsedTimer();
+        // sendThriftRequest(sendData, timer);
+        qDebug() << "开始调用" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+        TestRunnable * m_pRunnable = new TestRunnable(this, sendData, timer, rr);
+        threadpool.start(m_pRunnable);
+    }
+
+    while(rr->count > 0 && timer2.elapsed() < loopNum*1000) {
+        QCoreApplication::processEvents();
+    }
+
+//    if(!isok) {
+//        //调用失败
+//    }
+
+    qDebug() << "开始时间：" <<rr->startTime;
+    qDebug() << "结束时间：" <<rr->endTime;
+    qDebug() << "连接时间：" <<rr->connectTime;
+    qDebug() << "阶段时间：" <<rr->Results;
+
+    ui->lineEdit_totalRequests->setText(QString::number(rr->totalTimes)); //总执行次数
+    QDateTime startTime = QDateTime::fromString(rr->startTime, "yyyy-MM-dd hh:mm:ss.zzz");
+    QDateTime endTime = QDateTime::fromString(rr->endTime, "yyyy-MM-dd hh:mm:ss.zzz");
+    // 计算两个时间点之间的毫秒差
+    QString cpus = ui->lineEdit_thread->text();
+    int32_t sum2 = std::accumulate(rr->connectTime.begin(), rr->connectTime.end(), 0);
+    qint64 millisecondsDiff = startTime.msecsTo(endTime);
+    double secondsDiff = millisecondsDiff / 1000.0;
+    QString formattedSeconds = QString::number(secondsDiff, 'f', 3);
+    ui->lineEdit_totalTime->setText(formattedSeconds);
+
+    int32_t maxValue = *std::max_element(rr->Results.begin(), rr->Results.end());
+    ui->lineEdit_maxRespond->setText(QString::number(maxValue));
+    int32_t minValue = *std::min_element(rr->Results.begin(), rr->Results.end());
+    ui->lineEdit_minRespond->setText(QString::number(minValue));
+
+    int32_t sum = std::accumulate(rr->Results.begin(), rr->Results.end(), 0);
+    ui->lineEdit_averageRespond->setText(QString::number(sum / rr->Results.size()));
+    ui->lineEdit_allData->setText(QString::number(static_cast<double>(rr->totalData) / 1024.0, 'f', 4));
+
+    ui->lineEdit_success->setText(QString::number(rr->successCount));
+    ui->lineEdit_fail->setText(QString::number(rr->totalTimes - rr->successCount));
+
+    ui->lineEdit_errorRate->setText(QString::number((static_cast<double>(rr->totalTimes) - rr->successCount)/rr->totalTimes*1000));
+
+    //int32_t sum2 = std::accumulate(rr->connectTime.begin(), rr->connectTime.end(), 0);
+    ui->lineEdit_networkDelay->setText(QString::number(sum2 / rr->connectTime.size()));
+
+    ui->lineEdit_requestsPerSecond->setText(QString::number(rr->totalTimes / static_cast<int64_t>(secondsDiff)));
+
+    ui->lineEdit_requestsPerSecondData->setText(QString::number(rr->totalData / static_cast<int64_t>(secondsDiff)));
+
+    ui->lineEdit_ms10->setText(QString::number(rr->ms10));
+    ui->lineEdit_ms25->setText(QString::number(rr->ms25));
+    ui->lineEdit_ms50->setText(QString::number(rr->ms50));
+    ui->lineEdit_ms75->setText(QString::number(rr->ms75));
+    ui->lineEdit_ms90->setText(QString::number(rr->ms90));
+    ui->lineEdit_ms95->setText(QString::number(rr->ms95));
+    // QDateTime startTime2 = QDateTime::fromString(rr->startTime, "yyyy-MM-dd hh:mm:ss.zzz");
+    // QDateTime endTime2 = QDateTime::fromString(rr->requestTime, "yyyy-MM-dd hh:mm:ss.zzz");
+    // // 计算两个时间点之间的毫秒差
+    // qint64 millisecondsDiff2 = startTime2.msecsTo(endTime2);
+    // // double secondsDiff = millisecondsDiff / 1000.0;
+    // // QString formattedSeconds = QString::number(secondsDiff, 'f', 3);
+    // // RequestTime
+    // //ui->lineEdit_tps->setText(QString::number(static_cast<double>(rr->successCount)*1000/millisecondsDiff2));
+
+//    qint64 elapsedMilliseconds2 = timer2.elapsed();
+//    qDebug() << "响应时间：" + QString::number(elapsedMilliseconds2) + "ms";
+
+    while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            widget->deleteLater(); // 删除控件，并在事件循环结束时删除
+        } else {
+            delete item->layout(); // 递归删除子布局
+        }
+        delete item; // 删除布局项
+    }
+
+    // QSplineSeries *lineSeries = new QSplineSeries(); //创建折线系列
+    // for(int64_t i=0; i< rr->Results.size(); i++)
+    //  {
+    //      lineSeries->append(i,static_cast<double>(sum) / rr->Results.size());
+    //      //qDebug() <<"添加" << i;
+    //  }
+    //  lineSeries->setName("red line");   //设置系列名称
+    // 创建一个图表对象
+     QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
+     for(int64_t i=0; i< rr->Results.size(); i++)
+      {
+          lineSeries2->append(i,rr->Results[i]);
+          //qDebug() <<"添加" << i;
+      }
+      lineSeries2->setName("red line2");   //设置系列名称
+
+
+     QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
+     for(int64_t i=0; i< rr->connectTime.size(); i++)
+      {
+          lineSeries3->append(i,rr->connectTime[i]);
+          //qDebug() <<"添加" << i;
+      }
+      lineSeries3->setName("red line3");   //设置系列名称
+
+    QChart *chart = new QChart();
+    //chart->legend()->hide(); // 隐藏图例
+    // 将数据系列添加到图表中
+    //chart->addSeries(lineSeries);
+    chart->addSeries(lineSeries2);
+    chart->addSeries(lineSeries3);
+    chart->legend()->hide();
+    chart->createDefaultAxes();
+    chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
+    chartView = new QChartView(this);
+    chartView->setChart(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->resize(QSize(500,500));
+    ui->widget_charts->layout()->addWidget(chartView);
+}
+
+void RequestResults::setEndTime(const QString &value)
+{
+    mutex.lock();
+    endTime = value;
+    mutex.unlock();
+}
+
+void RequestResults::setResults(const int32_t value)
+{
+    mutex.lock();
+    Results.push_back(value);
+    //成功次数
+    successCount = successCount + 1;
+    mutex.unlock();
+}
+
+void RequestResults::setConnectTime(const int32_t value)
+{
+    mutex.lock();
+    connectTime.push_back(value);
+    mutex.unlock();
+}
+
+void RequestResults::setCount(int value)
+{
+    mutex.lock();
+    count = value;
+    totalTimes = value;
+    mutex.unlock();
+}
+
+void RequestResults::decrease()
+{
+    mutex.lock();
+    qDebug() << "count = " << count;
+    count = count - 1;
+    mutex.unlock();
+}
+
+void RequestResults::setRequestTime(const QString &value) {
+    mutex.lock();
+    requestTime = value;
+    mutex.unlock();
+}
+
+void RequestResults::setSectionData()
+{
+    mutex.lock();
+    //10 25 50 75 90 95
+    double runSum = static_cast<double>(totalTimes) - count; //已经执行次数
+    if (runSum > (static_cast<double>(totalTimes) * 0.10) && ms10 == -1) {
+        int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
+        ms10 = static_cast<double>(sum) / Results.size();
+    } else if (runSum > (static_cast<double>(totalTimes) * 0.25) && ms25 == -1) {
+        int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
+        ms25 = static_cast<double>(sum) / Results.size();
+    } else if (runSum > (static_cast<double>(totalTimes) * 0.50) && ms50 == -1) {
+        int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
+        ms50 = static_cast<double>(sum) / Results.size();
+    } else if (runSum > (static_cast<double>(totalTimes) * 0.75) && ms75 == -1) {
+        int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
+        ms75 = static_cast<double>(sum) / Results.size();
+    } else if (runSum > (static_cast<double>(totalTimes) * 0.90) && ms90 == -1) {
+        int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
+        ms90 = static_cast<double>(sum) / Results.size();
+    } else if (runSum > (static_cast<double>(totalTimes) * 0.95) && ms95 == -1) {
+        int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
+        ms95 = static_cast<double>(sum) / Results.size();
+    }
+    mutex.unlock();
+}
+
+void RequestResults::setStartTime(const QString &value)
+{
+    mutex.lock();
+    startTime = value;
+    mutex.unlock();
 }

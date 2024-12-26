@@ -1,9 +1,11 @@
 ﻿#ifndef THRIFTWIDGET_H
 #define THRIFTWIDGET_H
 
+#include <QTcpSocket>
 #include <QWidget>
 #include <QTreeWidgetItem>
 #include <QComboBox>
+#include <QElapsedTimer>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QTreeWidget>
@@ -11,8 +13,14 @@
 #include <QLabel>
 #include <QCheckBox>
 #include <QKeyEvent>
+#include <QtEndian>
 #include <QDebug>
+#include <QRunnable>
+#include <QTest>
+#include <QtCharts>
+#include <QThreadPool>
 #include <QListWidgetItem>
+#include <QMutex>
 
 //请求类型
 #define THRIFT_CALL        "80010001"
@@ -139,6 +147,12 @@ protected:
     }
 };
 
+class NoWheelQComboBox : public QComboBox { 
+public:
+    using QComboBox::QComboBox; 
+protected:
+    void wheelEvent(QWheelEvent* event) override { event->ignore(); }
+};
 
 class ItemWidget :public QObject ,public QTreeWidgetItem
  {
@@ -151,9 +165,9 @@ class ItemWidget :public QObject ,public QTreeWidgetItem
      void init2();
      void init3();
      ~ItemWidget();
-      QComboBox* comboBoxBase;    //基础
-      QComboBox* comboBoxKey;     //key
-      QComboBox* comboBoxValue;   //value
+      NoWheelQComboBox* comboBoxBase;    //基础
+      NoWheelQComboBox* comboBoxKey;     //key
+      NoWheelQComboBox* comboBoxValue;   //value
 
       
       QLineEdit* lineEditParamSN;       //参数序号
@@ -226,6 +240,7 @@ public:
 
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
+    QString getCpuInfo(const QString &cmd);
     QString getType(int index);
     QString getType(QString data);
     QString getValue(QString data);
@@ -236,7 +251,6 @@ public:
     uint32_t string2Uint32(QString data);  //将四字节字符串转为需要发送的uint32
     QVector<uint32_t> string2Uint32List(QVector<QString> & data);
     void string2stringList(QString data);
-    void sendThriftRequest(QVector<uint32_t> dataArray);
 
     //组装数据
     void buildData();
@@ -287,7 +301,7 @@ public:
     template<class T>
     void writeTBinaryFormatData(T value, QString valueType) {
        QString fromatData = QString("%1").arg(value, mapSize.value(valueType), 16, QLatin1Char('0'));
-       qDebug() << "writeTBinaryFormatData fromatData =" << fromatData;
+       //qDebug() << "writeTBinaryFormatData fromatData =" << fromatData;
        string2stringList(fromatData);
     }
 
@@ -457,8 +471,16 @@ private slots:
 
     void rece_highlighted(const QString & text);
 
-private:
+    void on_toolButton_propertyTest_clicked();
+
+    void sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
+
+
+public:
     QVector<QString> dataList;
+private:
+
+    QVector<QString> dataList_m;
     QString lastValue_;
     QString last2Value_;
     Ui::thriftwidget *ui;
@@ -467,6 +489,111 @@ private:
     QStringList dataSource;
     QVector<uint32_t> receivedData;
     bool isCreateNode = false;
+
+    //压测
+    int64_t count = 0;
+    qint64 elapsedMillisecondsAll = 0;
+    bool isTestModle = false; //是否压测模式 
+    QThreadPool threadpool;
+    QChartView *chartView = nullptr;
+    QChart *chart = nullptr;
+};
+
+Q_DECLARE_METATYPE(QVector<uint32_t>);
+
+Q_DECLARE_METATYPE(QElapsedTimer*);
+
+
+class RequestResults {
+    public:
+
+
+    QVector<int32_t> Results; //每次请求耗时
+
+    QVector<int32_t> connectTime;  //每次连接延时
+
+    QString startTime;        //开始时间
+    QString requestTime;      //请求到的时间
+    QString endTime;          //结束时间
+    QMutex mutex;
+    int count = 0;        //为0时，执行完毕
+    int totalTimes = 0;   //总执行数
+    int successCount = 0; //成功请求数
+    int failCount = 0;    //失败请求数
+    int minRespond = 0;   //最小响应时间
+    int maxRespond = 0;   //最大响应时间
+    qint64 totalTime = 0; //总执行时间
+    qint64 totalData = 0; //总数据量
+
+    int ms10 = -1;  //前10%的平均耗时
+    int ms25 = -1;
+    int ms50 = -1;
+    int ms75 = -1;
+    int ms90 = -1;
+    int ms95 = -1;
+
+    void setStartTime(const QString &value);
+    void setEndTime(const QString &value);
+    void setResults(const int32_t  value);
+    void setConnectTime(const int32_t value);
+    void setCount(int value);
+    void decrease();
+    void setRequestTime(const QString &value);
+    void setSectionData();
+};
+
+class TestRunnable : public QObject, public QRunnable {
+    Q_OBJECT
+public:
+    TestRunnable(QObject * obj, QVector<uint32_t> sendData, QElapsedTimer* timer, RequestResults * rr){
+        obj_ = obj;
+        sendData_ =  sendData;
+        timer_ = timer;
+        rr_ = rr;
+        // count_ = count;
+        // clientSocket = new QTcpSocket();
+        // timer = new QElapsedTimer();
+        //sendThriftRequest2(clientSocket, sendData_, timer);
+    }
+
+    void sendThriftRequest2(QTcpSocket * clientSocket, QVector<uint32_t> dataArray, QElapsedTimer* timer, RequestResults * rr);
+    ~TestRunnable() {
+        //不需要释放
+    }
+
+    void run() override {
+        //请求数据
+        //qDebug() << "调用run";
+        clientSocket = new QTcpSocket();
+        sendThriftRequest2(clientSocket, sendData_, timer_, rr_);
+        QElapsedTimer timer_run;
+        timer_run.start();
+        //QMetaObject::invokeMethod(obj_,"sendThriftRequest",Qt::QueuedConnection, Q_ARG(QVector<uint32_t>,sendData_), Q_ARG(QElapsedTimer*,timer_));
+        while(!isok && timer_run.elapsed() < 3*1000) {
+            QCoreApplication::processEvents();
+        }
+        
+        if(!isok) {
+            //调用失败
+        }
+        rr_->decrease();
+        //qDebug() << "调用run完毕";
+    }
+
+public:
+    bool isok = false;
+    QElapsedTimer * timer_;
+    RequestResults * rr_ = nullptr;
+    QTcpSocket * clientSocket = nullptr;
+    QVector<uint32_t> receivedData;
+    int64_t count_ = 1;
+    int64_t needRead = 0;
+     QObject * obj_;
+     QVector<uint32_t> sendData_;
+    bool isFirstRead = true;
+    qint64 elapsedMillisecondsAll = 0;
+
+    
 };
 
 #endif // THRIFTWIDGET_H
