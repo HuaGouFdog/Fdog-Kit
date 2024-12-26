@@ -59,6 +59,8 @@
 
 #define TBinaryProtocol_ "TBinaryProtocol"
 
+static QMap<QString, QString> preDataMap;
+
 static QMap<QString, QString> mapReqType = {{"CALL", THRIFT_CALL}, {"ONEWAY", THRIFT_ONEWAY}};
 
 static QMap<QString, QString> ExceptionType = {{"1", "Unknown Method"}};
@@ -416,6 +418,9 @@ public:
 
     //将二进制数据进行解析
     void handleBinData();
+
+    //读取预制数据
+    void readPreData();
 
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);

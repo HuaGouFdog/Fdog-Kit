@@ -551,6 +551,14 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         //基础类型
         //qDebug() << "设置基础类型";
         comboBoxBase->setCurrentText(type);
+        //匹配预制数据
+        if (preDataMap.contains(name)) {
+            lineEditParamValue->setText(preDataMap[name]);
+            if (typeSign == "optional") {
+                checkBox->setChecked(true);
+            }
+        }
+
     } else {
         //qDebug() << "设置struct1";
         isAuto = false;
@@ -800,36 +808,21 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     //获取当前cpu支持线程数
     ui->lineEdit_thread_cpu->setText(getCpuInfo("wmic cpu get NumberOfLogicalProcessors"));
+    ui->stackedWidget_2->setCurrentIndex(0);
 
-//    QVector<int64_t> a = {114, 139, 149, 126, 134, 114, 139, 149, 126, 134, 139, 120, 131, 131, 110, 94, 95, 107, 97, 98, 102, 108, 103, 114, 127, 127, 111, 100, 100, 100, 97, 97, 100, 110, 115, 128, 130, 150, 149, 122, 137, 136, 118, 112, 89, 91, 93, 97, 101, 103, 106, 108, 107, 97, 107, 109, 98, 96, 96, 97, 94, 91, 97, 96, 104, 111, 131, 138, 143, 159, 151, 127, 128, 120, 125, 97, 114, 139, 149, 126, 134, 139, 120, 131, 131, 110, 94, 95, 107, 97, 98, 102, 108, 103, 114, 127, 127, 111, 100, 100, 100, 97, 97, 100, 110, 115, 128, 130, 150, 149, 122, 137, 136, 118, 112, 89, 91, 93, 97, 101, 103, 106, 108, 107, 97, 107, 109, 98, 96, 96, 97, 94, 91, 97, 96, 104, 111, 131, 138, 143, 159, 151, 127, 128, 120, 125, 97, 131, 93, 138, 141, 119, 134, 106, 110, 118, 95, 98, 98, 94, 91, 96, 105, 100, 103, 106, 97, 104, 105, 93, 91, 92, 94, 95, 100, 99, 103, 113, 108, 117, 118, 120, 113, 113, 112, 99, 118, 112, 119, 113, 112, 125, 113, 121, 102, 104, 103, 91, 91, 90, 91, 89, 90, 97, 100, 96, 111, 101, 103, 109, 100, 92, 94, 100, 95, 97, 106, 90, 95, 94, 100, 100, 110, 101, 102, 95, 100, 101, 91, 93, 93, 106, 113, 100, 98, 100, 111, 107, 109, 111, 99, 113, 114, 116, 121, 97, 99, 102, 107, 94, 97, 90, 92, 97, 100, 102, 98, 98, 104, 106, 106, 100, 105, 100, 103, 102, 104, 119, 115, 103, 121, 106, 108, 122, 132, 134, 130, 116, 106, 95, 97, 90, 89, 99, 112, 166, 136, 139, 171, 139, 118, 120, 126, 112, 123, 108, 107, 94, 107, 107, 112, 100, 108, 100, 102, 103, 98, 96, 99, 93, 91, 88, 87, 99, 95, 98, 102, 97, 101, 101, 109, 104, 133, 119, 115, 111, 141, 118, 147, 134, 113, 130, 110, 110, 107, 107, 111, 106, 124, 102, 123, 103, 111, 114, 117, 92, 123, 123, 96, 94, 97, 119, 146, 176, 159, 153, 161, 166, 125, 128, 98, 100, 107, 110, 112, 117, 118, 129, 106, 131, 116, 107, 105, 89, 94, 92};
-//    //QVector<int32_t> a = {114, 139, 149, 126};
-//    QLineSeries *lineSeries = new QLineSeries();        //创建折线系列
-//           /*为系列里添加100个数据*/
-//           for(int64_t i=0; i< a.size(); i++)
-//           {
-//               lineSeries->append(i,a[i]);
-//               qDebug() <<"添加" << i;
-//           }
-//     lineSeries->setName("red line");                  //设置系列名称
-//    // 创建一个图表对象
+    QChart *chart = new QChart();
+    //chart->legend()->hide(); // 隐藏图例
+    chart->legend()->hide();
+    chart->createDefaultAxes();
+    chart->setTitle("接口压测数据图");
+    chartView = new QChartView(this);
+    chartView->setChart(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    //chartView->resize(QSize(500,500));
+    ui->widget_charts->layout()->addWidget(chartView);
 
-//    QChart *chart = new QChart();
-
-//    QValueAxis *valueAxis = new QValueAxis();
-//    valueAxis->setRange(0, a.size()); // 设置数值轴的范围
-//    chart->addAxis(valueAxis, Qt::AlignBottom);
-
-//    //chart->legend()->hide(); // 隐藏图例
-//    // 将数据系列添加到图表中
-//    chart->addSeries(lineSeries);
-//    chart->legend()->hide();
-//    chart->createDefaultAxes();
-//    chart->setTitle("Simple line chart example");
-//    chartView = new QChartView(this);
-//    chartView->setChart(chart);
-//    chartView->setRenderHint(QPainter::Antialiasing);
-//    chartView->resize(QSize(500,500));
-//    ui->horizontalLayout_19->addWidget(chartView);
+    //读取预制数据
+    readPreData();
 }
 
 QString thriftwidget::getCpuInfo(const QString &cmd)
@@ -3138,6 +3131,37 @@ void thriftwidget::handleBinData() {
         }
 }
 
+void thriftwidget::readPreData()
+{
+    //固定读取thriftConfig/preData.txt
+    // 定义文件名
+    QString fileName = "thriftConfg\\preData.txt";
+    // 创建文件对象
+    QFile file(fileName);
+ 
+    // 打开文件，并且以只读方式进行读取
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        // 读取文件内容
+        QByteArray fileData = file.readAll();
+        // 关闭文件
+        file.close();
+        // 输出读取的文件内容
+        //qDebug() << "读取的文件内容:" << fileData;
+        QStringList preDataList = QString(fileData).split("\n");
+        //qDebug() << "读取的文件内容:" << preDataList;
+        for (int i = 0; i < preDataList.size(); i++) {
+            int index = preDataList.at(i).indexOf(":");
+            QString key = preDataList.at(i).mid(0, index);
+            QString value = preDataList.at(i).mid(index + 1);
+            preDataMap.insert(key, value);
+            qDebug() << "key = " << key << " value = " << value;
+        }
+    } else {
+        // 如果文件打开失败，则输出错误信息
+        qDebug() << "打开文件失败!";
+    }
+}
+
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
     //qDebug() << "createAndGetNode 创建2";
@@ -3563,11 +3587,13 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->widget_property->hide();
         ui->toolButton_request->show();
         ui->toolButton_save->show();
+        ui->stackedWidget_2->setCurrentIndex(0);
     } else {
         //性能测试
         ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
+        ui->stackedWidget_2->setCurrentIndex(1);
     }
 }
 
@@ -4110,17 +4136,6 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     ui->lineEdit_ms75->setText(QString::number(rr->ms75));
     ui->lineEdit_ms90->setText(QString::number(rr->ms90));
     ui->lineEdit_ms95->setText(QString::number(rr->ms95));
-    // QDateTime startTime2 = QDateTime::fromString(rr->startTime, "yyyy-MM-dd hh:mm:ss.zzz");
-    // QDateTime endTime2 = QDateTime::fromString(rr->requestTime, "yyyy-MM-dd hh:mm:ss.zzz");
-    // // 计算两个时间点之间的毫秒差
-    // qint64 millisecondsDiff2 = startTime2.msecsTo(endTime2);
-    // // double secondsDiff = millisecondsDiff / 1000.0;
-    // // QString formattedSeconds = QString::number(secondsDiff, 'f', 3);
-    // // RequestTime
-    // //ui->lineEdit_tps->setText(QString::number(static_cast<double>(rr->successCount)*1000/millisecondsDiff2));
-
-//    qint64 elapsedMilliseconds2 = timer2.elapsed();
-//    qDebug() << "响应时间：" + QString::number(elapsedMilliseconds2) + "ms";
 
     while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
@@ -4130,31 +4145,21 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
         }
         delete item; // 删除布局项
     }
-
-    // QSplineSeries *lineSeries = new QSplineSeries(); //创建折线系列
-    // for(int64_t i=0; i< rr->Results.size(); i++)
-    //  {
-    //      lineSeries->append(i,static_cast<double>(sum) / rr->Results.size());
-    //      //qDebug() <<"添加" << i;
-    //  }
-    //  lineSeries->setName("red line");   //设置系列名称
     // 创建一个图表对象
-     QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
-     for(int64_t i=0; i< rr->Results.size(); i++)
-      {
-          lineSeries2->append(i,rr->Results[i]);
-          //qDebug() <<"添加" << i;
-      }
-      lineSeries2->setName("red line2");   //设置系列名称
+    QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
+    for(int64_t i=0; i< rr->Results.size(); i++)
+    {
+       lineSeries2->append(i,rr->Results[i]);
+    }
+    lineSeries2->setName("red line2");   //设置系列名称
 
 
-     QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
-     for(int64_t i=0; i< rr->connectTime.size(); i++)
-      {
-          lineSeries3->append(i,rr->connectTime[i]);
-          //qDebug() <<"添加" << i;
-      }
-      lineSeries3->setName("red line3");   //设置系列名称
+    QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
+    for(int64_t i=0; i< rr->connectTime.size(); i++)
+    {
+       lineSeries3->append(i,rr->connectTime[i]);
+    }
+    lineSeries3->setName("red line3");   //设置系列名称
 
     QChart *chart = new QChart();
     //chart->legend()->hide(); // 隐藏图例
