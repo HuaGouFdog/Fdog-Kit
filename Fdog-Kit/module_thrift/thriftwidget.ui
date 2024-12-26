@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1329</width>
+    <width>1418</width>
     <height>701</height>
    </rect>
   </property>
@@ -302,8 +302,8 @@ QToolButton:hover {
             </property>
             <property name="iconSize">
              <size>
-              <width>13</width>
-              <height>13</height>
+              <width>18</width>
+              <height>18</height>
              </size>
             </property>
             <property name="toolButtonStyle">
@@ -1480,6 +1480,9 @@ QComboBox QAbstractItemView::item:selected {
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1572,6 +1575,9 @@ QComboBox QAbstractItemView::item:selected {
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1647,6 +1653,9 @@ QComboBox QAbstractItemView::item:selected {
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1923,6 +1932,9 @@ padding-right:10px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -2284,7 +2296,7 @@ padding-right:10px;
 }</string>
             </property>
             <property name="text">
-             <string>10</string>
+             <string>50</string>
             </property>
             <property name="placeholderText">
              <string>10</string>
@@ -2726,7 +2738,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -3037,6 +3049,9 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                       <font>
                        <family>OPPOSans B</family>
                        <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
                        <stylestrategy>PreferAntialias</stylestrategy>
                       </font>
                      </property>
@@ -3213,13 +3228,13 @@ border-radius: 2px;
                       <bool>false</bool>
                      </property>
                      <attribute name="headerVisible">
-                      <bool>true</bool>
-                     </attribute>
-                     <attribute name="headerDefaultSectionSize">
-                      <number>100</number>
+                      <bool>false</bool>
                      </attribute>
                      <attribute name="headerMinimumSectionSize">
                       <number>20</number>
+                     </attribute>
+                     <attribute name="headerDefaultSectionSize">
+                      <number>100</number>
                      </attribute>
                      <attribute name="headerStretchLastSection">
                       <bool>true</bool>
@@ -4494,7 +4509,7 @@ padding-right:10px;</string>
           </layout>
          </widget>
          <widget class="QWidget" name="page_3">
-          <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="5">
+          <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="0">
            <property name="leftMargin">
             <number>0</number>
            </property>
@@ -4509,12 +4524,9 @@ padding-right:10px;</string>
            </property>
            <item>
             <widget class="QWidget" name="widget_8" native="true">
-             <layout class="QVBoxLayout" name="verticalLayout_13" stretch="1,1,1,1,1,1,10">
-              <property name="spacing">
-               <number>6</number>
-              </property>
+             <layout class="QVBoxLayout" name="verticalLayout_13" stretch="30,2,2,2,2,2,2,1">
               <property name="leftMargin">
-               <number>9</number>
+               <number>0</number>
               </property>
               <property name="topMargin">
                <number>0</number>
@@ -4526,8 +4538,8 @@ padding-right:10px;</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QWidget" name="horizontalWidget" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_17">
+               <widget class="QWidget" name="widget_charts" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_15">
                  <property name="leftMargin">
                   <number>0</number>
                  </property>
@@ -4536,6 +4548,24 @@ padding-right:10px;</string>
                  </property>
                  <property name="rightMargin">
                   <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="horizontalWidget" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
                   <number>0</number>
@@ -4586,7 +4616,10 @@ border-radius: 5px;
                 </property>
                 <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,0,0,0,0">
                  <property name="leftMargin">
-                  <number>9</number>
+                  <number>15</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>15</number>
                  </property>
                  <property name="horizontalSpacing">
                   <number>0</number>
@@ -4970,13 +5003,13 @@ border-radius: 5px;
                <widget class="QWidget" name="horizontalWidget_3" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_21">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
                   <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
                   <number>0</number>
@@ -5028,261 +5061,16 @@ border-radius: 5px;
                 </property>
                 <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,0,0,0,0,0,0">
                  <property name="leftMargin">
-                  <number>9</number>
+                  <number>15</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>15</number>
                  </property>
                  <property name="horizontalSpacing">
                   <number>0</number>
                  </property>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_requestsPerSecond">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="toolTip">
-                    <string>每秒平均请求数量</string>
-                   </property>
-                   <property name="text">
-                    <string>每秒请求数</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="label_requestsPerSecondData">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="toolTip">
-                    <string>每秒接收平均字节数</string>
-                   </property>
-                   <property name="text">
-                    <string>每秒接收字节数</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="6">
-                  <widget class="QLabel" name="label_averageRespond">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="toolTip">
-                    <string>平均响应时间</string>
-                   </property>
-                   <property name="text">
-                    <string>平均响应时间(ms)</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="4">
-                  <widget class="QLabel" name="label_maxRespond">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="toolTip">
-                    <string>最大请求执行时间</string>
-                   </property>
-                   <property name="text">
-                    <string>最大响应时间(ms)</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="5">
-                  <widget class="QLabel" name="label_minRespond">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="toolTip">
-                    <string>最小请求执行时间</string>
-                   </property>
-                   <property name="text">
-                    <string>最小响应时间(ms)</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="4">
-                  <widget class="QLineEdit" name="lineEdit_maxRespond">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="1" column="3">
                   <widget class="QLineEdit" name="lineEdit_requestsPerSecondData">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_requestsPerSecond">
-                   <property name="minimumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>120</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="6">
-                  <widget class="QLineEdit" name="lineEdit_averageRespond">
                    <property name="minimumSize">
                     <size>
                      <width>120</width>
@@ -5343,8 +5131,8 @@ border-radius: 5px;
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_tps">
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_requestsPerSecond">
                    <property name="minimumSize">
                     <size>
                      <width>120</width>
@@ -5364,18 +5152,49 @@ border-radius: 5px;
                     </font>
                    </property>
                    <property name="toolTip">
-                    <string>每秒平均成功请求数量</string>
+                    <string>每秒平均请求数量</string>
                    </property>
                    <property name="text">
-                    <string/>
+                    <string>每秒请求数</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QLineEdit" name="lineEdit_tps">
+                 <item row="0" column="6">
+                  <widget class="QLabel" name="label_averageRespond">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>平均响应时间</string>
+                   </property>
+                   <property name="text">
+                    <string>平均响应时间(ms)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="6">
+                  <widget class="QLineEdit" name="lineEdit_averageRespond">
                    <property name="minimumSize">
                     <size>
                      <width>120</width>
@@ -5405,6 +5224,223 @@ border-radius: 5px;
                    </property>
                   </widget>
                  </item>
+                 <item row="1" column="0">
+                  <widget class="QLineEdit" name="lineEdit_networkDelay">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="5">
+                  <widget class="QLabel" name="label_minRespond">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>最小请求执行时间</string>
+                   </property>
+                   <property name="text">
+                    <string>最小响应时间(ms)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEdit_requestsPerSecond">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QLabel" name="label_requestsPerSecondData">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>每秒接收平均字节数</string>
+                   </property>
+                   <property name="text">
+                    <string>每秒接收字节数</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="4">
+                  <widget class="QLabel" name="label_maxRespond">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>最大请求执行时间</string>
+                   </property>
+                   <property name="text">
+                    <string>最大响应时间(ms)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="4">
+                  <widget class="QLineEdit" name="lineEdit_maxRespond">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_networkDelay">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>120</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>创建连接平均耗时，减去该值，尽可能模拟并发场景</string>
+                   </property>
+                   <property name="text">
+                    <string>平均连接耗时(ms)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
@@ -5412,13 +5448,13 @@ border-radius: 5px;
                <widget class="QWidget" name="horizontalWidget_4" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_22">
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="topMargin">
                   <number>9</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>9</number>
                  </property>
                  <property name="bottomMargin">
                   <number>0</number>
@@ -5470,13 +5506,16 @@ border-radius: 5px;
                 </property>
                 <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,0,0,0,0,0">
                  <property name="leftMargin">
-                  <number>9</number>
+                  <number>15</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>15</number>
                  </property>
                  <property name="horizontalSpacing">
                   <number>0</number>
                  </property>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="label_ms75">
+                 <item row="0" column="5">
+                  <widget class="QLabel" name="label_ms95">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -5496,13 +5535,75 @@ border-radius: 5px;
                     </font>
                    </property>
                    <property name="toolTip">
-                    <string>前75%请求完成时间</string>
+                    <string>前95%请求完成时间</string>
                    </property>
                    <property name="text">
-                    <string>75.00%(ms)</string>
+                    <string>95.00%(ms)</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEdit" name="lineEdit_ms50">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QLineEdit" name="lineEdit_ms75">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -5537,8 +5638,8 @@ border-radius: 5px;
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="5">
-                  <widget class="QLabel" name="label_ms95">
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEdit_ms25">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -5557,19 +5658,19 @@ border-radius: 5px;
                      <pointsize>10</pointsize>
                     </font>
                    </property>
-                   <property name="toolTip">
-                    <string>前95%请求完成时间</string>
-                   </property>
                    <property name="text">
-                    <string>95.00%(ms)</string>
+                    <string/>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_ms25">
+                 <item row="1" column="4">
+                  <widget class="QLineEdit" name="lineEdit_ms90">
                    <property name="minimumSize">
                     <size>
                      <width>100</width>
@@ -5588,14 +5689,14 @@ border-radius: 5px;
                      <pointsize>10</pointsize>
                     </font>
                    </property>
-                   <property name="toolTip">
-                    <string>前25%请求完成时间</string>
-                   </property>
                    <property name="text">
-                    <string>25.00%(ms)</string>
+                    <string/>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -5692,130 +5793,6 @@ border-radius: 5px;
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_ms25">
-                   <property name="minimumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QLineEdit" name="lineEdit_ms50">
-                   <property name="minimumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="3">
-                  <widget class="QLineEdit" name="lineEdit_ms75">
-                   <property name="minimumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="4">
-                  <widget class="QLineEdit" name="lineEdit_ms90">
-                   <property name="minimumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="1" column="5">
                   <widget class="QLineEdit" name="lineEdit_ms95">
                    <property name="minimumSize">
@@ -5847,6 +5824,68 @@ border-radius: 5px;
                    </property>
                   </widget>
                  </item>
+                 <item row="0" column="3">
+                  <widget class="QLabel" name="label_ms75">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>前75%请求完成时间</string>
+                   </property>
+                   <property name="text">
+                    <string>75.00%(ms)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_ms25">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>OPPOSans B</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>前25%请求完成时间</string>
+                   </property>
+                   <property name="text">
+                    <string>25.00%(ms)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
@@ -5858,13 +5897,20 @@ border-radius: 5px;
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>20</width>
-                  <height>40</height>
+                  <height>1</height>
                  </size>
                 </property>
                </spacer>
               </item>
              </layout>
             </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_4">
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_19"/>
            </item>
           </layout>
          </widget>
