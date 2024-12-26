@@ -211,7 +211,7 @@ QScrollBar::up-arrow:vertical {
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <property name="spacing">
-           <number>30</number>
+           <number>20</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -259,13 +259,13 @@ QScrollBar::up-arrow:vertical {
             </property>
             <property name="minimumSize">
              <size>
-              <width>120</width>
+              <width>125</width>
               <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>120</width>
+              <width>125</width>
               <height>30</height>
              </size>
             </property>
@@ -302,8 +302,8 @@ QToolButton:hover {
             </property>
             <property name="iconSize">
              <size>
-              <width>18</width>
-              <height>18</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="toolButtonStyle">
@@ -2667,11 +2667,17 @@ QToolButton:hover {
 }</string>
             </property>
             <property name="text">
-             <string>切换到报告</string>
+             <string>切换到参数</string>
             </property>
             <property name="icon">
              <iconset resource="../lib.qrc">
               <normaloff>:/lib/tree_open.png</normaloff>:/lib/tree_open.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
             </property>
             <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -2738,7 +2744,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -3228,7 +3234,7 @@ border-radius: 2px;
                       <bool>false</bool>
                      </property>
                      <attribute name="headerVisible">
-                      <bool>false</bool>
+                      <bool>true</bool>
                      </attribute>
                      <attribute name="headerMinimumSectionSize">
                       <number>20</number>
@@ -4610,7 +4616,7 @@ padding-left:10px;
 padding-right:10px;
 }
 #AllDataWidget{
-border: 1px solid rgba(255, 255, 255, 100);
+border: 2px solid rgba(255, 255, 255, 100);
 border-radius: 5px;
 }</string>
                 </property>
@@ -5055,7 +5061,7 @@ padding-right:10px;
 }
 
 #mainDataWidget{
-border: 1px solid rgba(255, 255, 255, 100);
+border: 2px solid rgba(255, 255, 255, 100);
 border-radius: 5px;
 }</string>
                 </property>
@@ -5500,7 +5506,7 @@ padding-right:10px;
 }
 
 #sectionDataWidget{
-border: 1px solid rgba(255, 255, 255, 100);
+border: 2px solid rgba(255, 255, 255, 100);
 border-radius: 5px;
 }</string>
                 </property>
@@ -5904,13 +5910,6 @@ border-radius: 5px;
               </item>
              </layout>
             </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="page_4">
-          <layout class="QVBoxLayout" name="verticalLayout_14">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_19"/>
            </item>
           </layout>
          </widget>
