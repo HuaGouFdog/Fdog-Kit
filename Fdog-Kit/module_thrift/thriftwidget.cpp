@@ -2509,8 +2509,9 @@ QString thriftwidget::hexToString(QString &hex)
 }
 
 QString thriftwidget::hexToLongNumber(QString &hex)
-{
-    return QString::number(strtol(hex.toStdString().c_str(), nullptr, 16));
+{   
+    qDebug() << "hex = " << hex << " 对应数据" << strtoll(hex.toStdString().c_str(), nullptr, 16);
+    return QString::number(strtoll(hex.toStdString().c_str(), nullptr, 16));
 }
 
 void thriftwidget::removeLastComma(QString &str)
@@ -2530,7 +2531,7 @@ QString thriftwidget::getRetract()
 {
     QString retract;
     for(int i = 0; i < retractNum; i++) {
-        retract = retract + "  ";
+        retract = retract + "    ";
     }
     return retract;
 }
@@ -3963,7 +3964,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         std::array<uint32_t, 5000> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                     receivedDataArray.size() * sizeof(uint32_t));
-        qDebug() << "bytesReceived = " << bytesReceived;
+        //qDebug() << "bytesReceived = " << bytesReceived;
         rr->totalData = rr->totalData + bytesReceived;
         int64_t readNum = clientSocket->bytesAvailable();
         //qDebug() << "本次读取剩数据 = " << readNum;
@@ -4010,7 +4011,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
                 clientSocket->close();
                 qint64 elapsedMilliseconds = timer->elapsed();
                 elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
-                qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+                //qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
                 count_ = count_ -1;
                 isok = true;
                 rr->setResults(elapsedMilliseconds - elapsedMillisecondsConnect);
@@ -4034,7 +4035,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         }
         qint64 elapsedMilliseconds = timer->elapsed();
         elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
-        qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+        //qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
         count_ = count_ -1;
         isok = true;
         rr->setResults(elapsedMilliseconds);
@@ -4048,7 +4049,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         //qDebug() << data;
     }
     //qDebug() << "进入sendThriftRequest4";
-    qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+    //qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
     if (bytesSent != dataArray.size() * sizeof(uint32_t)) {
         qDebug() << "发送数据失败";
@@ -4056,7 +4057,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         return ;
     }
     rr->setRequestTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
-    qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+    //qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
 
 }
 
@@ -4108,12 +4109,10 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     double secondsDiff = millisecondsDiff / 1000.0;
     QString formattedSeconds = QString::number(secondsDiff, 'f', 3);
     ui->lineEdit_totalTime->setText(formattedSeconds);
-
     int32_t maxValue = *std::max_element(rr->Results.begin(), rr->Results.end());
     ui->lineEdit_maxRespond->setText(QString::number(maxValue));
     int32_t minValue = *std::min_element(rr->Results.begin(), rr->Results.end());
     ui->lineEdit_minRespond->setText(QString::number(minValue));
-
     int32_t sum = std::accumulate(rr->Results.begin(), rr->Results.end(), 0);
     ui->lineEdit_averageRespond->setText(QString::number(sum / rr->Results.size()));
     ui->lineEdit_allData->setText(QString::number(static_cast<double>(rr->totalData) / 1024.0, 'f', 4));
@@ -4122,21 +4121,16 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     ui->lineEdit_fail->setText(QString::number(rr->totalTimes - rr->successCount));
 
     ui->lineEdit_errorRate->setText(QString::number((static_cast<double>(rr->totalTimes) - rr->successCount)/rr->totalTimes*1000));
-
     //int32_t sum2 = std::accumulate(rr->connectTime.begin(), rr->connectTime.end(), 0);
     ui->lineEdit_networkDelay->setText(QString::number(sum2 / rr->connectTime.size()));
-
-    ui->lineEdit_requestsPerSecond->setText(QString::number(rr->totalTimes / static_cast<int64_t>(secondsDiff)));
-
-    ui->lineEdit_requestsPerSecondData->setText(QString::number(rr->totalData / static_cast<int64_t>(secondsDiff)));
-
+    ui->lineEdit_requestsPerSecond->setText(QString::number(static_cast<int64_t>(rr->totalTimes /secondsDiff)));
+    ui->lineEdit_requestsPerSecondData->setText(QString::number(static_cast<int64_t>(rr->totalData / secondsDiff)));
     ui->lineEdit_ms10->setText(QString::number(rr->ms10));
     ui->lineEdit_ms25->setText(QString::number(rr->ms25));
     ui->lineEdit_ms50->setText(QString::number(rr->ms50));
     ui->lineEdit_ms75->setText(QString::number(rr->ms75));
     ui->lineEdit_ms90->setText(QString::number(rr->ms90));
     ui->lineEdit_ms95->setText(QString::number(rr->ms95));
-
     while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
             widget->deleteLater(); // 删除控件，并在事件循环结束时删除
@@ -4153,7 +4147,7 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     }
     lineSeries2->setName("red line2");   //设置系列名称
 
-
+    
     QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
     for(int64_t i=0; i< rr->connectTime.size(); i++)
     {
@@ -4169,6 +4163,7 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     chart->addSeries(lineSeries3);
     chart->legend()->hide();
     chart->createDefaultAxes();
+    
     chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
     chartView = new QChartView(this);
     chartView->setChart(chart);
@@ -4211,7 +4206,7 @@ void RequestResults::setCount(int value)
 void RequestResults::decrease()
 {
     mutex.lock();
-    qDebug() << "count = " << count;
+    //qDebug() << "count = " << count;
     count = count - 1;
     mutex.unlock();
 }
