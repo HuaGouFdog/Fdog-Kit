@@ -9,18 +9,19 @@
 <img alt="GitHub Created At" src="https://img.shields.io/github/created-at/HuaGouFdog/Fdog-Kit">
 <img alt="GitHub License" src="https://img.shields.io/github/license/huagouFdog/fdog-kit">
 </div>
+
+<div align=center>
+  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.10.0%2BMSVC2015-passing-brightgreen">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.15.2%2BMSVC2015-passing-brightgreen">
+
+</div>
+
 <div align=center>
   <img alt="GitHub Release" src="https://img.shields.io/github/v/release/HuaGouFdog/Fdog-Kit">
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/HuaGouFdog/Fdog-Kit">
 
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/HuaGouFdog/Fdog-Kit">
 <img alt="GitHub Downloads (specific asset, all releases)" src="https://img.shields.io/github/downloads/huagouFdog/Fdog-kit/Fdog-Kit-setup.exe">
-</div>
-
-<div align=center>
-  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.10.0%2BMSVC2015-passing-brightgreen">
-  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.15.2%2BMSVC2015-passing-brightgreen">
-
 </div>
 
 <div align=center>
