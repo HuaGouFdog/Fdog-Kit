@@ -32,6 +32,31 @@
 #pragma comment(lib, "ws2_32.lib")
 
 
+void writeDataArrayToFile(const QVector<uint32_t>& dataArray, const QString& filePath) {
+    // 打开文件以写入二进制数据
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "无法打开文件进行写入:" << file.errorString();
+        return;
+    }
+
+    // 将 dataArray 转换为 char*
+    QByteArray data;
+    data.append(reinterpret_cast<const char*>(&dataArray), sizeof(uint32_t));
+
+    // 写入数据到文件
+    qint64 bytesWritten = file.write(data.constData(), data.size());
+    if (bytesWritten != data.size()) {
+        qDebug() << "写入文件失败:" << file.errorString();
+    } else {
+        qDebug() << "数据已成功写入文件:" << filePath;
+    }
+
+    // 关闭文件
+    file.close();
+}
+
+
 static bool isAuto = true;
 
 #define THRIFT_MESSAGE_LENGTH               1001
@@ -780,6 +805,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->textEdit_info->hide();
     ui->label_req->hide();
+    ui->toolButton_return->hide();
     //ui->lineEdit_port->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -788,7 +814,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->plainTextEdit_edit->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->stackedWidget->setCurrentIndex(0);
-
+    ui->toolButton_return->hide();
     ui->widget_property->hide();
     //ui->widget_left->hide();
 
@@ -946,12 +972,13 @@ void thriftwidget::string2stringList(QString data)
 void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer)
 {
     //qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
-    //ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(1);
     QTcpSocket *clientSocket = new QTcpSocket(this);
 
     connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=](QAbstractSocket::SocketError socketError){
         qDebug() << "发生错误" << socketError;
-        //ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentIndex(2);
+        ui->toolButton_return->show();
     });
 
     connect(clientSocket,&QTcpSocket::stateChanged,[=]{
@@ -1079,11 +1106,17 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer*
             return ;
         }
     }
-    
+
+    writeDataArrayToFile(dataArray, "thriftConfig\\binTest.bin");
+    QByteArray dataTest;
     for (uint32_t& data : dataArray) {
         data = qToBigEndian(data);
-        //qDebug() << data;
+        //dataTest.append(reinterpret_cast<const char*>(&data), sizeof(uint32_t));
     }
+    qDebug() <<"大小端转换 = " <<  dataArray;
+    qDebug() <<"dataTest = " <<  reinterpret_cast<char*>(dataArray.data()) << "长度 = " << dataArray.size() * sizeof(uint32_t);
+
+
     timer->start();
     qDebug()<< "1进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
@@ -3110,7 +3143,12 @@ void thriftwidget::handleBinData() {
             if (ui->checkBox_show_json->isChecked()) {
                 QString needToJsonData = ui->textEdit_data->toPlainText();
                 ui->textEdit_data->clear();
-                utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+                if (ui->checkBox_super->isChecked()) {
+                    utils_parsingJsonInfo(ui->textEdit_data, needToJsonData, true);
+                } else {
+                    utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+                }
+                
             }
             ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
             ui->textEdit->append(dataTemp_2);
@@ -3136,7 +3174,7 @@ void thriftwidget::readPreData()
 {
     //固定读取thriftConfig/preData.txt
     // 定义文件名
-    QString fileName = "thriftConfg\\preData.txt";
+    QString fileName = "thriftConfig\\preData.txt";
     // 创建文件对象
     QFile file(fileName);
  
@@ -3521,6 +3559,7 @@ void thriftwidget::on_toolButton_test_clicked()
 void thriftwidget::on_toolButton_show_thrift_info_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->toolButton_return->hide();
     ui->tabWidget_response->setCurrentIndex(1);
     if(ui->textEdit_info->isHidden()) {
         ui->textEdit_info->show();
@@ -3608,6 +3647,7 @@ void thriftwidget::on_toolButton_request_clicked()
     assembleTBinaryMessage();
     //请求数据
     QVector<uint32_t> sendData = string2Uint32List(dataList);
+    qDebug() << "数据=" << sendData;
     ui->textEdit->clear();
     //ui->textEdit_headers->clear();
     ui->textEdit_data->clear();
@@ -4086,13 +4126,9 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
         threadpool.start(m_pRunnable);
     }
 
-    while(rr->count > 0 && timer2.elapsed() < loopNum*1000) {
+    while(rr->count > 0 && timer2.elapsed() < ui->lineEdit_time->text().toInt() * 1000) {
         QCoreApplication::processEvents();
     }
-
-//    if(!isok) {
-//        //调用失败
-//    }
 
     qDebug() << "开始时间：" <<rr->startTime;
     qDebug() << "结束时间：" <<rr->endTime;
@@ -4250,3 +4286,19 @@ void RequestResults::setStartTime(const QString &value)
     startTime = value;
     mutex.unlock();
 }
+
+void thriftwidget::on_toolButton_return_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void thriftwidget::on_checkBox_show_source_clicked()
+{
+    if (ui->checkBox_show_source->isChecked()) {
+        ui->widget_binShow->show();
+    } else {
+        ui->widget_binShow->hide();
+    }
+}
+

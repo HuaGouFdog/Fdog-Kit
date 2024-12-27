@@ -481,6 +481,10 @@ private slots:
     void sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
 
 
+    void on_toolButton_return_clicked();
+
+    void on_checkBox_show_source_clicked();
+
 public:
     QVector<QString> dataList;
 private:
