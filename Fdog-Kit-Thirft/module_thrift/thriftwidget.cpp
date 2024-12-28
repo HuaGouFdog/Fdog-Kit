@@ -24,12 +24,45 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QCompleter>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QNetworkConfiguration>
+#include <QNetworkConfigurationManager>
+#include <QNetworkSession>
+#include <QSslCipher>
+#include <QSslEllipticCurve>
 //#include <QtWidgets/QApplication>
 //#include <QtCharts>
 #include "module_utils/utils.h"
 #include <numeric>
 #include <QValueAxis>
 #pragma comment(lib, "ws2_32.lib")
+
+
+void writeDataArrayToFile(const QVector<uint32_t>& dataArray, const QString& filePath) {
+    // 打开文件以写入二进制数据
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "无法打开文件进行写入:" << file.errorString();
+        return;
+    }
+
+    // 将 dataArray 转换为 char*
+    QByteArray data;
+    data.append(reinterpret_cast<const char*>(&dataArray), sizeof(uint32_t));
+
+    // 写入数据到文件
+    qint64 bytesWritten = file.write(data.constData(), data.size());
+    if (bytesWritten != data.size()) {
+        qDebug() << "写入文件失败:" << file.errorString();
+    } else {
+        qDebug() << "数据已成功写入文件:" << filePath;
+    }
+
+    // 关闭文件
+    file.close();
+}
 
 
 static bool isAuto = true;
@@ -551,6 +584,14 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         //基础类型
         //qDebug() << "设置基础类型";
         comboBoxBase->setCurrentText(type);
+        //匹配预制数据
+        if (preDataMap.contains(name)) {
+            lineEditParamValue->setText(preDataMap[name]);
+            if (typeSign == "optional") {
+                checkBox->setChecked(true);
+            }
+        }
+
     } else {
         //qDebug() << "设置struct1";
         isAuto = false;
@@ -772,6 +813,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->textEdit_info->hide();
     ui->label_req->hide();
+    ui->toolButton_return->hide();
     //ui->lineEdit_port->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -780,7 +822,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->plainTextEdit_edit->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->stackedWidget->setCurrentIndex(0);
-
+    ui->toolButton_return->hide();
     ui->widget_property->hide();
     //ui->widget_left->hide();
 
@@ -800,36 +842,21 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     //获取当前cpu支持线程数
     ui->lineEdit_thread_cpu->setText(getCpuInfo("wmic cpu get NumberOfLogicalProcessors"));
+    ui->stackedWidget_2->setCurrentIndex(0);
 
-//    QVector<int64_t> a = {114, 139, 149, 126, 134, 114, 139, 149, 126, 134, 139, 120, 131, 131, 110, 94, 95, 107, 97, 98, 102, 108, 103, 114, 127, 127, 111, 100, 100, 100, 97, 97, 100, 110, 115, 128, 130, 150, 149, 122, 137, 136, 118, 112, 89, 91, 93, 97, 101, 103, 106, 108, 107, 97, 107, 109, 98, 96, 96, 97, 94, 91, 97, 96, 104, 111, 131, 138, 143, 159, 151, 127, 128, 120, 125, 97, 114, 139, 149, 126, 134, 139, 120, 131, 131, 110, 94, 95, 107, 97, 98, 102, 108, 103, 114, 127, 127, 111, 100, 100, 100, 97, 97, 100, 110, 115, 128, 130, 150, 149, 122, 137, 136, 118, 112, 89, 91, 93, 97, 101, 103, 106, 108, 107, 97, 107, 109, 98, 96, 96, 97, 94, 91, 97, 96, 104, 111, 131, 138, 143, 159, 151, 127, 128, 120, 125, 97, 131, 93, 138, 141, 119, 134, 106, 110, 118, 95, 98, 98, 94, 91, 96, 105, 100, 103, 106, 97, 104, 105, 93, 91, 92, 94, 95, 100, 99, 103, 113, 108, 117, 118, 120, 113, 113, 112, 99, 118, 112, 119, 113, 112, 125, 113, 121, 102, 104, 103, 91, 91, 90, 91, 89, 90, 97, 100, 96, 111, 101, 103, 109, 100, 92, 94, 100, 95, 97, 106, 90, 95, 94, 100, 100, 110, 101, 102, 95, 100, 101, 91, 93, 93, 106, 113, 100, 98, 100, 111, 107, 109, 111, 99, 113, 114, 116, 121, 97, 99, 102, 107, 94, 97, 90, 92, 97, 100, 102, 98, 98, 104, 106, 106, 100, 105, 100, 103, 102, 104, 119, 115, 103, 121, 106, 108, 122, 132, 134, 130, 116, 106, 95, 97, 90, 89, 99, 112, 166, 136, 139, 171, 139, 118, 120, 126, 112, 123, 108, 107, 94, 107, 107, 112, 100, 108, 100, 102, 103, 98, 96, 99, 93, 91, 88, 87, 99, 95, 98, 102, 97, 101, 101, 109, 104, 133, 119, 115, 111, 141, 118, 147, 134, 113, 130, 110, 110, 107, 107, 111, 106, 124, 102, 123, 103, 111, 114, 117, 92, 123, 123, 96, 94, 97, 119, 146, 176, 159, 153, 161, 166, 125, 128, 98, 100, 107, 110, 112, 117, 118, 129, 106, 131, 116, 107, 105, 89, 94, 92};
-//    //QVector<int32_t> a = {114, 139, 149, 126};
-//    QLineSeries *lineSeries = new QLineSeries();        //创建折线系列
-//           /*为系列里添加100个数据*/
-//           for(int64_t i=0; i< a.size(); i++)
-//           {
-//               lineSeries->append(i,a[i]);
-//               qDebug() <<"添加" << i;
-//           }
-//     lineSeries->setName("red line");                  //设置系列名称
-//    // 创建一个图表对象
+    QChart *chart = new QChart();
+    //chart->legend()->hide(); // 隐藏图例
+    chart->legend()->hide();
+    chart->createDefaultAxes();
+    chart->setTitle("接口压测数据图");
+    chartView = new QChartView(this);
+    chartView->setChart(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    //chartView->resize(QSize(500,500));
+    ui->widget_charts->layout()->addWidget(chartView);
 
-//    QChart *chart = new QChart();
-
-//    QValueAxis *valueAxis = new QValueAxis();
-//    valueAxis->setRange(0, a.size()); // 设置数值轴的范围
-//    chart->addAxis(valueAxis, Qt::AlignBottom);
-
-//    //chart->legend()->hide(); // 隐藏图例
-//    // 将数据系列添加到图表中
-//    chart->addSeries(lineSeries);
-//    chart->legend()->hide();
-//    chart->createDefaultAxes();
-//    chart->setTitle("Simple line chart example");
-//    chartView = new QChartView(this);
-//    chartView->setChart(chart);
-//    chartView->setRenderHint(QPainter::Antialiasing);
-//    chartView->resize(QSize(500,500));
-//    ui->horizontalLayout_19->addWidget(chartView);
+    //读取预制数据
+    readPreData();
 }
 
 QString thriftwidget::getCpuInfo(const QString &cmd)
@@ -953,12 +980,19 @@ void thriftwidget::string2stringList(QString data)
 void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer)
 {
     //qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
-    //ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(1);
     QTcpSocket *clientSocket = new QTcpSocket(this);
+
+    QNetworkConfigurationManager manager2;
+    QNetworkConfiguration config = manager2.defaultConfiguration();
+    config.setConnectTimeout(1000);
+    QSharedPointer<QNetworkSession> spNetworkSession(new QNetworkSession(config));
+    clientSocket->setProperty("_q_networksession", QVariant::fromValue(spNetworkSession));
 
     connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=](QAbstractSocket::SocketError socketError){
         qDebug() << "发生错误" << socketError;
-        //ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentIndex(2);
+        ui->toolButton_return->show();
     });
 
     connect(clientSocket,&QTcpSocket::stateChanged,[=]{
@@ -1072,6 +1106,10 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer*
     int index_s = port_str.indexOf("(");
     int index_e = port_str.indexOf(")");
     int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
+    if (index_s == -1 && index_e == -1) {
+        port = port_str.toInt();
+    }
+    qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
     clientSocket->connectToHost(ui->lineEdit_host->text(), port);
     if (!clientSocket->waitForConnected()) {
         //qDebug() << "无法连接到服务器";
@@ -1086,11 +1124,145 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer*
             return ;
         }
     }
-    
+
+    //writeDataArrayToFile(dataArray, "thriftConfig\\binTest.bin");
+    //QByteArray dataTest;
+    //qDebug() <<"大小端转换 = " <<  dataArray;
+    //qDebug() <<"dataTest = " <<  reinterpret_cast<char*>(dataArray.data()) << "长度 = " << dataArray.size() * sizeof(uint32_t);
+
+    QNetworkAccessManager manager;
+
+    qDebug() << manager.supportedSchemes();
+    QUrl url("https://192.168.0.169:10669/ap");
+    //QUrl url("https://192.168.85.205:10669/ap");
+
+    bool bSupp = QSslSocket::supportsSsl();
+    auto buildVersion = QSslSocket::sslLibraryBuildVersionString();
+    QString version = QSslSocket::sslLibraryVersionString();
+    qInfo() << bSupp << buildVersion << version ;
+    QSslConfiguration sslConfig = QSslConfiguration::defaultConfiguration();
+
+    //qDebug() << "默认配置" << sslConfig.peerVerifyMode();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    //qDebug() << "现在配置" << sslConfig.peerVerifyMode();
+
+    sslConfig.setProtocol(QSsl::SslProtocol::AnyProtocol);
+    QSslConfiguration::setDefaultConfiguration(sslConfig);
+
+    QVector<QSslEllipticCurve> curves;
+//    foreach(const QSslEllipticCurve &curve, sslConfig.supportedEllipticCurves()) {
+//        qDebug()  << "当前支持曲线1=" << curve.longName();
+//        qDebug()  << "当前支持曲线2=" << curve.shortName();
+//        //curves.push_back(QSslEllipticCurve::fromShortName(curve.shortName()));
+//    }
+
+    qDebug() << "尝试添加曲线";
+
+    //curves.push_back(QSslEllipticCurve::fromShortName("secp521r1"));
+    //curves.push_back(QSslEllipticCurve::fromShortName("secp384r1"));
+
+    foreach(const QSslEllipticCurve &curve, sslConfig.ellipticCurves()) {
+        qDebug()  << "当前设置曲线1=" << curve.longName();
+        qDebug()  << "当前设置曲线2=" << curve.shortName();
+    }
+
+    //curves.push_back(QSslEllipticCurve::fromShortName("x25519"));
+    //sslConfig.setEllipticCurves(curves);
+
+    foreach(const QSslEllipticCurve &curve, sslConfig.ellipticCurves()) {
+        qDebug()  << "当前设置曲线1=" << curve.longName();
+        //qDebug()  << "当前设置曲线1=" << curve.shortName();
+    }
+
+    foreach(const QSslCipher &cipher, sslConfig.ciphers()) {
+        //qDebug()  << "加密套件=" << cipher.name();
+    }
+
+
+//    QList<QSslCertificate> emptyCertList;
+//    sslConfig.setCaCertificates(emptyCertList);
+    //QSslConfiguration::setDefaultConfiguration(sslConfig);
+
+
+//    QSslSocket sslSocket;
+//    sslSocket.setSslConfiguration(sslConfig);
+
+
+//    // 连接到 SSL 服务器
+//    sslSocket.connectToHostEncrypted("192.168.0.169", 10669);
+//    if (sslSocket.waitForEncrypted()) {
+//        qDebug() << "SSL connection established!";
+//    } else {
+//        QSslCipher ciph = sslSocket.sessionCipher();
+//        qDebug()<<"密码名称："<< ciph.name();
+//        qDebug()<<"协议（名称）："<< ciph.protocolString();
+//        qDebug()<<"协议（"<<ciph.protocolString()<<"的枚举值）："<< ciph.protocol();
+//        qDebug()<<"密码使用的位数："<< ciph.usedBits();
+//        qDebug()<<"密码支持的位数："<< ciph.supportedBits();
+//        qDebug()<<"密码的加密方法："<< ciph.encryptionMethod();
+//        qDebug()<<"密码的密钥交换方法："<< ciph.keyExchangeMethod();
+//        qDebug()<<"密码的身份验证方法："<< ciph.authenticationMethod();
+//        qDebug() << "SSL connection failed:" << sslSocket.errorString();
+//    }
+
+
+    QNetworkRequest request;
+    request.setSslConfiguration(sslConfig);
+    request.setUrl(url);
+    //request.setRawHeader("Host", "192.168.85.205:10669");
+    qDebug() << "字节数组 = " << dataArray;
+    qDebug() << "长度" << dataArray.size() * sizeof(uint32_t);
+    //request.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(10));
+    request.setHeader(QNetworkRequest::UserAgentHeader, "vrv/1.0.0-dev pc_w");
+    //request.setRawHeader("Accept", "vrv imsdk");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-thrift");
+    //request.setHeader(QNetworkRequest::ContentTypeHeader, "vrv imdsk");
+    //request.setRawHeader("Userversion", "2");
+    //request.setRawHeader("Accept-Encoding", "gzip");
+
+    //QString hexString = "80010001000000086c6f67696e5f696d000000000c0001030001010b000200000001310b00300000001310b00040000000131030005010000000000";
+    QString hexString;
+    for (const QString& value : dataList) {
+        //qDebug() << "value = " << value;
+        hexString = hexString + value;  // 在控制台输出元素值
+    }
+    hexString = hexString.mid(8);
+    QByteArray byteArray2 = QByteArray::fromHex(hexString.toUtf8());
+    qDebug() << "原始十六进制字符串:" << hexString;
+    qDebug() << "转换后的字节数组:" << byteArray2;
+    qDebug() << "转换后的字符串:" << QString(byteArray2);
+    //qDebug() << "hexString data = " << a.data();
+
+
+    foreach(const QSslEllipticCurve &curve, request.sslConfiguration().ellipticCurves()) {
+         qDebug()  << "当前设置曲线1=" << curve.longName();
+         //qDebug()  << "当前设置曲线2=" << curve.shortName();
+     }
+
+    QNetworkReply* reply = manager.post(request, byteArray2);
+    //QNetworkReply* reply = manager.post(request, reinterpret_cast<char*>(a.data()));
+
+    QEventLoop loop;
+    QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    // 检查错误
+    if (reply->error() != QNetworkReply::NoError) {
+        qDebug() << "请求失败:" << reply->errorString();
+    } else {
+        qDebug() << "请求成功";
+        qDebug() << "响应:" << reply->readAll();
+    }
+
+    // 清理
+    reply->deleteLater();
+
+
     for (uint32_t& data : dataArray) {
         data = qToBigEndian(data);
-        //qDebug() << data;
+        //dataTest.append(reinterpret_cast<const char*>(&data), sizeof(uint32_t));
     }
+
     timer->start();
     qDebug()<< "1进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
@@ -2516,8 +2688,9 @@ QString thriftwidget::hexToString(QString &hex)
 }
 
 QString thriftwidget::hexToLongNumber(QString &hex)
-{
-    return QString::number(strtol(hex.toStdString().c_str(), nullptr, 16));
+{   
+    qDebug() << "hex = " << hex << " 对应数据" << strtoll(hex.toStdString().c_str(), nullptr, 16);
+    return QString::number(strtoll(hex.toStdString().c_str(), nullptr, 16));
 }
 
 void thriftwidget::removeLastComma(QString &str)
@@ -2537,7 +2710,7 @@ QString thriftwidget::getRetract()
 {
     QString retract;
     for(int i = 0; i < retractNum; i++) {
-        retract = retract + "  ";
+        retract = retract + "    ";
     }
     return retract;
 }
@@ -3116,7 +3289,12 @@ void thriftwidget::handleBinData() {
             if (ui->checkBox_show_json->isChecked()) {
                 QString needToJsonData = ui->textEdit_data->toPlainText();
                 ui->textEdit_data->clear();
-                utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+                if (ui->checkBox_super->isChecked()) {
+                    utils_parsingJsonInfo(ui->textEdit_data, needToJsonData, true);
+                } else {
+                    utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+                }
+                
             }
             ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
             ui->textEdit->append(dataTemp_2);
@@ -3136,6 +3314,37 @@ void thriftwidget::handleBinData() {
             ui->label_req->hide();
             ui->label_req->setText("");
         }
+}
+
+void thriftwidget::readPreData()
+{
+    //固定读取thriftConfig/preData.txt
+    // 定义文件名
+    QString fileName = "thriftConfig\\preData.txt";
+    // 创建文件对象
+    QFile file(fileName);
+ 
+    // 打开文件，并且以只读方式进行读取
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        // 读取文件内容
+        QByteArray fileData = file.readAll();
+        // 关闭文件
+        file.close();
+        // 输出读取的文件内容
+        //qDebug() << "读取的文件内容:" << fileData;
+        QStringList preDataList = QString(fileData).split("\n");
+        //qDebug() << "读取的文件内容:" << preDataList;
+        for (int i = 0; i < preDataList.size(); i++) {
+            int index = preDataList.at(i).indexOf(":");
+            QString key = preDataList.at(i).mid(0, index);
+            QString value = preDataList.at(i).mid(index + 1);
+            preDataMap.insert(key, value);
+            qDebug() << "key = " << key << " value = " << value;
+        }
+    } else {
+        // 如果文件打开失败，则输出错误信息
+        qDebug() << "打开文件失败!";
+    }
 }
 
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
@@ -3496,6 +3705,7 @@ void thriftwidget::on_toolButton_test_clicked()
 void thriftwidget::on_toolButton_show_thrift_info_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->toolButton_return->hide();
     ui->tabWidget_response->setCurrentIndex(1);
     if(ui->textEdit_info->isHidden()) {
         ui->textEdit_info->show();
@@ -3563,11 +3773,13 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->widget_property->hide();
         ui->toolButton_request->show();
         ui->toolButton_save->show();
+        ui->stackedWidget_2->setCurrentIndex(0);
     } else {
         //性能测试
         ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
+        ui->stackedWidget_2->setCurrentIndex(1);
     }
 }
 
@@ -3581,6 +3793,7 @@ void thriftwidget::on_toolButton_request_clicked()
     assembleTBinaryMessage();
     //请求数据
     QVector<uint32_t> sendData = string2Uint32List(dataList);
+    qDebug() << "数据=" << sendData;
     ui->textEdit->clear();
     //ui->textEdit_headers->clear();
     ui->textEdit_data->clear();
@@ -3937,7 +4150,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         std::array<uint32_t, 5000> receivedDataArray{0};
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()),
                                                     receivedDataArray.size() * sizeof(uint32_t));
-        qDebug() << "bytesReceived = " << bytesReceived;
+        //qDebug() << "bytesReceived = " << bytesReceived;
         rr->totalData = rr->totalData + bytesReceived;
         int64_t readNum = clientSocket->bytesAvailable();
         //qDebug() << "本次读取剩数据 = " << readNum;
@@ -3984,7 +4197,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
                 clientSocket->close();
                 qint64 elapsedMilliseconds = timer->elapsed();
                 elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
-                qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+                //qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
                 count_ = count_ -1;
                 isok = true;
                 rr->setResults(elapsedMilliseconds - elapsedMillisecondsConnect);
@@ -4008,7 +4221,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         }
         qint64 elapsedMilliseconds = timer->elapsed();
         elapsedMillisecondsAll = elapsedMillisecondsAll + elapsedMilliseconds;
-        qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+        //qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
         count_ = count_ -1;
         isok = true;
         rr->setResults(elapsedMilliseconds);
@@ -4022,7 +4235,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         //qDebug() << data;
     }
     //qDebug() << "进入sendThriftRequest4";
-    qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+    //qDebug()<< "进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
     if (bytesSent != dataArray.size() * sizeof(uint32_t)) {
         qDebug() << "发送数据失败";
@@ -4030,7 +4243,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         return ;
     }
     rr->setRequestTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
-    qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+    //qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
 
 }
 
@@ -4059,13 +4272,9 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
         threadpool.start(m_pRunnable);
     }
 
-    while(rr->count > 0 && timer2.elapsed() < loopNum*1000) {
+    while(rr->count > 0 && timer2.elapsed() < ui->lineEdit_time->text().toInt() * 1000) {
         QCoreApplication::processEvents();
     }
-
-//    if(!isok) {
-//        //调用失败
-//    }
 
     qDebug() << "开始时间：" <<rr->startTime;
     qDebug() << "结束时间：" <<rr->endTime;
@@ -4082,12 +4291,10 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     double secondsDiff = millisecondsDiff / 1000.0;
     QString formattedSeconds = QString::number(secondsDiff, 'f', 3);
     ui->lineEdit_totalTime->setText(formattedSeconds);
-
     int32_t maxValue = *std::max_element(rr->Results.begin(), rr->Results.end());
     ui->lineEdit_maxRespond->setText(QString::number(maxValue));
     int32_t minValue = *std::min_element(rr->Results.begin(), rr->Results.end());
     ui->lineEdit_minRespond->setText(QString::number(minValue));
-
     int32_t sum = std::accumulate(rr->Results.begin(), rr->Results.end(), 0);
     ui->lineEdit_averageRespond->setText(QString::number(sum / rr->Results.size()));
     ui->lineEdit_allData->setText(QString::number(static_cast<double>(rr->totalData) / 1024.0, 'f', 4));
@@ -4096,32 +4303,16 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     ui->lineEdit_fail->setText(QString::number(rr->totalTimes - rr->successCount));
 
     ui->lineEdit_errorRate->setText(QString::number((static_cast<double>(rr->totalTimes) - rr->successCount)/rr->totalTimes*1000));
-
     //int32_t sum2 = std::accumulate(rr->connectTime.begin(), rr->connectTime.end(), 0);
     ui->lineEdit_networkDelay->setText(QString::number(sum2 / rr->connectTime.size()));
-
-    ui->lineEdit_requestsPerSecond->setText(QString::number(rr->totalTimes / static_cast<int64_t>(secondsDiff)));
-
-    ui->lineEdit_requestsPerSecondData->setText(QString::number(rr->totalData / static_cast<int64_t>(secondsDiff)));
-
+    ui->lineEdit_requestsPerSecond->setText(QString::number(static_cast<int64_t>(rr->totalTimes /secondsDiff)));
+    ui->lineEdit_requestsPerSecondData->setText(QString::number(static_cast<int64_t>(rr->totalData / secondsDiff)));
     ui->lineEdit_ms10->setText(QString::number(rr->ms10));
     ui->lineEdit_ms25->setText(QString::number(rr->ms25));
     ui->lineEdit_ms50->setText(QString::number(rr->ms50));
     ui->lineEdit_ms75->setText(QString::number(rr->ms75));
     ui->lineEdit_ms90->setText(QString::number(rr->ms90));
     ui->lineEdit_ms95->setText(QString::number(rr->ms95));
-    // QDateTime startTime2 = QDateTime::fromString(rr->startTime, "yyyy-MM-dd hh:mm:ss.zzz");
-    // QDateTime endTime2 = QDateTime::fromString(rr->requestTime, "yyyy-MM-dd hh:mm:ss.zzz");
-    // // 计算两个时间点之间的毫秒差
-    // qint64 millisecondsDiff2 = startTime2.msecsTo(endTime2);
-    // // double secondsDiff = millisecondsDiff / 1000.0;
-    // // QString formattedSeconds = QString::number(secondsDiff, 'f', 3);
-    // // RequestTime
-    // //ui->lineEdit_tps->setText(QString::number(static_cast<double>(rr->successCount)*1000/millisecondsDiff2));
-
-//    qint64 elapsedMilliseconds2 = timer2.elapsed();
-//    qDebug() << "响应时间：" + QString::number(elapsedMilliseconds2) + "ms";
-
     while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
             widget->deleteLater(); // 删除控件，并在事件循环结束时删除
@@ -4130,31 +4321,21 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
         }
         delete item; // 删除布局项
     }
-
-    // QSplineSeries *lineSeries = new QSplineSeries(); //创建折线系列
-    // for(int64_t i=0; i< rr->Results.size(); i++)
-    //  {
-    //      lineSeries->append(i,static_cast<double>(sum) / rr->Results.size());
-    //      //qDebug() <<"添加" << i;
-    //  }
-    //  lineSeries->setName("red line");   //设置系列名称
     // 创建一个图表对象
-     QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
-     for(int64_t i=0; i< rr->Results.size(); i++)
-      {
-          lineSeries2->append(i,rr->Results[i]);
-          //qDebug() <<"添加" << i;
-      }
-      lineSeries2->setName("red line2");   //设置系列名称
+    QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
+    for(int64_t i=0; i< rr->Results.size(); i++)
+    {
+       lineSeries2->append(i,rr->Results[i]);
+    }
+    lineSeries2->setName("red line2");   //设置系列名称
 
-
-     QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
-     for(int64_t i=0; i< rr->connectTime.size(); i++)
-      {
-          lineSeries3->append(i,rr->connectTime[i]);
-          //qDebug() <<"添加" << i;
-      }
-      lineSeries3->setName("red line3");   //设置系列名称
+    
+    QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
+    for(int64_t i=0; i< rr->connectTime.size(); i++)
+    {
+       lineSeries3->append(i,rr->connectTime[i]);
+    }
+    lineSeries3->setName("red line3");   //设置系列名称
 
     QChart *chart = new QChart();
     //chart->legend()->hide(); // 隐藏图例
@@ -4164,6 +4345,7 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     chart->addSeries(lineSeries3);
     chart->legend()->hide();
     chart->createDefaultAxes();
+    
     chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
     chartView = new QChartView(this);
     chartView->setChart(chart);
@@ -4206,7 +4388,7 @@ void RequestResults::setCount(int value)
 void RequestResults::decrease()
 {
     mutex.lock();
-    qDebug() << "count = " << count;
+    //qDebug() << "count = " << count;
     count = count - 1;
     mutex.unlock();
 }
@@ -4250,3 +4432,19 @@ void RequestResults::setStartTime(const QString &value)
     startTime = value;
     mutex.unlock();
 }
+
+void thriftwidget::on_toolButton_return_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void thriftwidget::on_checkBox_show_source_clicked()
+{
+    if (ui->checkBox_show_source->isChecked()) {
+        ui->widget_binShow->show();
+    } else {
+        ui->widget_binShow->hide();
+    }
+}
+
