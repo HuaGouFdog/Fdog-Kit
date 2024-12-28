@@ -24,6 +24,14 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QCompleter>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QNetworkConfiguration>
+#include <QNetworkConfigurationManager>
+#include <QNetworkSession>
+#include <QSslCipher>
+#include <QSslEllipticCurve>
 //#include <QtWidgets/QApplication>
 //#include <QtCharts>
 #include "module_utils/utils.h"
@@ -975,6 +983,12 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer*
     ui->stackedWidget->setCurrentIndex(1);
     QTcpSocket *clientSocket = new QTcpSocket(this);
 
+    QNetworkConfigurationManager manager2;
+    QNetworkConfiguration config = manager2.defaultConfiguration();
+    config.setConnectTimeout(1000);
+    QSharedPointer<QNetworkSession> spNetworkSession(new QNetworkSession(config));
+    clientSocket->setProperty("_q_networksession", QVariant::fromValue(spNetworkSession));
+
     connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=](QAbstractSocket::SocketError socketError){
         qDebug() << "发生错误" << socketError;
         ui->stackedWidget->setCurrentIndex(2);
@@ -1092,6 +1106,10 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer*
     int index_s = port_str.indexOf("(");
     int index_e = port_str.indexOf(")");
     int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
+    if (index_s == -1 && index_e == -1) {
+        port = port_str.toInt();
+    }
+    qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
     clientSocket->connectToHost(ui->lineEdit_host->text(), port);
     if (!clientSocket->waitForConnected()) {
         //qDebug() << "无法连接到服务器";
@@ -1107,15 +1125,143 @@ void thriftwidget::sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer*
         }
     }
 
-    writeDataArrayToFile(dataArray, "thriftConfig\\binTest.bin");
-    QByteArray dataTest;
+    //writeDataArrayToFile(dataArray, "thriftConfig\\binTest.bin");
+    //QByteArray dataTest;
+    //qDebug() <<"大小端转换 = " <<  dataArray;
+    //qDebug() <<"dataTest = " <<  reinterpret_cast<char*>(dataArray.data()) << "长度 = " << dataArray.size() * sizeof(uint32_t);
+
+    QNetworkAccessManager manager;
+
+    qDebug() << manager.supportedSchemes();
+    QUrl url("https://192.168.0.169:10669/ap");
+    //QUrl url("https://192.168.85.205:10669/ap");
+
+    bool bSupp = QSslSocket::supportsSsl();
+    auto buildVersion = QSslSocket::sslLibraryBuildVersionString();
+    QString version = QSslSocket::sslLibraryVersionString();
+    qInfo() << bSupp << buildVersion << version ;
+    QSslConfiguration sslConfig = QSslConfiguration::defaultConfiguration();
+
+    //qDebug() << "默认配置" << sslConfig.peerVerifyMode();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    //qDebug() << "现在配置" << sslConfig.peerVerifyMode();
+
+    sslConfig.setProtocol(QSsl::SslProtocol::AnyProtocol);
+    QSslConfiguration::setDefaultConfiguration(sslConfig);
+
+    QVector<QSslEllipticCurve> curves;
+//    foreach(const QSslEllipticCurve &curve, sslConfig.supportedEllipticCurves()) {
+//        qDebug()  << "当前支持曲线1=" << curve.longName();
+//        qDebug()  << "当前支持曲线2=" << curve.shortName();
+//        //curves.push_back(QSslEllipticCurve::fromShortName(curve.shortName()));
+//    }
+
+    qDebug() << "尝试添加曲线";
+
+    //curves.push_back(QSslEllipticCurve::fromShortName("secp521r1"));
+    //curves.push_back(QSslEllipticCurve::fromShortName("secp384r1"));
+
+    foreach(const QSslEllipticCurve &curve, sslConfig.ellipticCurves()) {
+        qDebug()  << "当前设置曲线1=" << curve.longName();
+        qDebug()  << "当前设置曲线2=" << curve.shortName();
+    }
+
+    //curves.push_back(QSslEllipticCurve::fromShortName("x25519"));
+    //sslConfig.setEllipticCurves(curves);
+
+    foreach(const QSslEllipticCurve &curve, sslConfig.ellipticCurves()) {
+        qDebug()  << "当前设置曲线1=" << curve.longName();
+        //qDebug()  << "当前设置曲线1=" << curve.shortName();
+    }
+
+    foreach(const QSslCipher &cipher, sslConfig.ciphers()) {
+        //qDebug()  << "加密套件=" << cipher.name();
+    }
+
+
+//    QList<QSslCertificate> emptyCertList;
+//    sslConfig.setCaCertificates(emptyCertList);
+    //QSslConfiguration::setDefaultConfiguration(sslConfig);
+
+
+//    QSslSocket sslSocket;
+//    sslSocket.setSslConfiguration(sslConfig);
+
+
+//    // 连接到 SSL 服务器
+//    sslSocket.connectToHostEncrypted("192.168.0.169", 10669);
+//    if (sslSocket.waitForEncrypted()) {
+//        qDebug() << "SSL connection established!";
+//    } else {
+//        QSslCipher ciph = sslSocket.sessionCipher();
+//        qDebug()<<"密码名称："<< ciph.name();
+//        qDebug()<<"协议（名称）："<< ciph.protocolString();
+//        qDebug()<<"协议（"<<ciph.protocolString()<<"的枚举值）："<< ciph.protocol();
+//        qDebug()<<"密码使用的位数："<< ciph.usedBits();
+//        qDebug()<<"密码支持的位数："<< ciph.supportedBits();
+//        qDebug()<<"密码的加密方法："<< ciph.encryptionMethod();
+//        qDebug()<<"密码的密钥交换方法："<< ciph.keyExchangeMethod();
+//        qDebug()<<"密码的身份验证方法："<< ciph.authenticationMethod();
+//        qDebug() << "SSL connection failed:" << sslSocket.errorString();
+//    }
+
+
+    QNetworkRequest request;
+    request.setSslConfiguration(sslConfig);
+    request.setUrl(url);
+    //request.setRawHeader("Host", "192.168.85.205:10669");
+    qDebug() << "字节数组 = " << dataArray;
+    qDebug() << "长度" << dataArray.size() * sizeof(uint32_t);
+    //request.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(10));
+    request.setHeader(QNetworkRequest::UserAgentHeader, "vrv/1.0.0-dev pc_w");
+    //request.setRawHeader("Accept", "vrv imsdk");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-thrift");
+    //request.setHeader(QNetworkRequest::ContentTypeHeader, "vrv imdsk");
+    //request.setRawHeader("Userversion", "2");
+    //request.setRawHeader("Accept-Encoding", "gzip");
+
+    //QString hexString = "80010001000000086c6f67696e5f696d000000000c0001030001010b000200000001310b00300000001310b00040000000131030005010000000000";
+    QString hexString;
+    for (const QString& value : dataList) {
+        //qDebug() << "value = " << value;
+        hexString = hexString + value;  // 在控制台输出元素值
+    }
+    hexString = hexString.mid(8);
+    QByteArray byteArray2 = QByteArray::fromHex(hexString.toUtf8());
+    qDebug() << "原始十六进制字符串:" << hexString;
+    qDebug() << "转换后的字节数组:" << byteArray2;
+    qDebug() << "转换后的字符串:" << QString(byteArray2);
+    //qDebug() << "hexString data = " << a.data();
+
+
+    foreach(const QSslEllipticCurve &curve, request.sslConfiguration().ellipticCurves()) {
+         qDebug()  << "当前设置曲线1=" << curve.longName();
+         //qDebug()  << "当前设置曲线2=" << curve.shortName();
+     }
+
+    QNetworkReply* reply = manager.post(request, byteArray2);
+    //QNetworkReply* reply = manager.post(request, reinterpret_cast<char*>(a.data()));
+
+    QEventLoop loop;
+    QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    // 检查错误
+    if (reply->error() != QNetworkReply::NoError) {
+        qDebug() << "请求失败:" << reply->errorString();
+    } else {
+        qDebug() << "请求成功";
+        qDebug() << "响应:" << reply->readAll();
+    }
+
+    // 清理
+    reply->deleteLater();
+
+
     for (uint32_t& data : dataArray) {
         data = qToBigEndian(data);
         //dataTest.append(reinterpret_cast<const char*>(&data), sizeof(uint32_t));
     }
-    qDebug() <<"大小端转换 = " <<  dataArray;
-    qDebug() <<"dataTest = " <<  reinterpret_cast<char*>(dataArray.data()) << "长度 = " << dataArray.size() * sizeof(uint32_t);
-
 
     timer->start();
     qDebug()<< "1进入接口时间 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
