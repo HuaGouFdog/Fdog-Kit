@@ -81,9 +81,9 @@ void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &
 
 
 
-void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString);
-void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const int numberOfLayers);
-void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int numberOfLayers);
+void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString, bool isSuper = false);
+void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const int numberOfLayers, bool isSuper = false);
+void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int numberOfLayers, bool isSuper = false);
 
 
 //判断有没有非零数

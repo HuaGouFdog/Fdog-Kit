@@ -54,10 +54,10 @@
 #define THRIFT_SET_SIZE         0
 #define THRIFT_LIST_SIZE        0
 
-#define TFramedTransport_   "TFramedTransport"
-#define TBufferedTransport_ "TFramedTransport"
+#define TFramedTransport_   "Framed"
+#define TBufferedTransport_ "Buffered"
 
-#define TBinaryProtocol_ "TBinaryProtocol"
+#define TBinaryProtocol_ "Binary"
 
 static QMap<QString, QString> preDataMap;
 
