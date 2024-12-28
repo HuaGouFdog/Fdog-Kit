@@ -840,6 +840,21 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_thrift_api->setGraphicsEffect(effect14);
 
+    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect(this);
+    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->widget_test->setGraphicsEffect(effect15);
+
+    QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect(this);
+    effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    effect16->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    effect16->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    ui->widget_paramAll->setGraphicsEffect(effect16);
+
+
+
+
     //获取当前cpu支持线程数
     ui->lineEdit_thread_cpu->setText(getCpuInfo("wmic cpu get NumberOfLogicalProcessors"));
     ui->stackedWidget_2->setCurrentIndex(0);
