@@ -103,6 +103,9 @@ public:
     //根据设置窗口样式
     void setWindowsByConf();
 
+    //检测新版本
+    void checkNewVersion();
+
 private slots:
     void on_toolButton_close_clicked();
 
@@ -228,6 +231,8 @@ private slots:
 
     void on_toolButton_side_mysql_clicked();
 
+    void on_toolButton_newVersion_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -298,6 +303,9 @@ private:
     //操作数据库
     sqlhandle * db_;
 
+    QString newVersion;         //新版本
+    QString NewVersionData;     //新版本更新内容
+    QString NewVersiondownLoad;  //新版本下载地址
     
 };
 
