@@ -258,6 +258,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //打开数据库
     //db_ = new sqlhandle();
 
+    ui->toolButton_newVersion->setToolTip("");
+    ui->toolButton_newVersion->setIcon(QIcon());
+
+    checkNewVersion();
+
 }
 
 MainWindow::~MainWindow()
@@ -703,9 +708,9 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
             long x = GET_X_LPARAM(msg->lParam) / ratio;
             long y = GET_Y_LPARAM(msg->lParam) / ratio;
             QPoint pos = mapFromGlobal(QPoint(x, y));
-            qDebug() << "pos = " << pos;
+            //qDebug() << "pos = " << pos;
             if (pos.y() > 10 && ui->widget_title2->rect().contains(pos)) {
-                qDebug() << "标题栏被按下";
+                //qDebug() << "标题栏被按下";
 
                 // 根据当前鼠标的位置显示不同的样式;
                 *result = HTCAPTION;
@@ -812,6 +817,77 @@ void MainWindow::setWindowsByConf()
         this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),confInfo->startPositionX,confInfo->startPositionY);
         qDebug() << "不居中显示";
     }
+}
+
+void MainWindow::checkNewVersion()
+{
+    //检测
+    QSslConfiguration sslConfig = QSslConfiguration::defaultConfiguration();
+
+    //qDebug() << "默认配置" << sslConfig.peerVerifyMode();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    //qDebug() << "现在配置" << sslConfig.peerVerifyMode();
+
+    sslConfig.setProtocol(QSsl::SslProtocol::AnyProtocol);
+    QSslConfiguration::setDefaultConfiguration(sslConfig);
+
+    QNetworkAccessManager manager;
+    QUrl url("https://api.github.com/repos/HuaGouFdog/Fdog-Kit/releases/latest");
+    QNetworkRequest request;
+    request.setUrl(url);
+    QNetworkReply* reply = manager.get(request);
+
+        QEventLoop loop;
+        QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+        loop.exec();
+
+        // 检查错误
+        if (reply->error() != QNetworkReply::NoError) {
+            qDebug() << "请求失败:" << reply->errorString();
+        } else {
+            qDebug() << "请求成功";
+            //qDebug() << "响应:" << reply->readAll();
+            QByteArray responseData = reply->readAll();
+            QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
+            if (!jsonDoc.isNull()) {
+                if (jsonDoc.isObject()) {
+                    QJsonObject jsonObj = jsonDoc.object();
+
+                    QString tagName = jsonObj.value("tag_name").toString();
+                    QString body = jsonObj.value("body").toString();
+                    newVersion = tagName;
+                    NewVersionData = body;
+                    qDebug() << "tag_name:" << tagName;
+                    qDebug() << "body:" << body;
+
+
+                    QJsonArray assetsArray = jsonObj.value("assets").toArray();
+
+                    for (const QJsonValue &assetValue : assetsArray) {
+                        if (assetValue.isObject()) {
+                            QJsonObject assetObj = assetValue.toObject();
+                            QString browserDownloadUrl = assetObj.value("browser_download_url").toString();
+                            NewVersiondownLoad = browserDownloadUrl;
+                            qDebug() << "browser_download_url:" << browserDownloadUrl;
+                        }
+                    }
+                } else {
+                    qDebug() << "响应不是有效的 JSON 对象";
+                }
+            } else {
+                qDebug() << "无法解析 JSON 响应";
+            }
+        }
+        // 清理
+        reply->deleteLater();
+
+        //判断有没有新版本生成
+        if (newVersion != "") {
+            //ui->toolButton_newVersion->show();
+            ui->toolButton_newVersion->setIcon(QIcon(":lib/node.png"));
+            ui->toolButton_newVersion->setToolTip("当前有新版本，点击查看");
+        }
+        
 }
 
 void MainWindow::on_toolButton_close_clicked()
@@ -1955,3 +2031,18 @@ void MainWindow::on_toolButton_side_mysql_clicked()
     sqlhandle * db_ = new sqlhandle();
     db_->sql_mysql_init();
 }
+
+void MainWindow::on_toolButton_newVersion_clicked()
+{
+    QString data = NewVersionData + "\n" + "下载地址：\n" + NewVersiondownLoad;
+//    QMessageBox::StandardButton button = QMessageBox::information(this, "发现新版本" + newVersion, data,
+//                                              QMessageBox::Yes, QMessageBox::NoButton);
+
+//    if (button == QMessageBox::StandardButton::Yes) {
+//        qDebug() << "QMessageBox::StandardButton::Yes";
+//    } else if (button == QMessageBox::StandardButton::No) {
+//        qDebug() << "QMessageBox::StandardButton::No";
+//    }
+    QMessageBox::about(this, "发现新版本" + newVersion, data);
+}
+

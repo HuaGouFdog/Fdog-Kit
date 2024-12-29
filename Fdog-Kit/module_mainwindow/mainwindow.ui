@@ -143,7 +143,7 @@ border-radius:10px;
         <number>0</number>
        </property>
        <property name="topMargin">
-        <number>20</number>
+        <number>15</number>
        </property>
        <property name="rightMargin">
         <number>0</number>
@@ -1084,6 +1084,77 @@ background-color: rgba(255, 255, 255, 0);
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_newVersion">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>6</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(94, 255, 210, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgba(26, 53, 83, 0);
+	border: none;
+}
+
+
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../lib.qrc">
+           <normaloff>:/lib/node.png</normaloff>:/lib/node.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
          </property>
         </widget>
        </item>
