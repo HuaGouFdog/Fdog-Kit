@@ -33,6 +33,9 @@
 #include "module_smalltool/smalltoolwidget.h"
 #include "module_sql/sqlhandle.h"
 
+#include "windows.h"
+#include "windowsx.h"
+
 QVariant mySheetStyle(const QString & start, const QString & end, qreal progress)
 {
     int red   = 255 - (int)(235 * progress);
@@ -49,11 +52,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+    Qt::WindowFlags flags = this->windowFlags();
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //Qt::WindowStaysOnTopHint
+    //this->setWindowFlags(flags | Qt::FramelessWindowHint);
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
-
+    //QApplication::setAttribute(Qt::AA_Use96Dpi);
     setContentsMargins(10, 10, 10, 10);
     ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
 
@@ -62,7 +66,11 @@ MainWindow::MainWindow(QWidget *parent) :
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
 
-    ui->label_time->hide();
+//      HWND hwnd = (HWND)this->winId();
+//      DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
+//      ::SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+
+    //ui->label_time->hide();
 
     //this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
 
@@ -107,12 +115,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(rece_toolButton_fullScreen_sign()));
 
-    men_tool = new QMenu(ui->toolButton_tool);
+    //men_tool = new QMenu(ui->toolButton_tool);
     //men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
     //                   "QMenu::item:selected {background-color: #0B0E11;}");
-    men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
-    men_tool->setAttribute(Qt::WA_TranslucentBackground);
-    QSize iconSize(30, 30); // 设置图标的大小
+    //men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    //men_tool->setAttribute(Qt::WA_TranslucentBackground);
+    //QSize iconSize(30, 30); // 设置图标的大小
     // toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具");
     // men_tool->addAction(toolAssemble);
     // men_tool->addSeparator();
@@ -125,13 +133,13 @@ MainWindow::MainWindow(QWidget *parent) :
     // jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
     // men_tool->addAction(jsonFormat);
     // men_tool->addSeparator();
-    zkVisual = new QAction(QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zk可视化连接");
-    men_tool->addAction(zkVisual);
-    men_tool->addSeparator();
-    textTest = new QAction(QIcon(":lib/Thrift5.png").pixmap(iconSize), "thrift接口测试");
-    men_tool->addAction(textTest);
-    men_tool->addSeparator();
-    ui->toolButton_tool->setMenu(men_tool);
+    //zkVisual = new QAction(QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zk可视化连接");
+    //men_tool->addAction(zkVisual);
+    //men_tool->addSeparator();
+    //textTest = new QAction(QIcon(":lib/Thrift5.png").pixmap(iconSize), "thrift接口测试");
+    //men_tool->addAction(textTest);
+    //men_tool->addSeparator();
+    //ui->toolButton_tool->setMenu(men_tool);
     //connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
     //connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
     //connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
@@ -184,13 +192,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_tool->setView(new QListView());
 
     //暂时屏蔽
-    ui->toolButton_newCreate->hide();
-    ui->toolButton_manage->hide();
-    ui->toolButton_plugIn->hide();
-    ui->toolButton_setting->hide();
-    ui->toolButton_tool->hide();
-    ui->toolButton_about->hide();
-    ui->widget_top_tool->hide();
+//    ui->toolButton_newCreate->hide();
+//    ui->toolButton_manage->hide();
+//    ui->toolButton_plugIn->hide();
+//    ui->toolButton_setting->hide();
+//    ui->toolButton_tool->hide();
+//    ui->toolButton_about->hide();
+    //ui->widget_top_tool->hide();
     ui->toolButton_side_about->hide();
     //ui->widget_25->hide();
 
@@ -552,8 +560,9 @@ void MainWindow::setSupportStretch(bool isSupportStretch)
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    if(ui->widget_title->underMouse() && !showFlag) {
+    if(ui->widget_title2->underMouse() && !showFlag) {
         isPressedWidget = true; // 当前鼠标按下的即是QWidget而非界面上布局的其它控件
+        //qDebug() << "mousePressEvent 标题栏被按下";
     }
     last = event->globalPos();
     // 当前鼠标进入了以上指定的8个区域，并且是左键按下时才开始进行窗口拉伸;
@@ -608,7 +617,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(ui->widget_title->underMouse() && !showFlag) {
+    if(ui->widget_title2->underMouse() && !showFlag) {
         setContentsMargins(0, 0, 0, 0);
         ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
         ui->widget_side->setStyleSheet("#widget_side { \
@@ -633,7 +642,7 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
                                             }");
         setWindowState(Qt::WindowMaximized);
         showFlag = true;
-    } else if (ui->widget_title->underMouse() && showFlag) {
+    } else if (ui->widget_title2->underMouse() && showFlag) {
         setContentsMargins(10, 10, 10, 10);
         ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
         ui->widget_side->setStyleSheet("#widget_side { \
@@ -672,33 +681,63 @@ void MainWindow::showEvent(QShowEvent *event)
 {
     qDebug() << "showEvent 被调用";
     calculateCurrentStrechRect();
+
+    // setAttribute(Qt::WA_Mapped);
+    // QMainWindow::showEvent(event);
     //return MainWindow::showEvent(event);
 }
 
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
     MSG* msg = (MSG*)message;
-    switch (msg->message) {
-    //没有这一段，将不会显示窗口
-    case WM_NCCALCSIZE:
-        return true;
 
-    //最大化是填充屏幕
-    case WM_GETMINMAXINFO:
+    switch (msg->message) {
+        //没有这一段，将不会显示窗口
+        case WM_NCCALCSIZE:
+            return true;
+        //最大化是填充屏幕
+        case WM_NCHITTEST:
     {
-        if (::IsZoomed(msg->hwnd)) {
-            // 最大化时会超出屏幕，所以填充边框间距
-            RECT frame = { 0, 0, 0, 0 };
-            AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
-            frame.left = abs(frame.left);
-            frame.top = abs(frame.bottom);
-            this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+            //qDebug() << "触发WM_NCHITTEST";
+            qreal ratio = 1.0;
+            long x = GET_X_LPARAM(msg->lParam) / ratio;
+            long y = GET_Y_LPARAM(msg->lParam) / ratio;
+            QPoint pos = mapFromGlobal(QPoint(x, y));
+            qDebug() << "pos = " << pos;
+            if (pos.y() > 10 && ui->widget_title2->rect().contains(pos)) {
+                qDebug() << "标题栏被按下";
+
+                // 根据当前鼠标的位置显示不同的样式;
+                *result = HTCAPTION;
+                return true;
+            }
+    }
+            // if (ui->widget_title->underMouse()) {
+            //     qDebug() << "标题栏被按下";
+            //     *result = HTCAPTION;
+            //     return true;
+            // }
+        
+        case WM_GETMINMAXINFO:
+        {
+            //qDebug() << "触发WM_GETMINMAXINFO";
+            if (::IsZoomed(msg->hwnd)) {
+                // 最大化时会超出屏幕，所以填充边框间距
+                RECT frame = { 0, 0, 0, 0 };
+                AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
+                frame.left = abs(frame.left);
+                frame.top = abs(frame.bottom);
+                this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+            }
+            *result = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
+            return true;
         }
-        *result = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
-        return true;
+            //qDebug() << "WM_NCHITTEST";
+        //case WM_LBUTTONDOWN:
+        // qDebug() << "Mouse Button Pressed at: (" << msg->pt.x << ", " << msg->pt.y << ")";
+        //return false;
     }
-        break;
-    }
+
     return QMainWindow::nativeEvent(eventType, message, result);
 }
 
@@ -912,7 +951,7 @@ void MainWindow::restoreWindow()
 
 void MainWindow::on_toolButton_max_clicked()
 {
-    //qDebug() << "显示最大化";
+    qDebug() << "显示最大化";
     //最大化
     if (!showFlag) {
         //ui->centralWidget->setEnabled(false);
@@ -1361,9 +1400,9 @@ void MainWindow::rece_showtimestamp()
     ui->lineEdit_now_timestamp->setText(timestampStr);
 
     //下面只是在界面显示时间
-    QTime currentTime2 = QTime::currentTime();
-    QString timeString = currentTime2.toString("hh:mm:ss");
-    ui->label_time->setText(timeString);
+//    QTime currentTime2 = QTime::currentTime();
+//    QString timeString = currentTime2.toString("hh:mm:ss");
+//    ui->label_time->setText(timeString);
 }
 
 void MainWindow::on_toolButton_time2date_clicked()
