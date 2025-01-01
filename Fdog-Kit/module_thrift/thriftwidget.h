@@ -54,10 +54,13 @@
 #define THRIFT_SET_SIZE         0
 #define THRIFT_LIST_SIZE        0
 
-#define TFramedTransport_   "Framed"
-#define TBufferedTransport_ "Buffered"
+#define TFramedTransport_   "FRAMED"
+#define TBufferedTransport_ "BUFFERED"
+#define THTTPSTransport_    "HTTPS"
+#define THTTPTransport_     "HTTP"
 
 #define TBinaryProtocol_ "Binary"
+
 
 static QMap<QString, QString> preDataMap;
 
@@ -229,6 +232,47 @@ enum ObjectType {
     OBJECT_MAP,
 };
 
+class RequestResults {
+    public:
+
+
+    QVector<int32_t> Results; //每次请求耗时
+
+    QVector<int32_t> connectTime;  //每次连接延时
+
+    QString startTime;        //开始时间
+    QString requestTime;      //请求到的时间
+    QString endTime;          //结束时间
+    QMutex mutex;
+    int count = 0;        //为0时，执行完毕
+    int totalTimes = 0;   //总执行数
+    int successCount = 0; //成功请求数
+    int failCount = 0;    //失败请求数
+    int minRespond = 0;   //最小响应时间
+    int maxRespond = 0;   //最大响应时间
+    qint64 totalTime = 0; //总执行时间
+    qint64 totalData = 0; //总数据量
+
+    int ms10 = -1;  //前10%的平均耗时
+    int ms25 = -1;
+    int ms50 = -1;
+    int ms75 = -1;
+    int ms90 = -1;
+    int ms95 = -1;
+
+    void setStartTime(const QString &value);
+    void setEndTime(const QString &value);
+    void setResults(const int32_t  value);
+    void setConnectTime(const int32_t value);
+    void setCount(int value);
+    void decrease();
+    void setRequestTime(const QString &value);
+    void setSectionData();
+    void setFailCount(int newFailCount);
+    void setTotalData(qint64 newTotalData);
+    void setSuccessCount(int newSuccessCount);
+};
+
 class thriftwidget : public QWidget
 {
     Q_OBJECT
@@ -254,7 +298,7 @@ public:
     QVector<uint32_t> string2Uint32List(QVector<QString> & data);
     void string2stringList(QString data);
 
-    //组装数据
+    //组装数据 不再使用
     void buildData();
 
     void baseSerialize(int serialNumber, QString valueType, QString value);
@@ -418,6 +462,8 @@ public:
 
     //将二进制数据进行解析
     void handleBinData();
+    //将十六进制数据进行解析
+    void handleHexData(QString& data);
 
     //读取预制数据
     void readPreData();
@@ -478,12 +524,19 @@ private slots:
 
     void on_toolButton_propertyTest_clicked();
 
+    void rece_propertyTestDone(RequestResults * rr);
+
     void sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
+
+    //http传输协议
+    void sendHttpRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
 
 
     void on_toolButton_return_clicked();
 
     void on_checkBox_show_source_clicked();
+
+    void on_toolButton_export_clicked();
 
 public:
     QVector<QString> dataList;
@@ -511,45 +564,7 @@ private:
 Q_DECLARE_METATYPE(QVector<uint32_t>);
 
 Q_DECLARE_METATYPE(QElapsedTimer*);
-
-
-class RequestResults {
-    public:
-
-
-    QVector<int32_t> Results; //每次请求耗时
-
-    QVector<int32_t> connectTime;  //每次连接延时
-
-    QString startTime;        //开始时间
-    QString requestTime;      //请求到的时间
-    QString endTime;          //结束时间
-    QMutex mutex;
-    int count = 0;        //为0时，执行完毕
-    int totalTimes = 0;   //总执行数
-    int successCount = 0; //成功请求数
-    int failCount = 0;    //失败请求数
-    int minRespond = 0;   //最小响应时间
-    int maxRespond = 0;   //最大响应时间
-    qint64 totalTime = 0; //总执行时间
-    qint64 totalData = 0; //总数据量
-
-    int ms10 = -1;  //前10%的平均耗时
-    int ms25 = -1;
-    int ms50 = -1;
-    int ms75 = -1;
-    int ms90 = -1;
-    int ms95 = -1;
-
-    void setStartTime(const QString &value);
-    void setEndTime(const QString &value);
-    void setResults(const int32_t  value);
-    void setConnectTime(const int32_t value);
-    void setCount(int value);
-    void decrease();
-    void setRequestTime(const QString &value);
-    void setSectionData();
-};
+Q_DECLARE_METATYPE(RequestResults*);
 
 class TestRunnable : public QObject, public QRunnable {
     Q_OBJECT
@@ -559,10 +574,6 @@ public:
         sendData_ =  sendData;
         timer_ = timer;
         rr_ = rr;
-        // count_ = count;
-        // clientSocket = new QTcpSocket();
-        // timer = new QElapsedTimer();
-        //sendThriftRequest2(clientSocket, sendData_, timer);
     }
 
     void sendThriftRequest2(QTcpSocket * clientSocket, QVector<uint32_t> dataArray, QElapsedTimer* timer, RequestResults * rr);
@@ -572,21 +583,33 @@ public:
 
     void run() override {
         //请求数据
-        //qDebug() << "调用run";
-        clientSocket = new QTcpSocket();
-        sendThriftRequest2(clientSocket, sendData_, timer_, rr_);
         QElapsedTimer timer_run;
         timer_run.start();
-        //QMetaObject::invokeMethod(obj_,"sendThriftRequest",Qt::QueuedConnection, Q_ARG(QVector<uint32_t>,sendData_), Q_ARG(QElapsedTimer*,timer_));
-        while(!isok && timer_run.elapsed() < 3*1000) {
+        sendThriftRequest2(clientSocket, sendData_, timer_, rr_);
+        while(!isok && timer_run.elapsed() < 5000) { //&& timer_run.elapsed() < 800
             QCoreApplication::processEvents();
         }
-        
-        if(!isok) {
-            //调用失败
+        if (!isok) {
+            qDebug() << "超时" << "  thread ID:" << QThread::currentThreadId() << "   time = " << timer_run.elapsed();
+            //失败+1
+            rr_->setFailCount(1);
+            //记录请求时间
+            qint64 elapsedMilliseconds = timer_run.elapsed();
+            rr_->setResults(elapsedMilliseconds);
+            //记录结束时间
+            rr_->setEndTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+            
         }
+        rr_->mutex.lock();
+        //请求加1
         rr_->decrease();
-        //qDebug() << "调用run完毕";
+        //记录分段数据
+        rr_->setSectionData();
+        if (rr_->count == 0) {
+            qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
+            QMetaObject::invokeMethod(obj_,"rece_propertyTestDone",Qt::QueuedConnection, Q_ARG(RequestResults*,rr_));
+        }
+        rr_->mutex.unlock();
     }
 
 public:
@@ -597,8 +620,8 @@ public:
     QVector<uint32_t> receivedData;
     int64_t count_ = 1;
     int64_t needRead = 0;
-     QObject * obj_;
-     QVector<uint32_t> sendData_;
+    QObject * obj_;
+    QVector<uint32_t> sendData_;
     bool isFirstRead = true;
     qint64 elapsedMillisecondsAll = 0;
 
