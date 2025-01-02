@@ -295,7 +295,10 @@ public:
 
 
     uint32_t string2Uint32(QString data);  //将四字节字符串转为需要发送的uint32
+    uint16_t string2Uint16(QString data);  //将四字节字符转换位需要发送的uint16
     QVector<uint32_t> string2Uint32List(QVector<QString> & data);
+    QVector<uint16_t> string2Uint16List(QVector<QString> & data);
+    QVector<uint8_t>  string2Uint8List(QVector<QString> & data);
     void string2stringList(QString data);
 
     //组装数据 不再使用
@@ -526,10 +529,10 @@ private slots:
 
     void rece_propertyTestDone(RequestResults * rr);
 
-    void sendThriftRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
+    void sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* timer);
 
     //http传输协议
-    void sendHttpRequest(QVector<uint32_t> dataArray, QElapsedTimer* timer);
+    void sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer* timer);
 
 
     void on_toolButton_return_clicked();
