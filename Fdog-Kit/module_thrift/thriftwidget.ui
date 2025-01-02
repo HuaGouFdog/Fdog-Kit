@@ -115,6 +115,9 @@ QMenu::separator {
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
+     <property name="handleWidth">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="widget_left" native="true">
       <property name="minimumSize">
        <size>
@@ -734,7 +737,7 @@ QScrollBar::up-arrow:vertical {
         <number>10</number>
        </property>
        <property name="leftMargin">
-        <number>10</number>
+        <number>0</number>
        </property>
        <property name="topMargin">
         <number>6</number>
@@ -917,7 +920,7 @@ padding-right:10px;
 }</string>
             </property>
             <property name="text">
-             <string>192.168.0.173</string>
+             <string>192.168.0.169</string>
             </property>
             <property name="placeholderText">
              <string>172.16.8.154</string>
@@ -1308,7 +1311,7 @@ padding-right:10px;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_host_2">
+           <widget class="QLineEdit" name="lineEdit_route">
             <property name="minimumSize">
              <size>
               <width>180</width>
@@ -1604,22 +1607,22 @@ QComboBox QAbstractItemView::item:selected {
             </property>
             <item>
              <property name="text">
-              <string>Http</string>
+              <string>FRAMED</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Https</string>
+              <string>HTTP</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Framed</string>
+              <string>HTTPS</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Buffered</string>
+              <string>BUFFERED</string>
              </property>
             </item>
            </widget>
@@ -2211,18 +2214,13 @@ padding-right:10px;
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgb(250, 118, 0);
+	
+	background-color: qradialgradient(spread:pad, cx:0.489, cy:0.516682, radius:1.786, fx:0.494, fy:0.516682, stop:0.0621469 rgba(0, 123, 255, 255), stop:1 rgba(255, 255, 255, 255));
 	border-radius: 5px;
 }
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgb(250, 118, 0);
+	background-color: qradialgradient(spread:pad, cx:0.489, cy:0.516682, radius:1.786, fx:0.494, fy:0.516682, stop:0.0621469 rgba(0, 123, 255, 255), stop:1 rgba(255, 255, 255, 255));
 }</string>
             </property>
             <property name="text">
@@ -2938,12 +2936,13 @@ padding-right:10px;
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgb(250, 118, 0);
+	
+	background-color: qradialgradient(spread:pad, cx:0.489, cy:0.516682, radius:1.786, fx:0.494, fy:0.516682, stop:0.0621469 rgba(0, 123, 255, 255), stop:1 rgba(255, 255, 255, 255));
 	border-radius: 5px;
 }
 QToolButton:hover {
 	color: rgb(255, 255, 255);
-	background-color: rgb(250, 118, 0);
+	background-color: qradialgradient(spread:pad, cx:0.489, cy:0.516682, radius:1.786, fx:0.494, fy:0.516682, stop:0.0621469 rgba(0, 123, 255, 255), stop:1 rgba(255, 255, 255, 255));
 }</string>
             </property>
             <property name="text">
@@ -3119,6 +3118,71 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
+        <widget class="QWidget" name="horizontalWidget_schedule" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_33">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>执行进度：100%</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>10</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>10</height>
+             </size>
+            </property>
+            <property name="value">
+             <number>100</number>
+            </property>
+            <property name="format">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <widget class="QStackedWidget" name="stackedWidget_2">
          <property name="minimumSize">
           <size>
@@ -3133,7 +3197,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -3433,7 +3497,7 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                           </widget>
                          </item>
                          <item>
-                          <spacer name="horizontalSpacer">
+                          <spacer name="horizontalSpacer_43">
                            <property name="font">
                             <font>
                              <stylestrategy>PreferAntialias</stylestrategy>
@@ -3442,10 +3506,13 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                            <property name="orientation">
                             <enum>Qt::Horizontal</enum>
                            </property>
+                           <property name="sizeType">
+                            <enum>QSizePolicy::Fixed</enum>
+                           </property>
                            <property name="sizeHint" stdset="0">
                             <size>
-                             <width>40</width>
-                             <height>20</height>
+                             <width>17</width>
+                             <height>27</height>
                             </size>
                            </property>
                           </spacer>
@@ -3493,6 +3560,79 @@ QToolButton:hover {
                            </property>
                            <property name="text">
                             <string>预制数据管理</string>
+                           </property>
+                           <property name="iconSize">
+                            <size>
+                             <width>18</width>
+                             <height>18</height>
+                            </size>
+                           </property>
+                           <property name="toolButtonStyle">
+                            <enum>Qt::ToolButtonTextBesideIcon</enum>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer">
+                           <property name="font">
+                            <font>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <widget class="QToolButton" name="toolButton_export">
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>40</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>OPPOSans B</family>
+                             <pointsize>10</pointsize>
+                             <weight>50</weight>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(54, 81, 97,0);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(54, 81, 97,0);
+}</string>
+                           </property>
+                           <property name="text">
+                            <string>导出</string>
                            </property>
                            <property name="iconSize">
                             <size>
@@ -3692,7 +3832,7 @@ border-radius: 2px;
                          <bool>false</bool>
                         </property>
                         <attribute name="headerVisible">
-                         <bool>true</bool>
+                         <bool>false</bool>
                         </attribute>
                         <attribute name="headerMinimumSectionSize">
                          <number>20</number>
@@ -5165,7 +5305,7 @@ background-color: rgb(45, 76, 107);
 border-radius: 10px;
 }</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_13" stretch="0,0,30,4,4,4,4,4,4,1">
+             <layout class="QVBoxLayout" name="verticalLayout_13" stretch="0,30,4,4,4,4,4,4,1">
               <property name="spacing">
                <number>0</number>
               </property>
@@ -5182,78 +5322,13 @@ border-radius: 10px;
                <number>5</number>
               </property>
               <item>
-               <widget class="QWidget" name="horizontalWidget_6" native="true">
-                <layout class="QVBoxLayout" name="verticalLayout_14">
-                 <property name="spacing">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>9</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label_33">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>OPPOSans B</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>执行进度：100%</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QProgressBar" name="progressBar">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>10</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>10</height>
-                    </size>
-                   </property>
-                   <property name="value">
-                    <number>100</number>
-                   </property>
-                   <property name="format">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
                <widget class="QWidget" name="horizontalWidget_5" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_24">
                  <property name="leftMargin">
                   <number>9</number>
                  </property>
                  <property name="topMargin">
-                  <number>20</number>
+                  <number>9</number>
                  </property>
                  <property name="rightMargin">
                   <number>9</number>
@@ -5361,13 +5436,13 @@ border-radius: 10px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>50</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>50</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -5826,13 +5901,13 @@ border-radius: 5px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>50</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>50</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -6289,13 +6364,13 @@ border-radius: 5px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>50</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>50</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="styleSheet">
