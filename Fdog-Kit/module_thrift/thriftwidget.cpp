@@ -4242,7 +4242,7 @@ void thriftwidget::rece_highlighted(const QString &text)
 }
 
 
-void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t> dataArray, QElapsedTimer* timer, RequestResults * rr)
+void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t> dataArray, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut)
 {
     clientSocket = new QTcpSocket();
     qint64 elapsedMillisecondsConnect = 0;
@@ -4292,8 +4292,8 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
         return;
     });
 
-    clientSocket->connectToHost("192.168.0.169", 11130);
-    if (!clientSocket->waitForConnected(2000)) {
+    clientSocket->connectToHost(host, port);
+    if (!clientSocket->waitForConnected(connectTimeOut)) {
         QAbstractSocket::SocketError error = clientSocket->error();
         if (error == QAbstractSocket::SocketTimeoutError || QAbstractSocket::NetworkError == error) {
             qDebug() << "连接超时，无法连接服务器";
@@ -4407,14 +4407,14 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint32_t
     });
     
 
-    for (uint32_t& data : dataArray) {
+    for (uint8_t& data : dataArray) {
         data = qToBigEndian(data);
     }
     //记录开始写入时间
     rr->setRequestTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
 
-    qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint32_t));
-    if (bytesSent != dataArray.size() * sizeof(uint32_t)) {
+    qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint8_t));
+    if (bytesSent != dataArray.size() * sizeof(uint8_t)) {
         qDebug() << "发送数据异常";
         return;
     }
@@ -4432,8 +4432,8 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     retractNum = 0;
     elapsedMillisecondsAll = 0;
     assembleTBinaryMessage();
-    QVector<uint32_t> sendData = string2Uint32List(dataList);
-
+    //QVector<uint32_t> sendData = string2Uint32List(dataList);
+    QVector<uint8_t> sendData8 = string2Uint8List(dataList);
     RequestResults * rr = new RequestResults();
     rr->setCount(count);
     QElapsedTimer timer2;
@@ -4445,10 +4445,21 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
         qDebug() << "开始时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     }
 
+    QString port_str = ui->comboBox_port->currentText();
+    int index_s = port_str.indexOf("(");
+    int index_e = port_str.indexOf(")");
+    int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
+    if (index_s == -1 && index_e == -1) {
+        port = port_str.toInt();
+    }
+    int connectTimeOut =  ui->lineEdit_connectTimeOut->text().toInt();
+    int requestTimeOut =  ui->lineEdit_requestTimeOut->text().toInt();
+    qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
+
     for (int64_t i = 0; i < loopNum; i++) {
         QElapsedTimer * timer  = new QElapsedTimer();
         //qDebug() << "开始调用" << i;
-        TestRunnable * m_pRunnable = new TestRunnable(this, sendData, timer, rr);
+        TestRunnable * m_pRunnable = new TestRunnable(this, sendData8, timer, rr, port_str, port, connectTimeOut, requestTimeOut);
         //m_pRunnable->setAutoDelete(false);
         threadpool.start(m_pRunnable);
     }
