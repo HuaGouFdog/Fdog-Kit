@@ -564,7 +564,7 @@ private:
     QChart *chart = nullptr;
 };
 
-Q_DECLARE_METATYPE(QVector<uint32_t>);
+Q_DECLARE_METATYPE(QVector<uint8_t>);
 
 Q_DECLARE_METATYPE(QElapsedTimer*);
 Q_DECLARE_METATYPE(RequestResults*);
@@ -572,14 +572,18 @@ Q_DECLARE_METATYPE(RequestResults*);
 class TestRunnable : public QObject, public QRunnable {
     Q_OBJECT
 public:
-    TestRunnable(QObject * obj, QVector<uint32_t> sendData, QElapsedTimer* timer, RequestResults * rr){
+    TestRunnable(QObject * obj, QVector<uint8_t> sendData, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut){
         obj_ = obj;
-        sendData_ =  sendData;
+        sendData_ = sendData;
         timer_ = timer;
         rr_ = rr;
+        host_ = host;
+        port_ = port;
+        connectTimeOut_ = connectTimeOut;
+        requestTimeOut_ = requestTimeOut_;
     }
 
-    void sendThriftRequest2(QTcpSocket * clientSocket, QVector<uint32_t> dataArray, QElapsedTimer* timer, RequestResults * rr);
+    void sendThriftRequest2(QTcpSocket * clientSocket, QVector<uint8_t> dataArray, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut);
     ~TestRunnable() {
         //不需要释放
     }
@@ -588,8 +592,8 @@ public:
         //请求数据
         QElapsedTimer timer_run;
         timer_run.start();
-        sendThriftRequest2(clientSocket, sendData_, timer_, rr_);
-        while(!isok && timer_run.elapsed() < 5000) { //&& timer_run.elapsed() < 800
+        sendThriftRequest2(clientSocket, sendData_, timer_, rr_, host_, port_, connectTimeOut_, requestTimeOut_);
+        while(!isok && timer_run.elapsed() < requestTimeOut_) { //&& timer_run.elapsed() < 800
             QCoreApplication::processEvents();
         }
         if (!isok) {
@@ -616,6 +620,8 @@ public:
     }
 
 public:
+    QString host_;
+    int port_;
     bool isok = false;
     QElapsedTimer * timer_;
     RequestResults * rr_ = nullptr;
@@ -624,10 +630,11 @@ public:
     int64_t count_ = 1;
     int64_t needRead = 0;
     QObject * obj_;
-    QVector<uint32_t> sendData_;
+    QVector<uint8_t> sendData_;
     bool isFirstRead = true;
     qint64 elapsedMillisecondsAll = 0;
-
+    int connectTimeOut_ = 0;
+    int requestTimeOut_ = 0;
     
 };
 
