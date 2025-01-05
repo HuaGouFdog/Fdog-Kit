@@ -616,11 +616,20 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         //qDebug() << "设置基础类型";
         comboBoxBase->setCurrentText(type);
         //匹配预制数据
-        if (preDataMap.contains(name)) {
+        if (preDataMap.contains(name) && preDataMap[name] != "${}") {
             lineEditParamValue->setText(preDataMap[name]);
             if (typeSign == "optional") {
                 checkBox->setChecked(true);
             }
+        } else if(preDataMap.contains(name)) {
+            lineEditParamValue->setText(preDataMapV[name].at(0));
+            if (typeSign == "optional") {
+                checkBox->setChecked(true);
+            }
+            lineEditParamValue->setToolTip("该值存在多个预制值，压测模式中，将按照顺序使用预测值");
+            QAction *action = new QAction(this);
+            action->setIcon(QIcon(":/lib/testParam.svg"));
+            lineEditParamValue->addAction(action,QLineEdit::TrailingPosition);
         }
 
     } else {
@@ -1206,7 +1215,7 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
     if (index_s == -1 && index_e == -1) {
         port = port_str.toInt();
     }
-    qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
+    //qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
     clientSocket->connectToHost(ui->lineEdit_host->text(), port);
     if (!clientSocket->waitForConnected()) {
         //qDebug() << "无法连接到服务器";
@@ -1258,7 +1267,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     if (index_s == -1 && index_e == -1) {
         port = port_str.toInt();
     }
-    qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port << " 路由=" << ui->lineEdit_route->text();
+    //qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port << " 路由=" << ui->lineEdit_route->text();
 
     QString urlData = "https://";
 
@@ -1653,7 +1662,7 @@ void thriftwidget::cleanMessage()
     dataList.resize(0);
 }
 
-void thriftwidget::assembleTBinaryMessage()
+void thriftwidget::assembleTBinaryMessage(int buildType, int num)
 {
     //清除老数据
     cleanMessage();
@@ -1668,6 +1677,12 @@ void thriftwidget::assembleTBinaryMessage()
         }
         QString valueType = item->comboBoxBase->currentText();
         QString value = item->lineEditParamValue->text();
+        //qDebug() << " buildType =" << buildType << " value = " << value << " toolTip = " << item->lineEditParamValue->toolTip();
+        if (buildType == 1 && item->lineEditParamValue->toolTip() == "该值存在多个预制值，压测模式中，将按照顺序使用预测值") {
+            value = preDataMapV[item->lineEditParamName->text()].at(num);
+            qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
+        }
+        //lineEditParamValue->toolTip()
         QString SN = item->lineEditParamSN->text();
         //qDebug() << "SN = " << SN;
         if (SN == "") {
@@ -1687,7 +1702,7 @@ void thriftwidget::assembleTBinaryMessage()
             writeTBinaryCollectionMessage(valueType, value, item, item->comboBoxKey->currentText(), item->comboBoxValue->currentText());
         } else {
             //构建struct
-            writeTBinaryStructMessage(valueType, item);
+            writeTBinaryStructMessage(valueType, item, buildType, num);
         }
     }
     //写入结束,添加结束符号
@@ -1831,7 +1846,7 @@ void thriftwidget::writeTBinaryCollectionMessage(QString valueType, QString valu
     }
 }
 
-void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item)
+void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item, int buildType, int num)
 {
     //遍历item
    for(int serialNumber = 0; serialNumber < item->childCount(); serialNumber++) {
@@ -1844,6 +1859,11 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
         QString valueType_ = itemChild->comboBoxBase->currentText();
         QString value_ = itemChild->lineEditParamValue->text();
         QString SN = itemChild->lineEditParamSN->text();
+        //qDebug() << " buildType =" << buildType << " value = " << value_ << " toolTip = " << itemChild->lineEditParamValue->toolTip();
+        if (buildType == 1 && itemChild->lineEditParamValue->toolTip() == "该值存在多个预制值，压测模式中，将按照顺序使用预测值") {
+            value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num);
+            qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
+        }
         //qDebug() << "SN = " << SN;
         if (SN == "") {
             qDebug() << "参数名" << value_ << "获取sn失败，默认+1";
@@ -1857,7 +1877,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
             writeTBinaryCollectionMessage(valueType_, value_, itemChild, itemChild->comboBoxKey->currentText(), itemChild->comboBoxValue->currentText());
         } else {
             //struct
-            writeTBinaryStructMessage(valueType_, itemChild);
+            writeTBinaryStructMessage(valueType_, itemChild, buildType, num);
         }
    }
     //写入结束,添加结束符号
@@ -1883,7 +1903,7 @@ void thriftwidget::writeTBinarySizeMessage()
     //qDebug() << "writeTBinarySizeMessage data = " << data << " Length = " << data.length()/2;
     //qDebug() << "dataLength = " << dataLength;
     dataList.insert(0, dataLength);
-    qDebug() << "原始数据" << dataList;
+    //qDebug() << "原始数据" << dataList;
 }
 
 void thriftwidget::writeTBinaryTypeMessage(QString type_)
@@ -2077,7 +2097,7 @@ void thriftwidget::handleMessage(QString &data)
     //qDebug() << "异常数据 = " << data;
 }
 
-QString thriftwidget::addColorHtml(QString &str, QColor *fontCrl)
+QString thriftwidget::addColorHtml(QString str, QColor *fontCrl)
 {
     QByteArray array;
     array.append(fontCrl->red());
@@ -3451,9 +3471,45 @@ void thriftwidget::readPreData()
             int index = preDataList.at(i).indexOf(":");
             QString key = preDataList.at(i).mid(0, index);
             QString value = preDataList.at(i).mid(index + 1);
-            preDataMap.insert(key, value);
+            if("${" == value.mid(0, 2)){
+                readPreDataVector(key, value.mid(2,value.length()-3));
+                preDataMap.insert(key, "${}");
+            } else {
+                preDataMap.insert(key, value);
+            }
+            
             //qDebug() << "key = " << key << " value = " << value;
         }
+    } else {
+        // 如果文件打开失败，则输出错误信息
+        qDebug() << "打开文件失败!";
+    }
+}
+
+void thriftwidget::readPreDataVector(QString key, QString path)
+{
+    qDebug() << "path = " << path;
+    QString fileName = path;
+    // 创建文件对象
+    QFile file(fileName);
+ 
+    // 打开文件，并且以只读方式进行读取
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        // 读取文件内容
+        QByteArray fileData = file.readAll();
+        // 关闭文件
+        file.close();
+        // 输出读取的文件内容
+        //qDebug() << "读取的文件内容:" << fileData;
+        QStringList preDataList = QString(fileData).split("\n");
+        //qDebug() << "读取的文件内容:" << preDataList;
+        QVector<QString> v;
+        for (int i = 0; i < preDataList.size(); i++) {
+            v.push_back(preDataList[i]);
+        }
+        qDebug() << "v = " << v;
+        preDataMapV.insert(key, v);
+
     } else {
         // 如果文件打开失败，则输出错误信息
         qDebug() << "打开文件失败!";
@@ -3905,15 +3961,8 @@ void thriftwidget::on_toolButton_request_clicked()
     elapsedMillisecondsAll = 0;
     isTestModle = false;
     assembleTBinaryMessage();
-    //请求数据
-    //如果是http，删除总长度
-    // if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
-    //     dataList.remove(0);
-    // }
 
     QVector<uint8_t> sendData8 = string2Uint8List(dataList);
-    //QVector<uint16_t> sendData16 = string2Uint16List(dataList);
-    //QVector<uint32_t> sendData = string2Uint32List(dataList);
     //qDebug() << "数据=" << sendData;
     ui->textEdit->clear();
     ui->textEdit_data->clear();
@@ -4292,6 +4341,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
         return;
     });
 
+    //qDebug() << "host = " << host << " port = " << port << " connectTimeOut = " << connectTimeOut;
     clientSocket->connectToHost(host, port);
     if (!clientSocket->waitForConnected(connectTimeOut)) {
         QAbstractSocket::SocketError error = clientSocket->error();
@@ -4418,7 +4468,7 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
         qDebug() << "发送数据异常";
         return;
     }
-    qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") <<"  thread ID:" << QThread::currentThreadId();
+    //qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") <<"  thread ID:" << QThread::currentThreadId();
 }
 
 void thriftwidget::on_toolButton_propertyTest_clicked()
@@ -4431,9 +4481,6 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     count = loopNum;
     retractNum = 0;
     elapsedMillisecondsAll = 0;
-    assembleTBinaryMessage();
-    //QVector<uint32_t> sendData = string2Uint32List(dataList);
-    QVector<uint8_t> sendData8 = string2Uint8List(dataList);
     RequestResults * rr = new RequestResults();
     rr->setCount(count);
     QElapsedTimer timer2;
@@ -4454,12 +4501,14 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     }
     int connectTimeOut =  ui->lineEdit_connectTimeOut->text().toInt();
     int requestTimeOut =  ui->lineEdit_requestTimeOut->text().toInt();
-    qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
+    //qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port << " connectTimeOut = " << connectTimeOut << " requestTimeOut = " << requestTimeOut;
 
     for (int64_t i = 0; i < loopNum; i++) {
+        assembleTBinaryMessage(1, i);
+        QVector<uint8_t> sendData8 = string2Uint8List(dataList);
         QElapsedTimer * timer  = new QElapsedTimer();
         //qDebug() << "开始调用" << i;
-        TestRunnable * m_pRunnable = new TestRunnable(this, sendData8, timer, rr, port_str, port, connectTimeOut, requestTimeOut);
+        TestRunnable * m_pRunnable = new TestRunnable(this, sendData8, timer, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut);
         //m_pRunnable->setAutoDelete(false);
         threadpool.start(m_pRunnable);
     }
