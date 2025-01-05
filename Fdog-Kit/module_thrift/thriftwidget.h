@@ -64,6 +64,8 @@
 
 static QMap<QString, QString> preDataMap;
 
+static QMap<QString, QVector<QString>> preDataMapV;
+
 static QMap<QString, QString> mapReqType = {{"CALL", THRIFT_CALL}, {"ONEWAY", THRIFT_ONEWAY}};
 
 static QMap<QString, QString> ExceptionType = {{"1", "Unknown Method"}};
@@ -314,7 +316,7 @@ public:
     void cleanMessage();
 
     //组装二进制协议消息
-    void assembleTBinaryMessage();
+    void assembleTBinaryMessage(int buildType = 0, int num = 0);  //0表示普通请求，1表示压测
 
     //设置二进制请求类型，接口长度，接口名，流水号
     void writeTBinaryHeadMessage(QString serialNumber = "00000000");
@@ -329,7 +331,7 @@ public:
     void writeTBinaryCollectionMessage(QString valueType, QString value, ItemWidget *item, QString paramKeyType, QString paramValueType);
 
     //组装结构体数据
-    void writeTBinaryStructMessage(QString valueType, ItemWidget * item);
+    void writeTBinaryStructMessage(QString valueType, ItemWidget * item, int buildType = 0, int num = 0);
 
     //写入结束
     void writeTBinaryEndMessage();
@@ -389,7 +391,7 @@ public:
     void handleMessage(QString &data);
 
     //添加颜色
-    QString addColorHtml(QString &str, QColor *fontCrl);
+    QString addColorHtml(QString str, QColor *fontCrl);
 
     //添加字段颜色
     QString addColorFieldHtml(QString str);
@@ -470,6 +472,9 @@ public:
 
     //读取预制数据
     void readPreData();
+    //预制数据存在多个 user:${thift/dadsa.txt}
+    void readPreDataVector(QString key, QString path);
+    
 
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
@@ -580,7 +585,7 @@ public:
         host_ = host;
         port_ = port;
         connectTimeOut_ = connectTimeOut;
-        requestTimeOut_ = requestTimeOut_;
+        requestTimeOut_ = requestTimeOut;
     }
 
     void sendThriftRequest2(QTcpSocket * clientSocket, QVector<uint8_t> dataArray, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut);
@@ -592,6 +597,7 @@ public:
         //请求数据
         QElapsedTimer timer_run;
         timer_run.start();
+        //qDebug() << "requestTimeOut_ = " << requestTimeOut_;
         sendThriftRequest2(clientSocket, sendData_, timer_, rr_, host_, port_, connectTimeOut_, requestTimeOut_);
         while(!isok && timer_run.elapsed() < requestTimeOut_) { //&& timer_run.elapsed() < 800
             QCoreApplication::processEvents();
@@ -613,7 +619,7 @@ public:
         //记录分段数据
         rr_->setSectionData();
         if (rr_->count == 0) {
-            qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
+            //qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
             QMetaObject::invokeMethod(obj_,"rece_propertyTestDone",Qt::QueuedConnection, Q_ARG(RequestResults*,rr_));
         }
         rr_->mutex.unlock();
