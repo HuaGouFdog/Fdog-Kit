@@ -5,8 +5,8 @@
 #include <QFontDatabase>
 #include <QListWidget>
 #include <QGraphicsOpacityEffect>
-#include <Qdebug>
-
+#include <QDebug>
+#include <QButtonGroup>
 #include "module_utils/utils.h"
 #include "colormatch.h"
 QStringList campbell = {"#0C0C0C","#767676",
@@ -262,6 +262,29 @@ void settingwidget::getTerminalSetting() {
     m_buttonGroup->setExclusive(true);
 }
 
+void settingwidget::showMessage(QString message, bool isSuccess)
+{
+    if (tipwidget != nullptr) {
+        return;
+    }
+    tipwidget = new QFMessageBox(ui->widget_bottom, message, 1, isSuccess);
+    int x = (ui->widget_bottom->width() - tipwidget->width()) / 2;     //x坐标
+    int y = ui->widget_bottom->height() - tipwidget->height() - 10;         //y坐标
+    tipwidget->move(x, y);//窗口移动
+    tipwidget->show();
+    QPropertyAnimation *pAnimation = new QPropertyAnimation(tipwidget, "windowOpacity");
+    QObject::connect(pAnimation, &QPropertyAnimation::finished, [=]()
+    {
+        tipwidget->close();
+        tipwidget = nullptr;
+    });
+    pAnimation->setDuration(1500);
+    pAnimation->setStartValue(1);
+    pAnimation->setEndValue(0);
+    pAnimation->setEasingCurve(QEasingCurve::InOutQuad);
+    pAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
 void settingwidget::on_Menu_clicked(int index)
 {
     ui->stackedWidget->setCurrentIndex(index);
@@ -404,6 +427,9 @@ void settingwidget::on_toolButton_save_clicked()
     // confInfo.backgroundTransparency
     // confInfo.pictureList
     confInfo->writeSettingConf();
+
+    //提示框
+    showMessage("保存成功",true);
 }
 
 void settingwidget::on_toolButton_recover_clicked()

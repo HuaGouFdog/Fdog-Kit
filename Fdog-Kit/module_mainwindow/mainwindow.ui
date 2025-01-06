@@ -1145,13 +1145,19 @@ border-radius: 2px;
          </property>
          <property name="icon">
           <iconset resource="../lib.qrc">
-           <normaloff>:/lib/node.png</normaloff>:/lib/node.png</iconset>
+           <normaloff>:/lib/newVersion.svg</normaloff>:/lib/newVersion.svg</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>20</width>
-           <height>20</height>
+           <width>29</width>
+           <height>34</height>
           </size>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>300</number>
+         </property>
+         <property name="autoRepeatInterval">
+          <number>100</number>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonIconOnly</enum>
