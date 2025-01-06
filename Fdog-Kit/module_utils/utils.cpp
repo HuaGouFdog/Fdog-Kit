@@ -14,8 +14,8 @@
 #include <QKeyEvent>
 #include <QJsonObject>
 #include <QJsonArray>
-
-
+#include <QHBoxLayout>
+#include <QSpacerItem>
 
 #include <QPainter>
 
@@ -142,7 +142,7 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
     int y = b;
     int w = height() - b - b;
     int h = w;
-    qDebug() << "x = " << x;
+    //qDebug() << "x = " << x;
 
     indicator->setGeometry(x,y,w,h);
 
@@ -181,7 +181,7 @@ utils::utils(QWidget *parent) : QWidget(parent)
 
 QString getStyleFile(QString path)
 {
-    qDebug() << "getStyleFile";
+    //qDebug() << "getStyleFile";
     QFile file(path);
     QString styleSheet;
     /* 判断文件是否存在 */
@@ -193,7 +193,7 @@ QString getStyleFile(QString path)
         /* 关闭文件 */
         file.close();
     }
-    qDebug() << styleSheet;
+    //qDebug() << styleSheet;
     return styleSheet;
 }
 
@@ -742,4 +742,59 @@ void setSupportStretch(QWidget * this_, bool isSupportStretch) {
 //            m_titleBar->setSupportStretch(isSupportStretch);
 //        }
     }   
+}
+
+
+QFMessageBox::QFMessageBox(QWidget *parent, QString message, int showType, bool isSuccess)
+{
+    setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground, true);
+    setFocusPolicy(Qt::NoFocus);
+    this->setParent(parent);
+
+    ql_icon = new QLabel();
+    ql_test = new QLabel(message);
+    ql_test->setAlignment(Qt::AlignCenter);
+    //ql_icon->setStyleSheet("background-color: rgb(156, 0, 200);");
+    //ql_test->setStyleSheet("background-color: rgb(55, 200, 55);");
+    hl = new QHBoxLayout();
+    hlw = new QHBoxLayout();
+    hs1 = new QSpacerItem(15,20);
+    hs2 = new QSpacerItem(15,20);
+    hl->addSpacerItem(hs1);
+    hl->addWidget(ql_icon);
+    hl->addWidget(ql_test);
+    hl->addSpacerItem(hs2);
+    w = new QWidget(this);
+
+    w->setLayout(hl);
+    hl->setContentsMargins(0,0,0,0);
+    hl->setSpacing(0);
+    hlw->addWidget(w);
+
+    this->setLayout(hlw);
+    hlw->setContentsMargins(5,5,5,5);
+    this->setMaximumHeight(50);
+    this->setMaximumWidth(150);
+
+    //this->resize(120, 40);
+
+    w->setStyleSheet("background-color: rgb(27, 27, 27); border-radius: 10px;color: rgb(255, 255, 255);font: 10pt \"OPPOSans B\";");
+    //this->setStyleSheet("background-color: rgba(0, 0, 0, 0);");
+
+    if (isSuccess) {
+        ql_icon->setStyleSheet("image: url(:/lib/green.svg);");
+    } else {
+        ql_icon->setStyleSheet("image: url(:/lib/grey.svg);");
+    }
+    setSupportStretch(this, true);
+}
+
+QFMessageBox::~QFMessageBox()
+{
+    delete ql_icon;
+    delete ql_test;
+    delete hl;
+    delete w;
+    delete hlw;
 }

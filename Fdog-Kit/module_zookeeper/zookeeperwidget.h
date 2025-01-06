@@ -8,7 +8,6 @@
 #include <QTreeWidgetItem>
 #include <QListWidgetItem>
 #include "zookeeper.h"
-#include "zookeepertipswidget.h"
 #include "module_utils/utils.h"
 #include "module_zookeeper/zookeeperhandle.h"
 
@@ -165,7 +164,7 @@ private:
     bool isFirst = true;
     bool isCreate = false; //区分创建和修改
 
-    zookeepertipswidget * tipwidget = nullptr;
+    QFMessageBox * tipwidget = nullptr;
 };
 
 #endif // ZOOKEEPERWIDGET_H

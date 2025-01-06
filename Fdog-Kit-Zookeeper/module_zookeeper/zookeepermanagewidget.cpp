@@ -5,7 +5,6 @@
 #include <QUrl>
 #include <QGraphicsDropShadowEffect>
 #include "module_utils/utils.h"
-#include "zookeepertipswidget.h"
 
 zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     QWidget(parent),

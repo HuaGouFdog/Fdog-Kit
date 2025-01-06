@@ -13,7 +13,6 @@
 #include <QGraphicsOpacityEffect>
 #include "zookeeperwidget.h"
 #include "zookeeperhandle.h"
-#include "zookeepertipswidget.h"
 #include "ui_zookeeperwidget.h"
 #include "module_utils/utils.h"
 zookeeperwidget::zookeeperwidget(QWidget *parent) :
@@ -790,7 +789,7 @@ void zookeeperwidget::showMessage(QString message, bool isSuccess)
     if (tipwidget != nullptr) {
         return;
     }
-    tipwidget = new zookeepertipswidget(ui->treeWidget, message, isSuccess);
+    tipwidget = new QFMessageBox(ui->treeWidget, message, 1, isSuccess);
     int x = (ui->treeWidget->width() - tipwidget->width()) / 2;     //x坐标
     int y = ui->treeWidget->height() - tipwidget->height() - 10;         //y坐标
     tipwidget->move(x, y);//窗口移动
