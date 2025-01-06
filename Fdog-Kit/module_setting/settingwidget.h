@@ -19,6 +19,9 @@ public:
 
     void getTerminalSetting();
 
+    //发送弹窗提示
+    void showMessage(QString message, bool isSuccess = true); //显示操作信息
+
 private slots:
     void on_Menu_clicked(int index);
 
@@ -47,6 +50,7 @@ private:
     config * confInfo;
 
     QButtonGroup * m_buttonGroup;
+    QFMessageBox * tipwidget = nullptr;
 };
 
 #endif // SETTINGWIDGET_H
