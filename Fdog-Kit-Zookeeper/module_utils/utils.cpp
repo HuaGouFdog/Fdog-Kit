@@ -14,8 +14,8 @@
 #include <QKeyEvent>
 #include <QJsonObject>
 #include <QJsonArray>
-
-
+#include <QHBoxLayout>
+#include <QSpacerItem>
 
 #include <QPainter>
 
@@ -142,7 +142,7 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
     int y = b;
     int w = height() - b - b;
     int h = w;
-    qDebug() << "x = " << x;
+    //qDebug() << "x = " << x;
 
     indicator->setGeometry(x,y,w,h);
 
@@ -181,7 +181,7 @@ utils::utils(QWidget *parent) : QWidget(parent)
 
 QString getStyleFile(QString path)
 {
-    qDebug() << "getStyleFile";
+    //qDebug() << "getStyleFile";
     QFile file(path);
     QString styleSheet;
     /* 判断文件是否存在 */
@@ -193,7 +193,7 @@ QString getStyleFile(QString path)
         /* 关闭文件 */
         file.close();
     }
-    qDebug() << styleSheet;
+    //qDebug() << styleSheet;
     return styleSheet;
 }
 
@@ -451,10 +451,10 @@ void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &
 }
 
 
-void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString) {
+void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString, bool isSuper) {
     //clear();
     QJsonParseError err;
- 
+    qDebug() << "utils_parsingJsonInfo isSuper = " << isSuper;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonString.toUtf8(),&err);
     if(jsonDocument.isNull())
     {
@@ -466,16 +466,16 @@ void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString) {
     if(jsonDocument.isObject())
     {
         QJsonObject jsonObject = jsonDocument.object();
-        utils_parsingJsonObject(textEdit, jsonObject, 1);
+        utils_parsingJsonObject(textEdit, jsonObject, 1, isSuper);
     }
     else if(jsonDocument.isArray())
     {
         QJsonArray array = jsonDocument.array();
-        utils_parsingJsonArray(textEdit, array,1);
+        utils_parsingJsonArray(textEdit, array,1, isSuper);
     }
 }
 
-void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const int numberOfLayers) {
+void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const int numberOfLayers, bool isSuper) {
     int nextLayers = numberOfLayers + 1;
  
     QString spacing;
@@ -507,27 +507,39 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         if(value.isString())
         {
             QString str = value.toString();
-            QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
-            if(jsonDocument.isNull())
-            {
+            qDebug() << "isSuper = " << isSuper;
+            if (isSuper) {
+                QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
+                if(jsonDocument.isNull())
+                {
+                    textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:<span style='color:#54B54A;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
+                }
+                else if(jsonDocument.isObject())
+                {
+                    textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
+                    QJsonObject obj = jsonDocument.object();
+                    utils_parsingJsonObject(textEdit,obj,nextLayers);
+                }
+                else if(jsonDocument.isArray())
+                {
+                    textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
+                    QJsonArray arr = jsonDocument.array();
+                    utils_parsingJsonArray(textEdit,arr,nextLayers);
+                }
+            } else {
+                str = str.replace("\"","\\\"");
                 textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:<span style='color:#54B54A;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
             }
-            else if(jsonDocument.isObject())
-            {
-                textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
-                QJsonObject obj = jsonDocument.object();
-                utils_parsingJsonObject(textEdit,obj,nextLayers);
-            }
-            else if(jsonDocument.isArray())
-            {
-                textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
-                QJsonArray arr = jsonDocument.array();
-                utils_parsingJsonArray(textEdit,arr,nextLayers);
-            }
+            
+
         }
         else if(value.isDouble())
         {
+            qDebug() << "value = " << value;
             QString obj = QString("%1").arg(value.toDouble(), 0, 'f', 9);
+            qDebug() << "obj = " << obj;
+            qDebug() << "强制转换" << static_cast<int64_t>(value.toDouble()) << "  string = " << value.toString();;
+
             //QString obj = value.toString();
             //qDebug() << "obj = " << obj;
             //判断倒数9位有没有非零，如果都是零，显示整数
@@ -535,7 +547,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
                 //全是0
                 obj = obj.mid(0,obj.length()- 10);
             }
-            //qDebug() << "obj2 = " << obj;
+            qDebug() << "obj2 = " << obj;
             textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:<span style='color:#128BF1;'>%3</span>%4").arg(spacing).arg(it.key()).arg(obj).arg(endingSymbol));
         }
         else if(value.isBool())
@@ -553,7 +565,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         {
             textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
             QJsonObject obj = value.toObject();
-            utils_parsingJsonObject(textEdit,obj,nextLayers);
+            utils_parsingJsonObject(textEdit,obj,nextLayers, isSuper);
             if(index < objectLent) {
                 endingSymbol = QStringLiteral(",");
                 textEdit->insertPlainText(endingSymbol);
@@ -562,7 +574,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         {
             textEdit->append(QString("<span style='white-space:pre;color:#9C278F;'>%1\"%2\"</span>:").arg(spacing).arg(it.key()));
             QJsonArray arr = value.toArray();
-            utils_parsingJsonArray(textEdit,arr,nextLayers);
+            utils_parsingJsonArray(textEdit,arr,nextLayers, isSuper);
             if(index < objectLent) {
                 endingSymbol = QStringLiteral(",");
                 textEdit->insertPlainText(endingSymbol);
@@ -578,7 +590,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
     textEdit->append(spacingBeforeBrackets);
 }
 
-void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int numberOfLayers) {
+void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int numberOfLayers, bool isSuper) {
     int nextLayers = numberOfLayers + 1;
  
     QString spacing;
@@ -612,20 +624,20 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
         if(jsonValueType == QJsonValue::String)
         {
             QString str = ref.toString();
-            QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
-            if(jsonDocument.isNull())
-            {
+            if (isSuper) {
+                QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
+                if(jsonDocument.isNull()) {
+                    textEdit->append(QString("<span style='white-space:pre;color:#54B54A;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
+                } else if(jsonDocument.isObject()) {
+                    QJsonObject obj = jsonDocument.object();
+                    utils_parsingJsonObject(textEdit,obj,nextLayers, isSuper);
+                } else if(jsonDocument.isArray()) {
+                    QJsonArray arr = jsonDocument.array();
+                    utils_parsingJsonArray(textEdit,arr,nextLayers, isSuper);
+                }
+            } else {
+                str = str.replace("\"","\\\"");
                 textEdit->append(QString("<span style='white-space:pre;color:#54B54A;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
-            }
-            else if(jsonDocument.isObject())
-            {
-                QJsonObject obj = jsonDocument.object();
-                utils_parsingJsonObject(textEdit,obj,nextLayers);
-            }
-            else if(jsonDocument.isArray())
-            {
-                QJsonArray arr = jsonDocument.array();
-                utils_parsingJsonArray(textEdit,arr,nextLayers);
             }
         }
         else if(jsonValueType == QJsonValue::Bool)
@@ -655,7 +667,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
         else if(jsonValueType == QJsonValue::Array)
         {
             QJsonArray arr = ref.toArray();
-            utils_parsingJsonArray(textEdit,arr,nextLayers);
+            utils_parsingJsonArray(textEdit,arr,nextLayers, isSuper);
             if(index < arrayLent) {
                 endingSymbol = QStringLiteral(",");
                 textEdit->insertPlainText(endingSymbol);
@@ -664,7 +676,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
         else if(jsonValueType == QJsonValue::Object)
         {
             QJsonObject obj = ref.toObject();
-            utils_parsingJsonObject(textEdit,obj,nextLayers);
+            utils_parsingJsonObject(textEdit,obj,nextLayers, isSuper);
             if(index < arrayLent) {
                 endingSymbol = QStringLiteral(",");
                 textEdit->insertPlainText(endingSymbol);
@@ -730,4 +742,59 @@ void setSupportStretch(QWidget * this_, bool isSupportStretch) {
 //            m_titleBar->setSupportStretch(isSupportStretch);
 //        }
     }   
+}
+
+
+QFMessageBox::QFMessageBox(QWidget *parent, QString message, int showType, bool isSuccess)
+{
+    setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground, true);
+    setFocusPolicy(Qt::NoFocus);
+    this->setParent(parent);
+
+    ql_icon = new QLabel();
+    ql_test = new QLabel(message);
+    ql_test->setAlignment(Qt::AlignCenter);
+    //ql_icon->setStyleSheet("background-color: rgb(156, 0, 200);");
+    //ql_test->setStyleSheet("background-color: rgb(55, 200, 55);");
+    hl = new QHBoxLayout();
+    hlw = new QHBoxLayout();
+    hs1 = new QSpacerItem(15,20);
+    hs2 = new QSpacerItem(15,20);
+    hl->addSpacerItem(hs1);
+    hl->addWidget(ql_icon);
+    hl->addWidget(ql_test);
+    hl->addSpacerItem(hs2);
+    w = new QWidget(this);
+
+    w->setLayout(hl);
+    hl->setContentsMargins(0,0,0,0);
+    hl->setSpacing(0);
+    hlw->addWidget(w);
+
+    this->setLayout(hlw);
+    hlw->setContentsMargins(5,5,5,5);
+    this->setMaximumHeight(50);
+    this->setMaximumWidth(150);
+
+    //this->resize(120, 40);
+
+    w->setStyleSheet("background-color: rgb(27, 27, 27); border-radius: 10px;color: rgb(255, 255, 255);font: 10pt \"OPPOSans B\";");
+    //this->setStyleSheet("background-color: rgba(0, 0, 0, 0);");
+
+    if (isSuccess) {
+        ql_icon->setStyleSheet("image: url(:/lib/green.svg);");
+    } else {
+        ql_icon->setStyleSheet("image: url(:/lib/grey.svg);");
+    }
+    setSupportStretch(this, true);
+}
+
+QFMessageBox::~QFMessageBox()
+{
+    delete ql_icon;
+    delete ql_test;
+    delete hl;
+    delete w;
+    delete hlw;
 }
