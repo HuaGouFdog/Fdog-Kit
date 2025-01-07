@@ -867,6 +867,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->toolButton_return->hide();
     ui->widget_property->hide();
+
+    ui->treeWidget_api->hide();
     //ui->widget_left->hide();
 
 //    ui->splitter_response->setStretchFactor(0,10);
@@ -4138,6 +4140,7 @@ void thriftwidget::on_toolButton_inportFile_clicked()
             }
         }
     }
+    ui->treeWidget_api->show();
 }
 
 void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
