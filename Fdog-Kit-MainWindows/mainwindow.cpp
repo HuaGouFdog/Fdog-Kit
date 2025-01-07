@@ -29,6 +29,8 @@
 #include <QListView>
 #include <QFormLayout>
 #include <QDesktopWidget>
+#include "windows.h"
+#include "windowsx.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -53,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //不要直接给this，会报UpdateLayeredWindowIndirect failed
     ui->centralWidget->setGraphicsEffect(defaultShadow);
 
+    //这里包含对双击标题栏的处理
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
@@ -83,48 +86,27 @@ void MainWindow::calculateCurrentStrechRect()
 
 WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos)
 {
-    //qDebug() << "触发getCurrentStretchState ="<< cursorPos;
     WindowStretchRectState stretchState;
-    if (m_leftTopRect.contains(cursorPos))
-    {
+    if (m_leftTopRect.contains(cursorPos)) {
         stretchState = LEFT_TOP_RECT;
-    }
-    else if (m_rightTopRect.contains(cursorPos))
-    {
+    } else if (m_rightTopRect.contains(cursorPos)) {
         stretchState = RIGHT_TOP_RECT;
-    }
-    else if (m_rightBottomRect.contains(cursorPos))
-    {
+    } else if (m_rightBottomRect.contains(cursorPos)) {
         stretchState = RIGHT_BOTTOM_RECT;
-    }
-    else if (m_leftBottomRect.contains(cursorPos))
-    {
+    } else if (m_leftBottomRect.contains(cursorPos)) {
         stretchState = LEFT_BOTTOM_RECT;
-    }
-    else if (m_topBorderRect.contains(cursorPos))
-    {
+    } else if (m_topBorderRect.contains(cursorPos)) {
         stretchState = TOP_BORDER;
-    }
-    else if (m_rightBorderRect.contains(cursorPos))
-    {
+    } else if (m_rightBorderRect.contains(cursorPos)) {
         stretchState = RIGHT_BORDER;
-    }
-    else if (m_bottomBorderRect.contains(cursorPos))
-    {
+    } else if (m_bottomBorderRect.contains(cursorPos)) {
         stretchState = BOTTOM_BORDER;
-    }
-    else if (m_leftBorderRect.contains(cursorPos))
-    {
+    } else if (m_leftBorderRect.contains(cursorPos)) {
         stretchState = LEFT_BORDER;
-    }
-    else
-    {
+    } else {
         stretchState = NO_SELECT;
     }
-    //qDebug() << "stretchState 值为" << stretchState;
-
     return stretchState;
-
 }
 
 void MainWindow::updateMouseStyle(WindowStretchRectState stretchState)
@@ -167,19 +149,13 @@ void MainWindow::updateWindowSize()
     int m_windowMinWidth = 600;
     int m_windowMinHeight = 600;
     if (m_stretchRectState == LEFT_BORDER) {
-        //qDebug() << "更新窗口大小 this->geometry().width() = "<< this->geometry().width() << " delValue_X= " << delValue_X;
         if (this->geometry().width() <= m_windowMinWidth && delValue_X <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             return;
         }
         QPoint bottomLeftPoint = windowRect.bottomLeft();
         bottomLeftPoint.setX(bottomLeftPoint.x() - delValue_X);
         windowRect.setBottomLeft(bottomLeftPoint);
-        //qDebug() << "走这里";
-        //qDebug() << "当前高度" << this->geometry().height();
-        //qDebug() << "windowRect = " << windowRect;
         this->setGeometry(windowRect);
-        //qDebug() << "现在高度" << this->geometry().height();
 
     } else if (m_stretchRectState == RIGHT_BORDER) {
         QPoint bottomRightPoint = windowRect.bottomRight();
@@ -188,7 +164,6 @@ void MainWindow::updateWindowSize()
         this->setGeometry(windowRect);
     } else if (m_stretchRectState == TOP_BORDER) {
         if (this->geometry().height() <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
             return;
         }
         QPoint topLeftPoint = windowRect.topLeft();
@@ -196,29 +171,22 @@ void MainWindow::updateWindowSize()
         windowRect.setTopLeft(topLeftPoint);
         this->setGeometry(windowRect);
     } else if (m_stretchRectState == BOTTOM_BORDER)  {
-        //qDebug() << "下边BOTTOM_BORDER";
         QPoint bottomRightPoint = windowRect.bottomRight();
         bottomRightPoint.setY(bottomRightPoint.y() - delValue_Y);
         windowRect.setBottomRight(bottomRightPoint);
         this->setGeometry(windowRect);
     } else if (m_stretchRectState == LEFT_TOP_RECT) {
-        //qDebug() << "更新窗口大小 this->geometry().width() = "<< this->geometry().width() << " delValue_X= " << delValue_X;
-        //qDebug() << "更新窗口大小 this->geometry().height() = "<< this->geometry().height() << " delValue_Y= " << delValue_Y;
         if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0
                 && this->geometry().height() -3 <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             return;
         }
         int a = 0;
         if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             a = 1;
         }
         if (this->geometry().height() - 3 <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
             a = 2;
         }
-        //qDebug() << " windowRect1 = " << this->geometry();
         if (a == 0) {
             //qDebug() << "走1";
             QPoint topLeftPoint = windowRect.topLeft();
@@ -227,68 +195,50 @@ void MainWindow::updateWindowSize()
             windowRect.setTopLeft(topLeftPoint);
             this->setGeometry(windowRect);
         } else if (a == 1) {
-            //qDebug() << "走2";
             QPoint topLeftPoint = windowRect.topLeft();
             topLeftPoint.setX(this->geometry().x());
             topLeftPoint.setY(topLeftPoint.y() - delValue_Y);
             windowRect.setTopLeft(topLeftPoint);
-            //qDebug() << " topLeftPoint2 = " << topLeftPoint;
-            //qDebug() << " windowRect2 = " << this->geometry();
             this->setGeometry(windowRect);
         } else if (a == 2) {
-            //qDebug() << "走3";
             QPoint topLeftPoint = windowRect.topLeft();
             topLeftPoint.setX(topLeftPoint.x() - delValue_X);
             topLeftPoint.setY(this->geometry().y());
             windowRect.setTopLeft(topLeftPoint);
             this->setGeometry(windowRect);
         }
-        //qDebug() << " windowRect3 = " << this->geometry();
     } else if (m_stretchRectState == RIGHT_TOP_RECT) {
         if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0
                 && this->geometry().height() -3 <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             return;
         }
         int a = 0;
         if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             a = 1;
         }
         if (this->geometry().height() - 3 <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
             a = 2;
         }
 
         if (a == 0) {
-            //qDebug() << "走1";
             QPoint topRightPoint = windowRect.topRight();
             topRightPoint.setX(topRightPoint.x() - delValue_X);
             topRightPoint.setY(topRightPoint.y() - delValue_Y);
             windowRect.setTopRight(topRightPoint);
             this->setGeometry(windowRect);
         } else if (a == 1) {
-            //qDebug() << "走2";
             QPoint topRightPoint = windowRect.topRight();
             topRightPoint.setX(this->geometry().x());
             topRightPoint.setY(topRightPoint.y() - delValue_Y);
             windowRect.setTopRight(topRightPoint);
-            //qDebug() << " topLeftPoint2 = " << topRightPoint;
-            //qDebug() << " windowRect2 = " << this->geometry();
             this->setGeometry(windowRect);
         } else if (a == 2) {
-            //qDebug() << "走3";
             QPoint topRightPoint = windowRect.topRight();
             topRightPoint.setX(topRightPoint.x() - delValue_X);
             topRightPoint.setY(this->geometry().y());
             windowRect.setTopRight(topRightPoint);
             this->setGeometry(windowRect);
         }
-//        QPoint topRightPoint = windowRect.topRight();
-//        topRightPoint.setX(topRightPoint.x() - delValue_X);
-//        topRightPoint.setY(topRightPoint.y() - delValue_Y);
-//        windowRect.setTopRight(topRightPoint);
-//        this->setGeometry(windowRect);
     } else if (m_stretchRectState == RIGHT_BOTTOM_RECT) {
         QPoint bottomRightPoint = windowRect.bottomRight();
         bottomRightPoint.setX(bottomRightPoint.x() - delValue_X);
@@ -298,36 +248,28 @@ void MainWindow::updateWindowSize()
     } else if (m_stretchRectState == LEFT_BOTTOM_RECT) {
         if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0
                 && this->geometry().height() -3 <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             return;
         }
         int a = 0;
         if (this->geometry().width() - 3 <= m_windowMinWidth && delValue_X <= 0) {
-            //qDebug() << "已经达到最小值 delValue_X=" << delValue_X;
             a = 1;
         }
         if (this->geometry().height() - 3 <= m_windowMinHeight && delValue_Y <= 0) {
-            //qDebug() << "已经达到最小值 delValue_Y=" << delValue_Y;
             a = 2;
         }
         if (a == 0) {
-            //qDebug() << "走1";
             QPoint bottomLeftPoint = windowRect.bottomLeft();
             bottomLeftPoint.setX(bottomLeftPoint.x() - delValue_X);
             bottomLeftPoint.setY(bottomLeftPoint.y() - delValue_Y);
             windowRect.setBottomLeft(bottomLeftPoint);
             this->setGeometry(windowRect);
         } else if (a == 1) {
-            //qDebug() << "走2";
             QPoint bottomLeftPoint = windowRect.bottomLeft();
             bottomLeftPoint.setX(this->geometry().x());
             bottomLeftPoint.setY(bottomLeftPoint.y() - delValue_Y);
             windowRect.setBottomLeft(bottomLeftPoint);
-            //qDebug() << " topLeftPoint2 = " << bottomLeftPoint;
-            //qDebug() << " windowRect2 = " << this->geometry();
             this->setGeometry(windowRect);
         } else if (a == 2) {
-            //qDebug() << "走3";
             QPoint bottomLeftPoint = windowRect.bottomLeft();
             bottomLeftPoint.setX(bottomLeftPoint.x() - delValue_X);
             bottomLeftPoint.setY(this->geometry().y());
@@ -347,13 +289,7 @@ void MainWindow::setSupportStretch(bool isSupportStretch)
         QList<QWidget*> widgetList = this->findChildren<QWidget*>();
         for(int i = 0; i < widgetList.length(); i ++) {
             widgetList[i]->setMouseTracking(isSupportStretch);
-        // 这里加了非空判断，防止m_titleBar未创建;
-//        if (m_titleBar != NULL)
-//        {
-//            // m_titleBar同理,也需要对自己及子控件进行调用setMouseTracking进行设置，见上方注释;
-//            m_titleBar->setSupportStretch(isSupportStretch);
-//        }
-    }
+        }
 
 }
 
@@ -364,19 +300,17 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     }
     last = event->globalPos();
     // 当前鼠标进入了以上指定的8个区域，并且是左键按下时才开始进行窗口拉伸;
-     if (m_stretchRectState != NO_SELECT && event->button() == Qt::LeftButton)
-     {
-         m_isMousePressed = true;
-         // 记录下当前鼠标位置，为后面计算拉伸位置;
-         m_startPoint = this->mapToGlobal(event->pos());
-         // 保存下拉伸前的窗口位置及大小;
-         m_windowRectBeforeStretch = this->geometry();
-     }
-        //return QObject::mouseMoveEvent(event);
+    if (m_stretchRectState != NO_SELECT && event->button() == Qt::LeftButton)
+    {
+        m_isMousePressed = true;
+        // 记录下当前鼠标位置，为后面计算拉伸位置;
+        m_startPoint = this->mapToGlobal(event->pos());
+        // 保存下拉伸前的窗口位置及大小;
+        m_windowRectBeforeStretch = this->geometry();
+    }
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {   //qDebug() << ui->widget_body->parent();
-    //qDebug() << "鼠标移动到 " << event->x() << "," << event->y();
+void MainWindow::mouseMoveEvent(QMouseEvent *event) {
     if (isPressedWidget) {
         int dx = event->globalX() - last.x();
         int dy = event->globalY() - last.y();
@@ -384,90 +318,104 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {   //qDebug() << ui->widget
         move(x()+dx, y()+dy);
     }
 
-    if (!m_isMousePressed)
-    {
+    if (!m_isMousePressed) {
         QPoint cursorPos = event->pos();
         // 根据当前鼠标的位置显示不同的样式;
         m_stretchRectState = getCurrentStretchState(cursorPos);
         updateMouseStyle(m_stretchRectState);
-    }
-    // 如果当前鼠标左键已经按下，则记录下第二个点的位置，并更新窗口的大小;
-    else
-    {
-
+    } else {
+        // 如果当前鼠标左键已经按下，则记录下第二个点的位置，并更新窗口的大小;
         m_endPoint = this->mapToGlobal(event->pos());
-        //m_windowRectBeforeStretch = this->geometry();
         updateWindowSize();
-        //qDebug() << "刷新m_windowRectBeforeStretch";
     }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     isPressedWidget = false; // 鼠标松开时，置为false
-
     // 鼠标松开后意味之窗口拉伸结束，置标志位，并且重新计算用于拉伸的8个区域Rect;
     m_isMousePressed = false;
     calculateCurrentStrechRect();
-
-    //return QObject::mouseReleaseEvent(event);
 }
 
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(ui->widget_title->underMouse() && !showFlag) {
-        setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
-        ui->toolButton_close_2->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 0px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        setWindowState(Qt::WindowMaximized);
-        showFlag = true;
-    } else if (ui->widget_title->underMouse() && showFlag) {
-        setContentsMargins(10, 10, 10, 10);
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
-        ui->toolButton_close_2->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 9px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        ui->toolButton_max_2->setIcon(QIcon(":lib/Icon_max4.png"));
-        this->showNormal();
-        showFlag = false;
-    }
+    //不走这里
 }
-
-// void MainWindow::resizeEvent(QResizeEvent *event)
-// {
-//     qDebug() << "resizeEvent 被调用";
-//     //QTextEdit::resizeEvent(event);
-// }
 
 void MainWindow::showEvent(QShowEvent *event)
 {
-    qDebug() << "showEvent 被调用";
     calculateCurrentStrechRect();
-    //return MainWindow::showEvent(event);
+    //防止假死
+    setAttribute(Qt::WA_Mapped);
+    QMainWindow::showEvent(event);
+    QSize oldSize = this->size();
+    resize(oldSize + QSize(10, 10));
+    resize(oldSize);
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if(QEvent::WindowStateChange == event->type())
+    {
+        //判断为窗口状态改变事件
+        QWindowStateChangeEvent * stateEvent = dynamic_cast<QWindowStateChangeEvent*>(event);
+        if(Q_NULLPTR != stateEvent)
+        {
+            if(this->windowState() == Qt::WindowMinimized)
+            {
+                //qDebug() << "当前最小化";
+            } else if (this->windowState() == Qt::WindowNoState && stateEvent->oldState() == Qt::WindowMaximized) {
+                //qDebug() << "当前正常";
+                ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:10px;}");
+                ui->widget_side->setStyleSheet("#widget_side { \
+                                                    color: rgb(255, 255, 255); \
+                                                    border-top-left-radius: 10px; \
+                                                    border-bottom-left-radius: 10px; \
+                                                    background-color: rgb(10, 31, 57); \
+                                                }");
+                ui->toolButton_close->setStyleSheet("QToolButton {\
+                                                        color: rgb(255, 255, 255);\
+                                                        border-top-right-radius: 9px;\
+                                                        background-color: rgba(94, 255, 210, 0);\
+                                                        border: none;\
+                                                    }\
+                                                    QToolButton::menu-indicator { \
+                                                        image: None;\
+                                                    }\
+                                                    QToolButton:hover {\
+                                                        color: rgb(255, 255, 255);\
+                                                        background-color: rgb(200, 0, 0);\
+                                                        border: none;\
+                                                    }");
+                ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
+            } else if (this->windowState() == Qt::WindowMaximized && stateEvent->oldState() == Qt::WindowNoState) {
+                //qDebug() << "当前最大化";
+                ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
+                ui->widget_side->setStyleSheet("#widget_side { \
+                                                    color: rgb(255, 255, 255); \
+                                                    border-top-left-radius: 0px; \
+                                                    border-bottom-left-radius: 0px; \
+                                                    background-color: rgb(10, 31, 57); \
+                                                }");
+                ui->toolButton_close->setStyleSheet("QToolButton {\
+                                                        color: rgb(255, 255, 255);\
+                                                        border-top-right-radius: 0px;\
+                                                        background-color: rgba(94, 255, 210, 0);\
+                                                        border: none;\
+                                                    }\
+                                                    QToolButton::menu-indicator { \
+                                                        image: None;\
+                                                    }\
+                                                    QToolButton:hover {\
+                                                        color: rgb(255, 255, 255);\
+                                                        background-color: rgb(200, 0, 0);\
+                                                        border: none;\
+                                                    }");
+                ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+            }
+        }
+    }
 }
 
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
@@ -478,21 +426,39 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
     case WM_NCCALCSIZE:
         return true;
 
-    //最大化是填充屏幕
+    case WM_NCHITTEST:
+    {
+        //qDebug() << "触发WM_NCHITTEST";
+        qreal ratio = 1.0;
+        long x = GET_X_LPARAM(msg->lParam) / ratio;
+        long y = GET_Y_LPARAM(msg->lParam) / ratio;
+        QPoint pos = mapFromGlobal(QPoint(x, y));
+        //qDebug() << "pos = " << pos;
+        if (pos.y() > 10 && ui->widget_title2->rect().contains(pos)) {
+            //qDebug() << "标题栏被按下";
+            // 根据当前鼠标的位置显示不同的样式;
+            *result = HTCAPTION;
+            return true;
+        }
+    }   
     case WM_GETMINMAXINFO:
     {
         if (::IsZoomed(msg->hwnd)) {
+            isMaxShow = true;
+            showFlag = true;
             // 最大化时会超出屏幕，所以填充边框间距
             RECT frame = { 0, 0, 0, 0 };
             AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
             frame.left = abs(frame.left);
             frame.top = abs(frame.bottom);
             this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+        } else {
+            isMaxShow = false;
+            showFlag = false;
         }
         *result = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
         return true;
     }
-        break;
     }
     return QMainWindow::nativeEvent(eventType, message, result);
 }
@@ -537,57 +503,18 @@ void MainWindow::on_toolButton_min_2_clicked()
 
 void MainWindow::on_toolButton_max_2_clicked()
 {
-    //qDebug() << "显示最大化";
-    //最大化
     if (!showFlag) {
-        //ui->centralWidget->setEnabled(false);
         setContentsMargins(0, 0, 0, 0);
         this->setWindowState(Qt::WindowState::WindowMaximized);
-        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
-        ui->toolButton_close_2->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 0px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        ui->toolButton_max_2->setIcon(QIcon(":lib/icon-copy.png"));
-        //this->showMaximized();
-        //ui->centralWidget->setEnabled(true);
         isMaxShow = true;
         showFlag = true;
     } else {
-        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        this->showNormal();
+        setContentsMargins(10, 10, 10, 10);
         this->setWindowState(Qt::WindowState::WindowNoState);
-        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:10px;}");
-        ui->toolButton_close_2->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 9px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        ui->toolButton_max_2->setIcon(QIcon(":lib/Icon_max4.png"));
-
         isMaxShow = false;
         showFlag = false;
-        }
-        }
+    }
+}
 
 void MainWindow::closeWindow()
 {
