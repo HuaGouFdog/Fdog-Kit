@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1030</width>
-    <height>709</height>
+    <height>731</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1069,20 +1069,10 @@ color: rgb(255, 255, 255);
            <number>0</number>
           </property>
           <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+           <widget class="QWidget" name="widget_title2" native="true"/>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_min_2">
+           <widget class="QToolButton" name="toolButton_min">
             <property name="minimumSize">
              <size>
               <width>40</width>
@@ -1126,7 +1116,7 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="lib.qrc">
               <normaloff>:/lib/icon-minus3.png</normaloff>:/lib/icon-minus3.png</iconset>
             </property>
             <property name="iconSize">
@@ -1138,7 +1128,7 @@ QToolButton:hover {
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_max_2">
+           <widget class="QToolButton" name="toolButton_max">
             <property name="minimumSize">
              <size>
               <width>40</width>
@@ -1180,7 +1170,7 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="lib.qrc">
               <normaloff>:/lib/Icon_max4.png</normaloff>:/lib/Icon_max4.png</iconset>
             </property>
             <property name="iconSize">
@@ -1204,7 +1194,7 @@ QToolButton:hover {
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_close_2">
+           <widget class="QToolButton" name="toolButton_close">
             <property name="minimumSize">
              <size>
               <width>40</width>
@@ -1247,7 +1237,7 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="lib.qrc">
               <normaloff>:/lib/icon-close8.png</normaloff>:/lib/icon-close8.png</iconset>
             </property>
             <property name="iconSize">
