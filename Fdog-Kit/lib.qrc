@@ -184,5 +184,11 @@
         <file>lib/key.svg</file>
         <file>lib/password.svg</file>
         <file>lib/shell.png</file>
+        <file>lib/newVersion.svg</file>
+        <file>lib/testParam.svg</file>
+        <file>lib/tongji1.svg</file>
+        <file>lib/tongji2.svg</file>
+        <file>lib/line1.svg</file>
+        <file>lib/tongji3.svg</file>
     </qresource>
 </RCC>

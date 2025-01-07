@@ -622,6 +622,7 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
                 checkBox->setChecked(true);
             }
         } else if(preDataMap.contains(name)) {
+            //不存在呢？
             lineEditParamValue->setText(preDataMapV[name].at(0));
             if (typeSign == "optional") {
                 checkBox->setChecked(true);
@@ -832,6 +833,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //ui->treeWidget->setStyle(QStyleFactory::create("fusion"));
 
     ui->horizontalWidget_schedule->hide();
+    ui->tabWidget_test->hide();
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
@@ -881,11 +883,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_thrift_api->setGraphicsEffect(effect14);
 
-    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect(this);
-    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_test->setGraphicsEffect(effect15);
+//    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect(this);
+//    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+//    effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+//    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+//    ui->widget_test->setGraphicsEffect(effect15);
 
     QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect(this);
     effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
@@ -910,6 +912,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     chartView->setRenderHint(QPainter::Antialiasing);
     //chartView->resize(QSize(500,500));
     ui->widget_charts->layout()->addWidget(chartView);
+
 
     //读取预制数据
     readPreData();
@@ -1679,7 +1682,7 @@ void thriftwidget::assembleTBinaryMessage(int buildType, int num)
         QString value = item->lineEditParamValue->text();
         //qDebug() << " buildType =" << buildType << " value = " << value << " toolTip = " << item->lineEditParamValue->toolTip();
         if (buildType == 1 && item->lineEditParamValue->toolTip() == "该值存在多个预制值，压测模式中，将按照顺序使用预测值") {
-            value = preDataMapV[item->lineEditParamName->text()].at(num);
+            value = preDataMapV[item->lineEditParamName->text()].at(num%preDataMapV[item->lineEditParamName->text()].size());
             qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
         }
         //lineEditParamValue->toolTip()
@@ -1861,7 +1864,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
         QString SN = itemChild->lineEditParamSN->text();
         //qDebug() << " buildType =" << buildType << " value = " << value_ << " toolTip = " << itemChild->lineEditParamValue->toolTip();
         if (buildType == 1 && itemChild->lineEditParamValue->toolTip() == "该值存在多个预制值，压测模式中，将按照顺序使用预测值") {
-            value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num);
+            value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num%preDataMapV[itemChild->lineEditParamName->text()].size());
             qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
         }
         //qDebug() << "SN = " << SN;
@@ -3944,6 +3947,7 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->toolButton_save->show();
         ui->stackedWidget_2->setCurrentIndex(0);
         ui->horizontalWidget_schedule->hide();
+        ui->tabWidget_test->hide();
     } else {
         //性能测试
         ui->widget_property->show();
@@ -4302,13 +4306,13 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
 
     //记录开始创建连接时间
     timer->start();
-    qDebug() << "timer->start" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
+    //qDebug() << "timer->start" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
 
     //状态改变信号
     connect(clientSocket,&QTcpSocket::stateChanged,[=]{
         //qDebug() << "状态改变" << clientSocket->state();
         if(clientSocket->state() == QAbstractSocket::UnconnectedState) {
-            qDebug() << "连接状态2" << clientSocket->state() << "  thread ID:" << QThread::currentThreadId();
+            //qDebug() << "连接状态2" << clientSocket->state() << "  thread ID:" << QThread::currentThreadId();
             clientSocket->deleteLater();
             isok = true;
         }
@@ -4473,6 +4477,19 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
 
 void thriftwidget::on_toolButton_propertyTest_clicked()
 {
+    ui->label_startTime->setText("开始时间：");
+    ui->label_endTime->setText("结束时间：");
+    ui->label_totalRequests_2->setText("总请求：");
+    ui->label_totalTime_2->setText("总耗时：");
+    ui->label_averageRespond_2->setText("平均响应时间：");
+    ui->label_networkDelay_2->setText("平均连接耗时：");
+    ui->label_requestsPerSecond_2->setText("每秒请求数：");
+    ui->label_allData_2->setText("总接收数据：");
+    ui->label_fail_2->setText("失败数：");
+    ui->label_errorRate_2->setText("错误率：");
+
+    ui->horizontalWidget_schedule->show();
+    ui->tabWidget_test->hide();
     threadpool.setMaxThreadCount(ui->lineEdit_thread->text().toInt());
     isTestModle = true;
     ui->textEdit->clear();
@@ -4524,12 +4541,11 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     //qDebug() << "======================11";
     qDebug() << "开始时间：" <<rr->startTime;
     qDebug() << "结束时间：" <<rr->endTime;
-    //qDebug() << "连接时间：" <<rr->connectTime;
-    //qDebug() << "阶段时间：" <<rr->Results;
     qDebug() << "失败数：" <<rr->failCount;
     qDebug() << "成功数：" <<rr->totalTimes - rr->failCount;
     qDebug() << "请求数：" <<rr->Results.size();
     qDebug() << "连接数：" <<rr->connectTime.size();
+
     //qDebug() << "错误率："
 //    delete rr;
 //    return;
@@ -4566,6 +4582,18 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     ui->lineEdit_ms75->setText(QString::number(rr->ms75));
     ui->lineEdit_ms90->setText(QString::number(rr->ms90));
     ui->lineEdit_ms95->setText(QString::number(rr->ms95));
+
+
+    ui->label_startTime->setText("开始时间：" + rr->startTime);
+    ui->label_endTime->setText("结束时间：" + rr->endTime);
+    ui->label_totalRequests_2->setText("总请求：" + QString::number(rr->totalTimes) + "次");
+    ui->label_totalTime_2->setText("总耗时：" + formattedSeconds + "s");
+    ui->label_averageRespond_2->setText("平均响应时间：" + QString::number(sum / rr->Results.size()) + "ms");
+    ui->label_networkDelay_2->setText("平均连接耗时：" + QString::number(sum2 / rr->connectTime.size()) + "ms");
+    ui->label_requestsPerSecond_2->setText("每秒请求数：" + QString::number(static_cast<int64_t>(rr->totalTimes /secondsDiff)) + "TPS");
+    ui->label_allData_2->setText("总接收数据：" + QString::number(static_cast<int64_t>(rr->totalData / secondsDiff))  + "k");
+    ui->label_fail_2->setText("失败数：" + QString::number(rr->failCount) + "次");
+    ui->label_errorRate_2->setText("错误率：" + QString::number((static_cast<double>(rr->failCount))/rr->totalTimes*100) + "%");
 
    while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
        if (QWidget* widget = item->widget()) {
@@ -4606,9 +4634,15 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
    chartView->setRenderHint(QPainter::Antialiasing);
    chartView->resize(QSize(500,500));
    ui->widget_charts->layout()->addWidget(chartView);
-
-   ui->horizontalWidget_schedule->show();
+   ui->tabWidget_test->show();
    delete rr;
+}
+
+
+void thriftwidget::rece_propertyTestSchedule(int value) {
+    qDebug() << "value = " << value;
+    ui->label_schedule->setText("执行进度：" + QString::number(value)  + "%");
+    ui->progressBar->setValue(value);
 }
 
 void RequestResults::setEndTime(const QString &value)
@@ -4622,7 +4656,7 @@ void RequestResults::setResults(const int32_t value)
 {
     mutex.lock();
     Results.push_back(value);
-    qDebug() << "setResults " << value << "time " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
+    //qDebug() << "setResults " << value << "time " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
     //成功次数
     //successCount = successCount + 1;
     mutex.unlock();

@@ -534,6 +534,8 @@ private slots:
 
     void rece_propertyTestDone(RequestResults * rr);
 
+    void rece_propertyTestSchedule(int value);
+
     void sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* timer);
 
     //http传输协议
@@ -621,6 +623,9 @@ public:
         if (rr_->count == 0) {
             //qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
             QMetaObject::invokeMethod(obj_,"rece_propertyTestDone",Qt::QueuedConnection, Q_ARG(RequestResults*,rr_));
+        } else {
+            QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int,rr_->totalTimes/rr_->count));
+            
         }
         rr_->mutex.unlock();
     }
