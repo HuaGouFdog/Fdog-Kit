@@ -20,5 +20,6 @@
         <file>lib/Icon_max4.png</file>
         <file>lib/icon-close8.png</file>
         <file>lib/icon-minus3.png</file>
+        <file>lib/icon-copy.png</file>
     </qresource>
 </RCC>

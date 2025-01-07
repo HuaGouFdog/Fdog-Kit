@@ -93,6 +93,8 @@ public:
     //void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
 
+    void changeEvent(QEvent *event);
+
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
     void newConnectZk(QString name, QString host, QString port);

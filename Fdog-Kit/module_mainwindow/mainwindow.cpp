@@ -621,59 +621,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
 {
     //标题双击不走这里
-    if(ui->widget_title2->underMouse() && !showFlag) {
-        setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
-        ui->widget_side->setStyleSheet("#widget_side { \
-                                            color: rgb(255, 255, 255); \
-                                            border-top-left-radius: 0px; \
-                                            border-bottom-left-radius: 0px; \
-                                            background-color: rgb(10, 31, 57); \
-                                        }");
-        ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 0px;\
-                                                border-bottom-left-radius: 0px; \
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        setWindowState(Qt::WindowMaximized);
-        showFlag = true;
-    } else if (ui->widget_title2->underMouse() && showFlag) {
-        setContentsMargins(10, 10, 10, 10);
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
-        ui->widget_side->setStyleSheet("#widget_side { \
-                                            color: rgb(255, 255, 255); \
-                                            border-top-left-radius: 10px; \
-                                            border-bottom-left-radius: 10px; \
-                                            background-color: rgb(10, 31, 57); \
-                                        }");
-        ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 9px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
-        this->showNormal();
-        showFlag = false;
-    }
 }
 
 // void MainWindow::resizeEvent(QResizeEvent *event)
@@ -684,12 +631,79 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
 
 void MainWindow::showEvent(QShowEvent *event)
 {
-    //qDebug() << "showEvent 被调用";
     calculateCurrentStrechRect();
 
-    // setAttribute(Qt::WA_Mapped);
-    // QMainWindow::showEvent(event);
-    //return MainWindow::showEvent(event);
+    //防止假死
+    setAttribute(Qt::WA_Mapped);
+    QMainWindow::showEvent(event);
+
+    QSize oldSize = this->size();
+    resize(oldSize + QSize(10, 10));
+    resize(oldSize);
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if(QEvent::WindowStateChange == event->type())
+    {
+    	//判断为窗口状态改变事件
+        QWindowStateChangeEvent * stateEvent = dynamic_cast<QWindowStateChangeEvent*>(event);
+        if(Q_NULLPTR != stateEvent)
+        {
+            if(this->windowState() == Qt::WindowMinimized)
+            {
+                //qDebug() << "当前最小化";
+            } else if (this->windowState() == Qt::WindowNoState && stateEvent->oldState() == Qt::WindowMaximized) {
+                //qDebug() << "当前正常";
+                ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:10px;}");
+                ui->widget_side->setStyleSheet("#widget_side { \
+                                                    color: rgb(255, 255, 255); \
+                                                    border-top-left-radius: 10px; \
+                                                    border-bottom-left-radius: 10px; \
+                                                    background-color: rgb(10, 31, 57); \
+                                                }");
+                ui->toolButton_close->setStyleSheet("QToolButton {\
+                                                        color: rgb(255, 255, 255);\
+                                                        border-top-right-radius: 9px;\
+                                                        background-color: rgba(94, 255, 210, 0);\
+                                                        border: none;\
+                                                    }\
+                                                    QToolButton::menu-indicator { \
+                                                        image: None;\
+                                                    }\
+                                                    QToolButton:hover {\
+                                                        color: rgb(255, 255, 255);\
+                                                        background-color: rgb(200, 0, 0);\
+                                                        border: none;\
+                                                    }");
+                ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
+            } else if (this->windowState() == Qt::WindowMaximized && stateEvent->oldState() == Qt::WindowNoState) {
+                //qDebug() << "当前最大化";
+                ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
+                ui->widget_side->setStyleSheet("#widget_side { \
+                                                    color: rgb(255, 255, 255); \
+                                                    border-top-left-radius: 0px; \
+                                                    border-bottom-left-radius: 0px; \
+                                                    background-color: rgb(10, 31, 57); \
+                                                }");
+                ui->toolButton_close->setStyleSheet("QToolButton {\
+                                                        color: rgb(255, 255, 255);\
+                                                        border-top-right-radius: 0px;\
+                                                        background-color: rgba(94, 255, 210, 0);\
+                                                        border: none;\
+                                                    }\
+                                                    QToolButton::menu-indicator { \
+                                                        image: None;\
+                                                    }\
+                                                    QToolButton:hover {\
+                                                        color: rgb(255, 255, 255);\
+                                                        background-color: rgb(200, 0, 0);\
+                                                        border: none;\
+                                                    }");
+                ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+            }
+        }
+    }
 }
 
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
@@ -719,32 +733,8 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
         case WM_GETMINMAXINFO:
         {
             if (::IsZoomed(msg->hwnd)) {
-                ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
-                ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
-                ui->widget_side->setStyleSheet("#widget_side { \
-                                                    color: rgb(255, 255, 255); \
-                                                    border-top-left-radius: 0px; \
-                                                    border-bottom-left-radius: 0px; \
-                                                    background-color: rgb(10, 31, 57); \
-                                                }");
-                ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                        color: rgb(255, 255, 255);\
-                                                        border-top-right-radius: 0px;\
-                                                        background-color: rgba(94, 255, 210, 0);\
-                                                        border: none;\
-                                                    }\
-                                                    QToolButton::menu-indicator { \
-                                                        image: None;\
-                                                    }\
-                                                    QToolButton:hover {\
-                                                        color: rgb(255, 255, 255);\
-                                                        background-color: rgb(200, 0, 0);\
-                                                        border: none;\
-                                                    }");
-                
                 isMaxShow = true;
                 showFlag = true;
-
                 // 最大化时会超出屏幕，所以填充边框间距
                 RECT frame = { 0, 0, 0, 0 };
                 AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
@@ -752,28 +742,6 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
                 frame.top = abs(frame.bottom);
                 this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
             } else {
-                ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
-                ui->widget_side->setStyleSheet("#widget_side { \
-                                                    color: rgb(255, 255, 255); \
-                                                    border-top-left-radius: 10px; \
-                                                    border-bottom-left-radius: 10px; \
-                                                    background-color: rgb(10, 31, 57); \
-                                                }");
-                ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                        color: rgb(255, 255, 255);\
-                                                        border-top-right-radius: 9px;\
-                                                        background-color: rgba(94, 255, 210, 0);\
-                                                        border: none;\
-                                                    }\
-                                                    QToolButton::menu-indicator { \
-                                                        image: None;\
-                                                    }\
-                                                    QToolButton:hover {\
-                                                        color: rgb(255, 255, 255);\
-                                                        background-color: rgb(200, 0, 0);\
-                                                        border: none;\
-                                                    }");
-                ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
                 isMaxShow = false;
                 showFlag = false;
             }
@@ -1072,59 +1040,11 @@ void MainWindow::on_toolButton_max_clicked()
         //ui->centralWidget->setEnabled(false);
         setContentsMargins(0, 0, 0, 0);
         this->setWindowState(Qt::WindowState::WindowMaximized);
-        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
-        ui->widget_side->setStyleSheet("#widget_side { \
-                                            color: rgb(255, 255, 255); \
-                                            border-top-left-radius: 0px; \
-                                            border-bottom-left-radius: 0px; \
-                                            background-color: rgb(10, 31, 57); \
-                                        }");
-        ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 0px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
-        //this->showMaximized();
-        //ui->centralWidget->setEnabled(true);
         isMaxShow = true;
         showFlag = true;
     } else {
         setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        this->showNormal();
         this->setWindowState(Qt::WindowState::WindowNoState);
-        ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:10px;}");
-        ui->widget_side->setStyleSheet("#widget_side { \
-                                            color: rgb(255, 255, 255); \
-                                            border-top-left-radius: 10px; \
-                                            border-bottom-left-radius: 10px; \
-                                            background-color: rgb(10, 31, 57); \
-                                        }");
-        ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                color: rgb(255, 255, 255);\
-                                                border-top-right-radius: 9px;\
-                                                background-color: rgba(94, 255, 210, 0);\
-                                                border: none;\
-                                            }\
-                                            QToolButton::menu-indicator { \
-                                                image: None;\
-                                            }\
-                                            QToolButton:hover {\
-                                                color: rgb(255, 255, 255);\
-                                                background-color: rgb(200, 0, 0);\
-                                                border: none;\
-                                            }");
-        ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
-
         isMaxShow = false;
         showFlag = false;
     }

@@ -27,31 +27,6 @@ enum WindowStretchRectState
     LEFT_BORDER                 // 鼠标在左边框区域;
 };
 
-class WidgetMouseFilter : public QObject
-{
-   Q_OBJECT
-public:
-   WidgetMouseFilter(QObject *parent = nullptr) : QObject(parent) {}
-
-protected:
-    bool eventFilter(QObject *object, QEvent *event) {
-        if (object->isWidgetType()) {
-            QWidget *widget = static_cast<QWidget*>(object);
-            if (event->type() == QEvent::Enter) {
-                // 当鼠标进入widget时增加宽度
-                widget->resize(widget->width() + 10, widget->height());
-                widget->resize(widget->width(), widget->height() + 10);
-            } else if (event->type() == QEvent::Leave) {
-                // 当鼠标离开widget时还原宽度
-                widget->resize(widget->width() - 10, widget->height());
-                widget->resize(widget->width(), widget->height() - 10);
-            }
-        }
-        // 继续传递事件
-        return false;
-    }
-};
-
 namespace Ui {
 class MainWindow;
 }
@@ -75,9 +50,8 @@ public:
     void mouseMoveEvent(QMouseEvent *event);     //鼠标移动
     void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放
     void mouseDoubleClickEvent(QMouseEvent *event); //鼠标双击
-    //void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
-
+    void changeEvent(QEvent *event);
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
     //创建托盘显示
@@ -87,11 +61,11 @@ public:
     void setWindowsByConf();
 
 private slots:
-    void on_toolButton_close_2_clicked();
+    void on_toolButton_close_clicked();
 
-    void on_toolButton_min_2_clicked();
+    void on_toolButton_min_clicked();
 
-    void on_toolButton_max_2_clicked();
+    void on_toolButton_max_clicked();
 
     void closeWindow();
 
@@ -115,10 +89,10 @@ private:
     QSystemTrayIcon* trayIcon;
 
     QGraphicsDropShadowEffect * defaultShadow;
-    QPoint last;            //窗口拖动用变量
+    QPoint last;                //窗口拖动用变量
     QPoint m_startPoint;
     QPoint m_endPoint;
-    bool showFlag = false; //窗口显示标志位 默认false 正常显示
+    bool showFlag = false;      //窗口显示标志位 默认false 正常显示
     bool isPressedWidget = false;
 
     WindowStretchRectState m_stretchRectState;
@@ -127,8 +101,8 @@ private:
     bool m_isSupportStretch;
 
     bool isShowToolKit = false; //是否显示工具栏
-    bool isFullScreen = false; //是否全屏
-    bool isMaxShow = false;    //是否最大化显示
+    bool isFullScreen = false;  //是否全屏
+    bool isMaxShow = false;     //是否最大化显示
 
 private:
     Ui::MainWindow *ui;
