@@ -108,6 +108,9 @@ public:
     //检测新版本
     void checkNewVersion();
 
+    //判断版本
+    bool isVersionGreater(const QString &version1, const QString &version2);
+
 private slots:
     void on_toolButton_close_clicked();
 

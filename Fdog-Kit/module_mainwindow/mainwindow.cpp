@@ -256,7 +256,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->toolButton_newVersion->setToolTip("");
     ui->toolButton_newVersion->setIcon(QIcon());
-
+    ui->toolButton_newVersion->hide();
     checkNewVersion();
 
     //设置系统托盘
@@ -826,6 +826,27 @@ void MainWindow::setWindowsByConf()
     }
 }
 
+bool MainWindow::isVersionGreater(const QString &version1, const QString &version2) {
+    qDebug() << "get v " << version1;
+    qDebug() << "old v " << version2;
+    QStringList v1Parts = version1.split(".");
+    QStringList v2Parts = version2.split(".");
+    int maxLength = qMax(v1Parts.size(), v2Parts.size());
+
+    for (int i = 0; i < maxLength; ++i) {
+        int v1Part = i < v1Parts.size() ? v1Parts[i].toInt() : 0;
+        int v2Part = i < v2Parts.size() ? v2Parts[i].toInt() : 0;
+
+        if (v1Part > v2Part) {
+            return true;
+        } else if (v1Part < v2Part) {
+            return false;
+        }
+    }
+
+    return false;
+}
+
 void MainWindow::checkNewVersion()
 {
     //检测
@@ -864,7 +885,7 @@ void MainWindow::checkNewVersion()
                     QString body = jsonObj.value("body").toString();
                     newVersion = tagName;
                     NewVersionData = body;
-                    //qDebug() << "tag_name:" << tagName;
+                    qDebug() << "tag_name:" << tagName;
                     //qDebug() << "body:" << body;
 
 
@@ -889,10 +910,12 @@ void MainWindow::checkNewVersion()
         reply->deleteLater();
 
         //判断有没有新版本生成
-        if (newVersion != "") {
-            //ui->toolButton_newVersion->show();
+        if (isVersionGreater(newVersion, ui->label_side_version->text())) {
+            ui->toolButton_newVersion->show();
             ui->toolButton_newVersion->setIcon(QIcon(":lib/node.png"));
             ui->toolButton_newVersion->setToolTip("当前有新版本，点击查看");
+        } else {
+            qDebug() << "没有新版本";
         }
         
 }
@@ -1034,8 +1057,6 @@ void MainWindow::restoreWindow()
 
 void MainWindow::on_toolButton_max_clicked()
 {
-    //qDebug() << "显示最大化";
-    //最大化
     if (!showFlag) {
         //ui->centralWidget->setEnabled(false);
         setContentsMargins(0, 0, 0, 0);
