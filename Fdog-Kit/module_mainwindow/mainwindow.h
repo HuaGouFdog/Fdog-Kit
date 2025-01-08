@@ -238,6 +238,8 @@ private slots:
 
     void on_toolButton_newVersion_clicked();
 
+    void whenAnimationFinish();
+
 private:
     Ui::MainWindow *ui;
 
