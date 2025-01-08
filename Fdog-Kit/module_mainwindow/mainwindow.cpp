@@ -1760,6 +1760,18 @@ void MainWindow::on_toolButton_zk_tool_clicked()
 
 void MainWindow::on_toolButton_side_theme_clicked()
 {
+    style()->unpolish(ui->widget_side);
+    ui->widget_side->setStyleSheet("");
+    ui->widget_side->setStyleSheet("#widget_side {\
+                                   color: rgb(255, 255, 255);\
+                                   border-top-left-radius: 10px;\
+                                   border-bottom-left-radius: 10px;\
+                                   background-color: rgb(67, 67, 67);\
+                               }");
+
+    style()->polish(ui->widget_side);
+
+
     return;
     //切换模式
     if (currentTheme == 0) {
@@ -1865,6 +1877,15 @@ void MainWindow::on_toolButton_side_thrift_clicked()
         ui->stackedWidget->addWidget(twidget);
         twidget->show();
         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+        QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+        ui->stackedWidget->setGraphicsEffect(eff);
+        QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+        a->setDuration(50);
+        a->setStartValue(0);
+        a->setEndValue(1);
+        a->setEasingCurve(QEasingCurve::InBack);
+        a->start(QPropertyAnimation::DeleteWhenStopped);
+        connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
     } else {
         int widgetCount = ui->stackedWidget->count();
         for (int i = 0; i < widgetCount; ++i) {
@@ -1872,6 +1893,16 @@ void MainWindow::on_toolButton_side_thrift_clicked()
             QWidget *widget = ui->stackedWidget->widget(i);
             if (widget->objectName() == "twidget") {
                 ui->stackedWidget->setCurrentIndex(i);
+                QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+                ui->stackedWidget->setGraphicsEffect(eff);
+                QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+                a->setDuration(200);
+                a->setStartValue(0);
+                a->setEndValue(1);
+                a->setEasingCurve(QEasingCurve::InBack);
+                a->start(QPropertyAnimation::DeleteWhenStopped);
+                connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
+                return;
             }
         }
     }
@@ -1885,6 +1916,15 @@ void MainWindow::on_toolButton_side_zookeeper_clicked()
         ui->stackedWidget->addWidget(zmanagewidget);
         zmanagewidget->show();
         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+        QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+        ui->stackedWidget->setGraphicsEffect(eff);
+        QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+        a->setDuration(50);
+        a->setStartValue(0);
+        a->setEndValue(1);
+        a->setEasingCurve(QEasingCurve::InBack);
+        a->start(QPropertyAnimation::DeleteWhenStopped);
+        connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
     } else {
         int widgetCount = ui->stackedWidget->count();
         for (int i = 0; i < widgetCount; ++i) {
@@ -1892,6 +1932,16 @@ void MainWindow::on_toolButton_side_zookeeper_clicked()
             QWidget *widget = ui->stackedWidget->widget(i);
             if (widget->objectName() == "zmanagewidget") {
                 ui->stackedWidget->setCurrentIndex(i);
+                QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+                ui->stackedWidget->setGraphicsEffect(eff);
+                QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+                a->setDuration(200);
+                a->setStartValue(0);
+                a->setEndValue(1);
+                a->setEasingCurve(QEasingCurve::InBack);
+                a->start(QPropertyAnimation::DeleteWhenStopped);
+                connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
+                return;
             }
         }
     }
@@ -1916,6 +1966,15 @@ void MainWindow::on_toolButton_side_about_clicked()
 void MainWindow::on_toolButton_side_home_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+    ui->stackedWidget->setGraphicsEffect(eff);
+    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+    a->setDuration(50);
+    a->setStartValue(0);
+    a->setEndValue(1);
+    a->setEasingCurve(QEasingCurve::InBack);
+    a->start(QPropertyAnimation::DeleteWhenStopped);
+    connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
 }
 
 void MainWindow::on_toolButton_side_shell_clicked()
@@ -2025,3 +2084,7 @@ void MainWindow::on_toolButton_newVersion_clicked()
     QMessageBox::about(this, "发现新版本" + newVersion, data);
 }
 
+void MainWindow::whenAnimationFinish()
+{
+    ui->stackedWidget->setGraphicsEffect(0); // remove effect
+}
