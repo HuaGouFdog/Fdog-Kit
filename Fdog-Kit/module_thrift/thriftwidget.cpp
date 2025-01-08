@@ -3081,12 +3081,46 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
 
         QAbstractItemView* view = completer->popup();
         view->setItemDelegate(new ComboBoxDelegate());//设置行高
-        completer->popup()->setStyleSheet("QListView{background-color: #FFFFFF;"
-                                                "color: #353637;"
-                                                "selection-background-color: #3A72D8;"
-                                                "selection-color: white;"
-                                                "show-decoration-selected: 1;"
-                                                "font-size: 14pt;");
+        // completer->popup()->setStyleSheet("QListView{background-color: #FFFFFF;"
+        //                                         "color: #353637;"
+        //                                         "selection-background-color: #3A72D8;"
+        //                                         "selection-color: white;"
+        //                                         "show-decoration-selected: 1;"
+        //                                         "font-size: 14pt;");
+        completer->popup()->setStyleSheet("QScrollBar::handle:horizontal {\
+                                                height: 8px;\
+                                                background-color: rgb(239, 239, 239);\
+                                                /*滚动条两端变成椭圆 */\
+                                                border-radius: 2px;\
+                                                min-height: 0;\
+                                            }\
+                                            QScrollBar::sub-page:horizontal {\
+                                                background-color: rgba(255, 255, 255, 0);\
+                                            }\
+                                            QScrollBar::add-page:horizontal \
+                                            {\
+                                                background-color: rgba(255, 255, 255, 0);\
+                                            }\
+                                            QScrollBar::add-line:horizontal {\
+                                                border: none;\
+                                                height: 0px;\
+                                                subcontrol-position: bottom;\
+                                                subcontrol-origin: margin;\
+                                            }\
+                                            QScrollBar::sub-line:horizontal {\
+                                                border: none;\
+                                                height: 0px;\
+                                                subcontrol-position: top;\
+                                                subcontrol-origin: margin;\
+                                            }\
+                                            QScrollBar::down-arrow:horizontal {\
+                                                border:none;\
+                                            }\
+                                            QScrollBar::up-arrow:horizontal {\
+                                                border:none;\
+                                            }");
+
+
 
         completer->setCaseSensitivity(Qt::CaseInsensitive); //大小写不敏感
         completer->setFilterMode(Qt::MatchContains); //内容匹配
@@ -4254,41 +4288,64 @@ void thriftwidget::rece_activated(const QString &text)
     //emit send_findConnection(text);
     qDebug() << "rece_activated = " << text;
 
-    //获取接口服务名，尝试匹配端口
-    QString port_ = text;
-    int index_port = port_.indexOf("Service.");
-    port_ = port_.mid(0, index_port);
-    //尝试匹配
-    port_ = port_.toLower();
-    int itemCount = ui->comboBox_port->count();
-    for(int i =0; i < itemCount; i++) {
-       QString com_port = ui->comboBox_port->itemText(i).toLower();
-       //qDebug() << " com_port = " << com_port << " port_ = " << port_;
-       if (com_port.contains(port_)) {
-           ui->comboBox_port->setCurrentIndex(i);
-           break;
-       }
-    }
-//    int index = current->text(0).indexOf(":");
-//    if (index == 0) {
-//        index = current->text(0).length();
-//    }
+    // //获取接口服务名，尝试匹配端口
+    // QString port_ = text;
+    // int index_port = port_.indexOf("Service.");
+    // port_ = port_.mid(0, index_port);
+    // //尝试匹配
+    // port_ = port_.toLower();
+    // int itemCount = ui->comboBox_port->count();
+    // for(int i =0; i < itemCount; i++) {
+    //    QString com_port = ui->comboBox_port->itemText(i).toLower();
+    //    //qDebug() << " com_port = " << com_port << " port_ = " << port_;
+    //    if (com_port.contains(port_)) {
+    //        ui->comboBox_port->setCurrentIndex(i);
+    //        break;
+    //    }
+    // }
+
     int index = text.indexOf("Service.");
     QString funcName2 = text.mid(index + 8);
-    qDebug() << "funcName2 = " << funcName2;
-    ui->lineEdit_funcName->setText(funcName2);
-    //ui->treeWidget->clear();
-    //循环获取参数
-    if (funcParamInMap.value(funcName2).size() > 0) {
-        QMap<int, paramInfo> temp = funcParamInMap.value(funcName2);
-        for (const auto &key : temp.keys()) {
-            ItemWidget* items = createAndGetNode(this, ui->treeWidget);
-            items->setParamValue(this, key,
-                        temp[key].paramName,
-                        temp[key].paramType,
-                        temp[key].typeSign);
+    qDebug() << "选中接口 " << funcName2;
+    qDebug() << "选中服务 " << text.mid(0, index + 7);
+
+    //设置接口选中
+    int topLevelItemCount = ui->treeWidget_api->topLevelItemCount();
+    for (int i = 0; i < topLevelItemCount; ++i) {
+        QTreeWidgetItem *parentItem = ui->treeWidget_api->topLevelItem(i);
+        qDebug() << "parentItem = " << parentItem->text(0);
+        if (parentItem->text(0) == text.mid(0, index + 7)) {
+            int childCount = parentItem->childCount();
+            for (int j = 0; j < childCount; ++j) {
+                QTreeWidgetItem *childItem = parentItem->child(j);
+                qDebug() << "childItem = " << childItem->text(0);
+                if (childItem->text(0) == funcName2) {
+                    ui->treeWidget_api->setCurrentItem(childItem);
+                    ui->treeWidget_api->expandItem(parentItem);
+                    qDebug() << "找到";
+                    //on_treeWidget_api_currentItemChanged(childItem, nullptr);
+                    return;
+                }
+            }
         }
     }
+
+
+
+    // //清空列表
+    // ui->treeWidget->clear();
+    // ui->lineEdit_funcName->setText(funcName2);
+    // //循环获取参数
+    // if (funcParamInMap.value(funcName2).size() > 0) {
+    //     QMap<int, paramInfo> temp = funcParamInMap.value(funcName2);
+    //     for (const auto &key : temp.keys()) {
+    //         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
+    //         items->setParamValue(this, key,
+    //                     temp[key].paramName,
+    //                     temp[key].paramType,
+    //                     temp[key].typeSign);
+    //     }
+    // }
 }
 
 void thriftwidget::rece_highlighted(const QString &text)
@@ -4598,47 +4655,53 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     ui->label_fail_2->setText("失败数：" + QString::number(rr->failCount) + "次");
     ui->label_errorRate_2->setText("错误率：" + QString::number((static_cast<double>(rr->failCount))/rr->totalTimes*100) + "%");
 
-   while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
-       if (QWidget* widget = item->widget()) {
-           widget->deleteLater(); // 删除控件，并在事件循环结束时删除
-       } else {
-           delete item->layout(); // 递归删除子布局
-       }
-       delete item; // 删除布局项
-   }
-   // 创建一个图表对象
-   QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
-   for(int64_t i=0; i< rr->Results.size(); i+=1)
-   {
-      lineSeries2->append(i,rr->Results[i]);
-   }
-   lineSeries2->setName("red line2");   //设置系列名称
+    while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            widget->deleteLater(); // 删除控件，并在事件循环结束时删除
+        } else {
+            delete item->layout(); // 递归删除子布局
+        }
+        delete item; // 删除布局项
+    }
+    // 创建一个图表对象
+    QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
+    for(int64_t i=0; i< rr->Results.size(); i+=1)
+    {
+        lineSeries2->append(i,rr->Results[i]);
+    }
+    lineSeries2->setName("red line2");   //设置系列名称
 
 
-   QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
-   for(int64_t i=0; i< rr->connectTime.size(); i+=1)
-   {
-      lineSeries3->append(i,rr->connectTime[i]);
-   }
-   lineSeries3->setName("red line3");   //设置系列名称
+    QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
+    for(int64_t i=0; i< rr->connectTime.size(); i+=1)
+    {
+        lineSeries3->append(i,rr->connectTime[i]);
+    }
+    lineSeries3->setName("red line3");   //设置系列名称
 
-   QChart *chart = new QChart();
-   //chart->legend()->hide(); // 隐藏图例
-   // 将数据系列添加到图表中
-   //chart->addSeries(lineSeries);
-   chart->addSeries(lineSeries2);
-   chart->addSeries(lineSeries3);
-   chart->legend()->hide();
-   chart->createDefaultAxes();
+    QChart *chart = new QChart();
+    //设置背景区域圆角角度
+    chart->setBackgroundRoundness(10);
+    //设置内边界边距
+    chart->setMargins(QMargins(10, 10, 10, 10));
+    //设置外边界边距
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    //chart->legend()->hide(); // 隐藏图例
+    // 将数据系列添加到图表中
+    //chart->addSeries(lineSeries);
+    chart->addSeries(lineSeries2);
+    chart->addSeries(lineSeries3);
+    chart->legend()->hide();
+    chart->createDefaultAxes();
 
-   chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
-   chartView = new QChartView(this);
-   chartView->setChart(chart);
-   chartView->setRenderHint(QPainter::Antialiasing);
-   chartView->resize(QSize(500,500));
-   ui->widget_charts->layout()->addWidget(chartView);
-   ui->tabWidget_test->show();
-   delete rr;
+    chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
+    chartView = new QChartView(this);
+    chartView->setChart(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->resize(QSize(500,500));
+    ui->widget_charts->layout()->addWidget(chartView);
+    ui->tabWidget_test->show();
+    delete rr;
 }
 
 
