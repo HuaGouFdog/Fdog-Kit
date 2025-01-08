@@ -54,10 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     Qt::WindowFlags flags = this->windowFlags();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //Qt::WindowStaysOnTopHint
-    //this->setWindowFlags(flags | Qt::FramelessWindowHint);
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
-    //QApplication::setAttribute(Qt::AA_Use96Dpi);
     setContentsMargins(10, 10, 10, 10);
     ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
 
@@ -67,15 +65,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //窗口标题最小化，最大化，在这里实现
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
 
-
-    //ui->label_time->hide();
-
-    //this->setStyleSheet(getStyleFile(":qss/mainStyle.qss"));
-
-    //设置无边框
-    //setWindowFlag(Qt::FramelessWindowHint);
-    //setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::FramelessWindowHint);
-    //
     //设置内边距
     //设置阴影效果
     defaultShadow = new QGraphicsDropShadowEffect();
@@ -92,18 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
     effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
     effect->setColor(QColor(10, 31, 57));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
     effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-
     ui->widget_side->setGraphicsEffect(effect);
-
-
-    // QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
-    // effect2->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    // effect2->setColor(QColor(30, 45, 54));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    // effect2->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-
-    //ui->widget_body_left->setGraphicsEffect(effect2);
-
-
 
     isPressedWidget = false;
     m_isMousePressed = false;
@@ -113,103 +91,33 @@ MainWindow::MainWindow(QWidget *parent) :
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(rece_toolButton_fullScreen_sign()));
 
-    //men_tool = new QMenu(ui->toolButton_tool);
-    //men_tool->setStyleSheet("QMenu{background-color: rgb(67, 77, 88); font: 10pt \"OPPOSans B\"; color: rgb(255, 255, 255); border:1px solid rgb(255, 255, 255,200);} "
-    //                   "QMenu::item:selected {background-color: #0B0E11;}");
-    //men_tool->setWindowFlags(men_tool->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
-    //men_tool->setAttribute(Qt::WA_TranslucentBackground);
-    //QSize iconSize(30, 30); // 设置图标的大小
-    // toolAssemble = new QAction(QIcon(":lib/toolBox.png"), "小工具");
-    // men_tool->addAction(toolAssemble);
-    // men_tool->addSeparator();
-    // textDiff = new QAction(QIcon(":lib/XML-Local-hover.png"), "文本对比");
-    // men_tool->addAction(textDiff);
-    // men_tool->addSeparator();
-    // xmlFormat = new QAction(QIcon(":lib/xml (2).png"), "XML格式化");
-    // men_tool->addAction(xmlFormat);
-    // men_tool->addSeparator();
-    // jsonFormat = new QAction(QIcon(":lib/json (2).png"), "JSON格式化");
-    // men_tool->addAction(jsonFormat);
-    // men_tool->addSeparator();
-    //zkVisual = new QAction(QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zk可视化连接");
-    //men_tool->addAction(zkVisual);
-    //men_tool->addSeparator();
-    //textTest = new QAction(QIcon(":lib/Thrift5.png").pixmap(iconSize), "thrift接口测试");
-    //men_tool->addAction(textTest);
-    //men_tool->addSeparator();
-    //ui->toolButton_tool->setMenu(men_tool);
-    //connect(toolAssemble, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    //connect(jsonFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    //connect(xmlFormat, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    //connect(textDiff, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    //connect(textTest, SIGNAL(triggered()), this, SLOT(on_newTool()));
-    //connect(zkVisual, SIGNAL(triggered()), this, SLOT(on_newTool()));
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(0);
 
-    FlowLayout *flowLayout = new FlowLayout(10, 15, 15);
-    //flowLayout->addWidget(new QPushButton(tr("Short")));
-    //flowLayout->addWidget(new QPushButton(tr("Longer")));
-    //flowLayout->addWidget(new QPushButton(tr("Different text")));
-    WidgetMouseFilter * wfFilter;
-    wfFilter = new WidgetMouseFilter();
+    // FlowLayout *flowLayout = new FlowLayout(10, 15, 15);
+    // //flowLayout->addWidget(new QPushButton(tr("Short")));
+    // //flowLayout->addWidget(new QPushButton(tr("Longer")));
+    // //flowLayout->addWidget(new QPushButton(tr("Different text")));
+    // WidgetMouseFilter * wfFilter;
+    // wfFilter = new WidgetMouseFilter();
 
-    //ui->widget_9->installEventFilter(wfFilter);
+    // //ui->widget_9->installEventFilter(wfFilter);
 
-    //flowLayout->addWidget(new QPushButton(tr("More text")));
-    //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
-    //flowLayout->setSpacing(50);
-    //flowLayout->horizontalSpacing(10);
-    //flowLayout->verticalSpacing(10);
-    flowLayout->setSpacing(30);
-    //ui->widget_2->setLayout(flowLayout);
-
-    //ui->widget_4->layout()->addWidget(new parsingJsonTextEdit());
-
-    //ui->widget_welcome_body_widget2->hide();
-
-    //m_flowlayout = new FlowLayout;
-    //m_flowlayout->setMargin(0);
-    //m_flowlayout->setSpacing(10, 10);
-
-    //for (int i =0; i < 10; i++) {
-
-        //m_flowlayout->addWidget(new QPushButton(tr("Short")));
-    //}
-    //ui->widget->setLayout(m_flowlayout);
-
-
-//    while (ui->wdgCard->layout()->count())
-//    {
-//        auto ptr = ui->wdgCard->layout()->itemAt(0)->widget();
-//        ui->wdgCard->layout()->removeWidget(wdg);
-//        wdg->deleteLater();
-//    }
+    // //flowLayout->addWidget(new QPushButton(tr("More text")));
+    // //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
+    // //flowLayout->setSpacing(50);
+    // //flowLayout->horizontalSpacing(10);
+    // //flowLayout->verticalSpacing(10);
+    // flowLayout->setSpacing(30);
 
 
     ui->comboBox_tool->setView(new QListView());
 
-    //暂时屏蔽
-//    ui->toolButton_newCreate->hide();
-//    ui->toolButton_manage->hide();
-//    ui->toolButton_plugIn->hide();
-//    ui->toolButton_setting->hide();
-//    ui->toolButton_tool->hide();
-//    ui->toolButton_about->hide();
-    //ui->widget_top_tool->hide();
     ui->toolButton_side_about->hide();
     //ui->widget_25->hide();
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo2.png"));
-
-    //ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
-    //ui->widget_welcome_body_widget2_newCreate_newTool->hide();
-    //ui->widget_welcome_body_widget2_newCreate_setting->hide();
-    //ui->widget_welcome_body_widget2_info_text->hide();
-
-    //smalltoolwidget * a = new smalltoolwidget(ui->widget_4);
-    //a->show();
 
     // 创建定时器
     QTimer * timer = new QTimer();
@@ -236,19 +144,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //confInfo->writeSettingConf();
     qRegisterAnimationInterpolator<QString>(mySheetStyle);
 
-    //QToolButton *button1 = new QToolButton();
-    //button1->setIcon(QIcon(":/lib/download.png"));
-    // button1->setStyleSheet("QToolButton {\
-    //                        color: rgb(255, 255, 255);\
-    //                        background-color: rgb(94, 255, 210);\
-    //                        border: none;}");
-    
-    //ui->tabWidget->setCornerWidget(button1, Qt::TopRightCorner);
-
-    // QPushButton *b2 = new QPushButton(QString::fromStdWString(L"设置"));
-    // b2->setObjectName("settingButton");
-    // ui->tabWidget->setTabEnabled(0, false);
-    // ui->tabWidget->tabBar()->setTabButton(0, QTabBar::RightSide, b2);
     setSupportStretch(true);
 
     //打开数据库
@@ -819,16 +714,16 @@ void MainWindow::setWindowsByConf()
         int deskHeight = dw.height();
 
         this->setGeometry(deskWidth/2 - confInfo->startPositionX/2, deskHeight/2 - confInfo->startPositionY/2, confInfo->startPositionX,confInfo->startPositionY);
-        qDebug() << "居中显示";
+        //qDebug() << "居中显示";
     } else {
         this->setGeometry(confInfo->physicalDpiX(),confInfo->physicalDpiY(),confInfo->startPositionX,confInfo->startPositionY);
-        qDebug() << "不居中显示";
+        //qDebug() << "不居中显示";
     }
 }
 
 bool MainWindow::isVersionGreater(const QString &version1, const QString &version2) {
-    qDebug() << "get v " << version1;
-    qDebug() << "old v " << version2;
+    //qDebug() << "get v " << version1;
+    //qDebug() << "old v " << version2;
     QStringList v1Parts = version1.split(".");
     QStringList v2Parts = version2.split(".");
     int maxLength = qMax(v1Parts.size(), v2Parts.size());
@@ -873,7 +768,7 @@ void MainWindow::checkNewVersion()
         if (reply->error() != QNetworkReply::NoError) {
             qDebug() << "请求失败:" << reply->errorString();
         } else {
-            qDebug() << "请求成功";
+            //qDebug() << "请求成功";
             //qDebug() << "响应:" << reply->readAll();
             QByteArray responseData = reply->readAll();
             QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
@@ -885,7 +780,7 @@ void MainWindow::checkNewVersion()
                     QString body = jsonObj.value("body").toString();
                     newVersion = tagName;
                     NewVersionData = body;
-                    qDebug() << "tag_name:" << tagName;
+                    //qDebug() << "tag_name:" << tagName;
                     //qDebug() << "body:" << body;
 
 
@@ -1048,11 +943,7 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::restoreWindow()
 {
-//    if (isMinimized()) {
-//        showNormal();
-//    } else {
-//        show();
-//    }
+
 }
 
 void MainWindow::on_toolButton_max_clicked()
@@ -1114,17 +1005,6 @@ void MainWindow::on_newCreate()
         //获取发送者
         //QString actionText = qobject_cast<QAction*>(sender())->text();
         int8_t connectType = 0;
-//        if (actionText == "ssh连接") {
-//            connectType =SSH_CONNECT_TYPE;
-//        } else if (actionText == "zk连接") {
-//            connectType =ZK_CONNECT_TYPE;
-//        } else if (actionText == "redis连接") {
-//            connectType =REDIS_CONNECT_TYPE;
-//        } else if (actionText == "kafka连接") {
-//            connectType =KAFKA_CONNECT_TYPE;
-//        } else if (actionText == "database连接") {
-//            connectType =DB_CONNECT_TYPE;
-//        }
 
         //创建连接窗口
         ccwidget = new createconnect(connectType);
@@ -1210,7 +1090,7 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
         QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
         sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
-        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
+        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(rece_widget_welcome_body_widget2_newCreate_newTool_clicked()));
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
         connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
@@ -1248,10 +1128,6 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(1);
-
-
-    //ui->widget_line->show();
-    //qDebug() << "on_newConnnect调用结束";
 }
 
 
@@ -1276,7 +1152,7 @@ void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
         qDebug() << "调用ssh " << cInfoStruct.host << " " << cInfoStruct.password;
         QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
         sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
-        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(on_widget_welcome_body_widget2_newCreate_newTool_clicked()));
+        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(rece_widget_welcome_body_widget2_newCreate_newTool_clicked()));
         connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
         connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
         connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
@@ -1325,7 +1201,7 @@ void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
     ccwidget->show();
 }
 
-void MainWindow::on_widget_welcome_body_widget2_newCreate_newTool_clicked()
+void MainWindow::rece_widget_welcome_body_widget2_newCreate_newTool_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
     //显示工具栏窗口
@@ -1455,10 +1331,6 @@ void MainWindow::rece_showtimestamp()
     // 在标签上显示时间戳
     ui->lineEdit_now_timestamp->setText(timestampStr);
 
-    //下面只是在界面显示时间
-//    QTime currentTime2 = QTime::currentTime();
-//    QString timeString = currentTime2.toString("hh:mm:ss");
-//    ui->label_time->setText(timeString);
 }
 
 void MainWindow::on_toolButton_time2date_clicked()
@@ -1507,46 +1379,6 @@ void MainWindow::on_toolButton_closetool_clicked()
     ui->widget_tool->hide();
     isShowToolKit = false;
 }
-
-void MainWindow::on_toolButton_newCreate_clicked()
-{
-//    if (ccwidget == nullptr) {
-//        int8_t connectType = 0;
-//        //创建连接窗口
-//        ccwidget = new createconnect(connectType);
-//        connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-//        connect(ccwidget,SIGNAL(newClose()),this,SLOT(on_newClose()));
-//        ccwidget->show();
-//    } else {
-//        //不创建
-//        ccwidget->setFocus();
-//    }
-    int8_t connectType = 0;
-    ccwidget = new createconnect(connectType);
-    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-    QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-    int x = globalPos.x() + (this->width() - ccwidget->width()) / 2;//x坐标
-    int y = globalPos.y() + (this->height() - ccwidget->height()) / 2;//y坐标
-    ccwidget->move(x, y);//窗口移动
-    ccwidget->show();
-}
-
-//void MainWindow::on_toolButton_newCreate_2_clicked()
-//{
-//    //if (hcwidget == nullptr) {
-//        int8_t connectType = 0;
-//        //创建连接窗口
-//        hcwidget = new historyconnectwidget(connectType);
-//        //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-//        ui->tabWidget->addTab(hcwidget, "快速连接");
-//        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-//        ui->stackedWidget->setCurrentIndex(0);
-//        hcwidget->show();
-////    } else {
-////        //不创建
-////        hcwidget->setFocus();
-//        //    }
-//}
 
 void MainWindow::rece_toolButton_fullScreen_sign()
 {
@@ -1614,64 +1446,6 @@ void MainWindow::rece_connection_fail(sshwidget * sw) {
             qDebug() << "转换失败";
         }
     }
-}
-
-void MainWindow::on_toolButton_setting_clicked()
-{
-    if (stwidget == NULL) {
-        stwidget = new settingwidget(confInfo);
-        QSize iconSize(16, 16); // 设置图标的大小
-        ui->tabWidget->addTab(stwidget, QIcon(":lib/setting4.png").pixmap(iconSize), "设置");
-        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-        ui->stackedWidget->setCurrentIndex(1);
-        stwidget->show();
-    } else {
-        //从当前标签里面查找
-        int index = ui->tabWidget->indexOf(stwidget);
-        if (index != -1) {
-            ui->tabWidget->setCurrentIndex(index);
-        } else {
-            //出错
-        }
-    }
-}
-
-
-void MainWindow::on_toolButton_about_clicked()
-{
-//     awidget = new aboutwidget();
-//     QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-//     int x = globalPos.x() + (this->width() - awidget->width()) / 2;//x坐标
-//     int y = globalPos.y() + (this->height() - awidget->height()) / 2;//y坐标
-//     awidget->move(x, y);//窗口移动
-//     awidget->show();
-}
-
-// void MainWindow::on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked()
-// {
-//     int8_t connectType = 0;
-//     //创建连接窗口
-//     hcwidget = new historyconnectwidget(connectType);
-//     //connect(hcwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-//     ui->tabWidget->addTab(hcwidget, "快速连接");
-//     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-//     ui->stackedWidget->setCurrentIndex(0);
-//     hcwidget->show();
-// }
-
-void MainWindow::on_toolButton_manage_clicked()
-{
-    QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
-    qDebug() << "sshinfo 2 size = " << cInfoStructList.length();
-    int8_t connectType = 0;
-    //创建连接窗口
-    hcwidget = new historyconnectwidget(connectType, cInfoStructList);
-    ui->tabWidget->addTab(hcwidget, "快速连接");
-    connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
-    connect(hcwidget,SIGNAL(send_findConnection(QString, int)),this,SLOT(rece_findConnection(QString, int)));
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-    ui->stackedWidget->setCurrentIndex(1);
-    hcwidget->show();
 }
 
 void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
@@ -1743,19 +1517,6 @@ void MainWindow::on_toolButton_zk_tool_clicked()
     ccwidget = new createconnect(connectType);
     connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
     ccwidget->show();
-//    QSize iconSize(20, 20); // 设置图标的大小
-//    if(zmanagewidget == NULL) {
-//        zmanagewidget = new zookeepermanagewidget();
-//        ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
-//        ui->stackedWidget->setCurrentIndex(0);
-//        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-//    } else {
-//        //切换到zookeeper tabWidget
-//        int index = ui->tabWidget->indexOf(zmanagewidget);
-//        if (index != -1) {
-//            ui->tabWidget->setCurrentIndex(index);
-//        }
-//    }
 }
 
 void MainWindow::on_toolButton_side_theme_clicked()
@@ -2000,7 +1761,6 @@ void MainWindow::on_toolButton_side_shell_clicked()
 
 void MainWindow::on_toolButton_side_tool_clicked()
 {
-    //tswidget = new toolswidget(1);
     if (tswidget == NULL) {
         tswidget = new toolswidget();
         tswidget->setObjectName("tswidget");
@@ -2039,11 +1799,6 @@ void MainWindow::rece_closeAll_sgin() {
     
 }
 
-void MainWindow::on_toolButton_download_clicked()
-{
-
-}
-
 void MainWindow::on_toolButton_side_qss_clicked()
 {
     if (qsswidget == NULL) {
@@ -2073,14 +1828,6 @@ void MainWindow::on_toolButton_side_mysql_clicked()
 void MainWindow::on_toolButton_newVersion_clicked()
 {
     QString data = NewVersionData + "\n" + "下载地址：\n" + NewVersiondownLoad;
-//    QMessageBox::StandardButton button = QMessageBox::information(this, "发现新版本" + newVersion, data,
-//                                              QMessageBox::Yes, QMessageBox::NoButton);
-
-//    if (button == QMessageBox::StandardButton::Yes) {
-//        qDebug() << "QMessageBox::StandardButton::Yes";
-//    } else if (button == QMessageBox::StandardButton::No) {
-//        qDebug() << "QMessageBox::StandardButton::No";
-//    }
     QMessageBox::about(this, "发现新版本" + newVersion, data);
 }
 
