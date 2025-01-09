@@ -86,9 +86,9 @@ public:
     void updateWindowSize();
     void setSupportStretch(bool isSupportStretch);
 
-    void mousePressEvent(QMouseEvent *event);    //鼠标点击
-    void mouseMoveEvent(QMouseEvent *event);     //鼠标移动
-    void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放
+    void mousePressEvent(QMouseEvent *event);       //鼠标点击
+    void mouseMoveEvent(QMouseEvent *event);        //鼠标移动
+    void mouseReleaseEvent(QMouseEvent *event);     //鼠标释放
     void mouseDoubleClickEvent(QMouseEvent *event); //鼠标双击
     //void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
@@ -138,7 +138,7 @@ private slots:
 
     void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
 
-    void on_widget_welcome_body_widget2_newCreate_newTool_clicked();
+    void rece_widget_welcome_body_widget2_newCreate_newTool_clicked();
 
     void on_comboBox_tool_currentIndexChanged(int index);
 
@@ -163,17 +163,11 @@ private slots:
 
     void on_toolButton_closetool_clicked();
 
-    void on_toolButton_newCreate_clicked();
-
-    //void on_toolButton_newCreate_2_clicked();
-
     void rece_toolButton_fullScreen_sign();
 
     void rece_connection_success(sshwidget * sw);
 
     void rece_connection_fail(sshwidget * sw);
-
-    void on_toolButton_setting_clicked();
 
     void closeWindow();
 
@@ -184,14 +178,6 @@ private slots:
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
     void restoreWindow();
-
-    void on_toolButton_about_clicked();
-
-
-
-    //void on_widget_welcome_body_widget2_nearestConnectionInfo_more_clicked();
-
-    void on_toolButton_manage_clicked();
 
     void on_tabWidget_customContextMenuRequested(const QPoint &pos);
 
@@ -230,8 +216,6 @@ private slots:
 
     void rece_closeAll_sgin();
 
-    void on_toolButton_download_clicked();
-
     void on_toolButton_side_qss_clicked();
 
     void on_toolButton_side_mysql_clicked();
@@ -242,7 +226,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
     //FlowLayout * m_flowlayout;
     QRect m_leftTopRect;
     QRect m_leftBottomRect;
@@ -260,15 +243,15 @@ private:
     QPoint last;            //窗口拖动用变量
     QPoint m_startPoint;
     QPoint m_endPoint;
-    bool showFlag = false; //窗口显示标志位 默认false 正常显示
+    bool showFlag = false;  //窗口显示标志位 默认false 正常显示
     bool isPressedWidget;
 
-    QMenu * men;    //新建菜单栏
-    QAction * ssh;  //ssh连接
-    QAction * zk;   //zk连接
-    QAction * kafka; //kafka连接
-    QAction * redis; //redis连接
-    QAction * db;    //database连接
+    QMenu * men;            //新建菜单栏
+    QAction * ssh;          //ssh连接
+    QAction * zk;           //zk连接
+    QAction * kafka;        //kafka连接
+    QAction * redis;        //redis连接
+    QAction * db;           //database连接
 
     QMenu * men_tool;       //工具菜单栏
 
@@ -284,28 +267,23 @@ private:
     bool m_isMousePressed;
     QRect m_windowRectBeforeStretch;
     bool m_isSupportStretch;
-    createconnect *ccwidget =nullptr; //创建连接窗口
-    historyconnectwidget * hcwidget = nullptr; //快速连接
-    toolswidget * tswidget = nullptr; //创建工具窗口
-    qss * qsswidget = nullptr;          // 创建qss工具窗口
-    settingwidget * stwidget = nullptr; //创建设置窗口
+    createconnect *ccwidget =nullptr;           //创建连接窗口
+    historyconnectwidget * hcwidget = nullptr;  //快速连接
+    toolswidget * tswidget = nullptr;           //创建工具窗口
+    qss * qsswidget = nullptr;                  //创建qss工具窗口
+    settingwidget * stwidget = nullptr;         //创建设置窗口
     zookeepermanagewidget * zmanagewidget = nullptr; //zk窗口
-    thriftwidget * twidget = nullptr;  //thrift测试工具窗口
+    thriftwidget * twidget = nullptr;           //thrift测试工具窗口
 
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;
 
     bool isShowToolKit = false; //是否显示工具栏
-    bool isFullScreen = false; //是否全屏
-    bool isMaxShow = false;    //是否最大化显示
-
-    //aboutwidget *awidget = nullptr;
-
+    bool isFullScreen = false;  //是否全屏
+    bool isMaxShow = false;     //是否最大化显示
     config * confInfo = nullptr; //配置信息
-
-    int currentTheme = 0; //当前主题
-
-    bool isFirst = false; //是否第一次点击终端
+    int currentTheme = 0;        //当前主题
+    bool isFirst = false;           //是否第一次点击终端
 
     //操作数据库
     sqlhandle * db_;

@@ -866,7 +866,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->stackedWidget->setCurrentIndex(0);
     ui->toolButton_return->hide();
-    ui->widget_property->hide();
+    //ui->widget_property->hide();
 
     ui->treeWidget_api->hide();
     //ui->widget_left->hide();
@@ -885,11 +885,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
     effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
     ui->widget_thrift_api->setGraphicsEffect(effect14);
 
-//    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect(this);
-//    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-//    effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-//    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-//    ui->widget_test->setGraphicsEffect(effect15);
+   QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect(this);
+   effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+   effect15->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+   effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+   //ui->widget_test->setGraphicsEffect(effect15);
 
     QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect(this);
     effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
@@ -915,10 +915,23 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //chartView->resize(QSize(500,500));
     ui->widget_charts->layout()->addWidget(chartView);
 
+    ui->splitter_5->setStretchFactor(0,40);
+    ui->splitter_5->setStretchFactor(1,1);
+    ui->toolButton_returnTest->hide();
+
+    QDirModel *model = new QDirModel(this);
+    QCompleter *completer = new QCompleter(this);
+    completer->setModel(model);
+    ui->lineEdit_dir->setCompleter(completer);
 
     //读取预制数据
     readPreData();
 
+    //读取thrift文件
+    //E:/ProjectA/doc
+    QStringList fileList = {"E:/ProjectA/doc/vrv-IN-thrift/aphead.thrift", "E:/ProjectA/doc/vrv-IN-thrift/vrv-only/ap.thrift"};
+    handleThriftFile(fileList);
+    ui->treeWidget_api->show();
     setSupportStretch(this, true);
 }
 
@@ -1687,6 +1700,7 @@ void thriftwidget::assembleTBinaryMessage(int buildType, int num)
             value = preDataMapV[item->lineEditParamName->text()].at(num%preDataMapV[item->lineEditParamName->text()].size());
             qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
         }
+        ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
         //lineEditParamValue->toolTip()
         QString SN = item->lineEditParamSN->text();
         //qDebug() << "SN = " << SN;
@@ -1869,6 +1883,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
             value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num%preDataMapV[itemChild->lineEditParamName->text()].size());
             qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
         }
+        ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
         //qDebug() << "SN = " << SN;
         if (SN == "") {
             qDebug() << "参数名" << value_ << "获取sn失败，默认+1";
@@ -3555,6 +3570,30 @@ void thriftwidget::readPreDataVector(QString key, QString path)
     }
 }
 
+void thriftwidget::handleThriftFile(QStringList fileList) {
+    for (int i = 0; i < fileList.length(); i++) {
+        QString selectedFile = fileList[i];
+        QFile file(selectedFile);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&file);
+            //中文乱码问题
+            in.setCodec("UTF-8");
+            QString fileContent = in.readAll();
+            file.close();
+
+            //处理注释
+            handleComments(fileContent);
+            //查找server接口 并处理入参出参
+            QString fileContent_s = getServerInterface(fileContent);
+            //查找struct
+            getStructInfo(fileContent_s);
+
+        } else {
+            qDebug() << "Failed to open file:" << file.errorString();
+        }
+    }
+}
+
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
     //qDebug() << "createAndGetNode 创建2";
@@ -3978,7 +4017,7 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
 {
     if (index == 0) {
         //基础测试
-        ui->widget_property->hide();
+        //ui->widget_property->hide();
         ui->toolButton_request->show();
         ui->toolButton_save->show();
         ui->stackedWidget_2->setCurrentIndex(0);
@@ -3986,7 +4025,7 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->tabWidget_test->hide();
     } else {
         //性能测试
-        ui->widget_property->show();
+        //ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
         ui->stackedWidget_2->setCurrentIndex(1);
@@ -4152,27 +4191,8 @@ void thriftwidget::on_toolButton_inportFile_clicked()
     if (dialog.exec()) {
         // 获取所选文件的路径
         QStringList fileList = dialog.selectedFiles();
-        for (int i = 0; i < fileList.length(); i++) {
-            QString selectedFile = fileList[i];
-            QFile file(selectedFile);
-            if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QTextStream in(&file);
-                //中文乱码问题
-                in.setCodec("UTF-8");
-                QString fileContent = in.readAll();
-                file.close();
-
-                //处理注释
-                handleComments(fileContent);
-                //查找server接口 并处理入参出参
-                QString fileContent_s = getServerInterface(fileContent);
-                //查找struct
-                getStructInfo(fileContent_s);
-
-            } else {
-                qDebug() << "Failed to open file:" << file.errorString();
-            }
-        }
+        //解析
+        handleThriftFile(fileList);
     }
     ui->treeWidget_api->show();
 }
@@ -4270,40 +4290,22 @@ void thriftwidget::rece_plainTextEdit_editAll()
 
 void thriftwidget::on_toolButton_doc_switch_clicked()
 {
-    if (ui->toolButton_doc_switch->text() == "切换到报告") {
-        //切换到报告
-        ui->toolButton_doc_switch->setText("切换到参数");
-        ui->stackedWidget_2->setCurrentIndex(1);
-    } else {
-        //切换到参数
-        ui->toolButton_doc_switch->setText("切换到报告");
-        ui->stackedWidget_2->setCurrentIndex(0);
-    }
+    ui->stackedWidget_2->setCurrentIndex(0);
+    ui->toolButton_returnTest->show();
+    // if (ui->toolButton_doc_switch->text() == "切换到报告") {
+    //     //切换到报告
+    //     ui->toolButton_doc_switch->setText("切换到参数");
+    //     ui->stackedWidget_2->setCurrentIndex(1);
+    // } else {
+    //     //切换到参数
+    //     ui->toolButton_doc_switch->setText("切换到报告");
+    //     ui->stackedWidget_2->setCurrentIndex(0);
+    // }
 }
 
 
 void thriftwidget::rece_activated(const QString &text)
 {
-    //选中
-    //emit send_findConnection(text);
-    qDebug() << "rece_activated = " << text;
-
-    // //获取接口服务名，尝试匹配端口
-    // QString port_ = text;
-    // int index_port = port_.indexOf("Service.");
-    // port_ = port_.mid(0, index_port);
-    // //尝试匹配
-    // port_ = port_.toLower();
-    // int itemCount = ui->comboBox_port->count();
-    // for(int i =0; i < itemCount; i++) {
-    //    QString com_port = ui->comboBox_port->itemText(i).toLower();
-    //    //qDebug() << " com_port = " << com_port << " port_ = " << port_;
-    //    if (com_port.contains(port_)) {
-    //        ui->comboBox_port->setCurrentIndex(i);
-    //        break;
-    //    }
-    // }
-
     int index = text.indexOf("Service.");
     QString funcName2 = text.mid(index + 8);
     qDebug() << "选中接口 " << funcName2;
@@ -4313,39 +4315,22 @@ void thriftwidget::rece_activated(const QString &text)
     int topLevelItemCount = ui->treeWidget_api->topLevelItemCount();
     for (int i = 0; i < topLevelItemCount; ++i) {
         QTreeWidgetItem *parentItem = ui->treeWidget_api->topLevelItem(i);
-        qDebug() << "parentItem = " << parentItem->text(0);
+        //qDebug() << "parentItem = " << parentItem->text(0);
         if (parentItem->text(0) == text.mid(0, index + 7)) {
             int childCount = parentItem->childCount();
             for (int j = 0; j < childCount; ++j) {
                 QTreeWidgetItem *childItem = parentItem->child(j);
-                qDebug() << "childItem = " << childItem->text(0);
+                //qDebug() << "childItem = " << childItem->text(0);
                 if (childItem->text(0) == funcName2) {
                     ui->treeWidget_api->setCurrentItem(childItem);
                     ui->treeWidget_api->expandItem(parentItem);
-                    qDebug() << "找到";
+                    //qDebug() << "找到";
                     //on_treeWidget_api_currentItemChanged(childItem, nullptr);
                     return;
                 }
             }
         }
     }
-
-
-
-    // //清空列表
-    // ui->treeWidget->clear();
-    // ui->lineEdit_funcName->setText(funcName2);
-    // //循环获取参数
-    // if (funcParamInMap.value(funcName2).size() > 0) {
-    //     QMap<int, paramInfo> temp = funcParamInMap.value(funcName2);
-    //     for (const auto &key : temp.keys()) {
-    //         ItemWidget* items = createAndGetNode(this, ui->treeWidget);
-    //         items->setParamValue(this, key,
-    //                     temp[key].paramName,
-    //                     temp[key].paramType,
-    //                     temp[key].typeSign);
-    //     }
-    // }
 }
 
 void thriftwidget::rece_highlighted(const QString &text)
@@ -4578,9 +4563,10 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     }
     int connectTimeOut =  ui->lineEdit_connectTimeOut->text().toInt();
     int requestTimeOut =  ui->lineEdit_requestTimeOut->text().toInt();
+    ui->plainTextEdit_testData->clear();
     //qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port << " connectTimeOut = " << connectTimeOut << " requestTimeOut = " << requestTimeOut;
-
     for (int64_t i = 0; i < loopNum; i++) {
+        ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
         assembleTBinaryMessage(1, i);
         QVector<uint8_t> sendData8 = string2Uint8List(dataList);
         QElapsedTimer * timer  = new QElapsedTimer();
@@ -4648,7 +4634,7 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     ui->label_endTime->setText("结束时间：" + rr->endTime);
     ui->label_totalRequests_2->setText("总请求：" + QString::number(rr->totalTimes) + "次");
     ui->label_totalTime_2->setText("总耗时：" + formattedSeconds + "s");
-    ui->label_averageRespond_2->setText("平均响应时间：" + QString::number(sum / rr->Results.size()) + "ms");
+    ui->label_averageRespond_2->setText("平均响应耗时：" + QString::number(sum / rr->Results.size()) + "ms");
     ui->label_networkDelay_2->setText("平均连接耗时：" + QString::number(sum2 / rr->connectTime.size()) + "ms");
     ui->label_requestsPerSecond_2->setText("每秒请求数：" + QString::number(static_cast<int64_t>(rr->totalTimes /secondsDiff)) + "TPS");
     ui->label_allData_2->setText("总接收数据：" + QString::number(static_cast<int64_t>(rr->totalData / secondsDiff))  + "k");
@@ -4665,19 +4651,27 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     }
     // 创建一个图表对象
     QSplineSeries *lineSeries2 = new QSplineSeries(); //创建折线系列
-    for(int64_t i=0; i< rr->Results.size(); i+=1)
+    int bc = 1;
+    if (rr->Results.size() > 0 && rr->Results.size() < 1000) {
+        bc = 2;
+    } else if (rr->Results.size() > 1000 && rr->Results.size() < 5000) {
+        bc = 5;
+    } else if (rr->Results.size() > 5000) {
+        bc = 10;
+    } 
+    for(int64_t i=0; i< rr->Results.size(); i+=bc)
     {
         lineSeries2->append(i,rr->Results[i]);
     }
-    lineSeries2->setName("red line2");   //设置系列名称
+    lineSeries2->setName("平均响应耗时");   //设置系列名称
 
 
     QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
-    for(int64_t i=0; i< rr->connectTime.size(); i+=1)
+    for(int64_t i=0; i< rr->connectTime.size(); i+=bc)
     {
         lineSeries3->append(i,rr->connectTime[i]);
     }
-    lineSeries3->setName("red line3");   //设置系列名称
+    lineSeries3->setName("平均连接耗时");   //设置系列名称
 
     QChart *chart = new QChart();
     //设置背景区域圆角角度
@@ -4686,19 +4680,37 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     chart->setMargins(QMargins(10, 10, 10, 10));
     //设置外边界边距
     chart->layout()->setContentsMargins(0, 0, 0, 0);
-    //chart->legend()->hide(); // 隐藏图例
+    chart->legend()->setAlignment(Qt::AlignBottom);
+    chart->legend()->setVisible(true);
     // 将数据系列添加到图表中
     //chart->addSeries(lineSeries);
     chart->addSeries(lineSeries2);
     chart->addSeries(lineSeries3);
-    chart->legend()->hide();
-    chart->createDefaultAxes();
+    //chart->legend()->hide();
+
+    QValueAxis *axisX = new QValueAxis; //X 轴
+    axisX->setRange(1, rr->totalTimes); //设置坐标轴范围
+    axisX->setLabelFormat("%d"); //标签格式
+    axisX->setTickCount(10); //主分隔个数
+    axisX->setMinorTickCount(8);
+    axisX->setTitleText("请求次数"); //标题
+    axisX->setGridLineVisible(true);
+
+    QValueAxis *axisY = new QValueAxis; //Y 轴
+    axisY->setRange(0, maxValue + 20);
+    axisY->setLabelFormat("%d"); //标签格式
+    axisY->setTickCount(10);
+    axisY->setMinorTickCount(8);
+    axisY->setTitleText("耗时");
+    axisY->setGridLineVisible(true);
 
     chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
     chartView = new QChartView(this);
     chartView->setChart(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->resize(QSize(500,500));
+    chartView->chart()->setAxisX(axisX, lineSeries2);
+    chartView->chart()->setAxisY(axisY, lineSeries2);
+    //chartView->resize(QSize(500,500));
     ui->widget_charts->layout()->addWidget(chartView);
     ui->tabWidget_test->show();
     delete rr;
@@ -4840,5 +4852,21 @@ void thriftwidget::on_toolButton_export_clicked()
     hexString = hexString.mid(8);
     QByteArray byteArray2 = QByteArray::fromHex(hexString.toUtf8());
     writeQByteArrayToFile(byteArray2, "thriftConfig\\binTest.bin");
+}
+
+
+void thriftwidget::on_toolButton_returnTest_clicked()
+{
+    //返回压测
+    ui->stackedWidget_2->setCurrentIndex(1);
+    ui->toolButton_returnTest->hide();
+}
+
+
+void thriftwidget::on_toolButton_preData_clicked()
+{
+    //预制数据管理
+    preData = new prefabricatedata();
+    preData->show();
 }
 
