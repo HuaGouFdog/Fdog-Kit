@@ -3,13 +3,16 @@
 # Project created by QtCreator 2023-08-08T21:16:39
 #
 #-------------------------------------------------
-
+DEFINES += Q_COMPILER_UNIFORM_INIT
+DEFINES+=WIN32_LEAN_AND_MEAN
 QT       += core gui
 QT +=testlib
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = FdogShell
 TEMPLATE = app
+
+QMAKE_LFLAGS_WINDOWS += /LARGEADDRESSAWARE
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -26,6 +29,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         module_mainwindow/mainwindow.cpp \
+    module_thrift/prefabricatedata.cpp \
     module_zookeeper/zookeeperwidget.cpp \
     module_connect/createconnect.cpp \
     module_zookeeper/zookeeperhandle.cpp \
@@ -48,7 +52,6 @@ SOURCES += \
     module_ssh/historycommondwidget.cpp \
     module_config/config.cpp \
     module_thrift/thriftwidget.cpp \
-    module_zookeeper/zookeepertipswidget.cpp \
     module_zookeeper/zookeepermanagewidget.cpp \
     module_flowlayout/flowlayout.cpp \
     module_activate/activate.cpp \
@@ -58,6 +61,7 @@ SOURCES += \
 
 HEADERS += \
         module_mainwindow/mainwindow.h \
+    module_thrift/prefabricatedata.h \
     module_zookeeper/zookeeperwidget.h \
     module_connect/createconnect.h \
     module_zookeeper/zookeeperhandle.h \
@@ -80,7 +84,6 @@ HEADERS += \
     module_ssh/historycommondwidget.h \
     module_config/config.h \
     module_thrift/thriftwidget.h \
-    module_zookeeper/zookeepertipswidget.h \
     module_zookeeper/zookeepermanagewidget.h \
     module_flowlayout/flowlayout.h \
     module_activate/activate.h \
@@ -90,6 +93,7 @@ HEADERS += \
 
 FORMS += \
         module_mainwindow/mainwindow.ui \
+    module_thrift/prefabricatedata.ui \
     module_zookeeper/zookeeperwidget.ui \
     module_connect/createconnect.ui \
     module_ssh/sshwidget.ui \
@@ -106,7 +110,6 @@ FORMS += \
     module_ssh/addcommondwidget.ui \
     module_ssh/historycommondwidget.ui \
     module_thrift/thriftwidget.ui \
-    module_zookeeper/zookeepertipswidget.ui \
     module_zookeeper/zookeepermanagewidget.ui \
     module_activate/activate.ui \
     module_qss/qss.ui \
@@ -120,6 +123,7 @@ RESOURCES += \
     qss_image.qrc
 
 QT += network
+QT += charts
 
 win32: LIBS += -L$$PWD/../../zookeeper/lib/ -lzookeeper
 
@@ -131,6 +135,12 @@ win32: LIBS += -L$$PWD/../../libssh2.11.0/lib/ -llibssh2
 INCLUDEPATH += $$PWD/../../libssh2.11.0/include
 DEPENDPATH += $$PWD/../../libssh2.11.0/include
 
+win32: LIBS += -L$$PWD/../../openssl1.1.1k/lib/ -llibssl
+win32: LIBS += -L$$PWD/../../openssl1.1.1k/lib/ -llibcrypto
+
+INCLUDEPATH += $$PWD/../../openssl1.1.1u/include
+DEPENDPATH += $$PWD/../../openssl1.1.1u/include
+
 LIBS += -luser32
 
 DISTFILES += \
@@ -139,8 +149,10 @@ DISTFILES += \
 RC_ICONS = lib/Fdogicon.ico
 
 
-QT.testlib.CONFIG -= console
-CONFIG += console
-CONFIG += resources_big
+//QT.testlib.CONFIG -= console
+CONFIG -= console
+CONFIG -= resources_big
 
 QT += sql
+
+

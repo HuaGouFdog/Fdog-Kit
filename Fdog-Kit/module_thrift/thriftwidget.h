@@ -21,7 +21,7 @@
 #include <QThreadPool>
 #include <QListWidgetItem>
 #include <QMutex>
-
+#include "prefabricatedata.h"
 //请求类型
 #define THRIFT_CALL        "80010001"
 #define THRIFT_REPLY       "80010002"
@@ -474,6 +474,9 @@ public:
     void readPreData();
     //预制数据存在多个 user:${thift/dadsa.txt}
     void readPreDataVector(QString key, QString path);
+
+    //解析thrift文件
+    void handleThriftFile(QStringList fileList);
     
 
 private slots:
@@ -548,6 +551,10 @@ private slots:
 
     void on_toolButton_export_clicked();
 
+    void on_toolButton_returnTest_clicked();
+
+    void on_toolButton_preData_clicked();
+
 public:
     QVector<QString> dataList;
 private:
@@ -569,6 +576,7 @@ private:
     QThreadPool threadpool;
     QChartView *chartView = nullptr;
     QChart *chart = nullptr;
+    prefabricatedata * preData;
 };
 
 Q_DECLARE_METATYPE(QVector<uint8_t>);
@@ -623,6 +631,7 @@ public:
         if (rr_->count == 0) {
             //qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
             QMetaObject::invokeMethod(obj_,"rece_propertyTestDone",Qt::QueuedConnection, Q_ARG(RequestResults*,rr_));
+            QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int, 100));
         } else {
             QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int,rr_->totalTimes/rr_->count));
             
