@@ -31,6 +31,45 @@ void prefabricatedata::openPreFile() {
         qDebug() << "打开文件失败!";
     }
 }
+
+void prefabricatedata::openPreFile2()
+{
+    QString fileName = "thriftConfig\\ap-20250102-1710.pcap";
+    // 创建文件对象
+    QFile file(fileName);
+    // 打开文件，并且以只读方式进行读取
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray fileData = file.readAll();
+        file.close();
+        //qDebug() << "数据 = " << QString(fileData);
+        //ui->textEdit->setText(QString(fileData));
+        // 打印16进制内容
+        printHex(fileData);
+    } else {
+        // 如果文件打开失败，则输出错误信息
+        qDebug() << "打开文件失败!";
+    }
+}
+
+void prefabricatedata::printHex(const QByteArray &data)
+{
+    QString a;
+    for (int i = 0; i < data.size(); i++) {
+        if (i % 16 == 0) {
+            qDebug() << a;
+            a = "";
+            if (i > 0) {
+                qDebug() << "";
+            }
+            qDebug() << QString("%1:").arg(i, 4, 16, QChar('0'));
+        }
+        a =a + QString("%1").arg(static_cast<unsigned char>(data[i]), 2, 16, QChar('0')).toUpper();
+    }
+    if (data.size() % 16 != 0) {
+        qDebug() << "";
+    }
+    qDebug() << a;
+}
 void prefabricatedata::writePreFile() {
     // 获取 textEdit 中的文本
     QString text = ui->textEdit->toPlainText();

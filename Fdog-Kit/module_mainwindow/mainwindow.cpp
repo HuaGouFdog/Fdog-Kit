@@ -113,7 +113,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->comboBox_tool->setView(new QListView());
 
-    ui->toolButton_side_about->hide();
+    //ui->toolButton_side_about->hide();
     //ui->widget_25->hide();
 
     QAction *action = new QAction(this);
@@ -228,7 +228,9 @@ WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos)
 
 void MainWindow::updateMouseStyle(WindowStretchRectState stretchState)
 {
-
+    if (isMaxShow) {
+        return;
+    }
     switch (stretchState)
     {
     case NO_SELECT:
@@ -260,6 +262,9 @@ void MainWindow::updateMouseStyle(WindowStretchRectState stretchState)
 void MainWindow::updateWindowSize()
 {
     // 拉伸时要注意设置窗口最小值;
+    if (isMaxShow) {
+        return;
+    }
     QRect windowRect = m_windowRectBeforeStretch;
     int delValue_X = m_startPoint.x() - m_endPoint.x();
     int delValue_Y = m_startPoint.y() - m_endPoint.y();
