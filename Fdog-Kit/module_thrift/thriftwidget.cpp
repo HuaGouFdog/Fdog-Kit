@@ -1115,7 +1115,7 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
     });
 
     connect(clientSocket,&QTcpSocket::stateChanged,[=]{
-        qDebug() << "状态改变" << clientSocket->state();
+        //qDebug() << "状态改变" << clientSocket->state();
     });
 
 //    &QComboBox::activated
@@ -1698,9 +1698,9 @@ void thriftwidget::assembleTBinaryMessage(int buildType, int num)
         //qDebug() << " buildType =" << buildType << " value = " << value << " toolTip = " << item->lineEditParamValue->toolTip();
         if (buildType == 1 && item->lineEditParamValue->toolTip() == "该值存在多个预制值，压测模式中，将按照顺序使用预测值") {
             value = preDataMapV[item->lineEditParamName->text()].at(num%preDataMapV[item->lineEditParamName->text()].size());
-            qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
+            //qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
         }
-        ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
+        //ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
         //lineEditParamValue->toolTip()
         QString SN = item->lineEditParamSN->text();
         //qDebug() << "SN = " << SN;
@@ -1881,9 +1881,9 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
         //qDebug() << " buildType =" << buildType << " value = " << value_ << " toolTip = " << itemChild->lineEditParamValue->toolTip();
         if (buildType == 1 && itemChild->lineEditParamValue->toolTip() == "该值存在多个预制值，压测模式中，将按照顺序使用预测值") {
             value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num%preDataMapV[itemChild->lineEditParamName->text()].size());
-            qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
+            //qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
         }
-        ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
+        //ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
         //qDebug() << "SN = " << SN;
         if (SN == "") {
             qDebug() << "参数名" << value_ << "获取sn失败，默认+1";
@@ -3594,6 +3594,37 @@ void thriftwidget::handleThriftFile(QStringList fileList) {
     }
 }
 
+QVector<int> thriftwidget::distributeRequests(int totalRequests, int numThreads)
+{
+    QVector<int> threadTasks;
+    
+    // 1. 计算平均值
+    int averageTasks = totalRequests / numThreads;
+
+    // 2. 假设首项比平均值稍大，例如多 10%
+    int a1 = static_cast<int>(averageTasks * 1.1);
+
+    // 3. 根据等差数列和公式计算公差 d
+    double d = static_cast<double>(2 * (totalRequests - numThreads * a1)) / (numThreads * (numThreads - 1));
+
+    // 4. 分配任务
+    int remainingRequests = totalRequests;  // 剩余任务数，用于校验和调整
+    for (int i = 0; i < numThreads; ++i) {
+        int tasks = static_cast<int>(std::round(a1 + i * d));  // 当前线程任务数
+        if (tasks < 0) tasks = 0;  // 防止出现负值
+
+        threadTasks.append(tasks);
+        remainingRequests -= tasks;
+    }
+
+    // 5. 校验任务总数是否与 totalRequests 相符，调整最后一个线程的任务数
+    if (remainingRequests != 0) {
+        threadTasks.last() += remainingRequests;  // 将多余的任务加到最后一个线程
+    }
+
+    return threadTasks;
+}
+
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
     //qDebug() << "createAndGetNode 创建2";
@@ -4340,26 +4371,23 @@ void thriftwidget::rece_highlighted(const QString &text)
 }
 
 
-void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t> dataArray, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut)
+void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uint8_t> dataArray, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut)
 {
-    clientSocket = new QTcpSocket();
-    qint64 elapsedMillisecondsConnect = 0;
+    QElapsedTimer* timer = new QElapsedTimer();
     if (clientSocket == nullptr) {
         qDebug() << "clientSocket is null";
         return;
     }
-
     //记录开始创建连接时间
+    qint64 elapsedMillisecondsWrite = 0;
     timer->start();
-    //qDebug() << "timer->start" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
-
     //状态改变信号
     connect(clientSocket,&QTcpSocket::stateChanged,[=]{
         //qDebug() << "状态改变" << clientSocket->state();
         if(clientSocket->state() == QAbstractSocket::UnconnectedState) {
             //qDebug() << "连接状态2" << clientSocket->state() << "  thread ID:" << QThread::currentThreadId();
             clientSocket->deleteLater();
-            isok = true;
+            //isok = true;
         }
     });
 
@@ -4384,7 +4412,11 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
         //记录结束时间
         rr->setEndTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
         qDebug() << "发生错误" << clientSocket->error() << "  thread ID:" << QThread::currentThreadId();
-        isok = true;
+        count_ = count_ - 1;
+        if (count_ == 0) {
+            isok = true;
+            qDebug() << "count_ = " << count_;
+        }
         clientSocket->disconnectFromHost();
         //clientSocket->deleteLater();
         return;
@@ -4419,18 +4451,24 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
     }
 
     //记录连接耗时
-    elapsedMillisecondsConnect = timer->elapsed();
+    qint64 elapsedMillisecondsConnect = timer->elapsed();
     rr->setConnectTime(elapsedMillisecondsConnect);
-
+    //qDebug() << "连接准备完成时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
 
     //服务器响应
     connect(clientSocket,&QTcpSocket::readyRead,[=]{
+        //记录等待时间
+        qint64 elapsedMillisecondsWait = timer->elapsed();
+        rr->setWaitTimeList(elapsedMillisecondsWait - elapsedMillisecondsWrite);
+
+        //qDebug() << "接收数据开始：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
         if (clientSocket->state() != QAbstractSocket::ConnectedState) {
             qDebug() << "连接异常" << clientSocket->state();
             return;
         }
         int64_t needRead_ = clientSocket->bytesAvailable();
         //qDebug() << "=====缓冲区还剩数据 = " << needRead_ << "  thread ID:" << QThread::currentThreadId();
+        //qDebug() << "地址 = " << clientSocket << " & = " << &clientSocket;
         QVector<uint32_t> receivedDataArray(needRead_/4 + 1);
         qint64 bytesReceived = clientSocket->read(reinterpret_cast<char*>(receivedDataArray.data()), receivedDataArray.size() * sizeof(uint32_t));
         //记录数据量
@@ -4449,18 +4487,18 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
             receivedData.push_back(elem);
         }
 
-       if (isFirstRead) {
-           isFirstRead = false;
-           //获取数据长度
-           uint32_t data = qFromBigEndian(receivedDataArray[0]);
-           std::stringstream stream;
-           //每次读取一个字节
-           stream << std::hex << std::setw(8) << std::setfill('0') << data;
-           QString data_ = QString::fromStdString(stream.str());
-           int countLength = 4 + strtol(data_.toStdString().c_str(), nullptr, 16);
-           needRead = countLength;
-           needRead = needRead - (needRead_ - readNum);
-           if (needRead == 0) {
+    if (isFirstRead) {
+        isFirstRead = false;
+        //获取数据长度
+        uint32_t data = qFromBigEndian(receivedDataArray[0]);
+        std::stringstream stream;
+        //每次读取一个字节
+        stream << std::hex << std::setw(8) << std::setfill('0') << data;
+        QString data_ = QString::fromStdString(stream.str());
+        int countLength = 4 + strtol(data_.toStdString().c_str(), nullptr, 16);
+        needRead = countLength;
+        needRead = needRead - (needRead_ - readNum);
+        if (needRead == 0) {
                 if(clientSocket) {
                     //qDebug() << "连接状态" << clientSocket->state();
                     clientSocket->disconnectFromHost();
@@ -4475,13 +4513,19 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
                 rr->setResults(elapsedMilliseconds - elapsedMillisecondsConnect);
                 //记录结束时间
                 rr->setEndTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
-                isok = true;
+                count_ = count_ - 1;
+                //qDebug() << "数据接收完毕：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
+                if (count_ == 0) {
+                    isok = true;
+                    qDebug() << "count_ = " << count_;
+                }
                 rr->setSuccessCount(1);
+                rr->setReadTimeList(elapsedMilliseconds - elapsedMillisecondsWait);
                 return;
-           }
-       } else {
-           needRead = needRead - (needRead_ - readNum);
-           if (needRead == 0) {
+        }
+    } else {
+        needRead = needRead - (needRead_ - readNum);
+        if (needRead == 0) {
                 //结束本次读取
                 isFirstRead = true;
                 needRead = 0;
@@ -4497,27 +4541,41 @@ void TestRunnable::sendThriftRequest2(QTcpSocket *clientSocket, QVector<uint8_t>
                 rr->setResults(elapsedMilliseconds - elapsedMillisecondsConnect);
                 //记录结束时间
                 rr->setEndTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
-                isok = true;
+                count_ = count_ - 1;
+                //qDebug() << "数据接收完毕：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
+                if (count_ == 0) {
+                    isok = true;
+                    //qDebug() << "count_ = " << count_;
+                }
                 rr->setSuccessCount(1);
+                //记录读取时间
+                rr->setReadTimeList(elapsedMilliseconds - elapsedMillisecondsWait);
                 return;
-           }
-       }
+        }
+    }
         return;
     });
-    
 
-    for (uint8_t& data : dataArray) {
-        data = qToBigEndian(data);
-    }
+
+    // for (uint8_t& data : dataArray) {
+    //     data = qToBigEndian(data);
+    // }
     //记录开始写入时间
-    rr->setRequestTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+    //rr->setRequestTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
 
     qint64 bytesSent = clientSocket->write(reinterpret_cast<char*>(dataArray.data()), dataArray.size() * sizeof(uint8_t));
     if (bytesSent != dataArray.size() * sizeof(uint8_t)) {
         qDebug() << "发送数据异常";
         return;
     }
-    //qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") <<"  thread ID:" << QThread::currentThreadId();
+
+    //记录写入耗时
+    elapsedMillisecondsWrite = timer->elapsed();
+    //qDebug() << " 1= " << elapsedMillisecondsWrite << " 2 = " << elapsedMillisecondsConnect;
+    rr->setWriteTimList(elapsedMillisecondsWrite - elapsedMillisecondsConnect);
+
+    //qDebug() << "数据写完时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
+    //qDebug() << "100次调用完毕：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
 }
 
 void thriftwidget::on_toolButton_propertyTest_clicked()
@@ -4545,6 +4603,12 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     elapsedMillisecondsAll = 0;
     RequestResults * rr = new RequestResults();
     rr->setCount(count);
+
+    if (ui->checkBox->isChecked()) {
+        rr->isN = true;
+    } else {
+        rr->isN = false;
+    }
     QElapsedTimer timer2;
     timer2.start();
 
@@ -4564,21 +4628,56 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     int connectTimeOut =  ui->lineEdit_connectTimeOut->text().toInt();
     int requestTimeOut =  ui->lineEdit_requestTimeOut->text().toInt();
     ui->plainTextEdit_testData->clear();
-    //qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port << " connectTimeOut = " << connectTimeOut << " requestTimeOut = " << requestTimeOut;
-    for (int64_t i = 0; i < loopNum; i++) {
-        ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
+    // for (int64_t i = 0; i < loopNum; i++) {
+    //     ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
+    //     assembleTBinaryMessage(1, i);
+    //     QVector<uint8_t> sendData8 = string2Uint8List(dataList);
+    //     QElapsedTimer * timer  = new QElapsedTimer();
+    //     TestRunnable * m_pRunnable = new TestRunnable(this, sendData8, timer, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut);
+    //     threadpool.start(m_pRunnable);
+    // }
+    QVector<QVector<uint8_t>> sendData8S;
+    //QElapsedTimer * timer;
+    TestRunnable * m_pRunnable;
+
+    double divisor = 0.1f;
+    int runThreadNum = ui->lineEdit_thread->text().toInt();
+
+    //准备压测数据
+    // 800
+
+    // 100 100 100 100 100 100 100 100 100
+    // 120 115 110 105 100 95  90  85  80
+    QVector<int> threadTasks = distributeRequests(loopNum, runThreadNum);
+    qDebug() << threadTasks;
+
+    //准备压测数据
+    for (int i = 0; i < loopNum; i++) {
         assembleTBinaryMessage(1, i);
-        QVector<uint8_t> sendData8 = string2Uint8List(dataList);
-        QElapsedTimer * timer  = new QElapsedTimer();
-        //qDebug() << "开始调用" << i;
-        TestRunnable * m_pRunnable = new TestRunnable(this, sendData8, timer, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut);
-        //m_pRunnable->setAutoDelete(false);
+        //转换大小字节序
+        QVector<uint8_t> dataListTemp = string2Uint8List(dataList);
+        for (uint8_t& data : dataListTemp) {
+            data = qToBigEndian(data);
+        }
+        sendData8S.push_back(dataListTemp);
+    }
+
+    for (int i = 0; i < runThreadNum; i++) {
+        //最大支持本机支持的线程
+        //timer = new QElapsedTimer();
+        m_pRunnable = new TestRunnable(this, sendData8S, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut, threadTasks.at(i));
         threadpool.start(m_pRunnable);
     }
 
-//    while(rr->count > 0 ) { //&& timer2.elapsed() < ui->lineEdit_time->text().toInt() * 100000
-//         QCoreApplication::processEvents();
-//    }
+    // for (int64_t i = 0; i < loopNum/100; i++) {
+    //     for(int j =0; j < 100; j++) {
+    //         assembleTBinaryMessage(1, i*100 + j);
+    //         sendData8S.push_back(string2Uint8List(dataList));
+    //     }
+    //     timer = new QElapsedTimer();
+    //     m_pRunnable = new TestRunnable(this, sendData8S, timer, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut);
+    //     threadpool.start(m_pRunnable);
+    // }
 
 }
 
@@ -4640,6 +4739,18 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     ui->label_allData_2->setText("总接收数据：" + QString::number(static_cast<int64_t>(rr->totalData / secondsDiff))  + "k");
     ui->label_fail_2->setText("失败数：" + QString::number(rr->failCount) + "次");
     ui->label_errorRate_2->setText("错误率：" + QString::number((static_cast<double>(rr->failCount))/rr->totalTimes*100) + "%");
+
+    int32_t sumwriteTimList = std::accumulate(rr->writeTimList.begin(), rr->writeTimList.end(), 0);
+    qDebug() << "rr->writeTimList = " << rr->writeTimList;
+    qDebug() << "平均写入耗时 = " << sumwriteTimList/rr->writeTimList.size() << "ms";
+
+    int32_t sumreadTimeList = std::accumulate(rr->readTimeList.begin(), rr->readTimeList.end(), 0);
+    qDebug() << "rr->readTimeList = " << rr->readTimeList;
+    qDebug() << "平均读取耗时 = " << sumreadTimeList/rr->readTimeList.size() << "ms";
+
+    int32_t sumwaitTimeList = std::accumulate(rr->waitTimeList.begin(), rr->waitTimeList.end(), 0);
+    qDebug() << "rr->waitTimeList = " << rr->waitTimeList;
+    qDebug() << "平均等待耗时 = " << sumwaitTimeList/rr->waitTimeList.size() << "ms";
 
     while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
@@ -4755,11 +4866,13 @@ void RequestResults::setCount(int value)
     mutex.unlock();
 }
 
-void RequestResults::decrease()
+void RequestResults::decrease(int value)
 {
     //mutex.lock();
-    count = count - 1;
-    qDebug() << "完成" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId()<< "  count = " << count;
+    count = count - value;
+    qDebug() << "完成" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") 
+                                    << "  thread ID:" << QThread::currentThreadId() 
+                                    << "  count = " << count ;
     //mutex.unlock();
 }
 
@@ -4814,6 +4927,27 @@ void RequestResults::setSuccessCount(int newSuccessCount)
 {
     mutex.lock();
     successCount = successCount + newSuccessCount;
+    mutex.unlock();
+}
+
+void RequestResults::setWriteTimList(const int32_t value)
+{
+    mutex.lock();
+    writeTimList.push_back(value);
+    mutex.unlock();
+}
+
+void RequestResults::setReadTimeList(const int32_t value)
+{
+    mutex.lock();
+    readTimeList.push_back(value);
+    mutex.unlock();
+}
+
+void RequestResults::setWaitTimeList(const int32_t value)
+{
+    mutex.lock();
+    waitTimeList.push_back(value);
     mutex.unlock();
 }
 

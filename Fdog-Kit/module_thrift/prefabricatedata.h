@@ -16,6 +16,8 @@ public:
     ~prefabricatedata();
 
     void openPreFile();
+    void openPreFile2();
+    void printHex(const QByteArray &data);
     void writePreFile();
 
 private slots:

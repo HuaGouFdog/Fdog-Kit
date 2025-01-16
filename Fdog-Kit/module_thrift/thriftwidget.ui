@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1768</width>
+    <width>1897</width>
     <height>701</height>
    </rect>
   </property>
@@ -953,7 +953,7 @@ padding-right:10px;
 }</string>
             </property>
             <property name="text">
-             <string>192.168.0.169</string>
+             <string>192.168.85.205</string>
             </property>
             <property name="placeholderText">
              <string>172.16.8.154</string>
@@ -1046,6 +1046,11 @@ padding-right:10px;
             <property name="editable">
              <bool>true</bool>
             </property>
+            <item>
+             <property name="text">
+              <string>minidood(4031)</string>
+             </property>
+            </item>
             <item>
              <property name="text">
               <string>nginx(10669)</string>
@@ -2361,7 +2366,7 @@ border-radius: 2px;</string>
           </font>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -3438,7 +3443,7 @@ color: rgb(79, 79, 79);
 </string>
                        </property>
                        <property name="currentIndex">
-                        <number>0</number>
+                        <number>1</number>
                        </property>
                        <widget class="QWidget" name="page">
                         <property name="styleSheet">
@@ -5478,7 +5483,7 @@ QTabBar QToolButton:hover {
 }</string>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="tab_4">
                   <attribute name="title">
@@ -5499,7 +5504,7 @@ QTabBar QToolButton:hover {
                  </widget>
                  <widget class="QWidget" name="tab_5">
                   <attribute name="title">
-                   <string>分段指标</string>
+                   <string>全部指标</string>
                   </attribute>
                   <widget class="QWidget" name="sectionDataWidget" native="true">
                    <property name="geometry">
@@ -6982,14 +6987,218 @@ padding-right:10px;
 }</string>
                     </property>
                     <property name="text">
-                     <string>1</string>
+                     <string>500</string>
                     </property>
                     <property name="placeholderText">
                      <string>0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="1">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_thread_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>环境线程数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_times_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>76</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>循环间隔(s)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_requestTimeOut">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>85</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>超时自动结束</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>请求超时(ms)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="lineEdit_time">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>60</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_connectTimeOut">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>85</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>超时自动结束</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>连接超时(ms)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <spacer name="verticalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_times">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>并发数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
                    <widget class="QLineEdit" name="lineEdit_times_2">
                     <property name="minimumSize">
                      <size>
@@ -7029,8 +7238,8 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_times">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_thread">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7039,7 +7248,7 @@ padding-right:10px;
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>60</width>
+                      <width>75</width>
                       <height>30</height>
                      </size>
                     </property>
@@ -7054,12 +7263,12 @@ padding-right:10px;
                      <string notr="true">color:#ced4da;</string>
                     </property>
                     <property name="text">
-                     <string>循环次数</string>
+                     <string>执行线程数</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_thread_2">
+                  <item row="7" column="1">
+                   <widget class="QLineEdit" name="lineEdit_requestTimeOut">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7068,8 +7277,8 @@ padding-right:10px;
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>45</width>
-                      <height>30</height>
+                      <width>16777215</width>
+                      <height>16777215</height>
                      </size>
                     </property>
                     <property name="font">
@@ -7080,10 +7289,21 @@ padding-right:10px;
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">color:#ced4da;</string>
+                     <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
                     </property>
                     <property name="text">
-                     <string>线程数</string>
+                     <string>50000</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>0</string>
                     </property>
                    </widget>
                   </item>
@@ -7130,8 +7350,8 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="1">
-                   <widget class="QLineEdit" name="lineEdit_requestTimeOut">
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_time_2">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7140,47 +7360,7 @@ padding-right:10px;
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit{
-color:#ced4da;
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>5000</string>
-                    </property>
-                    <property name="placeholderText">
-                     <string>0</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_times_2">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>76</width>
+                      <width>75</width>
                       <height>30</height>
                      </size>
                     </property>
@@ -7191,40 +7371,21 @@ padding-right:10px;
                       <stylestrategy>PreferAntialias</stylestrategy>
                      </font>
                     </property>
+                    <property name="toolTip">
+                     <string>超时自动结束</string>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">color:#ced4da;</string>
                     </property>
                     <property name="text">
-                     <string>循环间隔(s)</string>
+                     <string>执行时长(s)</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_thread">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>73</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:#ced4da;</string>
-                    </property>
+                  <item row="8" column="1">
+                   <widget class="QCheckBox" name="checkBox">
                     <property name="text">
-                     <string>执行线程数</string>
+                     <string>关闭算法</string>
                     </property>
                    </widget>
                   </item>
@@ -7261,14 +7422,14 @@ padding-right:10px;
 }</string>
                     </property>
                     <property name="text">
-                     <string>50</string>
+                     <string>16</string>
                     </property>
                     <property name="placeholderText">
                      <string>10</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="1">
+                  <item row="6" column="1">
                    <widget class="QLineEdit" name="lineEdit_connectTimeOut">
                     <property name="minimumSize">
                      <size>
@@ -7308,8 +7469,37 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="1">
-                   <widget class="QLineEdit" name="lineEdit_time">
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_times_3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>76</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>循环次数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="lineEdit_times_3">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7341,119 +7531,10 @@ padding-right:10px;
 }</string>
                     </property>
                     <property name="text">
-                     <string>60</string>
+                     <string>1</string>
                     </property>
                     <property name="placeholderText">
                      <string>0</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_connectTimeOut">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>85</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="toolTip">
-                     <string>超时自动结束</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(255, 255, 255);</string>
-                    </property>
-                    <property name="text">
-                     <string>连接超时(ms)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0">
-                   <widget class="QLabel" name="label_requestTimeOut">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>85</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="toolTip">
-                     <string>超时自动结束</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(255, 255, 255);</string>
-                    </property>
-                    <property name="text">
-                     <string>请求超时(ms)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="1">
-                   <spacer name="verticalSpacer_4">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_time_2">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="toolTip">
-                     <string>超时自动结束</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(255, 255, 255);</string>
-                    </property>
-                    <property name="text">
-                     <string>执行时长(s)</string>
                     </property>
                    </widget>
                   </item>

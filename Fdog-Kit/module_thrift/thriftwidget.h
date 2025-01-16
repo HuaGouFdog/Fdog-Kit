@@ -237,13 +237,15 @@ enum ObjectType {
 class RequestResults {
     public:
 
-
-    QVector<int32_t> Results; //每次请求耗时
-
     QVector<int32_t> connectTime;  //每次连接延时
+    QVector<int32_t> Results;      //每次请求耗时
+    QVector<int32_t> writeTimList;    //每次请求耗时
+    QVector<int32_t> readTimeList;     //每次请求耗时
+    QVector<int32_t> waitTimeList;     //每次等待耗时
+
 
     QString startTime;        //开始时间
-    QString requestTime;      //请求到的时间
+    QString requestTime;      //请求时间
     QString endTime;          //结束时间
     QMutex mutex;
     int count = 0;        //为0时，执行完毕
@@ -254,6 +256,8 @@ class RequestResults {
     int maxRespond = 0;   //最大响应时间
     qint64 totalTime = 0; //总执行时间
     qint64 totalData = 0; //总数据量
+
+    bool isN;
 
     int ms10 = -1;  //前10%的平均耗时
     int ms25 = -1;
@@ -267,12 +271,15 @@ class RequestResults {
     void setResults(const int32_t  value);
     void setConnectTime(const int32_t value);
     void setCount(int value);
-    void decrease();
+    void decrease(int value);
     void setRequestTime(const QString &value);
     void setSectionData();
     void setFailCount(int newFailCount);
     void setTotalData(qint64 newTotalData);
     void setSuccessCount(int newSuccessCount);
+    void setWriteTimList(const int32_t value);
+    void setReadTimeList(const int32_t value);
+    void setWaitTimeList(const int32_t value);
 };
 
 class thriftwidget : public QWidget
@@ -478,7 +485,9 @@ public:
     //解析thrift文件
     void handleThriftFile(QStringList fileList);
     
+    //计算每个线程的工作数
 
+    QVector<int> distributeRequests(int totalRequests, int numThreads);
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void read_data();
@@ -587,10 +596,10 @@ Q_DECLARE_METATYPE(RequestResults*);
 class TestRunnable : public QObject, public QRunnable {
     Q_OBJECT
 public:
-    TestRunnable(QObject * obj, QVector<uint8_t> sendData, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut){
+    TestRunnable(QObject * obj, QVector<uint8_t> sendData, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut){
         obj_ = obj;
         sendData_ = sendData;
-        timer_ = timer;
+        //timer_ = timer;
         rr_ = rr;
         host_ = host;
         port_ = port;
@@ -598,17 +607,46 @@ public:
         requestTimeOut_ = requestTimeOut;
     }
 
-    void sendThriftRequest2(QTcpSocket * clientSocket, QVector<uint8_t> dataArray, QElapsedTimer* timer, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut);
+    TestRunnable(QObject * obj, QVector<QVector<uint8_t>> sendDataS, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut, int count){
+        obj_ = obj;
+        sendDataS_ = sendDataS;
+        //timer_ = timer;
+        rr_ = rr;
+        host_ = host;
+        port_ = port;
+        connectTimeOut_ = connectTimeOut;
+        requestTimeOut_ = requestTimeOut;
+        count_ = count;
+        totalRequests_ = count;
+    }
+
+    void batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uint8_t> dataArray, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut);
     ~TestRunnable() {
         //不需要释放
     }
 
     void run() override {
         //请求数据
+        //qDebug() << "rr_->isN = " << rr_->isN;
+        QVector<QTcpSocket *> clientSocketS;
+        clientSocketS.resize(count_);
+        //qDebug() << "创建套接字：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
+        for (int i = 0; i < clientSocketS.size(); ++i) {
+            clientSocketS[i] = new QTcpSocket();
+            if (rr_->isN) {
+                clientSocketS[i]->setSocketOption(QAbstractSocket::LowDelayOption, 1);
+            }
+        }
+        //qDebug() << "创建套接字结束：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
         QElapsedTimer timer_run;
         timer_run.start();
-        //qDebug() << "requestTimeOut_ = " << requestTimeOut_;
-        sendThriftRequest2(clientSocket, sendData_, timer_, rr_, host_, port_, connectTimeOut_, requestTimeOut_);
+        //clientSocketS[i] = new QTcpSocket();
+        //batchSendThriftRequest(clientSocketS, sendDataS_, timer_, rr_, host_, port_, connectTimeOut_, requestTimeOut_);
+
+        for(int i = 0; i< totalRequests_; i++) {
+            batchSendThriftRequest(clientSocketS.at(i), sendDataS_.at(i), rr_, host_, port_, connectTimeOut_, requestTimeOut_);
+        }
+
         while(!isok && timer_run.elapsed() < requestTimeOut_) { //&& timer_run.elapsed() < 800
             QCoreApplication::processEvents();
         }
@@ -625,17 +663,19 @@ public:
         }
         rr_->mutex.lock();
         //请求加1
-        rr_->decrease();
+        rr_->decrease(totalRequests_);
+        //qDebug() << " isok = " << isok;
         //记录分段数据
         rr_->setSectionData();
         if (rr_->count == 0) {
             //qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
             QMetaObject::invokeMethod(obj_,"rece_propertyTestDone",Qt::QueuedConnection, Q_ARG(RequestResults*,rr_));
             QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int, 100));
-        } else {
-            QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int,rr_->totalTimes/rr_->count));
+        } 
+        // else {
+        //     QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int,rr_->totalTimes/rr_->count));
             
-        }
+        // }
         rr_->mutex.unlock();
     }
 
@@ -643,14 +683,17 @@ public:
     QString host_;
     int port_;
     bool isok = false;
-    QElapsedTimer * timer_;
+    //QElapsedTimer * timer_;
     RequestResults * rr_ = nullptr;
-    QTcpSocket * clientSocket = nullptr;
+    //QTcpSocket * clientSocket = nullptr;
+    //QVector<QTcpSocket *> clientSocketS;
     QVector<uint32_t> receivedData;
-    int64_t count_ = 1;
+    int64_t count_ = 0;
+    int64_t totalRequests_ = 0;
     int64_t needRead = 0;
     QObject * obj_;
     QVector<uint8_t> sendData_;
+    QVector<QVector<uint8_t>> sendDataS_;
     bool isFirstRead = true;
     qint64 elapsedMillisecondsAll = 0;
     int connectTimeOut_ = 0;
