@@ -626,23 +626,16 @@ public:
     }
 
     void run() override {
-        //请求数据
-        //qDebug() << "rr_->isN = " << rr_->isN;
         QVector<QTcpSocket *> clientSocketS;
         clientSocketS.resize(count_);
-        //qDebug() << "创建套接字：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
         for (int i = 0; i < clientSocketS.size(); ++i) {
             clientSocketS[i] = new QTcpSocket();
             if (rr_->isN) {
                 clientSocketS[i]->setSocketOption(QAbstractSocket::LowDelayOption, 1);
             }
         }
-        //qDebug() << "创建套接字结束：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "  thread ID:" << QThread::currentThreadId();
         QElapsedTimer timer_run;
         timer_run.start();
-        //clientSocketS[i] = new QTcpSocket();
-        //batchSendThriftRequest(clientSocketS, sendDataS_, timer_, rr_, host_, port_, connectTimeOut_, requestTimeOut_);
-
         for(int i = 0; i< totalRequests_; i++) {
             batchSendThriftRequest(clientSocketS.at(i), sendDataS_.at(i), rr_, host_, port_, connectTimeOut_, requestTimeOut_);
         }
@@ -668,14 +661,12 @@ public:
         //记录分段数据
         rr_->setSectionData();
         if (rr_->count == 0) {
-            //qDebug() << "rece_propertyTestDone" << "  thread ID:" << QThread::currentThreadId();
             QMetaObject::invokeMethod(obj_,"rece_propertyTestDone",Qt::QueuedConnection, Q_ARG(RequestResults*,rr_));
             QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int, 100));
-        } 
-        // else {
-        //     QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int,rr_->totalTimes/rr_->count));
+        }else {
+            QMetaObject::invokeMethod(obj_,"rece_propertyTestSchedule",Qt::QueuedConnection, Q_ARG(int,rr_->totalTimes/rr_->count));
             
-        // }
+        }
         rr_->mutex.unlock();
     }
 

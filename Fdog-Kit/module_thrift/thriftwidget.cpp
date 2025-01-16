@@ -4415,7 +4415,7 @@ void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uin
         count_ = count_ - 1;
         if (count_ == 0) {
             isok = true;
-            qDebug() << "count_ = " << count_;
+            //qDebug() << "count_ = " << count_;
         }
         clientSocket->disconnectFromHost();
         //clientSocket->deleteLater();
@@ -4517,7 +4517,7 @@ void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uin
                 //qDebug() << "数据接收完毕：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << " 耗时：" << QString::number(timer->elapsed())<< "  thread ID:" << QThread::currentThreadId();
                 if (count_ == 0) {
                     isok = true;
-                    qDebug() << "count_ = " << count_;
+                    //qDebug() << "count_ = " << count_;
                 }
                 rr->setSuccessCount(1);
                 rr->setReadTimeList(elapsedMilliseconds - elapsedMillisecondsWait);
@@ -4665,7 +4665,9 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     for (int i = 0; i < runThreadNum; i++) {
         //最大支持本机支持的线程
         //timer = new QElapsedTimer();
+
         m_pRunnable = new TestRunnable(this, sendData8S, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut, threadTasks.at(i));
+        
         threadpool.start(m_pRunnable);
     }
 
@@ -4683,17 +4685,15 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
 
 void thriftwidget::rece_propertyTestDone(RequestResults * rr)
 {
-    //qDebug() << "======================11";
+    ui->label_schedule->setText("执行进度：0%");
+    ui->progressBar->setValue(0);
     qDebug() << "开始时间：" <<rr->startTime;
     qDebug() << "结束时间：" <<rr->endTime;
     qDebug() << "失败数：" <<rr->failCount;
     qDebug() << "成功数：" <<rr->totalTimes - rr->failCount;
     qDebug() << "请求数：" <<rr->Results.size();
     qDebug() << "连接数：" <<rr->connectTime.size();
-
     //qDebug() << "错误率："
-//    delete rr;
-//    return;
 
     ui->lineEdit_totalRequests->setText(QString::number(rr->totalTimes)); //总执行次数
     QDateTime startTime = QDateTime::fromString(rr->startTime, "yyyy-MM-dd hh:mm:ss.zzz");
@@ -4740,17 +4740,16 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     ui->label_fail_2->setText("失败数：" + QString::number(rr->failCount) + "次");
     ui->label_errorRate_2->setText("错误率：" + QString::number((static_cast<double>(rr->failCount))/rr->totalTimes*100) + "%");
 
-    int32_t sumwriteTimList = std::accumulate(rr->writeTimList.begin(), rr->writeTimList.end(), 0);
+    int32_t sumwriteTimeList = std::accumulate(rr->writeTimList.begin(), rr->writeTimList.end(), 0);
     qDebug() << "rr->writeTimList = " << rr->writeTimList;
-    qDebug() << "平均写入耗时 = " << sumwriteTimList/rr->writeTimList.size() << "ms";
-
+    qDebug() << "平均写入耗时 = " << sumwriteTimeList/rr->writeTimList.size() << "ms";
+    ui->lineEdit_writeTime->setText(QString::number(sumwriteTimeList/rr->writeTimList.size()));
     int32_t sumreadTimeList = std::accumulate(rr->readTimeList.begin(), rr->readTimeList.end(), 0);
     qDebug() << "rr->readTimeList = " << rr->readTimeList;
-    qDebug() << "平均读取耗时 = " << sumreadTimeList/rr->readTimeList.size() << "ms";
-
+    ui->lineEdit_readTime->setText(QString::number(sumreadTimeList/rr->readTimeList.size()));
     int32_t sumwaitTimeList = std::accumulate(rr->waitTimeList.begin(), rr->waitTimeList.end(), 0);
     qDebug() << "rr->waitTimeList = " << rr->waitTimeList;
-    qDebug() << "平均等待耗时 = " << sumwaitTimeList/rr->waitTimeList.size() << "ms";
+    ui->lineEdit_waitTime->setText(QString::number(sumwaitTimeList/rr->waitTimeList.size()));
 
     while (QLayoutItem* item = ui->widget_charts->layout()->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
@@ -4774,15 +4773,15 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     {
         lineSeries2->append(i,rr->Results[i]);
     }
-    lineSeries2->setName("平均响应耗时");   //设置系列名称
+    lineSeries2->setName("平均响应时间");   //设置系列名称
 
 
     QSplineSeries *lineSeries3 = new QSplineSeries(); //创建折线系列
-    for(int64_t i=0; i< rr->connectTime.size(); i+=bc)
+    for(int64_t i=0; i< rr->waitTimeList.size(); i+=bc)
     {
-        lineSeries3->append(i,rr->connectTime[i]);
+        lineSeries3->append(i,rr->waitTimeList[i]);
     }
-    lineSeries3->setName("平均连接耗时");   //设置系列名称
+    lineSeries3->setName("平均等待时间");   //设置系列名称
 
     QChart *chart = new QChart();
     //设置背景区域圆角角度
@@ -4812,7 +4811,7 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     axisY->setLabelFormat("%d"); //标签格式
     axisY->setTickCount(10);
     axisY->setMinorTickCount(8);
-    axisY->setTitleText("耗时");
+    axisY->setTitleText("时间");
     axisY->setGridLineVisible(true);
 
     chart->setTitle(ui->lineEdit_funcName->text() + "接口压测数据图");
@@ -4868,12 +4867,10 @@ void RequestResults::setCount(int value)
 
 void RequestResults::decrease(int value)
 {
-    //mutex.lock();
     count = count - value;
     qDebug() << "完成" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") 
                                     << "  thread ID:" << QThread::currentThreadId() 
                                     << "  count = " << count ;
-    //mutex.unlock();
 }
 
 void RequestResults::setRequestTime(const QString &value) {
@@ -4884,8 +4881,6 @@ void RequestResults::setRequestTime(const QString &value) {
 
 void RequestResults::setSectionData()
 {
-    //mutex.lock();
-    //10 25 50 75 90 95
     double runSum = static_cast<double>(totalTimes) - count; //已经执行次数
     if (runSum > (static_cast<double>(totalTimes) * 0.10) && ms10 == -1) {
         int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
@@ -4906,7 +4901,6 @@ void RequestResults::setSectionData()
         int32_t sum = std::accumulate(Results.begin(), Results.end(), 0);
         ms95 = static_cast<double>(sum) / Results.size();
     }
-    //mutex.unlock();
 }
 
 void RequestResults::setFailCount(int newFailCount)
