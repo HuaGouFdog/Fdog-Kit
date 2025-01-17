@@ -1700,7 +1700,7 @@ void thriftwidget::assembleTBinaryMessage(int buildType, int num)
             value = preDataMapV[item->lineEditParamName->text()].at(num%preDataMapV[item->lineEditParamName->text()].size());
             //qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
         }
-        //ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
+        ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
         //lineEditParamValue->toolTip()
         QString SN = item->lineEditParamSN->text();
         //qDebug() << "SN = " << SN;
@@ -1883,7 +1883,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
             value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num%preDataMapV[itemChild->lineEditParamName->text()].size());
             //qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
         }
-        //ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
+        ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
         //qDebug() << "SN = " << SN;
         if (SN == "") {
             qDebug() << "参数名" << value_ << "获取sn失败，默认+1";
@@ -4628,14 +4628,6 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     int connectTimeOut =  ui->lineEdit_connectTimeOut->text().toInt();
     int requestTimeOut =  ui->lineEdit_requestTimeOut->text().toInt();
     ui->plainTextEdit_testData->clear();
-    // for (int64_t i = 0; i < loopNum; i++) {
-    //     ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
-    //     assembleTBinaryMessage(1, i);
-    //     QVector<uint8_t> sendData8 = string2Uint8List(dataList);
-    //     QElapsedTimer * timer  = new QElapsedTimer();
-    //     TestRunnable * m_pRunnable = new TestRunnable(this, sendData8, timer, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut);
-    //     threadpool.start(m_pRunnable);
-    // }
     QVector<QVector<uint8_t>> sendData8S;
     //QElapsedTimer * timer;
     TestRunnable * m_pRunnable;
@@ -4644,15 +4636,11 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     int runThreadNum = ui->lineEdit_thread->text().toInt();
 
     //准备压测数据
-    // 800
-
-    // 100 100 100 100 100 100 100 100 100
-    // 120 115 110 105 100 95  90  85  80
     QVector<int> threadTasks = distributeRequests(loopNum, runThreadNum);
-    qDebug() << threadTasks;
-
     //准备压测数据
     for (int i = 0; i < loopNum; i++) {
+        ui->plainTextEdit_testData->appendPlainText("");
+        ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
         assembleTBinaryMessage(1, i);
         //转换大小字节序
         QVector<uint8_t> dataListTemp = string2Uint8List(dataList);
@@ -4663,24 +4651,9 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     }
 
     for (int i = 0; i < runThreadNum; i++) {
-        //最大支持本机支持的线程
-        //timer = new QElapsedTimer();
-
         m_pRunnable = new TestRunnable(this, sendData8S, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut, threadTasks.at(i));
-        
         threadpool.start(m_pRunnable);
     }
-
-    // for (int64_t i = 0; i < loopNum/100; i++) {
-    //     for(int j =0; j < 100; j++) {
-    //         assembleTBinaryMessage(1, i*100 + j);
-    //         sendData8S.push_back(string2Uint8List(dataList));
-    //     }
-    //     timer = new QElapsedTimer();
-    //     m_pRunnable = new TestRunnable(this, sendData8S, timer, rr, ui->lineEdit_host->text(), port, connectTimeOut, requestTimeOut);
-    //     threadpool.start(m_pRunnable);
-    // }
-
 }
 
 void thriftwidget::rece_propertyTestDone(RequestResults * rr)

@@ -4,5 +4,11 @@
         <file>qss/menu.qss</file>
         <file>qss/side_drak.qss</file>
         <file>qss/side_light.qss</file>
+        <file>module_mainwindow/qss/side_dark.qss</file>
+        <file>module_mainwindow/qss/side_light.qss</file>
+        <file>module_mainwindow/qss/centralWidget_dark.qss</file>
+        <file>module_mainwindow/qss/centralWidget_light.qss</file>
+        <file>module_mainwindow/qss/centralWidget_blue.qss</file>
+        <file>module_mainwindow/qss/side_blue.qss</file>
     </qresource>
 </RCC>

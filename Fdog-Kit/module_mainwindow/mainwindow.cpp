@@ -67,21 +67,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //设置内边距
     //设置阴影效果
-    defaultShadow = new QGraphicsDropShadowEffect();
-    //模糊半径
-    defaultShadow->setBlurRadius(15);
-    //颜色值
-    defaultShadow->setColor(QColor(0, 0, 0));
-    //横纵偏移量
-    defaultShadow->setOffset(0, 0);
+    // defaultShadow = new QGraphicsDropShadowEffect();
+    // //模糊半径
+    // defaultShadow->setBlurRadius(15);
+    // //颜色值
+    // defaultShadow->setColor(QColor(0, 0, 0));
+    // //横纵偏移量
+    // defaultShadow->setOffset(0, 0);
     //不要直接给this，会报UpdateLayeredWindowIndirect failed
-    ui->centralWidget->setGraphicsEffect(defaultShadow);
-
-    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
-    effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect->setColor(QColor(10, 31, 57));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_side->setGraphicsEffect(effect);
+    //ui->centralWidget->setGraphicsEffect(defaultShadow);
+    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(0, 0, 0));
+    getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
 
     isPressedWidget = false;
     m_isMousePressed = false;
@@ -152,7 +148,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButton_newVersion->setToolTip("");
     ui->toolButton_newVersion->setIcon(QIcon());
     ui->toolButton_newVersion->hide();
-    checkNewVersion();
+    //checkNewVersion();
 
     //设置系统托盘
     createSystemTray();
@@ -745,6 +741,121 @@ bool MainWindow::isVersionGreater(const QString &version1, const QString &versio
     }
 
     return false;
+}
+
+void MainWindow::changeMainWindowTheme()
+{
+    if (mode == LIGHT_THEME) {
+        qDebug() << "切换暗黑模式";
+        //暗黑模式
+        //清除样式表
+        style()->unpolish(ui->widget_side);
+        style()->unpolish(ui->centralWidget);
+
+        ui->widget_side->setStyleSheet("");
+        ui->centralWidget->setStyleSheet("");
+        ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("");
+
+        //设置新的样式表
+        ui->widget_side->setStyleSheet(getStyleFile(":/module_mainwindow/qss/side_dark.qss"));
+        ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_dark.qss"));
+        ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("border-image: url(:/module_mainwindow/images/light/iconHome-light.png);");
+        //刷新
+        style()->polish(ui->widget_side);
+        style()->polish(ui->centralWidget);
+        style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
+        //更新阴影颜色
+        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
+        ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/moon-light.png"));
+        ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
+        ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        ui->toolButton_close->setIcon(QIcon(":/module_mainwindow/images/light/close-light.png"));
+
+        ui->toolButton_side_home->setIcon(QIcon(":/module_mainwindow/images/light/home-light.png"));
+        ui->toolButton_side_build->setIcon(QIcon(":/module_mainwindow/images/light/build-light.png"));
+        ui->toolButton_side_thrift->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        ui->toolButton_side_zookeeper->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
+        ui->toolButton_side_shell->setIcon(QIcon(":/module_mainwindow/images/light/terminal-light.png"));
+        ui->toolButton_side_mysql->setIcon(QIcon(":/module_mainwindow/images/light/mysql-light.png"));
+        ui->toolButton_side_qss->setIcon(QIcon(":/module_mainwindow/images/light/qss-light.png"));
+        ui->toolButton_side_tool->setIcon(QIcon(":/module_mainwindow/images/light/too-light.png"));
+        ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
+        ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
+        mode = DARK_THEME;
+    } else if (mode == DARK_THEME) {
+        qDebug() << "切换明亮模式";
+        //明亮模式
+        //清除样式表
+        style()->unpolish(ui->widget_side);
+        style()->unpolish(ui->centralWidget);
+
+        ui->widget_side->setStyleSheet("");
+        ui->centralWidget->setStyleSheet("");
+        ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("");
+        //设置新的样式表
+        ui->widget_side->setStyleSheet(getStyleFile(":/module_mainwindow/qss/side_light.qss"));
+        ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_light.qss"));
+        ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("border-image: url(:/module_mainwindow/images/dark/iconHome-dark.png);");
+        //刷新
+        style()->polish(ui->widget_side);
+        style()->polish(ui->centralWidget);
+        style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
+        //更新阴影颜色
+        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
+        ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/dark/sun-dark.png"));
+        ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/dark/min-dark.png"));
+        ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/max-dark.png"));
+        ui->toolButton_close->setIcon(QIcon(":/module_mainwindow/images/dark/close-dark.png"));
+
+        ui->toolButton_side_home->setIcon(QIcon(":/module_mainwindow/images/dark/home-dark.png"));
+        ui->toolButton_side_build->setIcon(QIcon(":/module_mainwindow/images/dark/build-dark.png"));
+        ui->toolButton_side_thrift->setIcon(QIcon(":/module_mainwindow/images/dark/func-dark.png"));
+        ui->toolButton_side_zookeeper->setIcon(QIcon(":/module_mainwindow/images/dark/zookeeper-dark.png"));
+        ui->toolButton_side_shell->setIcon(QIcon(":/module_mainwindow/images/dark/terminal-dark.png"));
+        ui->toolButton_side_mysql->setIcon(QIcon(":/module_mainwindow/images/dark/mysql-dark.png"));
+        ui->toolButton_side_qss->setIcon(QIcon(":/module_mainwindow/images/dark/qss-dark.png"));
+        ui->toolButton_side_tool->setIcon(QIcon(":/module_mainwindow/images/dark/too-dark.png"));
+        ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/dark/extend-dark.png"));
+        ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/dark/setting-dark.png"));
+        mode = BLUE_THEME;
+    } else if (mode = BLUE_THEME) {
+        qDebug() << "切换蓝色模式";
+        //蓝色模式
+        //清除样式表
+        style()->unpolish(ui->widget_side);
+        style()->unpolish(ui->centralWidget);
+
+        ui->widget_side->setStyleSheet("");
+        ui->centralWidget->setStyleSheet("");
+        ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("");
+
+        //设置新的样式表
+        ui->widget_side->setStyleSheet(getStyleFile(":/module_mainwindow/qss/side_blue.qss"));
+        ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_blue.qss"));
+        ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("border-image: url(:/module_mainwindow/images/light/iconHome-light.png);");
+        //刷新
+        style()->polish(ui->widget_side);
+        style()->polish(ui->centralWidget);
+        style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
+        //更新阴影颜色
+        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
+        ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/cloud-light.png"));
+        ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
+        ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        ui->toolButton_close->setIcon(QIcon(":/module_mainwindow/images/light/close-light.png"));
+
+        ui->toolButton_side_home->setIcon(QIcon(":/module_mainwindow/images/light/home-light.png"));
+        ui->toolButton_side_build->setIcon(QIcon(":/module_mainwindow/images/light/build-light.png"));
+        ui->toolButton_side_thrift->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        ui->toolButton_side_zookeeper->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
+        ui->toolButton_side_shell->setIcon(QIcon(":/module_mainwindow/images/light/terminal-light.png"));
+        ui->toolButton_side_mysql->setIcon(QIcon(":/module_mainwindow/images/light/mysql-light.png"));
+        ui->toolButton_side_qss->setIcon(QIcon(":/module_mainwindow/images/light/qss-light.png"));
+        ui->toolButton_side_tool->setIcon(QIcon(":/module_mainwindow/images/light/too-light.png"));
+        ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
+        ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
+        mode = LIGHT_THEME;
+    }
 }
 
 void MainWindow::checkNewVersion()
@@ -1526,6 +1637,10 @@ void MainWindow::on_toolButton_zk_tool_clicked()
 
 void MainWindow::on_toolButton_side_theme_clicked()
 {
+    //修改主题
+    changeMainWindowTheme();
+    return;
+
     style()->unpolish(ui->widget_side);
     ui->widget_side->setStyleSheet("");
     ui->widget_side->setStyleSheet("#widget_side {\
@@ -1658,16 +1773,18 @@ void MainWindow::on_toolButton_side_thrift_clicked()
             // 获取索引处的widget
             QWidget *widget = ui->stackedWidget->widget(i);
             if (widget->objectName() == "twidget") {
-                ui->stackedWidget->setCurrentIndex(i);
-                QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
-                ui->stackedWidget->setGraphicsEffect(eff);
-                QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
-                a->setDuration(200);
-                a->setStartValue(0);
-                a->setEndValue(1);
-                a->setEasingCurve(QEasingCurve::InBack);
-                a->start(QPropertyAnimation::DeleteWhenStopped);
-                connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
+                if(ui->stackedWidget->currentIndex() != i) {
+                    ui->stackedWidget->setCurrentIndex(i);
+                    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+                    ui->stackedWidget->setGraphicsEffect(eff);
+                    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+                    a->setDuration(200);
+                    a->setStartValue(0);
+                    a->setEndValue(1);
+                    a->setEasingCurve(QEasingCurve::InBack);
+                    a->start(QPropertyAnimation::DeleteWhenStopped);
+                    connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
+                }
                 return;
             }
         }
@@ -1697,16 +1814,19 @@ void MainWindow::on_toolButton_side_zookeeper_clicked()
             // 获取索引处的widget
             QWidget *widget = ui->stackedWidget->widget(i);
             if (widget->objectName() == "zmanagewidget") {
-                ui->stackedWidget->setCurrentIndex(i);
-                QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
-                ui->stackedWidget->setGraphicsEffect(eff);
-                QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
-                a->setDuration(200);
-                a->setStartValue(0);
-                a->setEndValue(1);
-                a->setEasingCurve(QEasingCurve::InBack);
-                a->start(QPropertyAnimation::DeleteWhenStopped);
-                connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
+                if(ui->stackedWidget->currentIndex() != i) {
+                    ui->stackedWidget->setCurrentIndex(i);
+                    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+                    ui->stackedWidget->setGraphicsEffect(eff);
+                    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+                    a->setDuration(200);
+                    a->setStartValue(0);
+                    a->setEndValue(1);
+                    a->setEasingCurve(QEasingCurve::InBack);
+                    a->start(QPropertyAnimation::DeleteWhenStopped);
+                    connect(a, SIGNAL(finished()), this, SLOT(whenAnimationFinish()));
+                }
+
                 return;
             }
         }
@@ -1731,7 +1851,9 @@ void MainWindow::on_toolButton_side_about_clicked()
 
 void MainWindow::on_toolButton_side_home_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    if(ui->stackedWidget->currentIndex() != 0) {
+        ui->stackedWidget->setCurrentIndex(0);
+    }
     QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
     ui->stackedWidget->setGraphicsEffect(eff);
     QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
@@ -1840,3 +1962,9 @@ void MainWindow::whenAnimationFinish()
 {
     ui->stackedWidget->setGraphicsEffect(0); // remove effect
 }
+
+void MainWindow::on_toolButton_more_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
+}
+

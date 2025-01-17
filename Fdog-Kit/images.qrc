@@ -1,0 +1,41 @@
+<RCC>
+    <qresource prefix="/">
+        <file>module_mainwindow/images/light/build-light.png</file>
+        <file>module_mainwindow/images/light/extend-light.png</file>
+        <file>module_mainwindow/images/light/func-light.png</file>
+        <file>module_mainwindow/images/light/github-light.png</file>
+        <file>module_mainwindow/images/light/home-light.png</file>
+        <file>module_mainwindow/images/light/moon-light.png</file>
+        <file>module_mainwindow/images/light/mysql-light.png</file>
+        <file>module_mainwindow/images/light/qss-light.png</file>
+        <file>module_mainwindow/images/light/setting-light.png</file>
+        <file>module_mainwindow/images/light/sun-light.png</file>
+        <file>module_mainwindow/images/light/terminal-light.png</file>
+        <file>module_mainwindow/images/light/too-light.png</file>
+        <file>module_mainwindow/images/light/zookeeper-light.png</file>
+        <file>module_mainwindow/images/dark/build-dark.png</file>
+        <file>module_mainwindow/images/dark/extend-dark.png</file>
+        <file>module_mainwindow/images/dark/func-dark.png</file>
+        <file>module_mainwindow/images/dark/github-dark.png</file>
+        <file>module_mainwindow/images/dark/home-dark.png</file>
+        <file>module_mainwindow/images/dark/moon-dark.png</file>
+        <file>module_mainwindow/images/dark/mysql-dark.png</file>
+        <file>module_mainwindow/images/dark/qss-dark.png</file>
+        <file>module_mainwindow/images/dark/setting-dark.png</file>
+        <file>module_mainwindow/images/dark/sun-dark.png</file>
+        <file>module_mainwindow/images/dark/terminal-dark.png</file>
+        <file>module_mainwindow/images/dark/too-dark.png</file>
+        <file>module_mainwindow/images/dark/zookeeper-dark.png</file>
+        <file>module_mainwindow/images/light/close-light.png</file>
+        <file>module_mainwindow/images/light/iconHome-light.png</file>
+        <file>module_mainwindow/images/light/max-light.png</file>
+        <file>module_mainwindow/images/light/min-light.png</file>
+        <file>module_mainwindow/images/light/normal-light.png</file>
+        <file>module_mainwindow/images/dark/close-dark.png</file>
+        <file>module_mainwindow/images/dark/iconHome-dark.png</file>
+        <file>module_mainwindow/images/dark/max-dark.png</file>
+        <file>module_mainwindow/images/dark/min-dark.png</file>
+        <file>module_mainwindow/images/dark/normal-dark.png</file>
+        <file>module_mainwindow/images/light/cloud-light.png</file>
+    </qresource>
+</RCC>

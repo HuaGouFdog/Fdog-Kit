@@ -1,0 +1,14 @@
+#widget_side {
+    color: rgb(255, 255, 255);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(24,26,29);
+}
+
+#label_name {
+    color: rgb(255, 255, 255);
+}
+
+#label_side_version {
+    color: rgb(255, 255, 255);
+}
