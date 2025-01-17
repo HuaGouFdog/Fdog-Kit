@@ -1,0 +1,43 @@
+#centralWidget {
+    color: rgb(35, 39, 46);
+    background-color: rgb(255, 255, 255);
+    border-radius:10px;
+}
+
+QLabel {
+    color: rgb(35, 39, 46);
+}
+
+QToolButton {
+	color: rgb(35, 39, 46);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	
+	color: rgb(24,26,29);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+#widget_welcome_body_widget2_newCreate{
+    border: 1px solid rgba(24,26,29,80);
+    background-color: rgba(35, 39, 46, 30);
+    border-radius: 10px;
+}
+
+#widget_use{
+    border: 1px solid rgba(24,26,29,80);
+    background-color: rgba(35, 39, 46, 30);
+    border-radius: 10px;
+}
+
+#widget_body{
+   background-color: rgba(30, 45, 54, 0);
+}

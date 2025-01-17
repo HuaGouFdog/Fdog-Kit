@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1017</width>
-    <height>668</height>
+    <height>874</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -40,10 +40,7 @@
     <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QMainWindow,QWidget#centralWidget {
-background-color: rgb(67, 67, 67);
-border-radius:10px;
-}
+   <string notr="true">
 
 QMenu {
 
@@ -91,8 +88,42 @@ QMenu::separator {
   <widget class="QWidget" name="centralWidget">
    <property name="styleSheet">
     <string notr="true">#centralWidget {
-	background-color: qlineargradient(spread:pad, x1:0, y1:0.227, x2:1, y2:0.597, stop:0 rgba(35, 77, 123, 255), stop:1 rgba(88, 161, 232, 255));
+border-image: url(:/lib/back1.png);
 border-radius:10px;
+}
+
+QToolButton {
+	color: rgb(217, 236, 237);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	
+	color: rgb(197, 197, 197);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+#widget_body{
+   background-color: rgba(30, 45, 54, 0);
+}
+
+#widget_welcome_body_widget2_newCreate{
+    border: 1px solid rgba(197, 197, 197,50);
+    background-color: rgba(255, 255, 255, 20);
+    border-radius: 10px;
+}
+
+#widget_use{
+border: 1px solid rgba(197, 197, 197,50);
+background-color: rgba(217, 236, 237, 20);
+border-radius: 10px;
 }</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -174,6 +205,57 @@ border-radius:10px;
         </widget>
        </item>
        <item>
+        <spacer name="verticalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_name">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Old English Text MT</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Fdog</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_side_1">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -243,8 +325,8 @@ border-radius: 2px;
           <string>首页</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/home.png</normaloff>:/lib/home.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/home-light.png</normaloff>:/module_mainwindow/images/light/home-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -281,7 +363,7 @@ border-radius: 2px;
           </font>
          </property>
          <property name="toolTip">
-          <string>构建</string>
+          <string>关于</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QToolButton {
@@ -311,11 +393,11 @@ border-radius: 2px;
 }</string>
          </property>
          <property name="text">
-          <string/>
+          <string>build</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/build.png</normaloff>:/lib/build.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/build-light.png</normaloff>:/module_mainwindow/images/light/build-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -385,8 +467,8 @@ border-radius: 2px;
           <string>thrift</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/func.png</normaloff>:/lib/func.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/func-light.png</normaloff>:/module_mainwindow/images/light/func-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -456,8 +538,8 @@ border-radius: 2px;
           <string>zk</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/Zookeeper.png</normaloff>:/lib/Zookeeper.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/zookeeper-light.png</normaloff>:/module_mainwindow/images/light/zookeeper-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -527,8 +609,8 @@ border-radius: 2px;
           <string>终端</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/shell_side.png</normaloff>:/lib/shell_side.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/terminal-light.png</normaloff>:/module_mainwindow/images/light/terminal-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -601,8 +683,8 @@ border-radius: 2px;
           <string>数据库</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/mysql.png</normaloff>:/lib/mysql.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/mysql-light.png</normaloff>:/module_mainwindow/images/light/mysql-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -675,8 +757,8 @@ border-radius: 2px;
           <string>数据库</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/qss.png</normaloff>:/lib/qss.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/qss-light.png</normaloff>:/module_mainwindow/images/light/qss-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -746,8 +828,8 @@ border-radius: 2px;
           <string>工具箱</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/tool2.png</normaloff>:/lib/tool2.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/too-light.png</normaloff>:/module_mainwindow/images/light/too-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -817,8 +899,8 @@ border-radius: 2px;
           <string>扩展</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/tool_plugIn.png</normaloff>:/lib/tool_plugIn.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/extend-light.png</normaloff>:/module_mainwindow/images/light/extend-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -888,8 +970,8 @@ border-radius: 2px;
           <string>设置</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/setting2.png</normaloff>:/lib/setting2.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/setting-light.png</normaloff>:/module_mainwindow/images/light/setting-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -906,72 +988,17 @@ border-radius: 2px;
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_github">
-         <property name="minimumSize">
+        <spacer name="verticalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>20</width>
+           <height>40</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>github</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string>GitHub</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/github.png</normaloff>:/lib/github.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>25</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
+        </spacer>
        </item>
        <item>
         <widget class="QToolButton" name="toolButton_side_theme">
@@ -1010,16 +1037,6 @@ QToolButton::menu-indicator {
 	image: None;
 }
 
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
 QToolTip {
 color:#ced4da;
 background-color: rgb(108, 117, 125, 65);
@@ -1030,8 +1047,8 @@ border-radius: 2px;
           <string>暗黑</string>
          </property>
          <property name="icon">
-          <iconset resource="../lib.qrc">
-           <normaloff>:/lib/black_mode.png</normaloff>:/lib/black_mode.png</iconset>
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/sun-light.png</normaloff>:/module_mainwindow/images/light/sun-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -1043,19 +1060,6 @@ border-radius: 2px;
           <enum>Qt::ToolButtonIconOnly</enum>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_side_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item>
         <widget class="QLabel" name="label_side_version">
@@ -1073,11 +1077,7 @@ border-radius: 2px;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QLabel {
-color: rgb(255, 255, 255);
-border: none;
-background-color: rgba(255, 255, 255, 0);
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>V1.0.6</string>
@@ -1271,8 +1271,8 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../lib.qrc">
-              <normaloff>:/lib/icon-minus3.png</normaloff>:/lib/icon-minus3.png</iconset>
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/min-light.png</normaloff>:/module_mainwindow/images/light/min-light.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -1325,8 +1325,8 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../lib.qrc">
-              <normaloff>:/lib/Icon_max4.png</normaloff>:/lib/Icon_max4.png</iconset>
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/max-light.png</normaloff>:/module_mainwindow/images/light/max-light.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -1392,8 +1392,8 @@ QToolButton:hover {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../lib.qrc">
-              <normaloff>:/lib/icon-close8.png</normaloff>:/lib/icon-close8.png</iconset>
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/close-light.png</normaloff>:/module_mainwindow/images/light/close-light.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -1464,8 +1464,7 @@ QToolButton:hover {
        <item>
         <widget class="QWidget" name="widget_body" native="true">
          <property name="styleSheet">
-          <string notr="true">background-color: rgba(30, 45, 54, 0);
-color: rgb(255, 255, 255);</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="spacing">
@@ -1486,8 +1485,7 @@ color: rgb(255, 255, 255);</string>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(30, 45, 54,0);
-color: rgb(255, 255, 255);</string>
+             <string notr="true"/>
             </property>
             <property name="lineWidth">
              <number>1</number>
@@ -1497,8 +1495,7 @@ color: rgb(255, 255, 255);</string>
             </property>
             <widget class="QWidget" name="page_main">
              <property name="styleSheet">
-              <string notr="true">background-color: rgba(30, 45, 54,0);
-color: rgb(255, 255, 255);</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_16">
               <property name="leftMargin">
@@ -1597,6 +1594,9 @@ color: rgb(255, 255, 255);</string>
                         <height>80</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_3">
                        <property name="leftMargin">
                         <number>0</number>
@@ -1632,7 +1632,7 @@ color: rgb(255, 255, 255);</string>
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">border-image: url(:/lib/icon_80.png);</string>
+                          <string notr="true">border-image: url(:/module_mainwindow/images/dark/iconHome-dark.png);</string>
                          </property>
                          <property name="text">
                           <string/>
@@ -1667,8 +1667,7 @@ color: rgb(255, 255, 255);</string>
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">color: qlineargradient(spread:pad, x1:0.789318, y1:0.358, x2:1, y2:1, stop:0 rgba(0, 213, 205, 255), stop:1 rgba(255, 255, 255, 255));
-color: rgb(242, 245, 255);</string>
+                       <string notr="true"/>
                       </property>
                       <property name="text">
                        <string>欢迎使用Fdog-kit</string>
@@ -1778,6 +1777,9 @@ color: rgb(242, 245, 255);</string>
                            <pointsize>11</pointsize>
                           </font>
                          </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
                          <property name="text">
                           <string>新建</string>
                          </property>
@@ -1807,8 +1809,7 @@ color: rgb(242, 245, 255);</string>
                           <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgba(217, 236, 237, 20);
-border-radius: 10px;</string>
+                          <string notr="true"/>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_10">
                           <property name="spacing">
@@ -1857,23 +1858,7 @@ border-radius: 10px;</string>
                              <enum>Qt::LeftToRight</enum>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	
-	color: rgb(197, 197, 197);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
+                             <string notr="true"/>
                             </property>
                             <property name="text">
                              <string>  SSH连接</string>
@@ -1912,23 +1897,7 @@ QToolButton:hover {
                              <enum>Qt::LeftToRight</enum>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	
-	color: rgb(197, 197, 197);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
+                             <string notr="true"/>
                             </property>
                             <property name="text">
                              <string>  zk连接</string>
@@ -1967,23 +1936,7 @@ QToolButton:hover {
                              <enum>Qt::LeftToRight</enum>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	
-	color: rgb(197, 197, 197);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
+                             <string notr="true"/>
                             </property>
                             <property name="text">
                              <string>  数据库连接</string>
@@ -2042,13 +1995,16 @@ QToolButton:hover {
                            <pointsize>11</pointsize>
                           </font>
                          </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
                          <property name="text">
                           <string>最近使用</string>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QWidget" name="widget_14" native="true">
+                        <widget class="QWidget" name="widget_use" native="true">
                          <property name="minimumSize">
                           <size>
                            <width>260</width>
@@ -2065,10 +2021,7 @@ QToolButton:hover {
                           <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">#widget_14{
-background-color: rgba(217, 236, 237, 20);
-border-radius: 10px;
-}
+                          <string notr="true">
 
 QToolButton {
 	color: rgb(217, 236, 237);
@@ -2160,6 +2113,9 @@ QToolButton:hover {
                               <height>30</height>
                              </size>
                             </property>
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
                             <property name="text">
                              <string/>
                             </property>
@@ -2188,6 +2144,9 @@ QToolButton:hover {
                               <width>30</width>
                               <height>30</height>
                              </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true"/>
                             </property>
                             <property name="text">
                              <string/>
@@ -2277,7 +2236,7 @@ QToolButton:hover {
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="toolButton_24">
+                           <widget class="QToolButton" name="toolButton_more">
                             <property name="font">
                              <font>
                               <family>OPPOSans B</family>
@@ -2288,26 +2247,10 @@ QToolButton:hover {
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	
-	color: rgb(197, 197, 197);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
-}</string>
+                             <string notr="true"/>
                             </property>
                             <property name="text">
-                             <string>更多工具</string>
+                             <string>了解更多</string>
                             </property>
                            </widget>
                           </item>
@@ -2442,6 +2385,8 @@ QMenu::separator {
                      <font>
                       <family>OPPOSans B</family>
                       <pointsize>11</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
                       <stylestrategy>PreferAntialias</stylestrategy>
                      </font>
                     </property>
@@ -2848,7 +2793,7 @@ QToolButton:hover {
 color: rgb(255, 255, 255);</string>
                     </property>
                     <property name="currentIndex">
-                     <number>4</number>
+                     <number>0</number>
                     </property>
                     <widget class="QWidget" name="page_4">
                      <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -4642,6 +4587,7 @@ color: rgb(255, 255, 255);</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
+  <include location="../images.qrc"/>
   <include location="../lib.qrc"/>
  </resources>
  <connections/>

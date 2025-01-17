@@ -116,6 +116,7 @@ FORMS += \
     module_form/form.ui
 
 RESOURCES += \
+    images.qrc \
     lib.qrc \
     conf.qrc \
     fonts.qrc \
