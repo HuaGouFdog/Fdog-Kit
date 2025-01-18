@@ -157,14 +157,7 @@ border-radius: 10px;
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">#widget_side {
-	color: rgb(255, 255, 255);
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	
-	
-	background-color: rgb(10, 31, 57);
-}</string>
+       <string notr="true"/>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_12">
        <property name="spacing">
@@ -295,31 +288,7 @@ border-radius: 10px;
           <string>首页</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>首页</string>
@@ -366,31 +335,7 @@ border-radius: 2px;
           <string>关于</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>build</string>
@@ -437,31 +382,7 @@ border-radius: 2px;
           <string>thrift接口测试</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>thrift</string>
@@ -508,31 +429,7 @@ border-radius: 2px;
           <string>zk连接</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>zk</string>
@@ -579,31 +476,7 @@ border-radius: 2px;
           <string>终端连接</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>终端</string>
@@ -650,31 +523,7 @@ border-radius: 2px;
           <string>数据库连接</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="locale">
           <locale language="English" country="UnitedStates"/>
@@ -724,31 +573,7 @@ border-radius: 2px;
           <string>qss美化</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="locale">
           <locale language="English" country="UnitedStates"/>
@@ -798,31 +623,7 @@ border-radius: 2px;
           <string>工具箱</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>工具箱</string>
@@ -869,31 +670,7 @@ border-radius: 2px;
           <string>扩展</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>扩展</string>
@@ -940,31 +717,7 @@ border-radius: 2px;
           <string>设置</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(26, 53, 83);
-	border: none;
-}
-
-
-QToolTip {
-color:#ced4da;
-background-color: rgb(108, 117, 125, 65);
-border-radius: 2px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>设置</string>
@@ -1203,9 +956,7 @@ border-radius: 2px;
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgba(30, 45, 54, 0);
-color: rgb(255, 255, 255);
-</string>
+          <string notr="true"/>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <property name="spacing">
@@ -1247,25 +998,7 @@ color: rgb(255, 255, 255);
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-
-	
-	background-color: rgb(23, 35, 42);
-	border: none;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string/>
@@ -1303,23 +1036,7 @@ QToolButton:hover {
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(23, 35, 42);
-	border: none;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string/>
@@ -1369,24 +1086,7 @@ QToolButton:hover {
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	border-top-right-radius: 9px;
-	background-color: rgba(94, 255, 210, 0);
-	border: none;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgb(200, 0, 0);
-	border: none;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string/>

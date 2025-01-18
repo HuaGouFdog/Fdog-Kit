@@ -41,3 +41,46 @@ QToolButton:hover {
 #widget_body{
    background-color: rgba(30, 45, 54, 0);
 }
+
+#toolButton_min {
+    color: rgb(255, 255, 255);
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
+#toolButton_min::menu-indicator { 
+    image: None;
+}
+#toolButton_min:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(24,26,29);
+    border: none;
+}
+
+#toolButton_max {
+    color: rgb(255, 255, 255);
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
+#toolButton_max::menu-indicator { 
+    image: None;
+}
+#toolButton_max:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(24,26,29);
+    border: none;
+}
+
+#toolButton_close{
+    color: rgb(255, 255, 255);
+    border-top-right-radius: 9px;
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
+#toolButton_close::menu-indicator { 
+	image: None;
+}
+#toolButton_close:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(200, 0, 0);
+    border: none;
+}

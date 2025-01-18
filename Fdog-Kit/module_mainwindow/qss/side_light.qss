@@ -1,3 +1,9 @@
+QToolTip {
+color:#ced4da;
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}
+
 #widget_side {
     color: rgb(35, 39, 46);
     border-top-left-radius: 10px;
@@ -11,4 +17,18 @@
 
 #label_side_version {
     color: rgb(35, 39, 46);
+}
+
+QToolButton {
+    color: rgb(255, 255, 255);
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
+QToolButton::menu-indicator { 
+    image: None;
+}
+QToolButton:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    border: none;
 }

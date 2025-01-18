@@ -52,32 +52,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(0, 0, 0));
+
+    //设置样式表
+    changeMainWindowTheme();
+
     Qt::WindowFlags flags = this->windowFlags();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //Qt::WindowStaysOnTopHint
     // QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     this->setAttribute(Qt::WA_TranslucentBackground, true);
     setContentsMargins(10, 10, 10, 10);
-    ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
-
-    
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     //窗口标题最小化，最大化，在这里实现
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
-
-    //设置内边距
-    //设置阴影效果
-    // defaultShadow = new QGraphicsDropShadowEffect();
-    // //模糊半径
-    // defaultShadow->setBlurRadius(15);
-    // //颜色值
-    // defaultShadow->setColor(QColor(0, 0, 0));
-    // //横纵偏移量
-    // defaultShadow->setOffset(0, 0);
-    //不要直接给this，会报UpdateLayeredWindowIndirect failed
-    //ui->centralWidget->setGraphicsEffect(defaultShadow);
-    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(0, 0, 0));
-    getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
+    //getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
 
     isPressedWidget = false;
     m_isMousePressed = false;
@@ -90,27 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_line->hide();
     ui->stackedWidget->setCurrentIndex(0);
 
-    // FlowLayout *flowLayout = new FlowLayout(10, 15, 15);
-    // //flowLayout->addWidget(new QPushButton(tr("Short")));
-    // //flowLayout->addWidget(new QPushButton(tr("Longer")));
-    // //flowLayout->addWidget(new QPushButton(tr("Different text")));
-    // WidgetMouseFilter * wfFilter;
-    // wfFilter = new WidgetMouseFilter();
-
-    // //ui->widget_9->installEventFilter(wfFilter);
-
-    // //flowLayout->addWidget(new QPushButton(tr("More text")));
-    // //flowLayout->addWidget(new QPushButton(tr("Even longer button text")));
-    // //flowLayout->setSpacing(50);
-    // //flowLayout->horizontalSpacing(10);
-    // //flowLayout->verticalSpacing(10);
-    // flowLayout->setSpacing(30);
-
-
     ui->comboBox_tool->setView(new QListView());
-
-    //ui->toolButton_side_about->hide();
-    //ui->widget_25->hide();
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo2.png"));
@@ -764,8 +734,6 @@ void MainWindow::changeMainWindowTheme()
         style()->polish(ui->widget_side);
         style()->polish(ui->centralWidget);
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
-        //更新阴影颜色
-        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/moon-light.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
         ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
@@ -781,6 +749,12 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_side_tool->setIcon(QIcon(":/module_mainwindow/images/light/too-light.png"));
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
+
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/add-light.png"));
+        ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
+        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        //更新阴影颜色
+        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
         mode = DARK_THEME;
     } else if (mode == DARK_THEME) {
         qDebug() << "切换明亮模式";
@@ -800,8 +774,7 @@ void MainWindow::changeMainWindowTheme()
         style()->polish(ui->widget_side);
         style()->polish(ui->centralWidget);
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
-        //更新阴影颜色
-        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
+
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/dark/sun-dark.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/dark/min-dark.png"));
         ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/max-dark.png"));
@@ -817,6 +790,13 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_side_tool->setIcon(QIcon(":/module_mainwindow/images/dark/too-dark.png"));
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/dark/extend-dark.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/dark/setting-dark.png"));
+
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/dark//add-dark.png"));
+        ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/dark/zookeeper-dark.png"));
+        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/dark/func-dark.png"));
+
+        //更新阴影颜色
+        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
         mode = BLUE_THEME;
     } else if (mode = BLUE_THEME) {
         qDebug() << "切换蓝色模式";
@@ -837,8 +817,6 @@ void MainWindow::changeMainWindowTheme()
         style()->polish(ui->widget_side);
         style()->polish(ui->centralWidget);
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
-        //更新阴影颜色
-        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/cloud-light.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
         ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
@@ -854,6 +832,12 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_side_tool->setIcon(QIcon(":/module_mainwindow/images/light/too-light.png"));
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
+
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/add-light.png"));
+        ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
+        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        //更新阴影颜色
+        getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
         mode = LIGHT_THEME;
     }
 }
