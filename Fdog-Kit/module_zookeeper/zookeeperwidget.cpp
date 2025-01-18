@@ -113,6 +113,7 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
 
 void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
 {
+    qDebug() << "开始获取节点";
     ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, path, item);
     threadpool.start(m_pRunnable);
 }

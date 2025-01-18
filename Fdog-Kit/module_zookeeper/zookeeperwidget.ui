@@ -229,6 +229,9 @@ padding-right:10px;
                 <font>
                  <family>OPPOSans B</family>
                  <pointsize>10</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -716,14 +719,14 @@ QMenu::separator {
                    <attribute name="headerCascadingSectionResizes">
                     <bool>false</bool>
                    </attribute>
+                   <attribute name="headerMinimumSectionSize">
+                    <number>30</number>
+                   </attribute>
                    <attribute name="headerDefaultSectionSize">
                     <number>100</number>
                    </attribute>
                    <attribute name="headerHighlightSections">
                     <bool>false</bool>
-                   </attribute>
-                   <attribute name="headerMinimumSectionSize">
-                    <number>30</number>
                    </attribute>
                    <attribute name="headerShowSortIndicator" stdset="0">
                     <bool>false</bool>
@@ -1409,6 +1412,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1438,6 +1444,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1467,6 +1476,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1496,6 +1508,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1553,6 +1568,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1610,6 +1628,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1667,6 +1688,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1724,6 +1748,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1781,6 +1808,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1824,6 +1854,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1853,6 +1886,9 @@ border-radius: 2px;
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
@@ -1987,6 +2023,9 @@ border-radius: 2px;
                 <font>
                  <family>OPPOSans B</family>
                  <pointsize>10</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                  <stylestrategy>PreferAntialias</stylestrategy>
                 </font>
                </property>
@@ -2090,6 +2129,9 @@ padding-right:10px;
                 <font>
                  <family>OPPOSans B</family>
                  <pointsize>10</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                  <stylestrategy>PreferAntialias</stylestrategy>
                 </font>
                </property>
@@ -2267,6 +2309,9 @@ QComboBox QAbstractItemView::item:selected {
                 <font>
                  <family>OPPOSans B</family>
                  <pointsize>10</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                  <stylestrategy>PreferAntialias</stylestrategy>
                 </font>
                </property>
