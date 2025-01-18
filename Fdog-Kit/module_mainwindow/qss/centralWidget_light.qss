@@ -1,6 +1,6 @@
 #centralWidget {
     color: rgb(35, 39, 46);
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 230, 200);
     border-radius:10px;
 }
 

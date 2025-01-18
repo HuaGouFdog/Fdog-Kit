@@ -37,5 +37,7 @@
         <file>module_mainwindow/images/dark/min-dark.png</file>
         <file>module_mainwindow/images/dark/normal-dark.png</file>
         <file>module_mainwindow/images/light/cloud-light.png</file>
+        <file>module_mainwindow/images/dark/add-dark.png</file>
+        <file>module_mainwindow/images/light/add-light.png</file>
     </qresource>
 </RCC>

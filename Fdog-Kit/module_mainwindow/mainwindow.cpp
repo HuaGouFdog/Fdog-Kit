@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(0, 0, 0));
+    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(30, 30, 30));
 
     //设置样式表
     changeMainWindowTheme();
