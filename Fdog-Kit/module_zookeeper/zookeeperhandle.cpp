@@ -144,6 +144,7 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_, int t
 
 void zookeeperhandle::getChildren(int &code, int &count, QString path)
 {
+    //qDebug() << "获取子节点";
     String_vector children;
     int rc = zoo_get_children(zh, path.toStdString().c_str(), NULL, &children);
     if (rc == ZOK) {
