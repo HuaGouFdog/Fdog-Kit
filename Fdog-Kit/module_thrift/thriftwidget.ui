@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1897</width>
+    <width>1892</width>
     <height>701</height>
    </rect>
   </property>
@@ -100,10 +100,10 @@ QMenu::separator {
     <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>5</number>
+    <number>0</number>
    </property>
    <item>
     <widget class="QSplitter" name="splitter_3">
@@ -116,7 +116,7 @@ QMenu::separator {
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="handleWidth">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="widget_left" native="true">
       <property name="minimumSize">
@@ -139,7 +139,7 @@ QMenu::separator {
       </property>
       <property name="styleSheet">
        <string notr="true">#widget_left{
-border-right:0px solid rgba(108, 117, 125, 65); 
+border-right:2px solid rgba(197, 197, 197,50);
 }
 QScrollBar:vertical{
     width: 10px;
@@ -191,16 +191,16 @@ QScrollBar::up-arrow:vertical {
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="spacing">
-        <number>8</number>
+        <number>1</number>
        </property>
        <property name="leftMargin">
-        <number>5</number>
+        <number>0</number>
        </property>
        <property name="topMargin">
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>5</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>5</number>
@@ -210,7 +210,13 @@ QScrollBar::up-arrow:vertical {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>44</height>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
           </size>
          </property>
          <property name="font">
@@ -220,13 +226,13 @@ QScrollBar::up-arrow:vertical {
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <property name="spacing">
-           <number>20</number>
+           <number>0</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
           </property>
           <property name="topMargin">
-           <number>5</number>
+           <number>0</number>
           </property>
           <property name="rightMargin">
            <number>0</number>
@@ -239,13 +245,13 @@ QScrollBar::up-arrow:vertical {
             <property name="minimumSize">
              <size>
               <width>100</width>
-              <height>40</height>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>100</width>
-              <height>40</height>
+              <height>30</height>
              </size>
             </property>
             <property name="font">
@@ -288,8 +294,7 @@ QScrollBar::up-arrow:vertical {
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	
-	background-color: rgb(20, 30, 36);
+	background-color: rgb(24, 26, 29);
 	border-radius: 5px;
 }
 
@@ -321,6 +326,67 @@ QToolButton:hover {
            </widget>
           </item>
           <item>
+           <widget class="QToolButton" name="toolButton_inportFile_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>25</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>25</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(24, 26, 29);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	/*background-color: rgba(20, 20, 20,0);*/
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../lib.qrc">
+              <normaloff>:/lib/setting2.png</normaloff>:/lib/setting2.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>18</width>
+              <height>18</height>
+             </size>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_23">
             <property name="font">
              <font>
@@ -339,39 +405,6 @@ QToolButton:hover {
            </spacer>
           </item>
          </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_dir">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QLineEdit{
-color: rgb(231, 238, 244);
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-         </property>
-         <property name="placeholderText">
-          <string>thrift文件加载路径</string>
-         </property>
         </widget>
        </item>
        <item>
@@ -431,6 +464,27 @@ padding-right:10px;
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="horizontalSpacer_25">
+            <property name="font">
+             <font>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
        </item>
@@ -442,17 +496,14 @@ padding-right:10px;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#widget_thrift_api {
-border-image: url(:/lib/back2.png);
-border-radius: 10px;
-}</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="leftMargin">
            <number>0</number>
           </property>
           <property name="topMargin">
-           <number>10</number>
+           <number>0</number>
           </property>
           <property name="rightMargin">
            <number>0</number>
@@ -773,7 +824,7 @@ QScrollBar::up-arrow:vertical {
         <number>0</number>
        </property>
        <property name="topMargin">
-        <number>6</number>
+        <number>0</number>
        </property>
        <property name="rightMargin">
         <number>0</number>
@@ -2022,12 +2073,13 @@ QComboBox QAbstractItemView::item:selected {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QComboBox{
+          <string notr="true">
+QComboBox{
 	color:#ffffff;
 	border:0px solid #8a8a8a;
 	color: rgb(138, 138, 138);
 	border-radius:5px;
-	background-color: rgb(25, 25, 25, 155);
+	background-color: rgba(25, 25, 25, 155);
 	padding-left:10px;
 	
 	font: 10pt &quot;OPPOSans B&quot;;
@@ -2332,26 +2384,6 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="widget_line" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>5</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>5</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0.114, x2:0.301091, y2:0.113, stop:0.0511364 rgba(255, 58, 215, 255), stop:1 rgba(71, 112, 255, 255));
-border-radius: 2px;</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QStackedWidget" name="stackedWidget_2">
          <property name="minimumSize">
           <size>
@@ -2369,37 +2401,38 @@ border-radius: 2px;</string>
           <number>1</number>
          </property>
          <widget class="QWidget" name="page_2">
+          <property name="styleSheet">
+           <string notr="true">#page_2{
+border-top:2px solid rgba(197, 197, 197,50);
+}</string>
+          </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
            <property name="leftMargin">
-            <number>6</number>
+            <number>0</number>
            </property>
            <property name="topMargin">
-            <number>6</number>
+            <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>6</number>
+            <number>0</number>
            </property>
            <property name="bottomMargin">
-            <number>6</number>
+            <number>0</number>
            </property>
            <item>
             <widget class="QWidget" name="widget_paramAll" native="true">
              <property name="styleSheet">
-              <string notr="true">#widget_paramAll{
-	
-	background-color: rgb(45, 76, 107);
-	border-radius: 10px;
-}</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">
               <property name="leftMargin">
-               <number>2</number>
+               <number>0</number>
               </property>
               <property name="topMargin">
                <number>0</number>
               </property>
               <property name="rightMargin">
-               <number>2</number>
+               <number>0</number>
               </property>
               <property name="bottomMargin">
                <number>0</number>
@@ -2582,11 +2615,9 @@ QToolButton:hover {
                         </property>
                         <property name="styleSheet">
                          <string notr="true">#widget_in_param{
-border-top-right-radius: 10px;
-border-top-left-radius: 10px;
-}
-
-</string>
+	
+	background-color: rgb(24, 26, 29);
+}</string>
                         </property>
                         <layout class="QHBoxLayout" name="horizontalLayout_8">
                          <property name="spacing">
@@ -2687,6 +2718,24 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                           </spacer>
                          </item>
                          <item>
+                          <spacer name="horizontalSpacer">
+                           <property name="font">
+                            <font>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
                           <widget class="QToolButton" name="toolButton_preData">
                            <property name="minimumSize">
                             <size>
@@ -2740,24 +2789,6 @@ QToolButton:hover {
                             <enum>Qt::ToolButtonTextBesideIcon</enum>
                            </property>
                           </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer">
-                           <property name="font">
-                            <font>
-                             <stylestrategy>PreferAntialias</stylestrategy>
-                            </font>
-                           </property>
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
                          </item>
                          <item>
                           <widget class="QToolButton" name="toolButton_export">
@@ -2873,19 +2904,46 @@ QToolButton:hover {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QTreeWidget" name="treeWidget">
-                        <property name="font">
-                         <font>
-                          <family>OPPOSans B</family>
-                          <pointsize>10</pointsize>
-                          <weight>50</weight>
-                          <italic>false</italic>
-                          <bold>false</bold>
-                          <stylestrategy>PreferAntialias</stylestrategy>
-                         </font>
+                       <widget class="QWidget" name="widget_treewidget" native="true">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
                         </property>
-                        <property name="styleSheet">
-                         <string notr="true">QLineEdit{
+                        <layout class="QHBoxLayout" name="horizontalLayout_21">
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QTreeWidget" name="treeWidget">
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>OPPOSans B</family>
+                             <pointsize>10</pointsize>
+                             <weight>50</weight>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QLineEdit{
 font: 10pt &quot;OPPOSans B&quot;;
 color:#ced4da;
 background-color: rgba(255, 255, 255, 0);
@@ -2910,27 +2968,30 @@ QToolButton {
 }
 
 QTreeWidget {
-	border:2px solid rgb(45, 76, 107);
+	border:0px solid rgb(45, 76, 107);
 	color: rgb(0, 0, 0);
 	
 	font: 10pt &quot;OPPOSans B&quot;;
 	
 }
 
-QHeaderView {
-font: 10pt &quot;OPPOSans B&quot;;
-	color: rgb(255, 255, 255);
-/*background-color: rgb(54, 81, 97);*/
-	background-color: rgb(17, 30, 44);
-height: 25px;
-/*border: none;*/
+QHeaderView::section { 
+	height:25px;
+	color:white;
+	
+	
+	background-color: rgb(35, 39, 46);
+	border-left:0px solid gray; 
+	border-right:0px solid gray; 
+	border-top:0px solid gray; 
+	border-bottom:0px solid gray;
 }
 
 QTreeWidget#treeWidget {
-border-right:10px solid rgb(45, 76, 107);
-border-left:10px solid rgb(45, 76, 107);
+border-right:0px solid rgb(45, 76, 107);
+border-left:0px solid rgb(45, 76, 107);
 outline: none;
-	background-color: rgb(25, 45, 66);
+	background-color: rgba(25, 45, 66, 0);
 /*background-color: rgb(30, 45, 54);*/
 }
 QTreeWidget::item {
@@ -3042,78 +3103,81 @@ color:#ced4da;
 background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
 }</string>
-                        </property>
-                        <property name="indentation">
-                         <number>20</number>
-                        </property>
-                        <property name="uniformRowHeights">
-                         <bool>true</bool>
-                        </property>
-                        <property name="sortingEnabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="animated">
-                         <bool>false</bool>
-                        </property>
-                        <attribute name="headerVisible">
-                         <bool>false</bool>
-                        </attribute>
-                        <attribute name="headerMinimumSectionSize">
-                         <number>20</number>
-                        </attribute>
-                        <attribute name="headerDefaultSectionSize">
-                         <number>100</number>
-                        </attribute>
-                        <attribute name="headerStretchLastSection">
-                         <bool>true</bool>
-                        </attribute>
-                        <column>
-                         <property name="text">
-                          <string>序号</string>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <family>OPPOSans B</family>
-                           <pointsize>10</pointsize>
-                          </font>
-                         </property>
-                        </column>
-                        <column>
-                         <property name="text">
-                          <string>参数名</string>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <family>OPPOSans B</family>
-                           <pointsize>10</pointsize>
-                           <stylestrategy>PreferAntialias</stylestrategy>
-                          </font>
-                         </property>
-                        </column>
-                        <column>
-                         <property name="text">
-                          <string>参数类型</string>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <family>OPPOSans B</family>
-                           <pointsize>10</pointsize>
-                           <stylestrategy>PreferAntialias</stylestrategy>
-                          </font>
-                         </property>
-                        </column>
-                        <column>
-                         <property name="text">
-                          <string>参数值</string>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <family>OPPOSans B</family>
-                           <pointsize>10</pointsize>
-                           <stylestrategy>PreferAntialias</stylestrategy>
-                          </font>
-                         </property>
-                        </column>
+                           </property>
+                           <property name="indentation">
+                            <number>20</number>
+                           </property>
+                           <property name="uniformRowHeights">
+                            <bool>true</bool>
+                           </property>
+                           <property name="sortingEnabled">
+                            <bool>false</bool>
+                           </property>
+                           <property name="animated">
+                            <bool>false</bool>
+                           </property>
+                           <attribute name="headerVisible">
+                            <bool>false</bool>
+                           </attribute>
+                           <attribute name="headerMinimumSectionSize">
+                            <number>20</number>
+                           </attribute>
+                           <attribute name="headerDefaultSectionSize">
+                            <number>100</number>
+                           </attribute>
+                           <attribute name="headerStretchLastSection">
+                            <bool>true</bool>
+                           </attribute>
+                           <column>
+                            <property name="text">
+                             <string>     序号</string>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>OPPOSans B</family>
+                              <pointsize>10</pointsize>
+                             </font>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>参数名</string>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>OPPOSans B</family>
+                              <pointsize>10</pointsize>
+                              <stylestrategy>PreferAntialias</stylestrategy>
+                             </font>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>  参数类型</string>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>OPPOSans B</family>
+                              <pointsize>10</pointsize>
+                              <stylestrategy>PreferAntialias</stylestrategy>
+                             </font>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>参数值</string>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>OPPOSans B</family>
+                              <pointsize>10</pointsize>
+                              <stylestrategy>PreferAntialias</stylestrategy>
+                             </font>
+                            </property>
+                           </column>
+                          </widget>
+                         </item>
+                        </layout>
                        </widget>
                       </item>
                      </layout>
@@ -3136,13 +3200,13 @@ border-radius: 2px;
                    <number>0</number>
                   </property>
                   <property name="leftMargin">
-                   <number>10</number>
+                   <number>0</number>
                   </property>
                   <property name="topMargin">
                    <number>0</number>
                   </property>
                   <property name="rightMargin">
-                   <number>10</number>
+                   <number>0</number>
                   </property>
                   <property name="bottomMargin">
                    <number>0</number>
@@ -3255,20 +3319,22 @@ QScrollBar::up-arrow:vertical {
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true"/>
+                        <string notr="true">#widget_response{
+	background-color: rgb(24, 26, 29);
+}</string>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_5">
                         <property name="spacing">
                          <number>0</number>
                         </property>
                         <property name="leftMargin">
-                         <number>0</number>
+                         <number>10</number>
                         </property>
                         <property name="topMargin">
                          <number>0</number>
                         </property>
                         <property name="rightMargin">
-                         <number>0</number>
+                         <number>10</number>
                         </property>
                         <property name="bottomMargin">
                          <number>0</number>
@@ -3350,22 +3416,6 @@ QScrollBar::up-arrow:vertical {
                          </widget>
                         </item>
                         <item>
-                         <spacer name="horizontalSpacer_10">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeType">
-                           <enum>QSizePolicy::Fixed</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>20</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                        <item>
                          <widget class="QToolButton" name="toolButton_show_thrift_info">
                           <property name="minimumSize">
                            <size>
@@ -3443,7 +3493,7 @@ color: rgb(79, 79, 79);
 </string>
                        </property>
                        <property name="currentIndex">
-                        <number>1</number>
+                        <number>0</number>
                        </property>
                        <widget class="QWidget" name="page">
                         <property name="styleSheet">
@@ -3484,6 +3534,9 @@ color: rgb(79, 79, 79);
                             <layout class="QVBoxLayout" name="verticalLayout_4">
                              <property name="spacing">
                               <number>7</number>
+                             </property>
+                             <property name="leftMargin">
+                              <number>9</number>
                              </property>
                              <property name="topMargin">
                               <number>0</number>
@@ -3746,7 +3799,7 @@ QTabBar QToolButton:hover {
                                <number>5</number>
                               </property>
                               <property name="rightMargin">
-                               <number>9</number>
+                               <number>0</number>
                               </property>
                               <property name="bottomMargin">
                                <number>9</number>
@@ -4240,7 +4293,7 @@ p, li { white-space: pre-wrap; }
                          <number>0</number>
                         </property>
                         <property name="leftMargin">
-                         <number>3</number>
+                         <number>0</number>
                         </property>
                         <property name="topMargin">
                          <number>0</number>
@@ -4251,27 +4304,6 @@ p, li { white-space: pre-wrap; }
                         <property name="bottomMargin">
                          <number>0</number>
                         </property>
-                        <item>
-                         <spacer name="horizontalSpacer_29">
-                          <property name="font">
-                           <font>
-                            <stylestrategy>PreferAntialias</stylestrategy>
-                           </font>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeType">
-                           <enum>QSizePolicy::Fixed</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>10</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
                         <item>
                          <widget class="QLabel" name="label_req">
                           <property name="font">
@@ -4508,7 +4540,24 @@ QToolButton:hover {
           </layout>
          </widget>
          <widget class="QWidget" name="page_3">
+          <property name="styleSheet">
+           <string notr="true">#page_3{
+border-top:2px solid rgba(197, 197, 197,50);
+}</string>
+          </property>
           <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QSplitter" name="splitter_5">
              <property name="lineWidth">
@@ -4518,7 +4567,7 @@ QToolButton:hover {
               <enum>Qt::Horizontal</enum>
              </property>
              <property name="handleWidth">
-              <number>10</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="widget_8" native="true">
               <property name="sizePolicy">
@@ -4527,7 +4576,7 @@ QToolButton:hover {
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_18" stretch="1,200,1">
+              <layout class="QVBoxLayout" name="verticalLayout_18" stretch="1,200,0">
                <property name="leftMargin">
                 <number>0</number>
                </property>
@@ -4542,6 +4591,12 @@ QToolButton:hover {
                </property>
                <item>
                 <widget class="QWidget" name="horizontalWidget_schedule" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -4603,20 +4658,32 @@ QToolButton:hover {
                   </item>
                   <item>
                    <widget class="QProgressBar" name="progressBar">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>5</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>10</height>
+                      <height>8</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
-                      <height>10</height>
+                      <width>1240</width>
+                      <height>8</height>
                      </size>
                     </property>
                     <property name="value">
                      <number>0</number>
+                    </property>
+                    <property name="invertedAppearance">
+                     <bool>false</bool>
+                    </property>
+                    <property name="textDirection">
+                     <enum>QProgressBar::TopToBottom</enum>
                     </property>
                     <property name="format">
                      <string/>
@@ -5490,6 +5557,18 @@ QTabBar QToolButton:hover {
                    <string>测试数据</string>
                   </attribute>
                   <layout class="QHBoxLayout" name="horizontalLayout_18">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
                    <item>
                     <widget class="QPlainTextEdit" name="plainTextEdit_testData">
                      <property name="font">
@@ -5497,6 +5576,61 @@ QTabBar QToolButton:hover {
                        <family>OPPOSans B</family>
                        <pointsize>10</pointsize>
                       </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#plainTextEdit_testData{
+	border: 0px solid rgba(197, 197, 197,50);
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 0px;
+}
+
+QScrollBar:vertical{
+    width: 12px;
+	background-color: rgba(255, 255, 255, 50);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+    border-radius: 0px;
+}
+
+QScrollBar::handle:vertical {
+    width: 12px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 0px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
                      </property>
                     </widget>
                    </item>
@@ -5507,6 +5641,18 @@ QTabBar QToolButton:hover {
                    <string>全部指标</string>
                   </attribute>
                   <layout class="QVBoxLayout" name="verticalLayout_20">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
                    <item>
                     <widget class="QWidget" name="AllDataWidget" native="true">
                      <property name="minimumSize">
@@ -6954,7 +7100,7 @@ border-radius: 5px;
                      <property name="sizeHint" stdset="0">
                       <size>
                        <width>20</width>
-                       <height>123</height>
+                       <height>147</height>
                       </size>
                      </property>
                     </spacer>
@@ -6970,7 +7116,7 @@ border-radius: 5px;
                     <number>0</number>
                    </property>
                    <property name="topMargin">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <property name="rightMargin">
                     <number>0</number>
@@ -7013,7 +7159,7 @@ border-radius: 5px;
                     <number>0</number>
                    </property>
                    <property name="topMargin">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <property name="rightMargin">
                     <number>0</number>
@@ -7022,7 +7168,65 @@ border-radius: 5px;
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+                    <widget class="QPlainTextEdit" name="plainTextEdit">
+                     <property name="styleSheet">
+                      <string notr="true">#plainTextEdit{
+	border: 0px solid rgba(197, 197, 197,50);
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 0px;
+}
+
+QScrollBar:vertical{
+    width: 12px;
+	
+	
+	background-color: rgba(255, 255, 255, 50);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+border-radius: 0px;
+}
+
+QScrollBar::handle:vertical {
+    width: 12px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 0px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -7058,8 +7262,7 @@ border-radius: 5px;
               </property>
               <property name="styleSheet">
                <string notr="true">#widget_9 {
-border-left: 6px solid;
-border-left-color: qlineargradient(spread:pad, x1:0.500364, y1:0, x2:0.488, y2:1, stop:0.0511364 rgba(255, 58, 215, 255), stop:1 rgba(71, 112, 255, 255));
+border-left:2px solid rgba(197, 197, 197,50);
 }</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -7067,13 +7270,13 @@ border-left-color: qlineargradient(spread:pad, x1:0.500364, y1:0, x2:0.488, y2:1
                 <number>9</number>
                </property>
                <property name="topMargin">
-                <number>9</number>
+                <number>0</number>
                </property>
                <property name="rightMargin">
                 <number>9</number>
                </property>
                <property name="bottomMargin">
-                <number>9</number>
+                <number>0</number>
                </property>
                <item>
                 <widget class="QWidget" name="gridWidget" native="true">
@@ -7087,8 +7290,48 @@ border-left-color: qlineargradient(spread:pad, x1:0.500364, y1:0, x2:0.488, y2:1
                   <property name="verticalSpacing">
                    <number>5</number>
                   </property>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="lineEdit_times">
+                  <item row="6" column="1">
+                   <widget class="QLineEdit" name="lineEdit_connectTimeOut">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 5px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>2000</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="lineEdit_times_3">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7120,44 +7363,15 @@ padding-right:10px;
 }</string>
                     </property>
                     <property name="text">
-                     <string>500</string>
+                     <string>1</string>
                     </property>
                     <property name="placeholderText">
                      <string>0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_thread_2">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:#ced4da;</string>
-                    </property>
-                    <property name="text">
-                     <string>环境线程数</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_times_2">
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_times_3">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7181,12 +7395,12 @@ padding-right:10px;
                      <string notr="true">color:#ced4da;</string>
                     </property>
                     <property name="text">
-                     <string>循环间隔(s)</string>
+                     <string>循环次数</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="7" column="0">
-                   <widget class="QLabel" name="label_requestTimeOut">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_times">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7195,7 +7409,36 @@ padding-right:10px;
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>85</width>
+                      <width>60</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>并发数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_time_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
                       <height>30</height>
                      </size>
                     </property>
@@ -7213,47 +7456,7 @@ padding-right:10px;
                      <string notr="true">color:#ced4da;</string>
                     </property>
                     <property name="text">
-                     <string>请求超时(ms)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QLineEdit" name="lineEdit_time">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit{
-color:#ced4da;
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>60</string>
-                    </property>
-                    <property name="placeholderText">
-                     <string>0</string>
+                     <string>执行时长(s)</string>
                     </property>
                    </widget>
                   </item>
@@ -7289,21 +7492,8 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="9" column="1">
-                   <spacer name="verticalSpacer_4">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_times">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_thread_2">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7312,7 +7502,7 @@ padding-right:10px;
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>60</width>
+                      <width>75</width>
                       <height>30</height>
                      </size>
                     </property>
@@ -7327,7 +7517,115 @@ padding-right:10px;
                      <string notr="true">color:#ced4da;</string>
                     </property>
                     <property name="text">
-                     <string>并发数</string>
+                     <string>环境线程数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_requestTimeOut">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>85</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>超时自动结束</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>请求超时(ms)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QCheckBox" name="checkBox">
+                    <property name="text">
+                     <string>关闭算法</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QLineEdit" name="lineEdit_requestTimeOut">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>50000</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_thread">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>执行线程数</string>
                     </property>
                    </widget>
                   </item>
@@ -7371,74 +7669,18 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_thread">
-                    <property name="minimumSize">
+                  <item row="10" column="1">
+                   <spacer name="verticalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
                      <size>
-                      <width>0</width>
-                      <height>25</height>
+                      <width>20</width>
+                      <height>40</height>
                      </size>
                     </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:#ced4da;</string>
-                    </property>
-                    <property name="text">
-                     <string>执行线程数</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="1">
-                   <widget class="QLineEdit" name="lineEdit_requestTimeOut">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit{
-color:#ced4da;
-border-radius: 14px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>50000</string>
-                    </property>
-                    <property name="placeholderText">
-                     <string>0</string>
-                    </property>
-                   </widget>
+                   </spacer>
                   </item>
                   <item row="0" column="1">
                    <widget class="QLineEdit" name="lineEdit_thread_cpu">
@@ -7483,8 +7725,8 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_time_2">
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="lineEdit_time">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7493,8 +7735,8 @@ padding-right:10px;
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>75</width>
-                      <height>30</height>
+                      <width>16777215</width>
+                      <height>16777215</height>
                      </size>
                     </property>
                     <property name="font">
@@ -7504,21 +7746,22 @@ padding-right:10px;
                       <stylestrategy>PreferAntialias</stylestrategy>
                      </font>
                     </property>
-                    <property name="toolTip">
-                     <string>超时自动结束</string>
-                    </property>
                     <property name="styleSheet">
-                     <string notr="true">color:#ced4da;</string>
+                     <string notr="true">QLineEdit{
+color:#ced4da;
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
                     </property>
                     <property name="text">
-                     <string>执行时长(s)</string>
+                     <string>60</string>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="1">
-                   <widget class="QCheckBox" name="checkBox">
-                    <property name="text">
-                     <string>关闭算法</string>
+                    <property name="placeholderText">
+                     <string>0</string>
                     </property>
                    </widget>
                   </item>
@@ -7562,77 +7805,8 @@ padding-right:10px;
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="1">
-                   <widget class="QLineEdit" name="lineEdit_connectTimeOut">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit{
-color:#ced4da;
-border-radius: 5px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>2000</string>
-                    </property>
-                    <property name="placeholderText">
-                     <string>0</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_times_3">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>76</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>OPPOSans B</family>
-                      <pointsize>10</pointsize>
-                      <stylestrategy>PreferAntialias</stylestrategy>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:#ced4da;</string>
-                    </property>
-                    <property name="text">
-                     <string>循环次数</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="lineEdit_times_3">
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="lineEdit_times">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -7664,38 +7838,43 @@ padding-right:10px;
 }</string>
                     </property>
                     <property name="text">
-                     <string>1</string>
+                     <string>500</string>
                     </property>
                     <property name="placeholderText">
                      <string>0</string>
                     </property>
                    </widget>
                   </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QWidget" name="widget_10" native="true">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_17">
-                  <property name="leftMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
-                  </property>
-                  <item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_times_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>76</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>循环间隔(s)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
                    <widget class="QToolButton" name="toolButton_save_2">
                     <property name="minimumSize">
                      <size>
@@ -7739,18 +7918,42 @@ QToolButton:hover {
                     </property>
                    </widget>
                   </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_10" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_17">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>10</number>
+                  </property>
                   <item>
                    <widget class="QToolButton" name="toolButton_propertyTest">
                     <property name="minimumSize">
                      <size>
                       <width>80</width>
-                      <height>30</height>
+                      <height>25</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>80</width>
-                      <height>30</height>
+                      <height>25</height>
                      </size>
                     </property>
                     <property name="font">
@@ -7794,13 +7997,13 @@ QToolButton:hover {
                     <property name="minimumSize">
                      <size>
                       <width>80</width>
-                      <height>30</height>
+                      <height>25</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>80</width>
-                      <height>30</height>
+                      <height>25</height>
                      </size>
                     </property>
                     <property name="font">

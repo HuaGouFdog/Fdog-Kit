@@ -879,11 +879,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->toolButton_inportFile->setToolTip("导入thrift文件后，可自动生成接口参数");
 
-    QGraphicsDropShadowEffect *effect14 = new QGraphicsDropShadowEffect(this);
-    effect14->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_thrift_api->setGraphicsEffect(effect14);
+    // QGraphicsDropShadowEffect *effect14 = new QGraphicsDropShadowEffect(this);
+    // effect14->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect14->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect14->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->widget_thrift_api->setGraphicsEffect(effect14);
 
    QGraphicsDropShadowEffect *effect15 = new QGraphicsDropShadowEffect(this);
    effect15->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
@@ -891,11 +891,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
    effect15->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
    //ui->widget_test->setGraphicsEffect(effect15);
 
-    QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect(this);
-    effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect16->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect16->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_paramAll->setGraphicsEffect(effect16);
+    // QGraphicsDropShadowEffect *effect16 = new QGraphicsDropShadowEffect(this);
+    // effect16->setOffset(1, 1);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect16->setColor(QColor(25, 25, 25));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect16->setBlurRadius(10);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->widget_paramAll->setGraphicsEffect(effect16);
 
 
 
@@ -919,10 +919,10 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->splitter_5->setStretchFactor(1,1);
     ui->toolButton_returnTest->hide();
 
-    QDirModel *model = new QDirModel(this);
-    QCompleter *completer = new QCompleter(this);
-    completer->setModel(model);
-    ui->lineEdit_dir->setCompleter(completer);
+//    QDirModel *model = new QDirModel(this);
+//    QCompleter *completer = new QCompleter(this);
+//    completer->setModel(model);
+//    ui->lineEdit_dir->setCompleter(completer);
 
     //读取预制数据
     readPreData();
@@ -1277,7 +1277,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     QNetworkAccessManager manager;
 
     qDebug() << manager.supportedSchemes();
-
+    ui->stackedWidget->setCurrentIndex(1);
     QString port_str = ui->comboBox_port->currentText();
     int index_s = port_str.indexOf("(");
     int index_e = port_str.indexOf(")");
@@ -1340,12 +1340,14 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     // 检查错误
     if (reply->error() != QNetworkReply::NoError) {
         qDebug() << "请求失败:" << reply->errorString();
+        ui->stackedWidget->setCurrentIndex(2);
     } else {
         qDebug() << "请求成功";
         QByteArray responseData = reply->readAll();
         QString hexString = responseData.toHex();
         //qDebug() << "响应:" << hexString;
         handleHexData(hexString);
+        ui->stackedWidget->setCurrentIndex(0);
         //解析数据
     }
 
@@ -4109,6 +4111,8 @@ void thriftwidget::on_toolButton_request_clicked()
     QElapsedTimer * timer  = new QElapsedTimer();
     //timer->start();
     retractNum = 0;
+
+    ui->label_time->setText("");
 
     //判断传输协议
     if (ui->comboBox_transport->currentText() == TFramedTransport_) {
