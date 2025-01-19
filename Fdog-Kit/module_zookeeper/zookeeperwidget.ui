@@ -129,7 +129,7 @@ QMenu::separator {
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="handleWidth">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="verticalWidget_1_l" native="true">
       <property name="styleSheet">
