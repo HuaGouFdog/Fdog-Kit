@@ -22,9 +22,9 @@
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
 
-#define DARK_THEME 1   //暗黑主题
-#define LIGHT_THEME 2  //浅色主题
-#define BLUE_THEME 3   //蓝色主题
+#define LIGHT_THEME 0  //浅色主题
+#define DARK_THEME  1   //暗黑主题
+#define BLUE_THEME  2   //蓝色主题
 
 
 enum WindowStretchRectState
@@ -113,7 +113,7 @@ public:
     bool isVersionGreater(const QString &version1, const QString &version2);
 
     //切换主题
-    void changeMainWindowTheme();
+    void changeMainWindowTheme(bool isChange = false, int windowsType = 1); //1 正常 2最大化
 
 
 private slots:
@@ -299,7 +299,7 @@ private:
     QString NewVersionData;     //新版本更新内容
     QString NewVersiondownLoad;  //新版本下载地址
 
-    int mode = 2; //默认暗黑模式
+    int mode = 1; //默认暗黑模式
     
 };
 
