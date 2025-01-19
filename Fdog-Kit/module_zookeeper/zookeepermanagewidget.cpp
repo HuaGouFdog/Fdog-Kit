@@ -20,11 +20,11 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
 
-    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
-    effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
-    ui->widget_left->setGraphicsEffect(effect);
+    // QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    // effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    // effect->setColor(QColor(25, 51, 81));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    // effect->setBlurRadius(20);        //设定阴影的模糊半径，数值越大越模糊
+    // ui->widget_left->setGraphicsEffect(effect);
 
     //打开数据库
     db_ = new sqlhandle();
@@ -35,7 +35,7 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
         qbutton->setIcon(QIcon(":lib/grey.svg"));
         qbutton->setText(data);
         qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        qbutton->setMinimumHeight(50);
+        qbutton->setMinimumHeight(40);
         qbutton->setMinimumWidth(180);
         qbutton->setMaximumWidth(180);
         qbutton->setCheckable(true);

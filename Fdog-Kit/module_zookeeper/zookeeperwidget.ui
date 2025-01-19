@@ -128,12 +128,13 @@ QMenu::separator {
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
+     <property name="handleWidth">
+      <number>5</number>
+     </property>
      <widget class="QWidget" name="verticalWidget_1_l" native="true">
       <property name="styleSheet">
        <string notr="true">#verticalWidget_1_l{
-
 color: rgb(255, 255, 255);
-border-right:2px solid rgba(108, 117, 125, 65); 
 }</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -143,11 +144,14 @@ border-right:2px solid rgba(108, 117, 125, 65);
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>9</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -190,16 +194,15 @@ border-right:2px solid rgba(108, 117, 125, 65);
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>31</height>
+              <height>25</height>
              </size>
             </property>
             <property name="styleSheet">
              <string notr="true">#widget_1_3_l_1{
 color: rgb(255, 255, 255);
-border-radius: 14px;
 background-color: rgb(25, 25, 25, 100);
 border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 10px;
+border-radius: 5px;
 padding-left:10px;
 padding-right:10px;
 }</string>
@@ -341,13 +344,13 @@ border-radius: 2px;
             <property name="minimumSize">
              <size>
               <width>85</width>
-              <height>28</height>
+              <height>25</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>85</width>
-              <height>28</height>
+              <height>25</height>
              </size>
             </property>
             <property name="font">
@@ -393,6 +396,22 @@ QToolButton:hover {
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="horizontalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
        </item>
@@ -403,13 +422,13 @@ QToolButton:hover {
            <number>0</number>
           </property>
           <property name="topMargin">
-           <number>1</number>
+           <number>0</number>
           </property>
           <property name="rightMargin">
            <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>1</number>
+           <number>0</number>
           </property>
           <item>
            <widget class="QWidget" name="horizontalWidget_1_1_l" native="true">
@@ -435,7 +454,7 @@ QToolButton:hover {
               <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>0</number>
+              <number>5</number>
              </property>
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
@@ -949,7 +968,6 @@ QScrollBar::up-arrow:horizontal {
                <property name="styleSheet">
                 <string notr="true">#textEdit_data_2{
 	border: 1px solid rgba(197, 197, 197,50);
-	
 	background-color: rgba(255, 255, 255, 20);
 	border-radius: 5px;
 	color: rgb(255, 255, 255);
@@ -1034,7 +1052,10 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">#verticalWidget_1_r{
+color: rgb(255, 255, 255);
+border-left:2px solid rgba(197, 197, 197,50);
+}</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="leftMargin">
@@ -1079,26 +1100,6 @@ p, li { white-space: pre-wrap; }
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item>
-           <widget class="QLabel" name="label_data">
-            <property name="maximumSize">
-             <size>
-              <width>70</width>
-              <height>77</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>OPPOSans B</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-             </font>
-            </property>
-            <property name="text">
-             <string>节点数据</string>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QToolButton" name="toolButton_have_data">
             <property name="minimumSize">
@@ -1155,6 +1156,26 @@ border-radius: 2px;
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label_data">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>77</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>OPPOSans B</family>
+              <pointsize>11</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="text">
+             <string>节点数据</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1187,7 +1208,12 @@ border-radius: 2px;
 color: rgb(255, 255, 255);
 background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
-}</string>
+}
+
+#checkBox_auto{
+ color: rgb(255, 255, 255);
+}
+</string>
             </property>
             <property name="text">
              <string>实时更新</string>
@@ -1938,13 +1964,13 @@ border-radius: 2px;
            <number>5</number>
           </property>
           <property name="leftMargin">
-           <number>9</number>
+           <number>5</number>
           </property>
           <property name="topMargin">
            <number>5</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>5</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -2422,7 +2448,7 @@ QComboBox QAbstractItemView::item:selected {
            <widget class="QWidget" name="verticalWidget_1_2_5_r" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <property name="spacing">
-              <number>6</number>
+              <number>0</number>
              </property>
              <property name="leftMargin">
               <number>0</number>
@@ -2434,7 +2460,7 @@ QComboBox QAbstractItemView::item:selected {
               <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>0</number>
+              <number>10</number>
              </property>
              <item>
               <widget class="QWidget" name="verticalWidget_1_2_5_2_r" native="true">
@@ -2499,6 +2525,22 @@ QMenu::separator {
                  <number>0</number>
                 </property>
                 <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(255, 255, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>节点内容</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QTextEdit" name="textEdit_data">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
@@ -2526,6 +2568,7 @@ QMenu::separator {
                    <string notr="true">#textEdit_data{
 	border: 1px solid rgba(197, 197, 197,50);
 	
+	color: rgb(255, 255, 255);
 	background-color: rgba(255, 255, 255, 20);
 	border-radius: 5px;
 }
@@ -2596,13 +2639,13 @@ p, li { white-space: pre-wrap; }
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>40</height>
+                 <height>30</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
-                 <height>40</height>
+                 <height>30</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -2613,7 +2656,7 @@ p, li { white-space: pre-wrap; }
                  <number>5</number>
                 </property>
                 <property name="topMargin">
-                 <number>6</number>
+                 <number>5</number>
                 </property>
                 <property name="rightMargin">
                  <number>5</number>
@@ -2705,13 +2748,13 @@ border-radius: 2px;
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>28</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>28</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="font">
@@ -2758,13 +2801,13 @@ QToolButton:hover {
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>28</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>28</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="font">
@@ -2810,13 +2853,13 @@ QToolButton:hover {
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>28</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>28</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="font">

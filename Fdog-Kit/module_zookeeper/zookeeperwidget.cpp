@@ -33,7 +33,7 @@ zookeeperwidget::zookeeperwidget(QWidget *parent) :
 
     ui->splitter->setStretchFactor(0, 5);
     ui->splitter->setStretchFactor(1, 1);
-
+    ui->stackedWidget->setCurrentIndex(0);
     //全局捕捉mouseMoveEvent事件
     setSupportStretch(this, true);
 }
@@ -58,7 +58,7 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
 
     ui->splitter->setStretchFactor(0, 5);
     ui->splitter->setStretchFactor(1, 1);
-
+    ui->stackedWidget->setCurrentIndex(0);
     //全局捕捉mouseMoveEvent事件
     setSupportStretch(this, true);
 }
