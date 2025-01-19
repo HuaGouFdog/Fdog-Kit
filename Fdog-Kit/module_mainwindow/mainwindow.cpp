@@ -521,52 +521,10 @@ void MainWindow::changeEvent(QEvent *event)
                 //qDebug() << "当前最小化";
             } else if (this->windowState() == Qt::WindowNoState && stateEvent->oldState() == Qt::WindowMaximized) {
                 //qDebug() << "当前正常";
-                ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:10px;}");
-                ui->widget_side->setStyleSheet("#widget_side { \
-                                                    color: rgb(255, 255, 255); \
-                                                    border-top-left-radius: 10px; \
-                                                    border-bottom-left-radius: 10px; \
-                                                    background-color: rgb(10, 31, 57); \
-                                                }");
-                ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                        color: rgb(255, 255, 255);\
-                                                        border-top-right-radius: 9px;\
-                                                        background-color: rgba(94, 255, 210, 0);\
-                                                        border: none;\
-                                                    }\
-                                                    QToolButton::menu-indicator { \
-                                                        image: None;\
-                                                    }\
-                                                    QToolButton:hover {\
-                                                        color: rgb(255, 255, 255);\
-                                                        background-color: rgb(200, 0, 0);\
-                                                        border: none;\
-                                                    }");
-                ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
+                changeMainWindowTheme(false, 1);
             } else if (this->windowState() == Qt::WindowMaximized && stateEvent->oldState() == Qt::WindowNoState) {
                 //qDebug() << "当前最大化";
-                ui->centralWidget->setStyleSheet("#centralWidget {background-color: rgb(67, 67, 67);border-image: url(:/lib/back1.png);border-radius:0px;}");
-                ui->widget_side->setStyleSheet("#widget_side { \
-                                                    color: rgb(255, 255, 255); \
-                                                    border-top-left-radius: 0px; \
-                                                    border-bottom-left-radius: 0px; \
-                                                    background-color: rgb(10, 31, 57); \
-                                                }");
-                ui->toolButton_close->setStyleSheet("QToolButton {\
-                                                        color: rgb(255, 255, 255);\
-                                                        border-top-right-radius: 0px;\
-                                                        background-color: rgba(94, 255, 210, 0);\
-                                                        border: none;\
-                                                    }\
-                                                    QToolButton::menu-indicator { \
-                                                        image: None;\
-                                                    }\
-                                                    QToolButton:hover {\
-                                                        color: rgb(255, 255, 255);\
-                                                        background-color: rgb(200, 0, 0);\
-                                                        border: none;\
-                                                    }");
-                ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+                changeMainWindowTheme(false, 2);
             }
         }
     }
@@ -713,9 +671,27 @@ bool MainWindow::isVersionGreater(const QString &version1, const QString &versio
     return false;
 }
 
-void MainWindow::changeMainWindowTheme()
+void MainWindow::changeMainWindowTheme(bool isChange, int windowsType)
 {
-    if (mode == LIGHT_THEME) {
+    if (windowsType == 1) {
+        //正常qss
+        ui->widget_side->setProperty("State","WindowNoState");
+        ui->toolButton_close->setProperty("State","WindowNoState");
+        ui->centralWidget->setProperty("State","WindowNoState");
+    } else {
+        //最大化qss
+        ui->widget_side->setProperty("State","WindowMaximized");
+        ui->toolButton_close->setProperty("State","WindowMaximized");
+        ui->centralWidget->setProperty("State","WindowMaximized");
+    }
+
+    if (isChange) {
+        //更换主题
+        qDebug() << "切换主题" << mode;
+        mode = (mode + 1) % 3;
+    }
+
+    if (mode == DARK_THEME) {
         qDebug() << "切换暗黑模式";
         //暗黑模式
         //清除样式表
@@ -736,7 +712,11 @@ void MainWindow::changeMainWindowTheme()
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/moon-light.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
-        ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        if (windowsType == 2) {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/normal-light.png"));
+        } else {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        }
         ui->toolButton_close->setIcon(QIcon(":/module_mainwindow/images/light/close-light.png"));
 
         ui->toolButton_side_home->setIcon(QIcon(":/module_mainwindow/images/light/home-light.png"));
@@ -755,8 +735,7 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
-        mode = DARK_THEME;
-    } else if (mode == DARK_THEME) {
+    } else if (mode == LIGHT_THEME) {
         qDebug() << "切换明亮模式";
         //明亮模式
         //清除样式表
@@ -778,6 +757,11 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/dark/sun-dark.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/dark/min-dark.png"));
         ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/max-dark.png"));
+        if (windowsType == 2) {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/normal-dark.png"));
+        } else {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/max-dark.png"));
+        }
         ui->toolButton_close->setIcon(QIcon(":/module_mainwindow/images/dark/close-dark.png"));
 
         ui->toolButton_side_home->setIcon(QIcon(":/module_mainwindow/images/dark/home-dark.png"));
@@ -797,7 +781,6 @@ void MainWindow::changeMainWindowTheme()
 
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
-        mode = BLUE_THEME;
     } else if (mode = BLUE_THEME) {
         qDebug() << "切换蓝色模式";
         //蓝色模式
@@ -820,6 +803,11 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/cloud-light.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
         ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        if (windowsType == 2) {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/normal-light.png"));
+        } else {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        }
         ui->toolButton_close->setIcon(QIcon(":/module_mainwindow/images/light/close-light.png"));
 
         ui->toolButton_side_home->setIcon(QIcon(":/module_mainwindow/images/light/home-light.png"));
@@ -838,7 +826,6 @@ void MainWindow::changeMainWindowTheme()
         ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
-        mode = LIGHT_THEME;
     }
 }
 
@@ -1055,7 +1042,7 @@ void MainWindow::on_toolButton_max_clicked()
         isMaxShow = true;
         showFlag = true;
     } else {
-        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
+        setContentsMargins(10, 10, 10, 10);
         this->setWindowState(Qt::WindowState::WindowNoState);
         isMaxShow = false;
         showFlag = false;
@@ -1485,8 +1472,7 @@ void MainWindow::rece_toolButton_fullScreen_sign()
     qDebug() << "isFullScreen = " <<isFullScreen;
     if (!isFullScreen) {
         setContentsMargins(0, 0, 0, 0);
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
-        ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+        changeMainWindowTheme(false, 2);
         ui->toolButton_min->hide();
         ui->toolButton_max->hide();
         ui->toolButton_close->hide();
@@ -1496,15 +1482,14 @@ void MainWindow::rece_toolButton_fullScreen_sign()
         ui->toolButton_min->show();
         ui->toolButton_max->show();
         ui->toolButton_close->show();
-        setContentsMargins(10, 10, 10, 10); //rgb(67, 77, 88)
-        ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:10px;}");
-        ui->toolButton_max->setIcon(QIcon(":lib/Icon_max4.png"));
+        setContentsMargins(10, 10, 10, 10);
+        
         if (showFlag) {
-            ui->centralWidget->setStyleSheet("#centralWidget {border-image: url(:/lib/back1.png);border-radius:0px;}");
             setContentsMargins(0, 0, 0, 0);
-            ui->toolButton_max->setIcon(QIcon(":lib/icon-copy.png"));
+            changeMainWindowTheme(false, 2);
             this->showMaximized();
         } else {
+            changeMainWindowTheme(false, 1);
             this->showNormal();
         }
         isFullScreen = false;
@@ -1622,7 +1607,11 @@ void MainWindow::on_toolButton_zk_tool_clicked()
 void MainWindow::on_toolButton_side_theme_clicked()
 {
     //修改主题
-    changeMainWindowTheme();
+    if (this->windowState() == Qt::WindowNoState) {
+        changeMainWindowTheme(true, 1);
+    } else if (this->windowState() == Qt::WindowMaximized) {
+        changeMainWindowTheme(true, 2);
+    }
     return;
 
     style()->unpolish(ui->widget_side);
@@ -1635,82 +1624,7 @@ void MainWindow::on_toolButton_side_theme_clicked()
                                }");
 
     style()->polish(ui->widget_side);
-
-
     return;
-    //切换模式
-    if (currentTheme == 0) {
-        currentTheme = 1;
-        QString styleSheet1 = "QToolButton { background-color: rgb(20, 30, 36);}";
-        QString styleSheet2 = "QToolButton { background-color: rgb(84, 95, 255); }";
-
-        // 创建动画对象
-        QPropertyAnimation *animation = new QPropertyAnimation(ui->widget_side, "styleSheet");
-        animation->setDuration(200); // 设置动画持续时间
-        animation->setStartValue(styleSheet1); // 设置动画起始样式表
-        animation->setEndValue(styleSheet2); // 设置动画结束样式表
-
-        // 连接动画完成信号
-        QObject::connect(animation, &QPropertyAnimation::finished, [&](){
-            qDebug() << "Animation finished1.";
-        });
-
-        // 启动动画
-        animation->start();
-    } else {
-        currentTheme = 0;
-        QString styleSheet1 = "QToolButton { background-color: rgb(84, 95, 255);}";
-        QString styleSheet2 = "QToolButton { background-color: rgb(20, 30, 36); }";
-
-        // 创建动画对象
-        QPropertyAnimation *animation = new QPropertyAnimation(ui->widget_side, "styleSheet");
-        animation->setDuration(400); // 设置动画持续时间
-        animation->setStartValue(styleSheet1); // 设置动画起始样式表
-        animation->setEndValue(styleSheet2); // 设置动画结束样式表
-
-        // 连接动画完成信号
-        QObject::connect(animation, &QPropertyAnimation::finished, [&](){
-            qDebug() << "Animation finished2.";
-        });
-
-        // 启动动画
-        animation->start();
-    }
-    
-    QString state;
-    if (currentTheme == 0) {
-        currentTheme = 1;
-        //浅色qss
-        state = "light";
-        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
-        effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-        effect->setColor(QColor(0, 170, 255));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-        effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-        //ui->widget_side->setGraphicsEffect(effect);
-    } else {
-        //暗黑qss
-        currentTheme = 0;
-        state = "dark";
-        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
-        effect->setOffset(2, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-        effect->setColor(QColor(20, 30, 36));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-        effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-        //ui->widget_side->setGraphicsEffect(effect);
-    }
-    //改变子组件
-    QList<QToolButton *> buttons = ui->widget_side->findChildren<QToolButton *>();
-    for (QToolButton *button : buttons) {
-        button->setProperty("state",state);
-        button->style()->unpolish(button); //清除旧的样式
-        button->style()->polish(button);   //更新为新的样式
-    }
-    ui->widget_side->setProperty("state",state);
-    ui->widget_side->style()->unpolish(ui->widget_side); //清除旧的样式
-    ui->widget_side->style()->polish(ui->widget_side);   //更新为新的样式
-
-    ui->label_side_version->setProperty("state",state);
-    ui->label_side_version->style()->unpolish(ui->label_side_version); //清除旧的样式
-    ui->label_side_version->style()->polish(ui->label_side_version);   //更新为新的样式
 }
 
 void MainWindow::on_toolButton_side_setting_clicked()

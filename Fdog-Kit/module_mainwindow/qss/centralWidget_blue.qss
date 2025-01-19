@@ -1,29 +1,43 @@
-#centralWidget {
+#centralWidget[State='WindowNoState'] {
     color: rgb(255, 255, 255);
     border-image: url(:/lib/back1.png);
     border-radius:10px;
+}
+
+#centralWidget[State='WindowMaximized'] {
+    color: rgb(255, 255, 255);
+    border-image: url(:/lib/back1.png);
+    border-radius:0px;
 }
 
 QLabel {
     color: rgb(255, 255, 255);
 }
 
+#label_new{
+    color: rgb(255, 255, 255);
+}
+
+#label_use{
+    color: rgb(255, 255, 255);
+}
+
 QToolButton {
-	color: rgb(217, 236, 237);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+    color: rgb(217, 236, 237);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
 }
 
 QToolButton::menu-indicator { 
-	image: None;
+    image: None;
 }
 
  
 QToolButton:hover {
 	
-	color: rgb(197, 197, 197);
-	background-color: rgba(255, 255, 255, 0);
-	border: none;
+    color: rgb(197, 197, 197);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
 }
 
 #widget_welcome_body_widget2_newCreate{
@@ -70,12 +84,20 @@ QToolButton:hover {
     border: none;
 }
 
-#toolButton_close{
+#toolButton_close[State='WindowNoState']{
     color: rgb(255, 255, 255);
     border-top-right-radius: 9px;
     background-color: rgba(94, 255, 210, 0);
     border: none;
 }
+
+#toolButton_close[State='WindowMaximized']{
+    color: rgb(255, 255, 255);
+    border-top-right-radius: 0px;
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
+
 #toolButton_close::menu-indicator { 
 	image: None;
 }
