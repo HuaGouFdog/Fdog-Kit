@@ -139,8 +139,8 @@ DEPENDPATH += $$PWD/../../libssh2.11.0/include
 win32: LIBS += -L$$PWD/../../openssl1.1.1k/lib/ -llibssl
 win32: LIBS += -L$$PWD/../../openssl1.1.1k/lib/ -llibcrypto
 
-INCLUDEPATH += $$PWD/../../openssl1.1.1u/include
-DEPENDPATH += $$PWD/../../openssl1.1.1u/include
+INCLUDEPATH += $$PWD/../../openssl1.1.1k/include
+DEPENDPATH += $$PWD/../../openssl1.1.1k/include
 
 LIBS += -luser32
 
