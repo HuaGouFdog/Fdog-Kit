@@ -10,5 +10,8 @@
         <file>module_mainwindow/qss/centralWidget_light.qss</file>
         <file>module_mainwindow/qss/centralWidget_blue.qss</file>
         <file>module_mainwindow/qss/side_blue.qss</file>
+        <file>module_zookeeper/qss/main-blue.qss</file>
+        <file>module_zookeeper/qss/main-dark.qss</file>
+        <file>module_zookeeper/qss/main-light.qss</file>
     </qresource>
 </RCC>

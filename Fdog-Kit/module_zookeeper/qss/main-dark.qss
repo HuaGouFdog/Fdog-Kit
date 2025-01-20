@@ -1,0 +1,50 @@
+#scrollAreaWidgetContents{
+   background-color: rgba(255, 255, 255, 0);
+}
+
+#toolButton_newCreate {
+	color: rgb(255, 255, 255);
+	background-color: rgb(24,26,29);
+	border-radius: 5px;
+}
+
+#toolButton_newCreate::menu-indicator { 
+	image: None;
+}
+ 
+#toolButton_newCreate:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(24,26,29);
+}
+
+
+#widget_left{
+border-right:2px solid rgba(197, 197, 197,50);
+}
+
+QToolButton {
+	font: 10pt "OPPOSans B";
+    qproperty-iconSize: 22px 22px;
+	background-color: rgba(255, 255, 255, 20);
+	border: none;
+	border-radius:2px;
+	color: rgb(255, 255, 255);
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+QToolButton:hover {
+	border-radius:2px;
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 50);
+	border: none;
+}
+
+QToolButton:checked {
+	border-radius:2px;
+	color: rgb(255, 255, 255);
+	background-color: rgb(21, 21, 21);
+	border: none;
+}

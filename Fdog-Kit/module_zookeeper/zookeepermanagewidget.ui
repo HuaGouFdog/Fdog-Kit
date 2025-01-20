@@ -14,10 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#zookeepermanagewidget {
-border-image: url(:/lib/back1.png);
-border-radius:10px;
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
@@ -62,13 +59,31 @@ border-radius:10px;
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#widget_left{
-border-right:2px solid rgba(197, 197, 197,50);
-/*border-top-right-radius: 10px;
-border-bottom-right-radius: 10px;
-border-top-left-radius: 10px;
-border-bottom-left-radius: 10px;*/
+       <string notr="true">#scrollAreaWidgetContents{
+   background-color: rgba(255, 255, 255, 0);
 }
+
+#toolButton_newCreate {
+	color: rgb(255, 255, 255);
+	background-color: rgb(24,26,29);
+	border-radius: 5px;
+}
+
+#toolButton_newCreate::menu-indicator { 
+	image: None;
+}
+ 
+#toolButton_newCreate:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(24,26,29);
+}
+
+
+#widget_left{
+border-right:2px solid rgba(197, 197, 197,50);
+}
+
+
 QScrollBar:vertical{
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
@@ -115,6 +130,75 @@ QScrollBar::down-arrow:vertical {
 
 QScrollBar::up-arrow:vertical {
     border:none;
+}
+
+QToolButton {
+	font: 10pt &quot;OPPOSans B&quot;;
+    qproperty-iconSize: 22px 22px;
+	background-color: rgba(255, 255, 255, 20);
+	border: none;
+	border-radius:2px;
+	color: rgb(255, 255, 255);
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+QToolButton:hover {
+	border-radius:2px;
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 50);
+	border: none;
+}
+
+QToolButton:checked {
+	border-radius:2px;
+	color: rgb(255, 255, 255);
+	background-color: rgb(21, 21, 21);
+	border: none;
+}
+
+QMenu {
+
+background-color:rgb(253,253,254);
+/*padding:5px;*/
+padding: 3px 0px 3px 0px;
+border-radius:6px;
+border:2px solid rgb(108, 117, 125, 65); 
+}
+QMenu::item {
+	font-size: 10pt;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+	
+	color: rgb(63, 63, 63);
+    background-color:rgb(253,253,254);
+    padding: 5px 25px 5px 25px;
+    /*margin: 2px 2px 2px 2px;*/
+}
+QMenu::item:selected {
+​	background-color: rgba(167, 167, 167, 200);
+​	border-radius:6px;
+
+}
+QMenu::icon:checked {
+    background: rgb(253,253,254);
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+}
+QMenu::icon:checked:selected {
+    background-color : rgb(236,236,237);
+    background-image: url(:/space_selected.png);
+}
+QMenu::separator {
+    height: 2px;
+    background: rgb(235,235,236);
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
 }</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -147,7 +231,7 @@ QScrollBar::up-arrow:vertical {
            <height>50</height>
           </size>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,2">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -164,10 +248,26 @@ QScrollBar::up-arrow:vertical {
            <number>5</number>
           </property>
           <item>
+           <widget class="QLabel" name="label_2">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>15</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">image: url(:/module_zookeeper/images/light/zookeeper-light.png);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QToolButton" name="toolButton_newCreate">
             <property name="minimumSize">
              <size>
-              <width>125</width>
+              <width>110</width>
               <height>30</height>
              </size>
             </property>
@@ -175,26 +275,14 @@ QScrollBar::up-arrow:vertical {
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(20, 20, 20);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(20, 20, 20);
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>新建zk连接</string>
@@ -214,7 +302,7 @@ QToolButton:hover {
        <item>
         <widget class="QWidget" name="widget_side_body" native="true">
          <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="leftMargin">
@@ -296,75 +384,7 @@ QScrollBar::up-arrow:vertical {
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QToolButton {
-	font: 10pt &quot;OPPOSans B&quot;;
-    qproperty-iconSize: 22px 22px;
-	background-color: rgba(255, 255, 255, 20);
-	border: none;
-	border-radius:2px;
-	color: rgb(255, 255, 255);
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
-QToolButton:hover {
-	border-radius:2px;
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 50);
-	border: none;
-}
-
- 
-QToolButton:checked {
-	border-radius:2px;
-	color: rgb(255, 255, 255);
-	background-color: rgb(21, 21, 21);
-	border: none;
-}
-
-QMenu {
-
-background-color:rgb(253,253,254);
-/*padding:5px;*/
-padding: 3px 0px 3px 0px;
-border-radius:6px;
-border:2px solid rgb(108, 117, 125, 65); 
-}
-QMenu::item {
-	font-size: 10pt;
-	
-	font: 10pt &quot;OPPOSans B&quot;;
-	
-	color: rgb(63, 63, 63);
-    background-color:rgb(253,253,254);
-    padding: 5px 25px 5px 25px;
-    /*margin: 2px 2px 2px 2px;*/
-}
-QMenu::item:selected {
-​	background-color: rgba(167, 167, 167, 200);
-​	border-radius:6px;
-
-}
-QMenu::icon:checked {
-    background: rgb(253,253,254);
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    bottom: 1px;
-    left: 1px;
-}
-QMenu::icon:checked:selected {
-    background-color : rgb(236,236,237);
-    background-image: url(:/space_selected.png);
-}
-QMenu::separator {
-    height: 2px;
-    background: rgb(235,235,236);
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
-}</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <property name="leftMargin">
@@ -424,7 +444,7 @@ QMenu::separator {
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,0,1,4">
@@ -450,7 +470,7 @@ QMenu::separator {
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">image: url(:/lib/icon500.png);</string>
+              <string notr="true">image: url(:/module_mainwindow/images/light/iconmain-light.png);</string>
              </property>
              <property name="text">
               <string/>
