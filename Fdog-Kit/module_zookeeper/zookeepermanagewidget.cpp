@@ -260,6 +260,45 @@ zookeepermanagewidget::~zookeepermanagewidget()
     delete ui;
 }
 
+void zookeepermanagewidget::changeMainWindowTheme(bool isChange, int windowsType)
+{
+    if (isChange) {
+        //更换主题
+        qDebug() << "切换主题" << mode;
+        mode = (mode + 1) % 3;
+    }
+
+    if (mode == DARK_THEME) {
+        qDebug() << "切换暗黑模式";
+        //暗黑模式
+        //清除样式表
+        style()->unpolish(ui->widget_left);
+        ui->widget_left->setStyleSheet("");
+        //设置新的样式表
+        ui->widget_left->setStyleSheet(getStyleFile(":/module_zookeeper/qss/main-dark.qss"));
+        //刷新
+        style()->polish(ui->widget_left);
+    } else if (mode == LIGHT_THEME) {
+        qDebug() << "切换明亮模式";
+        //清除样式表
+        style()->unpolish(ui->widget_left);
+        ui->widget_left->setStyleSheet("");
+        //设置新的样式表
+        ui->widget_left->setStyleSheet(getStyleFile(":/module_zookeeper/qss/main-light.qss"));
+        //刷新
+        style()->polish(ui->widget_left);
+    } else if (mode == BLUE_THEME) {
+        qDebug() << "切换蓝色模式";
+        //清除样式表
+        style()->unpolish(ui->widget_left);
+        ui->widget_left->setStyleSheet("");
+        //设置新的样式表
+        ui->widget_left->setStyleSheet(getStyleFile(":/module_zookeeper/qss/main-blue.qss"));
+        //刷新
+        style()->polish(ui->widget_left);
+    }
+}
+
 void zookeepermanagewidget::on_toolButton_newCreate_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);

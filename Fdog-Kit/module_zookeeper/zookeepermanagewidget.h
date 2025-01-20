@@ -26,6 +26,10 @@ public:
     void newCreate(connnectInfoStruct& cInfoStruct);
     ~zookeepermanagewidget();
 
+
+    //切换主题
+    void changeMainWindowTheme(bool isChange = false, int windowsType = 1);
+
 private slots:
     void on_toolButton_newCreate_clicked();
 
@@ -54,6 +58,8 @@ private:
     //操作数据库
     sqlhandle * db_;
     QMap<void *, zkStatusStruct> zkStatusInfoMap;
+
+    int mode = 1;
 
 
 };

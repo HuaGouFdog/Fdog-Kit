@@ -9,5 +9,6 @@
         <file>module_qss/image/QSlider.png</file>
         <file>module_qss/image/Qmenu1.png</file>
         <file>module_qss/image/qss.png</file>
+        <file>module_zookeeper/images/light/zookeeper-light.png</file>
     </qresource>
 </RCC>
