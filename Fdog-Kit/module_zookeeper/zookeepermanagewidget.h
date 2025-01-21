@@ -23,7 +23,7 @@ class zookeepermanagewidget : public QWidget
 public:
     explicit zookeepermanagewidget(QWidget *parent = 0);//创建zk界面
     explicit zookeepermanagewidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);//创建zk界面，并进行一个连接
-    void newCreate(connnectInfoStruct& cInfoStruct);
+    void newZKWidget(connnectInfoStruct& cInfoStruct);
     ~zookeepermanagewidget();
 
 
@@ -51,7 +51,7 @@ private:
 
     QMenu *zktoolMenu;
     
-    int count; //连接总数
+    int count = 0; //连接总数
     int lastIndex;
     QMap<int,int> connectManager;
 
