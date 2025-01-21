@@ -18,13 +18,10 @@
 #include "module_flowlayout/flowlayout.h"
 #include "module_sql/sqlhandle.h"
 #include "module_ssh/downloadwidget.h"
+#include "module_ssh/sshwidgetmanagewidget.h"
 #include "module_qss/qss.h"
 #define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
 #define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
-
-#define LIGHT_THEME 0  //浅色主题
-#define DARK_THEME  1   //暗黑主题
-#define BLUE_THEME  2   //蓝色主题
 
 
 enum WindowStretchRectState
@@ -123,56 +120,62 @@ private slots:
 
     void on_toolButton_max_clicked();
 
-    void on_tabWidget_tabCloseRequested(int index);
+//    void on_tabWidget_tabCloseRequested(int index);
 
     void on_newCreate();
 
-    void on_newTool();
+    //void on_newTool();
 
     
     void on_newConnnect(connnectInfoStruct& cInfoStruct);
 
-    void rece_fastConnection(connnectInfoStruct& cInfoStruct);
+    //void rece_fastConnection(connnectInfoStruct& cInfoStruct);
 
-    void rece_findConnection(QString text, int type = 0);
+    //void rece_findConnection(QString text, int type = 0);
     
     void rece_windowsSetting();
 
     void on_newClose();
 
 
-    void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
+    
 
-    void rece_widget_welcome_body_widget2_newCreate_newTool_clicked();
+    //void rece_widget_welcome_body_widget2_newCreate_newTool_clicked();
 
-    void on_comboBox_tool_currentIndexChanged(int index);
+    //下面是工具
+    // void on_comboBox_tool_currentIndexChanged(int index);
 
-    void on_lineEdit_hex_textChanged(const QString &arg1);
+    // void on_lineEdit_hex_textChanged(const QString &arg1);
 
-    void on_lineEdit_dec_textChanged(const QString &arg1);
+    // void on_lineEdit_dec_textChanged(const QString &arg1);
 
-    void on_lineEdit_oct_textChanged(const QString &arg1);
+    // void on_lineEdit_oct_textChanged(const QString &arg1);
 
-    void on_lineEdit_bin_textChanged(const QString &arg1);
+    // void on_lineEdit_bin_textChanged(const QString &arg1);
 
-    void on_toolButton_decode_clicked();
+    // void on_toolButton_decode_clicked();
 
-    void on_toolButton_encode_clicked();
+    // void on_toolButton_encode_clicked();
 
-    void rece_showtimestamp();
-    void on_toolButton_time2date_clicked();
+    // void rece_showtimestamp();
+    // void on_toolButton_time2date_clicked();
 
-    void on_toolButton_date2time_clicked();
+    // void on_toolButton_date2time_clicked();
 
-    void on_toolButton_timestamp_copy_clicked();
+    // void on_toolButton_timestamp_copy_clicked();
 
-    void on_toolButton_closetool_clicked();
+    // void on_toolButton_closetool_clicked();
+
+    //到此
+
+
+
 
     void rece_toolButton_fullScreen_sign();
 
-    void rece_connection_success(sshwidget * sw);
+    //void rece_connection_success(sshwidget * sw);
 
-    void rece_connection_fail(sshwidget * sw);
+    //void rece_connection_fail(sshwidget * sw);
 
     void closeWindow();
 
@@ -184,14 +187,10 @@ private slots:
 
     void restoreWindow();
 
-    void on_tabWidget_customContextMenuRequested(const QPoint &pos);
+    //void on_tabWidget_customContextMenuRequested(const QPoint &pos);
 
     //托盘菜单
     void rece_systemTrayMenu();
-
-    void on_toolButton_thrift_tool_clicked();
-
-    void on_toolButton_zk_tool_clicked();
 
     void on_toolButton_side_theme_clicked();
 
@@ -211,15 +210,20 @@ private slots:
 
     void on_toolButton_side_tool_clicked();
 
-    void rece_reconnection_sgin();
+    //主界面使用
+    //void on_toolButton_thrift_tool_clicked();
+    void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
+    void on_toolButton_zk_tool_clicked();
 
-    void rece_copyTag_sgin();
+//    void rece_reconnection_sgin();
 
-    void rece_close_sgin();
+//    void rece_copyTag_sgin();
 
-    void rece_closeOther_sgin();
+//    void rece_close_sgin();
 
-    void rece_closeAll_sgin();
+//    void rece_closeOther_sgin();
+
+//    void rece_closeAll_sgin();
 
     void on_toolButton_side_qss_clicked();
 
@@ -280,7 +284,8 @@ private:
     qss * qsswidget = nullptr;                  //创建qss工具窗口
     settingwidget * stwidget = nullptr;         //创建设置窗口
     zookeepermanagewidget * zmanagewidget = nullptr; //zk窗口
-    thriftwidget * twidget = nullptr;           //thrift测试工具窗口
+    thriftwidget * twidget = nullptr;                //thrift测试工具窗口
+    sshwidgetmanagewidget * smanagewidget = nullptr; //ssh管理窗口
 
     QVector<zookeeperwidget*> zkWidgetList;
     QVector<sshwidget*> sshWidgetList;

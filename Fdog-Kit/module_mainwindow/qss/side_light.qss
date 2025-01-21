@@ -8,14 +8,14 @@ border-radius: 2px;
     color: rgb(35, 39, 46);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-color: rgb(222,202,130);
+    background-color: rgb(127, 115, 87);
 }
 
 #widget_side[State='WindowMaximized'] {
     color: rgb(35, 39, 46);
     border-top-left-radius: 0px;
-    border-bottom-left-radius: 10px;
-    background-color: rgb(222,202,130);
+    border-bottom-left-radius: 0px;
+    background-color: rgb(127, 115, 87);
 }
 
 

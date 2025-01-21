@@ -2,6 +2,7 @@
 #include "findwidget.h"
 #include "ui_findwidget.h"
 #include <QDebug>
+#include <QAction>
 findwidget::findwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::findwidget)

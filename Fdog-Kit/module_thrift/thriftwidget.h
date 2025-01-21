@@ -154,6 +154,34 @@ protected:
     }
 };
 
+//这个是为了跟踪鼠标，及时切换样式
+class TreeWidgetFilter :public QObject {
+    Q_OBJECT
+public:
+    explicit TreeWidgetFilter(QObject *parent = nullptr) : QObject(parent) {}
+
+signals:
+void send_updateMouseStyle();
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override
+    {
+        // 处理 QTreeWidget 的鼠标移动事件
+        //qDebug() << "eventFilter = " << event->type();
+        if (event->type() == QEvent::HoverMove) {
+            //更新样式
+            emit send_updateMouseStyle();
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+            QPoint pos = mouseEvent->pos();
+            //qDebug() << "Mouse moved at:" << pos;
+            // 返回 false，表示继续传递事件
+            return false;  // 返回 true 会阻止事件传递，false 继续传递
+        }
+        // 对于其他事件，正常处理
+        return QObject::eventFilter(watched, event);
+    }
+};
+
 class NoWheelQComboBox : public QComboBox { 
 public:
     using QComboBox::QComboBox; 
@@ -161,7 +189,7 @@ protected:
     void wheelEvent(QWheelEvent* event) override { event->ignore(); }
 };
 
-class ItemWidget :public QObject ,public QTreeWidgetItem
+class ItemWidget :public QObject, public QTreeWidgetItem
  {
      Q_OBJECT
  public:
@@ -563,6 +591,8 @@ private slots:
     void on_toolButton_returnTest_clicked();
 
     void on_toolButton_preData_clicked();
+
+    void rece_updateMouseStyle();
 
 public:
     QVector<QString> dataList;

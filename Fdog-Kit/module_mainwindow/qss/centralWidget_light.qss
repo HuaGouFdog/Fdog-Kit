@@ -1,12 +1,12 @@
 #centralWidget[State='WindowNoState'] {
     color: rgb(35, 39, 46);
-    background-color: rgb(233, 230, 200);
+    background-color: rgb(255, 255, 255);
     border-radius:10px;
 }
 
 #centralWidget[State='WindowMaximized'] {
     color: rgb(35, 39, 46);
-    background-color: rgb(233, 230, 200);
+    background-color: rgb(255, 255, 255);
     border-radius:0px;
 }
 
@@ -66,7 +66,7 @@ QToolButton:hover {
 }
 #toolButton_min:hover {
     color: rgb(255, 255, 255);
-    background-color: rgb(222,202,130);
+    background-color: rgb(127, 115, 87);
     border: none;
 }
 
@@ -80,7 +80,7 @@ QToolButton:hover {
 }
 #toolButton_max:hover {
     color: rgb(255, 255, 255);
-    background-color: rgb(222,202,130);
+    background-color: rgb(127, 115, 87);
     border: none;
 }
 

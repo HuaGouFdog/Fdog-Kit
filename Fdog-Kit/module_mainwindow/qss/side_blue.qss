@@ -4,17 +4,10 @@ background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
 }
 
-#widget_side[State='WindowNoState'] {
+#widget_side {
     color: rgb(255, 255, 255);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-color: rgb(10, 31, 57);
-}
-
-#widget_side[State='WindowMaximized'] {
-    color: rgb(255, 255, 255);
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
     background-color: rgb(10, 31, 57);
 }
 
