@@ -9,6 +9,7 @@
 #include "module_config/config.h"
 #include <QDateTime>
 #include "sshwidget.h"
+#include "sshsql.h"
 #include <QSize>
 namespace Ui {
 class sshwidgetmanagewidget;
@@ -26,6 +27,7 @@ public:
 
     //操作数据库
     sqlhandle * db_;
+    sshsql * db;
     historyconnectwidget * hcwidget = nullptr;  //快速连接
     QVector<sshwidget*> sshWidgetList;
     bool isShowToolKit = false; //是否显示工具栏

@@ -2,22 +2,39 @@
 #include "sshwidgetmanagewidget.h"
 #include "ui_sshwidgetmanagewidget.h"
 #include "QDebug"
+#include <QTimer>
 #include <QMenu>
 sshwidgetmanagewidget::sshwidgetmanagewidget(config * confInfo, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::sshwidgetmanagewidget)
 {
     ui->setupUi(this);
+
+    // 创建定时器
+    QTimer * timer = new QTimer();
+
+    // 设置定时器的间隔为1000毫秒（1秒）
+    timer->setInterval(1000);
+
+    // 连接定时器的timeout()信号到槽函数
+    connect(timer,SIGNAL(timeout()), this,
+                            SLOT(rece_showtimestamp()));
+
+    // 启动定时器
+    timer->start();
+
     //ui->comboBox_tool->setView(new QListView());
     ui->widget_tool->hide();
     ui->splitter->setStretchFactor(0,20);
     ui->splitter->setStretchFactor(1,2);
 
     //打开数据库
-    db_ = new sqlhandle();
+    //db = new sqlhandle();
+
+    db = new sshsql();
 
     if (true) {
-        QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+        QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
         qDebug() << "sshinfo 3 size = " << cInfoStructList.length();
         //isFirst = true;
         //创建快速连接
@@ -53,7 +70,7 @@ void sshwidgetmanagewidget::newSSHWidget(connnectInfoStruct &cInfoStruct, config
     } else if (cInfoStruct.sshType == SSH_PUBLICKEY) {
         cInfoStruct.password = cInfoStruct.userName;
     }
-    db_->ssh_insertSSHInfo(cInfoStruct);
+    db->ssh_insertSSHInfo(cInfoStruct);
 }
 
 sshwidgetmanagewidget::~sshwidgetmanagewidget()
@@ -182,7 +199,7 @@ void sshwidgetmanagewidget::on_tabWidget_tabCloseRequested(int index)
         //创建快速连接
         int8_t connectType = 0;
         //创建连接窗口
-        QVector<connnectInfoStruct> cInfoStructList = db_->ssh_getAllSSHInfo();
+        QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
         qDebug() << "sshinfo 1 size = " << cInfoStructList.length();
         hcwidget = new historyconnectwidget(connectType, cInfoStructList);
         connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
@@ -198,13 +215,13 @@ void sshwidgetmanagewidget::rece_fastConnection(connnectInfoStruct &cInfoStruct)
 {
     //双击快速连接
     //按照昵称查
-    connnectInfoStruct cInfo_ = db_->ssh_getSSHInfoByName(cInfoStruct.name);
+    connnectInfoStruct cInfo_ = db->ssh_getSSHInfoByName(cInfoStruct.name);
     int type = cInfoStruct.connectType;
     cInfoStruct = cInfo_;
     cInfoStruct.connectType = type;
     //cInfoStruct.password = cInfo_.password;
     if (cInfoStruct.sshType == SSH_PUBLICKEY) {
-        sshKeyStruct sshKeyInfo = db_->sshKey_getSSHKeyInfoByName(cInfoStruct.password);
+        sshKeyStruct sshKeyInfo = db->sshKey_getSSHKeyInfoByName(cInfoStruct.password);
         cInfoStruct.password = sshKeyInfo.password;
         cInfoStruct.publickey = sshKeyInfo.path;
     }
