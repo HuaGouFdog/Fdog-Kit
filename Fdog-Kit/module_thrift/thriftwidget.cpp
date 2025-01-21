@@ -375,7 +375,7 @@ void ItemWidget::init()
     widgetParamType->setLayout(layoutParamType);
 
     layoutParamValue = new QHBoxLayout();
-    layoutParamValue->setContentsMargins(0, 0, 0, 0);
+    layoutParamValue->setContentsMargins(0, 0, 10, 0);
     keyLabel = new QLabel();
     keyLabel->setAlignment(Qt::AlignCenter);
     keyLabel->setText("");
@@ -420,7 +420,13 @@ void ItemWidget::init()
     keyLabel->hide();
     valueLabel->show();
     classLabel->hide();
-    //qDebug() << "走init()";
+
+    //this->setMouseTracking(true);
+    // 这里对子控件也进行了设置，是因为如果不对子控件设置，当鼠标移动到子控件上时，不会发送mouseMoveEvent事件，也就获取不到当前鼠标位置，无法判断鼠标状态及显示样式了。
+//    QList<QWidget*> widgetList = this->findChildren<QWidget*>();
+//    for(int i = 0; i < widgetList.length(); i ++) {
+//        widgetList[i]->setMouseTracking(true);
+//    }
 }
 
 void ItemWidget::init2()
@@ -933,6 +939,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
     handleThriftFile(fileList);
     ui->treeWidget_api->show();
     setSupportStretch(this, true);
+    
+    TreeWidgetFilter *filter = new TreeWidgetFilter(this);
+    connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
+    ui->treeWidget->setMouseTracking(true);
+    ui->treeWidget->installEventFilter(filter);
 }
 
 QString thriftwidget::getCpuInfo(const QString &cmd)
@@ -1702,7 +1713,7 @@ void thriftwidget::assembleTBinaryMessage(int buildType, int num)
             value = preDataMapV[item->lineEditParamName->text()].at(num%preDataMapV[item->lineEditParamName->text()].size());
             //qDebug() << "压测模式，检测到" << item->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value;
         }
-        ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
+        //ui->plainTextEdit_testData->appendPlainText(item->lineEditParamName->text() + " : " +value);
         //lineEditParamValue->toolTip()
         QString SN = item->lineEditParamSN->text();
         //qDebug() << "SN = " << SN;
@@ -1885,7 +1896,7 @@ void thriftwidget::writeTBinaryStructMessage(QString valueType, ItemWidget *item
             value_ = preDataMapV[itemChild->lineEditParamName->text()].at(num%preDataMapV[itemChild->lineEditParamName->text()].size());
             //qDebug() << "压测模式，检测到" << itemChild->lineEditParamName->text() << "该值存在多个预制值，将按照顺序使用预测值 " << value_;
         }
-        ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
+        //ui->plainTextEdit_testData->appendPlainText(itemChild->lineEditParamName->text() + " : " +value_);
         //qDebug() << "SN = " << SN;
         if (SN == "") {
             qDebug() << "参数名" << value_ << "获取sn失败，默认+1";
@@ -4272,6 +4283,7 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
                         temp[key].typeSign);
         }
     }
+    //setSupportStretch(this, true);
 }
 
 void thriftwidget::on_plainTextEdit_edit_customContextMenuRequested(const QPoint &pos)
@@ -4395,13 +4407,13 @@ void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uin
         }
     });
 
-    connect(clientSocket,&QTcpSocket::disconnected,[=]{
-        //qDebug() << "断开连接";
-    });
+    // connect(clientSocket,&QTcpSocket::disconnected,[=]{
+    //     //qDebug() << "断开连接";
+    // });
 
-    connect(clientSocket,&QTcpSocket::connected,[=]{
-        //qDebug() << "已连接";
-    });
+    // connect(clientSocket,&QTcpSocket::connected,[=]{
+    //     //qDebug() << "已连接";
+    // });
 
     connect(clientSocket,QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),[=]{
         QAbstractSocket::SocketError error = clientSocket->error();
@@ -4572,6 +4584,7 @@ void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uin
         qDebug() << "发送数据异常";
         return;
     }
+    clientSocket->flush(); 
 
     //记录写入耗时
     elapsedMillisecondsWrite = timer->elapsed();
@@ -4616,12 +4629,6 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     QElapsedTimer timer2;
     timer2.start();
 
-    //记录开始调用使用
-    if (rr->startTime == "") {
-        rr->setStartTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
-        qDebug() << "开始时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
-    }
-
     QString port_str = ui->comboBox_port->currentText();
     int index_s = port_str.indexOf("(");
     int index_e = port_str.indexOf(")");
@@ -4643,15 +4650,22 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     QVector<int> threadTasks = distributeRequests(loopNum, runThreadNum);
     //准备压测数据
     for (int i = 0; i < loopNum; i++) {
-        ui->plainTextEdit_testData->appendPlainText("");
-        ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
+        //ui->plainTextEdit_testData->appendPlainText("");
+        //ui->plainTextEdit_testData->appendPlainText("==========================第" + QString::number(i+1) + "次请求入参==========================");
         assembleTBinaryMessage(1, i);
         //转换大小字节序
         QVector<uint8_t> dataListTemp = string2Uint8List(dataList);
         for (uint8_t& data : dataListTemp) {
             data = qToBigEndian(data);
         }
+        //所有请求的数据
         sendData8S.push_back(dataListTemp);
+    }
+
+    //记录开始调用使用
+    if (rr->startTime == "") {
+        rr->setStartTime(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"));
+        qDebug() << "开始时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
     }
 
     for (int i = 0; i < runThreadNum; i++) {
@@ -4670,6 +4684,7 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     qDebug() << "成功数：" <<rr->totalTimes - rr->failCount;
     qDebug() << "请求数：" <<rr->Results.size();
     qDebug() << "连接数：" <<rr->connectTime.size();
+
     //qDebug() << "错误率："
 
     ui->lineEdit_totalRequests->setText(QString::number(rr->totalTimes)); //总执行次数
@@ -4975,3 +4990,8 @@ void thriftwidget::on_toolButton_preData_clicked()
     preData->show();
 }
 
+
+void thriftwidget::rece_updateMouseStyle() {
+    //设置为箭头
+    setCursor(Qt::ArrowCursor);
+}

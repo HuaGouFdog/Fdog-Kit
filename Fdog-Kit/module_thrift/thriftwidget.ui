@@ -2398,7 +2398,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_2">
           <property name="styleSheet">
@@ -2411,7 +2411,7 @@ border-top:2px solid rgba(197, 197, 197,50);
             <number>0</number>
            </property>
            <property name="topMargin">
-            <number>0</number>
+            <number>2</number>
            </property>
            <property name="rightMargin">
             <number>0</number>
@@ -2615,8 +2615,7 @@ QToolButton:hover {
                         </property>
                         <property name="styleSheet">
                          <string notr="true">#widget_in_param{
-	
-	background-color: rgb(24, 26, 29);
+	background-color: rgb(33, 36, 40);
 }</string>
                         </property>
                         <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -3117,7 +3116,7 @@ border-radius: 2px;
                             <bool>false</bool>
                            </property>
                            <attribute name="headerVisible">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </attribute>
                            <attribute name="headerMinimumSectionSize">
                             <number>20</number>
@@ -3320,7 +3319,7 @@ QScrollBar::up-arrow:vertical {
                        </property>
                        <property name="styleSheet">
                         <string notr="true">#widget_response{
-	background-color: rgb(24, 26, 29);
+	background-color: rgb(33, 36, 40);
 }</string>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -3557,7 +3556,7 @@ color: rgb(79, 79, 79);
                                  <number>0</number>
                                 </property>
                                 <property name="topMargin">
-                                 <number>0</number>
+                                 <number>4</number>
                                 </property>
                                 <property name="rightMargin">
                                  <number>0</number>
@@ -4576,7 +4575,7 @@ border-top:2px solid rgba(197, 197, 197,50);
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_18" stretch="1,200,0">
+              <layout class="QVBoxLayout" name="verticalLayout_18" stretch="1,200,1">
                <property name="leftMargin">
                 <number>0</number>
                </property>
@@ -7100,7 +7099,7 @@ border-radius: 5px;
                      <property name="sizeHint" stdset="0">
                       <size>
                        <width>20</width>
-                       <height>147</height>
+                       <height>185</height>
                       </size>
                      </property>
                     </spacer>
