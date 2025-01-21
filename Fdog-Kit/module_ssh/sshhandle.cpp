@@ -856,7 +856,7 @@ bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_pa
 
 void sshHandleSftp::init(int connrectType, QString host, QString port, QString username, QString password)
 {
-    //qDebug() << " 执行sshHandleSftp init";
+    qDebug() << " 执行sshHandleSftp init";
     int rc;
     // 创建套接字并建立连接
 
