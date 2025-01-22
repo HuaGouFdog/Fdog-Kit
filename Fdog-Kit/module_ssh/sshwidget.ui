@@ -21,7 +21,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_19">
    <property name="spacing">
-    <number>0</number>
+    <number>10</number>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -73,7 +73,7 @@ color: rgb(255, 255, 255);
        <number>3</number>
       </property>
       <property name="topMargin">
-       <number>10</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
        <number>3</number>
@@ -1108,7 +1108,7 @@ QProgressBar:chunk{
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1229</width>
+                     <width>1219</width>
                      <height>349</height>
                     </rect>
                    </property>
@@ -1324,7 +1324,7 @@ QScrollBar::up-arrow:vertical {
 	/*background-color: rgba(0, 41, 69, 0);*/
 	
 	
-	background-color: rgb(57, 91, 121);
+	background-color: rgba(57, 91, 121, 0);
     margin: 0px,0px,0px,0px;
     padding-top: 0px;		/*//隐藏上下的箭头*/
     padding-bottom: 0px;
@@ -1452,8 +1452,9 @@ border-bottom:0px solid rgb(108, 117, 125, 65);
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgba(10, 31, 57, 200);
-border-radius: 10px;</string>
+                   <string notr="true">    border: 1px solid rgba(197, 197, 197,50);
+    background-color: rgba(255, 255, 255, 20);
+    border-radius: 10px;</string>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_6">
                    <property name="spacing">
@@ -1904,8 +1905,9 @@ QMenu::separator {
            <widget class="QWidget" name="widget_3" native="true">
             <property name="styleSheet">
              <string notr="true">#widget_3 {
-	background-color: rgba(10, 31, 57, 200);
-	border-radius: 10px;
+    border: 1px solid rgba(197, 197, 197,50);
+    background-color: rgba(255, 255, 255, 20);
+    border-radius: 10px;
 }
 </string>
             </property>
@@ -1951,12 +1953,12 @@ QTabBar::tab{
     /*background-color: rgba(11, 11, 11,150);*/
 	
 	
-	background-color: rgb(10, 31, 57);
+	background-color: rgba(255, 255, 255, 20);
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
-	border-top-left-radius: 2px;    /*设置tab的边框的圆角（左上圆角）*/
-	border-top-right-radius: 2px;    /*设置tab的边框的圆角（右上圆角）*/
+	border-top-left-radius: 0px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 0px;    /*设置tab的边框的圆角（右上圆角）*/
 	/*width:120px;*/
 	padding-left: 5px;
 	padding-right: 5px;

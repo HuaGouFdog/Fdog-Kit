@@ -90,6 +90,7 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
         qDebug() << "createSocket sockfd";
     }
 
+
     // 初始化 libssh2 库
     rc = libssh2_init(0);
     if (rc != 0) {
@@ -107,7 +108,6 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
     // 设置会话选项
     libssh2_session_set_blocking(session_ssh, 1);
     libssh2_session_set_timeout(session_ssh, 20000);
-
     // 建立 SSH 连接
     rc = libssh2_session_handshake(session_ssh, sockfd);
     if (rc) {
@@ -143,7 +143,6 @@ void sshhandle::init(int connrectType, QString host, QString port, QString usern
             return;
         }
     }
-
 
     channel_ssh = libssh2_channel_open_session(session_ssh);
     // 请求分配伪终端

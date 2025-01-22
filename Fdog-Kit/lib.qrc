@@ -190,5 +190,12 @@
         <file>lib/tongji2.svg</file>
         <file>lib/line1.svg</file>
         <file>lib/tongji3.svg</file>
+        <file>lib/8668cc75bd0a11e36cb13f9fd80d92b0.jpg</file>
+        <file>lib/44d1d7ccc2f4da6260159ddfa1974e2e.jpeg</file>
+        <file>lib/b0d9ea5bde9a66a0e2fb6812d5f4766b.jpeg</file>
+        <file>lib/build.png</file>
+        <file>lib/guanbi2.png</file>
+        <file>lib/guanbi1.png</file>
+        <file>lib/kuaisu2.png</file>
     </qresource>
 </RCC>

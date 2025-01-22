@@ -9,7 +9,7 @@ sshwidgetmanagewidget::sshwidgetmanagewidget(config * confInfo, QWidget *parent)
     ui(new Ui::sshwidgetmanagewidget)
 {
     ui->setupUi(this);
-
+    this->confInfo = confInfo;
     // 创建定时器
     QTimer * timer = new QTimer();
 
@@ -41,11 +41,11 @@ sshwidgetmanagewidget::sshwidgetmanagewidget(config * confInfo, QWidget *parent)
         //创建快速连接
         int8_t connectType = 0;
         //创建连接窗口
-        hcwidget = new historyconnectwidget(connectType, cInfoStructList);
+        hcwidget = new historyconnectwidget(connectType, cInfoStructList, confInfo, this);
         connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
         connect(hcwidget,SIGNAL(send_findConnection(QString, int)),this,SLOT(rece_findConnection(QString, int)));
         QSize iconSize(20, 20); // 设置图标的大小
-        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu.svg").pixmap(iconSize), "快速连接");
+        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu2.png").pixmap(iconSize), "快速连接");
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         hcwidget->show();
     }
@@ -70,7 +70,8 @@ void sshwidgetmanagewidget::newSSHWidget(connnectInfoStruct &cInfoStruct, config
     } else if (cInfoStruct.sshType == SSH_PUBLICKEY) {
         cInfoStruct.password = cInfoStruct.userName;
     }
-    db->ssh_insertSSHInfo(cInfoStruct);
+    //这里是添加在最后一个标签页，后面要根据设置来
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 }
 
 sshwidgetmanagewidget::~sshwidgetmanagewidget()
@@ -195,17 +196,20 @@ void sshwidgetmanagewidget::rece_closeAll_sgin()
 
 void sshwidgetmanagewidget::on_tabWidget_tabCloseRequested(int index)
 {
+   QString closeName = ui->tabWidget->tabText(index);
+   ui->tabWidget->removeTab(index);
+   //没释放内存
     if(ui->tabWidget->count() == 0) {
         //创建快速连接
         int8_t connectType = 0;
         //创建连接窗口
         QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
         qDebug() << "sshinfo 1 size = " << cInfoStructList.length();
-        hcwidget = new historyconnectwidget(connectType, cInfoStructList);
+        hcwidget = new historyconnectwidget(connectType, cInfoStructList, confInfo, this);
         connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
         connect(hcwidget,SIGNAL(send_findConnection(QString, int)),this,SLOT(rece_findConnection(QString, int)));
         QSize iconSize(20, 20); // 设置图标的大小
-        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu.svg").pixmap(iconSize), "快速连接");
+        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu2.png").pixmap(iconSize), "快速连接");
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
         hcwidget->show();
     }
@@ -226,23 +230,22 @@ void sshwidgetmanagewidget::rece_fastConnection(connnectInfoStruct &cInfoStruct)
         cInfoStruct.publickey = sshKeyInfo.path;
     }
     //cInfoStruct.sshType = SSH_PASSWORD;
-    qDebug() << "收到双击数据" << cInfoStruct.host << " " << cInfoStruct.password;
     QSize iconSize(16, 16); // 设置图标的大小
-    
+    qDebug() << "收到双击连接" << cInfoStruct.host << " " << cInfoStruct.password;
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
-        qDebug() << "调用ssh " << cInfoStruct.host << " " << cInfoStruct.password;
-        QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-        sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
-        connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(rece_widget_welcome_body_widget2_newCreate_newTool_clicked()));
-        connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
-        connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
-        connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
-        connect(sshWidget,SIGNAL(send_windowsSetting()),this,SLOT(rece_windowsSetting()));
-        sshWidgetList.push_back(sshWidget);
-        ui->tabWidget->addTab(sshWidget, QIcon(":lib/yellow.svg").pixmap(iconSize), cInfoStruct.name);
+        //已经存在
+        newSSHWidget(cInfoStruct, confInfo);
+        // qDebug() << "调用ssh " << cInfoStruct.host << " " << cInfoStruct.password;
+        // QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        // sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
+        // connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(rece_widget_welcome_body_widget2_newCreate_newTool_clicked()));
+        // connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
+        // connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
+        // connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
+        // connect(sshWidget,SIGNAL(send_windowsSetting()),this,SLOT(rece_windowsSetting()));
+        // sshWidgetList.push_back(sshWidget);
+        // ui->tabWidget->addTab(sshWidget, QIcon(":lib/yellow.svg").pixmap(iconSize), cInfoStruct.name);
     }
-    //这里是添加在最后一个标签页，后面要根据设置来
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 }
 
 void sshwidgetmanagewidget::rece_findConnection(QString text, int type)
