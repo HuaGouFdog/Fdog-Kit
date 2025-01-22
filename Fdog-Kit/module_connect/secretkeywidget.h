@@ -2,8 +2,9 @@
 #define SECRETKEYWIDGET_H
 #include "keywidget.h"
 #include <QWidget>
-#include "module_sql/sqlhandle.h"
+//#include "module_sql/sqlhandle.h"
 #include <QTableWidgetItem>
+#include "module_ssh/sshsql.h"
 namespace Ui {
 class secretkeywidget;
 }
@@ -35,7 +36,7 @@ private:
     Ui::secretkeywidget *ui;
     keywidget * kwidget;
     //操作数据库
-    sqlhandle * db_;
+    sshsql * db;
     QString currentItem;
 };
 

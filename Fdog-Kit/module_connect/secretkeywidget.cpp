@@ -22,9 +22,9 @@ secretkeywidget::secretkeywidget(QWidget *parent) :
    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
    //ui->tableWidget->setColumnWidth(5, 20);
     //打开数据库
-    db_ = new sqlhandle();
+    db = new sshsql();
     //读取所有
-    QVector<sshKeyStruct> skeyList = db_->sshKey_getAllSSHKeyInfo();
+    QVector<sshKeyStruct> skeyList = db->sshKey_getAllSSHKeyInfo();
     qDebug() << "读取到" << skeyList.length();
     for(int i =0; i< skeyList.length();i++) {
         rece_addsshKey(skeyList.at(i));

@@ -33,23 +33,29 @@ sshwidgetmanagewidget::sshwidgetmanagewidget(config * confInfo, QWidget *parent)
 
     db = new sshsql();
 
-    if (true) {
-        QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
-        qDebug() << "sshinfo 3 size = " << cInfoStructList.length();
-        //isFirst = true;
-        //创建快速连接
-        //创建快速连接
-        int8_t connectType = 0;
-        //创建连接窗口
-        hcwidget = new historyconnectwidget(connectType, cInfoStructList, confInfo, this);
-        connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
-        connect(hcwidget,SIGNAL(send_findConnection(QString, int)),this,SLOT(rece_findConnection(QString, int)));
-        QSize iconSize(20, 20); // 设置图标的大小
-        ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu2.png").pixmap(iconSize), "快速连接");
-        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-        hcwidget->show();
-    }
+    QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
+    qDebug() << "sshinfo 3 size = " << cInfoStructList.length();
+    //isFirst = true;
+    //创建快速连接
+    //创建快速连接
+    int8_t connectType = 0;
+    //创建连接窗口
+    hcwidget = new historyconnectwidget(connectType, cInfoStructList, confInfo, this);
+    connect(hcwidget,SIGNAL(send_fastConnection(connnectInfoStruct&)),this,SLOT(rece_fastConnection(connnectInfoStruct&)));
+    connect(hcwidget,SIGNAL(send_findConnection(QString, int)),this,SLOT(rece_findConnection(QString, int)));
+    QSize iconSize(20, 20); // 设置图标的大小
+    ui->tabWidget->addTab(hcwidget, QIcon(":lib/kuaisu2.png").pixmap(iconSize), "快速连接");
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    hcwidget->show();
+
+    TreeWidgetFilter *filter = new TreeWidgetFilter(this);
+    connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
+    setSupportStretch(this, true);
+    ui->tabWidget->setMouseTracking(true);
+    ui->tabWidget->installEventFilter(filter);
 }
+
+
 
 void sshwidgetmanagewidget::newSSHWidget(connnectInfoStruct &cInfoStruct, config *confInfo)
 {
@@ -424,4 +430,9 @@ void sshwidgetmanagewidget::on_toolButton_closetool_clicked()
 {
     ui->widget_tool->hide();
     isShowToolKit = false;
+}
+
+void sshwidgetmanagewidget::rece_updateMouseStyle() {
+    //设置为箭头
+    setCursor(Qt::ArrowCursor);
 }

@@ -5,7 +5,7 @@
 #include "module_zookeeper/zookeepermanagewidget.h"
 #include "module_zookeeper/zookeeperwidget.h"
 #include "module_connect/createconnect.h"
-#include "module_historyconnect/historyconnectwidget.h"
+#include "module_ssh/historyconnectwidget.h"
 #include "module_ssh/sshwidget.h"
 #include "module_tool/toolswidget.h"
 #include <QGraphicsDropShadowEffect>
@@ -13,10 +13,9 @@
 #include <QRect>
 #include "module_setting/settingwidget.h"
 #include <QSystemTrayIcon>
-#include "module_config/config.h"
+#include "module_utils/config.h"
 #include "module_thrift/thriftwidget.h"
-#include "module_flowlayout/flowlayout.h"
-#include "module_sql/sqlhandle.h"
+#include "module_utils/flowlayout.h"
 #include "module_ssh/downloadwidget.h"
 #include "module_ssh/sshwidgetmanagewidget.h"
 #include "module_qss/qss.h"
@@ -122,12 +121,13 @@ private slots:
 
 //    void on_tabWidget_tabCloseRequested(int index);
 
-    void on_newCreate();
+    //void on_newCreate();
 
     //void on_newTool();
 
     
-    void on_newConnnect(connnectInfoStruct& cInfoStruct);
+    void rece_newConnnect(connnectInfoStruct& cInfoStruct);
+    void rece_newSave(connnectInfoStruct& cInfoStruct);
 
     //void rece_fastConnection(connnectInfoStruct& cInfoStruct);
 
@@ -200,9 +200,9 @@ private slots:
 
     void on_toolButton_side_zookeeper_clicked();
 
-    void on_toolButton_side_github_clicked();
+    //void on_toolButton_side_github_clicked();
 
-    void on_toolButton_side_about_clicked();
+    //void on_toolButton_side_about_clicked();
 
     void on_toolButton_side_home_clicked();
 
@@ -298,7 +298,7 @@ private:
     bool isFirst = false;           //是否第一次点击终端
 
     //操作数据库
-    sqlhandle * db_;
+    //sqlhandle * db_;
 
     QString newVersion;         //新版本
     QString NewVersionData;     //新版本更新内容

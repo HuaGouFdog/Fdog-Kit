@@ -5,7 +5,8 @@
 #include "createconnect.h"
 #include "secretkeywidget.h"
 #include "module_utils/utils.h"
-#include "module_sql/sqlhandle.h"
+//#include "module_sql/sqlhandle.h"
+#include "module_ssh/sshsql.h"
 #define SSH_CONNECT_TYPE 1
 #define WINDOWS_CONNECT_TYPE 2
 #define ZK_CONNECT_TYPE 3
@@ -33,6 +34,7 @@ public:
 
 signals:
     void newCreate(connnectInfoStruct &);
+    void newSave(connnectInfoStruct &);
     void newClose();
 
 private slots:
@@ -54,6 +56,8 @@ private slots:
 
     void rece_selectPublicKey(QString text);
 
+    void on_widget_bottom_toolButton_save_clicked();
+
 private:
     Ui::createconnect *ui;
     int8_t connectType = 0;
@@ -61,7 +65,7 @@ private:
     secretkeywidget * skwidget = NULL;  //密钥
     bool isEditName = false;
     //操作数据库
-    sqlhandle * db_;
+    sshsql * db;
 };
 
 #endif // CREATECONNECT_H

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QTableWidgetItem>
 #include "module_connect/createconnect.h"
-#include "module_config/config.h"
+#include "module_utils/config.h"
 namespace Ui {
 class historyconnectwidget;
 }
@@ -42,6 +42,8 @@ private slots:
     void rece_newConnnect(connnectInfoStruct& cInfoStruct);
 
     void rece_newSave(connnectInfoStruct& cInfoStruct);
+
+    void rece_updateMouseStyle();
 
 private:
     Ui::historyconnectwidget *ui;

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "module_utils/utils.h"
-#include "module_config/config.h"
+#include "module_utils/config.h"
 
 namespace Ui {
 class settingwidget;

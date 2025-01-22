@@ -43,6 +43,10 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
     loadSSHinfoList(cInfoStructList);
 
     setSupportStretch(this, true);
+
+    TreeWidgetFilter *filter = new TreeWidgetFilter(this);
+    connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
+    ui->tableWidget_history->installEventFilter(filter);
 }
 
 historyconnectwidget::~historyconnectwidget()
@@ -304,4 +308,9 @@ void historyconnectwidget::rece_newSave(connnectInfoStruct& cInfoStruct) {
     smanagewidget->db->ssh_insertSSHInfo(cInfoStruct);
     //更新到historyconnectwidget
     loadSSHinfo(cInfoStruct);
+}
+
+void historyconnectwidget::rece_updateMouseStyle() {
+    //设置为箭头
+    setCursor(Qt::ArrowCursor);
 }

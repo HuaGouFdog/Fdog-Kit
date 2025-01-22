@@ -31,8 +31,6 @@
 #include <QFormLayout>
 #include <QDesktopWidget>
 #include "module_smalltool/smalltoolwidget.h"
-#include "module_sql/sqlhandle.h"
-
 #include "windows.h"
 #include "windowsx.h"
 
@@ -81,19 +79,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo2.png"));
-
-    // 创建定时器
-    QTimer * timer = new QTimer();
-
-    // 设置定时器的间隔为1000毫秒（1秒）
-    timer->setInterval(1000);
-
-    // 连接定时器的timeout()信号到槽函数
-    connect(timer,SIGNAL(timeout()), this,
-                            SLOT(rece_showtimestamp()));
-
-    // 启动定时器
-    timer->start();
 
     //读取配置文件信息
     confInfo = new config();
@@ -1086,23 +1071,23 @@ void MainWindow::on_toolButton_max_clicked()
 //    }
 //}
 
-void MainWindow::on_newCreate()
-{
-    if (ccwidget == nullptr) {
-        //获取发送者
-        //QString actionText = qobject_cast<QAction*>(sender())->text();
-        int8_t connectType = 0;
+// void MainWindow::on_newCreate()
+// {
+//     if (ccwidget == nullptr) {
+//         //获取发送者
+//         //QString actionText = qobject_cast<QAction*>(sender())->text();
+//         int8_t connectType = 0;
 
-        //创建连接窗口
-        ccwidget = new createconnect(connectType);
-        connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
-        ccwidget->show();
-    } else {
-        //不创建
-        ccwidget->setFocus();
-    }
+//         //创建连接窗口
+//         ccwidget = new createconnect(connectType);
+//         connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+//         ccwidget->show();
+//     } else {
+//         //不创建
+//         ccwidget->setFocus();
+//     }
 
-}
+// }
 
 // void MainWindow::on_newTool()
 // {
@@ -1169,7 +1154,7 @@ void MainWindow::on_newCreate()
 //         ui->stackedWidget->setCurrentIndex(1);
 // }
 
-void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
+void MainWindow::rece_newConnnect(connnectInfoStruct& cInfoStruct)
 {
     //qDebug() << cInfoStruct.connectType;
     QSize iconSize(16, 16); // 设置图标的大小
@@ -1177,39 +1162,13 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
         on_toolButton_side_shell_clicked();
         smanagewidget->newSSHWidget(cInfoStruct, confInfo);
-        // QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-        // sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
-        // connect(sshWidget,SIGNAL(send_toolButton_toolkit_sign()),this,SLOT(rece_widget_welcome_body_widget2_newCreate_newTool_clicked()));
-        // connect(sshWidget,SIGNAL(send_toolButton_fullScreen_sign()),this,SLOT(rece_toolButton_fullScreen_sign()));
-        // connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
-        // connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
-        // connect(sshWidget,SIGNAL(send_windowsSetting()),this,SLOT(rece_windowsSetting()));
-        // sshWidgetList.push_back(sshWidget);
-        // ui->tabWidget->addTab(sshWidget, QIcon(":lib/yellow.svg").pixmap(iconSize), cInfoStruct.name);
-        // //插入数据
-        // if (cInfoStruct.sshType == SSH_PASSWORD) {
-
-        // } else if (cInfoStruct.sshType == SSH_PUBLICKEY) {
-        //     cInfoStruct.password = cInfoStruct.userName;
-        // }
-        // db_->ssh_insertSSHInfo(cInfoStruct);
+        smanagewidget->db->ssh_insertSSHInfo(cInfoStruct);
+        smanagewidget->hcwidget->loadSSHinfo(cInfoStruct);
     } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
 
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
         on_toolButton_side_zookeeper_clicked();
         zmanagewidget->newZKWidget(cInfoStruct);
-        // if(zmanagewidget == NULL) {
-        //     zmanagewidget = new zookeepermanagewidget(cInfoStruct);
-        //     zmanagewidget->setObjectName("zmanagewidget");
-        //     ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
-        //     ui->stackedWidget->setCurrentIndex(1);
-        // } else {
-        //     //创建+连接
-        //     zmanagewidget->newCreate(cInfoStruct);
-        // }
-        // //zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
-        // //zkWidgetList.push_back(zkWidget);
-        // ui->tabWidget->addTab(zmanagewidget, QIcon(":lib/Zookeeper2.png").pixmap(iconSize), "zookeeper");
     } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
     } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {
@@ -1217,11 +1176,26 @@ void MainWindow::on_newConnnect(connnectInfoStruct& cInfoStruct)
     } else if (cInfoStruct.connectType == DB_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget2, QIcon(":lib/db.png").pixmap(iconSize), "172.16.8.166");
     }
-
-    //ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-    //ui->stackedWidget->setCurrentIndex(1);
 }
 
+void MainWindow::rece_newSave(connnectInfoStruct& cInfoStruct) {
+    if (cInfoStruct.connectType == SSH_CONNECT_TYPE) {
+        on_toolButton_side_shell_clicked();
+        smanagewidget->db->ssh_insertSSHInfo(cInfoStruct);
+        smanagewidget->hcwidget->loadSSHinfo(cInfoStruct);
+    } else if (cInfoStruct.connectType == WINDOWS_CONNECT_TYPE) {
+
+    } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
+        //on_toolButton_side_zookeeper_clicked();
+        //zmanagewidget->newZKWidget(cInfoStruct);
+    } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
+        //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
+    } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {
+        //ui->tabWidget->addTab(&zkwidget3, QIcon(":lib/Kafka.png").pixmap(iconSize), "172.16.8.157");
+    } else if (cInfoStruct.connectType == DB_CONNECT_TYPE) {
+        //ui->tabWidget->addTab(&zkwidget2, QIcon(":lib/db.png").pixmap(iconSize), "172.16.8.166");
+    }
+}
 
 // void MainWindow::rece_fastConnection(connnectInfoStruct& cInfoStruct) {
 //     //双击快速连接
@@ -1289,7 +1263,8 @@ void MainWindow::on_widget_welcome_body_widget2_newCreate_newTerminal_clicked()
     //新建终端
     int8_t connectType = 1;
     ccwidget = new createconnect(connectType);
-    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(rece_newConnnect(connnectInfoStruct&)));
+    connect(ccwidget,SIGNAL(newSave(connnectInfoStruct&)),this,SLOT(rece_newSave(connnectInfoStruct&)));
     ccwidget->show();
 }
 
@@ -1605,7 +1580,7 @@ void MainWindow::on_toolButton_zk_tool_clicked()
     //新建终端
     int8_t connectType = 3;
     ccwidget = new createconnect(connectType);
-    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(on_newConnnect(connnectInfoStruct&)));
+    connect(ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(rece_newConnnect(connnectInfoStruct&)));
     ccwidget->show();
 }
 
@@ -1735,20 +1710,20 @@ void MainWindow::on_toolButton_side_zookeeper_clicked()
     }
 }
 
-void MainWindow::on_toolButton_side_github_clicked()
-{
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
-}
+// void MainWindow::on_toolButton_side_github_clicked()
+// {
+//     QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/HuaGouFdog/Fdog-Kit")));
+// }
 
-void MainWindow::on_toolButton_side_about_clicked()
-{
-//    awidget = new aboutwidget();
-//    QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
-//    int x = globalPos.x() + (this->width() - awidget->width()) / 2;//x坐标
-//    int y = globalPos.y() + (this->height() - awidget->height()) / 2;//y坐标
-//    awidget->move(x, y);//窗口移动
-//    awidget->show();
-}
+// void MainWindow::on_toolButton_side_about_clicked()
+// {
+// //    awidget = new aboutwidget();
+// //    QPoint globalPos = this->mapToGlobal(QPoint(0,0));//父窗口绝对坐标
+// //    int x = globalPos.x() + (this->width() - awidget->width()) / 2;//x坐标
+// //    int y = globalPos.y() + (this->height() - awidget->height()) / 2;//y坐标
+// //    awidget->move(x, y);//窗口移动
+// //    awidget->show();
+// }
 
 void MainWindow::on_toolButton_side_home_clicked()
 {
@@ -1873,8 +1848,8 @@ void MainWindow::on_toolButton_side_qss_clicked()
 
 void MainWindow::on_toolButton_side_mysql_clicked()
 {
-    sqlhandle * db_ = new sqlhandle();
-    db_->sql_mysql_init();
+    // sqlhandle * db_ = new sqlhandle();
+    // db_->sql_mysql_init();
 }
 
 void MainWindow::on_toolButton_newVersion_clicked()

@@ -13,6 +13,7 @@
 #include <QClipboard>
 #include <QElapsedTimer>
 #include "module_utils/utils.h"
+#include <QAction>
 toolswidget::toolswidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::toolswidget)

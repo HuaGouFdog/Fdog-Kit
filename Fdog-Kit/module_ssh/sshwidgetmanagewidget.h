@@ -4,9 +4,8 @@
 #include <QWidget>
 #include "historycommondwidget.h"
 #include "module_utils/utils.h"
-#include "module_sql/sqlhandle.h"
-#include "module_historyconnect/historyconnectwidget.h"
-#include "module_config/config.h"
+#include "module_ssh/historyconnectwidget.h"
+#include "module_utils/config.h"
 #include <QDateTime>
 #include "sshwidget.h"
 #include "sshsql.h"
@@ -26,7 +25,6 @@ public:
 
 
     //操作数据库
-    sqlhandle * db_;
     sshsql * db;
     historyconnectwidget * hcwidget = nullptr;  //快速连接
     QVector<sshwidget*> sshWidgetList;
@@ -84,6 +82,8 @@ private slots:
     void on_toolButton_timestamp_copy_clicked();
 
     void on_toolButton_closetool_clicked();
+
+    void rece_updateMouseStyle();
 
 private:
     Ui::sshwidgetmanagewidget *ui;

@@ -27,9 +27,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        module_mainwindow/mainwindow.cpp \
+    main.cpp \
+    module_mainwindow/mainwindow.cpp \
+    module_ssh/sshsql.cpp \
     module_thrift/prefabricatedata.cpp \
+    module_zookeeper/zookeepersql.cpp \
     module_zookeeper/zookeeperwidget.cpp \
     module_connect/createconnect.cpp \
     module_zookeeper/zookeeperhandle.cpp \
@@ -41,7 +43,7 @@ SOURCES += \
     module_setting/settingwidget.cpp \
     module_connect/secretkeywidget.cpp \
     module_smalltool/smalltoolwidget.cpp \
-    module_historyconnect/historyconnectwidget.cpp \
+    module_ssh/historyconnectwidget.cpp \
     module_connect/keywidget.cpp \
     module_utils/utils.cpp \
     module_setting/colormatch.cpp \
@@ -50,18 +52,19 @@ SOURCES += \
     module_ssh/mkdirfolderwidget.cpp \
     module_ssh/addcommondwidget.cpp \
     module_ssh/historycommondwidget.cpp \
-    module_config/config.cpp \
+    module_utils/config.cpp \
     module_thrift/thriftwidget.cpp \
     module_zookeeper/zookeepermanagewidget.cpp \
-    module_flowlayout/flowlayout.cpp \
+    module_utils/flowlayout.cpp \
     module_activate/activate.cpp \
-    module_sql/sqlhandle.cpp \
     module_qss/qss.cpp \
-    module_form/form.cpp
+    module_ssh/sshwidgetmanagewidget.cpp
 
 HEADERS += \
-        module_mainwindow/mainwindow.h \
+    module_mainwindow/mainwindow.h \
+    module_ssh/sshsql.h \
     module_thrift/prefabricatedata.h \
+    module_zookeeper/zookeepersql.h \
     module_zookeeper/zookeeperwidget.h \
     module_connect/createconnect.h \
     module_zookeeper/zookeeperhandle.h \
@@ -73,7 +76,7 @@ HEADERS += \
     module_setting/settingwidget.h \
     module_connect/secretkeywidget.h \
     module_smalltool/smalltoolwidget.h \
-    module_historyconnect/historyconnectwidget.h \
+    module_ssh/historyconnectwidget.h \
     module_connect/keywidget.h \
     module_utils/utils.h \
     module_setting/colormatch.h \
@@ -82,14 +85,13 @@ HEADERS += \
     module_ssh/mkdirfolderwidget.h \
     module_ssh/addcommondwidget.h \
     module_ssh/historycommondwidget.h \
-    module_config/config.h \
+    module_utils/config.h \
     module_thrift/thriftwidget.h \
     module_zookeeper/zookeepermanagewidget.h \
-    module_flowlayout/flowlayout.h \
+    module_utils/flowlayout.h \
     module_activate/activate.h \
-    module_sql/sqlhandle.h \
     module_qss/qss.h \
-    module_form/form.h
+    module_ssh/sshwidgetmanagewidget.h
 
 FORMS += \
         module_mainwindow/mainwindow.ui \
@@ -101,7 +103,7 @@ FORMS += \
     module_setting/settingwidget.ui \
     module_connect/secretkeywidget.ui \
     module_smalltool/smalltoolwidget.ui \
-    module_historyconnect/historyconnectwidget.ui \
+    module_ssh/historyconnectwidget.ui \
     module_connect/keywidget.ui \
     module_setting/colormatch.ui \
     module_ssh/findwidget.ui \
@@ -113,7 +115,7 @@ FORMS += \
     module_zookeeper/zookeepermanagewidget.ui \
     module_activate/activate.ui \
     module_qss/qss.ui \
-    module_form/form.ui
+    module_ssh/sshwidgetmanagewidget.ui
 
 RESOURCES += \
     images.qrc \
