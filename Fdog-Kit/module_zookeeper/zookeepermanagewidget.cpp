@@ -27,8 +27,8 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     // ui->widget_left->setGraphicsEffect(effect);
 
     //打开数据库
-    db_ = new sqlhandle();
-    QVector<zkInfoStruct> zkInfoList =  db_->zk_getAllZkInfo();
+    db = new zookeepersql();
+    QVector<zkInfoStruct> zkInfoList =  db->zk_getAllZkInfo();
     for (int i = 0; i <zkInfoList.length();i++) {
         QString data = zkInfoList[i].host + ":" + zkInfoList[i].port;
         QToolButton * qbutton = new QToolButton(this);
@@ -98,7 +98,7 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
             zkInfoStruct zkInfo;
             zkInfo.host = dataList[0];
             zkInfo.port = dataList[1];
-            db_->zk_deleteZkInfo(zkInfo);
+            db->zk_deleteZkInfo(zkInfo);
 
             ui->stackedWidget->setCurrentIndex(0);
             zkStatusInfoMap[qbutton].status_ = 2;
@@ -160,7 +160,7 @@ zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QW
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
     m_buttonGroup->button(count-1)->setChecked(true);
     //打开数据库
-    db_ = new sqlhandle();
+    db = new zookeepersql();
 }
 
 void zookeepermanagewidget::newZKWidget(connnectInfoStruct &cInfoStruct)
@@ -183,7 +183,7 @@ void zookeepermanagewidget::newZKWidget(connnectInfoStruct &cInfoStruct)
     zkInfo.name = "测试";
     zkInfo.host = cInfoStruct.host;
     zkInfo.port = cInfoStruct.port;
-    db_->zk_insertZkInfo(zkInfo);
+    db->zk_insertZkInfo(zkInfo);
     cInfoStruct.buttonSid = count-1;
     qbutton->setIcon(QIcon(":lib/yellow.svg"));//黄色
     zookeeperwidget * zkWidget = new zookeeperwidget(cInfoStruct);
@@ -249,7 +249,7 @@ void zookeepermanagewidget::newZKWidget(connnectInfoStruct &cInfoStruct)
             zkInfoStruct zkInfo;
             zkInfo.host = dataList[0];
             zkInfo.port = dataList[1];
-            db_->zk_deleteZkInfo(zkInfo);
+            db->zk_deleteZkInfo(zkInfo);
 
             delete zkWidget;
             ui->stackedWidget->setCurrentIndex(0);

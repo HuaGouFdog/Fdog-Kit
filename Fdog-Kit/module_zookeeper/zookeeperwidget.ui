@@ -1424,13 +1424,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_mzxid">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1456,13 +1456,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_pzxid">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1488,13 +1488,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_version">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1520,13 +1520,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_aversion">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1580,13 +1580,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_cversion">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1640,13 +1640,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_czxid">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1700,13 +1700,13 @@ border-radius: 2px;
            <widget class="QLineEdit" name="lineEdit_dataLength">
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>70</width>
               <height>16777215</height>
              </size>
             </property>

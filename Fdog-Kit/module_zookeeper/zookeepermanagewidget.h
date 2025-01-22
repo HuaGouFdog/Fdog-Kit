@@ -5,8 +5,8 @@
 #include "zookeeperwidget.h"
 #include <QButtonGroup>
 #include <QMap>
-#include "module_sql/sqlhandle.h"
-
+//#include "module_sql/sqlhandle.h"
+#include "zookeepersql.h"
 struct zkStatusStruct{
     int status_;  //0 成功 1 连接中 2 关闭 3 失败
     zookeeperwidget * zkWidget_;
@@ -56,7 +56,9 @@ private:
     QMap<int,int> connectManager;
 
     //操作数据库
-    sqlhandle * db_;
+
+    zookeepersql * db;
+
     QMap<void *, zkStatusStruct> zkStatusInfoMap;
 
     int mode = 1;
