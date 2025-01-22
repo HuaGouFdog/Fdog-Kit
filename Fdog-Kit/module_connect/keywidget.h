@@ -3,7 +3,8 @@
 
 #include <QWidget>
 //#include "createconnect.h"
-#include "module_sql/sqlhandle.h"
+//#include "module_sql/sqlhandle.h"
+#include "module_ssh/sshsql.h"
 namespace Ui {
 class keywidget;
 }
@@ -31,7 +32,7 @@ private:
     QString path;
 
     //操作数据库
-    sqlhandle * db_;
+    sshsql * db;
 };
 
 #endif // KEYWIDGET_H

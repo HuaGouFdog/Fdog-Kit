@@ -7,11 +7,31 @@
 #include <QGraphicsDropShadowEffect>
 #include <QTextEdit>
 #include <QItemDelegate>
-
+#include <QMouseEvent>
 #include <QHBoxLayout>
 #include <QStyledItemDelegate>
 #include <QTableWidget>
 #include <QSpacerItem>
+#include <QEvent>
+#include <QDebug>
+#define LIGHT_THEME 0  //浅色主题
+#define DARK_THEME  1   //暗黑主题
+#define BLUE_THEME  2   //蓝色主题
+
+struct SSHINFO {
+    QString name;
+    QString ip;
+    QString password;
+    QString ssh_group;
+    QString remark;
+    QString nearest_connection;
+};
+
+struct sshKeyStruct {
+    QString name;
+    QString path;
+    QString password;
+};
 
 struct connnectInfoStruct {
     int8_t connectType;
@@ -65,6 +85,33 @@ public:
     }
 };
 
+//这个是为了跟踪鼠标，及时切换样式
+class TreeWidgetFilter :public QObject {
+    Q_OBJECT
+public:
+    explicit TreeWidgetFilter(QObject *parent = nullptr) : QObject(parent) {}
+
+signals:
+void send_updateMouseStyle();
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override
+    {
+        // 处理 QTreeWidget 的鼠标移动事件
+        //qDebug() << "eventFilter = " << event->type();
+        if (event->type() == QEvent::HoverMove) {
+            //更新样式
+            emit send_updateMouseStyle();
+            // QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+            // QPoint pos = mouseEvent->pos();
+            // qDebug() << "Mouse moved at:" << pos;
+            // 返回 false，表示继续传递事件
+            return false;  // 返回 true 会阻止事件传递，false 继续传递
+        }
+        // 对于其他事件，正常处理
+        return QObject::eventFilter(watched, event);
+    }
+};
 
 
 
@@ -106,7 +153,10 @@ void CoutCharacterEncoding(QString str);
 //获取非空字符串起点和结尾
 void getNonnullString(QString text, int & start, int & end);
 
+//遍历控件添加鼠标事件
 void setSupportStretch(QWidget * this_, bool isSupportStretch);
+
+//void setSupportStretch(void * this_, bool isSupportStretch);
 
 //获取样式表
 QString getStyleFile(QString path);

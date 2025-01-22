@@ -18,7 +18,7 @@
 #include "module_ssh/downloadwidget.h"
 #include "module_ssh/mkdirfolderwidget.h"
 #include "module_ssh/addcommondwidget.h"
-#include "module_config/config.h"
+#include "module_utils/config.h"
 #include "module_utils/utils.h"
 class CustomPlainTextEdit : public QPlainTextEdit {
     Q_OBJECT

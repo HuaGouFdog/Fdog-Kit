@@ -31,7 +31,7 @@
 #include <QTextBlock>
 #include <QShortcut>
 #include "datahandle.h"
-#include "module_flowLayout/FlowLayout.h"
+#include "module_utils/FlowLayout.h"
 QString a = "";
 
 //    // 关闭 SSH 连接

@@ -12,11 +12,9 @@ createconnect::createconnect(int8_t connectType, QWidget *parent) :
 {
     ui->setupUi(this);
     //ui->label->hide();
+    db = new sshsql();
     //只显示关闭按钮
     setWindowFlags(Qt::WindowCloseButtonHint);
-
-    //打开数据库
-    db_ = new sqlhandle();
     //选择显示的连接类型
     this->connectType = connectType;
     //setWindowTitle("新建终端");
@@ -88,8 +86,7 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
             cInfo.sshType = SSH_PUBLICKEY;
             //通过数据库查询文件路径和密码
             cInfo.userName = ui->lineEdit_publicKey->text();
-            //db_->sshKey_getAllSSHKeyInfo();
-            sshKeyStruct sshKeyInfo = db_->sshKey_getSSHKeyInfoByName(ui->lineEdit_publicKey->text());
+            sshKeyStruct sshKeyInfo = db->sshKey_getSSHKeyInfoByName(ui->lineEdit_publicKey->text());
             cInfo.password = sshKeyInfo.password;
             cInfo.publickey = sshKeyInfo.path;
             qDebug() << "password = " << sshKeyInfo.password << " publickey = " << sshKeyInfo.path;
@@ -197,3 +194,68 @@ void createconnect::rece_selectPublicKey(QString text) {
     ui->lineEdit_publicKey->setText(text);
 
 }
+
+void createconnect::on_widget_bottom_toolButton_save_clicked()
+{
+    //保存数据
+    //创建选择的连接信息
+    connnectInfoStruct cInfo;
+    if (ui->tabWidget->currentIndex() == 0) {
+        cInfo.connectType = 1;//this->connectType;
+        cInfo.name = ui->widget_name_lineEdit_name_data->text();
+        if (ui->widget_name_lineEdit_name_data->text() == "") {
+            cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
+        }
+        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+        if (ui->widget_group_lineEdit_group_data->text() == "") {
+            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+        }
+        cInfo.host = ui->lineEdit_host_ssh_data->text();
+        cInfo.port = ui->lineEdit_port_ssh_data->text();
+
+        cInfo.userName = ui->lineEdit_user_ssh_data->text();
+        if (ui->lineEdit_user_ssh_data->text() == "") {
+            cInfo.userName = ui->lineEdit_user_ssh_data->placeholderText();
+        }
+        cInfo.password = ui->tab_passowrd_lineEdit_password_data->text();
+        cInfo.isSavePassword = ui->tab_passowrd_checkBox_remember_password->isChecked();
+        //备注
+        cInfo.remark = ui->widget_remark_lineEdit_remark_data->text();
+
+        //最近连接时间
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        cInfo.nearest_connection = currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
+
+        //判断登录类型 1密码 2公钥
+        if (ui->tabWidget_password->currentIndex() == 0) {
+            qDebug() << "密码登录";
+            cInfo.sshType = SSH_PASSWORD;
+        } else if (ui->tabWidget_password->currentIndex() == 1) {
+            qDebug() << "公钥登录";
+            cInfo.sshType = SSH_PUBLICKEY;
+            //通过数据库查询文件路径和密码
+            cInfo.userName = ui->lineEdit_publicKey->text();
+            sshKeyStruct sshKeyInfo = db->sshKey_getSSHKeyInfoByName(ui->lineEdit_publicKey->text());
+            cInfo.password = sshKeyInfo.password;
+            cInfo.publickey = sshKeyInfo.path;
+            qDebug() << "password = " << sshKeyInfo.password << " publickey = " << sshKeyInfo.path;
+        }
+    } else if (ui->tabWidget->currentIndex() == 2) {
+        cInfo.connectType = 3;//this->connectType;
+        cInfo.name = ui->widget_name_lineEdit_name_data->text();
+        if (ui->widget_name_lineEdit_name_data->text() == "") {
+            cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
+        }
+        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+        if (ui->widget_group_lineEdit_group_data->text() == "") {
+            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+        }
+        cInfo.host = ui->lineEdit_host_zk_data->text();
+        cInfo.port = ui->lineEdit_port_zk_data->text();
+    }
+
+    emit newSave(cInfo);
+    this->hide();
+    return;
+}
+

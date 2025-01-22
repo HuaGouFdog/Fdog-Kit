@@ -184,7 +184,7 @@ QTabBar QToolButton:hover {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>-1</number>
          </property>
          <property name="iconSize">
           <size>
@@ -201,11 +201,6 @@ QTabBar QToolButton:hover {
          <property name="movable">
           <bool>true</bool>
          </property>
-         <widget class="QWidget" name="tab">
-          <attribute name="title">
-           <string>页</string>
-          </attribute>
-         </widget>
         </widget>
        </item>
       </layout>

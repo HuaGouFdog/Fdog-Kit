@@ -11,7 +11,7 @@ keywidget::keywidget(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Qt::WindowCloseButtonHint);
     //打开数据库
-    db_ = new sqlhandle();
+    db = new sshsql();
 }
 
 keywidget::~keywidget()
@@ -49,7 +49,7 @@ void keywidget::on_toolButton_ok_clicked()
     skeyStruct.path = path;
     skeyStruct.password = ui->lineEdit_key_pssword->text();
 
-    db_->sshKey_insertsshKeyInfo(skeyStruct);
+    db->sshKey_insertsshKeyInfo(skeyStruct);
     //通知更新
     emit send_addsshKey(skeyStruct);
     this->close();

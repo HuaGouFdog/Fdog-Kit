@@ -730,17 +730,11 @@ void getNonnullString(QString text, int & start, int & end) {
 }
 void setSupportStretch(QWidget * this_, bool isSupportStretch) {
     // 因为需要在鼠标未按下的情况下通过mouseMoveEvent事件捕捉鼠标位置，所以需要设置setMouseTracking为true（如果窗口支持拉伸）;
-        this_->setMouseTracking(isSupportStretch);
-        // 这里对子控件也进行了设置，是因为如果不对子控件设置，当鼠标移动到子控件上时，不会发送mouseMoveEvent事件，也就获取不到当前鼠标位置，无法判断鼠标状态及显示样式了。
-        QList<QWidget*> widgetList = this_->findChildren<QWidget*>();
-        for(int i = 0; i < widgetList.length(); i ++) {
-            widgetList[i]->setMouseTracking(isSupportStretch);
-        // 这里加了非空判断，防止m_titleBar未创建;
-//        if (m_titleBar != NULL)
-//        {
-//            // m_titleBar同理,也需要对自己及子控件进行调用setMouseTracking进行设置，见上方注释;
-//            m_titleBar->setSupportStretch(isSupportStretch);
-//        }
+    this_->setMouseTracking(isSupportStretch);
+    // 这里对子控件也进行了设置，是因为如果不对子控件设置，当鼠标移动到子控件上时，不会发送mouseMoveEvent事件，也就获取不到当前鼠标位置，无法判断鼠标状态及显示样式了。
+    QList<QWidget*> widgetList = this_->findChildren<QWidget*>();
+    for(int i = 0; i < widgetList.length(); i ++) {
+        widgetList[i]->setMouseTracking(isSupportStretch);
     }   
 }
 
@@ -798,3 +792,15 @@ QFMessageBox::~QFMessageBox()
     delete w;
     delete hlw;
 }
+
+//void setSupportStretch(void *this_, bool isSupportStretch)
+//{
+//    // 因为需要在鼠标未按下的情况下通过mouseMoveEvent事件捕捉鼠标位置，所以需要设置setMouseTracking为true（如果窗口支持拉伸）;
+//    QWidget * a = static_cast<QWidget *>(this_);
+//    a->setMouseTracking(isSupportStretch);
+//    // 这里对子控件也进行了设置，是因为如果不对子控件设置，当鼠标移动到子控件上时，不会发送mouseMoveEvent事件，也就获取不到当前鼠标位置，无法判断鼠标状态及显示样式了。
+//    QList<QWidget*> widgetList = a->findChildren<QWidget*>();
+//    for(int i = 0; i < widgetList.length(); i ++) {
+//        widgetList[i]->setMouseTracking(isSupportStretch);
+//    }
+//}

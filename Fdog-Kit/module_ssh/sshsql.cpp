@@ -26,9 +26,6 @@ void sshsql::ssh_init()
 
     if (!database_ssh.open()) {
         qDebug() << "DB_SSH_INFO.db打开失败 " << database_ssh.lastError();
-    } else {
-        //qDebug() << "DB_SSH_INFO.db 数据库已经打开";
-        // do something
     }
 
     // 用于执行sql语句的对象
