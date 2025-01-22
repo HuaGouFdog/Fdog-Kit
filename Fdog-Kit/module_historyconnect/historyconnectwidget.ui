@@ -100,10 +100,9 @@
            <property name="styleSheet">
             <string notr="true">QLineEdit{
 color: rgb(231, 238, 244);
-border-radius: 14px;
+border-radius: 5px;
 background-color: rgb(25, 25, 25, 155);
 border: 0px solid rgba(255, 255, 255, 0);
-border-radius: 10px;
 padding-left:10px;
 padding-right:10px;
 }
@@ -136,8 +135,9 @@ padding-right:10px;
        <widget class="QWidget" name="widget_3" native="true">
         <property name="styleSheet">
          <string notr="true">#widget_3{
-background-color: rgb(10, 31, 57,100);
-border-radius:15px;
+    border: 1px solid rgba(197, 197, 197,50);
+    background-color: rgba(255, 255, 255, 20);
+    border-radius: 10px;
 }</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -145,7 +145,7 @@ border-radius:15px;
           <number>15</number>
          </property>
          <property name="topMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="rightMargin">
           <number>15</number>
@@ -191,15 +191,15 @@ border-radius:15px;
 
 QTableWidget::item:hover{
 	
-	background-color: rgba(41, 85, 132, 100);
+	background-color: rgb(24, 26, 29);
 }
 QTableWidget::item:selected{
-	
-	
+
 	
 	color: rgb(255, 255, 255);
 	
-	background-color: rgb(28, 60, 97);
+	
+	background-color: rgb(24, 26, 29);
 }
 
 QHeaderView::section,QTableCornerButton:section{
@@ -304,14 +304,14 @@ QScrollBar::up-arrow:vertical {
            <attribute name="horizontalHeaderCascadingSectionResizes">
             <bool>false</bool>
            </attribute>
+           <attribute name="horizontalHeaderMinimumSectionSize">
+            <number>20</number>
+           </attribute>
            <attribute name="horizontalHeaderDefaultSectionSize">
             <number>120</number>
            </attribute>
            <attribute name="horizontalHeaderHighlightSections">
             <bool>false</bool>
-           </attribute>
-           <attribute name="horizontalHeaderMinimumSectionSize">
-            <number>20</number>
            </attribute>
            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
             <bool>false</bool>
@@ -322,11 +322,11 @@ QScrollBar::up-arrow:vertical {
            <attribute name="verticalHeaderVisible">
             <bool>false</bool>
            </attribute>
-           <attribute name="verticalHeaderDefaultSectionSize">
-            <number>30</number>
-           </attribute>
            <attribute name="verticalHeaderMinimumSectionSize">
             <number>20</number>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>30</number>
            </attribute>
            <column>
             <property name="text">

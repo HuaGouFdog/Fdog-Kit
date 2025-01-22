@@ -389,12 +389,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
         //hcwidget->hide();
         ui->toolButton_history->hide();
     }
-
     if (confInfo->commandDisplay == 0) {
         ui->widget_bottom->hide();
         ui->toolButton_command->hide();
     }
-
     if (confInfo->conectStatsDisplay == 0) {
         ui->widget->hide();
         ui->toolButton_conectStats->hide();

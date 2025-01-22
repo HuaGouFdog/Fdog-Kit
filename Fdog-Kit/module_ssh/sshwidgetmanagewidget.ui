@@ -129,9 +129,7 @@ QMenu::separator {
          <property name="styleSheet">
           <string notr="true">/*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
-	
-	background-color: rgba(9, 28, 52, 100);
-	
+	background-color: rgb(35, 39, 46);
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
 	color:#ced4da;    /*设置tab中的文本的颜色*/
@@ -148,34 +146,29 @@ QTabBar::tab{
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
 QTabBar::tab:selected{
-background-color: rgb(9, 29, 54);
+background-color: rgb(24, 26, 29);
 }
  
 /*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
 QTabBar::tab:hover:!selected {
-background-color: rgb(9, 29, 54);
+background-color: rgb(24, 26, 29);
 
 }
  
 /*设置TabWidget的边框的样式*/
 QTabWidget::pane {
 	
-    border-top:0px solid rgb(108, 117, 125, 65); 
+    border-top:2px solid rgb(108, 117, 125, 65); 
 }
  
 
 QTabBar::close-button{ 
-	
-	border-image: url(:/lib/icon-close4.png);
-}
-
-QTabBar::close-button:selected{
-	border-image: url(:/lib/icon-close4.png);
+	border-image: url(:/lib/guanbi2.png);
 }
 
 
 QTabBar::close-button:hover{
-	border-image: url(:/lib/icon-close42.png);
+	image: url(:/lib/guanbi1.png);
 }
 
 
@@ -191,7 +184,7 @@ QTabBar QToolButton:hover {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>-1</number>
+          <number>0</number>
          </property>
          <property name="iconSize">
           <size>
@@ -208,6 +201,11 @@ QTabBar QToolButton:hover {
          <property name="movable">
           <bool>true</bool>
          </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>页</string>
+          </attribute>
+         </widget>
         </widget>
        </item>
       </layout>
