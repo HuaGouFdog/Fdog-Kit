@@ -28,6 +28,10 @@
   <h1> </h1>
 </div>
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=HuaGouFdog/Fdog-Kit&type=Date)](https://star-history.com/#HuaGouFdog/Fdog-Kit&Date)
+
 我正在将平时学习中用到的功能或技能集成进Fdog-kit中，包括：
 
 1. 无边框窗口模板
