@@ -84,13 +84,13 @@ QScrollBar::up-arrow:vertical {
     <widget class="QWidget" name="widget_left" native="true">
      <property name="minimumSize">
       <size>
-       <width>230</width>
+       <width>200</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>230</width>
+       <width>200</width>
        <height>16777215</height>
       </size>
      </property>
@@ -102,10 +102,9 @@ QScrollBar::up-arrow:vertical {
      </property>
      <property name="styleSheet">
       <string notr="true">#widget_left{
-border-image: url(:/lib/back2.png);
-border-right:0px solid rgba(108, 117, 125, 65); 
-border-top-right-radius: 10px;
+border-right:2px solid rgba(197, 197, 197,50);
 }
+
 QScrollBar:vertical{
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
@@ -162,7 +161,7 @@ QScrollBar::up-arrow:vertical {
        <number>0</number>
       </property>
       <property name="topMargin">
-       <number>10</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
        <number>0</number>
@@ -172,6 +171,12 @@ QScrollBar::up-arrow:vertical {
       </property>
       <item>
        <widget class="QScrollArea" name="scrollArea_2">
+        <property name="styleSheet">
+         <string notr="true">QScrollArea{
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+}</string>
+        </property>
         <property name="widgetResizable">
          <bool>true</bool>
         </property>
@@ -180,9 +185,14 @@ QScrollBar::up-arrow:vertical {
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>228</width>
-           <height>649</height>
+           <width>200</width>
+           <height>661</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#scrollAreaWidgetContents_2{
+background-color: rgba(255, 255, 255, 0);
+}</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="leftMargin">
@@ -211,6 +221,9 @@ QScrollBar::up-arrow:vertical {
               <height>34</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+            </property>
             <layout class="QHBoxLayout" name="horizontalLayout_188">
              <property name="leftMargin">
               <number>10</number>
@@ -225,53 +238,15 @@ QScrollBar::up-arrow:vertical {
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="label_2">
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">border-image: url(:/module_qss/image/qss.png);</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_17">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>10</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
               <widget class="QLabel" name="label_3">
                <property name="font">
                 <font>
                  <family>OPPOSans B</family>
-                 <pointsize>16</pointsize>
+                 <pointsize>15</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>qss</string>
+                <string>Qt样式表参考</string>
                </property>
               </widget>
              </item>
@@ -300,7 +275,13 @@ QScrollBar::up-arrow:vertical {
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QListWidget::item{
+             <string notr="true">QListWidget{
+	background-color: rgba(255, 255, 255, 0);
+    border: none;
+    
+	color: rgb(255, 255, 255);
+}
+QListWidget::item{
 height: 22px;
 }
 </string>
@@ -442,22 +423,22 @@ height: 22px;
             </item>
             <item>
              <property name="text">
-              <string>对话框按钮组：QDialogButtonBox</string>
+              <string>对话框按钮组</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>文本按钮：QCommandLinkButton</string>
+              <string>文本按钮</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>停靠窗口容器：QDockWidget</string>
+              <string>停靠窗口容器</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>多文档容器：QMDIArea</string>
+              <string>多文档容器</string>
              </property>
             </item>
             <item>
@@ -512,39 +493,46 @@ height: 22px;
    <item>
     <widget class="QWidget" name="widget_right" native="true">
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>9</number>
+       <number>10</number>
       </property>
       <property name="bottomMargin">
-       <number>9</number>
+       <number>10</number>
       </property>
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="styleSheet">
          <string notr="true">QStackedWidget{
-background-color: rgb(10, 31, 57);
-border-radius:9px;
+background-color: rgba(10, 31, 57, 0);
+}
+
+QListWidget{
+	background-color: rgba(255, 255, 255, 0);
+    border: none;
+    
+	color: rgb(255, 255, 255);
 }
 
 QTextEdit{
-background-color: rgb(40, 71, 102);
-border-radius:9px;
-padding:5px;
-color: rgb(255, 255, 255);
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	padding:5px;
+	color: rgb(255, 255, 255);
 	font: 10pt &quot;OPPOSans B&quot;;
 }</string>
         </property>
         <property name="currentIndex">
-         <number>24</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="page_2">
          <layout class="QVBoxLayout" name="verticalLayout_7" stretch="3,5">
@@ -660,6 +648,9 @@ color: rgb(255, 255, 255);
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -699,6 +690,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -740,6 +734,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -793,6 +790,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -833,6 +833,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -873,6 +876,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -913,6 +919,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="html">
@@ -1059,6 +1068,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1120,6 +1132,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1170,6 +1185,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1225,6 +1243,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1291,6 +1312,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1341,6 +1365,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1413,6 +1440,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1477,6 +1507,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1521,6 +1554,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1602,6 +1638,9 @@ p, li { white-space: pre-wrap; }
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1661,6 +1700,9 @@ p, li { white-space: pre-wrap; }
              <font>
               <family>OPPOSans B</family>
               <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
              </font>
             </property>
             <property name="html">
@@ -2472,6 +2514,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -2570,6 +2615,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -2979,6 +3027,9 @@ background-color: rgb(85, 85, 127);
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -3164,6 +3215,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -3717,6 +3771,9 @@ background-color: rgb(85, 85, 127);
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -3831,6 +3888,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -4304,6 +4364,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -4408,6 +4471,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -4844,6 +4910,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -4948,6 +5017,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -5389,6 +5461,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -5493,6 +5568,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -5934,6 +6012,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -6038,6 +6119,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -6355,7 +6439,7 @@ p, li { white-space: pre-wrap; }
                      <x>0</x>
                      <y>0</y>
                      <width>225</width>
-                     <height>65</height>
+                     <height>71</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -6368,7 +6452,7 @@ p, li { white-space: pre-wrap; }
                      <x>0</x>
                      <y>0</y>
                      <width>225</width>
-                     <height>65</height>
+                     <height>71</height>
                     </rect>
                    </property>
                    <attribute name="label">
@@ -6536,6 +6620,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -6640,6 +6727,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -7078,6 +7168,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -7182,6 +7275,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -7608,6 +7704,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -7712,6 +7811,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -8279,6 +8381,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -8393,6 +8498,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -8858,6 +8966,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -8955,6 +9066,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -9337,6 +9451,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -9434,6 +9551,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -9807,6 +9927,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -9904,6 +10027,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -10273,6 +10399,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -10370,6 +10499,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -10733,6 +10865,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -10830,6 +10965,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
@@ -11204,6 +11342,9 @@ p, li { white-space: pre-wrap; }
                    <font>
                     <family>OPPOSans B</family>
                     <pointsize>10</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="frameShadow">
@@ -11301,6 +11442,9 @@ p, li { white-space: pre-wrap; }
                        <font>
                         <family>OPPOSans B</family>
                         <pointsize>10</pointsize>
+                        <weight>50</weight>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="html">
