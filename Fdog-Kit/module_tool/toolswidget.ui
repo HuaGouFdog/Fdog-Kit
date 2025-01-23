@@ -37,21 +37,19 @@ color: rgb(255, 255, 255);</string>
     <widget class="QWidget" name="widget_left" native="true">
      <property name="minimumSize">
       <size>
-       <width>230</width>
+       <width>200</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>230</width>
+       <width>200</width>
        <height>16777215</height>
       </size>
      </property>
      <property name="styleSheet">
       <string notr="true">#widget_left{
-border-image: url(:/lib/back2.png);
-border-right:0px solid rgba(108, 117, 125, 65); 
-border-top-right-radius: 10px;
+border-right:2px solid rgba(197, 197, 197,50);
 }
 QScrollBar:vertical{
     width: 12px;
@@ -148,22 +146,34 @@ QScrollBar::up-arrow:horizontal {
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <property name="spacing">
-       <number>30</number>
-      </property>
-      <property name="leftMargin">
        <number>20</number>
       </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
       <property name="topMargin">
-       <number>22</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>25</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
        <number>15</number>
       </property>
       <item>
        <widget class="QLabel" name="label_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>43</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>43</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>OPPOSans B</family>
@@ -178,7 +188,10 @@ QScrollBar::up-arrow:horizontal {
       <item>
        <widget class="QScrollArea" name="scrollArea">
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         <string notr="true">QScrollArea{
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+}</string>
         </property>
         <property name="widgetResizable">
          <bool>true</bool>
@@ -188,15 +201,19 @@ QScrollBar::up-arrow:horizontal {
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>171</width>
-           <height>782</height>
+           <width>178</width>
+           <height>697</height>
           </rect>
          </property>
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton {
+          <string notr="true">#scrollAreaWidgetContents{
+background-color: rgba(255, 255, 255, 0);
+}
+
+QToolButton {
     qproperty-iconSize: 22px 22px;
 	padding-left: 0px;
 	background-color: rgba(255, 255, 255, 0);
@@ -214,14 +231,15 @@ QToolButton:hover {
 	border-radius:5px;
 	color: rgb(255, 255, 255);
 	
-	background-color: rgb(20, 30, 36);
+	
+	background-color: rgb(24, 26, 29);
 	border: none;
 }
  
 QToolButton:checked {
 	border-radius:5px;
 	color: rgb(255, 255, 255);
-	background-color: rgb(20, 30, 36);
+	background-color: rgb(24, 26, 29);
 	border: none;
 }</string>
          </property>
@@ -236,7 +254,7 @@ QToolButton:checked {
            <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>0</number>
+           <number>10</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -252,13 +270,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -274,7 +292,7 @@ QToolButton:checked {
              <string> MD5加密</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/MD5.png</normaloff>:/lib/MD5.png</iconset>
             </property>
             <property name="iconSize">
@@ -299,13 +317,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -321,7 +339,7 @@ QToolButton:checked {
              <string> JSON格式化</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/json (2).png</normaloff>:/lib/json (2).png</iconset>
             </property>
             <property name="iconSize">
@@ -346,13 +364,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -368,7 +386,7 @@ QToolButton:checked {
              <string> 时间戳</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/timestamp.png</normaloff>:/lib/timestamp.png</iconset>
             </property>
             <property name="iconSize">
@@ -393,13 +411,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -415,7 +433,7 @@ QToolButton:checked {
              <string> 进制转换</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/Binary.png</normaloff>:/lib/Binary.png</iconset>
             </property>
             <property name="iconSize">
@@ -440,13 +458,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -462,7 +480,7 @@ QToolButton:checked {
              <string> URL编码</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/URL.png</normaloff>:/lib/URL.png</iconset>
             </property>
             <property name="iconSize">
@@ -487,13 +505,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -509,7 +527,7 @@ QToolButton:checked {
              <string> 计算器</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/calculator.png</normaloff>:/lib/calculator.png</iconset>
             </property>
             <property name="iconSize">
@@ -534,13 +552,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -556,7 +574,7 @@ QToolButton:checked {
              <string> Qt控件美化</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/qssmaihua.png</normaloff>:/lib/qssmaihua.png</iconset>
             </property>
             <property name="iconSize">
@@ -581,13 +599,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -603,7 +621,7 @@ QToolButton:checked {
              <string> XML格式化</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/xml (2).png</normaloff>:/lib/xml (2).png</iconset>
             </property>
             <property name="iconSize">
@@ -628,13 +646,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -650,7 +668,7 @@ QToolButton:checked {
              <string> 便签</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/note.png</normaloff>:/lib/note.png</iconset>
             </property>
             <property name="iconSize">
@@ -675,13 +693,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -697,7 +715,7 @@ QToolButton:checked {
              <string> Linux常用命令</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/linux.png</normaloff>:/lib/linux.png</iconset>
             </property>
             <property name="iconSize">
@@ -722,13 +740,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -744,7 +762,7 @@ QToolButton:checked {
              <string> 正则表达式验证</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/regular.png</normaloff>:/lib/regular.png</iconset>
             </property>
             <property name="iconSize">
@@ -769,13 +787,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -791,7 +809,7 @@ QToolButton:checked {
              <string> 常用资源网站</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/regular.png</normaloff>:/lib/regular.png</iconset>
             </property>
             <property name="iconSize">
@@ -816,13 +834,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -838,7 +856,7 @@ QToolButton:checked {
              <string> 文本内容对比</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/XML-Local-hover.png</normaloff>:/lib/XML-Local-hover.png</iconset>
             </property>
             <property name="iconSize">
@@ -863,13 +881,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -885,7 +903,7 @@ QToolButton:checked {
              <string> thrift接口测试</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/Thrift5.png</normaloff>:/lib/Thrift5.png</iconset>
             </property>
             <property name="iconSize">
@@ -910,13 +928,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -932,7 +950,7 @@ QToolButton:checked {
              <string> 数据库连接</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/mysql.png</normaloff>:/lib/mysql.png</iconset>
             </property>
             <property name="iconSize">
@@ -957,13 +975,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -979,7 +997,7 @@ QToolButton:checked {
              <string> SSH连接</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/powershell.png</normaloff>:/lib/powershell.png</iconset>
             </property>
             <property name="iconSize">
@@ -1004,13 +1022,13 @@ QToolButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>35</height>
              </size>
             </property>
             <property name="font">
@@ -1026,7 +1044,7 @@ QToolButton:checked {
              <string> windows远程连接</string>
             </property>
             <property name="icon">
-             <iconset resource="lib.qrc">
+             <iconset resource="../lib.qrc">
               <normaloff>:/lib/windows.png</normaloff>:/lib/windows.png</iconset>
             </property>
             <property name="iconSize">
@@ -1086,13 +1104,13 @@ QToolButton:checked {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>50</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>50</height>
+          <height>40</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -1133,13 +1151,13 @@ QToolButton:checked {
           <number>1</number>
          </property>
          <property name="topMargin">
-          <number>9</number>
+          <number>0</number>
          </property>
          <property name="rightMargin">
           <number>0</number>
          </property>
          <property name="bottomMargin">
-          <number>2</number>
+          <number>0</number>
          </property>
          <item>
           <widget class="QToolButton" name="toolButton_3">
@@ -1165,7 +1183,7 @@ QToolButton:checked {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/left1.png</normaloff>:/lib/left1.png</iconset>
            </property>
            <property name="iconSize">
@@ -1197,7 +1215,7 @@ QToolButton:checked {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/right1.png</normaloff>:/lib/right1.png</iconset>
            </property>
            <property name="iconSize">
@@ -3106,7 +3124,7 @@ padding-right:10px;</string>
   <zorder>widget_left</zorder>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>
