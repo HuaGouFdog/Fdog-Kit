@@ -70,6 +70,7 @@
         <property name="styleSheet">
          <string notr="true">#widget_left{
 border-right:2px solid rgba(197, 197, 197,50);
+	background-color: rgb(35, 39, 46);
 }
 
 QToolButton {
@@ -102,7 +103,7 @@ QToolButton:checked {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
-          <number>6</number>
+          <number>3</number>
          </property>
          <property name="leftMargin">
           <number>10</number>
@@ -121,7 +122,13 @@ QToolButton:checked {
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>50</height>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>42</height>
             </size>
            </property>
            <property name="font">
@@ -138,6 +145,22 @@ QToolButton:checked {
             <string>设置</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_activate">
@@ -500,6 +523,57 @@ QToolButton:checked {
           </widget>
          </item>
          <item>
+          <widget class="QToolButton" name="toolButton_feature">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>3</horstretch>
+             <verstretch>4</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>  功能配置</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../qss_image.qrc">
+             <normaloff>:/module_setting/images/light/feature-light.png</normaloff>:/module_setting/images/light/feature-light.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>22</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QToolButton" name="toolButton_about">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -636,6 +710,9 @@ QToolButton:checked {
       </item>
       <item>
        <widget class="QWidget" name="widget_7" native="true">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(35, 39, 46);</string>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_14">
          <property name="spacing">
           <number>0</number>
@@ -720,7 +797,7 @@ QComboBox QAbstractItemView::item:selected {
 </string>
            </property>
            <property name="currentIndex">
-            <number>7</number>
+            <number>8</number>
            </property>
            <widget class="QWidget" name="page_activate">
             <property name="styleSheet">
@@ -2448,7 +2525,7 @@ QScrollBar::up-arrow:vertical {
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>0</y>
+                  <y>-211</y>
                   <width>586</width>
                   <height>750</height>
                  </rect>
@@ -2495,8 +2572,12 @@ QScrollBar::up-arrow:vertical {
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_11{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}
+                    <string notr="true">#verticalWidget_11{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}
 
 QLineEdit{
 color:#ced4da;
@@ -2651,8 +2732,12 @@ padding-right:10px;
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_10{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_10{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_22">
                     <property name="spacing">
@@ -2816,8 +2901,12 @@ p, li { white-space: pre-wrap; }
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_32{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_32{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_41">
                     <item>
@@ -3256,9 +3345,11 @@ border-radius: 5px;}
 #verticalWidget_19:hover,#verticalWidget_20:hover,
 #verticalWidget_21:hover,#verticalWidget_22:hover,
 #verticalWidget_23:hover,#verticalWidget_24:hover{
+	border: 1px solid rgba(197, 197, 197,50);
 	
-	background-color: rgba(223, 223, 223,50);
-	border-radius: 5px;}</string>
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                </property>
                <property name="widgetResizable">
                 <bool>true</bool>
@@ -4055,7 +4146,7 @@ QScrollBar::up-arrow:vertical {
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>0</y>
+                  <y>-771</y>
                   <width>586</width>
                   <height>1310</height>
                  </rect>
@@ -4100,8 +4191,11 @@ QScrollBar::up-arrow:vertical {
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_37{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_37{	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_48">
                     <item>
@@ -4251,8 +4345,12 @@ QToolButton:hover {
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_33{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_33{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_44">
                     <item>
@@ -4368,8 +4466,12 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_35{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_35{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_46">
                     <item>
@@ -4485,8 +4587,12 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_34{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_34{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_45">
                     <item>
@@ -4602,8 +4708,12 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_36{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_36{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_47">
                     <item>
@@ -4719,8 +4829,12 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_14{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_14{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_24">
                     <item>
@@ -4883,8 +4997,10 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_26{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_26{	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_35">
                     <item>
@@ -5042,8 +5158,10 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_27{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_27{	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_36">
                     <item>
@@ -5206,8 +5324,10 @@ border-radius: 5px;}</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_28{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_28{	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_37">
                     <item>
@@ -5339,8 +5459,12 @@ border: 0px solid rgba(255, 255, 255, 0);
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_29{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_29{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_38">
                     <item>
@@ -5554,8 +5678,12 @@ border-radius: 4px;
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_30{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_30{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_39">
                     <item>
@@ -5686,8 +5814,12 @@ border: 0px solid rgba(255, 255, 255, 0);
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">#verticalWidget_31{background-color: rgba(223, 223, 223,50);
-border-radius: 5px;}</string>
+                    <string notr="true">#verticalWidget_31{
+	border: 1px solid rgba(197, 197, 197,50);
+	
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+}</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_40" stretch="1,1">
                     <item>
@@ -8964,8 +9096,60 @@ QToolButton:checked {
              </item>
             </layout>
            </widget>
+           <widget class="QWidget" name="page">
+            <widget class="QWidget" name="horizontalWidget_18" native="true">
+             <property name="geometry">
+              <rect>
+               <x>60</x>
+               <y>40</y>
+               <width>566</width>
+               <height>40</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>40</height>
+              </size>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_20">
+              <property name="leftMargin">
+               <number>9</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <property name="bottomMargin">
+               <number>9</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_38">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>16</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>功能配置</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
            <widget class="QWidget" name="page_about">
-            <layout class="QVBoxLayout" name="verticalLayout_24">
+            <layout class="QVBoxLayout" name="verticalLayout_20">
              <property name="spacing">
               <number>20</number>
              </property>
@@ -8981,6 +9165,50 @@ QToolButton:checked {
              <property name="bottomMargin">
               <number>10</number>
              </property>
+             <item>
+              <widget class="QWidget" name="horizontalWidget_16" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_19">
+                <property name="leftMargin">
+                 <number>9</number>
+                </property>
+                <property name="topMargin">
+                 <number>9</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>9</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_37">
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>16</pointsize>
+                    <stylestrategy>PreferAntialias</stylestrategy>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(255, 255, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>关于</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
              <item>
               <widget class="QTextEdit" name="textEdit">
                <property name="cursor" stdset="0">
@@ -9067,7 +9295,13 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit/releases&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#00aaff;&quot;&gt;https://github.com/HuaGouFdog/Fdog-Kit/releases&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#2f7fff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/HuaGouFdog/Fdog-Kit&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;感谢您的使用,欢迎给我提意见！😊😊😊&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;参考：&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://github.com/feiyangqingyun/qtkaifajingyan&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://blog.csdn.net/kenfan1647/article/details/109277427&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;依赖库：&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://github.com/libssh2/libssh2&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://github.com/apache/zookeeper/tree/master/zookeeper-client&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -9207,6 +9441,7 @@ QToolButton:hover {
  </widget>
  <resources>
   <include location="../lib.qrc"/>
+  <include location="../qss_image.qrc"/>
  </resources>
  <connections/>
 </ui>

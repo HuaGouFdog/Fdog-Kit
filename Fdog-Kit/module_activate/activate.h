@@ -11,7 +11,7 @@ class Activate;
 }
 
 extern bool signalReceived;
-
+extern bool signalReceived2;
 class Activate : public QWidget
 {
     Q_OBJECT
@@ -22,6 +22,8 @@ public:
 
 private slots:
     void updateBarValue();
+
+    void on_toolButton_close_clicked();
 
 private:
     Ui::Activate *ui;

@@ -7,9 +7,13 @@ Activate::Activate(QWidget *parent) :
     ui(new Ui::Activate)
 {
     ui->setupUi(this);
+    ui->progressBar->hide();
+    //Qt::WindowFlags flags = this->windowFlags();
+    //this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //Qt::WindowStaysOnTopHint
+    return;
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &Activate::updateBarValue);
-    m_timer->start(20);
+    m_timer->start(10);
     this->setWindowFlag(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     //设置边框阴影
@@ -21,10 +25,9 @@ Activate::Activate(QWidget *parent) :
     m_value = 0;
     ui->progressBar->setValue(0);
 }
-
 Activate::~Activate()
 {
-    delete ui;
+    delete ui;  
 }
 
 void Activate::updateBarValue()
@@ -38,3 +41,11 @@ void Activate::updateBarValue()
         this->close();
     }
 }
+
+void Activate::on_toolButton_close_clicked()
+{
+    signalReceived = true;
+    signalReceived2 = true;
+    this->close();
+}
+

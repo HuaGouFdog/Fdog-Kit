@@ -218,7 +218,8 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     m_buttonGroup->addButton(ui->toolButton_theme, 4);
     m_buttonGroup->addButton(ui->toolButton_terminal, 5);
     m_buttonGroup->addButton(ui->toolButton_shortcutKey, 6);
-    m_buttonGroup->addButton(ui->toolButton_about, 7);
+    m_buttonGroup->addButton(ui->toolButton_feature, 7);
+    m_buttonGroup->addButton(ui->toolButton_about, 8);
     
     m_buttonGroup->button(0)->setChecked(true); //设置按钮组第一个按钮高亮显示
     m_buttonGroup->setExclusive(true);
