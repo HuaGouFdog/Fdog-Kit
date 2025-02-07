@@ -32,6 +32,17 @@ class config : public QWidget
     Q_OBJECT
 public:
     explicit config(QWidget *parent = nullptr);
+    //初始化
+    int isFirstStart = 1; 
+    int autoPackage = 0;
+    int thrift = 0;
+    int zookeeper = 0;
+    int shell = 0;
+    int db = 0;
+    int qss = 0;
+    int tool = 0;
+    int extend = 0;
+
     //启动选项
     int selfStart = 0;      //开机时启动
     int trayDisplay = 0;    //托盘区显示

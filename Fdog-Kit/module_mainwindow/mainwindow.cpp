@@ -84,6 +84,41 @@ MainWindow::MainWindow(QWidget *parent) :
     confInfo = new config();
     // 读取JSON文件
     confInfo->readSettingConf();
+    qDebug() << "confInfo->isFirstStart" << confInfo->isFirstStart;
+    qDebug() << "confInfo->autoPackage" << confInfo->autoPackage;
+    qDebug() << "confInfo->thrift" << confInfo->thrift;
+    qDebug() << "confInfo->zookeeper" << confInfo->zookeeper;
+    qDebug() << "confInfo->shell" << confInfo->shell;
+    qDebug() << "confInfo->db" << confInfo->db;
+    qDebug() << "confInfo->qss" << confInfo->qss;
+    qDebug() << "confInfo->tool" << confInfo->tool;
+    qDebug() << "confInfo->extend" << confInfo->extend;
+
+    //判断要隐藏的功能
+    if (confInfo->autoPackage == 0) {
+        ui->toolButton_side_build->hide();
+    }
+    if (confInfo->thrift == 0) {
+        ui->toolButton_side_thrift->hide();
+    }
+    if (confInfo->zookeeper == 0) {
+        ui->toolButton_side_zookeeper->hide();
+    }
+    if (confInfo->shell == 0) {
+        ui->toolButton_side_shell->hide();
+    }
+    if (confInfo->db == 0) {
+        ui->toolButton_side_mysql->hide();
+    }
+    if (confInfo->qss == 0) {
+        ui->toolButton_side_qss->hide();
+    }
+    if (confInfo->tool == 0) {
+        ui->toolButton_side_tool->hide();
+    }
+    if (confInfo->extend == 0) {
+        ui->toolButton_side_plugIn->hide();
+    }
 
     //设置窗口样式
     setWindowsByConf();
@@ -102,6 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //设置系统托盘
     createSystemTray();
+    qDebug() << "初始化完毕";
 }
 
 MainWindow::~MainWindow()

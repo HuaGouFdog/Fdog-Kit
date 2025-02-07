@@ -20,6 +20,7 @@
 #include <QPainter>
 
 bool signalReceived = false;
+bool signalReceived2 = false;
 
 HoveredRowItemDelegate::HoveredRowItemDelegate(QTableWidget *parent)
     : QStyledItemDelegate{parent}
