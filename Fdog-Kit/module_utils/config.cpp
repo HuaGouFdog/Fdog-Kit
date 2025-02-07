@@ -1,4 +1,5 @@
-﻿#include "config.h"
+﻿#pragma execution_character_set("utf-8")
+#include "config.h"
 #include <QFile>
 #include <QJsonParseError>
 #include <QDebug>
@@ -10,7 +11,8 @@ config::config(QWidget *parent) : QWidget(parent)
 
 void config::readSettingConf()
 {
-    QFile file(":conf/settings.json");
+    qDebug() << "开始读取";
+    QFile file(":conf//settings.json");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file.";
         return;
@@ -18,6 +20,7 @@ void config::readSettingConf()
     // 将JSON数据解析为QJsonDocument对象
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
+    file.close();
     if (error.error != QJsonParseError::NoError) {
         qDebug() << "Failed to parse JSON:" << error.errorString();
         //return -1;
@@ -25,6 +28,66 @@ void config::readSettingConf()
 
     if (doc.isObject()) {
         QJsonObject obj = doc.object();
+        
+        //是否第一次启动
+        QJsonValue isFirstStartValue = obj.value("isFirstStart");
+        if (isFirstStartValue.isDouble()) {
+            isFirstStart = isFirstStartValue.toInt();
+        }
+        //module初始化
+        QJsonValue moduleValue = obj.value("module");
+        if (moduleValue.isObject()) {
+            QJsonObject moduleObj = moduleValue.toObject();
+
+            //自动打包模块
+            QJsonValue autoValue = moduleObj.value("autoPackage");
+            if (autoValue.isDouble()) {
+                autoPackage = autoValue.toInt();
+            }
+
+            //thrift模块
+            QJsonValue thriftValue = moduleObj.value("thrift");
+            if (thriftValue.isDouble()) {
+                thrift = thriftValue.toInt();
+            }
+
+             //zk模块
+            QJsonValue zookeeperValue = moduleObj.value("zookeeper");
+            if (zookeeperValue.isDouble()) {
+                zookeeper = zookeeperValue.toInt();
+            }
+
+            //shell模块
+            QJsonValue shellValue = moduleObj.value("shell");
+            if (shellValue.isDouble()) {
+                shell = shellValue.toInt();
+            }
+
+            //数据库模块
+            QJsonValue dbValue = moduleObj.value("db");
+            if (dbValue.isDouble()) {
+                db = dbValue.toInt();
+            }
+
+            //qss模块
+            QJsonValue qssValue = moduleObj.value("qss");
+            if (qssValue.isDouble()) {
+                qss = qssValue.toInt();
+            }
+
+            //tool模块
+            QJsonValue toolValue = moduleObj.value("tool");
+            if (toolValue.isDouble()) {
+                tool = toolValue.toInt();
+            }
+
+            //扩展模块
+            QJsonValue extendValue = moduleObj.value("extend");
+            if (extendValue.isDouble()) {
+                extend = extendValue.toInt();
+            }
+        }
+
         //启动选项
         QJsonValue activateValue = obj.value("activate");
         if (activateValue.isObject()) {
@@ -218,11 +281,25 @@ void config::readSettingConf()
             }
         }
     }
+    file.close();
 }
 
 void config::writeSettingConf()
 {
     QJsonObject jObj;
+    jObj.insert("isFirstStart", isFirstStart);
+
+    QJsonObject jChildObj_module;
+    jChildObj_module.insert("autoPackage", autoPackage);
+    jChildObj_module.insert("thrift", thrift);
+    jChildObj_module.insert("zookeeper", zookeeper);
+    jChildObj_module.insert("shell", shell);
+    jChildObj_module.insert("db", db);
+    jChildObj_module.insert("qss", qss);
+    jChildObj_module.insert("tool", tool);
+    jChildObj_module.insert("extend", extend);
+    jObj.insert("module", jChildObj_module);
+
     QJsonObject jChildObj_activate;
     jChildObj_activate.insert("selfStart", selfStart);
     jChildObj_activate.insert("trayDisplay", trayDisplay);
@@ -295,10 +372,12 @@ void config::writeSettingConf()
     //打开存放json串的文件
     QFile file("conf//settings.json");
     if(!file.open(QIODevice::WriteOnly))
-        return ;
+    return ;
     //使用QJsonDocument的toJson方法获取json串并保存到数组
     QByteArray data(jDoc.toJson());
     //将json串写入文件
     file.write(data);
+    //file.flush(); // 确保数据被写入文件
+    qDebug() << "数据写入完毕";
     file.close();
 }

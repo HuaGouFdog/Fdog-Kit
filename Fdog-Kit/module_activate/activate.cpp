@@ -8,6 +8,7 @@ Activate::Activate(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->progressBar->hide();
+    ui->label_tips->hide();
     //Qt::WindowFlags flags = this->windowFlags();
     //this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //Qt::WindowStaysOnTopHint
     return;
@@ -44,8 +45,68 @@ void Activate::updateBarValue()
 
 void Activate::on_toolButton_close_clicked()
 {
+    //关闭
     signalReceived = true;
-    signalReceived2 = true;
     this->close();
+}
+
+
+void Activate::on_toolButton_run_clicked()
+{
+    //读取配置文件信息
+    config * confInfo = new config();
+    // 读取JSON文件
+    confInfo->readSettingConf();
+    int sum = 0;
+    if (ui->checkBox_auto->isChecked()) {
+        confInfo->autoPackage = 1;
+        sum++;
+    }
+    if (ui->checkBox_thrift->isChecked()) {
+        confInfo->thrift = 1;
+        sum++;
+    }
+    if (ui->checkBox_zk->isChecked()) {
+        confInfo->zookeeper = 1;
+        sum++;
+    }
+    if (ui->checkBox_shell->isChecked()) {
+        confInfo->shell = 1;
+        sum++;
+    }
+    if (ui->checkBox_db->isChecked()) {
+        confInfo->db = 1;
+        sum++;
+    }
+    if (ui->checkBox_qss->isChecked()) {
+        confInfo->qss = 1;
+        sum++;
+    }
+    if (ui->checkBox_tool->isChecked()) {
+        confInfo->tool = 1;
+        sum++;
+    }
+    if (ui->checkBox_extend->isChecked()) {
+        confInfo->extend = 1;
+        sum++;
+    }
+
+    if (ui->checkBox_tool->isChecked()) {
+        confInfo->autoPackage = 1;
+        sum++;
+    }
+
+    if(sum <= 0) {
+        //没有选择，给出提示
+        ui->label_tips->show();
+    } else {
+        confInfo->isFirstStart = 3;
+        confInfo->writeSettingConf();
+        confInfo->readSettingConf();
+        qDebug() << "isFirstStart 2 = " << confInfo->isFirstStart;
+        // signalReceived2 = true;
+        // signalReceived = true;
+        // this->close();
+    }
 }
 
