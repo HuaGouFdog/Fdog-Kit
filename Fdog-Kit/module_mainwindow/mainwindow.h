@@ -73,7 +73,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(config * confInfo, QWidget *parent = 0);
     ~MainWindow();
 
     void calculateCurrentStrechRect();
@@ -108,9 +108,11 @@ public:
     //判断版本
     bool isVersionGreater(const QString &version1, const QString &version2);
 
-    //切换主题
+    //切换全局主题
     void changeMainWindowTheme(bool isChange = false, int windowsType = 1); //1 正常 2最大化
 
+    //切换圆角
+    void changeMainWindowRadius(int windowsType = 1);
 
 private slots:
     void on_toolButton_close_clicked();

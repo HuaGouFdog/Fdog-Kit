@@ -27,8 +27,11 @@ public:
     ~zookeepermanagewidget();
 
 
-    //切换主题
+    //切换全局主题
     void changeMainWindowTheme(bool isChange = false, int windowsType = 1);
+
+    //切换圆角
+    void changeMainWindowRadius(int windowsType = 1);
 
 private slots:
     void on_toolButton_newCreate_clicked();

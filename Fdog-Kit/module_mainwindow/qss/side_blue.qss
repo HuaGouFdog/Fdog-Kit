@@ -4,13 +4,6 @@ background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
 }
 
-#widget_side {
-    color: rgb(255, 255, 255);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: rgb(10, 31, 57);
-}
-
 #label_name {
     color: rgb(255, 255, 255);
 }

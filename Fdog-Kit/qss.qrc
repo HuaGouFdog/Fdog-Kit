@@ -13,5 +13,8 @@
         <file>module_zookeeper/qss/main-blue.qss</file>
         <file>module_zookeeper/qss/main-dark.qss</file>
         <file>module_zookeeper/qss/main-light.qss</file>
+        <file>module_mainwindow/qss/body_blue.qss</file>
+        <file>module_mainwindow/qss/body_dark.qss</file>
+        <file>module_mainwindow/qss/body_light.qss</file>
     </qresource>
 </RCC>

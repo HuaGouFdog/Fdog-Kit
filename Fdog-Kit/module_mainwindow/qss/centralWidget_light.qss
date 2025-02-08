@@ -10,99 +10,17 @@
     border-radius:0px;
 }
 
-QLabel {
+
+#widget_side[State='WindowNoState'] {
     color: rgb(35, 39, 46);
-}
-
-#label_new{
-    color: rgb(35, 39, 46);
-}
-
-#label_use{
-    color: rgb(35, 39, 46);
-}
-
-QToolButton {
-    color: rgb(35, 39, 46);
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-}
-
-QToolButton::menu-indicator { 
-    image: None;
-}
-
- 
-QToolButton:hover {
-	
-    color: rgb(24,26,29);
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-}
-
-#widget_welcome_body_widget2_newCreate{
-    border: 1px solid rgba(24,26,29,80);
-    background-color: rgba(35, 39, 46, 30);
-    border-radius: 10px;
-}
-
-#widget_use{
-    border: 1px solid rgba(24,26,29,80);
-    background-color: rgba(35, 39, 46, 30);
-    border-radius: 10px;
-}
-
-#widget_body{
-   background-color: rgba(30, 45, 54, 0);
-}
-
-#toolButton_min {
-    color: rgb(255, 255, 255);
-    background-color: rgba(94, 255, 210, 0);
-    border: none;
-}
-#toolButton_min::menu-indicator { 
-    image: None;
-}
-#toolButton_min:hover {
-    color: rgb(255, 255, 255);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     background-color: rgb(127, 115, 87);
-    border: none;
 }
 
-#toolButton_max {
-    color: rgb(255, 255, 255);
-    background-color: rgba(94, 255, 210, 0);
-    border: none;
-}
-#toolButton_max::menu-indicator { 
-    image: None;
-}
-#toolButton_max:hover {
-    color: rgb(255, 255, 255);
+#widget_side[State='WindowMaximized'] {
+    color: rgb(35, 39, 46);
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     background-color: rgb(127, 115, 87);
-    border: none;
-}
-
-#toolButton_close[State='WindowNoState']{
-    color: rgb(255, 255, 255);
-    border-top-right-radius: 9px;
-    background-color: rgba(94, 255, 210, 0);
-    border: none;
-}
-
-#toolButton_close[State='WindowMaximized']{
-    color: rgb(255, 255, 255);
-    border-top-right-radius: 0px;
-    background-color: rgba(94, 255, 210, 0);
-    border: none;
-}
-
-#toolButton_close::menu-indicator { 
-	image: None;
-}
-#toolButton_close:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgb(200, 0, 0);
-    border: none;
 }

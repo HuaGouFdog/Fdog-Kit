@@ -45,15 +45,15 @@ QVariant mySheetStyle(const QString & start, const QString & end, qreal progress
     return style;
 }
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(config * confInfo, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    this->confInfo = confInfo;
     getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(30, 30, 30));
 
-    //设置样式表
+    //设置全局样式表
     changeMainWindowTheme();
 
     Qt::WindowFlags flags = this->windowFlags();
@@ -80,10 +80,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo2.png"));
 
-    //读取配置文件信息
-    confInfo = new config();
-    // 读取JSON文件
-    confInfo->readSettingConf();
+    // //读取配置文件信息
+    // confInfo = new config();
+    // // 读取JSON文件
+    // confInfo->readSettingConf();
     qDebug() << "confInfo->isFirstStart" << confInfo->isFirstStart;
     qDebug() << "confInfo->autoPackage" << confInfo->autoPackage;
     qDebug() << "confInfo->thrift" << confInfo->thrift;
@@ -532,15 +532,12 @@ void MainWindow::changeEvent(QEvent *event)
         QWindowStateChangeEvent * stateEvent = dynamic_cast<QWindowStateChangeEvent*>(event);
         if(Q_NULLPTR != stateEvent)
         {
-            if(this->windowState() == Qt::WindowMinimized)
-            {
-                //qDebug() << "当前最小化";
-            } else if (this->windowState() == Qt::WindowNoState && stateEvent->oldState() == Qt::WindowMaximized) {
+            if (this->windowState() == Qt::WindowNoState && stateEvent->oldState() == Qt::WindowMaximized) {
                 //qDebug() << "当前正常";
-                changeMainWindowTheme(false, 1);
+                changeMainWindowRadius(1);
             } else if (this->windowState() == Qt::WindowMaximized && stateEvent->oldState() == Qt::WindowNoState) {
                 //qDebug() << "当前最大化";
-                changeMainWindowTheme(false, 2);
+                changeMainWindowRadius(2);
             }
         }
     }
@@ -589,7 +586,6 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
             return true;
         }
     }
-
     return QMainWindow::nativeEvent(eventType, message, result);
 }
 
@@ -714,18 +710,22 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType)
         //清除样式表
         style()->unpolish(ui->widget_side);
         style()->unpolish(ui->centralWidget);
+        style()->unpolish(ui->widget_right);
 
         ui->widget_side->setStyleSheet("");
         ui->centralWidget->setStyleSheet("");
+        ui->widget_right->setStyleSheet("");
         ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("");
 
         //设置新的样式表
         ui->widget_side->setStyleSheet(getStyleFile(":/module_mainwindow/qss/side_dark.qss"));
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_dark.qss"));
+        ui->widget_right->setStyleSheet(getStyleFile(":/module_mainwindow/qss/body_dark.qss"));
         ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("image: url(:/module_mainwindow/images/light/iconmain-light.png);");
         //刷新
         style()->polish(ui->widget_side);
         style()->polish(ui->centralWidget);
+        style()->polish(ui->widget_right);
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/moon-light.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
@@ -758,17 +758,21 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType)
         //清除样式表
         style()->unpolish(ui->widget_side);
         style()->unpolish(ui->centralWidget);
+        style()->unpolish(ui->widget_right);
 
         ui->widget_side->setStyleSheet("");
         ui->centralWidget->setStyleSheet("");
+        ui->widget_right->setStyleSheet("");
         ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("");
         //设置新的样式表
         ui->widget_side->setStyleSheet(getStyleFile(":/module_mainwindow/qss/side_light.qss"));
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_light.qss"));
+        ui->widget_right->setStyleSheet(getStyleFile(":/module_mainwindow/qss/body_light.qss"));
         ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("image: url(:/module_mainwindow/images/light/iconmain-light.png);");
         //刷新
         style()->polish(ui->widget_side);
         style()->polish(ui->centralWidget);
+        style()->polish(ui->widget_right);
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
 
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/dark/sun-dark.png"));
@@ -798,24 +802,28 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType)
 
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
-    } else if (mode = BLUE_THEME) {
+    } else if (mode == BLUE_THEME) {
         qDebug() << "切换蓝色模式";
         //蓝色模式
         //清除样式表
         style()->unpolish(ui->widget_side);
         style()->unpolish(ui->centralWidget);
+        style()->unpolish(ui->widget_right);
 
         ui->widget_side->setStyleSheet("");
         ui->centralWidget->setStyleSheet("");
+        ui->widget_right->setStyleSheet("");
         ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("");
 
         //设置新的样式表
         ui->widget_side->setStyleSheet(getStyleFile(":/module_mainwindow/qss/side_blue.qss"));
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_blue.qss"));
+        ui->widget_right->setStyleSheet(getStyleFile(":/module_mainwindow/qss/body_blue.qss"));
         ui->widget_welcome_body_widget2_info_widget_icon->setStyleSheet("image: url(:/module_mainwindow/images/light/iconmain-light.png);");
         //刷新
         style()->polish(ui->widget_side);
         style()->polish(ui->centralWidget);
+        style()->polish(ui->widget_right);
         style()->polish(ui->widget_welcome_body_widget2_info_widget_icon);
         ui->toolButton_side_theme->setIcon(QIcon(":/module_mainwindow/images/light/cloud-light.png"));
         ui->toolButton_min->setIcon(QIcon(":/module_mainwindow/images/light/min-light.png"));
@@ -850,6 +858,25 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType)
     }
 }
 
+void MainWindow::changeMainWindowRadius(int windowsType) {
+    //centralWidget不应该包含大量qss属性,切换时会引起卡顿
+    if (windowsType == 1) {
+        //正常qss
+        ui->centralWidget->setProperty("State","WindowNoState");
+        ui->widget_side->setProperty("State","WindowNoState");
+    } else {
+        //最大化qss
+        ui->centralWidget->setProperty("State","WindowMaximized");
+        ui->widget_side->setProperty("State","WindowMaximized");
+    }
+    if (mode == DARK_THEME) {
+        ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_dark.qss"));
+    } else if (mode == LIGHT_THEME) {
+        ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_light.qss"));
+    } else if (mode == BLUE_THEME) {
+        ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_blue.qss"));
+    }
+}
 void MainWindow::checkNewVersion()
 {
     //检测
@@ -1057,14 +1084,21 @@ void MainWindow::restoreWindow()
 void MainWindow::on_toolButton_max_clicked()
 {
     if (!showFlag) {
-        //ui->centralWidget->setEnabled(false);
+        qDebug() << "最大化开始";
         setContentsMargins(0, 0, 0, 0);
+        //changeMainWindowRadius(2);
         this->setWindowState(Qt::WindowState::WindowMaximized);
+        //changeMainWindowTheme(false, 2);
+        qDebug() << "最大化结束";
         isMaxShow = true;
         showFlag = true;
     } else {
+        qDebug() << "正常开始";
+        //changeMainWindowTheme(false, 1);
         setContentsMargins(10, 10, 10, 10);
         this->setWindowState(Qt::WindowState::WindowNoState);
+        //changeMainWindowRadius(1);
+        qDebug() << "正常结束";
         isMaxShow = false;
         showFlag = false;
     }
