@@ -89,8 +89,15 @@ QMenu::separator {
    <property name="styleSheet">
     <string notr="true">#centralWidget {
     color: rgb(255, 255, 255);
-    background-color: rgb(35, 39, 46);
+background-color: rgb(35, 39, 46);
     border-radius:10px;
+}
+
+#widget_side {
+    color: rgb(255, 255, 255);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(24,26,29);
 }
 
 QLabel {
@@ -168,7 +175,7 @@ QToolButton:hover {
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_12">
     <property name="spacing">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="leftMargin">
      <number>0</number>
@@ -269,7 +276,7 @@ QToolButton:hover {
          </property>
          <property name="font">
           <font>
-           <family>Old English Text MT</family>
+           <family>Harlow Solid Italic</family>
            <pointsize>12</pointsize>
            <weight>50</weight>
            <italic>false</italic>
@@ -372,7 +379,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="toolTip">
-          <string>关于</string>
+          <string>自动化打包工具</string>
          </property>
          <property name="styleSheet">
           <string notr="true"/>
@@ -961,7 +968,7 @@ border-radius: 2px;
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="widget_8" native="true">
+     <widget class="QWidget" name="widget_right" native="true">
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -2076,14 +2083,14 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
    </layout>
-   <zorder>widget_8</zorder>
+   <zorder>widget_right</zorder>
    <zorder>widget_side</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../images.qrc"/>
   <include location="../lib.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -4,21 +4,6 @@ background-color: rgb(108, 117, 125, 65);
 border-radius: 2px;
 }
 
-#widget_side[State='WindowNoState'] {
-    color: rgb(35, 39, 46);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: rgb(127, 115, 87);
-}
-
-#widget_side[State='WindowMaximized'] {
-    color: rgb(35, 39, 46);
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    background-color: rgb(127, 115, 87);
-}
-
-
 #label_name {
     color: rgb(35, 39, 46);
 }

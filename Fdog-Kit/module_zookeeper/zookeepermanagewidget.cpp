@@ -315,6 +315,9 @@ void zookeepermanagewidget::changeMainWindowTheme(bool isChange, int windowsType
     }
 }
 
+void zookeepermanagewidget::changeMainWindowRadius(int windowsType) {
+    
+}
 void zookeepermanagewidget::on_toolButton_newCreate_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
