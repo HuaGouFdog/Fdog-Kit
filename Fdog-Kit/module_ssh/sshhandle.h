@@ -44,6 +44,7 @@ class sshHandleExec : public QObject {
     Q_OBJECT
 public:
     explicit sshHandleExec(QObject *parent = nullptr);
+    ~sshHandleExec();
     void getServerInfo();
     QString commondExec(QString commond);
 signals:
@@ -59,12 +60,16 @@ private:
     QString port;
     QString username;
     QString password;
+
+    bool isOK = false;
+    bool isBreak = false;
 };
 
 class sshHandleSftp : public QObject {
     Q_OBJECT
 public:
     explicit sshHandleSftp(QObject *parent = nullptr);
+    ~sshHandleSftp();
     //void getServerInfo();
     //QString commondExec(QString commond);
 signals:
@@ -96,13 +101,15 @@ public:
     SOCKET sockfd;
     LIBSSH2_SESSION *session_ssh = nullptr;  //ssh session
     LIBSSH2_CHANNEL *channel_ssh = nullptr;  //ssh channel
+    bool isOK = false;
+    bool isBreak = false;
 
-    LIBSSH2_SESSION *session_exec = nullptr; //exec session
-    LIBSSH2_CHANNEL *channel_exec = nullptr; //exec channel
+    // LIBSSH2_SESSION *session_exec = nullptr; //exec session
+    // LIBSSH2_CHANNEL *channel_exec = nullptr; //exec channel
 
-    LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
-    LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp
-    LIBSSH2_SFTP_HANDLE *   handle_sftp = nullptr;        //sftp
+    // LIBSSH2_SESSION *       session_ssh_sftp = nullptr;   //exec session
+    // LIBSSH2_SFTP*           session_sftp = nullptr;       //sftp
+    // LIBSSH2_SFTP_HANDLE *   handle_sftp = nullptr;        //sftp
 
     //void handlechannel_readS(QStringList data);
 signals:
@@ -118,9 +125,9 @@ public slots:
     void init_poll();
     void channel_write(QString command);
     void channel_read(QString command);
-    void getServerInfo();
-    void rece_getServerInfo(ServerInfoStruct serverInfo);
-    QString commondExec(QString commond);
+    //void getServerInfo();
+    //void rece_getServerInfo(ServerInfoStruct serverInfo);
+    //QString commondExec(QString commond);
 
 private:
     QVector<QStringList> messageList;

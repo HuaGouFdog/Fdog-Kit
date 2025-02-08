@@ -266,14 +266,14 @@ void historyconnectwidget::on_tableWidget_history_itemDoubleClicked(QTableWidget
 
 void historyconnectwidget::on_tableWidget_history_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous)
 {
-    qDebug() << "单击";
+    //qDebug() << "单击";
 }
 
 void historyconnectwidget::rece_activated(const QString &text)
 {
     //选中
     emit send_findConnection(text);
-    qDebug() << "rece_activated = " << text;
+    //qDebug() << "rece_activated = " << text;
 }
 
 void historyconnectwidget::rece_highlighted(const QString &text)

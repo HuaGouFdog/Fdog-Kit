@@ -267,7 +267,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     //setTerminalSize(m_visibleLines, m_visibleColumns);
     m_visibleLines = 25;
     m_visibleColumns = 120;
-    qDebug() << "准备init 设置当前终端高=" << m_visibleLines << " 宽=" << m_visibleColumns;
+    //qDebug() << "准备init 设置当前终端高=" << m_visibleLines << " 宽=" << m_visibleColumns;
     QMetaObject::invokeMethod(m_sshhandle,"init",Qt::QueuedConnection, Q_ARG(int, connrectType), Q_ARG(QString, host), Q_ARG(QString,port), 
     Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(QString,sshType), Q_ARG(QString,publicKey), Q_ARG(int,m_visibleColumns), Q_ARG(int,m_visibleLines));
     //qDebug("执行01");
@@ -413,9 +413,16 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
 
 sshwidget::~sshwidget()
 {
-    qDebug() << "m_sshhandle";
-    // delete m_sshhandle;
-    // delete m_sshhandle2;
+    qDebug() << "析构sshwidget";
+    if (m_sshhandle != NULL) {
+        delete m_sshhandle;
+    }
+    if (sshExec != NULL) {
+        delete sshExec;
+    }
+    if (sshSftp != NULL) {
+        delete sshSftp;
+    }
     delete ui;
 }
 
@@ -464,7 +471,7 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
 
 void sshwidget::setTerminalSize(int height, int width)
 {
-    qDebug() << "设置当前终端高=" << height << " 宽=" << width;
+    //qDebug() << "设置当前终端高=" << height << " 宽=" << width;
     if (m_sshhandle->channel_ssh == nullptr) {
         return;
     }
@@ -488,7 +495,7 @@ void sshwidget::sendData(QString data)
     //     qDebug() << "更新当前行数 currentLineLocal = " << currentLine;
     // }
 
-    qDebug() << "sendData 打印" << data;
+    //qDebug() << "sendData 打印" << data;
 
     if (data == "") {
         return;
@@ -543,14 +550,14 @@ void sshwidget::sendData(QString data)
     ui->plainTextEdit->setPalette(palette);
 
     cpos2 = getCurrentRowPositionByLocal();
-    qDebug() << "移动了" << cpos2 - cpos << "行";
+    //qDebug() << "移动了" << cpos2 - cpos << "行";
     setCurrentRowPosition(cpos2 - cpos);
 
-    qDebug() << "sendData 当前光标所在行数(相对于终端内部) =" << getCurrentRowPosition() << "  当前行数 =" << cpos2;
+    //qDebug() << "sendData 当前光标所在行数(相对于终端内部) =" << getCurrentRowPosition() << "  当前行数 =" << cpos2;
 }
 
 void sshwidget::sendData2(QString data) {
-    qDebug() << "sendData 打印" << data;
+    //qDebug() << "sendData 打印" << data;
 
     if (data == "") {
         return;
@@ -981,17 +988,17 @@ void sshwidget::appendData_s(QString data) {
         textEdit_s->verticalScrollBar()->setValue(textEdit_s->verticalScrollBar()->maximum());
 }
 
-void sshwidget::on_textEdit_cursorPositionChanged()
-{
-    //qDebug() << "光标位置改变";
-}
+// void sshwidget::on_textEdit_cursorPositionChanged()
+// {
+//     //qDebug() << "光标位置改变";
+// }
 
 void sshwidget::rece_channel_readS(QStringList data)
 {
     data.removeAll("");  // 删除空字符串
     QElapsedTimer timer;
     timer.start();
-    qDebug() << "rece_channel_readS data = " << data;
+    //qDebug() << "rece_channel_readS data = " << data;
     //data.append("");
     int sum = 0;
     int sum2 = 0;
@@ -1355,7 +1362,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             //清空终端屏幕
             clearPos = i;
             lastCommondS = "clear";
-            qDebug() << "清屏时行数(终端内部) =" << getCurrentRowPosition() << " 当前行数 = " << getCurrentRowPositionByLocal();
+            //qDebug() << "清屏时行数(终端内部) =" << getCurrentRowPosition() << " 当前行数 = " << getCurrentRowPositionByLocal();
 
             setCurrentRowPositionToZero();
             setCurrentRowPosition(1);
@@ -1365,7 +1372,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             int cpos2 = getCurrentRowPositionByLocal();
 
             setCurrentRowPosition(cpos2 - cpos);
-            qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
+            //qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
             if (cpos2 - cpos != 23 && cpos2 - cpos < 23) {
                 for (int i = cpos2 - cpos; i<23; i++) {
                     if (isBuffer) {
@@ -1469,21 +1476,21 @@ void sshwidget::rece_channel_readS(QStringList data)
                 //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                 int acurrentLine = getCurrentRowPosition();
                 int cpos2 = getCurrentRowPositionByLocal();
-                qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2;
+                //qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2;
 
                 int moveCount = regExp2.cap(1).toInt() - acurrentLine;
                 int columnCount = regExp2.cap(2).toInt() - 1;
                 //第一个参数是移动到第几行，第二个参数是第几位
                 if (moveCount > 0) {
 
-                    qDebug() << "移动" << moveCount << "行2";
+                    //qDebug() << "移动" << moveCount << "行2";
 
                     int cpos = getCurrentRowPositionByLocal();
                     movePositionDown(sshwidget::MoveAnchor, moveCount);
                     int cpos2 = getCurrentRowPositionByLocal();
 
                     setCurrentRowPosition(cpos2 - cpos);
-                    qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
+                    //qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
                     if (cpos2 - cpos != moveCount && cpos2 - cpos < moveCount) {
                         for (int i = cpos2 - cpos; i<moveCount; i++) {
                             if (isBuffer) {
@@ -1500,14 +1507,14 @@ void sshwidget::rece_channel_readS(QStringList data)
                     //qDebug() << "A当前光标所在行数(相对于终端内部)2 =" << getCurrentRowPosition() << "  R当前行数 =" << getCurrentRowPositionByLocal();
 
                 } else if (moveCount < 0) {
-                    qDebug() << "移动" << moveCount << "行";
+                    //qDebug() << "移动" << moveCount << "行";
                     //sendBuffData();
                     //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                     movePositionUp(sshwidget::MoveAnchor, -moveCount);
                     movePositionStartLine(sshwidget::MoveAnchor);
                     setCurrentRowPosition(moveCount);
                 } else {
-                    qDebug() << "不需要移动";
+                    //qDebug() << "不需要移动";
                 }
                 if (columnCount > 0) {
                     //sendBuffData();
@@ -1659,20 +1666,20 @@ void sshwidget::rece_channel_readS(QStringList data)
                             int position2 = 0;
                             if (data[i].contains("\n")) {
                                 position2 = data[i].indexOf("\n");
-                                qDebug() << "打印1";
+                                //qDebug() << "打印1";
                                 sendData(data[i].mid(0, position2));
                                 //尝试光标向下移动一行
                                 int cpos = getCurrentRowPositionByLocal();
                                 movePositionDown(sshwidget::MoveAnchor, 1);
                                 int cpos2 = getCurrentRowPositionByLocal();
                                 setCurrentRowPosition(cpos2 - cpos);
-                                qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
+                                //qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
                                 if (cpos2 - cpos != 1 && cpos2 - cpos < 1) {
                                     sendData("\n");
                                 }
                                 data[i] = data[i].mid(position2 + 1);
                             } else {
-                                qDebug() << "打印6";
+                                //qDebug() << "打印6";
                                 sendData(data[i]);
                                 //buffData = buffData + data[i];
                                 break;
@@ -1843,8 +1850,8 @@ void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize)
     //    ui->progressBar->setValue(sum);
 }
 
-void sshwidget::on_pushButton_clicked()
-{
+//void sshwidget::on_pushButton_clicked()
+//{
 
     //    QTextCursor cursor(ui->plainTextEdit->document());
     //    cursor.movePosition(QTextCursor::Start);
@@ -1898,16 +1905,16 @@ void sshwidget::on_pushButton_clicked()
 //            }
 //        }
 //    }
-}
+//}
 
-void sshwidget::on_textEdit_selectionChanged()
-{
-    QTextCursor cursor = ui->plainTextEdit->textCursor();
+// void sshwidget::on_textEdit_selectionChanged()
+// {
+//     QTextCursor cursor = ui->plainTextEdit->textCursor();
 
-    if (!cursor.hasSelection()) {
-        return;
-    }
-}
+//     if (!cursor.hasSelection()) {
+//         return;
+//     }
+// }
 
 
 void sshwidget::scrollBarValueChanged(int value)
@@ -1927,16 +1934,16 @@ void sshwidget::scrollBarValueChanged2(int value)
 
 }
 
-void sshwidget::on_textEdit_textChanged()
-{
-    if (scrollBar_textEdit && scrollBar_textEdit_s) {
-        //qDebug() << "设置滑动条 ";
-        scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
-    }
-    //获取最后一行数据放在textEdit_6
-    //ui->verticalScrollBar->setValue(ui->plainTextEdit->verticalScrollBar()->value());
-    //ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
-}
+// void sshwidget::on_textEdit_textChanged()
+// {
+//     if (scrollBar_textEdit && scrollBar_textEdit_s) {
+//         //qDebug() << "设置滑动条 ";
+//         scrollBar_textEdit_s->setValue(scrollBar_textEdit->value());
+//     }
+//     //获取最后一行数据放在textEdit_6
+//     //ui->verticalScrollBar->setValue(ui->plainTextEdit->verticalScrollBar()->value());
+//     //ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
+// }
 
 void sshwidget::rece_send_mousePress_sign()
 {
@@ -2012,10 +2019,10 @@ void sshwidget::rece_resize_sign()
     QFontMetrics metrics(textEdit_s->font());
     int lineHeight = metrics.lineSpacing();
     int charWidth = metrics.averageCharWidth();
-    qDebug() << "字体 高 = " << lineHeight;
-    qDebug() << "字体 宽 = " << charWidth;
-    qDebug() << "视图 高 = " << viewportSize.height();
-    qDebug() << "视图 宽 = " << viewportSize.width();
+    //qDebug() << "字体 高 = " << lineHeight;
+    //qDebug() << "字体 宽 = " << charWidth;
+    //qDebug() << "视图 高 = " << viewportSize.height();
+    //qDebug() << "视图 宽 = " << viewportSize.width();
 
 //    // 检查垂直滚动条的可见性
     //bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
@@ -2049,10 +2056,10 @@ void sshwidget::rece_resize_sign()
 //                return;
 //            }
 //        }
-        qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns;
+        //qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns;
         ui->label->setText(QString::number(visibleLines) +","+ QString::number(visibleColumns));
         setTerminalSize(visibleLines, visibleColumns);
-        qDebug() << "触发";
+        //qDebug() << "触发";
     //    textEdit_s->setLineWrapColumnOrWidth(viewportSize.width());
     //    ui->plainTextEdit->setLineWrapColumnOrWidth(viewportSize.width());
        QPalette palette = ui->plainTextEdit->palette();
@@ -2317,25 +2324,25 @@ void sshwidget::rece_ssh_init(bool isok)
         movePositionEnd();
         textEdit_s->appendPlainText(cc);
         //更新状态图标
-        qDebug("发送更新图标状态");
+        //qDebug("发送更新图标状态");
         emit send_connection_fail(this);
         return;
     }
 
-    qDebug("开始调用init_poll");
+    //qDebug("开始调用init_poll");
     QString cc = "主机连接成功\n";
     ui->plainTextEdit->appendPlainText(cc);
     movePositionEnd();
     textEdit_s->appendPlainText(cc);
 
     //更新状态图标
-    qDebug("发送更新图标状态");
+    //qDebug("发送更新图标状态");
     emit send_connection_success(this);
 
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
     //通知页面，连接成功，可以使用
-    qDebug("开始调用init_poll完成");
+    //qDebug("开始调用init_poll完成");
 
     QString host = cInfoStruct.host;
     QString port = cInfoStruct.port;
@@ -2462,10 +2469,10 @@ void sshwidget::on_toolButton_edit_clicked()
     addcwidget->show();
 }
 
-void sshwidget::on_toolButton_2_clicked()
-{
-    ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
-}
+// void sshwidget::on_toolButton_2_clicked()
+// {
+//     ui->verticalScrollBar->setMaximum(ui->plainTextEdit->verticalScrollBar()->maximum());
+// }
 
 void sshwidget::on_verticalScrollBar_valueChanged(int value)
 {

@@ -864,10 +864,12 @@ void MainWindow::changeMainWindowRadius(int windowsType) {
         //正常qss
         ui->centralWidget->setProperty("State","WindowNoState");
         ui->widget_side->setProperty("State","WindowNoState");
+        ui->toolButton_close->setProperty("State","WindowNoState");
     } else {
         //最大化qss
         ui->centralWidget->setProperty("State","WindowMaximized");
         ui->widget_side->setProperty("State","WindowMaximized");
+        ui->toolButton_close->setProperty("State","WindowMaximized");
     }
     if (mode == DARK_THEME) {
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_dark.qss"));
@@ -1086,7 +1088,6 @@ void MainWindow::on_toolButton_max_clicked()
     if (!showFlag) {
         qDebug() << "最大化开始";
         setContentsMargins(0, 0, 0, 0);
-        //changeMainWindowRadius(2);
         this->setWindowState(Qt::WindowState::WindowMaximized);
         //changeMainWindowTheme(false, 2);
         qDebug() << "最大化结束";
@@ -1094,10 +1095,8 @@ void MainWindow::on_toolButton_max_clicked()
         showFlag = true;
     } else {
         qDebug() << "正常开始";
-        //changeMainWindowTheme(false, 1);
         setContentsMargins(10, 10, 10, 10);
         this->setWindowState(Qt::WindowState::WindowNoState);
-        //changeMainWindowRadius(1);
         qDebug() << "正常结束";
         isMaxShow = false;
         showFlag = false;

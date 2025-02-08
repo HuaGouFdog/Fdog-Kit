@@ -110,7 +110,7 @@ protected:
 
     void resizeEvent(QResizeEvent *event) override
     {
-        qDebug() << "resizeEvent 被调用";
+        //qDebug() << "resizeEvent 被调用";
         //QTextEdit::resizeEvent(event);
         emit send_resize_sign();
         QPlainTextEdit::resizeEvent(event);
@@ -345,7 +345,7 @@ signals:
     void send_searchTextNumbers(int sn, int sum);
     void send_windowsSetting();
 private slots:
-    void on_textEdit_cursorPositionChanged();
+    //void on_textEdit_cursorPositionChanged();
 
     //接收命令
     void rece_channel_readS(QStringList data);
@@ -356,9 +356,9 @@ private slots:
 
     void rece_fileProgress_sgin(int64_t sum, int64_t filesize);
 
-    void on_pushButton_clicked();
+    //void on_pushButton_clicked();
 
-    void on_textEdit_selectionChanged();
+    //void on_textEdit_selectionChanged();
 
     //void on_textEdit_5_cursorPositionChanged();
 
@@ -369,7 +369,7 @@ private slots:
     void scrollBarValueChanged(int value);
     void scrollBarValueChanged2(int value);
 
-    void on_textEdit_textChanged();
+    //void on_textEdit_textChanged();
 
     void rece_send_mousePress_sign();
 
@@ -431,7 +431,7 @@ private slots:
 
     void on_toolButton_edit_clicked();
 
-    void on_toolButton_2_clicked();
+    //void on_toolButton_2_clicked();
 
     void on_verticalScrollBar_valueChanged(int value);
 
@@ -445,11 +445,11 @@ private:
     QThread * thread;
     QThread * threadExec;
     QThread * threadSftp;
-    sshhandle * m_sshhandle;
-    sshHandleExec * sshExec;
-    sshHandleSftp * sshSftp;
+    sshhandle * m_sshhandle = NULL;
+    sshHandleExec * sshExec = NULL;
+    sshHandleSftp * sshSftp = NULL;
     QThread * thread2;
-    sshhandle * m_sshhandle2;
+    //sshhandle * m_sshhandle2;
     KeyFilter *keyFilter;
     MouseFilter * mouseFilter;
     QString commond; //记录最后一次

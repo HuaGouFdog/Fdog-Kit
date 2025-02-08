@@ -75,6 +75,7 @@ private slots:
     void on_toolButton_encode_clicked();
 
     void rece_showtimestamp();
+    
     void on_toolButton_time2date_clicked();
 
     void on_toolButton_date2time_clicked();

@@ -23,3 +23,17 @@
     border-bottom-left-radius: 0px;
     background-color: rgb(10, 31, 57);
 }
+
+#toolButton_close[State='WindowNoState']{
+    color: rgb(255, 255, 255);
+    border-top-right-radius: 9px;
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
+
+#toolButton_close[State='WindowMaximized']{
+    color: rgb(255, 255, 255);
+    border-top-right-radius: 0px;
+    background-color: rgba(94, 255, 210, 0);
+    border: none;
+}
