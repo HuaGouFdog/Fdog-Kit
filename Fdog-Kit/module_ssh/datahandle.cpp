@@ -382,7 +382,7 @@ QString datahandle::processData(QString data)
 {
     QString commond;
     QString head;
-    qDebug() << "processData修改前数据：" << data;
+    //qDebug() << "processData修改前数据：" << data;
 
     QRegExp regExp("(\\x001B)\\]0;(\\S+)\\x0007\\x001B\\[\\?1034h");
     if (regExp.indexIn(data)>=0) {

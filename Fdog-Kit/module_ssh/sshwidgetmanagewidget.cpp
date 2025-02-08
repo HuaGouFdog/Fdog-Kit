@@ -59,7 +59,7 @@ sshwidgetmanagewidget::sshwidgetmanagewidget(config * confInfo, QWidget *parent)
 
 void sshwidgetmanagewidget::newSSHWidget(connnectInfoStruct &cInfoStruct, config *confInfo)
 {
-    qDebug() << "设置ssh";
+    //qDebug() << "设置ssh";
     QSize iconSize(16, 16); // 设置图标的大小
     QString sign = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     sshwidget * sshWidget = new sshwidget(cInfoStruct, confInfo, cInfoStruct.name + sign);
@@ -115,8 +115,6 @@ void sshwidgetmanagewidget::rece_connection_success(sshwidget *sw)
                 ui->tabWidget->setTabIcon(i, QIcon(":lib/green.svg").pixmap(iconSize));
                 break;
             }
-        } else {
-            qDebug() << "转换失败";
         }
     }
 }
@@ -134,8 +132,6 @@ void sshwidgetmanagewidget::rece_connection_fail(sshwidget *sw)
                 ui->tabWidget->setTabIcon(i, QIcon(":lib/grey.svg").pixmap(iconSize));
                 break;
             }
-        } else {
-            qDebug() << "转换失败";
         }
     }
 }
@@ -203,7 +199,15 @@ void sshwidgetmanagewidget::rece_closeAll_sgin()
 void sshwidgetmanagewidget::on_tabWidget_tabCloseRequested(int index)
 {
    QString closeName = ui->tabWidget->tabText(index);
+   QWidget * widget = ui->tabWidget->widget(index);
    ui->tabWidget->removeTab(index);
+   sshwidget * sswidget = dynamic_cast<sshwidget*>(widget);
+   if(Q_NULLPTR != sswidget) {
+       delete sswidget;
+       qDebug() << "找到ssh";
+   } else {
+       qDebug() << "不是ssh";
+   }
    //没释放内存
     if(ui->tabWidget->count() == 0) {
         //创建快速连接
