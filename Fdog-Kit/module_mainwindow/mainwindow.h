@@ -1,247 +1,193 @@
-﻿#ifndef MAINWINDOW_H
+﻿/*
+   Copyright 2023 花狗Fdog(张旭)
+   
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "module_zookeeper/zookeepermanagewidget.h"
-#include "module_zookeeper/zookeeperwidget.h"
-#include "module_connect/createconnect.h"
-#include "module_ssh/historyconnectwidget.h"
-#include "module_ssh/sshwidget.h"
-#include "module_tool/toolswidget.h"
-#include <QGraphicsDropShadowEffect>
-#include <QVector>
 #include <QRect>
-#include "module_setting/settingwidget.h"
+#include <QVector>
 #include <QSystemTrayIcon>
-#include "module_utils/config.h"
-#include "module_thrift/thriftwidget.h"
-#include "module_utils/flowlayout.h"
-#include "module_ssh/downloadwidget.h"
-#include "module_ssh/sshwidgetmanagewidget.h"
+#include <QGraphicsDropShadowEffect>
 #include "module_qss/qss.h"
-#define STRETCH_RECT_HEIGHT 10       // 拉伸小矩形的高度;
-#define STRETCH_RECT_WIDTH 10        // 拉伸小矩形的宽度;
+#include "module_ssh/sshwidget.h"
+#include "module_ssh/downloadwidget.h"
+#include "module_ssh/historyconnectwidget.h"
+#include "module_ssh/sshwidgetmanagewidget.h"
+#include "module_tool/toolswidget.h"
+#include "module_connect/createconnect.h"
+#include "module_zookeeper/zookeeperwidget.h"
+#include "module_zookeeper/zookeepermanagewidget.h"
+#include "module_thrift/thriftwidget.h"
+#include "module_setting/settingwidget.h"
+#include "module_utils/config.h"
+#include "module_utils/flowlayout.h"
 
+//窗口拉伸范围
+#define STRETCH_RECT_HEIGHT 10          //拉伸小矩形的高度
+#define STRETCH_RECT_WIDTH  10          //拉伸小矩形的宽度
 
+//窗口拉伸矩形状态
 enum WindowStretchRectState
 {
-    NO_SELECT = 0,              // 鼠标未进入下方矩形区域;
-    LEFT_TOP_RECT,              // 鼠标在左上角区域;
-    TOP_BORDER,                 // 鼠标在上边框区域;
-    RIGHT_TOP_RECT,             // 鼠标在右上角区域;
-    RIGHT_BORDER,               // 鼠标在右边框区域;
-    RIGHT_BOTTOM_RECT,          // 鼠标在右下角区域;
-    BOTTOM_BORDER,              // 鼠标在下边框区域;
-    LEFT_BOTTOM_RECT,           // 鼠标在左下角区域;
-    LEFT_BORDER                 // 鼠标在左边框区域;
+    NO_SELECT = 0,              // 鼠标未进入下方矩形区域
+    LEFT_TOP_RECT,              // 鼠标在左上角区域
+    TOP_BORDER,                 // 鼠标在上边框区域
+    RIGHT_TOP_RECT,             // 鼠标在右上角区域
+    RIGHT_BORDER,               // 鼠标在右边框区域
+    RIGHT_BOTTOM_RECT,          // 鼠标在右下角区域
+    BOTTOM_BORDER,              // 鼠标在下边框区域
+    LEFT_BOTTOM_RECT,           // 鼠标在左下角区域
+    LEFT_BORDER                 // 鼠标在左边框区域
 };
-
-
 
 namespace Ui {
 class MainWindow;
 }
 
-
-class WidgetMouseFilter : public QObject
-{
-   Q_OBJECT
-public:
-   WidgetMouseFilter(QObject *parent = nullptr) : QObject(parent) {}
-
-protected:
-    bool eventFilter(QObject *object, QEvent *event) {
-        if (object->isWidgetType()) {
-            QWidget *widget = static_cast<QWidget*>(object);
-            if (event->type() == QEvent::Enter) {
-                // 当鼠标进入widget时增加宽度
-                widget->resize(widget->width() + 10, widget->height());
-                widget->resize(widget->width(), widget->height() + 10);
-            } else if (event->type() == QEvent::Leave) {
-                // 当鼠标离开widget时还原宽度
-                widget->resize(widget->width() - 10, widget->height());
-                widget->resize(widget->width(), widget->height() - 10);
-            }
-        }
-        // 继续传递事件
-        return false;
-    }
-};
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+private:
+    Ui::MainWindow *ui;
+
+    QRect m_leftTopRect;        //左上
+    QRect m_leftBottomRect;     //左下
+    QRect m_rightTopRect;       //右上
+    QRect m_rightBottomRect;    //右下
+    QRect m_topBorderRect;      //上
+    QRect m_rightBorderRect;    //右
+    QRect m_bottomBorderRect;   //下
+    QRect m_leftBorderRect;     //左
+
+    QPoint m_last;                //窗口拖动使用
+    QPoint m_startPoint;        //开始坐标
+    QPoint m_endPoint;          //结束坐标
+
+    WindowStretchRectState m_stretchRectState;       //当前鼠标状态
+    QRect m_windowRectBeforeStretch;                 //保存下拉伸前的窗口位置及大小 
+
+    qss * m_qsswidget = nullptr;                       //创建qss工具窗口
+    createconnect * m_ccwidget = nullptr;               //创建连接窗口
+    toolswidget * m_tswidget = nullptr;                //创建工具窗口           
+    thriftwidget * m_twidget = nullptr;                //thrift测试工具窗口
+    settingwidget * m_stwidget = nullptr;              //创建设置窗口
+    historyconnectwidget * m_hcwidget = nullptr;       //ssh快速连接
+    zookeepermanagewidget * m_zmanagewidget = nullptr; //zk窗口
+    sshwidgetmanagewidget * m_smanagewidget = nullptr; //ssh管理窗口
+
+    QSystemTrayIcon* m_trayIcon;      //托盘图标
+    config * m_confInfo = nullptr;    //配置信息
+
+    int m_mode = 1; //默认暗黑模式
+    bool m_isFullScreen = false;      //是否全屏
+    bool m_isMaxShow = false;         //是否最大化显示
+    bool m_isPressedTitle = false;   //鼠标按在标题栏上   
+    bool m_isMousePressed = false;   //鼠标按下
+
+    QString m_newVersion;             //新版本
+    QString m_newVersionData;         //新版本更新内容
+    QString m_newVersiondownLoad;     //新版本下载地址
 
 public:
     explicit MainWindow(config * confInfo, QWidget *parent = 0);
     ~MainWindow();
 
+    //计算当前拉伸范围
     void calculateCurrentStrechRect();
-
+    //获取窗口拉伸矩形状态
     WindowStretchRectState getCurrentStretchState(QPoint cursorPos);
+    //更新鼠标样式
     void updateMouseStyle(WindowStretchRectState stretchState);
+    //更新窗口位置
     void updateWindowSize();
-    void setSupportStretch(bool isSupportStretch);
-
-    void mousePressEvent(QMouseEvent *event);       //鼠标点击
-    void mouseMoveEvent(QMouseEvent *event);        //鼠标移动
-    void mouseReleaseEvent(QMouseEvent *event);     //鼠标释放
-    void mouseDoubleClickEvent(QMouseEvent *event); //鼠标双击
-    //void resizeEvent(QResizeEvent *event);
+    //鼠标点击
+    void mousePressEvent(QMouseEvent *event);
+    //鼠标移动
+    void mouseMoveEvent(QMouseEvent *event);
+    //鼠标释放     
+    void mouseReleaseEvent(QMouseEvent *event);
+    //鼠标双击 未使用
+    void mouseDoubleClickEvent(QMouseEvent *event);
+    //显示事件处理
     void showEvent(QShowEvent *event);
-
+    //处理窗口样式
     void changeEvent(QEvent *event);
-
+    //处理窗口样式
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
-
-    void newConnectZk(QString name, QString host, QString port);
-
     //创建托盘显示
     void createSystemTray();
-
-    //根据设置窗口样式
+    //修改窗体圆角
+    void changeMainWindowRadius(int windowsType = 1);
+    //修改全局主题 windowsType 1 正常 2最大化
+    void changeMainWindowTheme(bool isChange = false, int windowsType = 1);
+    //根据配置文件设置启动窗口的样式
     void setWindowsByConf();
-
     //检测新版本
     void checkNewVersion();
-
     //判断版本
     bool isVersionGreater(const QString &version1, const QString &version2);
 
-    //切换全局主题
-    void changeMainWindowTheme(bool isChange = false, int windowsType = 1); //1 正常 2最大化
-
-    //切换圆角
-    void changeMainWindowRadius(int windowsType = 1);
-
 private slots:
-    void on_toolButton_close_clicked();
-
-    void on_toolButton_min_clicked();
-
-    void on_toolButton_max_clicked();
-
-    void rece_newConnnect(connnectInfoStruct& cInfoStruct);
-    void rece_newSave(connnectInfoStruct& cInfoStruct);
-    
-    void rece_windowsSetting();
-
-    void on_newClose();
-
-    void rece_toolButton_fullScreen_sign();
-
-    void closeWindow();
-
-    void minWindow();
-
-    void maxWindow();
-
-    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
-
-    void restoreWindow();
-
-    //托盘菜单
-    void rece_systemTrayMenu();
-
-    void on_toolButton_side_theme_clicked();
-
-    void on_toolButton_side_setting_clicked();
-
-    void on_toolButton_side_thrift_clicked();
-
-    void on_toolButton_side_zookeeper_clicked();
-
+    //主界面按钮
     void on_toolButton_side_home_clicked();
-
+    //thrift按钮
+    void on_toolButton_side_thrift_clicked();
+    //zk按钮信号
+    void on_toolButton_side_zookeeper_clicked();
+    //终端按钮信号
     void on_toolButton_side_shell_clicked();
-
-    void on_toolButton_side_tool_clicked();
-
-    //主界面使用
-    void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
-    void on_toolButton_zk_tool_clicked();
-
+    //美化按钮信号
     void on_toolButton_side_qss_clicked();
-
+    //数据库按钮信号
     void on_toolButton_side_mysql_clicked();
-
+    //工具按钮信号
+    void on_toolButton_side_tool_clicked();
+    //主题按钮信号
+    void on_toolButton_side_theme_clicked();
+    //设置按钮信号
+    void on_toolButton_side_setting_clicked();
+    //新版本按钮信号 点击弹出新版本更新内容
     void on_toolButton_newVersion_clicked();
-
-    void whenAnimationFinish();
-
+    //关闭按钮信号
+    void on_toolButton_close_clicked();
+    //最小化按钮信号
+    void on_toolButton_min_clicked();
+    //最大化按钮信号
+    void on_toolButton_max_clicked();
+    //主界面SSH连接信号
+    void on_widget_welcome_body_widget2_newCreate_newTerminal_clicked();
+    //主界面ZK连接信号
+    void on_toolButton_zk_tool_clicked();
+    //了解更多信号 跳转github
     void on_toolButton_more_clicked();
 
-private:
-    Ui::MainWindow *ui;
-    //FlowLayout * m_flowlayout;
-    QRect m_leftTopRect;
-    QRect m_leftBottomRect;
-    QRect m_rightTopRect;
-    QRect m_rightBottomRect;
-    QRect m_topBorderRect;
-    QRect m_rightBorderRect;
-    QRect m_bottomBorderRect;
-    QRect m_leftBorderRect;
-
-    QRect mWindow;
-    QSystemTrayIcon* trayIcon;
-
-    QGraphicsDropShadowEffect * defaultShadow;
-    QPoint last;            //窗口拖动用变量
-    QPoint m_startPoint;
-    QPoint m_endPoint;
-    bool showFlag = false;  //窗口显示标志位 默认false 正常显示
-    bool isPressedWidget;
-
-    QMenu * men;            //新建菜单栏
-    QAction * ssh;          //ssh连接
-    QAction * zk;           //zk连接
-    QAction * kafka;        //kafka连接
-    QAction * redis;        //redis连接
-    QAction * db;           //database连接
-
-    QMenu * men_tool;       //工具菜单栏
-
-    QAction * jsonFormat;   //json格式化
-    QAction * xmlFormat;    //xml格式化
-    QAction * textDiff;     //url文本对比
-    QAction * textTest;     //thrift接口测试
-    QAction * zkVisual;     //zk可视化
-    QAction * toolAssemble; //小工具集合
-
-
-    WindowStretchRectState m_stretchRectState;
-    bool m_isMousePressed;
-    QRect m_windowRectBeforeStretch;
-    bool m_isSupportStretch;
-    createconnect *ccwidget =nullptr;           //创建连接窗口
-    historyconnectwidget * hcwidget = nullptr;  //快速连接
-    toolswidget * tswidget = nullptr;           //创建工具窗口
-    qss * qsswidget = nullptr;                  //创建qss工具窗口
-    settingwidget * stwidget = nullptr;         //创建设置窗口
-    zookeepermanagewidget * zmanagewidget = nullptr; //zk窗口
-    thriftwidget * twidget = nullptr;                //thrift测试工具窗口
-    sshwidgetmanagewidget * smanagewidget = nullptr; //ssh管理窗口
-
-    QVector<zookeeperwidget*> zkWidgetList;
-    QVector<sshwidget*> sshWidgetList;
-
-    bool isShowToolKit = false; //是否显示工具栏
-    bool isFullScreen = false;  //是否全屏
-    bool isMaxShow = false;     //是否最大化显示
-    config * confInfo = nullptr; //配置信息
-    int currentTheme = 0;        //当前主题
-    bool isFirst = false;           //是否第一次点击终端
-
-    //操作数据库
-    //sqlhandle * db_;
-
-    QString newVersion;         //新版本
-    QString NewVersionData;     //新版本更新内容
-    QString NewVersiondownLoad;  //新版本下载地址
-
-    int mode = 1; //默认暗黑模式
-    
+    //切换界面动画完成信号 移除GraphicsEffect
+    void whenAnimationFinish();
+    //全屏信号
+    void rece_toolButton_fullScreen_sign();
+    //创建连接信号
+    void rece_newConnnect(connnectInfoStruct& cInfoStruct);
+    //保存连接信号
+    void rece_newSave(connnectInfoStruct& cInfoStruct);
+    //跳转至设置信号
+    void rece_windowsSetting();
+    //托盘菜单
+    void rece_systemTrayMenu();
+    //处理托盘图标事件
+    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 };
 
 #endif // MAINWINDOW_H
