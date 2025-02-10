@@ -88,14 +88,14 @@ QToolButton::menu-indicator {
 }
 
 QToolButton:hover {
-	border-radius:10px;
+	border-radius:5px;
 	color: rgb(255, 255, 255);
 	background-color: rgb(24, 26, 29);
 	border: none;
 }
  
 QToolButton:checked {
-	border-radius:10px;
+	border-radius:5px;
 	color: rgb(255, 255, 255);
 	background-color: rgb(24, 26, 29);
 	border: none;
@@ -711,7 +711,7 @@ QToolButton:checked {
       <item>
        <widget class="QWidget" name="widget_7" native="true">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(35, 39, 46);</string>
+         <string notr="true"/>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_14">
          <property name="spacing">
@@ -797,7 +797,7 @@ QComboBox QAbstractItemView::item:selected {
 </string>
            </property>
            <property name="currentIndex">
-            <number>8</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="page_activate">
             <property name="styleSheet">
@@ -2999,7 +2999,12 @@ p, li { white-space: pre-wrap; }
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">QScrollBar:vertical {
+                          <string notr="true">listWidget_en{
+	
+	color: rgb(255, 255, 255);
+}
+
+QScrollBar:vertical {
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
@@ -3139,7 +3144,11 @@ QScrollBar::up-arrow:vertical {
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">QScrollBar:vertical {
+                          <string notr="true">listWidget_cn{
+	color: rgb(255, 255, 255);
+}
+
+QScrollBar:vertical {
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
     margin: 0px,0px,0px,0px;
@@ -9298,6 +9307,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;参考：&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://github.com/feiyangqingyun/qtkaifajingyan&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://blog.csdn.net/GoForwardToStep/article/details/77887777&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://blog.csdn.net/kenfan1647/article/details/109277427&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;依赖库：&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; text-decoration: underline; color:#ffffff;&quot;&gt;https://github.com/libssh2/libssh2&lt;/span&gt;&lt;/p&gt;
