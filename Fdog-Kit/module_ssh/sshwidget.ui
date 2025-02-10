@@ -1160,30 +1160,28 @@ background:transparent;</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QMenu {
-background-color: rgb(255, 255, 255);
-padding:10px;
-margin:10px;
-/*padding: 3px 0px 3px 0px;*/
+color: rgb(255, 255, 255);
+background-color:rgb(253,253,254);
+padding: 3px 3px 3px 3px;
 border-radius:6px;
-border:0px solid rgb(108, 117, 125, 65); 
-	
+border:1px solid rgba(21, 23, 27, 100);
 }
+
+
 QMenu::item {
-	font-size: 10pt;
-	font: 10pt &quot;OPPOSans B&quot;;
-	
-	
-	color: rgb(59, 59, 59);
-    background-color: rgb(255, 255, 255);
-    /*padding: 5px 25px 5px 25px;*/
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
+    font-size: 10pt;
+    font: 10pt &quot;OPPOSans B&quot;;
+    border-radius:3px;
+	background-color:rgba(253,253,254,0);
+    padding: 5px 30px 5px 10px;
 }
 QMenu::item:selected {
-	background-color: rgba(167, 167, 167, 200);
-	border-radius:6px;
-
+    
+	color: rgb(244, 244, 244);
+	background-color: rgba(35, 39, 46, 250);
 }
+
+
 QMenu::icon:checked {
     background: rgb(253,253,254);
     position: absolute;
@@ -1846,43 +1844,25 @@ QToolButton:hover {
 }
 
 QMenu {
-
+color: rgb(255, 255, 255);
 background-color:rgb(253,253,254);
-/*padding:5px;*/
-padding: 3px 0px 3px 0px;
+padding: 3px 3px 3px 3px;
 border-radius:6px;
-border:2px solid rgb(108, 117, 125, 65); 
+border:1px solid rgba(21, 23, 27, 100);
 }
+
+
 QMenu::item {
-	font-size: 10pt;
-	
-	font: 10pt &quot;OPPOSans B&quot;;
-	
-	color: rgb(63, 63, 63);
-    background-color:rgb(253,253,254);
-    padding: 5px 25px 5px 25px;
-    /*margin: 2px 2px 2px 2px;*/
+    font-size: 10pt;
+    font: 10pt &quot;OPPOSans B&quot;;
+    border-radius:3px;
+	background-color:rgba(253,253,254,0);
+    padding: 5px 30px 5px 10px;
 }
 QMenu::item:selected {
-    background-color : rgb(236,236,237);
-}
-QMenu::icon:checked {
-    background: rgb(253,253,254);
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    bottom: 1px;
-    left: 1px;
-}
-QMenu::icon:checked:selected {
-    background-color : rgb(236,236,237);
-    background-image: url(:/space_selected.png);
-}
-QMenu::separator {
-    height: 2px;
-    background: rgb(235,235,236);
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
+    
+	color: rgb(244, 244, 244);
+	background-color: rgba(35, 39, 46, 250);
 }</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
