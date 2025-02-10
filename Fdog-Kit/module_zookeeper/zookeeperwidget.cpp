@@ -113,7 +113,7 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
 
 void zookeeperwidget::getChildren(QString path, QTreeWidgetItem *item)
 {
-    qDebug() << "开始获取节点";
+    //qDebug() << "开始获取节点";
     ZkRunnable * m_pRunnable = new ZkRunnable(this, zookhandle->zh, path, item);
     threadpool.start(m_pRunnable);
 }
@@ -772,6 +772,7 @@ void zookeeperwidget::hideCreateWidget()
     ui->toolButton_createData->hide();
     ui->toolButton_saveData->hide();
     ui->toolButton_cancel->hide();
+    ui->horizontalWidget_1_2_5_1r->hide();
 }
 
 void zookeeperwidget::showCreateWidget()
@@ -782,6 +783,7 @@ void zookeeperwidget::showCreateWidget()
     ui->toolButton_createData->show();
     ui->toolButton_saveData->hide();
     ui->toolButton_cancel->show();
+    ui->horizontalWidget_1_2_5_1r->show();
     setSupportStretch(this, true);
 }
 

@@ -18,7 +18,39 @@ class zookeeperwidget;
 class zookeeperwidget : public QWidget
 {
     Q_OBJECT
+private:
+    Ui::zookeeperwidget *ui;
 
+    bool isUnfold; //是否折叠
+
+    QMenu *popMenu;
+    QAction * m_action_add;
+    QAction * m_action_refresh;
+    QAction * m_action_delete;
+    QAction * m_action_copy;
+
+    QMenu *textMenu;
+    QAction * m_action_text_undo;
+    QAction * m_action_text_redo;
+    QAction * m_action_text_copy;
+    QAction * m_action_text_paste;
+    QAction * m_action_text_delete;
+    QAction * m_action_text_allSelect;
+
+    QThread * thread;
+    QThreadPool threadpool;
+    zookeeperhandle * zookhandle;
+
+    QString nodeData;     //节点原数据
+    QString nodeDataPath; //节点原数据对应的节点
+
+    int8_t buttonSid;
+
+    bool isFirst = true;
+    bool isCreate = false; //区分创建和修改
+
+    QFMessageBox * tipwidget = nullptr;
+    
 public:
     explicit zookeeperwidget(QWidget *parent = 0);
     explicit zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);
@@ -132,39 +164,6 @@ private slots:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
-
-private:
-    Ui::zookeeperwidget *ui;
-
-    bool isUnfold; //是否折叠
-
-    QMenu *popMenu;
-    QAction * m_action_add;
-    QAction * m_action_refresh;
-    QAction * m_action_delete;
-    QAction * m_action_copy;
-
-    QMenu *textMenu;
-    QAction * m_action_text_undo;
-    QAction * m_action_text_redo;
-    QAction * m_action_text_copy;
-    QAction * m_action_text_paste;
-    QAction * m_action_text_delete;
-    QAction * m_action_text_allSelect;
-
-    QThread * thread;
-    QThreadPool threadpool;
-    zookeeperhandle * zookhandle;
-
-    QString nodeData;     //节点原数据
-    QString nodeDataPath; //节点原数据对应的节点
-
-    int8_t buttonSid;
-
-    bool isFirst = true;
-    bool isCreate = false; //区分创建和修改
-
-    QFMessageBox * tipwidget = nullptr;
 };
 
 #endif // ZOOKEEPERWIDGET_H
