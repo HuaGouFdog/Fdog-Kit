@@ -432,7 +432,7 @@ void MainWindow::createSystemTray() {
     QMenu* menu = new QMenu();
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu->setAttribute(Qt::WA_TranslucentBackground);
-    QAction* openAction = new QAction("打开");
+    QAction* openAction =  new QAction("打开主界面");
     QAction* closeAction = new QAction("退出");
     menu->addAction(openAction);
     menu->addAction(closeAction);
