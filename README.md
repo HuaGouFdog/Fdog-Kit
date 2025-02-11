@@ -28,6 +28,13 @@
   <h1> </h1>
 </div>
 
+最新版本：V.0.6
+[Fdog-Kit安装包](https://github.com/HuaGouFdog/Fdog-Kit/releases/download/V1.0.6/FdogKitsetup.exe)
+
+目前仅支持windows，有问题，请提Issues。
+
+如果对您有帮助，帮忙点一个小小的star!
+
 ----
 
 ## 无边框窗口基础框架
@@ -86,9 +93,6 @@
 | 初始化模块界面 | 综合连接界面 | 设置界面1 | 设置界面2 |
 | ---- | ---- | ---- |  ---- | 
 | ![image](https://github.com/user-attachments/assets/edc61a5c-fcaa-44bc-874f-696e28797761) |![image](https://github.com/user-attachments/assets/7ff1ca70-7e30-4be6-befb-c76d5459e501)| ![image](https://github.com/user-attachments/assets/2144bf4a-05ea-4657-a716-3a653b270fd7)| ![image](https://github.com/user-attachments/assets/5e884309-b05f-412e-b921-6e909b0476b7)| 
-
-
-有问题，请提Issues。
 
 
 ----
