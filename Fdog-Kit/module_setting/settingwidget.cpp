@@ -116,6 +116,15 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     ui->setupUi(this);
     setSupportStretch(this, true);
     confInfo = confInfo_;
+    qDebug() << "confInfo->isFirstStart" << confInfo->isFirstStart;
+    qDebug() << "confInfo->autoPackage" << confInfo->autoPackage;
+    qDebug() << "confInfo->thrift" << confInfo->thrift;
+    qDebug() << "confInfo->zookeeper" << confInfo->zookeeper;
+    qDebug() << "confInfo->shell" << confInfo->shell;
+    qDebug() << "confInfo->db" << confInfo->db;
+    qDebug() << "confInfo->qss" << confInfo->qss;
+    qDebug() << "confInfo->tool" << confInfo->tool;
+    qDebug() << "confInfo->extend" << confInfo->extend;
     //自启动开关
     selfStart = new AnimatedCheckBox(confInfo_->selfStart, this);
     ui->verticalLayout_selfStart->addWidget(selfStart);
@@ -246,10 +255,16 @@ settingwidget::settingwidget(config * confInfo_, QWidget *parent) :
     qDebug() << "设置comboBox_startMode";
     
     ui->comboBox_startMode->setView(new QListView());
+    ui->comboBox_language->setView(new QListView());
+    ui->comboBox_newLabelLocation->setView(new QListView());
+    ui->comboBox_labelWidth->setView(new QListView());
+    ui->comboBox_mouseRightClick->setView(new QListView());
+    ui->comboBox_mouseWheelClick->setView(new QListView());
+    ui->comboBox_background->setView(new QListView());
     //ui->comboBox_startMode->view()->window()->setWindowFlags(Qt::Popup | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     //ui->comboBox_startMode->view()->window()->setAttribute(Qt::WA_TranslucentBackground,true);
-    ui->comboBox_startMode->setWindowFlags(ui->comboBox_startMode->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
-    ui->comboBox_startMode->setAttribute(Qt::WA_TranslucentBackground);
+    // ui->comboBox_startMode->setWindowFlags(ui->comboBox_startMode->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    // ui->comboBox_startMode->setAttribute(Qt::WA_TranslucentBackground);
 }
 
 settingwidget::~settingwidget()

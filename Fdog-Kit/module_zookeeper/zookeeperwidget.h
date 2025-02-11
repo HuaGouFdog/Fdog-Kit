@@ -30,12 +30,18 @@ private:
     QAction * m_action_copy;
 
     QMenu *textMenu;
-    QAction * m_action_text_undo;
-    QAction * m_action_text_redo;
+    //QAction * m_action_text_undo;
+    //QAction * m_action_text_redo;
     QAction * m_action_text_copy;
     QAction * m_action_text_paste;
     QAction * m_action_text_delete;
-    QAction * m_action_text_allSelect;
+    //QAction * m_action_text_allSelect;
+
+    QMenu *editTextMenu;
+    QAction * m_action_editText_copy;
+    QAction * m_action_editText_paste;
+    QAction * m_action_editText_delete;
+    //QAction * m_action_editText_allSelect;
 
     QThread * thread;
     QThreadPool threadpool;
@@ -50,7 +56,7 @@ private:
     bool isCreate = false; //区分创建和修改
 
     QFMessageBox * tipwidget = nullptr;
-    
+
 public:
     explicit zookeeperwidget(QWidget *parent = 0);
     explicit zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *parent = 0);
@@ -161,6 +167,18 @@ private slots:
     void on_toolButton_copy_node_clicked();
 
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_textEdit_data_edit_customContextMenuRequested(const QPoint &pos);
+
+    void rece_text_copy_sgin();
+    void rece_text_paste_sgin();
+    void rece_text_delete_sgin();
+    //void rece_text_allSelect_sgin();
+
+    void rece_editText_copy_sgin();
+    void rece_editText_paste_sgin();
+    void rece_editText_delete_sgin();
+    //void rece_editText_allSelect_sgin();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

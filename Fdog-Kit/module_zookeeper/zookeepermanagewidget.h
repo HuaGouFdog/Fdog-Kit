@@ -55,7 +55,7 @@ public:
     //新建连接
     void newZKWidget(connnectInfoStruct& cInfoStruct);
     //创建按钮
-    void createButton(QString text, bool isConnect = false, zookeeperwidget * zkWidget = nullptr);
+    void createButton(QString text, bool isConnect = false, bool isChecked = false, zookeeperwidget * zkWidget = nullptr);
     //切换全局主题
     void changeMainWindowTheme(bool isChange = false, int windowsType = 1);
     //切换圆角

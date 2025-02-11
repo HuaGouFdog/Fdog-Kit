@@ -7,14 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>876</width>
-    <height>668</height>
+    <height>644</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#settingwidget{
+	background-color: rgb(35, 39, 46);
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
@@ -732,10 +734,13 @@ QToolButton:checked {
          <item>
           <widget class="QStackedWidget" name="stackedWidget">
            <property name="styleSheet">
-            <string notr="true">QComboBox{
-	color:#ffffff;
+            <string notr="true">QStackedWidget{
+background-color: rgba(255, 255, 255, 0);
+}
+
+QComboBox{
 	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
+	color: rgb(255, 255, 255);
 	border-radius:5px;
 	background-color: rgb(25, 25, 25, 155);
 	padding-left:10px;
@@ -770,76 +775,7 @@ QComboBox QAbstractItemView{
 	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-	border-radius:0px;
-	padding-bottom:2px;
-	padding-top:2px;
-}
-
-QComboBox QAbstractItemView::item
-{
-	height:30px;
-	font: 10pt &quot;OPPOSans B&quot;;
-	border-radius:5px;
-}
-
-QComboBox QAbstractItemView::item:hover {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
- 
-/* 下拉后，整个下拉窗体被选择的每项的样式 */
-QComboBox QAbstractItemView::item:selected {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
-</string>
-           </property>
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="page_activate">
-            <property name="styleSheet">
-             <string notr="true">QComboBox{
-	color:#ffffff;
-	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
-	border-radius:5px;
-	background-color: rgb(25, 25, 25, 155);
-	padding-left:10px;
-	
-	font: 10pt &quot;OPPOSans B&quot;;
-}
-
-
-QComboBox:disabled{
-	border:0px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	image: url(:/lib/tree_open.png);
-    width:20px;
-	height:20px;
-	margin-right: 10px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-
-
-QComboBox QAbstractItemView{
-	font: 10pt &quot;OPPOSans B&quot;;
-	outline: 0px solid gray;   /* 选定项的虚框 */
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
+	background-color: rgb(35, 39, 46);
 	selection-background-color:rgb(37, 84, 138);
 	border-radius:0px;
 	padding-bottom:2px;
@@ -855,15 +791,24 @@ QComboBox QAbstractItemView::item
 
 QComboBox QAbstractItemView::item:hover {
     color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
+	background-color: rgba(255, 255, 255, 20);
 }
  
 /* 下拉后，整个下拉窗体被选择的每项的样式 */
 QComboBox QAbstractItemView::item:selected {
     color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
+	background-color: rgba(255, 255, 255, 20);
 }
 </string>
+           </property>
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <widget class="QWidget" name="page_activate">
+            <property name="styleSheet">
+             <string notr="true">#page_activate{
+	background-color: rgba(255, 255, 255, 0);
+}</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <property name="spacing">
@@ -1647,70 +1592,9 @@ padding-right:10px;
            </widget>
            <widget class="QWidget" name="page_appearance">
             <property name="styleSheet">
-             <string notr="true">
-QComboBox{
-	color:#ffffff;
-	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
-	border-radius:5px;
-	background-color: rgb(25, 25, 25, 155);
-	padding-left:10px;
-	
-	font: 10pt &quot;OPPOSans B&quot;;
-}
-
-
-QComboBox:disabled{
-	border:0px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	image: url(:/lib/tree_open.png);
-    width:20px;
-	height:20px;
-	margin-right: 10px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-
-
-QComboBox QAbstractItemView{
-	font: 10pt &quot;OPPOSans B&quot;;
-	outline: 0px solid gray;   /* 选定项的虚框 */
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:rgb(37, 84, 138);
-	border-radius:0px;
-	padding-bottom:2px;
-	padding-top:2px;
-}
-
-QComboBox QAbstractItemView::item
-{
-	height:30px;
-	font: 10pt &quot;OPPOSans B&quot;;
-	border-radius:5px;
-}
-
-QComboBox QAbstractItemView::item:hover {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
- 
-/* 下拉后，整个下拉窗体被选择的每项的样式 */
-QComboBox QAbstractItemView::item:selected {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
-</string>
+             <string notr="true">#page_appearance{
+	background-color: rgba(255, 255, 255, 0);
+}</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
              <property name="spacing">
@@ -2404,7 +2288,19 @@ QComboBox QAbstractItemView::item:selected {
            </widget>
            <widget class="QWidget" name="page_typeface">
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+             <string notr="true">#page_typeface{
+	background-color: rgba(255, 255, 255, 0);
+}
+
+QListWidget{
+	background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(197, 197, 197,50);
+	color: rgb(255, 255, 255);
+}
+QListWidget::item{
+height: 22px;
+}
+</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_9">
              <property name="spacing">
@@ -2471,6 +2367,8 @@ QComboBox QAbstractItemView::item:selected {
                <property name="styleSheet">
                 <string notr="true">QScrollArea{
 	border: none;
+    
+	background-color: rgba(255, 255, 255, 0);
 }
 
 QScrollBar:vertical {
@@ -2525,21 +2423,26 @@ QScrollBar::up-arrow:vertical {
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>-211</y>
+                  <y>-248</y>
                   <width>586</width>
-                  <height>750</height>
+                  <height>770</height>
                  </rect>
                 </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>750</height>
+                  <height>770</height>
                  </size>
                 </property>
                 <property name="font">
                  <font>
                   <pointsize>7</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#scrollAreaWidgetContents_4{
+background-color: rgba(255, 255, 255, 0);
+}</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_8">
                  <property name="spacing">
@@ -2999,10 +2902,7 @@ p, li { white-space: pre-wrap; }
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">listWidget_en{
-	
-	color: rgb(255, 255, 255);
-}
+                          <string notr="true">
 
 QScrollBar:vertical {
     width: 10px;
@@ -3209,7 +3109,7 @@ QScrollBar::up-arrow:vertical {
                    <property name="sizeHint" stdset="0">
                     <size>
                      <width>20</width>
-                     <height>171</height>
+                     <height>200</height>
                     </size>
                    </property>
                   </spacer>
@@ -3368,8 +3268,8 @@ border-radius: 5px;}
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>586</width>
-                  <height>800</height>
+                  <width>596</width>
+                  <height>1516</height>
                  </rect>
                 </property>
                 <property name="minimumSize">
@@ -4022,7 +3922,9 @@ border-radius: 5px;}
            </widget>
            <widget class="QWidget" name="page_terminal">
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+             <string notr="true">#page_terminal{
+background-color: rgba(255, 255, 255, 0);
+}</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_50">
              <property name="spacing">
@@ -4101,6 +4003,8 @@ border-radius: 5px;}
                <property name="styleSheet">
                 <string notr="true">QScrollArea{
 	border: none;
+    
+	background-color: rgba(255, 255, 255, 0);
 }
 
 QScrollBar:vertical {
@@ -4155,9 +4059,9 @@ QScrollBar::up-arrow:vertical {
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>-771</y>
-                  <width>586</width>
-                  <height>1310</height>
+                  <y>0</y>
+                  <width>596</width>
+                  <height>1516</height>
                  </rect>
                 </property>
                 <property name="minimumSize">
@@ -4167,7 +4071,9 @@ QScrollBar::up-arrow:vertical {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">#scrollAreaWidgetContents_3{
+background-color: rgba(255, 255, 255, 0);
+}</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_27">
                  <property name="spacing">
@@ -4300,7 +4206,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                       <property name="minimumSize">
                        <size>
                         <width>70</width>
-                        <height>30</height>
+                        <height>25</height>
                        </size>
                       </property>
                       <property name="font">
@@ -4311,25 +4217,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QToolButton {
-	
-	
-	color: rgb(20, 20, 20);
-	background-color: rgb(113, 212, 219);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	
-	color: rgb(0, 0, 0);
-	
-	background-color: rgb(0, 255, 255);
-}</string>
+                       <string notr="true"/>
                       </property>
                       <property name="text">
                        <string>选择</string>
@@ -5432,7 +5320,7 @@ border: 0px solid rgba(255, 255, 255, 0);
                       <property name="minimumSize">
                        <size>
                         <width>70</width>
-                        <height>30</height>
+                        <height>25</height>
                        </size>
                       </property>
                       <property name="font">
@@ -5923,7 +5811,9 @@ border: 0px solid rgba(255, 255, 255, 0);
            </widget>
            <widget class="QWidget" name="page_shortcutKey">
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+             <string notr="true">#page_shortcutKey{
+	background-color: rgba(255, 255, 255, 0);
+}</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_10">
              <property name="spacing">
@@ -5990,6 +5880,8 @@ border: 0px solid rgba(255, 255, 255, 0);
                <property name="styleSheet">
                 <string notr="true">QScrollArea{
 	border: none;
+    
+	background-color: rgba(255, 255, 255, 0);
 }
 
 QScrollBar:vertical {
@@ -6045,8 +5937,8 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>556</width>
-                  <height>830</height>
+                  <width>566</width>
+                  <height>1516</height>
                  </rect>
                 </property>
                 <property name="minimumSize">
@@ -6056,7 +5948,10 @@ QScrollBar::up-arrow:vertical {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">
+                 <string notr="true">#scrollAreaWidgetContents{
+	background-color: rgba(255, 255, 255, 0);
+}
+
 QLineEdit {
 background-color: rgb(25, 25, 25, 150);
 border: 1px solid rgba(255, 255, 255, 155);
@@ -9358,8 +9253,6 @@ p, li { white-space: pre-wrap; }
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-	
-	
 	color: rgb(20, 20, 20);
 	background-color: rgb(113, 212, 219);
 	border-radius: 5px;
@@ -9369,11 +9262,8 @@ QToolButton::menu-indicator {
 	image: None;
 }
 
- 
 QToolButton:hover {
-	
 	color: rgb(0, 0, 0);
-	
 	background-color: rgb(0, 255, 255);
 }</string>
               </property>
@@ -9415,8 +9305,8 @@ QToolButton:hover {
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
 	
+    color: rgb(191, 191, 191);
 	background-color: rgb(50, 50, 50);
 	border-radius: 5px;
 }
@@ -9427,10 +9317,8 @@ QToolButton::menu-indicator {
 
  
 QToolButton:hover {
-	
-	background-color: rgb(50, 50, 50);
-	color: rgb(191, 191, 191);
-	background-color: rgb(67, 67, 67);
+    color: rgb(255, 255, 255);
+	background-color: rgb(54, 54, 54);
 }</string>
               </property>
               <property name="text">

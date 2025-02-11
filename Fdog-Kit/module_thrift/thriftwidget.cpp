@@ -4046,10 +4046,9 @@ void thriftwidget::rece_textEditPaste()
 
     if (mimeData->hasText()) {
         QString clipboardText = mimeData->text();
-        //qDebug() << "剪贴板内容：" << clipboardText;
-        ui->textEdit->setText(clipboardText);
+        QTextCursor cursor = ui->textEdit->textCursor();
+        cursor.insertText(clipboardText);  // 插入剪贴板文本
     }
-    ui->textEdit->setFocus();
 }
 
 void thriftwidget::rece_textEditAll()
@@ -4324,10 +4323,9 @@ void thriftwidget::rece_plainTextEdit_editPaste()
 
     if (mimeData->hasText()) {
         QString clipboardText = mimeData->text();
-        //qDebug() << "剪贴板内容：" << clipboardText;
-        ui->plainTextEdit_edit->appendPlainText(clipboardText);
+        QTextCursor cursor = ui->plainTextEdit_edit->textCursor();
+        cursor.insertText(clipboardText);  // 插入剪贴板文本
     }
-    ui->plainTextEdit_edit->setFocus();
 }
 
 void thriftwidget::rece_plainTextEdit_editAll()

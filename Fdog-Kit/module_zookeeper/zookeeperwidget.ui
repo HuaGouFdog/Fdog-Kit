@@ -44,6 +44,38 @@ padding-right:0px;
 }
 
 
+QComboBox{
+	color:#ffffff;
+	border:1px solid #1e2d36;
+	border-radius:3px;
+	background:transparent;
+}
+QComboBox:disabled{
+	border:1px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	border-image: url(:/lib/up.png);
+    width:20px;
+	height:20px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+QComboBox QAbstractItemView{
+	outline:0px solid gray;
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color:#1e2d36;
+	selection-background-color:#52DCFE;
+}
+
 QCheckBox::indicator{
                 width:16px;
                 height:16px;
@@ -112,6 +144,12 @@ QMenu::item:selected {
       <number>0</number>
      </property>
      <widget class="QWidget" name="verticalWidget_1_l" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>10</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true">#verticalWidget_1_l{
 color: rgb(255, 255, 255);
@@ -149,7 +187,7 @@ color: rgb(255, 255, 255);
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <property name="spacing">
-           <number>16</number>
+           <number>10</number>
           </property>
           <property name="leftMargin">
            <number>10</number>
@@ -174,20 +212,29 @@ color: rgb(255, 255, 255);
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>25</height>
+              <height>27</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
             </property>
             <property name="styleSheet">
              <string notr="true">#widget_1_3_l_1{
 color: rgb(255, 255, 255);
-	background-color: rgba(140, 140, 140, 150);
-border: 0px solid rgba(255, 255, 255, 0);
+border: 1px solid rgba(197, 197, 197,50);
+background-color: rgba(255, 255, 255, 20);
 border-radius: 5px;
+color: rgb(255, 255, 255);
 padding-left:10px;
 padding-right:10px;
 }</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <property name="leftMargin">
               <number>10</number>
              </property>
@@ -195,7 +242,7 @@ padding-right:10px;
               <number>0</number>
              </property>
              <property name="rightMargin">
-              <number>10</number>
+              <number>0</number>
              </property>
              <property name="bottomMargin">
               <number>0</number>
@@ -217,46 +264,15 @@ padding-right:10px;
                  <bold>false</bold>
                 </font>
                </property>
+               <property name="contextMenuPolicy">
+                <enum>Qt::NoContextMenu</enum>
+               </property>
                <property name="styleSheet">
-                <string notr="true">background-color: rgba(255, 255, 255, 0);
+                <string notr="true">
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="placeholderText">
                 <string>搜索节点</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_clear">
-               <property name="styleSheet">
-                <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 95, 95, 0);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgba(255, 95, 95, 0);
-}</string>
-               </property>
-               <property name="text">
-                <string>清除</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../lib.qrc">
-                 <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>25</width>
-                 <height>25</height>
-                </size>
                </property>
               </widget>
              </item>
@@ -313,6 +329,40 @@ border-radius: 2px;
                </property>
                <property name="checked">
                 <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_clear">
+               <property name="styleSheet">
+                <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 95, 95, 0);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 95, 95, 0);
+}</string>
+               </property>
+               <property name="text">
+                <string>清除</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../lib.qrc">
+                 <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -499,12 +549,16 @@ QTreeWidget::item:hover {
 	border: 0px;
 	outline: 0px;
     color: rgb(255, 255, 255);
-	background-color: rgb(25, 25, 25, 155);
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 2px;
 }
 QTreeWidget::item:selected{
     border: 0px;
 	outline: 0px;
-	background-color: rgb(25, 25, 25, 155);
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 2px;
 }
 QTreeWidget::item:selected:active{
     border: 0px;
@@ -882,7 +936,7 @@ QScrollBar::up-arrow:horizontal {
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="textEdit_data_2">
+              <widget class="QTextEdit" name="textEdit_data_edit">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
                  <horstretch>0</horstretch>
@@ -906,7 +960,7 @@ QScrollBar::up-arrow:horizontal {
                 <enum>Qt::CustomContextMenu</enum>
                </property>
                <property name="styleSheet">
-                <string notr="true">#textEdit_data_2{
+                <string notr="true">#textEdit_data_edit{
 	border: 1px solid rgba(197, 197, 197,50);
 	background-color: rgba(255, 255, 255, 20);
 	border-radius: 5px;
@@ -980,6 +1034,12 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
      <widget class="QWidget" name="verticalWidget_1_r" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -2103,9 +2163,8 @@ padding-right:10px;
                </property>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
-	color:#ffffff;
 	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
+	color: rgb(255, 255, 255);
 	border-radius:5px;
 	background-color: rgb(25, 25, 25, 155);
 	padding-left:10px;
@@ -2140,7 +2199,7 @@ QComboBox QAbstractItemView{
 	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#1e2d36;
+	background-color: rgb(35, 39, 46);
 	selection-background-color:rgb(37, 84, 138);
 	border-radius:0px;
 	padding-bottom:2px;
@@ -2156,13 +2215,13 @@ QComboBox QAbstractItemView::item
 
 QComboBox QAbstractItemView::item:hover {
     color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
+	background-color: rgba(255, 255, 255, 20);
 }
  
 /* 下拉后，整个下拉窗体被选择的每项的样式 */
 QComboBox QAbstractItemView::item:selected {
     color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
+	background-color: rgba(255, 255, 255, 20);
 }
 </string>
                </property>
@@ -2283,9 +2342,8 @@ QComboBox QAbstractItemView::item:selected {
                </property>
                <property name="styleSheet">
                 <string notr="true">QComboBox{
-	color:#ffffff;
 	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
+	color: rgb(255, 255, 255);
 	border-radius:5px;
 	background-color: rgb(25, 25, 25, 155);
 	padding-left:10px;
@@ -2320,7 +2378,7 @@ QComboBox QAbstractItemView{
 	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#1e2d36;
+	background-color: rgb(35, 39, 46);
 	selection-background-color:rgb(37, 84, 138);
 	border-radius:0px;
 	padding-bottom:2px;
@@ -2336,13 +2394,13 @@ QComboBox QAbstractItemView::item
 
 QComboBox QAbstractItemView::item:hover {
     color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
+	background-color: rgba(255, 255, 255, 20);
 }
  
 /* 下拉后，整个下拉窗体被选择的每项的样式 */
 QComboBox QAbstractItemView::item:selected {
     color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
+	background-color: rgba(255, 255, 255, 20);
 }
 </string>
                </property>
@@ -2743,9 +2801,8 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgb(0, 182, 143);
+	color: rgb(20, 20, 20);
+	background-color: rgb(113, 212, 219);
 	border-radius: 5px;
 }
 
@@ -2753,10 +2810,9 @@ QToolButton::menu-indicator {
 	image: None;
 }
 
- 
 QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 182, 143);
+	color: rgb(0, 0, 0);
+	background-color: rgb(0, 255, 255);
 }</string>
                   </property>
                   <property name="text">
@@ -2796,8 +2852,9 @@ QToolButton:hover {
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+	
+    color: rgb(191, 191, 191);
+	background-color: rgb(50, 50, 50);
 	border-radius: 5px;
 }
 
@@ -2807,8 +2864,8 @@ QToolButton::menu-indicator {
 
  
 QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(255, 95, 95);
+    color: rgb(255, 255, 255);
+	background-color: rgb(54, 54, 54);
 }</string>
                   </property>
                   <property name="text">
@@ -2848,9 +2905,8 @@ QToolButton:hover {
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QToolButton {
-	color: rgb(255, 255, 255);
-	
-	background-color: rgb(0, 182, 143);
+	color: rgb(20, 20, 20);
+	background-color: rgb(113, 212, 219);
 	border-radius: 5px;
 }
 
@@ -2858,14 +2914,13 @@ QToolButton::menu-indicator {
 	image: None;
 }
 
- 
 QToolButton:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 182, 143);
+	color: rgb(0, 0, 0);
+	background-color: rgb(0, 255, 255);
 }</string>
                   </property>
                   <property name="text">
-                   <string>修改</string>
+                   <string>保存</string>
                   </property>
                   <property name="iconSize">
                    <size>
