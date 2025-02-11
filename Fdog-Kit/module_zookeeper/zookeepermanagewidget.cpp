@@ -83,10 +83,10 @@ void zookeepermanagewidget::newZKWidget(connnectInfoStruct &cInfoStruct) {
     ui->stackedWidget->addWidget(zkWidget);
     connectManager.insert(count-1, ui->stackedWidget->count()-1);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
-    createButton(data, true, zkWidget);
+    createButton(data, true, true, zkWidget);
 }
 
-void zookeepermanagewidget::createButton(QString text, bool isConnect, zookeeperwidget * zkWidget) {
+void zookeepermanagewidget::createButton(QString text, bool isConnect, bool isChecked, zookeeperwidget * zkWidget) {
     QToolButton * qbutton = new QToolButton(this);
     if (isConnect) {
         qbutton->setIcon(QIcon(":lib/yellow.svg"));
@@ -96,14 +96,16 @@ void zookeepermanagewidget::createButton(QString text, bool isConnect, zookeeper
     }
     qbutton->setText(text);
     qbutton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    qbutton->setMinimumHeight(50);
+    qbutton->setMinimumHeight(40);
     qbutton->setMinimumWidth(180);
     qbutton->setMaximumWidth(180);
     qbutton->setCheckable(true);
     m_buttonGroup->addButton(qbutton, count++);
     QVBoxLayout *layout = (QVBoxLayout *)ui->scrollAreaWidgetContents->layout();
     layout->insertWidget(layout->count()-1, qbutton);
-    m_buttonGroup->button(count-1)->setChecked(true);
+    if (isChecked) {
+        m_buttonGroup->button(count-1)->setChecked(true);
+    }
     zkStatusInfoMap[qbutton].status_ = 1;
     zkStatusInfoMap[qbutton].zkWidget_ =zkWidget;
     qbutton->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -111,8 +113,8 @@ void zookeepermanagewidget::createButton(QString text, bool isConnect, zookeeper
     menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     menu->setAttribute(Qt::WA_TranslucentBackground);
     QAction *againAction = new QAction(tr("重连"), qbutton);
-    QAction *closeAction = new QAction(tr("关闭"), qbutton);
-    QAction *clearAction = new QAction(tr("删除"), qbutton);
+    QAction *closeAction = new QAction(tr("关闭连接"), qbutton);
+    QAction *clearAction = new QAction(tr("删除连接"), qbutton);
     menu->addAction(closeAction);
     menu->addAction(clearAction);
     qbutton->setContextMenuPolicy(Qt::CustomContextMenu);

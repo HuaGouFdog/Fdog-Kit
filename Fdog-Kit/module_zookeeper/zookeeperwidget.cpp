@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QTest>
 #include <QToolTip>
+#include <QMimeData>
 #include <QClipboard>
 #include <QThreadPool>
 #include <QStyleFactory>
@@ -31,6 +32,8 @@ zookeeperwidget::zookeeperwidget(QWidget *parent) :
     QHeaderView *pHeader=ui->treeWidget->header();
     pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+    ui->comboBox_node_type->setView(new QListView());
+    ui->comboBox_node_acl->setView(new QListView());
     ui->splitter->setStretchFactor(0, 5);
     ui->splitter->setStretchFactor(1, 1);
     ui->stackedWidget->setCurrentIndex(0);
@@ -52,6 +55,8 @@ zookeeperwidget::zookeeperwidget(connnectInfoStruct& cInfoStruct, QWidget *paren
 
     init(cInfoStruct.host, cInfoStruct.port, cInfoStruct.timeout);
 
+    ui->comboBox_node_type->setView(new QListView());
+    ui->comboBox_node_acl->setView(new QListView());
     //设置水平滑动条
     QHeaderView *pHeader=ui->treeWidget->header();
     pHeader->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -100,7 +105,7 @@ void zookeeperwidget::rece_init(int connectState, int code, QString message, QSt
     } else {
         showMessage("连接成功", true);
         emit send_init(buttonSid, code);
-        ui->lineEdit_node->setText(path);
+        //ui->lineEdit_node->setText(path);
         QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->treeWidget);
         ui->treeWidget->addTopLevelItem(topItem);
         topItem->setText(0, path);
@@ -200,15 +205,15 @@ void zookeeperwidget::showNodeInfo(QString data, QVariant varValue, QString path
     if (error.error == QJsonParseError::NoError && !jsonDoc.isNull()) {
         // 格式化为可读的字符串
         QString formattedJson = jsonDoc.toJson(QJsonDocument::Indented);
-        ui->textEdit_data->insertPlainText(formattedJson);
         nodeData = formattedJson;
         nodeDataPath = path;
+        ui->textEdit_data->insertPlainText(formattedJson);
         ui->toolButton_saveData->setEnabled(false);
         ui->label_data_type->setText("数据类型：json");
     } else {
-        ui->textEdit_data->insertPlainText(data.toUtf8());
         nodeData = data.toUtf8();
         nodeDataPath = path;
+        ui->textEdit_data->insertPlainText(data.toUtf8());
         ui->toolButton_saveData->setEnabled(false);
         ui->label_data_type->setText("数据类型：value");
     }
@@ -278,6 +283,7 @@ void zookeeperwidget::copyPath()
     QTreeWidgetItem *item = ui->treeWidget->currentItem();
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(item->text(0));
+    showMessage("复制成功", true);
 }
 
 void zookeeperwidget::showParent(QTreeWidgetItem *pItem)
@@ -492,9 +498,11 @@ void zookeeperwidget::on_textEdit_data_textChanged()
         QString path;
         getParentNode(currentItem, path);
         if (nodeData != ui->textEdit_data->toPlainText() && nodeDataPath == path) {
+            ui->horizontalWidget_1_2_5_1r->show();
             ui->toolButton_saveData->show();
             ui->toolButton_saveData->setEnabled(true);
         } else {
+            ui->horizontalWidget_1_2_5_1r->hide();
             ui->toolButton_saveData->hide();
             ui->toolButton_saveData->setEnabled(false);
         }
@@ -794,7 +802,7 @@ void zookeeperwidget::showMessage(QString message, bool isSuccess)
     }
     tipwidget = new QFMessageBox(ui->treeWidget, message, 1, isSuccess);
     int x = (ui->treeWidget->width() - tipwidget->width()) / 2;     //x坐标
-    int y = ui->treeWidget->height() - tipwidget->height() - 10;         //y坐标
+    int y = ui->treeWidget->height() - tipwidget->height() - 10;    //y坐标
     tipwidget->move(x, y);//窗口移动
     tipwidget->show();
     QPropertyAnimation *pAnimation = new QPropertyAnimation(tipwidget, "windowOpacity");
@@ -855,31 +863,36 @@ void zookeeperwidget::on_toolButton_cancel_clicked()
 void zookeeperwidget::on_textEdit_data_customContextMenuRequested(const QPoint &pos)
 {
     //菜单请求
-    m_action_text_undo = new QAction("撤销", this);
-    m_action_text_redo = new QAction("重做", this);
+    //m_action_text_undo = new QAction("撤销", this);
+    //m_action_text_redo = new QAction("重做", this);
     m_action_text_copy = new QAction("复制", this);
     m_action_text_paste = new QAction("粘贴", this);
-    m_action_text_delete = new QAction("删除", this);
-    m_action_text_allSelect = new QAction("全部选中", this);
+    m_action_text_delete = new QAction("清空内容", this);
+    //m_action_text_allSelect = new QAction("全部选中", this);
 
-    m_action_text_undo->setIconVisibleInMenu(false);
-    m_action_text_redo->setIconVisibleInMenu(false);
+    //m_action_text_undo->setIconVisibleInMenu(false);
+    //m_action_text_redo->setIconVisibleInMenu(false);
     m_action_text_copy->setIconVisibleInMenu(false);
     m_action_text_paste->setIconVisibleInMenu(false);
     m_action_text_delete->setIconVisibleInMenu(false);
-    m_action_text_allSelect->setIconVisibleInMenu(false);
+    //m_action_text_allSelect->setIconVisibleInMenu(false);
 
     //定义右键弹出菜单
     textMenu = new QMenu(this);
     textMenu->setWindowFlags(textMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
     textMenu->setAttribute(Qt::WA_TranslucentBackground);
-    textMenu->addAction(m_action_text_undo);
-    textMenu->addAction(m_action_text_redo);
+    //textMenu->addAction(m_action_text_undo);
+    //textMenu->addAction(m_action_text_redo);
     textMenu->addAction(m_action_text_copy);
     textMenu->addAction(m_action_text_paste);
     textMenu->addAction(m_action_text_delete);
-    textMenu->addAction(m_action_text_allSelect);
+
+    connect (m_action_text_copy,SIGNAL(triggered()),this,SLOT(rece_text_copy_sgin()));
+    connect (m_action_text_paste,SIGNAL(triggered()),this,SLOT(rece_text_paste_sgin()));
+    connect (m_action_text_delete,SIGNAL(triggered()),this,SLOT(rece_text_delete_sgin()));
+    //textMenu->addAction(m_action_text_allSelect);
     textMenu->exec(QCursor::pos());//弹出右键菜单，菜单位置为光标位置
+
 }
 
 void zookeeperwidget::resizeEvent(QResizeEvent *event)
@@ -907,3 +920,80 @@ void zookeeperwidget::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
     expandSelectItems(ui->treeWidget, item->text().mid(index + 1), item->text());
     ui->stackedWidget->setCurrentIndex(0);
 }
+
+void zookeeperwidget::on_textEdit_data_edit_customContextMenuRequested(const QPoint &pos)
+{
+    m_action_editText_copy = new QAction("复制", this);
+    m_action_editText_paste = new QAction("粘贴", this);
+    m_action_editText_delete = new QAction("清空内容", this);
+    //m_action_editText_allSelect = new QAction("全部选中", this);
+
+    m_action_editText_copy->setIconVisibleInMenu(false);
+    m_action_editText_paste->setIconVisibleInMenu(false);
+    m_action_editText_delete->setIconVisibleInMenu(false);
+    //m_action_editText_allSelect->setIconVisibleInMenu(false);
+
+    //定义右键弹出菜单
+    editTextMenu = new QMenu(this);
+    editTextMenu->setWindowFlags(editTextMenu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    editTextMenu->setAttribute(Qt::WA_TranslucentBackground);
+    editTextMenu->addAction(m_action_editText_copy);
+    editTextMenu->addAction(m_action_editText_paste);
+    editTextMenu->addAction(m_action_editText_delete);
+
+    connect (m_action_editText_copy,SIGNAL(triggered()),this,SLOT(rece_editText_copy_sgin()));
+    connect (m_action_editText_paste,SIGNAL(triggered()),this,SLOT(rece_editText_paste_sgin()));
+    connect (m_action_editText_delete,SIGNAL(triggered()),this,SLOT(rece_editText_delete_sgin()));
+    //editTextMenu->addAction(m_action_editText_allSelect);
+    editTextMenu->exec(QCursor::pos());//弹出右键菜单，菜单位置为光标位置
+    //connect (m_action_editText_allSelect,SIGNAL(triggered()),this,SLOT(rece_editText_allSelect_sgin()));
+}
+
+void zookeeperwidget::rece_text_copy_sgin()
+{
+    QString copyData = ui->textEdit_data->textCursor().selectedText();
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(copyData);
+    ui->textEdit_data->setFocus();
+}
+
+void zookeeperwidget::rece_text_paste_sgin()
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+    if (mimeData->hasText()) {
+        QString clipboardText = mimeData->text();
+        QTextCursor cursor = ui->textEdit_data->textCursor();
+        cursor.insertText(clipboardText);  // 插入剪贴板文本
+    }
+}
+
+void zookeeperwidget::rece_text_delete_sgin()
+{
+    ui->textEdit_data->setText("");
+}
+
+void zookeeperwidget::rece_editText_copy_sgin()
+{
+    QString copyData = ui->textEdit_data_edit->textCursor().selectedText();
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(copyData);
+    ui->textEdit_data_edit->setFocus();
+}
+
+void zookeeperwidget::rece_editText_paste_sgin()
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+    if (mimeData->hasText()) {
+        QString clipboardText = mimeData->text();
+        QTextCursor cursor = ui->textEdit_data_edit->textCursor();
+        cursor.insertText(clipboardText);  // 插入剪贴板文本
+    }
+}
+
+void zookeeperwidget::rece_editText_delete_sgin()
+{
+    ui->textEdit_data_edit->setText("");
+}
+
