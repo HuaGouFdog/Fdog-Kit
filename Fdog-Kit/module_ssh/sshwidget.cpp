@@ -2142,8 +2142,14 @@ void sshwidget::on_toolButton_upload_clicked()
     QString dlgTitle="选择多个文件";   //对话框标题
     QString filter = "所有文件(*.*);;文本文件(*.txt);;图片文件(*.jpg *.gif)";   //文件过滤器
     QStringList fileList = QFileDialog::getOpenFileNames(this,dlgTitle,curPath,filter);  //getOpenFileNames返回选择文件的带路径的完整文件名
+    
+    if (fileList.isEmpty()) {
+        qDebug() << "取消文件选择";
+        return;
+    }
+
     for(int i=0;i<fileList.count();i++) {   //添加文件名到文本框
-        //qDebug() << "选择路径：" << fileList.at(i);
+        qDebug() << "选择路径：" << fileList.at(i);
     }
     //获取当前服务器目录，然后上传
     QString path = fileList.at(0);
@@ -2154,7 +2160,6 @@ void sshwidget::on_toolButton_upload_clicked()
         fileName = path.mid(colonIndex + 1);
     }
 
-    //sendUploadCommandData("C:\\Users\\张旭\\Desktop\\fsdownload\\apinfo.json", "/data/linkdood/im/apinfo.json");
     //调子线程执行
     if (ssh_path.contains("~")) {
         ssh_path.replace("~","/root");
