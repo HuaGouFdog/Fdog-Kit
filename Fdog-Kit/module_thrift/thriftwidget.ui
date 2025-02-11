@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1892</width>
+    <width>1859</width>
     <height>701</height>
    </rect>
   </property>
@@ -69,7 +69,74 @@ QMenu::item:selected {
     
 	color: rgb(244, 244, 244);
 	background-color: rgba(35, 39, 46, 250);
-}</string>
+}
+
+QStackedWidget{
+background-color: rgba(255, 255, 255, 0);
+}
+
+QComboBox{
+	border:0px solid #8a8a8a;
+	color: rgb(255, 255, 255);
+	border-radius:5px;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
+}
+
+
+QComboBox:disabled{
+	border:0px solid gray;
+	color:gray;
+}
+
+QComboBox::drop-down{
+	background:transparent;
+}
+QComboBox::down-arrow{
+	image: url(:/lib/tree_open.png);
+    width:20px;
+	height:20px;
+	margin-right: 10px;
+}
+
+
+QComboBox::down-arrow:enabled{
+	color:#52DCFE;
+}
+
+
+QComboBox QAbstractItemView{
+	font: 10pt &quot;OPPOSans B&quot;;
+	outline: 0px solid gray;   /* 选定项的虚框 */
+	border:1px solid #1e2d36;
+	color:#ffffff;
+	background-color: rgb(35, 39, 46);
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
+}
+
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgba(255, 255, 255, 20);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgba(255, 255, 255, 20);
+}
+</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_4">
    <property name="spacing">
@@ -718,37 +785,6 @@ QScrollBar::up-arrow:horizontal {
       </property>
       <property name="styleSheet">
        <string notr="true">
-QComboBox{
-	color:#ffffff;
-	border:1px solid #1e2d36;
-	border-radius:3px;
-	background:transparent;
-}
-QComboBox:disabled{
-	border:1px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
-    width:20px;
-	height:20px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-QComboBox QAbstractItemView{
-	outline:0px solid gray;
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}
 
 QScrollBar:vertical{
     width: 12px;
@@ -844,68 +880,6 @@ QLabel{
 color:#ced4da;
 }
 
-QComboBox{
-	color:#ffffff;
-	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
-	border-radius:5px;
-	background-color: rgb(25, 25, 25, 155);
-	padding-left:10px;
-	
-	font: 10pt &quot;OPPOSans B&quot;;
-}
-
-
-QComboBox:disabled{
-	border:0px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	image: url(:/lib/tree_open.png);
-    width:20px;
-	height:20px;
-	margin-right: 10px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-
-
-QComboBox QAbstractItemView{
-	font: 10pt &quot;OPPOSans B&quot;;
-	outline: 0px solid gray;   /* 选定项的虚框 */
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:rgb(37, 84, 138);
-	border-radius:0px;
-	padding-bottom:2px;
-	padding-top:2px;
-}
-
-QComboBox QAbstractItemView::item
-{
-	height:30px;
-	font: 10pt &quot;OPPOSans B&quot;;
-	border-radius:5px;
-}
-
-QComboBox QAbstractItemView::item:hover {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
- 
-/* 下拉后，整个下拉窗体被选择的每项的样式 */
-QComboBox QAbstractItemView::item:selected {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
 </string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1561,69 +1535,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QComboBox{
-	color:#ffffff;
-	border:0px solid #8a8a8a;
-	color: rgb(138, 138, 138);
-	border-radius:5px;
-	background-color: rgb(25, 25, 25, 155);
-	padding-left:10px;
-	
-	font: 10pt &quot;OPPOSans B&quot;;
-}
-
-
-QComboBox:disabled{
-	border:0px solid gray;
-	color:gray;
-}
-
-QComboBox::drop-down{
-	background:transparent;
-}
-QComboBox::down-arrow{
-	image: url(:/lib/tree_open.png);
-    width:20px;
-	height:20px;
-	margin-right: 10px;
-}
-
-
-QComboBox::down-arrow:enabled{
-	color:#52DCFE;
-}
-
-
-QComboBox QAbstractItemView{
-	font: 10pt &quot;OPPOSans B&quot;;
-	outline: 0px solid gray;   /* 选定项的虚框 */
-	border:1px solid #1e2d36;
-	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:rgb(37, 84, 138);
-	border-radius:0px;
-	padding-bottom:2px;
-	padding-top:2px;
-}
-
-QComboBox QAbstractItemView::item
-{
-	height:30px;
-	font: 10pt &quot;OPPOSans B&quot;;
-	border-radius:5px;
-}
-
-QComboBox QAbstractItemView::item:hover {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
- 
-/* 下拉后，整个下拉窗体被选择的每项的样式 */
-QComboBox QAbstractItemView::item:selected {
-    color:rgb(255,255,255);
-	background-color: rgb(37, 84, 138);
-}
-</string>
+          <string notr="true"/>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <property name="spacing">
@@ -3101,7 +3013,7 @@ border-radius: 2px;
                             <bool>false</bool>
                            </property>
                            <attribute name="headerVisible">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </attribute>
                            <attribute name="headerMinimumSectionSize">
                             <number>20</number>
@@ -3796,6 +3708,9 @@ QTabBar QToolButton:hover {
                                   <pointsize>11</pointsize>
                                   <stylestrategy>PreferAntialias</stylestrategy>
                                  </font>
+                                </property>
+                                <property name="contextMenuPolicy">
+                                 <enum>Qt::DefaultContextMenu</enum>
                                 </property>
                                 <property name="styleSheet">
                                  <string notr="true">border: 1px solid rgba(199, 199, 199, 150);
@@ -5534,7 +5449,7 @@ QTabBar QToolButton:hover {
 }</string>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>3</number>
                  </property>
                  <widget class="QWidget" name="tab_4">
                   <attribute name="title">
