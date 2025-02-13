@@ -3,8 +3,8 @@
         "selfStart": 0,
         "startCenter": 1,
         "startMode": 0,
-        "startPositionX": 1250,
-        "startPositionY": 800,
+        "startPositionX": 1300,
+        "startPositionY": 850,
         "trayDisplay": 1
     },
     "appearance": {
@@ -235,12 +235,23 @@
             "white": "#C0C0C0"
         }
     ],
+    "isFirstStart": 0,
+    "module": {
+        "autoPackage": 1,
+        "db": 1,
+        "extend": 1,
+        "qss": 1,
+        "shell": 1,
+        "thrift": 1,
+        "tool": 1,
+        "zookeeper": 1
+    },
     "terminal": {
         "background": 0,
         "backgroundTransparency": 1,
         "commandDisplay": 1,
         "conectStatsDisplay": 1,
-        "currentBackground": "xxxxxxxxxxxxxxx",
+        "currentBackground": "",
         "historyDisplay": 1,
         "infoDisplay": 1,
         "mouseRightClick": 0,
