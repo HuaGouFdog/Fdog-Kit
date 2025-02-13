@@ -33,7 +33,7 @@
     <widget class="QWidget" name="widget" native="true">
      <property name="styleSheet">
       <string notr="true">#widget{
-border-image: url(:/lib/back1.png);
+	background-color: rgb(35, 39, 46);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -100,12 +100,10 @@ border-radius: 5px;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">#textEdit{
-	border: 1px solid rgba(197, 197, 197,50);
-	/*background-color: rgba(255, 255, 255, 20);*/
-	
-	background-color: rgb(255, 255, 255);
-	border-radius: 5px;
-	color: rgb(79, 79, 79);
+border: 1px solid rgba(197, 197, 197,50);
+background-color: rgba(255, 255, 255, 20);
+color: rgb(226, 226, 226);
+border-radius: 5px;
 }
 
 QScrollBar:vertical{
