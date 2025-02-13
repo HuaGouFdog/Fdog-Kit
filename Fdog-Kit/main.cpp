@@ -7,6 +7,7 @@
 #include <iostream>
 #include <QStyleFactory>
 #include <QThreadPool>
+#include <QSslEllipticCurve>
 #include "module_activate/activate.h"
 #include "module_utils/utils.h"
 #include "module_qss/qss.h"
@@ -40,13 +41,14 @@ extern bool signalReceived;
 
 int main(int argc, char *argv[])
 {
+
     if(QT_VERSION>=QT_VERSION_CHECK(5,6,0))
             QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication a(argc, argv);
-    a.setStyle(QStyleFactory::create("Fusion"));
+    //a.setStyle(QStyleFactory::create("Fusion"));
     int fontId = QFontDatabase::addApplicationFont(":fonts/OPPOSans-B-2.ttf");
-    qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontId);
+    qDebug()<<"加载全局字体："<<QFontDatabase::applicationFontFamilies(fontId);
     QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
     if (fontFamilies.size() > 0)
     {
@@ -57,22 +59,28 @@ int main(int argc, char *argv[])
         qDebug() << "错误";
     }
 
-#if 1
-MainWindow w;
-w.show();
-//   qss w;
-//   w.show();
-#endif
-#if 0
-    Activate aw;
-    aw.show();
-    while(!signalReceived) {
-        a.processEvents(); //防止界面出现无响应
+
+    //读取配置文件信息
+    config * confInfo = new config();
+    // 读取JSON文件
+    confInfo->readSettingConf();
+
+    qDebug() << "isFirstStart = " << confInfo->isFirstStart;
+    Activate aw(confInfo);
+    if (confInfo->isFirstStart == 1) {
+        //第一次启动
+        aw.show();
+        while(!signalReceived) {
+            a.processEvents(); //防止界面出现无响应
+        }
+        if (!signalReceived2) {
+            qDebug() << "关闭初始化界面";
+            return a.exec();
+        } else {
+
+        }
     }
-    MainWindow w;
-    qDebug() <<  "显示w";
-    //aw.close();
+    MainWindow w(confInfo);
     w.show();
-#endif
     return a.exec();
 }
