@@ -76,7 +76,7 @@
 
 | 基础模式  | 压测模式  |
 | ---- | ---- | 
-|![image](https://github.com/user-attachments/assets/d7557b7e-f2ff-4384-aaa5-a0d66eda16a8)|![image](https://github.com/user-attachments/assets/2950882f-0897-48ca-97d9-2383b7a4c279)|
+|![image](https://github.com/user-attachments/assets/eb82f969-f62a-438c-9e29-bc6729cb25f2)|![image](https://github.com/user-attachments/assets/2212564d-c9e3-4f33-b0e6-7c4f98e94c7d)|
 
 ----
 
