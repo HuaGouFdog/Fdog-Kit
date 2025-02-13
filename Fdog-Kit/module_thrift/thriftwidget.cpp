@@ -862,7 +862,6 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     ui->textEdit_info->hide();
     ui->label_req->hide();
-    ui->toolButton_return->hide();
     //ui->lineEdit_port->hide();
 
     ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -871,6 +870,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui->plainTextEdit_edit->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_mode->setCurrentIndex(0);
     ui->toolButton_return->hide();
     //ui->widget_property->hide();
 
@@ -921,9 +921,10 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //chartView->resize(QSize(500,500));
     ui->widget_charts->layout()->addWidget(chartView);
 
-    ui->splitter_5->setStretchFactor(0,40);
-    ui->splitter_5->setStretchFactor(1,1);
+    //ui->splitter_5->setStretchFactor(0,40);
+    //ui->splitter_5->setStretchFactor(1,1);
     ui->toolButton_returnTest->hide();
+    ui->toolButton_propertyTest->hide();
 
 //    QDirModel *model = new QDirModel(this);
 //    QCompleter *completer = new QCompleter(this);
@@ -1246,8 +1247,15 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
     }
     //qDebug() << "host = " << ui->lineEdit_host->text() << " port = " << port;
     clientSocket->connectToHost(ui->lineEdit_host->text(), port);
-    if (!clientSocket->waitForConnected()) {
-        //qDebug() << "无法连接到服务器";
+    if (!clientSocket->waitForConnected(2000)) {
+        QAbstractSocket::SocketError error = clientSocket->error();
+        if (error == QAbstractSocket::SocketTimeoutError || QAbstractSocket::NetworkError == error) {
+            qDebug() << "连接超时，无法连接服务器";
+            ui->stackedWidget->setCurrentIndex(2);
+            ui->toolButton_return->show();
+        } else {
+            qDebug() << "发生错误，无法连接到服务器" << "  thread ID:" << QThread::currentThreadId();
+        }
         return ;
     }
 
@@ -4063,15 +4071,17 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         //ui->widget_property->hide();
         ui->toolButton_request->show();
         ui->toolButton_save->show();
-        ui->stackedWidget_2->setCurrentIndex(0);
+        ui->stackedWidget_mode->setCurrentIndex(0);
         ui->horizontalWidget_schedule->hide();
         ui->tabWidget_test->hide();
+        ui->toolButton_propertyTest->hide();
     } else {
         //性能测试
         //ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
-        ui->stackedWidget_2->setCurrentIndex(1);
+        ui->toolButton_propertyTest->show();
+        ui->stackedWidget_mode->setCurrentIndex(1);
     }
 }
 
@@ -4595,6 +4605,9 @@ void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uin
 
 void thriftwidget::on_toolButton_propertyTest_clicked()
 {
+    ui->stackedWidget_2->setCurrentIndex(1);
+
+
     ui->label_startTime->setText("开始时间：");
     ui->label_endTime->setText("结束时间：");
     ui->label_totalRequests_2->setText("总请求：");
@@ -4607,6 +4620,7 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     ui->label_errorRate_2->setText("错误率：");
 
     ui->horizontalWidget_schedule->show();
+    ui->widget_6->hide();
     ui->tabWidget_test->hide();
     threadpool.setMaxThreadCount(ui->lineEdit_thread->text().toInt());
     isTestModle = true;
@@ -4619,11 +4633,11 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
     RequestResults * rr = new RequestResults();
     rr->setCount(count);
 
-    if (ui->checkBox->isChecked()) {
-        rr->isN = true;
-    } else {
-        rr->isN = false;
-    }
+//    if (ui->checkBox->isChecked()) {
+//        rr->isN = true;
+//    } else {
+//        rr->isN = false;
+//    }
     QElapsedTimer timer2;
     timer2.start();
 
@@ -4674,7 +4688,7 @@ void thriftwidget::on_toolButton_propertyTest_clicked()
 
 void thriftwidget::rece_propertyTestDone(RequestResults * rr)
 {
-    ui->label_schedule->setText("执行进度：0%");
+    //ui->label_schedule->setText("执行进度：0%");
     ui->progressBar->setValue(0);
     qDebug() << "开始时间：" <<rr->startTime;
     qDebug() << "结束时间：" <<rr->endTime;
@@ -4719,8 +4733,8 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     ui->lineEdit_ms95->setText(QString::number(rr->ms95));
 
 
-    ui->label_startTime->setText("开始时间：" + rr->startTime);
-    ui->label_endTime->setText("结束时间：" + rr->endTime);
+    ui->label_startTime->setText("开始时间：" + rr->startTime.mid(0, rr->startTime.length()- 4));
+    ui->label_endTime->setText("结束时间：" + rr->endTime.mid(0, rr->endTime.length()- 4));
     ui->label_totalRequests_2->setText("总请求：" + QString::number(rr->totalTimes) + "次");
     ui->label_totalTime_2->setText("总耗时：" + formattedSeconds + "s");
     ui->label_averageRespond_2->setText("平均响应耗时：" + QString::number(sum / rr->Results.size()) + "ms");
@@ -4813,13 +4827,14 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
     //chartView->resize(QSize(500,500));
     ui->widget_charts->layout()->addWidget(chartView);
     ui->tabWidget_test->show();
+    ui->widget_6->show();
     delete rr;
 }
 
 
 void thriftwidget::rece_propertyTestSchedule(int value) {
     qDebug() << "value = " << value;
-    ui->label_schedule->setText("执行进度：" + QString::number(value)  + "%");
+    //ui->label_schedule->setText("执行进度：" + QString::number(value)  + "%");
     ui->progressBar->setValue(value);
 }
 
@@ -4945,6 +4960,7 @@ void RequestResults::setStartTime(const QString &value)
 void thriftwidget::on_toolButton_return_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->toolButton_return->hide();
 }
 
 
