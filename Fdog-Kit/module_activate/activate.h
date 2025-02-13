@@ -17,7 +17,7 @@ class Activate : public QWidget
     Q_OBJECT
 
 public:
-    explicit Activate(QWidget *parent = 0);
+    explicit Activate(config * confInfo, QWidget *parent = 0);
     ~Activate();
 
 private slots:
@@ -30,6 +30,7 @@ private slots:
 private:
     Ui::Activate *ui;
     QTimer *m_timer;
+    config * confInfo;
     int m_value;
 };
 
