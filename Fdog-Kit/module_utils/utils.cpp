@@ -149,7 +149,7 @@ void AnimatedCheckBox::resizeEvent(QResizeEvent *)
 
     this->setStyleSheet(QString(".AnimatedCheckBox[checked=true ]\
     {\
-        background: #1e2d36;\
+        background: #232527;\
         border-radius: %1px;\
     }\
     .AnimatedCheckBox[checked=false ]\
@@ -769,12 +769,13 @@ QFMessageBox::QFMessageBox(QWidget *parent, QString message, int showType, bool 
 
     this->setLayout(hlw);
     hlw->setContentsMargins(5,5,5,5);
-    this->setMaximumHeight(50);
+    this->setMinimumHeight(40);
+    this->setMaximumHeight(40);
     this->setMaximumWidth(150);
 
     //this->resize(120, 40);
 
-    w->setStyleSheet("background-color: rgb(27, 27, 27); border-radius: 10px;color: rgb(255, 255, 255);font: 10pt \"OPPOSans B\";");
+    w->setStyleSheet("background-color: rgb(27, 27, 27); border-radius: 5px;color: rgb(255, 255, 255);font: 10pt \"OPPOSans B\";");
     //this->setStyleSheet("background-color: rgba(0, 0, 0, 0);");
 
     if (isSuccess) {

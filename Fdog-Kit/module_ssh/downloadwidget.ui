@@ -111,7 +111,7 @@ QToolButton:hover {
 }</string>
         </property>
         <property name="icon">
-         <iconset resource="lib.qrc">
+         <iconset resource="../lib.qrc">
           <normaloff>:/lib/download.png</normaloff>:/lib/download.png</iconset>
         </property>
         <property name="iconSize">
@@ -189,7 +189,7 @@ border-radius:6px;
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>当前下载路径： C:\Users\张旭\Desktop\fsdownload</string>
+            <string>当前下载路径： C:\Users\张三\Desktop\fsdownload</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -232,7 +232,7 @@ QToolButton:hover {
 }</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/file.png</normaloff>:/lib/file.png</iconset>
            </property>
            <property name="iconSize">
@@ -276,7 +276,7 @@ QToolButton:hover {
 }</string>
            </property>
            <property name="icon">
-            <iconset resource="lib.qrc">
+            <iconset resource="../lib.qrc">
              <normaloff>:/lib/setting3.png</normaloff>:/lib/setting3.png</iconset>
            </property>
            <property name="iconSize">
@@ -366,7 +366,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

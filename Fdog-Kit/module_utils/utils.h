@@ -209,6 +209,31 @@ protected:
     void keyPressEvent(QKeyEvent * e)override;
 };
 
+class WidgetMouseFilter : public QObject
+{
+   Q_OBJECT
+public:
+   WidgetMouseFilter(QObject *parent = nullptr) : QObject(parent) {}
+
+protected:
+    bool eventFilter(QObject *object, QEvent *event) {
+        if (object->isWidgetType()) {
+            QWidget *widget = static_cast<QWidget*>(object);
+            if (event->type() == QEvent::Enter) {
+                // 当鼠标进入widget时增加宽度
+                widget->resize(widget->width() + 10, widget->height());
+                widget->resize(widget->width(), widget->height() + 10);
+            } else if (event->type() == QEvent::Leave) {
+                // 当鼠标离开widget时还原宽度
+                widget->resize(widget->width() - 10, widget->height());
+                widget->resize(widget->width(), widget->height() - 10);
+            }
+        }
+        // 继续传递事件
+        return false;
+    }
+};
+
 #endif // UTILS_H
 
 

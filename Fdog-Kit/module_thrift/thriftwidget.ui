@@ -878,7 +878,7 @@ QComboBox QAbstractItemView::item:selected {
 }</string>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tab_8">
                  <attribute name="icon">
@@ -4754,7 +4754,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_2">
           <property name="styleSheet">
