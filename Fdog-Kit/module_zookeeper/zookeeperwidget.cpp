@@ -151,7 +151,7 @@ void zookeeperwidget::rece_getChildren(int code, QString message, QString path, 
     }
 }
 
-void zookeeperwidget::getNodeInfo(QString &path)
+void zookeeperwidget::getNodeInfo(QString path)
 {
     QMetaObject::invokeMethod(zookhandle,"getNodeInfo",Qt::QueuedConnection, Q_ARG(QString,path));
 }
@@ -387,7 +387,7 @@ void zookeeperwidget::expandItemAndChildrenOne(QTreeWidgetItem *item, bool isexp
    }
 }
 
-void zookeeperwidget::expandSelectItems(QTreeWidget *treeWidget, QString& path, QString& pathAll)
+void zookeeperwidget::expandSelectItems(QTreeWidget *treeWidget, QString path, QString pathAll)
 {
     //展开选中节点
    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i) {
@@ -398,7 +398,7 @@ void zookeeperwidget::expandSelectItems(QTreeWidget *treeWidget, QString& path, 
    }
 }
 
-void zookeeperwidget::expandSelectItems_s(QTreeWidgetItem *tableItem, const QString &path, QString& pathAll)
+void zookeeperwidget::expandSelectItems_s(QTreeWidgetItem *tableItem, const QString path, QString pathAll)
 {
     //防止野指针的问题
     if (tableItem != nullptr) {

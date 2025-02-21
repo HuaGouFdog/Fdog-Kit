@@ -451,7 +451,7 @@ public:
 
     void handleExtraSpace(QString &func, QString type);
 
-    bool containsChinese(QString &str);
+    bool containsChinese(QString str);
 
     QString getServerInterface(QString &fileContent);
 

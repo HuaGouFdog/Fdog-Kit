@@ -66,7 +66,7 @@ public:
 
     void getChildren(QString path, QTreeWidgetItem *item);
 
-    void getNodeInfo(QString &path);
+    void getNodeInfo(QString path);
 
     void showNodeInfo(QString Data, QVariant varValue, QString path);
 
@@ -75,8 +75,8 @@ public:
     void searchNode(QString name);
 
     //展开选中节点
-    void expandSelectItems(QTreeWidget* treeWidget, QString& path, QString& pathAll);
-    void expandSelectItems_s(QTreeWidgetItem* Item, const QString& path, QString& pathAll);
+    void expandSelectItems(QTreeWidget* treeWidget, QString path, QString pathAll);
+    void expandSelectItems_s(QTreeWidgetItem* Item, const QString path, QString pathAll);
     void showParent2(QTreeWidgetItem* pItem);
 
     //使用递归实现对查找到的项的父子索引项遍历且设置为可见
