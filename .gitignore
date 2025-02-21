@@ -1,0 +1,3 @@
+**/build/**
+**/*.pro.user
+**/msvc_make.bat
