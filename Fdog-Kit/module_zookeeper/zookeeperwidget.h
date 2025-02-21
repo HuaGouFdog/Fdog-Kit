@@ -72,7 +72,7 @@ public:
 
     void addNode(QString &path);
     void deleteNode(QString &path);
-    void searchNode(QString name);
+    //void searchNode(QString name);
 
     //展开选中节点
     void expandSelectItems(QTreeWidget* treeWidget, QString& path, QString& pathAll);
@@ -173,12 +173,10 @@ private slots:
     void rece_text_copy_sgin();
     void rece_text_paste_sgin();
     void rece_text_delete_sgin();
-    //void rece_text_allSelect_sgin();
 
     void rece_editText_copy_sgin();
     void rece_editText_paste_sgin();
     void rece_editText_delete_sgin();
-    //void rece_editText_allSelect_sgin();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

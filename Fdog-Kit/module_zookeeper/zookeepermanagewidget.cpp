@@ -13,6 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+
 #pragma execution_character_set("utf-8")
 #include "zookeepermanagewidget.h"
 #include "ui_zookeepermanagewidget.h"
@@ -122,7 +123,7 @@ void zookeepermanagewidget::createButton(QString text, bool isConnect, bool isCh
     QObject::connect(againAction, &QAction::triggered, this, [=](){
         QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
         QStringList dataList;
-        if (button_ != NULL) {
+        if (button_ != nullptr) {
             dataList = button_->text().split(":");
         }
     });
@@ -130,7 +131,7 @@ void zookeepermanagewidget::createButton(QString text, bool isConnect, bool isCh
     QObject::connect(closeAction, &QAction::triggered, this, [=](){
         QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
         QStringList dataList;
-        if (button_ != NULL) {
+        if (button_ != nullptr) {
             dataList = button_->text().split(":");
         }
         delete zkWidget;
@@ -143,7 +144,7 @@ void zookeepermanagewidget::createButton(QString text, bool isConnect, bool isCh
     QObject::connect(clearAction, &QAction::triggered, this, [=](){
         QToolButton* button_ =qobject_cast<QToolButton*>(sender()->parent());
         QStringList dataList;
-        if (button_ != NULL) {
+        if (button_ != nullptr) {
             dataList = button_->text().split(":");
         }
         zkInfoStruct zkInfo;
