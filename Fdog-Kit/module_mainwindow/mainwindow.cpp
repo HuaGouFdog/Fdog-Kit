@@ -46,6 +46,7 @@
 #include <QDesktopWidget>
 #include "windows.h"
 #include "windowsx.h"
+#include <dwmapi.h>
 #include "module_utils/utils.h"
 #include "module_smalltool/smalltoolwidget.h"
 
@@ -68,21 +69,27 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     //根据centralWidget背景设置阴影
     getGraphicsEffectUtils(ui->centralWidget, 0, 0, 20, QColor(35, 39, 46));
 
-    //设置全局样式表
+    // //设置全局样式表
     changeMainWindowTheme();
 
-    //设置无边框窗口相关属性
+    // //设置无边框窗口相关属性
     Qt::WindowFlags flags = this->windowFlags();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //顶置 Qt::WindowStaysOnTopHint
     //QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
+    setAttribute(Qt::WA_PaintOnScreen, false);
+    setAttribute(Qt::WA_NoSystemBackground, false);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
-    //设置内边距,用于显示阴影
+    // //设置内边距,用于显示阴影
     setContentsMargins(10, 10, 10, 10);
 
-    //窗口标题最小化，最大化，靠边停靠都在这里实现
+    // //窗口标题最小化，最大化，靠边停靠都在这里实现
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
+
+    // const MARGINS rShadowMargin = { 1, 1, 1, 1 };
+    // DwmExtendFrameIntoClientArea(hwnd, &rShadowMargin);
+
 
     //快捷键 F11 全屏
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
