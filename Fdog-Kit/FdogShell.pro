@@ -28,6 +28,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
+    module_database/databasehandle.cpp \
+    module_database/databasesql.cpp \
+    module_database/databasewidget.cpp \
     module_mainwindow/mainwindow.cpp \
     module_ssh/sshsql.cpp \
     module_thrift/prefabricatedata.cpp \
@@ -61,6 +64,9 @@ SOURCES += \
     module_ssh/sshwidgetmanagewidget.cpp
 
 HEADERS += \
+    module_database/databasehandle.h \
+    module_database/databasesql.h \
+    module_database/databasewidget.h \
     module_mainwindow/mainwindow.h \
     module_ssh/sshsql.h \
     module_thrift/prefabricatedata.h \
@@ -94,6 +100,7 @@ HEADERS += \
     module_ssh/sshwidgetmanagewidget.h
 
 FORMS += \
+    module_database/databasewidget.ui \
         module_mainwindow/mainwindow.ui \
     module_thrift/prefabricatedata.ui \
     module_zookeeper/zookeeperwidget.ui \
@@ -127,6 +134,11 @@ RESOURCES += \
 
 QT += network
 QT += charts
+
+win32: LIBS += -L$$PWD/../../mysql/lib/ -llibmysql
+
+INCLUDEPATH += $$PWD/../../mysql/include
+DEPENDPATH += $$PWD/../../mysql/include
 
 win32: LIBS += -L$$PWD/../../zookeeper/lib/ -lzookeeper
 

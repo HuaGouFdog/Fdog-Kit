@@ -40,5 +40,8 @@
         <file>module_mainwindow/images/dark/add-dark.png</file>
         <file>module_mainwindow/images/light/add-light.png</file>
         <file>module_mainwindow/images/light/iconmain-light.png</file>
+        <file>module_zookeeper/images/light/zookeeper.png</file>
+        <file>module_database/images/dark/mysql1.png</file>
+        <file>module_database/images/dark/mysql2.png</file>
     </qresource>
 </RCC>

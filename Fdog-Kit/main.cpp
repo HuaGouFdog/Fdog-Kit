@@ -11,6 +11,7 @@
 #include "module_activate/activate.h"
 #include "module_utils/utils.h"
 #include "module_qss/qss.h"
+#include "module_database/databasewidget.h"
 void getChildrenRecursive(zhandle_t* zh, const std::string& path, std::vector<std::string>& nodes, int sum)
 {
     if (sum >= 3) {
@@ -59,6 +60,8 @@ int main(int argc, char *argv[])
         qDebug() << "错误";
     }
 
+    // databasewidget da;
+    // da.show();
 
     //读取配置文件信息
     config * confInfo = new config();

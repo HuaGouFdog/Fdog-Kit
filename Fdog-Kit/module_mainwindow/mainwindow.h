@@ -31,6 +31,7 @@
 #include "module_zookeeper/zookeeperwidget.h"
 #include "module_zookeeper/zookeepermanagewidget.h"
 #include "module_thrift/thriftwidget.h"
+#include "module_database/databasewidget.h"
 #include "module_setting/settingwidget.h"
 #include "module_utils/config.h"
 #include "module_utils/flowlayout.h"
@@ -87,6 +88,7 @@ private:
     historyconnectwidget * m_hcwidget = nullptr;       //ssh快速连接
     zookeepermanagewidget * m_zmanagewidget = nullptr; //zk窗口
     sshwidgetmanagewidget * m_smanagewidget = nullptr; //ssh管理窗口
+    databasewidget * m_dbwidget = nullptr;             //db窗口
 
     QSystemTrayIcon* m_trayIcon;      //托盘图标
     config * m_confInfo = nullptr;    //配置信息
@@ -188,6 +190,8 @@ private slots:
     void rece_systemTrayMenu();
     //处理托盘图标事件
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
+    //处理database连接
+    void on_toolButton_db_tool_clicked();
 };
 
 #endif // MAINWINDOW_H

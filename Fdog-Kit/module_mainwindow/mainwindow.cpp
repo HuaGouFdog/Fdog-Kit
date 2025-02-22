@@ -66,7 +66,7 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     if (m_confInfo->extend == 0) { ui->toolButton_side_plugIn->hide(); }
 
     //根据centralWidget背景设置阴影
-    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(30, 30, 30));
+    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 20, QColor(35, 39, 46));
 
     //设置全局样式表
     changeMainWindowTheme();
@@ -915,8 +915,23 @@ void MainWindow::on_toolButton_side_qss_clicked() {
 }
 
 void MainWindow::on_toolButton_side_mysql_clicked() {
-    // sqlhandle * db_ = new sqlhandle();
-    // db_->sql_mysql_init();
+    if (m_dbwidget == nullptr) {
+        m_dbwidget = new databasewidget();
+        m_dbwidget->setObjectName("m_dbwidget");
+        ui->stackedWidget->addWidget(m_dbwidget);
+        m_dbwidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+        qDebug() << "触发4";
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "m_dbwidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
+
 }
 
 void MainWindow::on_toolButton_side_tool_clicked() {
@@ -1052,12 +1067,15 @@ void MainWindow::rece_newConnnect(connnectInfoStruct& cInfoStruct) {
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
         on_toolButton_side_zookeeper_clicked();
         m_zmanagewidget->newZKWidget(cInfoStruct);
+    } else if (cInfoStruct.connectType == DB_CONNECT_TYPE) {
+        on_toolButton_side_mysql_clicked();
+        qDebug() << "触发5";
+        m_dbwidget->newDBWidget(cInfoStruct);
+        //ui->tabWidget->addTab(&zkwidget2, QIcon(":lib/db.png").pixmap(iconSize), "172.16.8.166");
     } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
     } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget3, QIcon(":lib/Kafka.png").pixmap(iconSize), "172.16.8.157");
-    } else if (cInfoStruct.connectType == DB_CONNECT_TYPE) {
-        //ui->tabWidget->addTab(&zkwidget2, QIcon(":lib/db.png").pixmap(iconSize), "172.16.8.166");
     }
 }
 
@@ -1116,3 +1134,11 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason) {
     }
     // 其他操作
 }
+
+void MainWindow::on_toolButton_db_tool_clicked() {
+    int8_t connectType = 4;
+    m_ccwidget = new createconnect(connectType);
+    connect(m_ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(rece_newConnnect(connnectInfoStruct&)));
+    m_ccwidget->show();
+}
+

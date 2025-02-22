@@ -48,7 +48,7 @@ void zookeepersql::zookeeper_init()
     sqlQuery.prepare(createSql);
     // 执行sql语句
     if(!sqlQuery.exec()) {
-        qDebug() << "DB_ZKINFO.db Error: Fail to create table. " << sqlQuery.lastError();
+        //qDebug() << "DB_ZKINFO.db Error: Fail to create table. " << sqlQuery.lastError();
     } else {
         qDebug() << "DB_ZKINFO.db Table created!";
     }

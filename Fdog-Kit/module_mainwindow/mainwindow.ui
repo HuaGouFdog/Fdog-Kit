@@ -1719,9 +1719,7 @@ border-radius: 2px;
                           <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">
-
-QToolButton {
+                          <string notr="true">QToolButton {
 	color: rgb(217, 236, 237);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;

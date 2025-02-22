@@ -47,7 +47,7 @@ public:
     QObject * m_obj;
     QTreeWidgetItem *m_item;
 
-    public:
+public:
     ZkRunnable(QObject * obj, zhandle_t *zh, QString path, QTreeWidgetItem *item)
         :m_obj(obj),m_zh(zh),m_path(path),m_item(item) {}
     ~ZkRunnable() {

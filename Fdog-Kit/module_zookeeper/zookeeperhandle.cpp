@@ -96,7 +96,7 @@ zookeeperhandle::~zookeeperhandle() {
     {
         qDebug() << "释放连接";
         zookeeper_close(this->zh); // 关闭句柄
-        this->zh = nullptr
+        this->zh = nullptr;
     }
 }
 
@@ -139,7 +139,7 @@ void zookeeperhandle::init(QString rootPath, QString host_, QString port_, int t
 
 void zookeeperhandle::getChildren(int &code, int &count, QString path) {
     String_vector children;
-    int rc = zoo_get_children(zh, path.toStdString().c_str(), nullptr, &children);
+    int rc = zoo_get_children(zh, path.toStdString().c_str(), NULL, &children);
     if (rc == ZOK) {
         code = rc;
         count = children.count;

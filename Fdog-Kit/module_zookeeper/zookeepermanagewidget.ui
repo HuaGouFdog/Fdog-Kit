@@ -232,12 +232,12 @@ QToolButton:checked {
            <widget class="QLabel" name="label_2">
             <property name="maximumSize">
              <size>
-              <width>50</width>
-              <height>15</height>
+              <width>70</width>
+              <height>30</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">image: url(:/module_zookeeper/images/light/zookeeper-light.png);</string>
+             <string notr="true">image: url(:/module_zookeeper/images/light/zookeeper.png);</string>
             </property>
             <property name="text">
              <string/>
@@ -248,7 +248,7 @@ QToolButton:checked {
            <widget class="QToolButton" name="toolButton_newCreate">
             <property name="minimumSize">
              <size>
-              <width>110</width>
+              <width>90</width>
               <height>30</height>
              </size>
             </property>
