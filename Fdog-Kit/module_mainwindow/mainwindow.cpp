@@ -383,6 +383,17 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
         //没有这一段，将不会显示窗口
         case WM_NCCALCSIZE:
             return true;
+        case WM_NCLBUTTONDBLCLK:
+            if (!m_isMaxShow) {
+                setContentsMargins(0, 0, 0, 0);
+                this->setWindowState(Qt::WindowState::WindowMaximized);
+                m_isMaxShow = true;
+            } else {
+                setContentsMargins(10, 10, 10, 10);
+                this->setWindowState(Qt::WindowState::WindowNoState);
+                m_isMaxShow = false;
+            }
+            return true;
         //最大化是填充屏幕
         case WM_NCHITTEST:
         {
@@ -507,9 +518,9 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType) {
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
 
-        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/add-light.png"));
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/terminal-light.png"));
         ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
-        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        ui->toolButton_db_tool->setIcon(QIcon(":/module_mainwindow/images/light/mysql-light.png"));
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
     } else if (m_mode == LIGHT_THEME) {
@@ -556,9 +567,9 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType) {
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/dark/extend-dark.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/dark/setting-dark.png"));
 
-        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/dark//add-dark.png"));
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/dark/terminal-dark.png"));
         ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/dark/zookeeper-dark.png"));
-        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/dark/func-dark.png"));
+        ui->toolButton_db_tool->setIcon(QIcon(":/module_mainwindow/images/light/mysql-dark.png"));
 
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
@@ -606,9 +617,9 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType) {
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
 
-        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/add-light.png"));
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/terminal-light.png"));
         ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
-        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        ui->toolButton_db_tool->setIcon(QIcon(":/module_mainwindow/images/light/mysql-light.png"));
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
     }
