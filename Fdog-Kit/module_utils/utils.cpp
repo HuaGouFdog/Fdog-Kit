@@ -442,7 +442,7 @@ void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius)
     widget->setGraphicsEffect(effect);
 }
 
-void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &color)
+void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor color)
 {
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
     effect->setOffset(x, y);            //设置向哪个方向产生阴影效果(dx,dy)，(0,0)代表向四周发散
@@ -452,7 +452,7 @@ void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &
 }
 
 
-void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString, bool isSuper) {
+void utils_parsingJsonInfo(QTextEdit * textEdit, QString jsonString, bool isSuper) {
     //clear();
     QJsonParseError err;
     qDebug() << "utils_parsingJsonInfo isSuper = " << isSuper;

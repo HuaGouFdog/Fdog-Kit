@@ -1,0 +1,9 @@
+**/build/**
+**/*.pro.user
+**/msvc_make.bat
+
+# 忽略所有数据库文件
+*.db
+
+# 忽略所有ui_文件
+ui_*.h

@@ -3199,7 +3199,7 @@ void thriftwidget::getStructInfo(QString &fileContent) {
     return;
 }
 
-bool thriftwidget::containsChinese(QString &str) {
+bool thriftwidget::containsChinese(QString str) {
     for (int i = 0; i < str.length(); ++i)
     {
         QChar c = str.at(i);

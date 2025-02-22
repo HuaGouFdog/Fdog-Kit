@@ -132,7 +132,7 @@ private:
 };
 
 //json格式化，调用utils_parsingJsonInfo即可
-void utils_parsingJsonInfo(QTextEdit * textEdit, QString &jsonString, bool isSuper = false);
+void utils_parsingJsonInfo(QTextEdit * textEdit, QString jsonString, bool isSuper = false);
 void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const int numberOfLayers, bool isSuper = false);
 void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int numberOfLayers, bool isSuper = false);
 
@@ -141,7 +141,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
 //根据自身背景值设置阴影颜色
 void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius);
 //根据入参设置阴影颜色
-void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor &color);
+void getGraphicsEffectUtils(QWidget * widget, int x, int y, int radius, QColor color);
 
 
 //判断有没有非零数

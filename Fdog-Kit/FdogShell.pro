@@ -140,21 +140,21 @@ win32: LIBS += -L$$PWD/../../mysql/lib/ -llibmysql
 INCLUDEPATH += $$PWD/../../mysql/include
 DEPENDPATH += $$PWD/../../mysql/include
 
-win32: LIBS += -L$$PWD/../../zookeeper/lib/ -lzookeeper
+win32: LIBS += -L$$PWD/../zookeeper/lib/ -lzookeeper
 
-INCLUDEPATH += $$PWD/../../zookeeper/include
-DEPENDPATH += $$PWD/../../zookeeper/include
+INCLUDEPATH += $$PWD/../zookeeper/include
+DEPENDPATH += $$PWD/../zookeeper/include
 
-win32: LIBS += -L$$PWD/../../libssh2.11.0/lib/ -llibssh2
+win32: LIBS += -L$$PWD/../libssh2.11.0/lib/ -llibssh2
 
-INCLUDEPATH += $$PWD/../../libssh2.11.0/include
-DEPENDPATH += $$PWD/../../libssh2.11.0/include
+INCLUDEPATH += $$PWD/../libssh2.11.0/include
+DEPENDPATH += $$PWD/../libssh2.11.0/include
 
-win32: LIBS += -L$$PWD/../../openssl1.1.1k/lib/ -llibssl
-win32: LIBS += -L$$PWD/../../openssl1.1.1k/lib/ -llibcrypto
+win32: LIBS += -L$$PWD/../openssl1.1.1k/lib/ -llibssl
+win32: LIBS += -L$$PWD/../openssl1.1.1k/lib/ -llibcrypto
 
-INCLUDEPATH += $$PWD/../../openssl1.1.1k/include
-DEPENDPATH += $$PWD/../../openssl1.1.1k/include
+INCLUDEPATH += $$PWD/../openssl1.1.1k/include
+DEPENDPATH += $$PWD/../openssl1.1.1k/include
 
 LIBS += -luser32
 
