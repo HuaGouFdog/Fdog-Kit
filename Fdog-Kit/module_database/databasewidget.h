@@ -1,7 +1,10 @@
-#ifndef DATABASEWIDGET_H
+﻿#ifndef DATABASEWIDGET_H
 #define DATABASEWIDGET_H
 
 #include <QWidget>
+#include<QTreeWidgetItem>
+#include <QSqlDatabase>
+#include "module_utils/utils.h"
 
 namespace Ui {
 class databasewidget;
@@ -12,8 +15,21 @@ class databasewidget : public QWidget
     Q_OBJECT
 
 public:
+    QSqlDatabase database;
+
     explicit databasewidget(QWidget *parent = nullptr);
+    explicit databasewidget(connnectInfoStruct& cInfoStruct, QWidget *parent = nullptr);
     ~databasewidget();
+
+    //初始化数据库信息
+    void initDBInfo();
+    //新建连接
+    void newDBWidget(connnectInfoStruct& cInfoStruct);
+
+private slots:
+    void on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int column);
+
+    void on_treeWidget_db_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private:
     Ui::databasewidget *ui;
