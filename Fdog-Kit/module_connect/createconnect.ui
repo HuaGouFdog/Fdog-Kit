@@ -61,7 +61,7 @@
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
       <string notr="true">#frame{ 
-border-image: url(:/lib/back1.png);
+	background-color: rgb(35, 39, 46);
 }</string>
      </property>
      <property name="frameShape">
@@ -234,102 +234,6 @@ padding-right:10px;</string>
              </widget>
             </item>
             <item>
-             <widget class="QWidget" name="widget_group" native="true">
-              <property name="minimumSize">
-               <size>
-                <width>180</width>
-                <height>70</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>180</width>
-                <height>70</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_2">
-               <property name="spacing">
-                <number>5</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>1</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="widget_group_label_group">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>分组</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="widget_group_lineEdit_group_data">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>OPPOSans B</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;</string>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="placeholderText">
-                  <string>默认</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
              <widget class="QWidget" name="widget_remark" native="true">
               <property name="minimumSize">
                <size>
@@ -421,6 +325,102 @@ padding:10px;</string>
                  </property>
                  <property name="placeholderText">
                   <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="widget_group" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>180</width>
+                <height>70</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>180</width>
+                <height>70</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <property name="spacing">
+                <number>5</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>1</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="widget_group_label_group">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>分组</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="widget_group_lineEdit_group_data">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>OPPOSans B</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>默认</string>
                  </property>
                 </widget>
                </item>
@@ -864,7 +864,7 @@ QTabBar QToolButton:hover {
 }</string>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>3</number>
               </property>
               <property name="tabBarAutoHide">
                <bool>false</bool>
@@ -1494,7 +1494,7 @@ padding-right:10px;
                    <rect>
                     <x>0</x>
                     <y>80</y>
-                    <width>71</width>
+                    <width>81</width>
                     <height>16</height>
                    </rect>
                   </property>
@@ -1606,7 +1606,7 @@ padding-left:10px;
 padding-right:10px;</string>
                 </property>
                 <property name="text">
-                 <string>22</string>
+                 <string>3306</string>
                 </property>
                 <property name="placeholderText">
                  <string>22</string>
@@ -1895,7 +1895,7 @@ padding-right:10px;</string>
                   <height>31</height>
                  </rect>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,3">
                  <property name="leftMargin">
                   <number>0</number>
                  </property>
@@ -1939,18 +1939,26 @@ padding-right:10px;</string>
                     <font>
                      <family>OPPOSans B</family>
                      <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
                      <stylestrategy>PreferAntialias</stylestrategy>
                     </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QComboBox{
-	color:#ffffff;
-	border:1px solid rgb(13, 13, 13);
-	border-radius:3px;
-	background:transparent;
+	border:0px solid #8a8a8a;
+	color: rgb(255, 255, 255);
+	border-radius:5px;
+	background-color: rgb(25, 25, 25, 155);
+	padding-left:10px;
+	
+	font: 10pt &quot;OPPOSans B&quot;;
 }
+
+
 QComboBox:disabled{
-	border:1px solid gray;
+	border:0px solid gray;
 	color:gray;
 }
 
@@ -1958,22 +1966,48 @@ QComboBox::drop-down{
 	background:transparent;
 }
 QComboBox::down-arrow{
-	border-image: url(:/lib/up.png);
+	image: url(:/lib/tree_open.png);
     width:20px;
 	height:20px;
+	margin-right: 10px;
 }
 
 
 QComboBox::down-arrow:enabled{
 	color:#52DCFE;
 }
+
+
 QComboBox QAbstractItemView{
-	outline:0px solid gray;
+	font: 10pt &quot;OPPOSans B&quot;;
+	outline: 0px solid gray;   /* 选定项的虚框 */
 	border:1px solid #1e2d36;
 	color:#ffffff;
-	background-color:#1e2d36;
-	selection-background-color:#52DCFE;
-}</string>
+	background-color: rgb(35, 39, 46);
+	selection-background-color:rgb(37, 84, 138);
+	border-radius:0px;
+	padding-bottom:2px;
+	padding-top:2px;
+}
+
+QComboBox QAbstractItemView::item
+{
+	height:30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	border-radius:5px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    color:rgb(255,255,255);
+	background-color: rgba(255, 255, 255, 20);
+}
+ 
+/* 下拉后，整个下拉窗体被选择的每项的样式 */
+QComboBox QAbstractItemView::item:selected {
+    color:rgb(255,255,255);
+	background-color: rgba(255, 255, 255, 20);
+}
+</string>
                    </property>
                    <item>
                     <property name="text">
@@ -2314,9 +2348,326 @@ padding-right:10px;</string>
                 </property>
                </widget>
               </widget>
+              <widget class="QWidget" name="tab_5">
+               <attribute name="title">
+                <string>   database   </string>
+               </attribute>
+               <widget class="QLabel" name="label_port_db">
+                <property name="geometry">
+                 <rect>
+                  <x>340</x>
+                  <y>10</y>
+                  <width>39</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>端口</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_user_db_data">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>110</y>
+                  <width>421</width>
+                  <height>31</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+                </property>
+                <property name="text">
+                 <string>root</string>
+                </property>
+                <property name="placeholderText">
+                 <string>root</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_port_db_data">
+                <property name="geometry">
+                 <rect>
+                  <x>340</x>
+                  <y>40</y>
+                  <width>81</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+                </property>
+                <property name="text">
+                 <string>22</string>
+                </property>
+                <property name="placeholderText">
+                 <string>22</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_user_db">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>80</y>
+                  <width>39</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>用户名</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="tab_passowrd_lineEdit_password_db_data">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>180</y>
+                  <width>421</width>
+                  <height>31</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+               </widget>
+               <widget class="QLabel" name="tab_passowrd_label_password_db">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>150</y>
+                  <width>39</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>密码</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_host_db_data">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>40</y>
+                  <width>301</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(25, 25, 25, 155);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;</string>
+                </property>
+                <property name="text">
+                 <string>127.0.0.1</string>
+                </property>
+                <property name="placeholderText">
+                 <string>127.0.0.1</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_host_db">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>10</y>
+                  <width>39</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>主机</string>
+                </property>
+               </widget>
+               <widget class="QToolButton" name="tab_passowrd_toolButton_show_3">
+                <property name="geometry">
+                 <rect>
+                  <x>380</x>
+                  <y>180</y>
+                  <width>40</width>
+                  <height>30</height>
+                 </rect>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>40</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QToolButton {
+background-color: rgba(25, 25, 25,0);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+background-color: rgba(25, 25, 25,0);
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+                </property>
+                <property name="text">
+                 <string>取消</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../lib.qrc">
+                  <normaloff>:/lib/eye2.png</normaloff>:/lib/eye2.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>14</width>
+                  <height>14</height>
+                 </size>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="tab_passowrd_checkBox_remember_password_db">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>220</y>
+                  <width>81</width>
+                  <height>16</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>10</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="text">
+                 <string>记住密码</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </widget>
               <widget class="QWidget" name="tab_4">
                <attribute name="title">
-                <string>   Redis   </string>
+                <string>   redis   </string>
                </attribute>
               </widget>
              </widget>
