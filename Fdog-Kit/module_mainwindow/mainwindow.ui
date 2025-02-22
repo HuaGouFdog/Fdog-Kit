@@ -1559,11 +1559,11 @@ border-radius: 2px;
                              <string notr="true"/>
                             </property>
                             <property name="text">
-                             <string>  SSH连接</string>
+                             <string>  ssh连接</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="../lib.qrc">
-                              <normaloff>:/lib/add1.png</normaloff>:/lib/add1.png</iconset>
+                             <iconset resource="../images.qrc">
+                              <normaloff>:/module_mainwindow/images/light/terminal-light.png</normaloff>:/module_mainwindow/images/light/terminal-light.png</iconset>
                             </property>
                             <property name="iconSize">
                              <size>
@@ -1598,7 +1598,7 @@ border-radius: 2px;
                              <string notr="true"/>
                             </property>
                             <property name="text">
-                             <string>  zk连接</string>
+                             <string>  zookeeper连接</string>
                             </property>
                             <property name="icon">
                              <iconset resource="../lib.qrc">
@@ -1616,7 +1616,7 @@ border-radius: 2px;
                            </widget>
                           </item>
                           <item>
-                           <widget class="QToolButton" name="toolButton_thrift_tool">
+                           <widget class="QToolButton" name="toolButton_db_tool">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                               <horstretch>50</horstretch>
@@ -1637,11 +1637,11 @@ border-radius: 2px;
                              <string notr="true"/>
                             </property>
                             <property name="text">
-                             <string>  数据库连接</string>
+                             <string>  database连接</string>
                             </property>
                             <property name="icon">
-                             <iconset resource="../lib.qrc">
-                              <normaloff>:/lib/mysql.png</normaloff>:/lib/mysql.png</iconset>
+                             <iconset resource="../images.qrc">
+                              <normaloff>:/module_mainwindow/images/light/mysql-light.png</normaloff>:/module_mainwindow/images/light/mysql-light.png</iconset>
                             </property>
                             <property name="iconSize">
                              <size>
@@ -1719,9 +1719,7 @@ border-radius: 2px;
                           <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">
-
-QToolButton {
+                          <string notr="true">QToolButton {
 	color: rgb(217, 236, 237);
 	background-color: rgba(255, 255, 255, 0);
 	border: none;

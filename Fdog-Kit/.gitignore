@@ -3,3 +3,7 @@
 
 # 忽略所有ui_文件
 ui_*.h
+
+**/build/**
+**/*.pro.user
+**/msvc_make.bat

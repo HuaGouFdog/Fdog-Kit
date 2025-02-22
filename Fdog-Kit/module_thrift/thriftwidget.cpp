@@ -795,6 +795,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     // 设置第三列的宽度为 150 像素
     ui->treeWidget->setColumnWidth(2, 350);
 
+
     // 计算第五列的宽度，使其占满剩余空间
     //int lastColumnWidth = ui->treeWidget->viewport()->width() - 420;
     //ui->treeWidget->setColumnWidth(3, lastColumnWidth);

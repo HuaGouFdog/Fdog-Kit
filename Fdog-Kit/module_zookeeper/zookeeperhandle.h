@@ -1,4 +1,20 @@
-﻿#ifndef ZOOKEEPERHANDLE_H
+﻿/*
+   Copyright 2023 花狗Fdog(张旭)
+   
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+#ifndef ZOOKEEPERHANDLE_H
 #define ZOOKEEPERHANDLE_H
 
 #include <QObject>
@@ -24,57 +40,53 @@ void nodeWatcher(zhandle_t *zh, int type, int state, const char *path, void *wat
 
 class ZkRunnable : public QObject, public QRunnable {
     Q_OBJECT
+
 public:
-    ZkRunnable(QObject * obj_ = NULL, zhandle_t *zh_ = NULL, QString path_ = "", QTreeWidgetItem *item_ = NULL) {
-        obj = obj_;
-        zh = zh_;
-        path = path_;
-        item = item_;
-    }
+    QString m_path;
+    zhandle_t *m_zh;
+    QObject * m_obj;
+    QTreeWidgetItem *m_item;
 
+public:
+    ZkRunnable(QObject * obj, zhandle_t *zh, QString path, QTreeWidgetItem *item)
+        :m_obj(obj),m_zh(zh),m_path(path),m_item(item) {}
     ~ZkRunnable() {
-        //不需要释放
+        //不需要释放，由上层管理
     }
-
     void run() override {
-        if (zh == nullptr) {
-            qDebug("zh已经被释放");
+        if (m_zh == nullptr) {
+            qDebug("m_zh is null");
             return;
-        } else {
-            //qDebug("调用rece_getChildren1");
         }
         String_vector children;
-        int rc = zoo_wget_children(zh, path.toStdString().c_str(), nodeWatcher, obj, &children);
-       // qDebug("调用rece_getChildren2");
+        int rc = zoo_wget_children(m_zh, m_path.toStdString().c_str(), nodeWatcher, m_obj, &children);
         QVariant varValue = QVariant::fromValue(children);
         QString message;
         if (rc != ZOK) {
-            QMetaObject::invokeMethod(obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
-                                        Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, item));
-            //qDebug("调用rece_getChildren3");
+            QMetaObject::invokeMethod(m_obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int, rc), Q_ARG(QString, message),
+                                        Q_ARG(QString, m_path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, m_item));
             return;
         }
-        //qDebug("调用rece_getChildren4");
-        QMetaObject::invokeMethod(obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int,rc), Q_ARG(QString,message),
-                                    Q_ARG(QString,path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, item));
+        QMetaObject::invokeMethod(m_obj,"rece_getChildren",Qt::QueuedConnection, Q_ARG(int, rc), Q_ARG(QString, message),
+                                    Q_ARG(QString, m_path), Q_ARG(QVariant, varValue), Q_ARG(QTreeWidgetItem*, m_item));
         return;
     }
-
-public:
-    QObject * obj;
-    zhandle_t *zh;
-    QString path;
-    QTreeWidgetItem *item;
 };
 
 class zookeeperhandle : public QObject
 {
     Q_OBJECT
+
+public:
+    QString host;
+    QString port;
+    int connectState;  // 是否连接上zk
+    zhandle_t *zh;
+    QObject * obj;
+
 public:
     explicit zookeeperhandle(QObject *parent);
-
-    explicit zookeeperhandle(QObject * obj_ = NULL, zhandle_t *zh_ = NULL);
-
+    explicit zookeeperhandle(QObject * obj_ = nullptr, zhandle_t *zh_ = nullptr);
     ~zookeeperhandle();
 
 signals:
@@ -87,19 +99,13 @@ signals:
 
 public slots:
     void init(QString rootPath, QString host, QString port, int timeout);
-    void getChildren(int &code, int &count, QString path); //获取节点太费时，使用线程池获取节点，只有获取根节点时才走这里
+    //获取大量节点耗时严重，获取根节点调用该接口，其他节点使用线程池获取
+    void getChildren(int &code, int &count, QString path);
     void getSingleChildren(QString path, void * obj_);
     void setNodeData(QString nodePath, QString nodeData);
     void getNodeInfo(QString path);
     void createNode(QString nodePath, QString nodeData, QTreeWidgetItem *item);
     void deleteNode(QString path, QTreeWidgetItem *item);
-
-public:
-    QString host;
-    QString port;
-    zhandle_t *zh;
-    QObject * obj;
-    int connectState;  // 是否连接上zk
 };
 
 #endif // ZOOKEEPERHANDLE_H

@@ -436,7 +436,7 @@ padding-right:10px;
           <string notr="true">background-color: rgb(35, 39, 46);</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_4">
           <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -667,11 +667,6 @@ QScrollBar::up-arrow:horizontal {
                     <attribute name="headerVisible">
                      <bool>false</bool>
                     </attribute>
-                    <column>
-                     <property name="text">
-                      <string notr="true">1</string>
-                     </property>
-                    </column>
                    </widget>
                   </item>
                  </layout>

@@ -66,7 +66,7 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     if (m_confInfo->extend == 0) { ui->toolButton_side_plugIn->hide(); }
 
     //根据centralWidget背景设置阴影
-    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 15, QColor(30, 30, 30));
+    getGraphicsEffectUtils(ui->centralWidget, 0, 0, 20, QColor(35, 39, 46));
 
     //设置全局样式表
     changeMainWindowTheme();
@@ -383,6 +383,17 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
         //没有这一段，将不会显示窗口
         case WM_NCCALCSIZE:
             return true;
+        case WM_NCLBUTTONDBLCLK:
+            if (!m_isMaxShow) {
+                setContentsMargins(0, 0, 0, 0);
+                this->setWindowState(Qt::WindowState::WindowMaximized);
+                m_isMaxShow = true;
+            } else {
+                setContentsMargins(10, 10, 10, 10);
+                this->setWindowState(Qt::WindowState::WindowNoState);
+                m_isMaxShow = false;
+            }
+            return true;
         //最大化是填充屏幕
         case WM_NCHITTEST:
         {
@@ -507,9 +518,9 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType) {
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
 
-        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/add-light.png"));
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/terminal-light.png"));
         ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
-        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        ui->toolButton_db_tool->setIcon(QIcon(":/module_mainwindow/images/light/mysql-light.png"));
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
     } else if (m_mode == LIGHT_THEME) {
@@ -556,9 +567,9 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType) {
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/dark/extend-dark.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/dark/setting-dark.png"));
 
-        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/dark//add-dark.png"));
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/dark/terminal-dark.png"));
         ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/dark/zookeeper-dark.png"));
-        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/dark/func-dark.png"));
+        ui->toolButton_db_tool->setIcon(QIcon(":/module_mainwindow/images/light/mysql-dark.png"));
 
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
@@ -606,9 +617,9 @@ void MainWindow::changeMainWindowTheme(bool isChange, int windowsType) {
         ui->toolButton_side_plugIn->setIcon(QIcon(":/module_mainwindow/images/light/extend-light.png"));
         ui->toolButton_side_setting->setIcon(QIcon(":/module_mainwindow/images/light/setting-light.png"));
 
-        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/add-light.png"));
+        ui->widget_welcome_body_widget2_newCreate_newTerminal->setIcon(QIcon(":/module_mainwindow/images/light/terminal-light.png"));
         ui->toolButton_zk_tool->setIcon(QIcon(":/module_mainwindow/images/light/zookeeper-light.png"));
-        ui->toolButton_thrift_tool->setIcon(QIcon(":/module_mainwindow/images/light/func-light.png"));
+        ui->toolButton_db_tool->setIcon(QIcon(":/module_mainwindow/images/light/mysql-light.png"));
         //更新阴影颜色
         getGraphicsEffectUtils(ui->widget_side, 2, 0, 15);
     }
@@ -904,8 +915,23 @@ void MainWindow::on_toolButton_side_qss_clicked() {
 }
 
 void MainWindow::on_toolButton_side_mysql_clicked() {
-    // sqlhandle * db_ = new sqlhandle();
-    // db_->sql_mysql_init();
+    if (m_dbwidget == nullptr) {
+        m_dbwidget = new databasewidget();
+        m_dbwidget->setObjectName("m_dbwidget");
+        ui->stackedWidget->addWidget(m_dbwidget);
+        m_dbwidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+        qDebug() << "触发4";
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "m_dbwidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
+
 }
 
 void MainWindow::on_toolButton_side_tool_clicked() {
@@ -1041,12 +1067,15 @@ void MainWindow::rece_newConnnect(connnectInfoStruct& cInfoStruct) {
     } else if (cInfoStruct.connectType == ZK_CONNECT_TYPE) {
         on_toolButton_side_zookeeper_clicked();
         m_zmanagewidget->newZKWidget(cInfoStruct);
+    } else if (cInfoStruct.connectType == DB_CONNECT_TYPE) {
+        on_toolButton_side_mysql_clicked();
+        qDebug() << "触发5";
+        m_dbwidget->newDBWidget(cInfoStruct);
+        //ui->tabWidget->addTab(&zkwidget2, QIcon(":lib/db.png").pixmap(iconSize), "172.16.8.166");
     } else if (cInfoStruct.connectType == REDIS_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget4, QIcon(":lib/Redis.png").pixmap(iconSize), "172.16.8.153");
     } else if (cInfoStruct.connectType == KAFKA_CONNECT_TYPE) {
         //ui->tabWidget->addTab(&zkwidget3, QIcon(":lib/Kafka.png").pixmap(iconSize), "172.16.8.157");
-    } else if (cInfoStruct.connectType == DB_CONNECT_TYPE) {
-        //ui->tabWidget->addTab(&zkwidget2, QIcon(":lib/db.png").pixmap(iconSize), "172.16.8.166");
     }
 }
 
@@ -1105,3 +1134,11 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason) {
     }
     // 其他操作
 }
+
+void MainWindow::on_toolButton_db_tool_clicked() {
+    int8_t connectType = 4;
+    m_ccwidget = new createconnect(connectType);
+    connect(m_ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(rece_newConnnect(connnectInfoStruct&)));
+    m_ccwidget->show();
+}
+

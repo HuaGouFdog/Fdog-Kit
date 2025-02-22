@@ -38,7 +38,7 @@ void sshsql::ssh_init()
     // 执行sql语句
     if(!sqlQuery.exec())
     {
-        qDebug() << "DB_SSH_INFO.db Error: Fail to create table. " << sqlQuery.lastError();
+        //qDebug() << "DB_SSH_INFO.db Error: Fail to create table. " << sqlQuery.lastError();
     } else {
         qDebug() << "DB_SSH_INFO.db Table created!";
     }
@@ -52,7 +52,7 @@ void sshsql::ssh_init()
     // 执行sql语句
     if(!sqlQuery2.exec())
     {
-        qDebug() << "DB_SSH_KEY_INFO.db Error: Fail to create table. " << sqlQuery2.lastError();
+        //qDebug() << "DB_SSH_KEY_INFO.db Error: Fail to create table. " << sqlQuery2.lastError();
     } else {
         qDebug() << "DB_SSH_KEY_INFO.db Table created!";
     }
