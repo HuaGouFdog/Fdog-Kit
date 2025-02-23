@@ -46,7 +46,6 @@
 #include <QDesktopWidget>
 #include "windows.h"
 #include "windowsx.h"
-#include <dwmapi.h>
 #include "module_utils/utils.h"
 #include "module_smalltool/smalltoolwidget.h"
 
@@ -651,10 +650,25 @@ void MainWindow::changeMainWindowRadius(int windowsType) {
     }
     if (m_mode == DARK_THEME) {
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_dark.qss"));
+        if (windowsType == 2) {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/normal-light.png"));
+        } else {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        }
     } else if (m_mode == LIGHT_THEME) {
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_light.qss"));
+        if (windowsType == 2) {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/normal-dark.png"));
+        } else {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/dark/max-dark.png"));
+        }
     } else if (m_mode == BLUE_THEME) {
         ui->centralWidget->setStyleSheet(getStyleFile(":/module_mainwindow/qss/centralWidget_blue.qss"));
+        if (windowsType == 2) {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/normal-light.png"));
+        } else {
+            ui->toolButton_max->setIcon(QIcon(":/module_mainwindow/images/light/max-light.png"));
+        }
     }
 }
 
