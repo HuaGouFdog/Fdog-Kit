@@ -90,7 +90,6 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     // const MARGINS rShadowMargin = { 1, 1, 1, 1 };
     // DwmExtendFrameIntoClientArea(hwnd, &rShadowMargin);
 
-
     //快捷键 F11 全屏
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(rece_toolButton_fullScreen_sign()));
@@ -357,14 +356,15 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event) {
 }
 
 void MainWindow::showEvent(QShowEvent *event) {
+    //qDebug() << "显示更新";
     //更新样式
     calculateCurrentStrechRect();
-    //防止假死
+    // //防止假死
     setAttribute(Qt::WA_Mapped);
     QMainWindow::showEvent(event);
-    QSize oldSize = this->size();
-    resize(oldSize + QSize(10, 10));
-    resize(oldSize);
+    //QSize oldSize = this->size();
+    //resize(oldSize + QSize(-10, -10));
+    //resize(oldSize);
 }
 
 void MainWindow::changeEvent(QEvent *event) {   
@@ -771,6 +771,7 @@ bool MainWindow::isVersionGreater(const QString &version1, const QString &versio
 }
 
 void MainWindow::on_toolButton_side_home_clicked() {
+    ui->label_title->setText("");
     if(ui->stackedWidget->currentIndex() != 0) {
         ui->stackedWidget->setCurrentIndex(0);
     }
@@ -786,6 +787,7 @@ void MainWindow::on_toolButton_side_home_clicked() {
 }
 
 void MainWindow::on_toolButton_side_thrift_clicked() {
+    ui->label_title->setText("thrift接口调用工具");
     if (m_twidget == NULL) {
         m_twidget = new thriftwidget();
         m_twidget->setObjectName("m_twidget");
@@ -825,6 +827,7 @@ void MainWindow::on_toolButton_side_thrift_clicked() {
 }
 
 void MainWindow::on_toolButton_side_zookeeper_clicked() {
+    ui->label_title->setText("zookeeper可视化工具");
     if (m_zmanagewidget == NULL) {
         m_zmanagewidget = new zookeepermanagewidget();
         m_zmanagewidget->setObjectName("m_zmanagewidget");
@@ -864,6 +867,7 @@ void MainWindow::on_toolButton_side_zookeeper_clicked() {
 }
 
 void MainWindow::on_toolButton_side_shell_clicked() {
+    ui->label_title->setText("终端工具");
     if (m_smanagewidget == nullptr) {
         m_smanagewidget = new sshwidgetmanagewidget(m_confInfo);
         m_smanagewidget->setObjectName("m_smanagewidget");
@@ -904,6 +908,7 @@ void MainWindow::on_toolButton_side_shell_clicked() {
 }
 
 void MainWindow::on_toolButton_side_qss_clicked() {
+    ui->label_title->setText("qss美化组件工具");
     if (m_qsswidget == NULL) {
         m_qsswidget = new qss();
         m_qsswidget->setObjectName("m_qsswidget");
@@ -922,6 +927,7 @@ void MainWindow::on_toolButton_side_qss_clicked() {
 }
 
 void MainWindow::on_toolButton_side_mysql_clicked() {
+    ui->label_title->setText("数据库工具");
     if (m_dbwidget == nullptr) {
         m_dbwidget = new databasewidget();
         m_dbwidget->setObjectName("m_dbwidget");
@@ -942,6 +948,7 @@ void MainWindow::on_toolButton_side_mysql_clicked() {
 }
 
 void MainWindow::on_toolButton_side_tool_clicked() {
+    ui->label_title->setText("工具");
     if (m_tswidget == NULL) {
         m_tswidget = new toolswidget();
         m_tswidget->setObjectName("m_tswidget");
