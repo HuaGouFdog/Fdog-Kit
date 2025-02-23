@@ -159,6 +159,19 @@ public:
     using QComboBox::QComboBox; 
 protected:
     void wheelEvent(QWheelEvent* event) override { event->ignore(); }
+
+    void mousePressEvent(QMouseEvent *event) override {
+        // 获取下拉箭头的区域
+        QRect arrowRect = view()->geometry();  // 直接获取下拉列表区域
+        arrowRect.moveTopLeft(this->rect().topRight() - QPoint(arrowRect.width(), 0));
+
+        if (arrowRect.contains(event->pos())) {
+            // 只有点击箭头区域才会弹出
+            QComboBox::mousePressEvent(event);
+        } else {
+            event->ignore();  // 忽略点击，不弹出菜单
+        }
+    }
 };
 
 class ItemWidget :public QObject, public QTreeWidgetItem

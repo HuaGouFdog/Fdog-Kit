@@ -59,7 +59,7 @@
           <height>50</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,10,3">
          <property name="topMargin">
           <number>0</number>
          </property>
@@ -89,7 +89,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>400</width>
+             <width>1000</width>
              <height>30</height>
             </size>
            </property>

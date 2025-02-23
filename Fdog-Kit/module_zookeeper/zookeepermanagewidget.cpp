@@ -26,6 +26,10 @@ zookeepermanagewidget::zookeepermanagewidget(QWidget *parent) :
     QWidget(parent), ui(new Ui::zookeepermanagewidget) {
     ui->setupUi(this);
     //切换至欢迎页
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+
     ui->stackedWidget->setCurrentIndex(0);
     m_buttonGroup = new QButtonGroup(this);
     //设置按钮互斥
@@ -41,6 +45,9 @@ zookeepermanagewidget::zookeepermanagewidget(connnectInfoStruct &cInfoStruct, QW
     QWidget(parent), ui(new Ui::zookeepermanagewidget) {
     ui->setupUi(this);
     //切换至欢迎页
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
     ui->stackedWidget->setCurrentIndex(0);
     m_buttonGroup = new QButtonGroup(this);
     //设置按钮互斥

@@ -14,13 +14,8 @@ secretkeywidget::secretkeywidget(QWidget *parent) :
 
     ui->tableWidget->setColumnCount(2); //设置列数为2
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
-    //ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "名称" << "类型" << "长度");
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "名称" << "         类型         ");
     ui->tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-   //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //列自动缩放
-   //ui->tableWidget->setColumnWidth(5, 20);
     //打开数据库
     db = new sshsql();
     //读取所有

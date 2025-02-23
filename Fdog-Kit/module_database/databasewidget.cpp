@@ -8,6 +8,8 @@
 #include <QString>
 #include <QDebug>
 #include <QAction>
+#include <QSqlRecord>
+#include <QSqlField>
 
 databasewidget::databasewidget(QWidget *parent) :
     QWidget(parent),
@@ -98,13 +100,11 @@ void databasewidget::newDBWidget(connnectInfoStruct &cInfoStruct)
 {
     qDebug() << "触发6";
     database = QSqlDatabase::addDatabase("QMYSQL");
-    // database.setDatabaseName("IM_BADWORD");
-    // database.setHostName(cInfoStruct.host);
-    // database.setPort(cInfoStruct.port.toInt());
-    // database.setUserName(cInfoStruct.userName);
-    // database.setPassword(cInfoStruct.password);
-
-
+    database.setDatabaseName("IM_BADWORD");
+    database.setHostName(cInfoStruct.host);
+    database.setPort(cInfoStruct.port.toInt());
+    database.setUserName(cInfoStruct.userName);
+    database.setPassword(cInfoStruct.password);
 
     if (!database.open()) {
         qDebug() << "db打开失败" << database.lastError();
@@ -117,7 +117,6 @@ void databasewidget::newDBWidget(connnectInfoStruct &cInfoStruct)
     QSqlQuery sqlQuery(database);
     sqlQuery.prepare("show databases");
     //sqlQuery.addBindValue(host);
-    sqlQuery.exec();
     if(!sqlQuery.exec()) {
         qDebug() << "Error: Fail to query table. " << sqlQuery.lastError();
     } else {
@@ -163,6 +162,98 @@ void databasewidget::on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int col
     } else {
         QString tableName = item->text(0);
         qDebug() << "这是一个表" << tableName;
+        QSqlQuery sqlQuery(database);
+        sqlQuery.prepare("SHOW COLUMNS FROM  BADWORD FROM IM_BADWORD");
+        if(!sqlQuery.exec()) {
+            qDebug() << "Error: Fail to query table. " << sqlQuery.lastError();
+        } else {
+            // 获取记录信息
+            QSqlRecord record = sqlQuery.record();
+            // 获取字段数量
+            int fieldCount = record.count();
+            qDebug() << "字段数量:" << fieldCount;
+
+            QStringList a;
+            for (int i = 0; i < fieldCount; ++i) {
+                // 获取字段名称
+                a.push_back(record.fieldName(i));
+                //qDebug() << "字段" << i << ":" << fieldName;
+            }
+
+            ui->tableWidget->horizontalHeader()->setVisible(true);
+            ui->tableWidget->verticalHeader()->setVisible(false);
+
+            ui->tableWidget->setColumnCount(fieldCount); //设置列数为2
+            ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+            ui->tableWidget->setHorizontalHeaderLabels(a);
+            ui->tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+            int rowCount = 0;
+            while(sqlQuery.next())
+            {   
+                ui->tableWidget->insertRow(rowCount);
+                for (int i = 0; i < fieldCount; ++i) {
+                    QString fieldValue = sqlQuery.value(i).toString();
+                        // 将字段值插入到 QTableWidget 中
+                        //qDebug() << "字段" << i << ":" << fieldValue;
+                    ui->tableWidget->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
+                }
+                rowCount++;
+            }
+        }
+        qDebug() << "打印建表";
+        QSqlQuery sqlQuery2(database);
+        QString cc = "BADWORD";
+        sqlQuery2.prepare("select * from IM_BADWORD.BADWORD");
+        if(!sqlQuery2.exec()) {
+            qDebug() << "Error: Fail to query table. " << sqlQuery2.lastError();
+        } else {
+            // 获取记录信息
+            QSqlRecord record2 = sqlQuery2.record();
+            // 获取字段数量
+            int fieldCount = record2.count();
+            qDebug() << "字段数量:" << fieldCount;
+
+            QStringList a;
+            for (int i = 0; i < fieldCount; ++i) {
+                // 获取字段名称
+                a.push_back(record2.fieldName(i));
+                //qDebug() << "字段" << i << ":" << fieldName;
+            }
+
+            ui->tableWidget_2->horizontalHeader()->setVisible(true);
+            ui->tableWidget_2->verticalHeader()->setVisible(false);
+
+            ui->tableWidget_2->setColumnCount(fieldCount); //设置列数为2
+            ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+            ui->tableWidget_2->setHorizontalHeaderLabels(a);
+            ui->tableWidget_2->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+            int rowCount = 0;
+            while(sqlQuery2.next())
+            {   
+                ui->tableWidget_2->insertRow(rowCount);
+                for (int i = 0; i < fieldCount; ++i) {
+                    QString fieldValue = sqlQuery2.value(i).toString();
+                        // 将字段值插入到 QTableWidget 中
+                        //qDebug() << "字段" << i << ":" << fieldValue;
+                    ui->tableWidget_2->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
+                }
+                rowCount++;
+            }
+        }
+
+
+        QSqlQuery sqlQuery3(database);
+        sqlQuery3.prepare("SHOW CREATE TABLE IM_BADWORD.BADWORD");
+        if(!sqlQuery3.exec()) {
+            qDebug() << "Error: Fail to query table. " << sqlQuery3.lastError();
+        } else {
+            while(sqlQuery3.next())
+            {   
+                qDebug() << "数据";
+            }
+            qDebug() << "结束";
+        }
     }
 }
 

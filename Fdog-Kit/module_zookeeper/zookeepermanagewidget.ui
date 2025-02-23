@@ -212,9 +212,9 @@ QToolButton:checked {
            <height>50</height>
           </size>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,2">
+         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,2">
           <property name="spacing">
-           <number>0</number>
+           <number>6</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -223,24 +223,45 @@ QToolButton:checked {
            <number>5</number>
           </property>
           <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
            <number>5</number>
           </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
-           <widget class="QLabel" name="label_2">
-            <property name="maximumSize">
+           <widget class="QLineEdit" name="lineEdit_find">
+            <property name="minimumSize">
              <size>
-              <width>70</width>
+              <width>100</width>
               <height>30</height>
              </size>
             </property>
-            <property name="styleSheet">
-             <string notr="true">image: url(:/module_zookeeper/images/light/zookeeper.png);</string>
+            <property name="maximumSize">
+             <size>
+              <width>5999</width>
+              <height>30</height>
+             </size>
             </property>
-            <property name="text">
-             <string/>
+            <property name="font">
+             <font>
+              <family>OPPOSans</family>
+              <pointsize>10</pointsize>
+              <stylestrategy>PreferAntialias</stylestrategy>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>搜索连接</string>
             </property>
            </widget>
           </item>
@@ -248,7 +269,13 @@ QToolButton:checked {
            <widget class="QToolButton" name="toolButton_newCreate">
             <property name="minimumSize">
              <size>
-              <width>90</width>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
               <height>30</height>
              </size>
             </property>
@@ -270,10 +297,16 @@ QToolButton:checked {
             </property>
             <property name="icon">
              <iconset resource="../lib.qrc">
-              <normaloff>:/lib/Zookeeper2.png</normaloff>:/lib/Zookeeper2.png</iconset>
+              <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextOnly</enum>
+             <enum>Qt::ToolButtonIconOnly</enum>
             </property>
            </widget>
           </item>
@@ -361,7 +394,7 @@ QScrollBar::up-arrow:vertical {
                <x>0</x>
                <y>0</y>
                <width>185</width>
-               <height>465</height>
+               <height>470</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -425,7 +458,7 @@ QScrollBar::up-arrow:vertical {
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,0,1,4">
@@ -987,6 +1020,7 @@ QToolButton:hover {
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="page_3"/>
         </widget>
        </item>
       </layout>
