@@ -135,6 +135,8 @@ RESOURCES += \
 QT += network
 QT += charts
 
+LIBS += -ldwmapi
+
 win32: LIBS += -L$$PWD/../../mysql/lib/ -llibmysql
 
 INCLUDEPATH += $$PWD/../../mysql/include

@@ -46,6 +46,7 @@
 #include <QDesktopWidget>
 #include "windows.h"
 #include "windowsx.h"
+#include <dwmapi.h>
 #include "module_utils/utils.h"
 #include "module_smalltool/smalltoolwidget.h"
 
@@ -68,21 +69,26 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     //根据centralWidget背景设置阴影
     getGraphicsEffectUtils(ui->centralWidget, 0, 0, 20, QColor(35, 39, 46));
 
-    //设置全局样式表
+    // //设置全局样式表
     changeMainWindowTheme();
 
-    //设置无边框窗口相关属性
+    // //设置无边框窗口相关属性
     Qt::WindowFlags flags = this->windowFlags();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //顶置 Qt::WindowStaysOnTopHint
     //QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
+    setAttribute(Qt::WA_PaintOnScreen, false);
+    setAttribute(Qt::WA_NoSystemBackground, false);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
-    //设置内边距,用于显示阴影
+    // //设置内边距,用于显示阴影
     setContentsMargins(10, 10, 10, 10);
 
-    //窗口标题最小化，最大化，靠边停靠都在这里实现
+    // //窗口标题最小化，最大化，靠边停靠都在这里实现
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION | CS_DBLCLKS);
+
+    // const MARGINS rShadowMargin = { 1, 1, 1, 1 };
+    // DwmExtendFrameIntoClientArea(hwnd, &rShadowMargin);
 
     //快捷键 F11 全屏
     QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
@@ -350,14 +356,15 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *event) {
 }
 
 void MainWindow::showEvent(QShowEvent *event) {
+    //qDebug() << "显示更新";
     //更新样式
     calculateCurrentStrechRect();
-    //防止假死
+    // //防止假死
     setAttribute(Qt::WA_Mapped);
     QMainWindow::showEvent(event);
-    QSize oldSize = this->size();
-    resize(oldSize + QSize(10, 10));
-    resize(oldSize);
+    //QSize oldSize = this->size();
+    //resize(oldSize + QSize(-10, -10));
+    //resize(oldSize);
 }
 
 void MainWindow::changeEvent(QEvent *event) {   
@@ -764,6 +771,7 @@ bool MainWindow::isVersionGreater(const QString &version1, const QString &versio
 }
 
 void MainWindow::on_toolButton_side_home_clicked() {
+    ui->label_title->setText("");
     if(ui->stackedWidget->currentIndex() != 0) {
         ui->stackedWidget->setCurrentIndex(0);
     }
@@ -779,6 +787,7 @@ void MainWindow::on_toolButton_side_home_clicked() {
 }
 
 void MainWindow::on_toolButton_side_thrift_clicked() {
+    ui->label_title->setText("thrift接口调用工具");
     if (m_twidget == NULL) {
         m_twidget = new thriftwidget();
         m_twidget->setObjectName("m_twidget");
@@ -818,6 +827,7 @@ void MainWindow::on_toolButton_side_thrift_clicked() {
 }
 
 void MainWindow::on_toolButton_side_zookeeper_clicked() {
+    ui->label_title->setText("zookeeper可视化工具");
     if (m_zmanagewidget == NULL) {
         m_zmanagewidget = new zookeepermanagewidget();
         m_zmanagewidget->setObjectName("m_zmanagewidget");
@@ -857,6 +867,7 @@ void MainWindow::on_toolButton_side_zookeeper_clicked() {
 }
 
 void MainWindow::on_toolButton_side_shell_clicked() {
+    ui->label_title->setText("终端工具");
     if (m_smanagewidget == nullptr) {
         m_smanagewidget = new sshwidgetmanagewidget(m_confInfo);
         m_smanagewidget->setObjectName("m_smanagewidget");
@@ -897,6 +908,7 @@ void MainWindow::on_toolButton_side_shell_clicked() {
 }
 
 void MainWindow::on_toolButton_side_qss_clicked() {
+    ui->label_title->setText("qss美化组件工具");
     if (m_qsswidget == NULL) {
         m_qsswidget = new qss();
         m_qsswidget->setObjectName("m_qsswidget");
@@ -915,6 +927,7 @@ void MainWindow::on_toolButton_side_qss_clicked() {
 }
 
 void MainWindow::on_toolButton_side_mysql_clicked() {
+    ui->label_title->setText("数据库工具");
     if (m_dbwidget == nullptr) {
         m_dbwidget = new databasewidget();
         m_dbwidget->setObjectName("m_dbwidget");
@@ -935,6 +948,7 @@ void MainWindow::on_toolButton_side_mysql_clicked() {
 }
 
 void MainWindow::on_toolButton_side_tool_clicked() {
+    ui->label_title->setText("工具");
     if (m_tswidget == NULL) {
         m_tswidget = new toolswidget();
         m_tswidget->setObjectName("m_tswidget");
