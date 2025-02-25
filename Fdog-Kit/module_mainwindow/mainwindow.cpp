@@ -49,10 +49,16 @@
 #include "module_utils/utils.h"
 #include "module_smalltool/smalltoolwidget.h"
 
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent), ui(new Ui::MainWindow) {
+    ui->setupUi(this);
+}
+
 MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-
+    
     //main.cpp传进来的m_confInfo
     this->m_confInfo = m_confInfo;
     //根据配置文件判断要隐藏的功能
@@ -72,7 +78,6 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     changeMainWindowTheme();
 
     // //设置无边框窗口相关属性
-    Qt::WindowFlags flags = this->windowFlags();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint); //顶置 Qt::WindowStaysOnTopHint
     //QMainWindow透明显示，当设置主显示窗口的外边距时，防止外边距显示出来。
     setAttribute(Qt::WA_PaintOnScreen, false);

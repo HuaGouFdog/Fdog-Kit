@@ -2,26 +2,28 @@
     color: rgb(255, 255, 255);
     background-color: rgb(35, 39, 46);
     border-radius:10px;
+    border: 1px solid rgb(65, 67, 70);
 }
 
 #centralWidget[State='WindowMaximized'] {
     color: rgb(255, 255, 255);
     background-color: rgb(35, 39, 46);
     border-radius:0px;
+    border: 0px solid rgb(170, 0, 0);
 }
 
 #widget_side[State='WindowNoState'] {
     color: rgb(255, 255, 255);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-color: rgb(24,26,29);
+    background-color: rgba(24,26,29,150);
 }
 
 #widget_side[State='WindowMaximized'] {
     color: rgb(255, 255, 255);
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    background-color: rgb(24,26,29);
+    background-color: rgba(24,26,29,150);
 }
 
 #toolButton_close[State='WindowNoState']{
