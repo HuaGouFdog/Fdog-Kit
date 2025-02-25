@@ -858,7 +858,7 @@ border-radius: 2px;
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>V1.0.6</string>
+          <string>V1.0.8</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
