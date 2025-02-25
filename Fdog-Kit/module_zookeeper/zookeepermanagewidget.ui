@@ -187,13 +187,13 @@ QToolButton:checked {
         <number>10</number>
        </property>
        <property name="leftMargin">
-        <number>0</number>
+        <number>5</number>
        </property>
        <property name="topMargin">
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>0</number>
+        <number>5</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -290,14 +290,14 @@ padding-right:10px;
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(25, 25, 25, 155);</string>
             </property>
             <property name="text">
-             <string>新建zk连接</string>
+             <string/>
             </property>
             <property name="icon">
-             <iconset resource="../lib.qrc">
-              <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/add-light.png</normaloff>:/module_mainwindow/images/light/add-light.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -393,7 +393,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>185</width>
+               <width>175</width>
                <height>470</height>
               </rect>
              </property>
@@ -458,7 +458,7 @@ QScrollBar::up-arrow:vertical {
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,0,1,4">
@@ -1030,7 +1030,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="../lib.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections/>
 </ui>
