@@ -4,6 +4,7 @@
 #include <QWidget>
 #include<QTreeWidgetItem>
 #include <QSqlDatabase>
+#include <QPropertyAnimation>
 #include "module_utils/utils.h"
 
 namespace Ui {
@@ -16,6 +17,7 @@ class databasewidget : public QWidget
 
 public:
     QSqlDatabase database;
+    QPropertyAnimation * m_pos_animation;
 
     explicit databasewidget(QWidget *parent = nullptr);
     explicit databasewidget(connnectInfoStruct& cInfoStruct, QWidget *parent = nullptr);
@@ -30,6 +32,8 @@ private slots:
     void on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int column);
 
     void on_treeWidget_db_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    void on_toolButton_clicked();
 
 private:
     Ui::databasewidget *ui;
