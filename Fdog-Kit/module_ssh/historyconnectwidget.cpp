@@ -5,6 +5,7 @@
 #include <QToolButton>
 #include <QCompleter>
 #include <QIcon>
+#include <QAction>
 #include "module_utils/utils.h"
 #include "module_ssh/sshwidgetmanagewidget.h"
 historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectInfoStruct> cInfoStructList, config * confInfo, QWidget *parent) :
@@ -14,6 +15,11 @@ historyconnectwidget::historyconnectwidget(int8_t connectType, QVector<connnectI
     ui->setupUi(this);
     parent_ = parent;
     this->confInfo = confInfo;
+
+    QAction *action = new QAction(this);
+    action->setIcon(QIcon(":/lib/soucuo.png"));
+    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+
     //设置初始表格行列都为0
     ui->tableWidget_history->setColumnCount(7); //设置列数为5
     //ui->tableWidget_history->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

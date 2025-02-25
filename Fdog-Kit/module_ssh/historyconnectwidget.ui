@@ -59,7 +59,7 @@
           <height>50</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,10,3">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,10,0,3">
          <property name="topMargin">
           <number>0</number>
          </property>
@@ -115,6 +115,52 @@ padding-right:10px;
            </property>
            <property name="placeholderText">
             <string>搜索名称，快速连接</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_create">
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>OPPOSans B</family>
+             <pointsize>10</pointsize>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+	color: rgb(255, 255, 255);
+	background-color: rgb(25, 25, 25, 155);
+	border-radius: 5px;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+ 
+QToolButton:hover {
+	color: rgb(255, 255, 255);
+	/*background-color: rgba(20, 20, 20,0);*/
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../images.qrc">
+             <normaloff>:/module_mainwindow/images/light/add-light.png</normaloff>:/module_mainwindow/images/light/add-light.png</iconset>
            </property>
           </widget>
          </item>
@@ -302,7 +348,7 @@ QScrollBar::up-arrow:vertical {
             <bool>false</bool>
            </property>
            <attribute name="horizontalHeaderVisible">
-            <bool>true</bool>
+            <bool>false</bool>
            </attribute>
            <attribute name="horizontalHeaderCascadingSectionResizes">
             <bool>false</bool>
@@ -399,49 +445,6 @@ QScrollBar::up-arrow:vertical {
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButton_create">
-           <property name="minimumSize">
-            <size>
-             <width>70</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>70</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>OPPOSans B</family>
-             <pointsize>10</pointsize>
-             <stylestrategy>PreferAntialias</stylestrategy>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {
-	color: rgb(26, 26, 26);
-	background-color: rgb(113, 212, 219);
-	border-radius: 5px;
-}
-
-QToolButton::menu-indicator { 
-	image: None;
-}
-
- 
-QToolButton:hover {
-	color: rgb(26, 26, 26);
-	background-color: rgb(113, 212, 219);
-}</string>
-           </property>
-           <property name="text">
-            <string>新建</string>
-           </property>
-          </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_menger">
@@ -551,6 +554,8 @@ QToolButton:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images.qrc"/>
+ </resources>
  <connections/>
 </ui>
