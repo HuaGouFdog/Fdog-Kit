@@ -19,6 +19,7 @@
 #include <QMainWindow>
 #include <QRect>
 #include <QVector>
+#include <QToolButton>
 #include <QSystemTrayIcon>
 #include <QGraphicsDropShadowEffect>
 #include "module_qss/qss.h"
@@ -103,6 +104,10 @@ private:
     QString m_newVersionData;         //新版本更新内容
     QString m_newVersiondownLoad;     //新版本下载地址
 
+    QToolButton * m_unfoldButton = nullptr; //侧边栏折叠按钮
+    QPropertyAnimation * m_propertyAnimation = nullptr; //侧边栏动画关
+    QPropertyAnimation * m_propertyAnimation2 = nullptr; //侧边栏动画开
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     explicit MainWindow(config * confInfo, QWidget *parent = 0);
@@ -179,6 +184,10 @@ private slots:
 
     //切换界面动画完成信号 移除GraphicsEffect
     void whenAnimationFinish();
+    //切换界面动画完成信号 显示/隐藏侧边栏
+    void whenAnimationFinish2();
+    //切换界面动画完成信号 显示/隐藏侧边栏
+    void whenAnimationFinish3();
     //全屏信号
     void rece_toolButton_fullScreen_sign();
     //创建连接信号
@@ -193,6 +202,8 @@ private slots:
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
     //处理database连接
     void on_toolButton_db_tool_clicked();
+    void on_toolButton_fold_clicked();
+    void on_animationValueChanged(const QVariant &value);
 };
 
 #endif // MAINWINDOW_H
