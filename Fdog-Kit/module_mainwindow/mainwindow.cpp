@@ -1,6 +1,6 @@
 ﻿/*
    Copyright 2023 花狗Fdog(张旭)
-   
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -44,6 +44,9 @@
 #include <QListView>
 #include <QFormLayout>
 #include <QDesktopWidget>
+#include <QToolButton>
+#include <QEventLoop>
+#include <QTimer>
 #include "windows.h"
 #include "windowsx.h"
 #include "module_utils/utils.h"
@@ -58,7 +61,44 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    
+    ui->label_side_icon_2->hide();
+
+    m_unfoldButton = new QToolButton(this);
+    m_unfoldButton->setStyleSheet("QToolButton {\
+                     color: rgb(217, 236, 237);\
+                     background-color: rgba(255, 60, 128, 0);\
+                     border: none;\
+                 }\
+                 QToolButton::menu-indicator { \
+                     image: None;\
+                 }\
+                 QToolButton:hover {\
+                     color: rgb(197, 197, 197);\
+                     border: none;\
+                 }");
+    m_unfoldButton->setIcon(QIcon(":/module_mainwindow/images/light/unfold-light.png"));
+    m_unfoldButton->setGeometry(3, this->height()/2, 25, 100);
+    m_unfoldButton->setIconSize(QSize(50, 50));
+    m_unfoldButton->hide();
+    connect(m_unfoldButton, &QPushButton::clicked, this, [=]() {
+        qDebug() << "展开前 ui->widget_side->width() = " << ui->widget_side->width();
+        ui->label_side_icon_2->hide();
+        m_unfoldButton->hide();
+        // m_propertyAnimation2 = new QPropertyAnimation(ui->widget_side,"geometry");
+        // m_propertyAnimation2->setEasingCurve(QEasingCurve::InCubic);
+        // m_propertyAnimation2->setDuration(300);
+        // m_propertyAnimation2->setStartValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),0,ui->widget_side->height()));
+        // m_propertyAnimation2->setEndValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),50,ui->widget_side->height()));
+        // connect(m_propertyAnimation2, SIGNAL(finished()), this, SLOT(whenAnimationFinish3()));
+        // qDebug() << "setFixedWidth ui->widget_side->height() = " << ui->widget_side->height();
+        // qDebug() << "setFixedWidth ui->widget_side->width() = " << ui->widget_side->width();
+        ui->widget_side->show();
+        qDebug() << "ui->widget_side->height() = " << ui->widget_side->height();
+        qDebug() << "ui->widget_side->width() = " << ui->widget_side->width();
+        qDebug() << "显示边框";
+        //m_propertyAnimation2->start(QAbstractAnimation::DeleteWhenStopped);
+    });
+
     //main.cpp传进来的m_confInfo
     this->m_confInfo = m_confInfo;
     //根据配置文件判断要隐藏的功能
@@ -142,7 +182,7 @@ WindowStretchRectState MainWindow::getCurrentStretchState(QPoint cursorPos) {
     else if (m_topBorderRect.contains(cursorPos)) { stretchState = TOP_BORDER; }
     else if (m_rightBorderRect.contains(cursorPos)) { stretchState = RIGHT_BORDER; }
     else if (m_bottomBorderRect.contains(cursorPos)) { stretchState = BOTTOM_BORDER; }
-    else if (m_leftBorderRect.contains(cursorPos)) { stretchState = LEFT_BORDER; } 
+    else if (m_leftBorderRect.contains(cursorPos)) { stretchState = LEFT_BORDER; }
     else { stretchState = NO_SELECT; }
     return stretchState;
 }
@@ -315,6 +355,7 @@ void MainWindow::updateWindowSize() {
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     if (ui->widget_title2->underMouse() && !m_isMaxShow) {
+        //qDebug() << "点击标题";
         m_isPressedTitle = true; // 当前鼠标按下的即是title而非界面上布局的其它控件
     }
     m_last = event->globalPos();
@@ -328,7 +369,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
     }
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {  
+void MainWindow::mouseMoveEvent(QMouseEvent *event) {
     if (m_isPressedTitle) {
         int dx = event->globalX() - m_last.x();
         int dy = event->globalY() - m_last.y();
@@ -371,11 +412,11 @@ void MainWindow::showEvent(QShowEvent *event) {
     //resize(oldSize);
 }
 
-void MainWindow::changeEvent(QEvent *event) {   
+void MainWindow::changeEvent(QEvent *event) {
     //用来更新窗口圆角
     if(QEvent::WindowStateChange == event->type())
     {
-    	//判断为窗口状态改变事件
+        //判断为窗口状态改变事件
         QWindowStateChangeEvent * stateEvent = dynamic_cast<QWindowStateChangeEvent*>(event);
         if(Q_NULLPTR != stateEvent)
         {
@@ -390,10 +431,14 @@ void MainWindow::changeEvent(QEvent *event) {
 
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result) {
     MSG* msg = (MSG*)message;
+    //qDebug() << "msg->message = " << msg->message;
     switch (msg->message) {
         //没有这一段，将不会显示窗口
         case WM_NCCALCSIZE:
             return true;
+        // case WM_MOUSEMOVE:
+        // qDebug() << "msg->message = " << msg->message;
+        //     return true;
         case WM_NCLBUTTONDBLCLK:
             if (!m_isMaxShow) {
                 setContentsMargins(0, 0, 0, 0);
@@ -417,7 +462,7 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
                 *result = HTCAPTION;
                 return true;
             }
-        }   
+        }
         case WM_GETMINMAXINFO:
         {
             //IsZoomed确定窗口是否是最大化
@@ -443,11 +488,11 @@ void MainWindow::createSystemTray() {
     // 创建系统托盘图标
     m_trayIcon = new QSystemTrayIcon(QIcon(":lib/icon9.png"), this);
     m_trayIcon->setToolTip("Fdog-Kit");
-	m_trayIcon->show();
+    m_trayIcon->show();
 
     //右下角提示框
     //QString title = tr("欢迎使用Fdog-Kit");
-	//QString text = tr("让一切变的简单");
+    //QString text = tr("让一切变的简单");
     //m_trayIcon->showMessage(title, text, QSystemTrayIcon::Information, 5000);
 
     // 创建一个菜单
@@ -1060,6 +1105,27 @@ void MainWindow::whenAnimationFinish() {
     ui->stackedWidget->setGraphicsEffect(0); // remove effect
 }
 
+void MainWindow::whenAnimationFinish2() {
+    qDebug() << "whenAnimationFinish2完成";
+    //ui->widget_side->setFixedWidth(0);
+    ui->widget_side->hide();
+    QEventLoop loop;
+    QTimer::singleShot(20, &loop, &QEventLoop::quit);
+    loop.exec();
+    ui->label_side_icon_2->show();
+    m_unfoldButton->show();
+}
+
+void MainWindow::whenAnimationFinish3() {
+    QEventLoop loop;
+    QTimer::singleShot(20, &loop, &QEventLoop::quit);
+    loop.exec();
+    //ui->widget_side->setFixedWidth(50);
+    qDebug() << "whenAnimationFinish3完成";
+    qDebug() << "展开后 ui->widget_side->width() = " << ui->widget_side->width();
+
+}
+
 void MainWindow::rece_toolButton_fullScreen_sign() {
     if (!m_isFullScreen) {
         setContentsMargins(0, 0, 0, 0);
@@ -1074,7 +1140,7 @@ void MainWindow::rece_toolButton_fullScreen_sign() {
         ui->toolButton_max->show();
         ui->toolButton_close->show();
         setContentsMargins(10, 10, 10, 10);
-        
+
         if (m_isMaxShow) {
             setContentsMargins(0, 0, 0, 0);
             changeMainWindowRadius(2);
@@ -1173,5 +1239,32 @@ void MainWindow::on_toolButton_db_tool_clicked() {
     m_ccwidget = new createconnect(connectType);
     connect(m_ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(rece_newConnnect(connnectInfoStruct&)));
     m_ccwidget->show();
+}
+
+
+void MainWindow::on_toolButton_fold_clicked()
+{
+    // if (!ui->widget_side->isHidden()) {
+    //     if (m_propertyAnimation) {
+    //         delete m_propertyAnimation;
+    //         m_propertyAnimation = nullptr; 
+    //     }
+    //     qDebug() << "当前 ui->widget_side->geometry() = " << ui->widget_side->geometry();
+    //     m_propertyAnimation = new QPropertyAnimation(ui->widget_side,"geometry");
+    //     m_propertyAnimation->setEasingCurve(QEasingCurve::InOutSine);
+    //     m_propertyAnimation->setDuration(300);
+    //     m_propertyAnimation->setStartValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),50,ui->widget_side->height()));
+    //     m_propertyAnimation->setEndValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),0,ui->widget_side->height()));
+    //     connect(m_propertyAnimation, &QPropertyAnimation::valueChanged, this, &MainWindow::on_animationValueChanged);
+    //     connect(m_propertyAnimation, SIGNAL(finished()), this, SLOT(whenAnimationFinish2()));
+    //     m_propertyAnimation->start();
+    // }
+    whenAnimationFinish2();
+}
+
+void MainWindow::on_animationValueChanged(const QVariant &value)
+{
+    QRect currentGeometry = value.toRect();
+    qDebug() << "动画当前值: " << currentGeometry;
 }
 
