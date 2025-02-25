@@ -457,7 +457,7 @@ padding-right:10px;
             <property name="styleSheet">
              <string notr="true">QToolButton {
 	color: rgb(255, 255, 255);
-	background-color: rgb(24, 26, 29);
+	background-color: rgb(25, 25, 25, 155);
 	border-radius: 5px;
 }
 
@@ -471,11 +471,11 @@ QToolButton:hover {
 }</string>
             </property>
             <property name="text">
-             <string> </string>
+             <string/>
             </property>
             <property name="icon">
-             <iconset resource="../lib.qrc">
-              <normaloff>:/lib/inport.png</normaloff>:/lib/inport.png</iconset>
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/add-light.png</normaloff>:/module_mainwindow/images/light/add-light.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -484,7 +484,7 @@ QToolButton:hover {
              </size>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextBesideIcon</enum>
+             <enum>Qt::ToolButtonIconOnly</enum>
             </property>
            </widget>
           </item>
@@ -9400,6 +9400,7 @@ QScrollBar::up-arrow:vertical {
  </widget>
  <resources>
   <include location="../lib.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections/>
 </ui>
