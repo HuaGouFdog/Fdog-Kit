@@ -104,6 +104,7 @@ private:
     QString m_newVersiondownLoad;     //新版本下载地址
 
 public:
+    explicit MainWindow(QWidget *parent = 0);
     explicit MainWindow(config * confInfo, QWidget *parent = 0);
     ~MainWindow();
 
