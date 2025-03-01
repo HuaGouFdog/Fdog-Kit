@@ -63,6 +63,9 @@ int main(int argc, char *argv[])
     // databasewidget da;
     // da.show();
 
+
+
+
     //读取配置文件信息
     config * confInfo = new config();
     // 读取JSON文件

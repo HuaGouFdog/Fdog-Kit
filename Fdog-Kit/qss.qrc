@@ -16,5 +16,6 @@
         <file>module_mainwindow/qss/body_blue.qss</file>
         <file>module_mainwindow/qss/body_dark.qss</file>
         <file>module_mainwindow/qss/body_light.qss</file>
+        <file>module_database/qss/tableWidget.qss</file>
     </qresource>
 </RCC>
