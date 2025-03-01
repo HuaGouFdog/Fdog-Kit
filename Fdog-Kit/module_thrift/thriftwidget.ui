@@ -4828,7 +4828,7 @@ QToolButton:hover {
                           <number>0</number>
                          </property>
                          <property name="rightMargin">
-                          <number>10</number>
+                          <number>0</number>
                          </property>
                          <property name="bottomMargin">
                           <number>0</number>
@@ -4893,27 +4893,6 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                             <bool>true</bool>
                            </property>
                           </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_43">
-                           <property name="font">
-                            <font>
-                             <stylestrategy>PreferAntialias</stylestrategy>
-                            </font>
-                           </property>
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeType">
-                            <enum>QSizePolicy::Fixed</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>17</width>
-                             <height>27</height>
-                            </size>
-                           </property>
-                          </spacer>
                          </item>
                          <item>
                           <spacer name="horizontalSpacer">
@@ -4989,6 +4968,27 @@ QToolButton:hover {
                           </widget>
                          </item>
                          <item>
+                          <spacer name="horizontalSpacer_43">
+                           <property name="font">
+                            <font>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeType">
+                            <enum>QSizePolicy::Fixed</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>17</width>
+                             <height>27</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
                           <widget class="QToolButton" name="toolButton_export">
                            <property name="minimumSize">
                             <size>
@@ -5044,16 +5044,37 @@ QToolButton:hover {
                           </widget>
                          </item>
                          <item>
+                          <spacer name="horizontalSpacer_45">
+                           <property name="font">
+                            <font>
+                             <stylestrategy>PreferAntialias</stylestrategy>
+                            </font>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeType">
+                            <enum>QSizePolicy::Fixed</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>17</width>
+                             <height>27</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
                           <widget class="QToolButton" name="toolButton_returnTest">
                            <property name="minimumSize">
                             <size>
-                             <width>60</width>
+                             <width>63</width>
                              <height>30</height>
                             </size>
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>60</width>
+                             <width>63</width>
                              <height>30</height>
                             </size>
                            </property>
@@ -5326,7 +5347,7 @@ border-radius: 2px;
                             <bool>false</bool>
                            </property>
                            <attribute name="headerVisible">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </attribute>
                            <attribute name="headerMinimumSectionSize">
                             <number>20</number>
@@ -5439,56 +5460,7 @@ border: 1px solid rgba(199, 199, 199, 150);
 border-radius: 2px;
 font: 63 11pt &quot;Cascadia Code SemiBold&quot;;
 }
-
-QScrollBar:vertical{
-    width: 12px;
-	background-color: rgba(0, 41, 69, 0);
-    margin: 0px,0px,0px,0px;
-    padding-top: 0px;		/*//隐藏上下的箭头*/
-    padding-bottom: 0px;
-}
-
-
-QScrollBar::handle:vertical{
-    width: 12px;
-	
-	/*background-color: rgba(0, 41, 69, 255);*/
-	
-	background-color: rgb(79, 79, 79);
-    /*滚动条两端变成椭圆 */
-    border-radius: 2px;
-    min-height: 0;
-}
-
-QScrollBar::sub-page:vertical {
-    
-	background-color: rgba(255, 255, 255, 0);
-}
-QScrollBar::add-page:vertical 
-{
-    background-color: rgba(255, 255, 255, 0);
-}
-
-QScrollBar::add-line:vertical {
-	border: none;
-    height: 0px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
-}
-QScrollBar::sub-line:vertical {
-    border: none;
-    height: 0px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
-}
-
-QScrollBar::down-arrow:vertical {
-    border:none;
-}
-
-QScrollBar::up-arrow:vertical {
-    border:none;
-}</string>
+</string>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_7">
                      <property name="spacing">
@@ -5545,7 +5517,7 @@ QScrollBar::up-arrow:vertical {
                          <number>0</number>
                         </property>
                         <property name="rightMargin">
-                         <number>10</number>
+                         <number>0</number>
                         </property>
                         <property name="bottomMargin">
                          <number>0</number>
@@ -5627,6 +5599,27 @@ QScrollBar::up-arrow:vertical {
                          </widget>
                         </item>
                         <item>
+                         <spacer name="horizontalSpacer_44">
+                          <property name="font">
+                           <font>
+                            <stylestrategy>PreferAntialias</stylestrategy>
+                           </font>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeType">
+                           <enum>QSizePolicy::Fixed</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>17</width>
+                            <height>27</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
                          <widget class="QToolButton" name="toolButton_show_thrift_info">
                           <property name="minimumSize">
                            <size>
@@ -5677,6 +5670,27 @@ QToolButton:hover {
                            <enum>Qt::ToolButtonTextBesideIcon</enum>
                           </property>
                          </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_46">
+                          <property name="font">
+                           <font>
+                            <stylestrategy>PreferAntialias</stylestrategy>
+                           </font>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeType">
+                           <enum>QSizePolicy::Fixed</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>17</width>
+                            <height>27</height>
+                           </size>
+                          </property>
+                         </spacer>
                         </item>
                        </layout>
                       </widget>
@@ -6001,7 +6015,7 @@ QTabBar QToolButton:hover {
 }</string>
                             </property>
                             <property name="currentIndex">
-                             <number>0</number>
+                             <number>1</number>
                             </property>
                             <widget class="QWidget" name="tab_3">
                              <property name="sizePolicy">

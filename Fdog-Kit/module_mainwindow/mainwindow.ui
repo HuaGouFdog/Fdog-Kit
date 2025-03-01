@@ -381,13 +381,19 @@ QToolButton:hover {
          <property name="checkable">
           <bool>true</bool>
          </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_build">
+        <widget class="QToolButton" name="toolButton_side_shell">
          <property name="minimumSize">
           <size>
            <width>50</width>
@@ -407,17 +413,17 @@ QToolButton:hover {
           </font>
          </property>
          <property name="toolTip">
-          <string>自动化打包工具</string>
+          <string>终端连接</string>
          </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>build</string>
+          <string>终端</string>
          </property>
          <property name="icon">
           <iconset resource="../images.qrc">
-           <normaloff>:/module_mainwindow/images/light/build-light.png</normaloff>:/module_mainwindow/images/light/build-light.png</iconset>
+           <normaloff>:/module_mainwindow/images/light/terminal-light.png</normaloff>:/module_mainwindow/images/light/terminal-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -528,53 +534,6 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_shell">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>终端连接</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>终端</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/module_mainwindow/images/light/terminal-light.png</normaloff>:/module_mainwindow/images/light/terminal-light.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>25</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="toolButton_side_mysql">
          <property name="minimumSize">
           <size>
@@ -659,6 +618,53 @@ QToolButton:hover {
          <property name="icon">
           <iconset resource="../images.qrc">
            <normaloff>:/module_mainwindow/images/light/qss-light.png</normaloff>:/module_mainwindow/images/light/qss-light.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_build">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>自动化打包工具</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>build</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/build-light.png</normaloff>:/module_mainwindow/images/light/build-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -1192,6 +1198,50 @@ border-radius: 2px;
            <widget class="QWidget" name="widget_title_2" native="true"/>
           </item>
           <item>
+           <widget class="QToolButton" name="toolButton">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+    color: rgb(217, 236, 237);
+    
+	background-color: rgba(255, 60, 128, 0);
+    border: none;
+}
+QToolButton::menu-indicator { 
+    image: None;
+}
+QToolButton:hover {
+    color: rgb(197, 197, 197);
+    border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/suo-light.png</normaloff>:/module_mainwindow/images/light/suo-light.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QToolButton" name="toolButton_min">
             <property name="minimumSize">
              <size>
@@ -1353,7 +1403,7 @@ border-radius: 2px;
              <number>1</number>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_main">
              <property name="styleSheet">
@@ -2184,6 +2234,60 @@ p, li { white-space: pre-wrap; }
                  </item>
                 </layout>
                </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page">
+             <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,3,2">
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="font">
+                 <font>
+                  <family>OPPOSans B</family>
+                  <pointsize>80</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                  <kerning>true</kerning>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);
+</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </widget>

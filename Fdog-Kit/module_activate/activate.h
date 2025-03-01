@@ -27,6 +27,8 @@ private slots:
 
     void on_toolButton_run_clicked();
 
+    void whenAnimationFinish();
+
 private:
     Ui::Activate *ui;
     QTimer *m_timer;

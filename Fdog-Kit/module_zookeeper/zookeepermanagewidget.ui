@@ -63,13 +63,13 @@ QMenu::item:selected {
      <widget class="QWidget" name="widget_left" native="true">
       <property name="minimumSize">
        <size>
-        <width>185</width>
+        <width>190</width>
         <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>185</width>
+        <width>190</width>
         <height>16777215</height>
        </size>
       </property>
@@ -393,7 +393,7 @@ QScrollBar::up-arrow:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>175</width>
+               <width>180</width>
                <height>470</height>
               </rect>
              </property>

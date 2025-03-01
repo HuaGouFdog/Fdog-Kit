@@ -25,3 +25,10 @@ QToolButton:hover {
     background-color: rgb(35, 39, 46);
     border: none;
 }
+/*
+QToolButton:checked {
+    color: rgb(255, 255, 255);
+    background-color: rgba(94, 255, 210, 0);
+    border-left: 3px solid white;  /* 选中时左边框变白 */
+    color: white;
+}*/
