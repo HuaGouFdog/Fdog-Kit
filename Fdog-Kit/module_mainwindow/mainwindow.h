@@ -204,6 +204,8 @@ private slots:
     void on_toolButton_db_tool_clicked();
     void on_toolButton_fold_clicked();
     void on_animationValueChanged(const QVariant &value);
+    void on_toolButton_clicked();
+    void updateTime();
 };
 
 #endif // MAINWINDOW_H

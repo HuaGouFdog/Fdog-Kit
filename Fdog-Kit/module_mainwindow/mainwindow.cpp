@@ -77,7 +77,7 @@ MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
                      border: none;\
                  }");
     m_unfoldButton->setIcon(QIcon(":/module_mainwindow/images/light/unfold-light.png"));
-    m_unfoldButton->setGeometry(3, this->height()/2, 25, 100);
+    m_unfoldButton->setGeometry(4, this->height()/2, 25, 100);
     m_unfoldButton->setIconSize(QSize(50, 50));
     m_unfoldButton->hide();
     connect(m_unfoldButton, &QPushButton::clicked, this, [=]() {
@@ -1266,5 +1266,25 @@ void MainWindow::on_animationValueChanged(const QVariant &value)
 {
     QRect currentGeometry = value.toRect();
     qDebug() << "动画当前值: " << currentGeometry;
+}
+
+
+void MainWindow::on_toolButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+    // 创建一个定时器
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWindow::updateTime);
+    timer->start(1000); // 每秒更新一次
+}
+
+void MainWindow::updateTime()
+{
+    // 获取当前时间
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    QString formattedTime = currentDateTime.toString("hh:mm:ss");
+
+    // 更新 label_time 的文本
+    ui->label->setText(formattedTime);
 }
 
