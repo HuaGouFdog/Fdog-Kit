@@ -101,17 +101,11 @@
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">QLineEdit{
-color: rgb(231, 238, 244);
+            <string notr="true">padding-left: 5px;
+border: 1px solid rgba(197, 197, 197,50);
+background-color: rgba(255, 255, 255, 20);
 border-radius: 5px;
-background-color: rgb(25, 25, 25, 155);
-border: 0px solid rgba(255, 255, 255, 0);
-padding-left:10px;
-padding-right:10px;
-}
-
-
-</string>
+color: rgb(255, 255, 255);</string>
            </property>
            <property name="placeholderText">
             <string>搜索名称，快速连接</string>
@@ -348,7 +342,7 @@ QScrollBar::up-arrow:vertical {
             <bool>false</bool>
            </property>
            <attribute name="horizontalHeaderVisible">
-            <bool>false</bool>
+            <bool>true</bool>
            </attribute>
            <attribute name="horizontalHeaderCascadingSectionResizes">
             <bool>false</bool>

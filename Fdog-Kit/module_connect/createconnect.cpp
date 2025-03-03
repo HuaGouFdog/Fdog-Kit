@@ -12,8 +12,6 @@ createconnect::createconnect(int8_t connectType, QWidget *parent) :
     ui(new Ui::createconnect)
 {
     ui->setupUi(this);
-    ui->widget->hide();
-    ui->widget_dynamic_title->hide();
     ui->comboBox->setView(new QListView());
 
     //只显示关闭按钮
@@ -66,10 +64,10 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         if (ui->widget_name_lineEdit_name_data->text() == "") {
             cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
         }
-        cInfo.group = ui->widget_group_lineEdit_group_data->text();
-        if (ui->widget_group_lineEdit_group_data->text() == "") {
-            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
-        }
+//        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+//        if (ui->widget_group_lineEdit_group_data->text() == "") {
+//            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+//        }
         cInfo.host = ui->lineEdit_host_ssh_data->text();
         cInfo.port = ui->lineEdit_port_ssh_data->text();
 
@@ -106,10 +104,10 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         if (ui->widget_name_lineEdit_name_data->text() == "") {
             cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
         }
-        cInfo.group = ui->widget_group_lineEdit_group_data->text();
-        if (ui->widget_group_lineEdit_group_data->text() == "") {
-            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
-        }
+//        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+//        if (ui->widget_group_lineEdit_group_data->text() == "") {
+//            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+//        }
         cInfo.host = ui->lineEdit_host_zk_data->text();
         cInfo.port = ui->lineEdit_port_zk_data->text();
     } else if (ui->tabWidget->currentIndex() == 3) {
@@ -118,10 +116,10 @@ void createconnect::on_widget_bottom_toolButton_connect_clicked()
         if (ui->widget_name_lineEdit_name_data->text() == "") {
             cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
         }
-        cInfo.group = ui->widget_group_lineEdit_group_data->text();
-        if (ui->widget_group_lineEdit_group_data->text() == "") {
-            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
-        }
+//        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+//        if (ui->widget_group_lineEdit_group_data->text() == "") {
+//            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+//        }
         cInfo.host = ui->lineEdit_host_db_data->text();
         cInfo.port = ui->lineEdit_port_db_data->text();
 
@@ -192,17 +190,15 @@ void createconnect::on_tabWidget_currentChanged(int index)
 {
     qDebug() << "修改" << index;
     //只有ssh，左侧可以修改
-    if (index == 0) {
-        ui->widget_name_lineEdit_name_data->setEnabled(true);
-        ui->widget_group_lineEdit_group_data->setEnabled(true);
-        ui->widget_remark_lineEdit_remark_data->setEnabled(true);
-        ui->lineEdit_transparent->setEnabled(true);
-    } else {
-        ui->widget_name_lineEdit_name_data->setEnabled(false);
-        ui->widget_group_lineEdit_group_data->setEnabled(false);
-        ui->widget_remark_lineEdit_remark_data->setEnabled(false);
-        ui->lineEdit_transparent->setEnabled(false);
-    }
+//    if (index == 0) {
+//        ui->widget_name_lineEdit_name_data->setEnabled(true);
+//        ui->widget_group_lineEdit_group_data->setEnabled(true);
+//        ui->widget_remark_lineEdit_remark_data->setEnabled(true);
+//    } else {
+//        ui->widget_name_lineEdit_name_data->setEnabled(false);
+//        ui->widget_group_lineEdit_group_data->setEnabled(false);
+//        ui->widget_remark_lineEdit_remark_data->setEnabled(false);
+//    }
 }
 
 void createconnect::rece_selectPublicKey(QString text) {
@@ -222,10 +218,10 @@ void createconnect::on_widget_bottom_toolButton_save_clicked()
         if (ui->widget_name_lineEdit_name_data->text() == "") {
             cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
         }
-        cInfo.group = ui->widget_group_lineEdit_group_data->text();
-        if (ui->widget_group_lineEdit_group_data->text() == "") {
-            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
-        }
+//        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+//        if (ui->widget_group_lineEdit_group_data->text() == "") {
+//            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+//        }
         cInfo.host = ui->lineEdit_host_ssh_data->text();
         cInfo.port = ui->lineEdit_port_ssh_data->text();
 
@@ -262,10 +258,10 @@ void createconnect::on_widget_bottom_toolButton_save_clicked()
         if (ui->widget_name_lineEdit_name_data->text() == "") {
             cInfo.name = ui->widget_name_lineEdit_name_data->placeholderText();
         }
-        cInfo.group = ui->widget_group_lineEdit_group_data->text();
-        if (ui->widget_group_lineEdit_group_data->text() == "") {
-            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
-        }
+//        cInfo.group = ui->widget_group_lineEdit_group_data->text();
+//        if (ui->widget_group_lineEdit_group_data->text() == "") {
+//            cInfo.group = ui->widget_group_lineEdit_group_data->placeholderText();
+//        }
         cInfo.host = ui->lineEdit_host_zk_data->text();
         cInfo.port = ui->lineEdit_port_zk_data->text();
     }
