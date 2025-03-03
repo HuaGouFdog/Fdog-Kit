@@ -728,6 +728,11 @@ QScrollBar::up-arrow:horizontal {
                     <attribute name="headerVisible">
                      <bool>false</bool>
                     </attribute>
+                    <column>
+                     <property name="text">
+                      <string notr="true">1</string>
+                     </property>
+                    </column>
                    </widget>
                   </item>
                  </layout>
@@ -5347,7 +5352,7 @@ border-radius: 2px;
                             <bool>false</bool>
                            </property>
                            <attribute name="headerVisible">
-                            <bool>true</bool>
+                            <bool>false</bool>
                            </attribute>
                            <attribute name="headerMinimumSectionSize">
                             <number>20</number>
@@ -9413,8 +9418,8 @@ QScrollBar::up-arrow:vertical {
   </layout>
  </widget>
  <resources>
-  <include location="../lib.qrc"/>
   <include location="../images.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

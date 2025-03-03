@@ -21,11 +21,11 @@
    <string>导入私钥</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="lib.qrc">
-    <normaloff>:/lib/wicon_46.png</normaloff>:/lib/wicon_46.png</iconset>
+   <iconset resource="../lib.qrc">
+    <normaloff>:/lib/Fdogicon.ico</normaloff>:/lib/Fdogicon.ico</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(35, 39, 46);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
@@ -44,8 +44,7 @@
     <widget class="QWidget" name="widget" native="true">
      <property name="styleSheet">
       <string notr="true">#widget{
-	border-image: url(:/lib/back1.png);
-	background-color: rgb(30, 45, 54);
+
 	color: rgb(255, 255, 255);
 }</string>
      </property>
@@ -146,11 +145,12 @@ QToolButton:hover {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;</string>
+          <string notr="true">
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+</string>
          </property>
         </widget>
        </item>
@@ -169,11 +169,12 @@ padding-right:10px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;</string>
+          <string notr="true">
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+</string>
          </property>
          <property name="echoMode">
           <enum>QLineEdit::Password</enum>
@@ -221,11 +222,11 @@ padding-right:10px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(25, 25, 25, 155);
-border: 1px solid rgba(255, 255, 255, 0);
-border-radius: 5px;
-padding-left:10px;
-padding-right:10px;</string>
+          <string notr="true">
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
@@ -327,7 +328,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>
