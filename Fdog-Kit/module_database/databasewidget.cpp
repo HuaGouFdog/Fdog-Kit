@@ -12,6 +12,7 @@
 #include <QSqlField>
 #include <QLabel>
 #include <QPropertyAnimation>
+#include <QMenu>
 databasewidget::databasewidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::databasewidget)
@@ -20,7 +21,11 @@ databasewidget::databasewidget(QWidget *parent) :
     qDebug() << "创建1";
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
-    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    ui->lineEdit_find->addAction(action, QLineEdit::LeadingPosition);
+    TreeWidgetFilter *filter = new TreeWidgetFilter(this);
+    connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
+    ui->treeWidget_db->installEventFilter(filter);
+
     qDebug() << "创建2";
 
     return;
@@ -106,7 +111,11 @@ databasewidget::databasewidget(connnectInfoStruct &cInfoStruct, QWidget *parent)
     qDebug() << "创建3";
     QAction *action = new QAction(this);
     action->setIcon(QIcon(":/lib/soucuo.png"));
-    ui->lineEdit_find->addAction(action,QLineEdit::LeadingPosition);
+    ui->lineEdit_find->addAction(action, QLineEdit::LeadingPosition);
+
+    TreeWidgetFilter *filter = new TreeWidgetFilter(this);
+    connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
+    ui->treeWidget_db->installEventFilter(filter);
     
     //创建db连接
     newDBWidget(cInfoStruct);
@@ -132,10 +141,11 @@ void databasewidget::newDBWidget(connnectInfoStruct &cInfoStruct)
     qDebug() << "触发6";
     database = QSqlDatabase::addDatabase("QMYSQL");
     database.setDatabaseName("IM_BADWORD");
-    database.setHostName(cInfoStruct.host);
-    database.setPort(cInfoStruct.port.toInt());
-    database.setUserName(cInfoStruct.userName);
-    database.setPassword(cInfoStruct.password);
+    // database.setHostName(cInfoStruct.host);
+    // database.setPort(cInfoStruct.port.toInt());
+    // database.setUserName(cInfoStruct.userName);
+    // database.setPassword(cInfoStruct.password);
+
 
 
     if (!database.open()) {
@@ -237,28 +247,28 @@ void databasewidget::on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int col
             }
             return;
 
-            ui->tableWidget->horizontalHeader()->setVisible(true);
-            ui->tableWidget->verticalHeader()->setVisible(false);
+//            ui->tableWidget->horizontalHeader()->setVisible(true);
+//            ui->tableWidget->verticalHeader()->setVisible(false);
 
-            ui->tableWidget->setColumnCount(fieldCount); //设置列数为2
-            ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-            ui->tableWidget->setHorizontalHeaderLabels(a);
+//            ui->tableWidget->setColumnCount(fieldCount); //设置列数为2
+//            ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//            ui->tableWidget->setHorizontalHeaderLabels(a);
             //auto delegate = new HoveredRowItemDelegate(ui->tableWidget);
             //ui->tableWidget->setItemDelegate(delegate);
             //ui->tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-            int rowCount = 0;
-            while(sqlQuery.next())
-            {   
-                ui->tableWidget->insertRow(rowCount);
-                for (int i = 0; i < fieldCount; ++i) {
-                    QString fieldValue = sqlQuery.value(i).toString();
-                        // 将字段值插入到 QTableWidget 中
-                        //qDebug() << "字段" << i << ":" << fieldValue;
-                    ui->tableWidget->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
-                }
-                rowCount++;
-            }
+//            int rowCount = 0;
+//            while(sqlQuery.next())
+//            {
+//                ui->tableWidget->insertRow(rowCount);
+//                for (int i = 0; i < fieldCount; ++i) {
+//                    QString fieldValue = sqlQuery.value(i).toString();
+//                        // 将字段值插入到 QTableWidget 中
+//                        //qDebug() << "字段" << i << ":" << fieldValue;
+//                    ui->tableWidget->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
+//                }
+//                rowCount++;
+//            }
         }
         qDebug() << "打印建表";
         QSqlQuery sqlQuery2(database);
@@ -280,42 +290,42 @@ void databasewidget::on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int col
                 //qDebug() << "字段" << i << ":" << fieldName;
             }
 
-            ui->tableWidget_2->horizontalHeader()->setVisible(true);
-            ui->tableWidget_2->verticalHeader()->setVisible(false);
+//            ui->tableWidget_2->horizontalHeader()->setVisible(true);
+//            ui->tableWidget_2->verticalHeader()->setVisible(false);
 
-            ui->tableWidget_2->setColumnCount(fieldCount); //设置列数为2
-            ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-            ui->tableWidget_2->setHorizontalHeaderLabels(a);
+//            ui->tableWidget_2->setColumnCount(fieldCount); //设置列数为2
+//            ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//            ui->tableWidget_2->setHorizontalHeaderLabels(a);
 
             //auto delegate = new HoveredRowItemDelegate(ui->tableWidget_2);
             //ui->tableWidget_2->setItemDelegate(delegate);
             //ui->tableWidget_2->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-            int rowCount = 0;
-            while(sqlQuery2.next())
-            {   
-                ui->tableWidget_2->insertRow(rowCount);
-                for (int i = 0; i < fieldCount; ++i) {
-                    QString fieldValue = sqlQuery2.value(i).toString();
-                        // 将字段值插入到 QTableWidget 中
-                        //qDebug() << "字段" << i << ":" << fieldValue;
-                    ui->tableWidget_2->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
-                }
-                rowCount++;
-            }
+//            int rowCount = 0;
+//            while(sqlQuery2.next())
+//            {
+//                ui->tableWidget_2->insertRow(rowCount);
+//                for (int i = 0; i < fieldCount; ++i) {
+//                    QString fieldValue = sqlQuery2.value(i).toString();
+//                        // 将字段值插入到 QTableWidget 中
+//                        //qDebug() << "字段" << i << ":" << fieldValue;
+//                    ui->tableWidget_2->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
+//                }
+//                rowCount++;
+//            }
         }
 
 
-        QSqlQuery sqlQuery3(database);
-        sqlQuery3.prepare("SHOW CREATE TABLE IM_BADWORD.BADWORD");
-        if(!sqlQuery3.exec()) {
-            qDebug() << "Error: Fail to query table. " << sqlQuery3.lastError();
-        } else {
-            while(sqlQuery3.next())
-            {   
-                qDebug() << "数据";
-            }
-            qDebug() << "结束";
-        }
+        // QSqlQuery sqlQuery3(database);
+        // sqlQuery3.prepare("SHOW CREATE TABLE IM_BADWORD.BADWORD");
+        // if(!sqlQuery3.exec()) {
+        //     qDebug() << "Error: Fail to query table. " << sqlQuery3.lastError();
+        // } else {
+        //     while(sqlQuery3.next())
+        //     {   
+        //         qDebug() << "数据";
+        //     }
+        //     qDebug() << "结束";
+        // }
     } else {
         qDebug() << "这是一个字段";
     }
@@ -334,5 +344,138 @@ void databasewidget::on_toolButton_clicked()
 {
     // 显示窗口并启动动画
     m_pos_animation->start();
+}
+
+
+void databasewidget::on_treeWidget_db_customContextMenuRequested(const QPoint &pos)
+{
+    QTreeWidgetItem * item = ui->treeWidget_db->currentItem();
+    qDebug()<< "菜单请求" << item->text(0);
+
+    QMenu *menu = new QMenu(ui->treeWidget_db);
+    menu->setWindowFlags(menu->windowFlags()  | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
+    menu->setAttribute(Qt::WA_TranslucentBackground);
+
+    if (item->parent() && !item->parent()->parent()) {
+        QAction *action_deleteDatabase = new QAction("删除库", ui->treeWidget_db);
+        connect (action_deleteDatabase,SIGNAL(triggered()),this,SLOT(rece_deleteDatabase()));
+        menu->addAction(action_deleteDatabase);
+    } else if (!item->parent()) { 
+        QAction *action_closeConnect = new QAction("关闭连接", ui->treeWidget_db);
+        QAction *action_deleteConnect = new QAction("删除连接", ui->treeWidget_db);
+        connect (action_closeConnect,SIGNAL(triggered()),this,SLOT(rece_closeConnect()));
+        connect (action_deleteConnect,SIGNAL(triggered()),this,SLOT(rece_deleteConnect()));
+        menu->addAction(action_closeConnect);
+        menu->addAction(action_deleteConnect);
+    } else if(item->parent() && item->parent()->parent() && !item->parent()->parent()->parent()) {
+        QAction *action_showCraeteTable = new QAction("查看创建表sql", ui->treeWidget_db);
+        QAction *action_showTableData = new QAction("查看表数据", ui->treeWidget_db);
+        QAction *action_deleteTable = new QAction("删除表", ui->treeWidget_db);
+        connect (action_showCraeteTable,SIGNAL(triggered()),this,SLOT(rece_showCraeteTable()));
+        connect (action_showTableData,SIGNAL(triggered()),this,SLOT(rece_showTableData()));
+        connect (action_deleteTable,SIGNAL(triggered()),this,SLOT(rece_deleteTable()));
+        menu->addAction(action_showCraeteTable);
+        menu->addAction(action_showTableData);
+        menu->addAction(action_deleteTable);
+    } else {
+        QAction *action_showField = new QAction("查看字段属性", ui->treeWidget_db);
+        QAction *action_deleteField = new QAction("删除字段", ui->treeWidget_db);
+        connect (action_showField,SIGNAL(triggered()),this,SLOT(rece_showField()));
+        connect (action_deleteField,SIGNAL(triggered()),this,SLOT(rece_deleteField()));
+        menu->addAction(action_showField);
+        menu->addAction(action_deleteField);
+    }
+    menu->move(cursor().pos());
+    menu->show();
+}
+
+void databasewidget::rece_deleteDatabase()
+{
+
+}
+
+void databasewidget::rece_closeConnect()
+{
+
+}
+
+void databasewidget::rece_deleteConnect()
+{
+
+}
+
+void databasewidget::rece_showCraeteTable()
+{
+
+}
+
+void databasewidget::rece_showTableData()
+{
+    QTreeWidgetItem* selectedItem = ui->treeWidget_db->currentItem();
+    QString dataBaseName = selectedItem->parent()->text(0);
+    QString tableName = selectedItem->text(0);
+    //创建一个tab
+    QTableWidget * twidget = new QTableWidget();
+    twidget->setStyleSheet(":/module_database/qss/tableWidget.qss");
+    QSize iconSize(20, 20); // 设置图标的大小
+    ui->tabWidget->addTab(twidget, QIcon(":/module_database/images/dark/table.png").pixmap(iconSize),  "  " + tableName + "  ");
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    QSqlQuery sqlQuery2(database);
+    QString cc = "BADWORD";
+    sqlQuery2.prepare("select * from " + dataBaseName + "." + tableName);
+    if(!sqlQuery2.exec()) {
+        qDebug() << "Error: Fail to query table. " << sqlQuery2.lastError();
+    } else {
+        // 获取记录信息
+        QSqlRecord record2 = sqlQuery2.record();
+        // 获取字段数量
+        int fieldCount = record2.count();
+        qDebug() << "字段数量:" << fieldCount;
+
+        QStringList a;
+        for (int i = 0; i < fieldCount; ++i) {
+            // 获取字段名称
+            a.push_back(record2.fieldName(i));
+            //qDebug() << "字段" << i << ":" << fieldName;
+        }
+
+        twidget->horizontalHeader()->setVisible(true);
+        twidget->verticalHeader()->setVisible(true);
+
+        twidget->setColumnCount(fieldCount); //设置列数为2
+        //twidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+        twidget->setHorizontalHeaderLabels(a);
+
+        //auto delegate = new HoveredRowItemDelegate(ui->tableWidget_2);
+        //ui->tableWidget_2->setItemDelegate(delegate);
+        //ui->tableWidget_2->horizontalHeader()->setDefaultAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        int rowCount = 0;
+        while(sqlQuery2.next())
+        {   
+            twidget->insertRow(rowCount);
+            for (int i = 0; i < fieldCount; ++i) {
+                QString fieldValue = sqlQuery2.value(i).toString();
+                    // 将字段值插入到 QTableWidget 中
+                    //qDebug() << "字段" << i << ":" << fieldValue;
+                    twidget->setItem(rowCount, i, new QTableWidgetItem(fieldValue));
+            }
+            rowCount++;
+        }
+    }
+}
+
+void databasewidget::rece_deleteTable()
+{
+
+}
+
+void databasewidget::rece_showField()
+{
+
+}
+
+void databasewidget::rece_deleteField()
+{
+
 }
 

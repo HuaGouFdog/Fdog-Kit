@@ -35,6 +35,21 @@ private slots:
 
     void on_toolButton_clicked();
 
+    void on_treeWidget_db_customContextMenuRequested(const QPoint &pos);
+
+    void rece_deleteDatabase();
+
+    void rece_closeConnect();
+    void rece_deleteConnect();
+
+    void rece_showCraeteTable();
+    void rece_showTableData();
+    void rece_deleteTable();
+
+    void rece_showField();
+    void rece_deleteField();
+
+
 private:
     Ui::databasewidget *ui;
 };

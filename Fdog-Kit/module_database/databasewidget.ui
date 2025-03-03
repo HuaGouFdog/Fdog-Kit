@@ -13,6 +13,34 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#databasewidget{
+	background-color: rgb(33, 33, 33);
+}
+
+
+QMenu {
+color: rgb(255, 255, 255);
+background-color:rgb(253,253,254);
+padding: 3px 3px 3px 3px;
+border-radius:6px;
+border:1px solid rgba(21, 23, 27, 100);
+}
+
+
+QMenu::item {
+    font-size: 10pt;
+    font: 10pt &quot;OPPOSans B&quot;;
+    border-radius:3px;
+	background-color:rgba(253,253,254,0);
+    padding: 5px 30px 5px 10px;
+}
+QMenu::item:selected {
+    
+	color: rgb(244, 244, 244);
+	background-color: rgba(35, 39, 46, 250);
+}</string>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -74,13 +102,13 @@ border-right:2px solid rgba(197, 197, 197,50);
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>50</height>
+           <height>35</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>70</height>
+           <height>35</height>
           </size>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -202,6 +230,9 @@ padding-right:10px;
        </item>
        <item>
         <widget class="QTreeWidget" name="treeWidget_db">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QTreeWidget{
 /*background-color: rgba(25, 25, 25, 100);*/
@@ -331,6 +362,11 @@ QScrollBar::up-arrow:vertical {
          <attribute name="headerVisible">
           <bool>false</bool>
          </attribute>
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>
@@ -341,6 +377,11 @@ QScrollBar::up-arrow:vertical {
         <horstretch>10</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#widget_2 {
+	background-color: rgba(255, 255, 255, 0);
+}</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="leftMargin">
@@ -358,13 +399,112 @@ QScrollBar::up-arrow:vertical {
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+          <string notr="true">QTableWidget{
+	border:none;
+	
+	border-color: rgb(130, 201, 255);
+	/*background-color: rgb(30, 45, 54);*/
+	color: rgb(255, 255, 255);
+}
+
+QTableWidget::item:hover{
+	
+	background-color: rgb(24, 26, 29);
+}
+QTableWidget::item:selected{
+
+	
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(24, 26, 29);
+}
+
+QHeaderView::section,QTableCornerButton:section{
+    padding:5px; 
+    margin:0px; 
+    height: 30px;
+	font: 10pt &quot;OPPOSans B&quot;;
+	
+	color: rgb(255, 255, 255);
+    border:1px solid #242424;
+    border-left-width:0px; 
+    border-right-width:0px; 
+    border-top-width:0px; 
+    border-bottom-width:0px;
+	/*background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); */
+	
+	
+	background-color: rgb(10, 31, 57,0);
+}
+
+QScrollBar:vertical {
+    width: 10px;
+	background-color: rgba(0, 41, 69, 0);
+    margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+QScrollBar::handle:vertical {
+    width: 10px;
+	
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:vertical {
+    
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:vertical 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
+          <property name="styleSheet">
+           <string notr="true">#page{
+background-color: rgba(255, 255, 255, 0);
+}</string>
+          </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QTabWidget" name="tabWidget">
              <property name="font">
@@ -374,59 +514,68 @@ QScrollBar::up-arrow:vertical {
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">
- QTabWidget::tab-bar {
-         left:0px;       
-}
-	
-
-/*设置TabWidget中tab_1的样式*/
-#tab_1.QWidget{
-	background-color: rgb(108, 117, 125, 0);
-}
- 
-/*设置TabWidget中tab_2的样式*/
-#tab_2.QWidget{
-	background-color: rgb(108, 117, 125, 0);
-}
- 
-/*设置TabWidget中QTabBar的样式*/
+              <string notr="true">/*设置TabWidget中QTabBar的样式*/
 QTabBar::tab{
-    background-color: rgb(108, 117, 125, 0);
+	background-color: rgba(255, 255, 255, 0);
+	/*background-color: rgb(54, 81, 97);*/
 	/*font-family:Consolas; */   /*设置tab中的文本的字体*/
 	font-size:10pt;
-	color:#ced4da;    /*设置tab中的文本的颜色*/
-	border-top-left-radius: 5px;    /*设置tab的边框的圆角（左上圆角）*/
-	border-top-right-radius: 5px;    /*设置tab的边框的圆角（右上圆角）*/
-	width:50px;
-	padding: 0px;
-	margin-right:5px;
-	margin-left: 5px;
+	color: rgb(255, 255, 255);
+	border-top-left-radius: 0px;    /*设置tab的边框的圆角（左上圆角）*/
+	border-top-right-radius: 0px;    /*设置tab的边框的圆角（右上圆角）*/
+	/*width:70px;*/
+	padding: 5px;
+	/*margin-right:0px;
+	margin-left: 0px;*/
+}
+
+
+QTableWidget{
+outline: 0px;
+}
+
+QWidget{
+
+background:transparent;
+
+}
+
+QTabBar::pone{
+	background-color: rgba(255, 255, 255, 0);
 }
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
 QTabBar::tab:selected{
-	/*background-color: #0B0E11;*/
-	background-color: rgb(108, 117, 125, 0);
-	border-bottom: 3px solid rgb(255, 255, 255);
+	/*background-color: rgb(15, 15, 15);*/
+	/*border-top:3px solid rgb(108, 117, 125, 65); */
+	border-bottom:2px solid rgb(0, 170, 255); 
+	color: rgb(0, 170, 255);
 }
  
 /*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
 QTabBar::tab:hover:!selected {
-	/*background-color: rgb(100, 117, 125, 125);*/
+	/*border-bottom:2px solid rgb(0, 170, 255); */
+	color: rgb(0, 170, 255);
 }
  
 /*设置TabWidget的边框的样式*/
 QTabWidget::pane {
-    border: 0px solid rgb(108, 117, 125, 65);
+    border-top:0px solid rgb(108, 117, 125, 65); 
 }
  
 
 QTabBar::close-button{ 
-	/*border-image: url(:lib/Kafka.png);*/
+	border-image: url(:/lib/guanbi2.png);
 }
+
+
 QTabBar::close-button:hover{
-	/*border-image: url(:/Resources/image/close_hover.png);*/
+	image: url(:/lib/guanbi1.png);
+}
+
+
+QTabBar::close-button:hover{
+	border-image: url(:/lib/icon-close42.png);
 }
 
 
@@ -434,233 +583,79 @@ QTabBar::close-button:hover{
 QTabBar QToolButton {
     border: none;
 	color: rgb(255, 206, 6);
-    background-color: #0b0e11;
+    background-color: rgba(100, 117, 125, 0);
 }
  
 QTabBar QToolButton:hover {
-	background-color: #161a1e; 
+	background-color: rgba(100, 117, 125, 0);
+}
+
+
+QScrollBar::horizontal{
+    height: 8px;
+	background-color: rgb(67, 77, 88);
+	margin: 0px,0px,0px,0px;
+    padding-top: 0px;		/*//隐藏上下的箭头*/
+    padding-bottom: 0px;
+}
+
+QTreeWidget::branch:closed:has-children:!has-siblings,
+QTreeWidget::branch:closed:has-children:has-siblings {
+	border-image: none;
+    image: url(:/lib/tree_close.png);
+}
+ 
+QTreeWidget::branch:open:has-children:!has-siblings,
+QTreeWidget::branch:open:has-children:has-siblings  {
+	border-image: none;
+    image: url(:/lib/tree_open.png);
+}
+
+QScrollBar::handle:horizontal {
+    height: 8px;
+	background-color: rgb(239, 239, 239);
+    /*滚动条两端变成椭圆 */
+    border-radius: 2px;
+    min-height: 0;
+}
+
+QScrollBar::sub-page:horizontal {
+	background-color: rgba(255, 255, 255, 0);
+}
+QScrollBar::add-page:horizontal 
+{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QScrollBar::add-line:horizontal {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::down-arrow:horizontal {
+    border:none;
+}
+QScrollBar::up-arrow:horizontal {
+    border:none;
 }</string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>-1</number>
              </property>
-             <widget class="QWidget" name="tab_2">
-              <attribute name="title">
-               <string>数据</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_6">
-               <item>
-                <widget class="QTableWidget" name="tableWidget_2">
-                 <property name="styleSheet">
-                  <string notr="true">QTableWidget{
-	border:none;
-	outline: 0px;
-	border-color: rgb(130, 201, 255);
-	/*background-color: rgb(30, 45, 54);*/
-	color: rgb(255, 255, 255);
-}
-
-QTableWidget::item:hover{
-	
-	background-color: rgb(24, 26, 29);
-}
-QTableWidget::item:selected{
-
-	
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(24, 26, 29);
-}
-
-QHeaderView::section,QTableCornerButton:section{
-    padding:5px; 
-    margin:0px; 
-    height: 30px;
-	font: 10pt &quot;OPPOSans B&quot;;
-	
-	color: rgb(255, 255, 255);
-    border:1px solid #242424;
-    border-left-width:0px; 
-    border-right-width:0px; 
-    border-top-width:0px; 
-    border-bottom-width:0px;
-	/*background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); */
-	
-	
-	background-color: rgb(10, 31, 57,0);
-}
-
-QScrollBar:vertical {
-    width: 10px;
-	background-color: rgba(0, 41, 69, 0);
-    margin: 0px,0px,0px,0px;
-    padding-top: 0px;		/*//隐藏上下的箭头*/
-    padding-bottom: 0px;
-}
-QScrollBar::handle:vertical {
-    width: 10px;
-	
-	background-color: rgb(239, 239, 239);
-    /*滚动条两端变成椭圆 */
-    border-radius: 2px;
-    min-height: 0;
-}
-
-QScrollBar::sub-page:vertical {
-    
-	background-color: rgba(255, 255, 255, 0);
-}
-QScrollBar::add-page:vertical 
-{
-    background-color: rgba(255, 255, 255, 0);
-}
-
-QScrollBar::add-line:vertical {
-	border: none;
-    height: 0px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
-}
-QScrollBar::sub-line:vertical {
-    border: none;
-    height: 0px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
-}
-
-QScrollBar::down-arrow:vertical {
-    border:none;
-}
-QScrollBar::up-arrow:vertical {
-    border:none;
-}</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab">
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <attribute name="title">
-               <string>结构</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_4">
-               <property name="leftMargin">
-                <number>9</number>
-               </property>
-               <property name="topMargin">
-                <number>9</number>
-               </property>
-               <property name="rightMargin">
-                <number>9</number>
-               </property>
-               <property name="bottomMargin">
-                <number>9</number>
-               </property>
-               <item>
-                <widget class="QTableWidget" name="tableWidget">
-                 <property name="styleSheet">
-                  <string notr="true">QTableWidget{
-	border:none;
-	outline: 0px;
-	border-color: rgb(130, 201, 255);
-	/*background-color: rgb(30, 45, 54);*/
-	color: rgb(255, 255, 255);
-}
-
-QTableWidget::item:hover{
-	
-	background-color: rgb(24, 26, 29);
-}
-QTableWidget::item:selected{
-
-	
-	color: rgb(255, 255, 255);
-	
-	
-	background-color: rgb(24, 26, 29);
-}
-
-QHeaderView::section,QTableCornerButton:section{
-    padding:5px; 
-    margin:0px; 
-    height: 30px;
-	font: 10pt &quot;OPPOSans B&quot;;
-	
-	color: rgb(255, 255, 255);
-    border:1px solid #242424;
-    border-left-width:0px; 
-    border-right-width:0px; 
-    border-top-width:0px; 
-    border-bottom-width:0px;
-	/*background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252); */
-	
-	
-	background-color: rgb(10, 31, 57,0);
-}
-
-QScrollBar:vertical {
-    width: 10px;
-	background-color: rgba(0, 41, 69, 0);
-    margin: 0px,0px,0px,0px;
-    padding-top: 0px;		/*//隐藏上下的箭头*/
-    padding-bottom: 0px;
-}
-QScrollBar::handle:vertical {
-    width: 10px;
-	
-	background-color: rgb(239, 239, 239);
-    /*滚动条两端变成椭圆 */
-    border-radius: 2px;
-    min-height: 0;
-}
-
-QScrollBar::sub-page:vertical {
-    
-	background-color: rgba(255, 255, 255, 0);
-}
-QScrollBar::add-page:vertical 
-{
-    background-color: rgba(255, 255, 255, 0);
-}
-
-QScrollBar::add-line:vertical {
-	border: none;
-    height: 0px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
-}
-QScrollBar::sub-line:vertical {
-    border: none;
-    height: 0px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
-}
-
-QScrollBar::down-arrow:vertical {
-    border:none;
-}
-QScrollBar::up-arrow:vertical {
-    border:none;
-}</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_3">
-              <attribute name="title">
-               <string>建表</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QTextEdit" name="textEdit"/>
-               </item>
-              </layout>
-             </widget>
+             <property name="tabsClosable">
+              <bool>true</bool>
+             </property>
+             <property name="movable">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
           </layout>
@@ -698,8 +693,8 @@ QScrollBar::up-arrow:vertical {
           <widget class="QToolButton" name="toolButton">
            <property name="geometry">
             <rect>
-             <x>460</x>
-             <y>200</y>
+             <x>550</x>
+             <y>230</y>
              <width>91</width>
              <height>31</height>
             </rect>
@@ -708,6 +703,170 @@ QScrollBar::up-arrow:vertical {
             <string>...</string>
            </property>
           </widget>
+          <widget class="QWidget" name="widget_4" native="true">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>320</y>
+             <width>211</width>
+             <height>291</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(0, 0, 0);</string>
+           </property>
+           <widget class="QToolButton" name="toolButton_2">
+            <property name="geometry">
+             <rect>
+              <x>170</x>
+              <y>130</y>
+              <width>10</width>
+              <height>35</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+    color: rgb(217, 236, 237);
+    
+	background-color: rgba(255, 60, 128, 0);
+    border: none;
+}
+QToolButton::menu-indicator { 
+    image: None;
+}
+QToolButton:hover {
+    color: rgb(197, 197, 197);
+    border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../images.qrc">
+              <normaloff>:/module_mainwindow/images/light/unfold-light.png</normaloff>:/module_mainwindow/images/light/unfold-light.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QGraphicsView" name="graphicsView">
+           <property name="geometry">
+            <rect>
+             <x>330</x>
+             <y>320</y>
+             <width>421</width>
+             <height>311</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="page_3">
+          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="4,1,1,1,8">
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">image: url(:/module_mainwindow/images/light/iconmain-light.png);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QToolButton" name="toolButton_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>OPPOSans B</family>
+               <pointsize>12</pointsize>
+               <underline>false</underline>
+               <stylestrategy>PreferAntialias</stylestrategy>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QToolButton {
+	color: rgb(242, 245, 255, 150);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+
+QToolButton::menu-indicator { 
+	image: None;
+}
+
+ 
+QToolButton:hover {
+	color: rgb(242, 245, 255, 150);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+	font: 12pt &quot;OPPOSans B&quot;;
+	text-decoration: underline;
+}</string>
+             </property>
+             <property name="text">
+              <string>https://github.com/HuaGouFdog/Fdog-Kit</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
