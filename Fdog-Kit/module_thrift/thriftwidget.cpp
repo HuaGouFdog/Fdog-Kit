@@ -5010,3 +5010,335 @@ void thriftwidget::rece_updateMouseStyle() {
     //设置为箭头
     setCursor(Qt::ArrowCursor);
 }
+
+void thriftwidget::on_toolButton_capturePackage_clicked()
+{
+    //抓包，调用ssh模块，查看服务器是否有连接
+    db = new sshsql();
+    connnectInfoStruct cInfoStruct;
+    QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
+    qDebug() << "sshinfo size = " << cInfoStructList.length();
+    bool isFind = false;
+    for (const auto& cInfo : cInfoStructList) {
+        if (cInfo.host == ui->lineEdit_host->text()) {
+            // 找到匹配的元素，可以在这里进行处理
+            qDebug() << "找到匹配的 host: " << cInfo.host;
+            // 例如，打印其他成员变量
+            qDebug() << "用户名: " << cInfo.userName;
+            qDebug() << "端口: " << cInfo.port;
+            isFind = true;
+            // 如果只需要找到一个匹配项，可以在这里 break
+            cInfoStruct = cInfo;
+            break;
+        }
+    }
+    if (isFind) {
+        qDebug() << "找到匹配的服务器信息";
+        //连接服务器
+        threadExec = new QThread();
+        sshExec = new sshHandleExec();
+        sshExec->moveToThread(threadExec);
+        connect(sshExec, SIGNAL(send_execCommand(QString)),this,
+                SLOT(rece_execCommand(QString)));
+        connect(sshExec,SIGNAL(send_init(bool)),this,
+                SLOT(rece_ssh_exec_init(bool)));
+        threadExec->start();
+
+        QString host = cInfoStruct.host;
+        QString port = cInfoStruct.port;
+        QString username = cInfoStruct.userName;
+        QString password = cInfoStruct.password;
+
+        QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, 2), Q_ARG(QString, host), Q_ARG(QString,port), 
+                                Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(QString,"tcpdump --version 2>&1"));
+        //确定tcpdump
+        //开始抓包
+        //调用ssh模块
+    } else {
+        //未找到
+        qDebug() << "未找到匹配的服务器信息";
+    }
+}
+
+void thriftwidget::rece_execCommand(QString data)
+{
+    qDebug() << "rece_execCommand = " << data;
+    if (data.contains("tcpdump version")) {
+        //进行下一步
+        //获取数据
+        QMetaObject::invokeMethod(sshExec,"commondExec", Q_ARG(QString,"tcpdump -i any -vvv -X port 4031 2>&1"));
+    } else {
+
+    }
+}
+
+void thriftwidget::rece_ssh_exec_init(bool isok)
+{
+    //qDebug() << "rece_ssh_exec_init = " << isok;
+}
+
+struct PcapFileHeader {
+    uint32_t magic;       // 文件标识
+    uint16_t versionMajor;
+    uint16_t versionMinor;
+    int32_t thisZone;
+    uint32_t sigFigs;
+    uint32_t snapLen;
+    uint32_t linkType;
+};
+
+// pcap 数据包头
+//struct PcapPacketHeader {
+//    uint32_t tsSec;      // 时间戳（秒）
+//    uint32_t tsUsec;     // 时间戳（微秒）
+//    uint32_t capLen;     // 捕获的数据包长度
+//    uint32_t origLen;    // 原始数据包长度
+//};
+
+// 以太网帧头部（最基本的帧，不包含 802.1Q VLAN）
+struct EthernetHeader {
+    uint8_t destMac[6]; // 目标 MAC
+    uint8_t srcMac[6];  // 源 MAC
+    uint16_t etherType; // 以太网类型（IPv4 = 0x0800）
+};
+
+// IPv4 头部
+struct IPv4Header {
+    uint8_t ihl : 4, version : 4;
+    uint8_t tos;
+    uint16_t totalLength;
+    uint16_t identification;
+    uint16_t flagsFragmentOffset;
+    uint8_t ttl;
+    uint8_t protocol; // TCP = 6
+    uint16_t headerChecksum;
+    uint32_t srcIP;
+    uint32_t destIP;
+};
+
+// TCP 头部
+struct TCPHeader {
+    uint16_t srcPort;
+    uint16_t destPort;
+    uint32_t seqNum;
+    uint32_t ackNum;
+    uint8_t dataOffset;
+    uint8_t flags;
+    uint16_t windowSize;
+    uint16_t checksum;
+    uint16_t urgentPointer;
+};
+
+#pragma pack(1)  // 避免结构体填充
+
+struct PcapHeader {
+    quint32 magic;
+    quint16 version_major;
+    quint16 version_minor;
+    quint32 thiszone;
+    quint32 sigfigs;
+    quint32 snaplen;
+    quint32 network;
+};
+
+struct PcapPacketHeader {
+    quint32 ts_sec;
+    quint32 ts_usec;
+    quint32 incl_len;
+    quint32 orig_len;
+};
+
+// 打印数据的十六进制格式
+void thriftwidget::printHex(const QByteArray &data) {
+    // 使用 QByteArray::toHex() 将数据转为十六进制格式，并输出
+    QString hexString = QString(data.toHex());
+    int count = 0;
+    QString data_;
+    for (int i = 0; i < hexString.length(); i += 2) {
+        data_ = data_ + hexString.mid(i, 2) + " ";
+        count++;
+        if (count > 32) {
+            ui->plainTextEdit_4->appendPlainText(data_);
+            count = 0;
+            data_ = "";
+        }
+    }
+    ui->plainTextEdit_4->appendPlainText(data_); // 输出每 2 个字符作为一个字节
+}
+
+
+void parseSLLHeader(const QByteArray &data, int &offset) {
+    if (data.size() < 16) return;
+    quint16 packetType = DA;
+    quint16 protocolType = (data[14] << 8) | (data[15] & 0xFF);
+    offset = 16; // SLL 头部占 16 字节
+    qDebug() << "\n--- SLL 头部 ---";
+    qDebug() << "Packet Type:" << packetType;
+    qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
+}
+
+void parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen) {
+    if (data.size() < offset + 20) return;
+    quint8 version = (data[offset] >> 4) & 0xF;
+    ipHeaderLen = (data[offset] & 0x0F) * 4;  // IHL 指定 IP 头部长度
+    protocol = data[offset + 9]; // 协议字段
+    QString srcIP = QString("%1.%2.%3.%4")
+                        .arg((quint8)data[offset + 12])
+                        .arg((quint8)data[offset + 13])
+                        .arg((quint8)data[offset + 14])
+                        .arg((quint8)data[offset + 15]);
+    QString dstIP = QString("%1.%2.%3.%4")
+                        .arg((quint8)data[offset + 16])
+                        .arg((quint8)data[offset + 17])
+                        .arg((quint8)data[offset + 18])
+                        .arg((quint8)data[offset + 19]);
+
+    qDebug() << "\n--- IPv4 头部 ---";
+    qDebug() << "Version:" << version;
+    qDebug() << "Protocol:" << protocol;
+    qDebug() << "Source IP:" << srcIP;
+    qDebug() << "Destination IP:" << dstIP;
+    
+    offset += ipHeaderLen; // 移动偏移量到 TCP 头部
+}
+
+void parseTCPHeader(const QByteArray &data, int &offset) {
+    if (data.size() < offset + 20) return;
+    quint16 srcPort = (data[offset] << 8) | (data[offset + 1] & 0xFF);
+    quint16 dstPort = (data[offset + 2] << 8) | (data[offset + 3] & 0xFF);
+    quint8 tcpHeaderLen = ((data[offset + 12] >> 4) & 0xF) * 4; // TCP 头部长度
+    
+    qDebug() << "\n--- TCP 头部 ---";
+    qDebug() << "Source Port:" << srcPort;
+    qDebug() << "Destination Port:" << dstPort;
+    qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
+
+    offset += tcpHeaderLen; // 移动到 TCP 数据部分
+}
+
+
+void thriftwidget::on_toolButton_inportpcap_clicked()
+{
+    ui->stackedWidget_2->setCurrentIndex(2);
+
+
+    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250226-1717.pcap";  // 你的 pcap 文件
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "无法打开 pcap 文件:" << file.errorString();
+        return;
+    }
+
+
+    PcapHeader pcapHeader;
+    file.read(reinterpret_cast<char*>(&pcapHeader), sizeof(PcapHeader));
+
+    while (!file.atEnd()) {
+        PcapPacketHeader packetHeader;
+        if (file.read(reinterpret_cast<char*>(&packetHeader), sizeof(PcapPacketHeader)) < sizeof(PcapPacketHeader)) break;
+        QByteArray packetData = file.read(packetHeader.incl_len);
+
+        int offset = 0;
+        parseSLLHeader(packetData, offset);
+
+        quint8 protocol;
+        int ipHeaderLen;
+        parseIPv4Header(packetData, offset, protocol, ipHeaderLen);
+
+        if (protocol == 6) { // TCP
+            parseTCPHeader(packetData, offset);
+        }
+    }
+    file.close();
+
+
+    return;
+/*
+    // 读取 pcap 全局头
+    PcapFileHeader fileHeader;
+    if (file.read(reinterpret_cast<char*>(&fileHeader), sizeof(PcapFileHeader)) != sizeof(PcapFileHeader)) {
+        qDebug() << "读取 pcap 头部失败";
+        return;
+    }
+    qDebug() << "成功打开 pcap 文件:" << filePath;
+    qDebug() << "文件标识: 0x" << QString::number(fileHeader.magic, 16);
+    qDebug() << "版本: " << fileHeader.versionMajor << "." << fileHeader.versionMinor;
+    qDebug() << "最大捕获长度: " << fileHeader.snapLen << " 字节";
+    qDebug() << "链路类型: " << fileHeader.linkType;
+    // 读取并显示数据包
+    int packetCount = 0;
+    while (!file.atEnd()) {
+        PcapPacketHeader packetHeader;
+        if (file.read(reinterpret_cast<char*>(&packetHeader), sizeof(PcapPacketHeader)) != sizeof(PcapPacketHeader)) {
+            qDebug() << "读取数据包头失败";
+            break;
+        }
+
+        QByteArray packetData = file.read(packetHeader.capLen);
+        if (packetData.size() != static_cast<int>(packetHeader.capLen)) {
+            qDebug() << "读取数据包内容失败";
+            break;
+        }
+
+        qDebug() << "读取";
+
+        // 解析以太网帧
+        const EthernetHeader *eth;
+        qDebug() << "以太网1 " << eth->destMac << eth->srcMac << eth->etherType;
+        eth = reinterpret_cast<const EthernetHeader *>(packetData.constData());
+        qDebug() << "以太网2 " << eth->destMac << eth->srcMac << eth->etherType;
+        if (ntohs(eth->etherType) != 0x0800) continue; // 仅处理 IPv4
+
+        // 解析 IPv4 头
+        const IPv4Header *ip = reinterpret_cast<const IPv4Header *>(packetData.constData() + sizeof(EthernetHeader));
+        qDebug() << "ip "<< ip->srcIP << ip->destIP;
+        if (ip->protocol != 6) continue; // 仅处理 TCP（协议号 6）
+
+        // 解析 TCP 头
+        int ipHeaderSize = (ip->ihl) * 4;
+
+        const TCPHeader *tcp = reinterpret_cast<const TCPHeader *>(packetData.constData() + sizeof(EthernetHeader) + ipHeaderSize);
+        qDebug() << "tcp " << tcp->srcPort << tcp->destPort;
+        // 提取 TCP 标志位
+        uint8_t flags = tcp->flags;
+        uint16_t srcPort = ntohs(tcp->srcPort);
+        uint16_t destPort = ntohs(tcp->destPort);
+
+        // 转换时间戳
+         QDateTime timestamp = QDateTime::fromSecsSinceEpoch(packetHeader.tsSec);
+         QString formattedTime = timestamp.toString("yyyy-MM-dd HH:mm:ss");
+
+        // 筛选 TCP 握手（SYN, SYN-ACK, ACK）和挥手（FIN, FIN-ACK, ACK）
+        if (flags & 0x02) { // SYN
+            qDebug() << formattedTime << "握手 SYN 发送 - 源端口:" << srcPort << "目标端口:" << destPort;
+        }
+        if ((flags & 0x12) == 0x12) { // SYN-ACK
+            qDebug() << formattedTime << "握手 SYN-ACK 回复 - 源端口:" << srcPort << "目标端口:" << destPort;
+        }
+        if (flags == 0x10) { // ACK
+            qDebug() << formattedTime << "握手 ACK 确认 - 源端口:" << srcPort << "目标端口:" << destPort;
+        }
+        if (flags & 0x01) { // FIN
+            qDebug() << formattedTime << "挥手 FIN 发送 - 源端口:" << srcPort << "目标端口:" << destPort;
+        }
+        if ((flags & 0x11) == 0x11) { // FIN-ACK
+            qDebug() << formattedTime << "挥手 FIN-ACK 确认 - 源端口:" << srcPort << "目标端口:" << destPort;
+        }
+
+
+
+
+        QString dataPack = "数据包 " + QString::number(++packetCount) + "，时间戳: " + formattedTime
+                  + "." + QString::number(packetHeader.tsUsec) + "，长度: " + QString::number(packetHeader.capLen) + " 字节";
+
+        ui->listWidget_func->addItem(dataPack);
+        ui->plainTextEdit_4->appendPlainText(dataPack);
+
+        printHex(packetData); // 以十六进制输出数据包内容
+        ui->plainTextEdit_4->appendPlainText("--------------------------------------------------------------------------------------------------");
+    }
+*/
+    qDebug() << "文件读取完成！";
+    file.close();
+}

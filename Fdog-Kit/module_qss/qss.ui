@@ -82,6 +82,9 @@ QScrollBar::up-arrow:vertical {
    </property>
    <item>
     <widget class="QStackedWidget" name="stackedWidget_2">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="page_74">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
