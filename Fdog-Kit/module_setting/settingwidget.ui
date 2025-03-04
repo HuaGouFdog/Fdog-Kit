@@ -558,7 +558,7 @@ QToolButton:checked {
             <string>  功能配置</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../images.qrc">
              <normaloff>:/module_setting/images/light/feature-light.png</normaloff>:/module_setting/images/light/feature-light.png</iconset>
            </property>
            <property name="iconSize">
@@ -2424,7 +2424,7 @@ QScrollBar::up-arrow:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>579</width>
+                  <width>264</width>
                   <height>770</height>
                  </rect>
                 </property>
@@ -9338,6 +9338,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
+  <include location="../images.qrc"/>
   <include location="../lib.qrc"/>
  </resources>
  <connections/>

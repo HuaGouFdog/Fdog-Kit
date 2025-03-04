@@ -46,12 +46,13 @@ public:
     explicit sshHandleExec(QObject *parent = nullptr);
     ~sshHandleExec();
     void getServerInfo();
-    QString commondExec(QString commond);
 signals:
     void send_getServerInfo(ServerInfoStruct serverInfo);
+    void send_execCommand(QString command);
     void send_init(bool isok);
 public slots:
-    void init(int connrectType, QString host, QString port, QString username, QString password);
+    void init(int connrectType, QString host, QString port, QString username, QString password, QString command);
+    QString commondExec(QString commond);
 private:
     LIBSSH2_SESSION *session_exec = nullptr; //exec session
     LIBSSH2_CHANNEL *channel_exec = nullptr; //exec channel

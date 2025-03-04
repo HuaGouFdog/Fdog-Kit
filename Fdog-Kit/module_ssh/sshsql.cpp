@@ -140,6 +140,7 @@ connnectInfoStruct sshsql::ssh_getSSHInfoByName(QString name) {
 
 void sshsql::ssh_insertSSHInfo(connnectInfoStruct cInfoStruct)
 {
+    cInfoStruct.group = "默认";
     QSqlQuery sqlQuery(database_ssh);
     sqlQuery.prepare("INSERT INTO TB_SSH_INFO VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
     sqlQuery.addBindValue(cInfoStruct.name);

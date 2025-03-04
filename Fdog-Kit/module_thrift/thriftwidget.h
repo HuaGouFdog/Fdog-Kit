@@ -21,6 +21,8 @@
 #include <QThreadPool>
 #include <QListWidgetItem>
 #include <QMutex>
+#include "module_ssh/sshsql.h"
+#include "module_ssh/sshhandle.h"
 #include "prefabricatedata.h"
 //请求类型
 #define THRIFT_CALL        "80010001"
@@ -579,6 +581,16 @@ private slots:
 
     void rece_updateMouseStyle();
 
+    void on_toolButton_capturePackage_clicked();
+
+    void rece_execCommand(QString data);
+
+    void rece_ssh_exec_init(bool isok);
+
+    void printHex(const QByteArray &data);
+
+    void on_toolButton_inportpcap_clicked();
+
 public:
     QVector<QString> dataList;
 private:
@@ -601,6 +613,9 @@ private:
     QChartView *chartView = nullptr;
     QChart *chart = nullptr;
     prefabricatedata * preData;
+    sshsql * db;
+    QThread * threadExec;
+    sshHandleExec * sshExec;
 };
 
 Q_DECLARE_METATYPE(QVector<uint8_t>);
@@ -704,6 +719,8 @@ public:
     qint64 elapsedMillisecondsAll = 0;
     int connectTimeOut_ = 0;
     int requestTimeOut_ = 0;
+
+
     
 };
 

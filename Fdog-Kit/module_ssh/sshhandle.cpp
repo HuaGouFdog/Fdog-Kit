@@ -251,190 +251,6 @@ void sshhandle::channel_read(QString command)
 {
 
 }
-
-// void sshhandle::getServerInfo()
-// {
-//     //qDebug() << "getServerInfo";
-//     ServerInfoStruct serverInfo;
-//     QString commond;
-//     QString data;
-//     //获取服务器IP
-
-//     commond = "hostname -I";
-//     QStringList dataList = commondExec(commond).split(" ");
-//     serverInfo.ip = "IP " + dataList[0];
-
-//     commond = "top -n 1 -b | head -n 5";
-//     QStringList dataList2 = commondExec(commond).split("\n");
-//     //qDebug() << "top =" << dataList2;
-
-//     QRegExp reTime("up ((\\d+) days,)?\\s*(\\d+:\\d+)*\\s*(min)*");
-//     if (reTime.indexIn(dataList2[0]) != -1) {
-//         //qDebug() << "运行时间:" << reTime.cap(2); //天
-//         //qDebug() << "运行时间:" << reTime.cap(3); //时间
-//         //qDebug() << "运行时间:" << reTime.cap(4); //小时或者分钟 没有就是小时
-//         if (reTime.cap(2) != "") {
-//             serverInfo.runTime = "运行 " + reTime.cap(2) + "天";
-//         } else if (reTime.cap(3) != "" && reTime.cap(4) != "") {
-//             serverInfo.runTime = "运行 " + reTime.cap(3) + " " + reTime.cap(4);
-//         } else if (reTime.cap(3) != "") {
-//             serverInfo.runTime = "运行 " + reTime.cap(3);
-//         }
-//     } else {
-//         qDebug() << "找不到运行时间.";
-//     }
-
-//     // 提取当前用户数
-//     QRegExp reUsers("(\\d+) user");
-//     if (reUsers.indexIn(dataList2[0]) != -1) {
-//         QString users = reUsers.cap(1);
-//         //qDebug() << "当前用户数:" << users;
-//         serverInfo.loginCount = "终端用户 " + reUsers.cap(1);
-//     } else {
-//         qDebug() << "未找到当前用户数.";
-//     }
-
-//     // 提取负载
-//     QRegExp reLoad("load average: ([\\d.]+), ([\\d.]+), ([\\d.]+)");
-//     if (reLoad.indexIn(dataList2[0]) != -1) {
-//         QString load1 = reLoad.cap(1);
-//         QString load2 = reLoad.cap(2);
-//         QString load3 = reLoad.cap(3);
-//         //qDebug() << "负载:" << load1 << load2 << load3;
-//         serverInfo.load = "负载 " + reLoad.cap(1) + ", " + reLoad.cap(2) + ", " + reLoad.cap(3);
-//     } else {
-//         qDebug() << "未找到负载.";
-//     }
-
-
-//     // 提取cpu
-//     QRegExp recpu("(\\d+.\\d+) id");
-//     if (recpu.indexIn(dataList2[2]) != -1) {
-//         QString cpu1 = recpu.cap(1);
-//         serverInfo.cpuUseRate = QString::number((int)(100.00 - recpu.cap(1).toDouble()));
-//         //qDebug() << "cpu:" << serverInfo.cpuUseRate;
-//     } else {
-//         qDebug() << "未找到cpu.";
-//     }
-
-//     //核数
-//     commond = "grep 'physical id' /proc/cpuinfo | uniq | wc -l";
-//     QStringList phy = commondExec(commond).split("\n");
-//     //qDebug() << "核数 " << phy[0];
-//     //线程数
-//     commond = "grep 'processor' /proc/cpuinfo | wc -l";
-//     QStringList pro = commondExec(commond).split("\n");
-//     //qDebug() << "线程数 " << pro[0];
-
-//     serverInfo.cpuInfo = "cpu信息 " + phy[0] + "核" + pro[0] + "线程";
-
-//     //提取io
-//     QRegExp reio("(\\d+.\\d+) wa");
-//     if (reio.indexIn(dataList2[2]) != -1) {
-//         QString io1 = reio.cap(1);
-
-//         serverInfo.diskUseRate = QString::number(((int)reio.cap(1).toDouble()));
-//         //qDebug() << "io:" << serverInfo.diskUseRate;
-//     } else {
-//         qDebug() << "未找到io.";
-//     }
-
-//     QRegExp reMem("KiB Mem\\s*:\\s*(\\d+) total,\\s*(\\d+) free,\\s*(\\d+) used,\\s*(\\d+) buff/cache");
-//     if (reMem.indexIn(dataList2[3]) != -1) {
-//         QString mem1 = reMem.cap(1);
-//         QString mem2 = reMem.cap(2);
-//         QString mem3 = reMem.cap(3);
-//         QString mem4 = reMem.cap(4);
-//         //qDebug() << "内存:" << mem1 << " " << mem2 << " " << mem3 << " " << mem4;
-//         serverInfo.memUseRate = QString::number((int)(reMem.cap(2).toDouble() / reMem.cap(1).toDouble() * 100));
-//         //qDebug() << "内存:" << serverInfo.memUseRate;
-
-//         double mem_m = reMem.cap(1).toDouble() / 1024;
-//         double mem_g =0.0;
-//         if (mem_m >= 1024) {
-//             mem_g = mem_m / 1024;
-//             serverInfo.memUse = "/" + QString::number(mem_g, 'f', 1) + "G";
-//         } else {
-//             serverInfo.memUse = "/" + QString::number(mem_m, 'f', 1) + "M";
-//         }
-
-//         double mem_mf = (reMem.cap(2).toDouble()) / 1024;
-//         double mem_gf =0.0;
-//         if (mem_mf >= 1024) {
-//             mem_gf = mem_mf / 1024;
-//             serverInfo.memUse = QString::number(mem_gf, 'f', 1) + "G" + serverInfo.memUse;
-//         } else {
-//             serverInfo.memUse = QString::number(mem_mf, 'f', 1) + "M" + serverInfo.memUse;
-//         }
-//         //qDebug() << "内存总共" << mem_g << "G";
-//         //qDebug() << "当前可用" << mem_gf << "G";
-//     } else {
-//         qDebug() << "未找到内存.";
-//     }
-
-//     QRegExp reSwap("KiB Swap\\s*:\\s*(\\d+) total,\\s*(\\d+) free,\\s*(\\d+) used.\\s*(\\d+) avail Mem");
-//     if (reSwap.indexIn(dataList2[4]) != -1) {
-//         QString swap1 = reSwap.cap(1);
-//         QString swap2 = reSwap.cap(2);
-//         QString swap3 = reSwap.cap(3);
-//         QString swap4 = reSwap.cap(4);
-//         //qDebug() << "交换:" << swap1 << " " << swap2 << " " << swap3 << " " << swap4;
-//         serverInfo.swapUseRate = QString::number(100 - (int)(reSwap.cap(2).toDouble() / reSwap.cap(1).toDouble() * 100));
-//         //qDebug() << "交换:" << serverInfo.swapUseRate;
-
-//         double swap_m = reSwap.cap(1).toDouble() / 1024;
-//         double swap_g =0.0;
-//         if (swap_m >= 1024) {
-//             swap_g = swap_m / 1024;
-//             serverInfo.swapUse = "/" + QString::number(swap_g, 'f', 1) + "G";
-//         } else {
-//             serverInfo.swapUse = "/" + QString::number(swap_m, 'f', 1) + "M";
-//         }
-
-//         double swap_mf = (reSwap.cap(1).toDouble() - reSwap.cap(2).toDouble()) / 1024;
-//         double swap_gf =0.0;
-//         if (swap_mf >= 1024) {
-//             swap_gf = swap_mf / 1024;
-//             serverInfo.swapUse = QString::number(swap_gf, 'f', 1) + "G" + serverInfo.swapUse;
-//         } else {
-//             serverInfo.swapUse = QString::number(swap_mf, 'f', 1) + "M" + serverInfo.swapUse;
-//         }
-
-//     } else {
-//         //qDebug() << "未找到交换.";
-//     }
-
-//     //获取服务器信息
-//     commond = "uname -p -i -o";
-//     QStringList dataList5 = commondExec(commond).split(" ");
-//     serverInfo.architecture = "系统架构 " + dataList5[0];
-
-//     emit send_getServerInfo(serverInfo);
-//     return;
-// }
-
-// void sshhandle::rece_getServerInfo(ServerInfoStruct serverInfo)
-// {
-//     //qDebug() << "收到send_getServerInfo";
-//     emit send_getServerInfo(serverInfo);
-// }
-
-//QString sshhandle::commondExec(QString commond)
-//{
-//    channel_exec = libssh2_channel_open_session(session_exec);
-//    int rc = libssh2_channel_exec(channel_exec, commond.toStdString().c_str());
-//    if (rc != 0) {
-//        qDebug() << "libssh2_channel_exec faild commond =" << commond;
-//        return "";
-//    }
-
-//    char buffer[1024] = {0};
-//    int bytesRead = libssh2_channel_read(channel_exec, buffer, sizeof(buffer) - 1);
-//    buffer[bytesRead] = '\0';
-//    //qDebug() << "getServerInfo = " << buffer;
-//    return buffer;
-//}
-
 sshHandleExec::sshHandleExec(QObject *parent)
 {
 
@@ -457,9 +273,9 @@ sshHandleExec::~sshHandleExec() {
 }
 
 
-void sshHandleExec::init(int connrectType, QString host, QString port, QString username, QString password)
-{
-    //qDebug() << "执行sshHandleExec init";
+void sshHandleExec::init(int connrectType, QString host, QString port, QString username, QString password, QString command)
+{   
+    //connrectType 1获取服务器信息 2执行命令
     int rc;
 
     // 创建套接字并建立连接
@@ -510,17 +326,23 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
     //qDebug() << "执行sshHandleExec init3";
 
     channel_exec = libssh2_channel_open_session(session_exec);
-    while(1) {
-        if (isBreak) {
-            qDebug() << "sshHandleExec被析构";
-            isOK = true;
-            return;
-        }
-        getServerInfo();
-        QCoreApplication::processEvents();
-        QThread::msleep(1000);
-    }
 
+    if (connrectType == 1) {
+        while(1) {
+            if (isBreak) {
+                qDebug() << "sshHandleExec被析构";
+                isOK = true;
+                return;
+            }
+            getServerInfo();
+            QCoreApplication::processEvents();
+            QThread::msleep(1000);
+        }
+    } else if (connrectType == 2) {
+        qDebug() << "执行command = " << command;
+        QString data = commondExec(command);
+        send_execCommand(data);
+    }
     //qDebug() << "执行sshHandleExec init 完成";
     emit send_init(true);
 }
@@ -687,6 +509,7 @@ void sshHandleExec::getServerInfo()
 
 QString sshHandleExec::commondExec(QString commond)
 {
+    qDebug() << "commondExec commond = " << commond;
     channel_exec = libssh2_channel_open_session(session_exec);
     int rc = libssh2_channel_exec(channel_exec, commond.toStdString().c_str());
     if (rc != 0) {
@@ -697,7 +520,7 @@ QString sshHandleExec::commondExec(QString commond)
     char buffer[1024] = {0};
     int bytesRead = libssh2_channel_read(channel_exec, buffer, sizeof(buffer) - 1);
     buffer[bytesRead] = '\0';
-    //qDebug() << "getServerInfo = " << buffer;
+    qDebug() << "commondExec Info = " << buffer;
     libssh2_channel_close(channel_exec);
     return buffer;
 }

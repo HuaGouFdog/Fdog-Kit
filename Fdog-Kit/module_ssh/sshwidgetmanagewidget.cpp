@@ -34,7 +34,7 @@ sshwidgetmanagewidget::sshwidgetmanagewidget(config * confInfo, QWidget *parent)
     db = new sshsql();
 
     QVector<connnectInfoStruct> cInfoStructList = db->ssh_getAllSSHInfo();
-    qDebug() << "sshinfo 3 size = " << cInfoStructList.length();
+    qDebug() << "sshinfo size = " << cInfoStructList.length();
     //isFirst = true;
     //创建快速连接
     //创建快速连接

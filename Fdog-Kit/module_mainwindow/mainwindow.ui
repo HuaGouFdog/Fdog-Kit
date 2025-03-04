@@ -293,6 +293,9 @@ QToolButton:hover {
            <height>30</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>隐藏侧边栏</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">QToolButton {
     color: rgb(217, 236, 237);
@@ -393,7 +396,7 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_shell">
+        <widget class="QToolButton" name="toolButton_side_zookeeper">
          <property name="minimumSize">
           <size>
            <width>50</width>
@@ -413,17 +416,17 @@ QToolButton:hover {
           </font>
          </property>
          <property name="toolTip">
-          <string>终端连接</string>
+          <string>zk连接</string>
          </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>终端</string>
+          <string>zk</string>
          </property>
          <property name="icon">
           <iconset resource="../images.qrc">
-           <normaloff>:/module_mainwindow/images/light/terminal-light.png</normaloff>:/module_mainwindow/images/light/terminal-light.png</iconset>
+           <normaloff>:/module_mainwindow/images/light/zookeeper-light.png</normaloff>:/module_mainwindow/images/light/zookeeper-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -487,53 +490,6 @@ QToolButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_side_zookeeper">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>OPPOSans B</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>zk连接</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>zk</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/module_mainwindow/images/light/zookeeper-light.png</normaloff>:/module_mainwindow/images/light/zookeeper-light.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>25</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="toolButton_side_mysql">
          <property name="minimumSize">
           <size>
@@ -568,6 +524,53 @@ QToolButton:hover {
          <property name="icon">
           <iconset resource="../images.qrc">
            <normaloff>:/module_mainwindow/images/light/mysql-light.png</normaloff>:/module_mainwindow/images/light/mysql-light.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton_side_shell">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>OPPOSans B</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>终端连接</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>终端</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../images.qrc">
+           <normaloff>:/module_mainwindow/images/light/terminal-light.png</normaloff>:/module_mainwindow/images/light/terminal-light.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -2264,6 +2267,9 @@ p, li { white-space: pre-wrap; }
                   <kerning>true</kerning>
                  </font>
                 </property>
+                <property name="toolTip">
+                 <string>隐藏侧边栏</string>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(255, 255, 255);
 </string>
@@ -2306,8 +2312,8 @@ p, li { white-space: pre-wrap; }
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../lib.qrc"/>
   <include location="../images.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>
