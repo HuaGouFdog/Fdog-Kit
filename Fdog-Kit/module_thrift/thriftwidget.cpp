@@ -1975,6 +1975,7 @@ void thriftwidget::writeTBinaryValueSize(QStringList &dataList, QString value)
 
 void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
 {
+    //处理数据的时候要考虑请求的函数入参可能不止一个，但返回肯定是一个。
     QString label_headers;
     QString temp;
     //数据长度
@@ -1984,6 +1985,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
         //什么都不做
     } else {
+        //这块有问题，但是刚好不影响，前两个字节是tcp的，刚好是0000
         message_len = data.mid(0, 8);
         temp = temp + addColorHtml(message_len, sourceColorMap[THRIFT_MESSAGE_LENGTH]);
         headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
@@ -2032,16 +2034,39 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     //qDebug() << "流水号 = " << headers_data_sn;
     //label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
 
+    QString paramType;
+    if (type_data == "80010001") {
+        for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
+            paramType = paramType + funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType + " "; 
+        }
+    } else if (type_data == "80010002"){
+        paramType = funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType;
+    }
 
-    label_headers = label_headers + "返回值类型:" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
+    label_headers = label_headers + "入参类型:" + paramType +  "  返回值类型:" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
     ui->label_time->clear();
     ui->label_headers->setText(label_headers);
+
+    QStringList paramTypeList;
+    if (type_data == "80010001") {
+        for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
+            if (baseType.contains(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType)) {
+                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramName); 
+            } else {
+                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType); 
+            }
+        }
+    }
     //数据
     //编号两位数  序号4位数 数据
     //data = temp + data;
     //for(int i = 0; i < = 500; i++) {
     //qDebug() << "数据= " << data;
     if (type_data == "80010001" || type_data == "80010002") {
+        if (type_data == "80010001") {
+            textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+        }
+        int sum = 0;
         while (true) {
 
             if (data.length() <= 0) {
@@ -2066,33 +2091,33 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
             //qDebug() << "handleMessage isEnd = " << isEnd;
             if (value_type == "02") {
                 //bool
-                temp = temp + handleBool(textEdit_data, data, isEnd);
+                temp = temp + handleBool(textEdit_data, data, isEnd, paramTypeList[sum]);
             } else if (value_type == "03") {
                 //byte
                 //qDebug() << "走这里1";
-                temp = temp + handleByte(textEdit_data,data, isEnd);
+                temp = temp + handleByte(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "04") {
                 //double
-                temp = temp + handleDouble(textEdit_data,data, isEnd);
+                temp = temp + handleDouble(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "06") {
                 //i16
-                temp = temp + handleI16(textEdit_data,data, isEnd);
+                temp = temp + handleI16(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "08") {
                 //i32
-                temp = temp + handleI32(textEdit_data,data, isEnd);
+                temp = temp + handleI32(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0a") {
                 //i64
-                temp = temp + handleI64(textEdit_data,data, isEnd);
+                temp = temp + handleI64(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0b") {
                 //string
-                temp = temp + handleString(textEdit_data,data, isEnd);
+                temp = temp + handleString(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0c") {
                 //struct
                 //qDebug() << "进入struct";
                 
                 if (type_data == "80010001") {
-                    temp = temp + handleStruct(textEdit_data,data, isEnd, funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                    temp = temp + handleStruct(textEdit_data,data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
                 } else {
                     temp = temp + handleStruct(textEdit_data,data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
                     funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
@@ -2104,8 +2129,8 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
                 //map
                 textEdit_data->append(addColorBracketsHtml("{\"map\":"));
                 if (type_data == "80010001") {
-                    temp = temp + handleMap(textEdit_data, data, isEnd, funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
-                        funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                    temp = temp + handleMap(textEdit_data, data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
                 } else {
                     temp = temp + handleMap(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
                         funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
@@ -2115,8 +2140,8 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
                 //set
                 textEdit_data->append(addColorBracketsHtml("{\"set\":"));
                 if (type_data == "80010001") {
-                    temp = temp + handleList(textEdit_data, data, isEnd, funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                    temp = temp + handleList(textEdit_data, data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
                 } else {
                     temp = temp + handleList(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
                     funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
@@ -2127,14 +2152,18 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
                 //list
                 textEdit_data->append(addColorBracketsHtml("{\"list\":"));
                 if (type_data == "80010001") {
-                    temp = temp + handleList(textEdit_data, data, isEnd, funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                    temp = temp + handleList(textEdit_data, data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
                 } else {
                     temp = temp + handleList(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
                     funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
                 }
                 textEdit_data->append(addColorBracketsHtml("}"));
             }
+            sum++;
+        }
+        if (type_data == "80010001") {
+            textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
         }
     } else if (type_data == "80010003") {
         //读取异常数据
@@ -2365,6 +2394,9 @@ QString thriftwidget::handleI64(QTextEdit * textEdit_data, QString &str, QString
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
+
+
+
 QString thriftwidget::handleString(QTextEdit * textEdit_data, QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     //长度
@@ -2387,6 +2419,8 @@ QString thriftwidget::handleString(QTextEdit * textEdit_data, QString &str, QStr
     if (isLastEnd) {
         end = "";
     }
+
+    //{"verifiedInfo":{"region":"CN"},"commInfo":{"authority":0,"manager":0}}  这个格式化会出问题，需要转移
 
     if (resType == THRIFT_REPLY) {
         if (paramName == "fdog_list" || paramName == "fdog_set") {
@@ -3063,6 +3097,10 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
         //fileContent.replace(" ","");
         //qDebug() << " fileContent_temp = " << fileContent_temp;
         //处理多的空格
+        while(fileContent_temp.contains(" void ")) {
+            fileContent_temp.replace(" void ", "  ");
+        }
+
         while(fileContent_temp.contains("  ")) {
             fileContent_temp.replace("  ", " ");
         }
@@ -5284,8 +5322,39 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
         if (protocol == 6) { // TCP
             QString data_ = parseTCPHeader(packetData, offset, number++, entry);
             entry.time = formattedTime + "." + QString::number(packetHeader.ts_usec);      // 时间
-            entry.info = "默认";      // 信息
-            //ui->listWidget_func->addItem(QString::number(number++) + " " + formattedTime + "." + QString::number(packetHeader.ts_usec) + "  " + data_);
+            //尝试解析函数
+            QString x = dumpData[number-1];
+            x.replace(" ","");
+            x.replace("\n","");
+            entry.info = "TCP交互";  // 信息
+            //获取消息长度
+            QString message_len = x.mid(0, 8);
+            QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
+            //消息类型
+            QString type_data = x.mid(8, 8);
+            if (type_data == "80010001") {
+                entry.info = "CALL";
+            } else if (type_data == "80010002") {
+                entry.info = "REPLY";
+            } else if (type_data == "80010003") {
+                entry.info = "EXCEPTION";
+            } else if (type_data == "80010004") {
+                entry.info = "ONEWAY";
+            } else {
+                entry.info = "TCP";
+            }
+            //方法长度名
+            QString func_len = x.mid(16, 8);
+            QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
+            bool ok;
+            int len = func_len.toInt(&ok, 16) * 2;
+            //需要转换为长度单位
+            //方法名
+            QString fun_name = x.mid(24, len);
+            if (entry.info != "TCP") {
+                entry.info = entry.info + "  " + hexToString(nullptr,fun_name); + "  " + headers_data_length;
+            }
+            
         }
         tableData.append(entry);
     }
@@ -5293,6 +5362,9 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     file.close();
 
     for (int i = 0; i < tableData.size(); ++i) {
+        // if (tableData[i].info == "TCP") {
+        //     continue;
+        // }
         ui->tableWidget_func->insertRow(i);
         ui->tableWidget_func->setItem(i, 0, new QTableWidgetItem(QString::number(tableData[i].index)));
         ui->tableWidget_func->setItem(i, 1, new QTableWidgetItem(tableData[i].time));
