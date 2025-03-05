@@ -144,8 +144,8 @@ QMap<int, QColor *> sourceColorMap {
     {THRIFT_MESSAGE_TYPE_EXCEPTION, new QColor(255, 170, 0)},
     {THRIFT_MESSAGE_TYPE_ONEWAY, new QColor(255, 170, 0)},
     {THRIFT_FUNC_LENGTH, new QColor(255,170,130)},
-    {THRIFT_FUNC_NAME, new QColor(80,80,80)},
-    {THRIFT_SN, new QColor(85,0,130)},
+    {THRIFT_FUNC_NAME, new QColor(221,101,71)},
+    {THRIFT_SN, new QColor(82,222,217)},
     {THRIFT_BOOL, new QColor(0,85,0)},
     {THRIFT_BYTE, new QColor(80,10,10)},
     {THRIFT_I16, new QColor(0,170,255)},
@@ -159,7 +159,7 @@ QMap<int, QColor *> sourceColorMap {
     {THRIFT_LIST, new QColor(85,170,130)},
     {THRIFT_END, new QColor(0,0,0)},
     {THRIFT_START, new QColor(0,0,0)},
-    {THRIFT_VALUE, new QColor(255, 0, 0)},
+    {THRIFT_VALUE, new QColor(170, 255, 255)},
     {THRIFT_VALUE_SN, new QColor(0, 170, 0)},
 };
 
@@ -1366,7 +1366,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
         QByteArray responseData = reply->readAll();
         QString hexString = responseData.toHex();
         //qDebug() << "响应:" << hexString;
-        handleHexData(hexString);
+        handleHexData(ui->textEdit_data, ui->textEdit, hexString);
         ui->stackedWidget->setCurrentIndex(0);
         //解析数据
     }
@@ -1973,8 +1973,9 @@ void thriftwidget::writeTBinaryValueSize(QStringList &dataList, QString value)
     string2stringList(lenData);
 }
 
-void thriftwidget::handleMessage(QString &data)
+void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
 {
+    //处理数据的时候要考虑请求的函数入参可能不止一个，但返回肯定是一个。
     QString label_headers;
     QString temp;
     //数据长度
@@ -1984,6 +1985,7 @@ void thriftwidget::handleMessage(QString &data)
     if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
         //什么都不做
     } else {
+        //这块有问题，但是刚好不影响，前两个字节是tcp的，刚好是0000
         message_len = data.mid(0, 8);
         temp = temp + addColorHtml(message_len, sourceColorMap[THRIFT_MESSAGE_LENGTH]);
         headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
@@ -2022,7 +2024,7 @@ void thriftwidget::handleMessage(QString &data)
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
     //qDebug() << "方法名 = " << hexToString(fun_name);
-    label_headers = label_headers + "接口名:" + hexToString(fun_name) + "   ";
+    label_headers = label_headers + "接口名:" + hexToString(textEdit_data,fun_name) + "   ";
     data = data.mid(len);
     //流水号
     QString func_sn = data.mid(0, 8);
@@ -2032,15 +2034,39 @@ void thriftwidget::handleMessage(QString &data)
     //qDebug() << "流水号 = " << headers_data_sn;
     //label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
 
+    QString paramType;
+    if (type_data == "80010001") {
+        for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
+            paramType = paramType + funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType + " "; 
+        }
+    } else if (type_data == "80010002"){
+        paramType = funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType;
+    }
 
-    label_headers = label_headers + "返回值类型:" + funcParamOutMap.value(hexToString(fun_name)).value(1).paramType + "   ";
+    label_headers = label_headers + "入参类型:" + paramType +  "  返回值类型:" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
+    ui->label_time->clear();
     ui->label_headers->setText(label_headers);
+
+    QStringList paramTypeList;
+    if (type_data == "80010001") {
+        for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
+            if (baseType.contains(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType)) {
+                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramName); 
+            } else {
+                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType); 
+            }
+        }
+    }
     //数据
     //编号两位数  序号4位数 数据
     //data = temp + data;
     //for(int i = 0; i < = 500; i++) {
     //qDebug() << "数据= " << data;
-    if (type_data == "80010002") {
+    if (type_data == "80010001" || type_data == "80010002") {
+        if (type_data == "80010001") {
+            textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+        }
+        int sum = 0;
         while (true) {
 
             if (data.length() <= 0) {
@@ -2065,54 +2091,79 @@ void thriftwidget::handleMessage(QString &data)
             //qDebug() << "handleMessage isEnd = " << isEnd;
             if (value_type == "02") {
                 //bool
-                temp = temp + handleBool(data, isEnd);
+                temp = temp + handleBool(textEdit_data, data, isEnd, paramTypeList[sum]);
             } else if (value_type == "03") {
                 //byte
                 //qDebug() << "走这里1";
-                temp = temp + handleByte(data, isEnd);
+                temp = temp + handleByte(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "04") {
                 //double
-                temp = temp + handleDouble(data, isEnd);
+                temp = temp + handleDouble(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "06") {
                 //i16
-                temp = temp + handleI16(data, isEnd);
+                temp = temp + handleI16(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "08") {
                 //i32
-                temp = temp + handleI32(data, isEnd);
+                temp = temp + handleI32(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0a") {
                 //i64
-                temp = temp + handleI64(data, isEnd);
+                temp = temp + handleI64(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0b") {
                 //string
-                temp = temp + handleString(data, isEnd);
+                temp = temp + handleString(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0c") {
                 //struct
                 //qDebug() << "进入struct";
-                temp = temp + handleStruct(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
+                
+                if (type_data == "80010001") {
+                    temp = temp + handleStruct(textEdit_data,data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
+                } else {
+                    temp = temp + handleStruct(textEdit_data,data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                }
                 //固定1
                 //记得处理请求结束
                 break;
             } else if (value_type == "0d") {
                 //map
-                
-                ui->textEdit_data->append(addColorBracketsHtml("{\"map\":"));
-                temp = temp + handleMap(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
-                ui->textEdit_data->append(addColorBracketsHtml("}"));
+                textEdit_data->append(addColorBracketsHtml("{\"map\":"));
+                if (type_data == "80010001") {
+                    temp = temp + handleMap(textEdit_data, data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
+                } else {
+                    temp = temp + handleMap(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
+                        funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                }
+                textEdit_data->append(addColorBracketsHtml("}"));
             } else if (value_type == "0e") {
                 //set
-                ui->textEdit_data->append(addColorBracketsHtml("{\"set\":"));
-                temp = temp + handleList(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
-                ui->textEdit_data->append(addColorBracketsHtml("}"));
+                textEdit_data->append(addColorBracketsHtml("{\"set\":"));
+                if (type_data == "80010001") {
+                    temp = temp + handleList(textEdit_data, data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
+                } else {
+                    temp = temp + handleList(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                }
+
+                textEdit_data->append(addColorBracketsHtml("}"));
             } else if (value_type == "0f") {
                 //list
-                ui->textEdit_data->append(addColorBracketsHtml("{\"list\":"));
-                temp = temp + handleList(data, isEnd, funcParamOutMap.value(hexToString(fun_name)).value(1).paramType,
-                    funcParamOutMap.value(hexToString(fun_name)).value(1).paramName);
-                ui->textEdit_data->append(addColorBracketsHtml("}"));
+                textEdit_data->append(addColorBracketsHtml("{\"list\":"));
+                if (type_data == "80010001") {
+                    temp = temp + handleList(textEdit_data, data, isEnd, paramTypeList[sum],
+                        funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
+                } else {
+                    temp = temp + handleList(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
+                    funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
+                }
+                textEdit_data->append(addColorBracketsHtml("}"));
             }
+            sum++;
+        }
+        if (type_data == "80010001") {
+            textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
         }
     } else if (type_data == "80010003") {
         //读取异常数据
@@ -2127,11 +2178,11 @@ void thriftwidget::handleMessage(QString &data)
 
             QString isEnd = data.mid(0, 2);
             if (value_type == "0b") {
-                temp = temp + handleString(data, isEnd, THRIFT_EXCEPTION);
+                temp = temp + handleString(textEdit_data, data, isEnd, THRIFT_EXCEPTION);
 
             } else if (value_type == "08") {
                 //qDebug() << "剩下数据" << data;
-                temp = temp + handleI32(data, isEnd, THRIFT_EXCEPTION);
+                temp = temp + handleI32(textEdit_data, data, isEnd, THRIFT_EXCEPTION);
             }
         }
     }
@@ -2153,7 +2204,7 @@ QString thriftwidget::addColorHtml(QString str, QColor *fontCrl)
 QString thriftwidget::addColorFieldHtml(QString str)
 {
     //qDebug() << "addColorFieldHtml str = " << str;
-    QColor *fontCrl = new QColor(150, 40, 140);
+    QColor *fontCrl = new QColor(255, 255, 255);
     QByteArray array;
     array.append(fontCrl->red());
     array.append(fontCrl->green());
@@ -2188,7 +2239,7 @@ QString thriftwidget::addColorValueStrHtml(QString str)
 
 QString thriftwidget::addColorBracketsHtml(QString str)
 {
-    QColor *fontCrl = new QColor(35, 35, 35);
+    QColor *fontCrl = new QColor(255, 255, 255);
     QByteArray array;
     array.append(fontCrl->red());
     array.append(fontCrl->green());
@@ -2199,7 +2250,7 @@ QString thriftwidget::addColorBracketsHtml(QString str)
 }
 
 
-QString thriftwidget::handleBool(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
+QString thriftwidget::handleBool(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
@@ -2213,18 +2264,18 @@ QString thriftwidget::handleBool(QString &str, QString isEnd, QString paramName,
         end = "";
     }
     if (paramName == "fdog_list" || paramName == "fdog_set") {
-        ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else if (paramName != "") {
         qDebug() << "paramName1";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else {
         qDebug() << "paramName2";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"bool\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"bool\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     }
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleByte(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
+QString thriftwidget::handleByte(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
@@ -2239,18 +2290,18 @@ QString thriftwidget::handleByte(QString &str, QString isEnd, QString paramName,
         end = "";
     }
     if (paramName == "fdog_list" || paramName == "fdog_set") {
-        ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else if (paramName != "") {
         //qDebug() << "paramName1";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else {
         //qDebug() << "paramName2";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"byte\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"byte\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     }
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleDouble(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
+QString thriftwidget::handleDouble(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     //这个没处理
     QString value = str.mid(0, 16);
@@ -2259,7 +2310,7 @@ QString thriftwidget::handleDouble(QString &str, QString isEnd, QString paramNam
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
+QString thriftwidget::handleI16(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 4);
     str = str.mid(4);
@@ -2273,19 +2324,19 @@ QString thriftwidget::handleI16(QString &str, QString isEnd, QString paramName, 
         end = "";
     }
     if (paramName == "fdog_list" || paramName == "fdog_set") {
-        ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else if (paramName != "") {
         //qDebug() << "paramName1";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else {
         //qDebug() << "paramName2";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"i16\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"i16\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     }
 
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
+QString thriftwidget::handleI32(QTextEdit * textEdit_data, QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 8);
     str = str.mid(8);
@@ -2300,23 +2351,23 @@ QString thriftwidget::handleI32(QString &str, QString isEnd, QString resType, QS
 
     if (resType == THRIFT_REPLY) {
         if (paramName == "fdog_list" || paramName == "fdog_set") {
-            ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+            textEdit_data->append(addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
         } else if (paramName != "") {
             //qDebug() << "paramName1";
-            ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+            textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
         } else {
             //qDebug() << "paramName2";
-            ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"i32\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+            textEdit_data->append(addColorFieldHtml(getRetract() + "\"i32\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
         }
 
     } else if (resType == THRIFT_EXCEPTION) {
-        QString excType = hexToLongNumber(value);
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Type") + " : " + addColorValueNumHtml(ExceptionType.value(excType) + " (" + excType + ")"));
+        QString excType = hexToLongNumber(textEdit_data, value);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Type") + " : " + addColorValueNumHtml(ExceptionType.value(excType) + " (" + excType + ")"));
     }
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
+QString thriftwidget::handleI64(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     QString value = str.mid(0, 16);
     str = str.mid(16);
@@ -2331,19 +2382,22 @@ QString thriftwidget::handleI64(QString &str, QString isEnd, QString paramName, 
     }
     //qDebug() << "end =" << end << " isEnd = " << isEnd;
     if (paramName == "fdog_list" || paramName == "fdog_set") {
-            ui->textEdit_data->append(addColorValueNumHtml(hexToLongNumber(value)) + end);
+            textEdit_data->append(addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else if (paramName != "") {
         //qDebug() << "paramName1";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     } else {
         //qDebug() << "paramName2";
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"i64\"") + " : " + addColorValueNumHtml(hexToLongNumber(value)) + end);
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"i64\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
     }
 
     return addColorHtml(value, sourceColorMap[THRIFT_VALUE]);
 }
 
-QString thriftwidget::handleString(QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
+
+
+
+QString thriftwidget::handleString(QTextEdit * textEdit_data, QString &str, QString isEnd, QString resType, QString paramName, bool isHandEnd, bool isLastEnd)
 {
     //长度
     QString value = str.mid(0, 8);
@@ -2366,39 +2420,41 @@ QString thriftwidget::handleString(QString &str, QString isEnd, QString resType,
         end = "";
     }
 
+    //{"verifiedInfo":{"region":"CN"},"commInfo":{"authority":0,"manager":0}}  这个格式化会出问题，需要转移
+
     if (resType == THRIFT_REPLY) {
         if (paramName == "fdog_list" || paramName == "fdog_set") {
-            ui->textEdit_data->append(addColorValueStrHtml("\"" + hexToString(value2) + "\"") + end);
+            textEdit_data->append(addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
         } else if (paramName != "") {
             //qDebug() << "paramName1";
-            ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\"") + end);
+            textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
         } else {
             //qDebug() << "paramName2";
-            ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"string\"") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\"") + end);
+            textEdit_data->append(addColorFieldHtml(getRetract() + "\"string\"") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
         }
 
         temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     } else if (resType == THRIFT_EXCEPTION) {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Message") + " : " + addColorValueStrHtml("\"" + hexToString(value2) + "\""));
+        textEdit_data->append(addColorFieldHtml(getRetract() + "Exception Message") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\""));
         temp = temp + addColorHtml(value2, sourceColorMap[THRIFT_VALUE]);
     }
     return temp;
 }
 
-QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
+QString thriftwidget::handleStruct(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
 {
-    //qDebug() << " outType = " << outType;
+    qDebug() << " outType = " << outType;
     if (outType.contains(".")) {
         int index = outType.lastIndexOf(".");
         outType = outType.mid(index + 1);
         //qDebug() << "发现非本文件结构体，删除前缀后=" << outType;
     }
     if (outParam == "fdog_list" || outParam == "fdog_set") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
     } else if (outParam == "") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
     } else {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"")  + addColorBracketsHtml(":{"));
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"")  + addColorBracketsHtml(":{"));
     }
 
     retractNum++;
@@ -2411,7 +2467,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         //     break;
         // }
         if (str== "") {
-            ui->textEdit_data->append("struct类型数据结束------------");
+            textEdit_data->append("struct类型数据结束------------");
             break;
         }
         QString value_type = str.mid(0, 2);
@@ -2425,12 +2481,12 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
             retractNum--;
             isEnd = str.mid(0, 2);
             if (isEnd == "00") {
-                ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
+                textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
             } else {
                 if (retractNum == 0) {
-                    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
+                    textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
                 } else {
-                    ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "},"));
+                    textEdit_data->append(addColorBracketsHtml(getRetract() + "},"));
                 }
 
             }
@@ -2458,51 +2514,51 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
         if (value_type == "02") {
             //bool
             type_ = THRIFT_BOOL;
-            temp = temp + handleBool(str, isEnd, paramName_);
+            temp = temp + handleBool(textEdit_data, str, isEnd, paramName_);
         } else if (value_type == "03") {
             //byte
             type_ = THRIFT_BYTE;
-            temp = temp + handleByte(str, isEnd, paramName_);
+            temp = temp + handleByte(textEdit_data, str, isEnd, paramName_);
         } else if (value_type == "04") {
             //double
             type_ = THRIFT_DOUBLE;
-            temp = temp + handleDouble(str, isEnd, paramName_);
+            temp = temp + handleDouble(textEdit_data, str, isEnd, paramName_);
         } else if (value_type == "06") {
             //i16
             type_ = THRIFT_I16;
-            temp = temp + handleI16(str, isEnd, paramName_);
+            temp = temp + handleI16(textEdit_data, str, isEnd, paramName_);
         } else if (value_type == "08") {
             //i32
             type_ = THRIFT_I32;
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName_);
+            temp = temp + handleI32(textEdit_data, str, isEnd, THRIFT_REPLY, paramName_);
 
         } else if (value_type == "0a") {
             //i64
             type_ = THRIFT_I32;
             //qDebug() << "0a isEnd = "<< isEnd << " paramName_ = " << paramName_;
-            temp = temp + handleI64(str, isEnd, paramName_);
+            temp = temp + handleI64(textEdit_data, str, isEnd, paramName_);
         } else if (value_type == "0b") {
             //string
             type_ = THRIFT_STRING;
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName_);
+            temp = temp + handleString(textEdit_data, str, isEnd, THRIFT_REPLY, paramName_);
         } else if (value_type == "0c") {
             //struct
             type_ = THRIFT_STRUCT;
-            temp = temp + handleStruct(str, isEnd, paramType_, paramName_);
+            temp = temp + handleStruct(textEdit_data, str, isEnd, paramType_, paramName_);
         } else if (value_type == "0d") {
             //map
-            temp = temp + handleMap(str, isEnd, paramType_, paramName_);
+            temp = temp + handleMap(textEdit_data, str, isEnd, paramType_, paramName_);
             type_ = THRIFT_MAP;
         } else if (value_type == "0e") {
             //set
             type_ = THRIFT_SET;
-            temp = temp + handleSet(str, isEnd, paramType_, paramName_);
+            temp = temp + handleSet(textEdit_data, str, isEnd, paramType_, paramName_);
         } else if (value_type == "0f") {
             //list
             type_ = THRIFT_LIST;
             qDebug()<< "走到这里0f";
             //内部处理类型吧
-            temp = temp + handleList(str, isEnd, paramType_, paramName_);
+            temp = temp + handleList(textEdit_data, str, isEnd, paramType_, paramName_);
             //break;
         }
         sum++;
@@ -2510,7 +2566,7 @@ QString thriftwidget::handleStruct(QString &str, QString isEnd, QString outType,
     return temp;
 }
 
-QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
+QString thriftwidget::handleMap(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
 {
     qDebug() << "走这里handleMap isEnd = " << isEnd;
     qDebug() << "outType =" << outType;
@@ -2522,11 +2578,11 @@ QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QS
     qDebug() << "key = " << dataList[0];
     qDebug() << "value = " << dataList[1];
     if (outParam == "fdog_list" || outParam == "fdog_set") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else if (outParam == "") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
     }
     retractNum++;
     //值类型2
@@ -2552,88 +2608,88 @@ QString thriftwidget::handleMap(QString &str, QString isEnd, QString outType, QS
     qDebug() << "map len = " << len;
     for(int i = 1; i <= len; i++) {
         //处理key_value
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
-        handleMap_key(str, isEnd, key_type, temp, false);
-        handleMap_value(str, isEnd, value_type, temp, true);
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
+        handleMap_key(textEdit_data, str, isEnd, key_type, temp, false);
+        handleMap_value(textEdit_data, str, isEnd, value_type, temp, true);
         if (i != len) {
-            ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}") + ",");
+            textEdit_data->append(addColorBracketsHtml(getRetract() + "}") + ",");
         } else {
-            ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
+            textEdit_data->append(addColorBracketsHtml(getRetract() + "}"));
         }
     }
     retractNum--;
     isEnd = str.mid(0, 2);
     if (isEnd == "00") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
     } else {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
     }
     return temp;
 }
 
-void thriftwidget::handleMap_key(QString &str, QString isEnd, QString value_type, QString & temp, bool isHandEnd) {
+void thriftwidget::handleMap_key(QTextEdit * textEdit_data, QString &str, QString isEnd, QString value_type, QString & temp, bool isHandEnd) {
         QString paramName = "";
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleBool(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleByte(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleDouble(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleI16(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
+            temp = temp + handleI32(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleI64(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
+            temp = temp + handleString(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
         }
 }
 
-void thriftwidget::handleMap_value(QString &str, QString isEnd, QString value_type, QString & temp, bool isHandEnd) {
+void thriftwidget::handleMap_value(QTextEdit * textEdit_data, QString &str, QString isEnd, QString value_type, QString & temp, bool isHandEnd) {
         QString paramName = "";
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleBool(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleByte(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleDouble(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleI16(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
+            temp = temp + handleI32(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd, paramName, isHandEnd);
+            temp = temp + handleI64(textEdit_data, str, isEnd, paramName, isHandEnd);
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
+            temp = temp + handleString(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, isHandEnd);
         } else if (value_type == "0c") {
-            temp = temp + handleStruct(str, isEnd, value_type, paramName);
+            temp = temp + handleStruct(textEdit_data, str, isEnd, value_type, paramName);
         } else if (value_type == "0d") {
-            temp = temp + handleMap(str, isEnd, value_type, paramName);
+            temp = temp + handleMap(textEdit_data, str, isEnd, value_type, paramName);
         } else if (value_type == "0e") {
-            temp = temp + handleSet(str, isEnd, value_type, paramName);
+            temp = temp + handleSet(textEdit_data, str, isEnd, value_type, paramName);
         } else if (value_type == "0f") {
-            temp = temp + handleList(str, isEnd, value_type, paramName);
+            temp = temp + handleList(textEdit_data, str, isEnd, value_type, paramName);
         }
 }
 
-QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
+QString thriftwidget::handleSet(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
 {
     //和list处理一致
     qDebug() << "outType =" << outType;
@@ -2642,11 +2698,11 @@ QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QS
     QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
     qDebug() << "paramType_s =" << paramType_s;
     if (outParam == "fdog_list" || outParam == "fdog_set") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else if (outParam == "") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
     }
     retractNum++;
     //值类型 2
@@ -2673,47 +2729,47 @@ QString thriftwidget::handleSet(QString &str, QString isEnd, QString outType, QS
         qDebug() << " paramName  = " << paramName << " paramType = " << paramType;
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleBool(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleByte(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleDouble(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleI16(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
+            temp = temp + handleI32(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleI64(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
+            temp = temp + handleString(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0c") {
-            temp = temp + handleStruct(str, isEnd, paramType, paramName);
+            temp = temp + handleStruct(textEdit_data, str, isEnd, paramType, paramName);
         } else if (value_type == "0d") {
-            temp = temp + handleMap(str, isEnd, paramType, paramName);
+            temp = temp + handleMap(textEdit_data, str, isEnd, paramType, paramName);
         } else if (value_type == "0e") {
-            temp = temp + handleSet(str, isEnd, paramType, paramName);
+            temp = temp + handleSet(textEdit_data, str, isEnd, paramType, paramName);
         } else if (value_type == "0f") {
-            temp = temp + handleList(str, isEnd, paramType, paramName);
+            temp = temp + handleList(textEdit_data, str, isEnd, paramType, paramName);
         }
     }
     retractNum--;
     isEnd = str.mid(0, 2);
     if (isEnd == "00") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
     } else {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
     }
     return temp;
 }
 
-QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
+QString thriftwidget::handleList(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType, QString outParam, bool isHandEnd)
 {
     qDebug() << "outType =" << outType;
     int index_s = outType.indexOf("<");
@@ -2721,11 +2777,11 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
     QString paramType_s = outType.mid(index_s + 1, index_e - index_s - 1);
     qDebug() << "paramType_s =" << paramType_s;
     if (outParam == "fdog_list" || outParam == "fdog_set") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else if (outParam == "") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "["));
     } else {
-        ui->textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
+        textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"") + addColorBracketsHtml(":["));
     }
     retractNum++;
     //值类型 2
@@ -2752,55 +2808,55 @@ QString thriftwidget::handleList(QString &str, QString isEnd, QString outType, Q
         qDebug() << " paramName  = " << paramName << " paramType = " << paramType;
         if (value_type == "02") {
             //bool
-            temp = temp + handleBool(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleBool(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "03") {
             //byte
             qDebug() << "走这里3";
-            temp = temp + handleByte(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleByte(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "04") {
             //double
-            temp = temp + handleDouble(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleDouble(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "06") {
             //i16
-            temp = temp + handleI16(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleI16(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "08") {
             //i32
-            temp = temp + handleI32(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
+            temp = temp + handleI32(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0a") {
             //i64
-            temp = temp + handleI64(str, isEnd, paramName, true, (len - i == 0));
+            temp = temp + handleI64(textEdit_data, str, isEnd, paramName, true, (len - i == 0));
         } else if (value_type == "0b") {
             //string
-            temp = temp + handleString(str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
+            temp = temp + handleString(textEdit_data, str, isEnd, THRIFT_REPLY, paramName, true, (len - i == 0));
         } else if (value_type == "0c") {
-            temp = temp + handleStruct(str, isEnd, paramType, paramName);
+            temp = temp + handleStruct(textEdit_data, str, isEnd, paramType, paramName);
         } else if (value_type == "0d") {
-            temp = temp + handleMap(str, isEnd, paramType, paramName);
+            temp = temp + handleMap(textEdit_data, str, isEnd, paramType, paramName);
         } else if (value_type == "0e") {
-            temp = temp + handleSet(str, isEnd, paramType, paramName);
+            temp = temp + handleSet(textEdit_data, str, isEnd, paramType, paramName);
         } else if (value_type == "0f") {
-            temp = temp + handleList(str, isEnd, paramType, paramName);
+            temp = temp + handleList(textEdit_data, str, isEnd, paramType, paramName);
         }
     }
     retractNum--;
     isEnd = str.mid(0, 2);
     if (isEnd == "00") {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "]"));
     } else {
-        ui->textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
+        textEdit_data->append(addColorBracketsHtml(getRetract() + "],"));
     }
     return temp;
     //return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
 }
 
-QString thriftwidget::handleEnd(QString &str)
+QString thriftwidget::handleEnd(QTextEdit * textEdit_data, QString &str)
 {
     QString value = str.mid(0, 2);
     str = str.mid(2);
     return addColorHtml(value, sourceColorMap[sourceTypeMap["00"]]);
 }
 
-QString thriftwidget::hexToString(QString &hex)
+QString thriftwidget::hexToString(QTextEdit * textEdit_data, QString &hex)
 {
     QByteArray byteArray = QByteArray::fromHex(hex.toLatin1());
     QString return_ = QString(byteArray);
@@ -2809,7 +2865,7 @@ QString thriftwidget::hexToString(QString &hex)
     return return_;
 }
 
-QString thriftwidget::hexToLongNumber(QString &hex)
+QString thriftwidget::hexToLongNumber(QTextEdit * textEdit_data, QString &hex)
 {   
     //qDebug() << "hex = " << hex << " 对应数据" << strtoll(hex.toStdString().c_str(), nullptr, 16);
     return QString::number(strtoll(hex.toStdString().c_str(), nullptr, 16));
@@ -3041,6 +3097,10 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
         //fileContent.replace(" ","");
         //qDebug() << " fileContent_temp = " << fileContent_temp;
         //处理多的空格
+        while(fileContent_temp.contains(" void ")) {
+            fileContent_temp.replace(" void ", "  ");
+        }
+
         while(fileContent_temp.contains("  ")) {
             fileContent_temp.replace("  ", " ");
         }
@@ -3441,7 +3501,7 @@ void thriftwidget::handleBinData() {
         if (!isTestModle) {
             ui->textEdit->append("------------------------------------------------------------------------------");
             //对数据进行染色
-            handleMessage(dataTemp_2);
+            handleMessage(ui->textEdit_data, dataTemp_2);
             //将数据更加细致格式化，如果勾选了的话
             if (ui->checkBox_show_json->isChecked()) {
                 QString needToJsonData = ui->textEdit_data->toPlainText();
@@ -3473,8 +3533,9 @@ void thriftwidget::handleBinData() {
         }
 }
 
-void thriftwidget::handleHexData(QString& data)
+void thriftwidget::handleHexData(QTextEdit * textEdit_data, QTextEdit * textEdit_data2, QString& data)
 {
+    qDebug() << "handleHexData data = " << data;
     //解析https请求返回的数据
     int sum = 0;
     QString dataTemp;
@@ -3484,45 +3545,30 @@ void thriftwidget::handleHexData(QString& data)
         if (sum == 8) {
             sum = 0;
             if (!isTestModle) {
-                ui->textEdit->append(dataTemp);
+                textEdit_data2->append(dataTemp);
             }
             dataTemp = "";
         }
     }
     
-    //ui->textEdit->append(data);
-    ui->textEdit->append("------------------------------------------------------------------------------");
+    textEdit_data2->append("------------------------------------------------------------------------------");
     //对数据进行染色
-    handleMessage(data);
+    handleMessage(textEdit_data, data);
     //json格式化
     //将数据更加细致格式化，如果勾选了的话
     if (ui->checkBox_show_json->isChecked()) {
-        QString needToJsonData = ui->textEdit_data->toPlainText();
-        ui->textEdit_data->clear();
+        QString needToJsonData = textEdit_data->toPlainText();
+        textEdit_data->clear();
         if (ui->checkBox_super->isChecked()) {
-            utils_parsingJsonInfo(ui->textEdit_data, needToJsonData, true);
+            utils_parsingJsonInfo(textEdit_data, needToJsonData, true);
         } else {
-            utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
+            utils_parsingJsonInfo(textEdit_data, needToJsonData);
         }
     }
 
-    ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
-    ui->textEdit->append(data);
-    ui->textEdit->append("------------------------------------------------------------------------------");
-//    if (dataList2[0] == "80010002") {
-//        //结果
-//        ui->label_req->show();
-//        ui->label_req->setText("REPLY");
-//        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
-//    } else if (dataList2[0] == "80010003") {
-//        //异常
-//        ui->label_req->show();
-//        ui->label_req->setText("EXCEPTION");
-//        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
-//    } else {
-//        ui->label_req->hide();
-//        ui->label_req->setText("");
-//    }
+    textEdit_data2->append("染色数据(颜色信息可查看thrift协议报文说明):");
+    textEdit_data2->append(data);
+    textEdit_data2->append("------------------------------------------------------------------------------");
 }
 
 void thriftwidget::readPreData()
@@ -4076,13 +4122,22 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->horizontalWidget_schedule->hide();
         ui->tabWidget_test->hide();
         ui->toolButton_propertyTest->hide();
-    } else {
+        ui->stackedWidget_2->setCurrentIndex(0);
+    } else if (index == 1) {
         //性能测试
         //ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
         ui->toolButton_propertyTest->show();
         ui->stackedWidget_mode->setCurrentIndex(1);
+    } else if (index == 2) {
+        //性能测试
+        //ui->widget_property->show();
+        ui->toolButton_request->hide();
+        ui->toolButton_save->hide();
+        ui->toolButton_propertyTest->show();
+        ui->stackedWidget_mode->setCurrentIndex(1);
+        ui->stackedWidget_2->setCurrentIndex(2);
     }
 }
 
@@ -5077,108 +5132,53 @@ void thriftwidget::rece_ssh_exec_init(bool isok)
     //qDebug() << "rece_ssh_exec_init = " << isok;
 }
 
-struct PcapFileHeader {
-    uint32_t magic;       // 文件标识
-    uint16_t versionMajor;
-    uint16_t versionMinor;
-    int32_t thisZone;
-    uint32_t sigFigs;
-    uint32_t snapLen;
-    uint32_t linkType;
-};
-
-// pcap 数据包头
-//struct PcapPacketHeader {
-//    uint32_t tsSec;      // 时间戳（秒）
-//    uint32_t tsUsec;     // 时间戳（微秒）
-//    uint32_t capLen;     // 捕获的数据包长度
-//    uint32_t origLen;    // 原始数据包长度
-//};
-
-// 以太网帧头部（最基本的帧，不包含 802.1Q VLAN）
-struct EthernetHeader {
-    uint8_t destMac[6]; // 目标 MAC
-    uint8_t srcMac[6];  // 源 MAC
-    uint16_t etherType; // 以太网类型（IPv4 = 0x0800）
-};
-
-// IPv4 头部
-struct IPv4Header {
-    uint8_t ihl : 4, version : 4;
-    uint8_t tos;
-    uint16_t totalLength;
-    uint16_t identification;
-    uint16_t flagsFragmentOffset;
-    uint8_t ttl;
-    uint8_t protocol; // TCP = 6
-    uint16_t headerChecksum;
-    uint32_t srcIP;
-    uint32_t destIP;
-};
-
-// TCP 头部
-struct TCPHeader {
-    uint16_t srcPort;
-    uint16_t destPort;
-    uint32_t seqNum;
-    uint32_t ackNum;
-    uint8_t dataOffset;
-    uint8_t flags;
-    uint16_t windowSize;
-    uint16_t checksum;
-    uint16_t urgentPointer;
-};
-
-#pragma pack(1)  // 避免结构体填充
-
-struct PcapHeader {
-    quint32 magic;
-    quint16 version_major;
-    quint16 version_minor;
-    quint32 thiszone;
-    quint32 sigfigs;
-    quint32 snaplen;
-    quint32 network;
-};
-
-struct PcapPacketHeader {
-    quint32 ts_sec;
-    quint32 ts_usec;
-    quint32 incl_len;
-    quint32 orig_len;
-};
-
 // 打印数据的十六进制格式
-void thriftwidget::printHex(const QByteArray &data) {
+void thriftwidget::printHex(const QByteArray &data, int number) {
     // 使用 QByteArray::toHex() 将数据转为十六进制格式，并输出
     QString hexString = QString(data.toHex());
     int count = 0;
     QString data_;
+    QString data2_;
     for (int i = 0; i < hexString.length(); i += 2) {
         data_ = data_ + hexString.mid(i, 2) + " ";
         count++;
-        if (count > 32) {
+        if (count == 8) {
+            data_ = data_ + "  ";
+        }
+        if (count > 16) {
             ui->plainTextEdit_4->appendPlainText(data_);
             count = 0;
+            data2_ = data2_ + data_ + "\n";
             data_ = "";
         }
     }
     ui->plainTextEdit_4->appendPlainText(data_); // 输出每 2 个字符作为一个字节
+    dumpData[number] = data2_ + data_;
 }
 
 
-void parseSLLHeader(const QByteArray &data, int &offset) {
+void thriftwidget::parseSLLHeader(const QByteArray &data, int &offset) {
     if (data.size() < 16) return;
-    quint16 packetType = DA;
+    //& 0xFF 是将 data[1] 的低 8 位保留下来。0xFF 是一个掩码，它的二进制形式是 11111111，表示只保留 data[1] 的低 8 位
+    //(data[0] << 8) | (data[1] & 0xFF) 的作用是将 data[0] 和 data[1] 这两个字节合并成一个 16 位的整数。
+    quint16 packetType = (data[0] << 8) | (data[1] & 0xFF);
     quint16 protocolType = (data[14] << 8) | (data[15] & 0xFF);
     offset = 16; // SLL 头部占 16 字节
-    qDebug() << "\n--- SLL 头部 ---";
-    qDebug() << "Packet Type:" << packetType;
-    qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
+
+    //0000   00 00 03 04 00 06 00 00 00 00 00 00 00 00 08 00
+
+
+    //qDebug() << "\n--- SLL 头部 ---";
+    //qDebug() << "Packet Type:" << packetType;
+    //qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
 }
 
-void parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen) {
+void thriftwidget::parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen, TableEntry& entry) {
     if (data.size() < offset + 20) return;
+    //将 data[offset] 右移 4 位，相当于丢弃低 4 位，同时让高 4 位移动到低 4 位的位置
+    //data[1]      = 0b10110100       // 0xB4
+    //data[1] >> 4 = 0b00001011  // 0x0B
+    //通过 & 0xF，可以确保只保留 data[1] 右移后剩下的低 4 位，而高位被清零
     quint8 version = (data[offset] >> 4) & 0xF;
     ipHeaderLen = (data[offset] & 0x0F) * 4;  // IHL 指定 IP 头部长度
     protocol = data[offset + 9]; // 协议字段
@@ -5192,37 +5192,105 @@ void parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int 
                         .arg((quint8)data[offset + 17])
                         .arg((quint8)data[offset + 18])
                         .arg((quint8)data[offset + 19]);
+    // 0x45  16进制   01000101              4 对应 0100
 
-    qDebug() << "\n--- IPv4 头部 ---";
-    qDebug() << "Version:" << version;
-    qDebug() << "Protocol:" << protocol;
-    qDebug() << "Source IP:" << srcIP;
-    qDebug() << "Destination IP:" << dstIP;
+    //0000   45 00 00 34 33 16 40 00 40 06 09 ab 7f 00 00 01
+    //0010   7f 00 00 02
+    entry.request = srcIP;
+    entry.target = dstIP;
+    //qDebug() << "\n--- IPv4 头部 ---";
+    //qDebug() << "Version:" << version;
+    //qDebug() << "Protocol:" << protocol;
+    //qDebug() << "Source IP:" << srcIP;
+    //qDebug() << "Destination IP:" << dstIP;
     
     offset += ipHeaderLen; // 移动偏移量到 TCP 头部
 }
 
-void parseTCPHeader(const QByteArray &data, int &offset) {
-    if (data.size() < offset + 20) return;
+QString thriftwidget::parseTCPHeader(const QByteArray &data, int &offset, int number, TableEntry &entry) {
+    if (data.size() < offset + 20) return "";
     quint16 srcPort = (data[offset] << 8) | (data[offset + 1] & 0xFF);
     quint16 dstPort = (data[offset + 2] << 8) | (data[offset + 3] & 0xFF);
     quint8 tcpHeaderLen = ((data[offset + 12] >> 4) & 0xF) * 4; // TCP 头部长度
-    
-    qDebug() << "\n--- TCP 头部 ---";
-    qDebug() << "Source Port:" << srcPort;
-    qDebug() << "Destination Port:" << dstPort;
-    qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
 
+    // 获取 TCP Flags (低 6 位)
+    quint8 flags = data[offset + 13] & 0x3F;
+
+
+    //0000   94 10 0f bf af 84 07 e1 00 00 00 00 80 02 aa aa
+    //0010   fe 29 00 00 02 04 ff d7 01 01 04 02 01 03 03 07
+
+    entry.request = entry.request + ":" + QString::number(srcPort);
+    entry.target = entry.target + ":" + QString::number(dstPort);
+
+    //qDebug() << "\n--- TCP 头部 ---";
+    //qDebug() << "Source Port:" << srcPort;
+    //qDebug() << "Destination Port:" << dstPort;
+
+    // 解析并输出各个 TCP Flag
+    QString a;
+    QString b;
+    ((flags & 0x02) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "SYN ";
+    }
+    ((flags & 0x10) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "ACK ";
+    }
+    ((flags & 0x01) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "FIN ";
+    }
+    ((flags & 0x04) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "RST ";
+    }
+    ((flags & 0x08) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "PSH ";
+    }
+    ((flags & 0x20) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "URG ";
+    }
+    entry.flag = b;         // 标志
+    entry.index = number;   // 序号
+
+
+    QString line = "-------------------------";
+    ui->plainTextEdit_4->appendPlainText(line + QString::number(number) + line);
+    //qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
+    printHex(data.mid(offset + tcpHeaderLen), number);
+    ui->plainTextEdit_4->appendPlainText("--------------------------------------------------");
     offset += tcpHeaderLen; // 移动到 TCP 数据部分
+    return b + "  " + QString::number(srcPort) + "->" + QString::number(dstPort);
 }
 
 
 void thriftwidget::on_toolButton_inportpcap_clicked()
 {
     ui->stackedWidget_2->setCurrentIndex(2);
+    ui->tableWidget_func->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->tableWidget_func->verticalHeader()->setHidden(true);
+
+    // 设置选择行为为整行选中
+    ui->tableWidget_func->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    // 设置选择模式为单选
+    ui->tableWidget_func->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->tableWidget_func->setColumnWidth(0, 70);  
+    ui->tableWidget_func->setColumnWidth(1, 250);
+    ui->tableWidget_func->setColumnWidth(2, 100);
+    ui->tableWidget_func->setColumnWidth(3, 200); 
+    ui->tableWidget_func->setColumnWidth(4, 200); 
+    //ui->tableWidget_func->resizeColumnsToContents();  // 根据内容调整列宽
+    //ui->tableWidget_func->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // 自动填充
+    ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
 
-    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250226-1717.pcap";  // 你的 pcap 文件
+    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250217-1125.pcap";  // 你的 pcap 文件
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -5234,24 +5302,77 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     PcapHeader pcapHeader;
     file.read(reinterpret_cast<char*>(&pcapHeader), sizeof(PcapHeader));
 
+    int number = 1;
     while (!file.atEnd()) {
         PcapPacketHeader packetHeader;
         if (file.read(reinterpret_cast<char*>(&packetHeader), sizeof(PcapPacketHeader)) < sizeof(PcapPacketHeader)) break;
         QByteArray packetData = file.read(packetHeader.incl_len);
 
+        QDateTime timestamp = QDateTime::fromSecsSinceEpoch(packetHeader.ts_sec);
+        QString formattedTime = timestamp.toString("yyyy-MM-dd HH:mm:ss");
+        TableEntry entry;
         int offset = 0;
         parseSLLHeader(packetData, offset);
+        
 
         quint8 protocol;
         int ipHeaderLen;
-        parseIPv4Header(packetData, offset, protocol, ipHeaderLen);
+        parseIPv4Header(packetData, offset, protocol, ipHeaderLen, entry);
 
         if (protocol == 6) { // TCP
-            parseTCPHeader(packetData, offset);
+            QString data_ = parseTCPHeader(packetData, offset, number++, entry);
+            entry.time = formattedTime + "." + QString::number(packetHeader.ts_usec);      // 时间
+            //尝试解析函数
+            QString x = dumpData[number-1];
+            x.replace(" ","");
+            x.replace("\n","");
+            entry.info = "TCP交互";  // 信息
+            //获取消息长度
+            QString message_len = x.mid(0, 8);
+            QString headers_data_length = QString::number(strtol(message_len.toStdString().c_str(), nullptr, 16));
+            //消息类型
+            QString type_data = x.mid(8, 8);
+            if (type_data == "80010001") {
+                entry.info = "CALL";
+            } else if (type_data == "80010002") {
+                entry.info = "REPLY";
+            } else if (type_data == "80010003") {
+                entry.info = "EXCEPTION";
+            } else if (type_data == "80010004") {
+                entry.info = "ONEWAY";
+            } else {
+                entry.info = "TCP";
+            }
+            //方法长度名
+            QString func_len = x.mid(16, 8);
+            QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
+            bool ok;
+            int len = func_len.toInt(&ok, 16) * 2;
+            //需要转换为长度单位
+            //方法名
+            QString fun_name = x.mid(24, len);
+            if (entry.info != "TCP") {
+                entry.info = entry.info + "  " + hexToString(nullptr,fun_name); + "  " + headers_data_length;
+            }
+            
         }
+        tableData.append(entry);
     }
+
     file.close();
 
+    for (int i = 0; i < tableData.size(); ++i) {
+        // if (tableData[i].info == "TCP") {
+        //     continue;
+        // }
+        ui->tableWidget_func->insertRow(i);
+        ui->tableWidget_func->setItem(i, 0, new QTableWidgetItem(QString::number(tableData[i].index)));
+        ui->tableWidget_func->setItem(i, 1, new QTableWidgetItem(tableData[i].time));
+        ui->tableWidget_func->setItem(i, 2, new QTableWidgetItem(tableData[i].flag));
+        ui->tableWidget_func->setItem(i, 3, new QTableWidgetItem(tableData[i].request));
+        ui->tableWidget_func->setItem(i, 4, new QTableWidgetItem(tableData[i].target));
+        ui->tableWidget_func->setItem(i, 5, new QTableWidgetItem(tableData[i].info));
+    }
 
     return;
 /*
@@ -5281,53 +5402,6 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
             break;
         }
 
-        qDebug() << "读取";
-
-        // 解析以太网帧
-        const EthernetHeader *eth;
-        qDebug() << "以太网1 " << eth->destMac << eth->srcMac << eth->etherType;
-        eth = reinterpret_cast<const EthernetHeader *>(packetData.constData());
-        qDebug() << "以太网2 " << eth->destMac << eth->srcMac << eth->etherType;
-        if (ntohs(eth->etherType) != 0x0800) continue; // 仅处理 IPv4
-
-        // 解析 IPv4 头
-        const IPv4Header *ip = reinterpret_cast<const IPv4Header *>(packetData.constData() + sizeof(EthernetHeader));
-        qDebug() << "ip "<< ip->srcIP << ip->destIP;
-        if (ip->protocol != 6) continue; // 仅处理 TCP（协议号 6）
-
-        // 解析 TCP 头
-        int ipHeaderSize = (ip->ihl) * 4;
-
-        const TCPHeader *tcp = reinterpret_cast<const TCPHeader *>(packetData.constData() + sizeof(EthernetHeader) + ipHeaderSize);
-        qDebug() << "tcp " << tcp->srcPort << tcp->destPort;
-        // 提取 TCP 标志位
-        uint8_t flags = tcp->flags;
-        uint16_t srcPort = ntohs(tcp->srcPort);
-        uint16_t destPort = ntohs(tcp->destPort);
-
-        // 转换时间戳
-         QDateTime timestamp = QDateTime::fromSecsSinceEpoch(packetHeader.tsSec);
-         QString formattedTime = timestamp.toString("yyyy-MM-dd HH:mm:ss");
-
-        // 筛选 TCP 握手（SYN, SYN-ACK, ACK）和挥手（FIN, FIN-ACK, ACK）
-        if (flags & 0x02) { // SYN
-            qDebug() << formattedTime << "握手 SYN 发送 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if ((flags & 0x12) == 0x12) { // SYN-ACK
-            qDebug() << formattedTime << "握手 SYN-ACK 回复 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if (flags == 0x10) { // ACK
-            qDebug() << formattedTime << "握手 ACK 确认 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if (flags & 0x01) { // FIN
-            qDebug() << formattedTime << "挥手 FIN 发送 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if ((flags & 0x11) == 0x11) { // FIN-ACK
-            qDebug() << formattedTime << "挥手 FIN-ACK 确认 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-
-
-
 
         QString dataPack = "数据包 " + QString::number(++packetCount) + "，时间戳: " + formattedTime
                   + "." + QString::number(packetHeader.tsUsec) + "，长度: " + QString::number(packetHeader.capLen) + " 字节";
@@ -5342,3 +5416,42 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     qDebug() << "文件读取完成！";
     file.close();
 }
+
+void thriftwidget::on_tableWidget_func_itemClicked(QTableWidgetItem *item)
+{
+
+}
+
+
+void thriftwidget::on_tableWidget_func_itemSelectionChanged()
+{
+    QList<QTableWidgetItem *> selectedItems = ui->tableWidget_func->selectedItems();
+    if (!selectedItems.isEmpty()) {
+        int row = selectedItems.first()->row(); // 获取选中的第一行的索引
+        QString firstColumnValue = ui->tableWidget_func->item(row, 0)->text(); // 获取第一列（序号）的值
+        ui->textEdit_2->clear();
+        ui->textEdit_3->clear();
+        int number = firstColumnValue.toInt();
+        //ui->textEdit_2->append(dumpData[number]);
+        qDebug() << "选中行的序号:" << firstColumnValue;
+
+        //尝试解析数据
+        QString data = dumpData[number];
+        data.replace(" ","");
+        data.replace("\n","");
+        handleHexData(ui->textEdit_2, ui->textEdit_3, data);
+    }
+}
+
+
+void thriftwidget::on_checkBox_show_json_stateChanged(int arg1)
+{
+    qDebug() << "状态变化" << arg1;
+}
+
+
+void thriftwidget::on_checkBox_super_stateChanged(int arg1)
+{
+    qDebug() << "状态变化" << arg1;
+}
+

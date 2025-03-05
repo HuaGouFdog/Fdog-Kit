@@ -353,6 +353,11 @@ QScrollBar::up-arrow:vertical {
               <string>压测模式</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>抓包模式</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -6047,6 +6052,7 @@ border-radius: 2px;
 	border: 1px solid rgba(197, 197, 197,50);
 	background-color: rgba(255, 255, 255, 20);
 	border-radius: 5px;
+	
 	color: rgb(255, 255, 255);
 }</string>
                                </property>
@@ -6340,39 +6346,40 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Code SemiBold'; font-size:11pt; font-weight:56; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt; thrift协议报文说明&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt; thrift协议报文说明&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;一. &lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7373;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;消息长度/string长度&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;一. &lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7373;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;消息长度/string长度&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;二. &lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;消息类型&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;CALL（80010001），调用方法，并希望获取返回消。	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;REPLY（80010002），来自服务端返回的消息。	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;EXCEPTION（80010003），服务器处理请求时出现异常。	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;ONEWAY（80010004），单向请求，不需要返回数据。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;二. &lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;消息类型&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;CALL（80010001），调用方法，并希望获取返回消。&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;REPLY（80010002），来自服务端返回的消息。	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;EXCEPTION（80010003），服务器处理请求时出现异常。	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;ONEWAY（80010004），单向请求，不需要返回数据。&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;三.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;方法名长度&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;三.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffaa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;方法名长度&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;四.【表示颜色】方法名&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;四.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#dd6547;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;方法名&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;五.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55007f;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;流水号&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;五.&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#56ded9;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;流水号&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;六. 数据类型&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#005500;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;bool类型（类型2）   &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#500a0a;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;byte类型（类型3）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000082;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;double类型（类型4）	&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aaff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;i16类型（类型6）      &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff00ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;i32类型（类型8）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00a096;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;i64类型（类型10）    &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#aaaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;string类型（类型11）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#0055ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;struct类型（类型12）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#5500ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;map类型（类型13）  &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7300;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;set类型（类型14）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55aa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;list类型（类型15）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;六. 数据类型&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#005500;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;bool类型（类型2）   &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#500a0a;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;byte类型（类型3）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000082;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;double类型（类型4）&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aaff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;i16类型（类型6）&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff00ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;i32类型（类型8）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00a096;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;i64类型（类型10）    &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#aaaa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;string类型（类型11）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#0055ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;struct类型（类型12）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#5500ff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;map类型（类型13）  &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff7300;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;set类型（类型14）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#55aa82;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;list类型（类型15）&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;七. 其他&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;字段序号&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;结束符（00）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ff0000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#505050;&quot;&gt;值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;七. 其他&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#00aa00;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;字段序号&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#000000;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;结束符（00）&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#aaffff;&quot;&gt;【表示颜色】&lt;/span&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; font-weight:400; color:#ffffff;&quot;&gt;值&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'OPPOSans B'; font-size:10pt; color:#ffffff;&quot;&gt;【表示颜色】多余的无效数据&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                    </property>
                                    <property name="cursorWidth">
                                     <number>2</number>
@@ -9540,7 +9547,7 @@ QScrollBar::up-arrow:vertical {
            <item>
             <widget class="QSplitter" name="splitter_5">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Vertical</enum>
              </property>
              <widget class="QWidget" name="widget_15" native="true">
               <property name="sizePolicy">
@@ -9549,36 +9556,139 @@ QScrollBar::up-arrow:vertical {
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_26">
+              <layout class="QHBoxLayout" name="horizontalLayout_26">
                <item>
-                <widget class="QListWidget" name="listWidget_func"/>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QPlainTextEdit" name="plainTextEdit_4">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>5</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <family>Cascadia Code SemiBold</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">#plainTextEdit_4{
+                <widget class="QSplitter" name="splitter_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <widget class="QTableWidget" name="tableWidget_func">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>2</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>序号</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>时间</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>标志</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>请求源</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>目标源</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>信息</string>
+                   </property>
+                  </column>
+                 </widget>
+                 <widget class="QPlainTextEdit" name="plainTextEdit_4">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Code SemiBold</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#plainTextEdit_4{
 	border: 1px solid rgba(197, 197, 197,50);
 	background-color: rgba(255, 255, 255, 20);
 	border-radius: 5px;
 	color: rgb(255, 255, 255);
 }</string>
-              </property>
-              <property name="plainText">
-               <string/>
-              </property>
+                  </property>
+                  <property name="plainText">
+                   <string/>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="widget_16" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_25">
+               <item>
+                <widget class="QSplitter" name="splitter_7">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <widget class="QTextEdit" name="textEdit_2">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Code SemiBold</family>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#textEdit_2{
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}</string>
+                  </property>
+                 </widget>
+                 <widget class="QTextEdit" name="textEdit_3">
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Code SemiBold</family>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#textEdit_3{
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}</string>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>

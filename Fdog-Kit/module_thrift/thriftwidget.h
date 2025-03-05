@@ -297,6 +297,88 @@ class RequestResults {
     void setWaitTimeList(const int32_t value);
 };
 
+struct PcapFileHeader {
+    uint32_t magic;       // 文件标识
+    uint16_t versionMajor;
+    uint16_t versionMinor;
+    int32_t thisZone;
+    uint32_t sigFigs;
+    uint32_t snapLen;
+    uint32_t linkType;
+};
+
+// pcap 数据包头
+//struct PcapPacketHeader {
+//    uint32_t tsSec;      // 时间戳（秒）
+//    uint32_t tsUsec;     // 时间戳（微秒）
+//    uint32_t capLen;     // 捕获的数据包长度
+//    uint32_t origLen;    // 原始数据包长度
+//};
+
+// 以太网帧头部（最基本的帧，不包含 802.1Q VLAN）
+struct EthernetHeader {
+    uint8_t destMac[6]; // 目标 MAC
+    uint8_t srcMac[6];  // 源 MAC
+    uint16_t etherType; // 以太网类型（IPv4 = 0x0800）
+};
+
+// IPv4 头部
+struct IPv4Header {
+    uint8_t ihl : 4, version : 4;
+    uint8_t tos;
+    uint16_t totalLength;
+    uint16_t identification;
+    uint16_t flagsFragmentOffset;
+    uint8_t ttl;
+    uint8_t protocol; // TCP = 6
+    uint16_t headerChecksum;
+    uint32_t srcIP;
+    uint32_t destIP;
+};
+
+// TCP 头部
+struct TCPHeader {
+    uint16_t srcPort;
+    uint16_t destPort;
+    uint32_t seqNum;
+    uint32_t ackNum;
+    uint8_t dataOffset;
+    uint8_t flags;
+    uint16_t windowSize;
+    uint16_t checksum;
+    uint16_t urgentPointer;
+};
+
+#pragma pack(1)  // 避免结构体填充
+
+struct PcapHeader {
+    quint32 magic;
+    quint16 version_major;
+    quint16 version_minor;
+    quint32 thiszone;
+    quint32 sigfigs;
+    quint32 snaplen;
+    quint32 network;
+};
+
+struct PcapPacketHeader {
+    quint32 ts_sec;
+    quint32 ts_usec;
+    quint32 incl_len;
+    quint32 orig_len;
+};
+
+#pragma pack() 
+
+struct TableEntry {
+    int index;         // 序号
+    QString time;      // 时间
+    QString flag;      // 标志
+    QString request;   // 请求源
+    QString target;    // 目标源
+    QString info;      // 信息
+};
+
 class thriftwidget : public QWidget
 {
     Q_OBJECT
@@ -307,6 +389,9 @@ public:
     bool isToolButton_response_checked = true;      //响应
     bool isToolButton_report_checked = false;       //性能报告
     int  retractNum = 0;
+
+    QList<TableEntry> tableData;
+    QMap<int, QString> dumpData;
 
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
@@ -410,7 +495,7 @@ public:
         string2stringList(valueData);
     }
 
-    void handleMessage(QString &data);
+    void handleMessage(QTextEdit * textEdit_data, QString &data);
 
     //添加颜色
     QString addColorHtml(QString str, QColor *fontCrl);
@@ -425,36 +510,36 @@ public:
     //添加括号颜色
     QString addColorBracketsHtml(QString str);
 
-    QString handleBool(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleBool(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleByte(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleByte(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleDouble(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleDouble(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleI16(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleI16(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleI32(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleI32(QTextEdit * textEdit_data, QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleI64(QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleI64(QTextEdit * textEdit_data, QString &str, QString isEnd, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleString(QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
+    QString handleString(QTextEdit * textEdit_data, QString &str, QString isEnd, QString resType = THRIFT_REPLY, QString paramName = "", bool isHandEnd = true, bool isLastEnd = false);
 
-    QString handleStruct(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
+    QString handleStruct(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
 
-    QString handleMap(QString &str, QString isEnd, QString outType = "", QString paramName = "", bool isHandEnd = true);
+    QString handleMap(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType = "", QString paramName = "", bool isHandEnd = true);
 
-    void handleMap_key(QString &str, QString isEnd, QString outType, QString & temp, bool isHandEnd = true);
-    void handleMap_value(QString &str, QString isEnd, QString outType, QString & temp, bool isHandEnd = true);
+    void handleMap_key(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType, QString & temp, bool isHandEnd = true);
+    void handleMap_value(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType, QString & temp, bool isHandEnd = true);
 
-    QString handleSet(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
+    QString handleSet(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
 
-    QString handleList(QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
+    QString handleList(QTextEdit * textEdit_data, QString &str, QString isEnd, QString outType = "", QString outParam = "", bool isHandEnd = true);
     
-    QString handleEnd(QString &str);
+    QString handleEnd(QTextEdit * textEdit_data, QString &str);
 
-    QString hexToString(QString& hex);
+    QString hexToString(QTextEdit * textEdit_data, QString& hex);
 
-    QString hexToLongNumber(QString& hex);
+    QString hexToLongNumber(QTextEdit * textEdit_data, QString& hex);
 
     void removeLastComma(QString &str); //移除最后的逗号
 
@@ -490,7 +575,7 @@ public:
     //将二进制数据进行解析
     void handleBinData();
     //将十六进制数据进行解析
-    void handleHexData(QString& data);
+    void handleHexData(QTextEdit * textEdit_data, QTextEdit * textEdit_data2, QString& data);
 
     //读取预制数据
     void readPreData();
@@ -587,9 +672,22 @@ private slots:
 
     void rece_ssh_exec_init(bool isok);
 
-    void printHex(const QByteArray &data);
+    void printHex(const QByteArray &data, int number);
 
     void on_toolButton_inportpcap_clicked();
+
+    void on_tableWidget_func_itemClicked(QTableWidgetItem *item);
+
+    void parseSLLHeader(const QByteArray &data, int &offset);
+
+    void parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen, TableEntry& entry);
+
+    QString parseTCPHeader(const QByteArray &data, int &offset, int number, TableEntry& entry);
+    void on_tableWidget_func_itemSelectionChanged();
+
+    void on_checkBox_show_json_stateChanged(int arg1);
+
+    void on_checkBox_super_stateChanged(int arg1);
 
 public:
     QVector<QString> dataList;
