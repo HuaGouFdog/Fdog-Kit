@@ -2034,13 +2034,14 @@ void thriftwidget::handleMessage(QString &data)
 
 
     label_headers = label_headers + "返回值类型:" + funcParamOutMap.value(hexToString(fun_name)).value(1).paramType + "   ";
+    ui->label_time->clear();
     ui->label_headers->setText(label_headers);
     //数据
     //编号两位数  序号4位数 数据
     //data = temp + data;
     //for(int i = 0; i < = 500; i++) {
     //qDebug() << "数据= " << data;
-    if (type_data == "80010002") {
+    if (type_data == "80010001" || type_data == "80010002") {
         while (true) {
 
             if (data.length() <= 0) {
@@ -3475,6 +3476,7 @@ void thriftwidget::handleBinData() {
 
 void thriftwidget::handleHexData(QString& data)
 {
+    qDebug() << "handleHexData data = " << data;
     //解析https请求返回的数据
     int sum = 0;
     QString dataTemp;
@@ -3509,20 +3511,20 @@ void thriftwidget::handleHexData(QString& data)
     ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
     ui->textEdit->append(data);
     ui->textEdit->append("------------------------------------------------------------------------------");
-//    if (dataList2[0] == "80010002") {
-//        //结果
-//        ui->label_req->show();
-//        ui->label_req->setText("REPLY");
-//        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
-//    } else if (dataList2[0] == "80010003") {
-//        //异常
-//        ui->label_req->show();
-//        ui->label_req->setText("EXCEPTION");
-//        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
-//    } else {
-//        ui->label_req->hide();
-//        ui->label_req->setText("");
-//    }
+//   if (dataList2[0] == "80010002") {
+//       //结果
+//       ui->label_req->show();
+//       ui->label_req->setText("REPLY");
+//       ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+//   } else if (dataList2[0] == "80010003") {
+//       //异常
+//       ui->label_req->show();
+//       ui->label_req->setText("EXCEPTION");
+//       ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+//   } else {
+//       ui->label_req->hide();
+//       ui->label_req->setText("");
+//   }
 }
 
 void thriftwidget::readPreData()
@@ -4076,13 +4078,22 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->horizontalWidget_schedule->hide();
         ui->tabWidget_test->hide();
         ui->toolButton_propertyTest->hide();
-    } else {
+        ui->stackedWidget_2->setCurrentIndex(0);
+    } else if (index == 1) {
         //性能测试
         //ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
         ui->toolButton_propertyTest->show();
         ui->stackedWidget_mode->setCurrentIndex(1);
+    } else if (index == 2) {
+        //性能测试
+        //ui->widget_property->show();
+        ui->toolButton_request->hide();
+        ui->toolButton_save->hide();
+        ui->toolButton_propertyTest->show();
+        ui->stackedWidget_mode->setCurrentIndex(1);
+        ui->stackedWidget_2->setCurrentIndex(2);
     }
 }
 
@@ -5077,108 +5088,53 @@ void thriftwidget::rece_ssh_exec_init(bool isok)
     //qDebug() << "rece_ssh_exec_init = " << isok;
 }
 
-struct PcapFileHeader {
-    uint32_t magic;       // 文件标识
-    uint16_t versionMajor;
-    uint16_t versionMinor;
-    int32_t thisZone;
-    uint32_t sigFigs;
-    uint32_t snapLen;
-    uint32_t linkType;
-};
-
-// pcap 数据包头
-//struct PcapPacketHeader {
-//    uint32_t tsSec;      // 时间戳（秒）
-//    uint32_t tsUsec;     // 时间戳（微秒）
-//    uint32_t capLen;     // 捕获的数据包长度
-//    uint32_t origLen;    // 原始数据包长度
-//};
-
-// 以太网帧头部（最基本的帧，不包含 802.1Q VLAN）
-struct EthernetHeader {
-    uint8_t destMac[6]; // 目标 MAC
-    uint8_t srcMac[6];  // 源 MAC
-    uint16_t etherType; // 以太网类型（IPv4 = 0x0800）
-};
-
-// IPv4 头部
-struct IPv4Header {
-    uint8_t ihl : 4, version : 4;
-    uint8_t tos;
-    uint16_t totalLength;
-    uint16_t identification;
-    uint16_t flagsFragmentOffset;
-    uint8_t ttl;
-    uint8_t protocol; // TCP = 6
-    uint16_t headerChecksum;
-    uint32_t srcIP;
-    uint32_t destIP;
-};
-
-// TCP 头部
-struct TCPHeader {
-    uint16_t srcPort;
-    uint16_t destPort;
-    uint32_t seqNum;
-    uint32_t ackNum;
-    uint8_t dataOffset;
-    uint8_t flags;
-    uint16_t windowSize;
-    uint16_t checksum;
-    uint16_t urgentPointer;
-};
-
-#pragma pack(1)  // 避免结构体填充
-
-struct PcapHeader {
-    quint32 magic;
-    quint16 version_major;
-    quint16 version_minor;
-    quint32 thiszone;
-    quint32 sigfigs;
-    quint32 snaplen;
-    quint32 network;
-};
-
-struct PcapPacketHeader {
-    quint32 ts_sec;
-    quint32 ts_usec;
-    quint32 incl_len;
-    quint32 orig_len;
-};
-
 // 打印数据的十六进制格式
-void thriftwidget::printHex(const QByteArray &data) {
+void thriftwidget::printHex(const QByteArray &data, int number) {
     // 使用 QByteArray::toHex() 将数据转为十六进制格式，并输出
     QString hexString = QString(data.toHex());
     int count = 0;
     QString data_;
+    QString data2_;
     for (int i = 0; i < hexString.length(); i += 2) {
         data_ = data_ + hexString.mid(i, 2) + " ";
         count++;
-        if (count > 32) {
+        if (count == 8) {
+            data_ = data_ + "  ";
+        }
+        if (count > 16) {
             ui->plainTextEdit_4->appendPlainText(data_);
             count = 0;
+            data2_ = data2_ + data_ + "\n";
             data_ = "";
         }
     }
     ui->plainTextEdit_4->appendPlainText(data_); // 输出每 2 个字符作为一个字节
+    dumpData[number] = data2_ + data_;
 }
 
 
-void parseSLLHeader(const QByteArray &data, int &offset) {
+void thriftwidget::parseSLLHeader(const QByteArray &data, int &offset) {
     if (data.size() < 16) return;
-    quint16 packetType = DA;
+    //& 0xFF 是将 data[1] 的低 8 位保留下来。0xFF 是一个掩码，它的二进制形式是 11111111，表示只保留 data[1] 的低 8 位
+    //(data[0] << 8) | (data[1] & 0xFF) 的作用是将 data[0] 和 data[1] 这两个字节合并成一个 16 位的整数。
+    quint16 packetType = (data[0] << 8) | (data[1] & 0xFF);
     quint16 protocolType = (data[14] << 8) | (data[15] & 0xFF);
     offset = 16; // SLL 头部占 16 字节
-    qDebug() << "\n--- SLL 头部 ---";
-    qDebug() << "Packet Type:" << packetType;
-    qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
+
+    //0000   00 00 03 04 00 06 00 00 00 00 00 00 00 00 08 00
+
+
+    //qDebug() << "\n--- SLL 头部 ---";
+    //qDebug() << "Packet Type:" << packetType;
+    //qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
 }
 
-void parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen) {
+void thriftwidget::parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen, TableEntry& entry) {
     if (data.size() < offset + 20) return;
+    //将 data[offset] 右移 4 位，相当于丢弃低 4 位，同时让高 4 位移动到低 4 位的位置
+    //data[1]      = 0b10110100       // 0xB4
+    //data[1] >> 4 = 0b00001011  // 0x0B
+    //通过 & 0xF，可以确保只保留 data[1] 右移后剩下的低 4 位，而高位被清零
     quint8 version = (data[offset] >> 4) & 0xF;
     ipHeaderLen = (data[offset] & 0x0F) * 4;  // IHL 指定 IP 头部长度
     protocol = data[offset + 9]; // 协议字段
@@ -5192,37 +5148,105 @@ void parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int 
                         .arg((quint8)data[offset + 17])
                         .arg((quint8)data[offset + 18])
                         .arg((quint8)data[offset + 19]);
+    // 0x45  16进制   01000101              4 对应 0100
 
-    qDebug() << "\n--- IPv4 头部 ---";
-    qDebug() << "Version:" << version;
-    qDebug() << "Protocol:" << protocol;
-    qDebug() << "Source IP:" << srcIP;
-    qDebug() << "Destination IP:" << dstIP;
+    //0000   45 00 00 34 33 16 40 00 40 06 09 ab 7f 00 00 01
+    //0010   7f 00 00 02
+    entry.request = srcIP;
+    entry.target = dstIP;
+    //qDebug() << "\n--- IPv4 头部 ---";
+    //qDebug() << "Version:" << version;
+    //qDebug() << "Protocol:" << protocol;
+    //qDebug() << "Source IP:" << srcIP;
+    //qDebug() << "Destination IP:" << dstIP;
     
     offset += ipHeaderLen; // 移动偏移量到 TCP 头部
 }
 
-void parseTCPHeader(const QByteArray &data, int &offset) {
-    if (data.size() < offset + 20) return;
+QString thriftwidget::parseTCPHeader(const QByteArray &data, int &offset, int number, TableEntry &entry) {
+    if (data.size() < offset + 20) return "";
     quint16 srcPort = (data[offset] << 8) | (data[offset + 1] & 0xFF);
     quint16 dstPort = (data[offset + 2] << 8) | (data[offset + 3] & 0xFF);
     quint8 tcpHeaderLen = ((data[offset + 12] >> 4) & 0xF) * 4; // TCP 头部长度
-    
-    qDebug() << "\n--- TCP 头部 ---";
-    qDebug() << "Source Port:" << srcPort;
-    qDebug() << "Destination Port:" << dstPort;
-    qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
 
+    // 获取 TCP Flags (低 6 位)
+    quint8 flags = data[offset + 13] & 0x3F;
+
+
+    //0000   94 10 0f bf af 84 07 e1 00 00 00 00 80 02 aa aa
+    //0010   fe 29 00 00 02 04 ff d7 01 01 04 02 01 03 03 07
+
+    entry.request = entry.request + ":" + QString::number(srcPort);
+    entry.target = entry.target + ":" + QString::number(dstPort);
+
+    //qDebug() << "\n--- TCP 头部 ---";
+    //qDebug() << "Source Port:" << srcPort;
+    //qDebug() << "Destination Port:" << dstPort;
+
+    // 解析并输出各个 TCP Flag
+    QString a;
+    QString b;
+    ((flags & 0x02) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "SYN ";
+    }
+    ((flags & 0x10) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "ACK ";
+    }
+    ((flags & 0x01) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "FIN ";
+    }
+    ((flags & 0x04) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "RST ";
+    }
+    ((flags & 0x08) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "PSH ";
+    }
+    ((flags & 0x20) ? a = "Yes" : a = "No");
+    if (a == "Yes") {
+        b = b + "URG ";
+    }
+    entry.flag = b;         // 标志
+    entry.index = number;   // 序号
+
+
+    QString line = "-------------------------";
+    ui->plainTextEdit_4->appendPlainText(line + QString::number(number) + line);
+    //qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
+    printHex(data.mid(offset + tcpHeaderLen), number);
+    ui->plainTextEdit_4->appendPlainText("--------------------------------------------------");
     offset += tcpHeaderLen; // 移动到 TCP 数据部分
+    return b + "  " + QString::number(srcPort) + "->" + QString::number(dstPort);
 }
 
 
 void thriftwidget::on_toolButton_inportpcap_clicked()
 {
     ui->stackedWidget_2->setCurrentIndex(2);
+    ui->tableWidget_func->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->tableWidget_func->verticalHeader()->setHidden(true);
+
+    // 设置选择行为为整行选中
+    ui->tableWidget_func->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    // 设置选择模式为单选
+    ui->tableWidget_func->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->tableWidget_func->setColumnWidth(0, 70);  
+    ui->tableWidget_func->setColumnWidth(1, 250);
+    ui->tableWidget_func->setColumnWidth(2, 100);
+    ui->tableWidget_func->setColumnWidth(3, 200); 
+    ui->tableWidget_func->setColumnWidth(4, 200); 
+    //ui->tableWidget_func->resizeColumnsToContents();  // 根据内容调整列宽
+    //ui->tableWidget_func->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // 自动填充
+    ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
 
-    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250226-1717.pcap";  // 你的 pcap 文件
+    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250217-1125.pcap";  // 你的 pcap 文件
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -5234,24 +5258,43 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     PcapHeader pcapHeader;
     file.read(reinterpret_cast<char*>(&pcapHeader), sizeof(PcapHeader));
 
+    int number = 1;
     while (!file.atEnd()) {
         PcapPacketHeader packetHeader;
         if (file.read(reinterpret_cast<char*>(&packetHeader), sizeof(PcapPacketHeader)) < sizeof(PcapPacketHeader)) break;
         QByteArray packetData = file.read(packetHeader.incl_len);
 
+        QDateTime timestamp = QDateTime::fromSecsSinceEpoch(packetHeader.ts_sec);
+        QString formattedTime = timestamp.toString("yyyy-MM-dd HH:mm:ss");
+        TableEntry entry;
         int offset = 0;
         parseSLLHeader(packetData, offset);
+        
 
         quint8 protocol;
         int ipHeaderLen;
-        parseIPv4Header(packetData, offset, protocol, ipHeaderLen);
+        parseIPv4Header(packetData, offset, protocol, ipHeaderLen, entry);
 
         if (protocol == 6) { // TCP
-            parseTCPHeader(packetData, offset);
+            QString data_ = parseTCPHeader(packetData, offset, number++, entry);
+            entry.time = formattedTime + "." + QString::number(packetHeader.ts_usec);      // 时间
+            entry.info = "默认";      // 信息
+            //ui->listWidget_func->addItem(QString::number(number++) + " " + formattedTime + "." + QString::number(packetHeader.ts_usec) + "  " + data_);
         }
+        tableData.append(entry);
     }
+
     file.close();
 
+    for (int i = 0; i < tableData.size(); ++i) {
+        ui->tableWidget_func->insertRow(i);
+        ui->tableWidget_func->setItem(i, 0, new QTableWidgetItem(QString::number(tableData[i].index)));
+        ui->tableWidget_func->setItem(i, 1, new QTableWidgetItem(tableData[i].time));
+        ui->tableWidget_func->setItem(i, 2, new QTableWidgetItem(tableData[i].flag));
+        ui->tableWidget_func->setItem(i, 3, new QTableWidgetItem(tableData[i].request));
+        ui->tableWidget_func->setItem(i, 4, new QTableWidgetItem(tableData[i].target));
+        ui->tableWidget_func->setItem(i, 5, new QTableWidgetItem(tableData[i].info));
+    }
 
     return;
 /*
@@ -5281,53 +5324,6 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
             break;
         }
 
-        qDebug() << "读取";
-
-        // 解析以太网帧
-        const EthernetHeader *eth;
-        qDebug() << "以太网1 " << eth->destMac << eth->srcMac << eth->etherType;
-        eth = reinterpret_cast<const EthernetHeader *>(packetData.constData());
-        qDebug() << "以太网2 " << eth->destMac << eth->srcMac << eth->etherType;
-        if (ntohs(eth->etherType) != 0x0800) continue; // 仅处理 IPv4
-
-        // 解析 IPv4 头
-        const IPv4Header *ip = reinterpret_cast<const IPv4Header *>(packetData.constData() + sizeof(EthernetHeader));
-        qDebug() << "ip "<< ip->srcIP << ip->destIP;
-        if (ip->protocol != 6) continue; // 仅处理 TCP（协议号 6）
-
-        // 解析 TCP 头
-        int ipHeaderSize = (ip->ihl) * 4;
-
-        const TCPHeader *tcp = reinterpret_cast<const TCPHeader *>(packetData.constData() + sizeof(EthernetHeader) + ipHeaderSize);
-        qDebug() << "tcp " << tcp->srcPort << tcp->destPort;
-        // 提取 TCP 标志位
-        uint8_t flags = tcp->flags;
-        uint16_t srcPort = ntohs(tcp->srcPort);
-        uint16_t destPort = ntohs(tcp->destPort);
-
-        // 转换时间戳
-         QDateTime timestamp = QDateTime::fromSecsSinceEpoch(packetHeader.tsSec);
-         QString formattedTime = timestamp.toString("yyyy-MM-dd HH:mm:ss");
-
-        // 筛选 TCP 握手（SYN, SYN-ACK, ACK）和挥手（FIN, FIN-ACK, ACK）
-        if (flags & 0x02) { // SYN
-            qDebug() << formattedTime << "握手 SYN 发送 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if ((flags & 0x12) == 0x12) { // SYN-ACK
-            qDebug() << formattedTime << "握手 SYN-ACK 回复 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if (flags == 0x10) { // ACK
-            qDebug() << formattedTime << "握手 ACK 确认 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if (flags & 0x01) { // FIN
-            qDebug() << formattedTime << "挥手 FIN 发送 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-        if ((flags & 0x11) == 0x11) { // FIN-ACK
-            qDebug() << formattedTime << "挥手 FIN-ACK 确认 - 源端口:" << srcPort << "目标端口:" << destPort;
-        }
-
-
-
 
         QString dataPack = "数据包 " + QString::number(++packetCount) + "，时间戳: " + formattedTime
                   + "." + QString::number(packetHeader.tsUsec) + "，长度: " + QString::number(packetHeader.capLen) + " 字节";
@@ -5342,3 +5338,29 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     qDebug() << "文件读取完成！";
     file.close();
 }
+
+void thriftwidget::on_tableWidget_func_itemClicked(QTableWidgetItem *item)
+{
+
+}
+
+
+void thriftwidget::on_tableWidget_func_itemSelectionChanged()
+{
+    QList<QTableWidgetItem *> selectedItems = ui->tableWidget_func->selectedItems();
+    if (!selectedItems.isEmpty()) {
+        int row = selectedItems.first()->row(); // 获取选中的第一行的索引
+        QString firstColumnValue = ui->tableWidget_func->item(row, 0)->text(); // 获取第一列（序号）的值
+        ui->plainTextEdit_5->clear();
+        int number = firstColumnValue.toInt();
+        ui->plainTextEdit_5->appendPlainText(dumpData[number]);
+        qDebug() << "选中行的序号:" << firstColumnValue;
+
+        //尝试解析数据
+        QString data = dumpData[number];
+        data.replace(" ","");
+        data.replace("\n","");
+        handleHexData(data);
+    }
+}
+

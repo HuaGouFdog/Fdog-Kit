@@ -353,6 +353,11 @@ QScrollBar::up-arrow:vertical {
               <string>压测模式</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>抓包模式</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -4727,7 +4732,7 @@ QToolButton:hover {
           </font>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_2">
           <property name="styleSheet">
@@ -5478,7 +5483,7 @@ border-radius: 2px;
                             <bool>false</bool>
                            </property>
                            <attribute name="headerVisible">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </attribute>
                            <attribute name="headerMinimumSectionSize">
                             <number>20</number>
@@ -9540,7 +9545,7 @@ QScrollBar::up-arrow:vertical {
            <item>
             <widget class="QSplitter" name="splitter_5">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Vertical</enum>
              </property>
              <widget class="QWidget" name="widget_15" native="true">
               <property name="sizePolicy">
@@ -9549,36 +9554,134 @@ QScrollBar::up-arrow:vertical {
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_26">
+              <layout class="QHBoxLayout" name="horizontalLayout_26">
                <item>
-                <widget class="QListWidget" name="listWidget_func"/>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QPlainTextEdit" name="plainTextEdit_4">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>5</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <family>Cascadia Code SemiBold</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">#plainTextEdit_4{
+                <widget class="QSplitter" name="splitter_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <widget class="QTableWidget" name="tableWidget_func">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>2</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>OPPOSans B</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>序号</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>时间</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>标志</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>请求源</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>目标源</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>信息</string>
+                   </property>
+                  </column>
+                 </widget>
+                 <widget class="QPlainTextEdit" name="plainTextEdit_4">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Code SemiBold</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#plainTextEdit_4{
 	border: 1px solid rgba(197, 197, 197,50);
 	background-color: rgba(255, 255, 255, 20);
 	border-radius: 5px;
 	color: rgb(255, 255, 255);
 }</string>
-              </property>
-              <property name="plainText">
-               <string/>
-              </property>
+                  </property>
+                  <property name="plainText">
+                   <string/>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="widget_16" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_25">
+               <item>
+                <widget class="QSplitter" name="splitter_7">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <widget class="QPlainTextEdit" name="plainTextEdit_5">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Cascadia Code SemiBold</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#plainTextEdit_4{
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}</string>
+                  </property>
+                  <property name="plainText">
+                   <string/>
+                  </property>
+                 </widget>
+                 <widget class="QTextEdit" name="textEdit_2">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
