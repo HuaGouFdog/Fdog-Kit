@@ -689,6 +689,8 @@ private slots:
 
     void on_checkBox_super_stateChanged(int arg1);
 
+    void on_tabWidget_2_currentChanged(int index);
+
 public:
     QVector<QString> dataList;
 private:

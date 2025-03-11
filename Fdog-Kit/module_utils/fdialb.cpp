@@ -45,47 +45,98 @@ void FDialB::drawBg(QPainter *painter) {
    */
     painter->translate(0, r * 0.3);
 
-    painter->setPen(QPen(QColor(230, 53, 42), 10)); // 设置弧线的宽度
+    painter->setPen(QPen(QColor(230, 53, 42), 30)); // 设置弧线的宽度
     painter->setBrush(Qt::NoBrush); // 让弧线中间透明
 
     // 画出不完整的圆弧
-    QRectF rect(-r, -r, r * 2, r * 2);
-    int startAngle = -14 * 16;  // 从大约 40° 开始
-    int spanAngle = 44 * 16;  // 画 280°，留下底部开口   200 - 40
+    /*QRectF rect(-r, -r, r * 2, r * 2);
+    int startAngle = -10 * 16;
+    int spanAngle = 40 * 16;
     painter->drawArc(rect, startAngle, spanAngle);
 
-    painter->setPen(QPen(QColor(220, 119, 47), 10)); // 设置弧线的宽度 
-    painter->setBrush(Qt::NoBrush); // 让弧线中间透明
+    painter->setPen(QPen(QColor(220, 119, 47), 30)); 
+    painter->setBrush(Qt::NoBrush); 
 
     // 画出不完整的圆弧
     QRectF rect2(-r, -r, r * 2, r * 2);
-    startAngle = 31 * 16;  // 从大约 40° 开始
-    spanAngle = 60 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
+    startAngle = 30 * 16; 
+    spanAngle = 60 * 16; 
     painter->drawArc(rect2, startAngle, spanAngle);
 
-    painter->setPen(QPen(QColor(76, 166, 74), 10)); // 设置弧线的宽度
-    painter->setBrush(Qt::NoBrush); // 让弧线中间透明
+    painter->setPen(QPen(QColor(76, 166, 74), 30)); 
+    painter->setBrush(Qt::NoBrush); 
 
     // 画出不完整的圆弧
     QRectF rect3(-r, -r, r * 2, r * 2);
-    startAngle = 91 * 16;  // 从大约 40° 开始
-    spanAngle = 104 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
-    painter->drawArc(rect3, startAngle, spanAngle);
+    startAngle = 90 * 16;  
+    spanAngle = 100 * 16;  
+    painter->drawArc(rect3, startAngle, spanAngle);*/
 
-    //painter->translate(0, r * 0.4);
-    r =  radius * 0.8;  // 120 * 0.8 = 96
-    painter->setPen(QPen(QColor(35, 39, 46), 30)); // 设置弧线的宽度
+    r =  radius * 0.95;
+    QRectF rect_(-r, -r, r * 2, r * 2);
+    // 画背景
+    int startAngle = -15 * 16;
+    int spanAngle = 210 * 16;
+    painter->setPen(QPen(QColor(0, 0, 0), 5, Qt::SolidLine, Qt::FlatCap));  
+    painter->drawArc(rect_, startAngle, spanAngle);
+    r =  radius * 1;
+    QRectF rect(-r, -r, r * 2, r * 2);
+    // 画红色弧
+    int startAngle1 = -15 * 16;
+    int spanAngle1 = 40 * 16;
+    painter->setPen(QPen(QColor(230, 53, 42), 5, Qt::SolidLine, Qt::FlatCap));  
+    painter->drawArc(rect, startAngle1, spanAngle1);
+
+    // 画橙色弧
+    int startAngle2 = startAngle1 + spanAngle1;
+    int spanAngle2 = 60 * 16;
+    painter->setPen(QPen(QColor(220, 119, 47), 5, Qt::SolidLine, Qt::FlatCap));
+    painter->drawArc(rect, startAngle2, spanAngle2);
+
+    // 画绿色弧
+    int startAngle3 = startAngle2 + spanAngle2;
+    int spanAngle3 = 110 * 16;
+    painter->setPen(QPen(QColor(76, 166, 74), 5, Qt::SolidLine, Qt::FlatCap));
+    painter->drawArc(rect, startAngle3, spanAngle3);
+
+    //画小圈
+    r =  radius * 0.81;
     QRectF rect4(-r, -r, r * 2, r * 2);
-    startAngle = -10 * 16;  // 从大约 40° 开始
-    spanAngle = 200 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
-    painter->drawArc(rect4, startAngle, spanAngle);
+    //startAngle1 = -15 * 16;
+    //spanAngle1 = 40 * 16;
+    painter->setPen(QPen(QColor(230, 53, 42), 28, Qt::SolidLine, Qt::FlatCap));
+    painter->drawArc(rect4, startAngle1, spanAngle1);
 
-    r =  radius * 0.78;  // 120 * 0.8 = 96
-    painter->setPen(QPen(QColor(255,255,255), 30)); // 设置弧线的宽度
-    QRectF rect5(-r, -r, r * 2, r * 2);
-    startAngle = -10 * 16;  // 从大约 40° 开始
-    spanAngle = 200 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
-    painter->drawArc(rect5, startAngle, spanAngle);
+    // 画橙色弧
+    //startAngle2 = startAngle1 + spanAngle1;
+    //spanAngle2 = 60 * 16;
+    painter->setPen(QPen(QColor(220, 119, 47), 28, Qt::SolidLine, Qt::FlatCap));
+    painter->drawArc(rect4, startAngle2, spanAngle2);
+
+    // 画绿色弧
+    //startAngle3 = startAngle2 + spanAngle2;
+    //spanAngle3 = 100 * 16;
+    painter->setPen(QPen(QColor(76, 166, 74), 28, Qt::SolidLine, Qt::FlatCap));
+    painter->drawArc(rect4, startAngle3, spanAngle3);
+
+    int startAngle4 = -15.2 * 16;  // 从大约 40° 开始
+    int spanAngle4 = 150 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
+    painter->setPen(QPen(QColor(34, 37, 43), 29, Qt::SolidLine, Qt::FlatCap)); // 设置弧线的宽度
+    painter->drawArc(rect4, startAngle4, spanAngle4);
+
+    //r =  radius * 0.8;  // 120 * 0.8 = 96
+    // painter->setPen(QPen(QColor(35, 39, 46), 20)); // 设置弧线的宽度
+    // QRectF rect4(-r, -r, r * 2, r * 2);
+    // startAngle = -10 * 16;  // 从大约 40° 开始
+    // spanAngle = 200 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
+    // painter->drawArc(rect4, startAngle, spanAngle);
+
+    //r =  radius * 0.78;  // 120 * 0.8 = 96
+    // painter->setPen(QPen(QColor(255,255,255), 30)); // 设置弧线的宽度
+    // QRectF rect5(-r, -r, r * 2, r * 2);
+    // startAngle = 10 * 16;  // 10 从大约 40° 开始
+    // spanAngle = 150 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
+    // painter->drawArc(rect5, startAngle, spanAngle);
 
 
 //    
@@ -188,11 +239,11 @@ void FDialB::drawIndicator(QPainter *painter) {
 
 void FDialB::drawText(QPainter *painter) {
     painter->save();
-
-    painter->setFont(QFont("Arial", 10));
-    painter->setPen(QPen(QColor(255,255,255)));
+    //painter->translate(0, radius * -0.1);
+    painter->setFont(QFont("OPPOSans B", 30));
+    painter->setPen(QPen(QColor(76, 166, 74)));
     QFontMetricsF fm = QFontMetricsF(painter->font());
-    QString speed = QString::number(percent) + " km/h";
+    QString speed = QString::number(percent) + "%";
     int w = (int)fm.width(speed);
     int h = (int)fm.height();
     painter->drawText(QPointF(-w/2, (int)(0.5*radius)),speed);
@@ -219,6 +270,6 @@ void FDialB::paintEvent(QPaintEvent *) {
     // drawScaleNum(&painter);
     // //绘制指针
     // drawIndicator(&painter);
-    // //绘制表盘上文本当前值
-    // drawText(&painter);
+    //绘制表盘上文本当前值
+    drawText(&painter);
 }

@@ -3140,7 +3140,7 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
             int index6 = funcName1.indexOf("(");
             QString funcName = funcName1.mid(0, index6).replace(" ", "");
 
-            qDebug() << "加载接口 " << funcName;
+            //qDebug() << "加载接口 " << funcName;
 
             QString funcParam_inparam = funcName1.mid(index6 + 1);
             int index7 = funcParam_inparam.indexOf(")");
@@ -3251,7 +3251,7 @@ void thriftwidget::getStructInfo(QString &fileContent) {
             QString data = fileContent.mid(index_s + 1, index_e - index_s - 1);
             fileContent = fileContent.mid(index_e + 1);
             structParamMap.insert(structName, getStructParams(data));
-            qDebug() << "加载实体 " << structName;
+            //qDebug() << "加载实体 " << structName;
         } else {
             break;
         }
@@ -5121,7 +5121,7 @@ void thriftwidget::rece_execCommand(QString data)
     if (data.contains("tcpdump version")) {
         //进行下一步
         //获取数据
-        QMetaObject::invokeMethod(sshExec,"commondExec", Q_ARG(QString,"tcpdump -i any -vvv -X port 4031 2>&1"));
+        QMetaObject::invokeMethod(sshExec,"commondExec", Q_ARG(QString,"./capture.sh &"));
     } else {
 
     }
@@ -5290,7 +5290,7 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
 
-    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250217-1125.pcap";  // 你的 pcap 文件
+    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-txt-20250306-0013.pcap";  // 你的 pcap 文件
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -5453,5 +5453,20 @@ void thriftwidget::on_checkBox_show_json_stateChanged(int arg1)
 void thriftwidget::on_checkBox_super_stateChanged(int arg1)
 {
     qDebug() << "状态变化" << arg1;
+}
+
+
+void thriftwidget::on_tabWidget_2_currentChanged(int index)
+{
+    if (index == 0) {
+        ui->stackedWidget_2->setCurrentIndex(0);
+    } else {
+        ui->stackedWidget_2->setCurrentIndex(3);
+        //ui->widget_17->setParent(ui->page_7);
+        // qDebug() << "ui->widget_17" << ui->widget_17->parent();
+        // qDebug() << "ui->widget_18" << ui->widget_18->parent();
+        //ui->widget_17->show();
+    }
+    
 }
 
