@@ -1,3 +1,4 @@
+﻿#pragma execution_character_set("utf-8")
 #include "fdialb.h"
 
 #include <QPainter>
@@ -48,30 +49,6 @@ void FDialB::drawBg(QPainter *painter) {
     painter->setPen(QPen(QColor(230, 53, 42), 30)); // 设置弧线的宽度
     painter->setBrush(Qt::NoBrush); // 让弧线中间透明
 
-    // 画出不完整的圆弧
-    /*QRectF rect(-r, -r, r * 2, r * 2);
-    int startAngle = -10 * 16;
-    int spanAngle = 40 * 16;
-    painter->drawArc(rect, startAngle, spanAngle);
-
-    painter->setPen(QPen(QColor(220, 119, 47), 30)); 
-    painter->setBrush(Qt::NoBrush); 
-
-    // 画出不完整的圆弧
-    QRectF rect2(-r, -r, r * 2, r * 2);
-    startAngle = 30 * 16; 
-    spanAngle = 60 * 16; 
-    painter->drawArc(rect2, startAngle, spanAngle);
-
-    painter->setPen(QPen(QColor(76, 166, 74), 30)); 
-    painter->setBrush(Qt::NoBrush); 
-
-    // 画出不完整的圆弧
-    QRectF rect3(-r, -r, r * 2, r * 2);
-    startAngle = 90 * 16;  
-    spanAngle = 100 * 16;  
-    painter->drawArc(rect3, startAngle, spanAngle);*/
-
     r =  radius * 0.95;
     QRectF rect_(-r, -r, r * 2, r * 2);
     // 画背景
@@ -102,45 +79,23 @@ void FDialB::drawBg(QPainter *painter) {
     //画小圈
     r =  radius * 0.81;
     QRectF rect4(-r, -r, r * 2, r * 2);
-    //startAngle1 = -15 * 16;
-    //spanAngle1 = 40 * 16;
     painter->setPen(QPen(QColor(230, 53, 42), 28, Qt::SolidLine, Qt::FlatCap));
     painter->drawArc(rect4, startAngle1, spanAngle1);
 
     // 画橙色弧
-    //startAngle2 = startAngle1 + spanAngle1;
-    //spanAngle2 = 60 * 16;
     painter->setPen(QPen(QColor(220, 119, 47), 28, Qt::SolidLine, Qt::FlatCap));
     painter->drawArc(rect4, startAngle2, spanAngle2);
 
     // 画绿色弧
-    //startAngle3 = startAngle2 + spanAngle2;
-    //spanAngle3 = 100 * 16;
     painter->setPen(QPen(QColor(76, 166, 74), 28, Qt::SolidLine, Qt::FlatCap));
     painter->drawArc(rect4, startAngle3, spanAngle3);
 
-    int startAngle4 = -15.2 * 16;  // 从大约 40° 开始
-    int spanAngle4 = 150 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
-    painter->setPen(QPen(QColor(34, 37, 43), 29, Qt::SolidLine, Qt::FlatCap)); // 设置弧线的宽度
-    painter->drawArc(rect4, startAngle4, spanAngle4);
+    // qDebug() << "drawIndicator1 = " << rect4;
+    // int startAngle4 = -15.2 * 16;  // 从大约 40° 开始
+    // int spanAngle4 = 150 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
+    // painter->setPen(QPen(QColor(34, 37, 43), 29, Qt::SolidLine, Qt::FlatCap)); // 设置弧线的宽度
+    // painter->drawArc(rect4, startAngle4, spanAngle4);
 
-    //r =  radius * 0.8;  // 120 * 0.8 = 96
-    // painter->setPen(QPen(QColor(35, 39, 46), 20)); // 设置弧线的宽度
-    // QRectF rect4(-r, -r, r * 2, r * 2);
-    // startAngle = -10 * 16;  // 从大约 40° 开始
-    // spanAngle = 200 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
-    // painter->drawArc(rect4, startAngle, spanAngle);
-
-    //r =  radius * 0.78;  // 120 * 0.8 = 96
-    // painter->setPen(QPen(QColor(255,255,255), 30)); // 设置弧线的宽度
-    // QRectF rect5(-r, -r, r * 2, r * 2);
-    // startAngle = 10 * 16;  // 10 从大约 40° 开始
-    // spanAngle = 150 * 16;  // 画 280°，留下底部开口  220 - 40 - 60
-    // painter->drawArc(rect5, startAngle, spanAngle);
-
-
-//    
-//    painter->drawEllipse(-r, -r, r * 2, r * 2);
    painter->restore();
 }
 
@@ -237,6 +192,22 @@ void FDialB::drawIndicator(QPainter *painter) {
     painter->restore();
 }
 
+void FDialB::drawIndicator2(QPainter *painter)
+{
+    int r =  radius;
+    painter->translate(0, r * 0.3);
+    r = radius * 0.81;
+
+    // painter->setPen(QPen(QColor(230, 53, 42), 30)); // 设置弧线的宽度
+    // painter->setBrush(Qt::NoBrush); // 让弧线中间透明
+    QRectF rect4(-r, -r, r * 2, r * 2);
+    //qDebug() << "drawIndicator2 = " << rect4;
+    int startAngle4 = -15.2 * 16;  // 从大约 40° 开始
+    int spanAngle4 = du * 16;  // 画 280°，留下底部开口  220 - 40 - 60
+    painter->setPen(QPen(QColor(34, 37, 43), 29, Qt::SolidLine, Qt::FlatCap)); // 设置弧线的宽度
+    painter->drawArc(rect4, startAngle4, spanAngle4);
+}
+
 void FDialB::drawText(QPainter *painter) {
     painter->save();
     //painter->translate(0, radius * -0.1);
@@ -264,6 +235,8 @@ void FDialB::paintEvent(QPaintEvent *) {
 
     //绘制最外框圆形背景
     drawBg(&painter);
+    //绘制进度
+    drawIndicator2(&painter);
     // //绘制刻度
     // drawDial(&painter);
     // //绘制刻度数值
@@ -272,4 +245,11 @@ void FDialB::paintEvent(QPaintEvent *) {
     // drawIndicator(&painter);
     //绘制表盘上文本当前值
     drawText(&painter);
+}
+
+void FDialB::valueChanged(int value) {
+    //qDebug() << "更新value" << value;
+    percent = value;
+    du = (2.1*(100 - value)) + 1;
+    update();
 }

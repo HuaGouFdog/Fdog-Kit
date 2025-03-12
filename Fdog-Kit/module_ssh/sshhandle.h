@@ -11,32 +11,11 @@
 #include <QTextBlock>
 #include "datahandle.h"
 #include "historycommondwidget.h"
+#include "module_utils/utils.h"
 #include <QThread>
 
 #define SSH_PASSWORD "1"
 #define SSH_PUBLICKEY  "2"
-struct ServerInfoStruct {
-    //基础信息
-    QString ip;            //ip
-    QString runTime;       //运行时间
-    QString architecture;  //硬件架构
-    QString cpuInfo;       //CPU信息
-    QString systemName;    //操作系统名称
-    QString loginCount;    //当前登录数
-
-    QString cpuUseRate;    //cpu使用率
-    QString memUseRate;    //内存使用率
-    QString swapUseRate;   //交换使用率
-    QString diskUseRate;   //磁盘使用率
-
-    QString memUse;
-    QString swapUse;
-    //QString swapFree;
-
-    QString load; //负载
-
-    QString time;          //系统时间
-};
 
 Q_DECLARE_METATYPE(ServerInfoStruct);
 

@@ -18,6 +18,31 @@
 #define DARK_THEME  1   //暗黑主题
 #define BLUE_THEME  2   //蓝色主题
 
+struct ServerInfoStruct {
+    //基础信息
+    QString ip;            //ip
+    QString runTime;       //运行时间
+    QString architecture;  //硬件架构
+    QString cpuInfo;       //CPU信息
+    QString systemName;    //操作系统名称
+    QString loginCount;    //当前登录数
+
+    QString cpuUseRate;    //cpu使用率
+    QString memUseRate;    //内存使用率
+    QString swapUseRate;   //交换使用率
+    QString diskUseRate;   //磁盘使用率
+
+    QString memUse;
+    QString swapUse;
+    QString memM;  //M
+    QString memG;  //G
+    //QString swapFree;
+
+    QString load; //负载
+
+    QString time;          //系统时间
+};
+
 struct SSHINFO {
     QString name;
     QString ip;

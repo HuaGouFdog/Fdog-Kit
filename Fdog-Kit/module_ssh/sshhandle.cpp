@@ -326,7 +326,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
     //qDebug() << "执行sshHandleExec init3";
 
     channel_exec = libssh2_channel_open_session(session_exec);
-
+    emit send_init(true);
     if (connrectType == 1) {
         while(1) {
             if (isBreak) {
@@ -336,7 +336,7 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
             }
             getServerInfo();
             QCoreApplication::processEvents();
-            QThread::msleep(1000);
+            QThread::msleep(500);
         }
     } else if (connrectType == 2) {
         qDebug() << "执行command = " << command;
@@ -344,7 +344,6 @@ void sshHandleExec::init(int connrectType, QString host, QString port, QString u
         send_execCommand(data);
     }
     //qDebug() << "执行sshHandleExec init 完成";
-    emit send_init(true);
 }
 
 void sshHandleExec::getServerInfo()
@@ -369,11 +368,11 @@ void sshHandleExec::getServerInfo()
         //qDebug() << "运行时间:" << reTime.cap(3); //时间
         //qDebug() << "运行时间:" << reTime.cap(4); //小时或者分钟 没有就是小时
         if (reTime.cap(2) != "") {
-            serverInfo.runTime = "运行 " + reTime.cap(2) + "天";
+            serverInfo.runTime =  reTime.cap(2) + "天";
         } else if (reTime.cap(3) != "" && reTime.cap(4) != "") {
-            serverInfo.runTime = "运行 " + reTime.cap(3) + " " + reTime.cap(4);
+            serverInfo.runTime = reTime.cap(3) + " " + reTime.cap(4);
         } else if (reTime.cap(3) != "") {
-            serverInfo.runTime = "运行 " + reTime.cap(3);
+            serverInfo.runTime = reTime.cap(3);
         }
     } else {
         //qDebug() << "找不到运行时间.";
@@ -396,7 +395,7 @@ void sshHandleExec::getServerInfo()
         QString load2 = reLoad.cap(2);
         QString load3 = reLoad.cap(3);
         //qDebug() << "负载:" << load1 << load2 << load3;
-        serverInfo.load = "负载 " + reLoad.cap(1) + ", " + reLoad.cap(2) + ", " + reLoad.cap(3);
+        serverInfo.load = reLoad.cap(1) + ", " + reLoad.cap(2) + ", " + reLoad.cap(3);
     } else {
         qDebug() << "未找到负载.";
     }
@@ -421,7 +420,7 @@ void sshHandleExec::getServerInfo()
     QStringList pro = commondExec(commond).split("\n");
     //qDebug() << "线程数 " << pro[0];
 
-    serverInfo.cpuInfo = "cpu信息 " + phy[0] + "核" + pro[0] + "线程";
+    serverInfo.cpuInfo = phy[0] + "/" + pro[0];
 
     //提取io
     QRegExp reio("(\\d+.\\d+) wa");
@@ -441,10 +440,16 @@ void sshHandleExec::getServerInfo()
         QString mem3 = reMem.cap(3);
         QString mem4 = reMem.cap(4);
         //qDebug() << "内存:" << mem1 << " " << mem2 << " " << mem3 << " " << mem4;
-        serverInfo.memUseRate = QString::number(100 - (int)(reMem.cap(2).toDouble() / reMem.cap(1).toDouble() * 100));
         //qDebug() << "内存:" << serverInfo.memUseRate;
+        /*
+        KiB Mem :  5944872 total,   964820 free,  3382056 used,  1597996 buff/cache
+        KiB Swap:  8258556 total,  4328740 free,  3929816 used.  2062728 avail Mem 
+        内存总共 5.66947 G
+        当前可用 4.94488 G
 
+        */
         double mem_m = (reMem.cap(1).toDouble()) / 1024;
+        //qDebug() << "内存总共" << mem_m << "m";
         double mem_g =0.0;
         if (mem_m >= 1024) {
             mem_g = mem_m / 1024;
@@ -453,7 +458,7 @@ void sshHandleExec::getServerInfo()
             serverInfo.memUse = "/" + QString::number(mem_m, 'f', 1) + "M ";
         }
 
-        double mem_mf = (reMem.cap(1).toDouble() - reMem.cap(2).toDouble()) / 1024;
+        double mem_mf = (reMem.cap(1).toDouble() - reMem.cap(2).toDouble() - reMem.cap(4).toDouble()) / 1024;
         double mem_gf =0.0;
         if (mem_mf >= 1024) {
             mem_gf = mem_mf / 1024;
@@ -461,8 +466,14 @@ void sshHandleExec::getServerInfo()
         } else {
             serverInfo.memUse = QString::number(mem_mf, 'f', 1) + "M " + serverInfo.memUse;
         }
+        serverInfo.memG = QString::number(mem_g, 'f', 1) + "GIB";
+        serverInfo.memM = QString::number(mem_m, 'f', 1) + "MIB";
         //qDebug() << "内存总共" << mem_g << "G";
-        //qDebug() << "当前可用" << mem_gf << "G";
+        //qDebug() << "当前已用" << mem_gf << "G";
+        double useRate = (mem_gf / mem_g ) * 100.0;
+        //qDebug() << "使用率1" << useRate << "%";
+        //qDebug() << "使用率2" << QString::number(useRate) << "%";
+        serverInfo.memUseRate = QString::number((int)useRate);
     } else {
         qDebug() << "未找到内存.";
     }
@@ -509,7 +520,7 @@ void sshHandleExec::getServerInfo()
 
 QString sshHandleExec::commondExec(QString commond)
 {
-    qDebug() << "commondExec commond = " << commond;
+    //qDebug() << "commondExec commond = " << commond;
     channel_exec = libssh2_channel_open_session(session_exec);
     int rc = libssh2_channel_exec(channel_exec, commond.toStdString().c_str());
     if (rc != 0) {
@@ -520,7 +531,7 @@ QString sshHandleExec::commondExec(QString commond)
     char buffer[1024] = {0};
     int bytesRead = libssh2_channel_read(channel_exec, buffer, sizeof(buffer) - 1);
     buffer[bytesRead] = '\0';
-    qDebug() << "commondExec Info = " << buffer;
+    //qDebug() << "commondExec Info = " << buffer;
     libssh2_channel_close(channel_exec);
     return buffer;
 }
