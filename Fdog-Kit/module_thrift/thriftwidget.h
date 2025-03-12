@@ -21,6 +21,7 @@
 #include <QThreadPool>
 #include <QListWidgetItem>
 #include <QMutex>
+#include <QProcess>
 #include "module_ssh/sshsql.h"
 #include "module_ssh/sshhandle.h"
 #include "prefabricatedata.h"
@@ -389,9 +390,11 @@ public:
     bool isToolButton_response_checked = true;      //响应
     bool isToolButton_report_checked = false;       //性能报告
     int  retractNum = 0;
-
+    QProcess process;
     QList<TableEntry> tableData;
     QMap<int, QString> dumpData;
+    connnectInfoStruct cInfoStruct;
+    QVector<connnectInfoStruct> cInfoStructList;
 
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
@@ -690,6 +693,26 @@ private slots:
     void on_checkBox_super_stateChanged(int arg1);
 
     void on_tabWidget_2_currentChanged(int index);
+
+    void on_horizontalSlider_sliderMoved(int position);
+
+    void on_horizontalSlider_valueChanged(int value);
+
+    void rece_getServerInfo(ServerInfoStruct serverInfo);
+
+    void on_toolButton_5_clicked();
+
+    void on_toolButton_6_clicked();
+
+    void onReadyReadOutput();
+    void onReadyReadError();
+
+    void on_toolButton_7_clicked();
+
+    void on_lineEdit_host_textChanged(const QString &arg1);
+    void on_comboBox_port_currentIndexChanged(const QString &arg1);
+
+    void on_toolButton_8_clicked();
 
 public:
     QVector<QString> dataList;

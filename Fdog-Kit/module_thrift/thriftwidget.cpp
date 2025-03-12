@@ -37,6 +37,7 @@
 #include "module_utils/utils.h"
 #include <numeric>
 #include <QValueAxis>
+#include <QProcess>
 #pragma comment(lib, "ws2_32.lib")
 
 
@@ -783,6 +784,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui(new Ui::thriftwidget)
 {
     ui->setupUi(this);
+
+    qRegisterMetaType<ServerInfoStruct>("ServerInfoStruct&");
     //ui->treeWidget->setStyle(QStyleFactory::create("windows"));
     // 设置树的列数（如果需要多列）
     ui->treeWidget->setColumnCount(4);
@@ -946,6 +949,25 @@ thriftwidget::thriftwidget(QWidget *parent) :
     connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
     ui->treeWidget->setMouseTracking(true);
     ui->treeWidget->installEventFilter(filter);
+
+
+    db = new sshsql();
+    cInfoStructList = db->ssh_getAllSSHInfo();
+    qDebug() << "sshinfo size = " << cInfoStructList.length();
+    for (const auto& cInfo : cInfoStructList) {
+        ui->comboBox_ssh->addItem(cInfo.host);
+        if (cInfo.host == ui->lineEdit_host->text()) {
+            // 找到匹配的元素，可以在这里进行处理
+            qDebug() << "找到匹配的 host: " << cInfo.host;
+            // 例如，打印其他成员变量
+            qDebug() << "用户名: " << cInfo.userName;
+            qDebug() << "端口: " << cInfo.port;
+            // 如果只需要找到一个匹配项，可以在这里 break
+            cInfoStruct = cInfo;
+            ui->comboBox_ssh->setCurrentText(cInfo.host);
+        }
+    }
+
 }
 
 QString thriftwidget::getCpuInfo(const QString &cmd)
@@ -5086,6 +5108,7 @@ void thriftwidget::on_toolButton_capturePackage_clicked()
             cInfoStruct = cInfo;
             break;
         }
+
     }
     if (isFind) {
         qDebug() << "找到匹配的服务器信息";
@@ -5129,7 +5152,11 @@ void thriftwidget::rece_execCommand(QString data)
 
 void thriftwidget::rece_ssh_exec_init(bool isok)
 {
-    //qDebug() << "rece_ssh_exec_init = " << isok;
+    qDebug() << "rece_ssh_exec_init = " << isok;
+    if (!isok) {
+        ui->toolButton_5->setEnabled(true);
+    }
+    
 }
 
 // 打印数据的十六进制格式
@@ -5462,11 +5489,222 @@ void thriftwidget::on_tabWidget_2_currentChanged(int index)
         ui->stackedWidget_2->setCurrentIndex(0);
     } else {
         ui->stackedWidget_2->setCurrentIndex(3);
-        //ui->widget_17->setParent(ui->page_7);
-        // qDebug() << "ui->widget_17" << ui->widget_17->parent();
-        // qDebug() << "ui->widget_18" << ui->widget_18->parent();
-        //ui->widget_17->show();
     }
     
+}
+
+
+void thriftwidget::on_horizontalSlider_sliderMoved(int position)
+{
+
+}
+
+
+void thriftwidget::on_horizontalSlider_valueChanged(int value)
+{
+    ui->widget_18->valueChanged(value);
+}
+
+void thriftwidget::rece_getServerInfo(ServerInfoStruct serverInfo) {
+    // ui->label_ip->setText(serverInfo.ip);
+    // ui->label_load->setText(serverInfo.load);
+    // ui->label_runTime->setText(serverInfo.runTime);
+    // ui->label_loginCount->setText(serverInfo.loginCount);
+    // ui->label_architecture->setText(serverInfo.architecture);
+    // ui->label_cpuInfo->setText(serverInfo.cpuInfo);
+
+    // ui->progressBar_mem->setFormat("%p%   " + serverInfo.memUse);
+    // ui->progressBar_swap->setFormat("%p%   " + serverInfo.swapUse);
+    //qDebug() << "rece_getServerInfo cpuUseRate " << serverInfo.cpuUseRate;
+    //qDebug() << "rece_getServerInfo 1 " << serverInfo.memUseRate;
+    //qDebug() << "rece_getServerInfo 2 " << serverInfo.memUseRate.toInt();
+    ui->label_23->setText(serverInfo.memM);
+    ui->label_21->setText(serverInfo.cpuInfo);
+    ui->label_19->setText(serverInfo.runTime);
+    ui->widget_17->valueChanged(serverInfo.cpuUseRate.toInt());
+    ui->widget_18->valueChanged(serverInfo.diskUseRate.toInt());
+    ui->widget_19->valueChanged(serverInfo.memUseRate.toInt());
+    ui->widget_20->valueChanged(serverInfo.swapUseRate.toInt());
+    ui->label_46->setText(serverInfo.load);
+}
+
+void thriftwidget::on_toolButton_5_clicked() {
+    if (cInfoStruct.host != "") {
+        ui->toolButton_5->setEnabled(false);
+        threadExec = new QThread();
+        sshExec = new sshHandleExec();
+        sshExec->moveToThread(threadExec);
+        connect(sshExec, SIGNAL(send_getServerInfo(ServerInfoStruct)),this,
+                SLOT(rece_getServerInfo(ServerInfoStruct)));
+        connect(sshExec,SIGNAL(send_init(bool)),this,
+                SLOT(rece_ssh_exec_init(bool)));
+        threadExec->start();
+    
+            QString host = cInfoStruct.host;
+            QString port = cInfoStruct.port;
+            QString username = cInfoStruct.userName;
+            QString password = cInfoStruct.password;
+            QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, 1), Q_ARG(QString, host), Q_ARG(QString,port), 
+                                    Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(QString,""));
+    }
+
+}
+
+
+void thriftwidget::on_toolButton_6_clicked() {
+    ui->toolButton_6->setEnabled(false);
+    ui->plainTextEdit_5->clear();
+    connect(&process, &QProcess::readyReadStandardOutput, this, &thriftwidget::onReadyReadOutput);
+    connect(&process, &QProcess::readyReadStandardError, this, &thriftwidget::onReadyReadError);
+    //组装命令
+    QString command = "wsl ";
+    command = command + ui->lineEdit_scriptPath->text() + "/main" + " -s " + 
+                    ui->lineEdit_host_2->text() + ":" + ui->lineEdit_port_2->text() + "/" + ui->lineEdit_route_2->text() +
+                    " -p " + ui->lineEdit_password->text() + " -u " + ui->lineEdit_scriptPath->text() + 
+                    "/account.txt" + " -n " + ui->lineEdit_loginNum->text();
+    
+    if (ui->comboBox_type->currentIndex() == 0) {
+        //登录
+        command = command + " -t 2";
+    } else if (ui->comboBox_type->currentIndex() == 1) {
+        //初始化验证
+        command = command + " -t 1";
+    } else if (ui->comboBox_type->currentIndex() == 2) {
+        //单聊
+        command = command + " -t 3";
+    } else if (ui->comboBox_type->currentIndex() == 3) {
+        //群聊
+        command = command + " -t 4";
+        //群聊
+        if (ui->comboBox_groupNum->currentIndex() == 0) {
+            //50
+            command = command + " -g 50";
+        } else if (ui->comboBox_groupNum->currentIndex() == 1) {
+            //100
+            command = command + " -g 100";
+        } else if (ui->comboBox_groupNum->currentIndex() == 2) {
+            //300
+            command = command + " -g 300";
+        } else if (ui->comboBox_groupNum->currentIndex() == 3) {
+            //500
+            command = command + " -g 500";
+        } else if (ui->comboBox_groupNum->currentIndex() == 4) {
+            //1000
+            command = command + " -g 1000";
+        }
+    }
+
+    if (ui->comboBox_nullRequest->currentIndex() == 0) {
+        //不发送
+        command = command + " -e 2";
+    } else if (ui->comboBox_nullRequest->currentIndex() == 1) {
+        //发送并打印推送消息
+        command = command + " -e 3";
+    } else if (ui->comboBox_nullRequest->currentIndex() == 2) {
+        //发送但不打印推送消息
+        command = command + " -e 1";
+    }
+
+    if (ui->comboBox_connectionDetection->currentIndex() == 0) {
+        //检测
+        command = command + " -l 1";
+    } else if (ui->comboBox_connectionDetection->currentIndex() == 1) {
+        //不检测
+        command = command + " -l 2";
+    }
+
+    
+    ui->plainTextEdit_5->appendPlainText("执行命令：" + command);
+    
+    //"/mnt/e/ProjectA/avalanche/buildData/main -s 172.16.8.154:10669/ap -p 7c22a66ce0de9d5202a79ed522b737e8 -t 3 -u /mnt/e/ProjectA/avalanche/buildData/account.txt  -n 50";
+    process.start(command); // 运行 WSL 命令
+}
+
+void thriftwidget::onReadyReadOutput()
+{
+    QString output = process.readAllStandardOutput();
+    output.chop(1);
+    if (output == "") return;
+    ui->plainTextEdit_5->appendPlainText(output);
+    qDebug() << "WSL Output:" << output;
+}
+
+void thriftwidget::onReadyReadError()
+{
+    QString errorOutput = process.readAllStandardError();
+    errorOutput.chop(1);
+    if (errorOutput == "") return;
+    ui->plainTextEdit_5->appendPlainText(errorOutput);
+    qDebug() << "WSL Error:" << errorOutput;
+}
+
+
+void thriftwidget::on_toolButton_7_clicked()
+{
+    
+    QProcess process;
+    QString command = QString("wsl bash -c \"pgrep main\"");
+
+    process.start(command);
+    process.waitForFinished();
+
+    QString output = process.readAllStandardOutput().trimmed(); // 读取进程 ID
+    if (output.isEmpty()) {
+        qDebug() << "未找到进程：" << "main";
+        ui->toolButton_6->setEnabled(true);
+        return;
+    }
+
+    qDebug() << "找到进程：" << "main " << ", PID:" << output;
+
+    // 终止进程
+    QStringList pids = output.split("\n"); // 可能有多个进程
+    for (const QString &pid : pids) {
+        QString killCommand = QString("wsl bash -c \"kill -9 %1\"").arg(pid);
+        QProcess::execute(killCommand);
+        qDebug() << "已杀死进程：" << pid;
+    }
+    ui->plainTextEdit_5->appendPlainText("关闭服务");
+    //关闭服务
+    ui->toolButton_6->setEnabled(true);
+    return;
+}
+
+
+void thriftwidget::on_lineEdit_host_textChanged(const QString &arg1)
+{
+    QString arg = arg1;
+    ui->lineEdit_host_2->setText(arg1);
+}
+
+
+void thriftwidget::on_comboBox_port_currentIndexChanged(const QString &arg1)
+{
+    QString port_str = ui->comboBox_port->currentText();
+    int index_s = port_str.indexOf("(");
+    int index_e = port_str.indexOf(")");
+    int port = port_str.mid(index_s + 1, index_e - index_s - 1).toInt();
+    if (index_s == -1 && index_e == -1) {
+        port = port_str.toInt();
+    }
+    ui->lineEdit_port_2->setText(QString::number(port));
+}
+
+
+void thriftwidget::on_toolButton_8_clicked()
+{
+    if (sshExec != NULL) {
+        delete sshExec;
+        sshExec = NULL;
+    }
+    ui->label_23->setText("0MIB");
+    ui->label_21->setText("0/0");
+    ui->label_19->setText("0天");
+    ui->widget_17->valueChanged(0);
+    ui->widget_18->valueChanged(0);
+    ui->widget_19->valueChanged(0);
+    ui->widget_20->valueChanged(0);
+    ui->label_46->setText("0.00, 0.00, 0.00");
+    ui->toolButton_5->setEnabled(true);
 }
 
