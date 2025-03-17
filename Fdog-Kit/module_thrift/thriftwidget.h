@@ -396,6 +396,8 @@ public:
     connnectInfoStruct cInfoStruct;
     QVector<connnectInfoStruct> cInfoStructList;
 
+
+
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
     QString getCpuInfo(const QString &cmd);
@@ -404,7 +406,7 @@ public:
     QString getValue(QString data);
     ~thriftwidget();
 
-
+    
 
     uint32_t string2Uint32(QString data);  //将四字节字符串转为需要发送的uint32
     uint16_t string2Uint16(QString data);  //将四字节字符转换位需要发送的uint16
@@ -591,6 +593,16 @@ public:
     //计算每个线程的工作数
 
     QVector<int> distributeRequests(int totalRequests, int numThreads);
+
+    void buildChart1();
+    void updateChart1(int value);
+    void buildChart2();
+    void updateChart2(int value);
+    void buildChart3();
+    void updateChart3(int value);
+    void buildChartP();
+    void updateChartP(int value1, int value2);
+
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void read_data();
@@ -736,6 +748,51 @@ private:
     QChartView *chartView = nullptr;
     QChart *chart = nullptr;
     prefabricatedata * preData;
+
+
+    int maxPoints = 50;
+    QChart *chart_cpu;
+    QChartView *chartView_cpu;
+    QLineSeries * series_cpu2;
+    QAreaSeries *areaSeries_cpu;
+    QValueAxis *axisX_cpu;
+    QValueAxis *axisY_cpu;
+    QVector<qreal> data_cpu;
+
+    QChart *chart_mem;
+    QChartView *chartView_mem;
+    QLineSeries * series_mem;
+    QAreaSeries *areaSeries_mem;
+    QValueAxis *axisX_mem;
+    QValueAxis *axisY_mem;
+    QVector<qreal> data_mem;
+
+    QChart *chart_io;
+    QChartView *chartView_io;
+    QLineSeries * series_io;
+    QAreaSeries *areaSeries_io;
+    QValueAxis *axisX_io;
+    QValueAxis *axisY_io;
+    QVector<qreal> data_io;
+
+    int maxPointsP = 50;
+    QChart *chart_p;
+    QChartView *chartView_p;
+    QLineSeries * series_p1;
+    QAreaSeries *areaSeries_p1;
+    QLineSeries * series_p2;
+    QAreaSeries *areaSeries_p2;
+    QLineSeries * series_p3;
+    QAreaSeries *areaSeries_p3;
+    QLineSeries * series_p4;
+    QAreaSeries *areaSeries_p4;
+    QValueAxis *axisX_p;
+    QValueAxis *axisY_p;
+    QVector<qreal> data_p1;
+    QVector<qreal> data_p2;
+    QVector<qreal> data_p3;
+    QVector<qreal> data_p4;
+
     sshsql * db;
     QThread * threadExec;
     sshHandleExec * sshExec;
