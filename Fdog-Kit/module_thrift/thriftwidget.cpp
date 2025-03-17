@@ -929,6 +929,13 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //ui->splitter_5->setStretchFactor(1,1);
     ui->toolButton_returnTest->hide();
     ui->toolButton_propertyTest->hide();
+    ui->toolButton_capturePackage->hide();
+    ui->toolButton_inportpcap->hide();
+
+    buildChart1();
+    buildChart2();
+    buildChart3();
+    buildChartP();
 
 //    QDirModel *model = new QDirModel(this);
 //    QCompleter *completer = new QCompleter(this);
@@ -3715,6 +3722,352 @@ QVector<int> thriftwidget::distributeRequests(int totalRequests, int numThreads)
     return threadTasks;
 }
 
+void thriftwidget::buildChart1() {
+    for (int i = 0; i < 50; ++i) {
+        data_cpu.append(0);
+    }
+    //创建曲线图
+    // 创建 Qt Charts
+    chart_cpu = new QChart();
+    //series_cpu = new QSplineSeries();
+    series_cpu2 = new QLineSeries();
+    areaSeries_cpu = new QAreaSeries(series_cpu2);
+    areaSeries_cpu->setName("");
+    areaSeries_cpu->setBrush(QBrush(QColor(51, 240, 242, 100)));
+    areaSeries_cpu->setPen(QPen(QColor(51, 240, 242, 255)));
+
+    chart_cpu->addSeries(areaSeries_cpu);
+    // X 轴 (时间点)
+    axisX_cpu = new QValueAxis();
+    axisX_cpu->setRange(0, maxPoints);
+    axisX_cpu->setLabelFormat("%d");
+    axisX_cpu->setTitleText("");
+    axisX_cpu->setTickCount(20); // 增加主刻度数量
+    chart_cpu->addAxis(axisX_cpu, Qt::AlignBottom);
+    //series_cpu->attachAxis(axisX_cpu);
+    areaSeries_cpu->attachAxis(axisX_cpu);
+    axisX_cpu->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+    // Y 轴 (CPU 使用率)
+    axisY_cpu = new QValueAxis();
+    axisY_cpu->setRange(0, 100);
+    axisY_cpu->setLabelFormat("%d%%");
+    axisY_cpu->setTitleText("");
+    chart_cpu->addAxis(axisY_cpu, Qt::AlignLeft);
+    //series_cpu->attachAxis(axisY_cpu);
+    areaSeries_cpu->attachAxis(axisY_cpu);
+    axisY_cpu->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+
+    // 设置网格线颜色
+    QPen gridPen(QColor(255, 255, 255, 50));  // 设为红色
+    gridPen.setWidth(0);    // 设为1像素宽
+    axisX_cpu->setGridLinePen(gridPen);
+    axisY_cpu->setGridLinePen(gridPen);
+
+    //设置背景区域圆角角度
+    chart_cpu->setBackgroundRoundness(0);
+    //设置内边界边距
+    chart_cpu->setMargins(QMargins(0, 0, 0, 0));
+    //设置外边界边距
+    chart_cpu->layout()->setContentsMargins(0, 0, 0, 0);
+    chart_cpu->legend()->setAlignment(Qt::AlignBottom);
+    chart_cpu->legend()->setVisible(true);
+    chart_cpu->legend()->hide();
+    chart_cpu->removeAxis(axisX_cpu);
+    chart_cpu->removeAxis(axisY_cpu);
+
+
+    axisX_cpu->setLineVisible(false);
+    axisX_cpu->setLabelsVisible(false);
+    axisX_cpu->setGridLineVisible(false);
+
+    axisY_cpu->setLineVisible(false);
+    axisY_cpu->setLabelsVisible(false);
+    axisY_cpu->setGridLineVisible(false);
+    // 设置图表背景颜色为透明
+    chart_cpu->setBackgroundVisible(false);
+    // 设定 Chart 视图
+    chartView_cpu = new QChartView(chart_cpu);
+    chartView_cpu->setRenderHint(QPainter::Antialiasing);
+    chartView_cpu->setStyleSheet("background: transparent;");
+    ui->widget_chart1->layout()->addWidget(chartView_cpu);
+}
+
+void thriftwidget::updateChart1(int value) {
+    ui->label_cpu->setText("CPU使用率(" + QString::number(value) + "%)");
+    data_cpu.append(value);
+    
+    if (data_cpu.size() > maxPoints)
+    data_cpu.remove(0);
+
+    // 更新曲线数据 1秒2个    1分钟120个  5分钟600个
+    series_cpu2 ->clear();
+    for (int i = 0; i < data_cpu.size(); ++i) {
+        series_cpu2->append(i, data_cpu[i]);
+        //lowerSeries->append(i, 0);
+    }
+    //qDebug() << "value1 = " << data_cpu;
+    //qDebug() << "value2 = " << series_cpu2;
+
+    axisX_cpu->setRange(0, data_cpu.size());
+}
+
+void thriftwidget::buildChart2() {
+    for (int i = 0; i < 50; ++i) {
+        data_mem.append(0);
+    }
+    //创建曲线图
+    chart_mem = new QChart();
+    series_mem = new QLineSeries();
+    areaSeries_mem = new QAreaSeries(series_mem);
+    areaSeries_mem->setName("");
+    areaSeries_mem->setBrush(QBrush(QColor(51, 240, 242, 100)));
+    areaSeries_mem->setPen(QPen(QColor(51, 240, 242, 255)));
+
+    chart_mem->addSeries(areaSeries_mem);
+    // X 轴 (时间点)
+    axisX_mem = new QValueAxis();
+    axisX_mem->setRange(0, maxPoints);
+    axisX_mem->setLabelFormat("%d");
+    axisX_mem->setTitleText("");
+    axisX_mem->setTickCount(20); // 增加主刻度数量
+    chart_mem->addAxis(axisX_mem, Qt::AlignBottom);
+    areaSeries_mem->attachAxis(axisX_mem);
+    axisX_mem->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+    // Y 轴 (CPU 使用率)
+    axisY_mem = new QValueAxis();
+    axisY_mem->setRange(0, 100);
+    axisY_mem->setLabelFormat("%d%%");
+    axisY_mem->setTitleText("");
+    chart_mem->addAxis(axisY_mem, Qt::AlignLeft);
+    areaSeries_mem->attachAxis(axisY_mem);
+    axisY_mem->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+
+    // 设置网格线颜色
+    QPen gridPen(QColor(255, 255, 255, 50));  // 设为红色
+    gridPen.setWidth(0);    // 设为1像素宽
+    axisX_mem->setGridLinePen(gridPen);
+    axisY_mem->setGridLinePen(gridPen);
+
+    //设置背景区域圆角角度
+    chart_mem->setBackgroundRoundness(0);
+    //设置内边界边距
+    chart_mem->setMargins(QMargins(0, 0, 0, 0));
+    //设置外边界边距
+    chart_mem->layout()->setContentsMargins(0, 0, 0, 0);
+    chart_mem->legend()->setAlignment(Qt::AlignBottom);
+    chart_mem->legend()->setVisible(true);
+    chart_mem->legend()->hide();
+    chart_mem->removeAxis(axisX_mem);
+    chart_mem->removeAxis(axisY_mem);
+
+
+    axisX_mem->setLineVisible(false);
+    axisX_mem->setLabelsVisible(false);
+    axisX_mem->setGridLineVisible(false);
+
+    axisY_mem->setLineVisible(false);
+    axisY_mem->setLabelsVisible(false);
+    axisY_mem->setGridLineVisible(false);
+    // 设置图表背景颜色为透明
+    chart_mem->setBackgroundVisible(false);
+    // 设定 Chart 视图
+    chartView_mem = new QChartView(chart_mem);
+    chartView_mem->setRenderHint(QPainter::Antialiasing);
+    chartView_mem->setStyleSheet("background: transparent;");
+    ui->widget_chart2->layout()->addWidget(chartView_mem);
+}
+
+void thriftwidget::updateChart2(int value) {
+    ui->label_mem->setText("内存使用率(" + QString::number(value) + "%)");
+    data_mem.append(value);
+    
+    if (data_mem.size() > maxPoints)
+    data_mem.remove(0);
+
+    // 更新曲线数据 1秒2个    1分钟120个  5分钟600个
+    series_mem ->clear();
+    for (int i = 0; i < data_mem.size(); ++i) {
+        series_mem->append(i, data_mem[i]);
+    }
+    //qDebug() << "value1 = " << data_mem;
+    //qDebug() << "value2 = " << series_mem;
+
+    axisX_mem->setRange(0, data_mem.size());
+}
+
+void thriftwidget::buildChart3() {
+    for (int i = 0; i < 50; ++i) {
+        data_io.append(0);
+    }
+    //创建曲线图
+    chart_io = new QChart();
+    series_io = new QLineSeries();
+    areaSeries_io = new QAreaSeries(series_io);
+    areaSeries_io->setName("");
+    areaSeries_io->setBrush(QBrush(QColor(51, 240, 242, 100)));
+    areaSeries_io->setPen(QPen(QColor(51, 240, 242, 255)));
+
+    chart_io->addSeries(areaSeries_io);
+    // X 轴 (时间点)
+    axisX_io = new QValueAxis();
+    axisX_io->setRange(0, maxPoints);
+    axisX_io->setLabelFormat("%d");
+    axisX_io->setTitleText("");
+    axisX_io->setTickCount(20); // 增加主刻度数量
+    chart_io->addAxis(axisX_io, Qt::AlignBottom);
+    areaSeries_io->attachAxis(axisX_io);
+    axisX_io->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+    // Y 轴 (CPU 使用率)
+    axisY_io = new QValueAxis();
+    axisY_io->setRange(0, 100);
+    axisY_io->setLabelFormat("%d%%");
+    axisY_io->setTitleText("");
+    chart_io->addAxis(axisY_io, Qt::AlignLeft);
+    areaSeries_io->attachAxis(axisY_io);
+    axisY_io->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+
+    // 设置网格线颜色
+    QPen gridPen(QColor(255, 255, 255, 50));  // 设为红色
+    gridPen.setWidth(0);    // 设为1像素宽
+    axisX_io->setGridLinePen(gridPen);
+    axisY_io->setGridLinePen(gridPen);
+
+    //设置背景区域圆角角度
+    chart_io->setBackgroundRoundness(0);
+    //设置内边界边距
+    chart_io->setMargins(QMargins(0, 0, 0, 0));
+    //设置外边界边距
+    chart_io->layout()->setContentsMargins(0, 0, 0, 0);
+    chart_io->legend()->setAlignment(Qt::AlignBottom);
+    chart_io->legend()->setVisible(true);
+    chart_io->legend()->hide();
+    chart_io->removeAxis(axisX_io);
+    chart_io->removeAxis(axisY_io);
+
+
+    axisX_io->setLineVisible(false);
+    axisX_io->setLabelsVisible(false);
+    axisX_io->setGridLineVisible(false);
+
+    axisY_io->setLineVisible(false);
+    axisY_io->setLabelsVisible(false);
+    axisY_io->setGridLineVisible(false);
+    // 设置图表背景颜色为透明
+    chart_io->setBackgroundVisible(false);
+    // 设定 Chart 视图
+    chartView_io = new QChartView(chart_io);
+    chartView_io->setRenderHint(QPainter::Antialiasing);
+    chartView_io->setStyleSheet("background: transparent;");
+    ui->widget_chart3->layout()->addWidget(chartView_io);
+}
+
+void thriftwidget::updateChart3(int value) {
+    ui->label_io->setText("磁盘使用率(" + QString::number(value) + "%)");
+    data_io.append(value);
+    
+    if (data_io.size() > maxPoints)
+    data_io.remove(0);
+
+    // 更新曲线数据 1秒2个    1分钟120个  5分钟600个
+    series_io ->clear();
+    for (int i = 0; i < data_io.size(); ++i) {
+        series_io->append(i, data_io[i]);
+    }
+    //qDebug() << "value1 = " << data_io;
+    //qDebug() << "value2 = " << series_io;
+
+    axisX_io->setRange(0, data_io.size());
+}
+
+void thriftwidget::buildChartP() {
+    for (int i = 0; i < 50; ++i) {
+        data_p1.append(0);
+        data_p2.append(0);
+        data_p3.append(0);
+        data_p4.append(0);
+    }
+    //创建曲线图
+    chart_p = new QChart();
+    series_p1 = new QLineSeries();
+    series_p2 = new QLineSeries();
+    series_p3 = new QLineSeries();
+    series_p4 = new QLineSeries();
+    areaSeries_p1 = new QAreaSeries(series_p1);
+    areaSeries_p1->setName("");
+    areaSeries_p1->setBrush(QBrush(QColor(51, 240, 242, 100)));
+    areaSeries_p1->setPen(QPen(QColor(51, 240, 242, 255)));
+
+    chart_p->addSeries(areaSeries_p1);
+    // X 轴 (时间点)
+    axisX_p = new QValueAxis();
+    axisX_p->setRange(0, maxPointsP);
+    axisX_p->setLabelFormat("%d");
+    axisX_p->setTitleText("");
+    axisX_p->setTickCount(20); // 增加主刻度数量
+    chart_p->addAxis(axisX_p, Qt::AlignBottom);
+    areaSeries_p1->attachAxis(axisX_p);
+    axisX_p->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+    // Y 轴 (CPU 使用率)
+    axisY_p = new QValueAxis();
+    axisY_p->setRange(0, 200);
+    axisY_p->setLabelFormat("%d%%");
+    axisY_p->setTitleText("");
+    chart_p->addAxis(axisY_p, Qt::AlignLeft);
+    areaSeries_p1->attachAxis(axisY_p);
+    axisY_p->setLabelsVisible(false); // 隐藏 X 轴上的刻度值
+
+    // 设置网格线颜色
+    QPen gridPen(QColor(255, 255, 255, 50));  // 设为红色
+    gridPen.setWidth(0);    // 设为1像素宽
+    axisX_p->setGridLinePen(gridPen);
+    axisY_p->setGridLinePen(gridPen);
+
+    //设置背景区域圆角角度
+    chart_p->setBackgroundRoundness(0);
+    //设置内边界边距
+    chart_p->setMargins(QMargins(0, 0, 0, 0));
+    //设置外边界边距
+    chart_p->layout()->setContentsMargins(0, 0, 0, 0);
+    chart_p->legend()->setAlignment(Qt::AlignBottom);
+    chart_p->legend()->setVisible(true);
+    chart_p->legend()->hide();
+    chart_p->removeAxis(axisX_p);
+    chart_p->removeAxis(axisY_p);
+
+
+    axisX_p->setLineVisible(false);
+    axisX_p->setLabelsVisible(false);
+    axisX_p->setGridLineVisible(false);
+
+    axisY_p->setLineVisible(false);
+    axisY_p->setLabelsVisible(false);
+    axisY_p->setGridLineVisible(false);
+    // 设置图表背景颜色为透明
+    chart_p->setBackgroundVisible(false);
+    // 设定 Chart 视图
+    chartView_p = new QChartView(chart_p);
+    chartView_p->setRenderHint(QPainter::Antialiasing);
+    chartView_p->setStyleSheet("background: transparent;");
+    ui->widget_chart4->layout()->addWidget(chartView_p);
+}
+
+void thriftwidget::updateChartP(int value1, int value2) {
+    data_p1.append(value1);
+    
+    if (data_p1.size() > maxPointsP)
+    data_p1.remove(0);
+
+    // 更新曲线数据 1秒2个    1分钟120个  5分钟600个
+    series_p1 ->clear();
+    for (int i = 0; i < data_p1.size(); ++i) {
+        series_p1->append(i, data_p1[i]);
+    }
+    //qDebug() << "value1 = " << data_p1;
+    //qDebug() << "value2 = " << series_io;
+
+    axisX_p->setRange(0, data_p1.size());
+}
+
 ItemWidget* thriftwidget::createAndGetNode(thriftwidget * p, QTreeWidget *parent)
 {
     //qDebug() << "createAndGetNode 创建2";
@@ -4145,21 +4498,41 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->tabWidget_test->hide();
         ui->toolButton_propertyTest->hide();
         ui->stackedWidget_2->setCurrentIndex(0);
+        ui->toolButton_capturePackage->hide();
+        ui->toolButton_inportpcap->hide();
+        ui->toolButton_save->show();
+        ui->toolButton_request->show();
     } else if (index == 1) {
-        //性能测试
+        //压测
         //ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
         ui->toolButton_propertyTest->show();
+        if (ui->tabWidget_2->currentIndex() == 0) {
+            ui->stackedWidget_2->setCurrentIndex(0);
+        } else {
+            ui->stackedWidget_2->setCurrentIndex(3);
+        }
         ui->stackedWidget_mode->setCurrentIndex(1);
+        ui->toolButton_capturePackage->hide();
+        ui->toolButton_inportpcap->hide();
+        ui->toolButton_save->hide();
+        ui->toolButton_request->hide();
+        ui->toolButton_propertyTest->hide();
     } else if (index == 2) {
-        //性能测试
+        //抓包分析
         //ui->widget_property->show();
         ui->toolButton_request->hide();
         ui->toolButton_save->hide();
         ui->toolButton_propertyTest->show();
         ui->stackedWidget_mode->setCurrentIndex(1);
         ui->stackedWidget_2->setCurrentIndex(2);
+        ui->toolButton_capturePackage->show();
+        ui->toolButton_inportpcap->show();
+        ui->toolButton_save->hide();
+        ui->toolButton_request->hide();
+        ui->toolButton_propertyTest->hide();
+        ui->stackedWidget_mode->setCurrentIndex(0);
     }
 }
 
@@ -5297,6 +5670,7 @@ QString thriftwidget::parseTCPHeader(const QByteArray &data, int &offset, int nu
 
 void thriftwidget::on_toolButton_inportpcap_clicked()
 {
+    qDebug() <<"加载文件";
     ui->stackedWidget_2->setCurrentIndex(2);
     ui->tableWidget_func->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     ui->tableWidget_func->verticalHeader()->setHidden(true);
@@ -5317,7 +5691,7 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
 
-    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-txt-20250306-0013.pcap";  // 你的 pcap 文件
+    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250219-1441.pcap";  // 你的 pcap 文件
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -5325,7 +5699,7 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
         return;
     }
 
-
+    qDebug() <<"加载文件2";
     PcapHeader pcapHeader;
     file.read(reinterpret_cast<char*>(&pcapHeader), sizeof(PcapHeader));
 
@@ -5387,7 +5761,7 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     }
 
     file.close();
-
+    qDebug() <<"tableData.size() = " << tableData.size();
     for (int i = 0; i < tableData.size(); ++i) {
         // if (tableData[i].info == "TCP") {
         //     continue;
@@ -5401,7 +5775,6 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
         ui->tableWidget_func->setItem(i, 5, new QTableWidgetItem(tableData[i].info));
     }
 
-    return;
 /*
     // 读取 pcap 全局头
     PcapFileHeader fileHeader;
@@ -5506,6 +5879,7 @@ void thriftwidget::on_horizontalSlider_valueChanged(int value)
 }
 
 void thriftwidget::rece_getServerInfo(ServerInfoStruct serverInfo) {
+    //qDebug() << "rece_getServerInfo";
     // ui->label_ip->setText(serverInfo.ip);
     // ui->label_load->setText(serverInfo.load);
     // ui->label_runTime->setText(serverInfo.runTime);
@@ -5526,6 +5900,10 @@ void thriftwidget::rece_getServerInfo(ServerInfoStruct serverInfo) {
     ui->widget_19->valueChanged(serverInfo.memUseRate.toInt());
     ui->widget_20->valueChanged(serverInfo.swapUseRate.toInt());
     ui->label_46->setText(serverInfo.load);
+    updateChart1(serverInfo.cpuUseRate.toInt());
+    updateChart2(serverInfo.memUseRate.toInt());
+    updateChart3(serverInfo.diskUseRate.toInt());
+    updateChartP(serverInfo.progress1Cpu.toInt(), serverInfo.progress2Cpu.toInt());
 }
 
 void thriftwidget::on_toolButton_5_clicked() {
@@ -5626,7 +6004,7 @@ void thriftwidget::onReadyReadOutput()
     output.chop(1);
     if (output == "") return;
     ui->plainTextEdit_5->appendPlainText(output);
-    qDebug() << "WSL Output:" << output;
+    //qDebug() << "WSL Output:" << output;
 }
 
 void thriftwidget::onReadyReadError()
@@ -5635,7 +6013,7 @@ void thriftwidget::onReadyReadError()
     errorOutput.chop(1);
     if (errorOutput == "") return;
     ui->plainTextEdit_5->appendPlainText(errorOutput);
-    qDebug() << "WSL Error:" << errorOutput;
+    //qDebug() << "WSL Error:" << errorOutput;
 }
 
 
