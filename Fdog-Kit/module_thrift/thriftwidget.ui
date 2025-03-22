@@ -4659,7 +4659,7 @@ QToolButton:hover {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_2">
           <property name="styleSheet">
@@ -5817,6 +5817,12 @@ color: rgb(79, 79, 79);
                             <number>0</number>
                            </property>
                            <widget class="QWidget" name="widget_2" native="true">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                              <horstretch>3</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
                             <property name="font">
                              <font>
                               <stylestrategy>PreferAntialias</stylestrategy>
@@ -6001,6 +6007,12 @@ p, li { white-space: pre-wrap; }
                             </layout>
                            </widget>
                            <widget class="QTabWidget" name="tabWidget_response">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                              <horstretch>1</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
                             <property name="font">
                              <font>
                               <family>OPPOSans B</family>
@@ -6620,7 +6632,7 @@ p, li { white-space: pre-wrap; }
                          <number>0</number>
                         </property>
                         <property name="topMargin">
-                         <number>0</number>
+                         <number>2</number>
                         </property>
                         <property name="rightMargin">
                          <number>0</number>
@@ -6628,6 +6640,27 @@ p, li { white-space: pre-wrap; }
                         <property name="bottomMargin">
                          <number>0</number>
                         </property>
+                        <item>
+                         <spacer name="horizontalSpacer_8">
+                          <property name="font">
+                           <font>
+                            <stylestrategy>PreferAntialias</stylestrategy>
+                           </font>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeType">
+                           <enum>QSizePolicy::Fixed</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>10</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
                         <item>
                          <widget class="QLabel" name="label_req">
                           <property name="font">
@@ -11279,8 +11312,8 @@ QToolButton:hover {
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../lib.qrc"/>
   <include location="../images.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -625,6 +625,9 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         //匹配预制数据
         if (preDataMap.contains(name) && preDataMap[name] != "${}") {
             lineEditParamValue->setText(preDataMap[name]);
+            // QTextCodec *codec = detectEncoding(preDataMapV[name].at(0));
+            // QString convertedText = codec->toUnicode(codec->fromUnicode(preDataMapV[name].at(0)).toUtf8());
+            // lineEditParamValue->setText(convertedText);
             if (typeSign == "optional") {
                 checkBox->setChecked(true);
             }
@@ -778,6 +781,27 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     }
 }
 
+// QTextCodec *ItemWidget::detectEncoding(const QString &str) {
+//     QByteArray byteArray = str.toUtf8();
+//     QTextCodec::ConverterState state;
+
+//     // 尝试用 UTF-8 解码
+//     QTextCodec *utf8Codec = QTextCodec::codecForName("UTF-8");
+//     utf8Codec->toUnicode(byteArray.constData(), byteArray.size(), &state);
+//     if (!state.invalidChars) {
+//         return utf8Codec;
+//     }
+
+//     // 如果 UTF-8 不匹配，尝试用 GBK 解码
+//     QTextCodec *gbkCodec = QTextCodec::codecForName("GBK");
+//     gbkCodec->toUnicode(byteArray.constData(), byteArray.size(), &state);
+//     if (!state.invalidChars) {
+//         return gbkCodec;
+//     }
+
+//     // 如果都无法匹配，默认返回 UTF-8
+//     return utf8Codec;
+// }
 
 thriftwidget::thriftwidget(QWidget *parent) :
     QWidget(parent),
@@ -1379,6 +1403,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     // qDebug() << "转换后的字符串:" << QString(byteArray2);
 
     //writeQByteArrayToFile(byteArray2, "thriftConfig\\binTest.bin");
+    timer->start();
 
     QNetworkReply* reply = manager.post(request, byteArray2);
 
@@ -1394,8 +1419,13 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
         qDebug() << "请求成功";
         QByteArray responseData = reply->readAll();
         QString hexString = responseData.toHex();
+        qint64 elapsedMilliseconds = timer->elapsed();
         //qDebug() << "响应:" << hexString;
         handleHexData(ui->textEdit_data, ui->textEdit, hexString);
+        if (!isTestModle) {
+            qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
+            ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+        }
         ui->stackedWidget->setCurrentIndex(0);
         //解析数据
     }
@@ -2029,15 +2059,30 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_CALL]);
     } else if (type_data == "80010002") {
         //qDebug() << "消息类型 = " << "REPLY";
-        label_headers = label_headers + "消息类型:REPLY" + "   ";
+        //label_headers = label_headers + "消息类型:REPLY" + "    ";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_REPLY]);
+        //结果
+        ui->label_req->show();
+        ui->label_req->setText("REPLY");
+        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
     } else if (type_data == "80010003") {
         //qDebug() << "消息类型 = " << "EXCEPTION";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_EXCEPTION]);
+        //异常
+        ui->label_req->show();
+        ui->label_req->setText("EXCEPTION");
+        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
     } else if (type_data == "80010004") {
         //qDebug() << "消息类型 = " << "ONEWAY";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_ONEWAY]);
+        ui->label_req->show();
+        ui->label_req->setText("ONEWAY");
+        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+    } else {
+        ui->label_req->hide();
+        ui->label_req->setText("");
     }
+
     data = data.mid(8);
     //方法长度名
     QString func_len = data.mid(0, 8);
@@ -2053,7 +2098,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
     //qDebug() << "方法名 = " << hexToString(fun_name);
-    label_headers = label_headers + "接口名:" + hexToString(textEdit_data,fun_name) + "   ";
+    label_headers = label_headers + "接口名：" + hexToString(textEdit_data,fun_name) + "    ";
     data = data.mid(len);
     //流水号
     QString func_sn = data.mid(0, 8);
@@ -2072,7 +2117,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
         paramType = funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType;
     }
 
-    label_headers = label_headers + "入参类型:" + paramType +  "  返回值类型:" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
+    label_headers = label_headers + "入参类型：" + paramType +  "    返回值类型：" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
     ui->label_time->clear();
     ui->label_headers->setText(label_headers);
 
@@ -2415,6 +2460,9 @@ QString thriftwidget::handleI64(QTextEdit * textEdit_data, QString &str, QString
     } else if (paramName != "") {
         //qDebug() << "paramName1";
         textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
+        if (paramName == "sessionID") {
+            preDataMap.insert(paramName, hexToLongNumber(textEdit_data, value));
+        }
     } else {
         //qDebug() << "paramName2";
         textEdit_data->append(addColorFieldHtml(getRetract() + "\"i64\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
@@ -2457,6 +2505,9 @@ QString thriftwidget::handleString(QTextEdit * textEdit_data, QString &str, QStr
         } else if (paramName != "") {
             //qDebug() << "paramName1";
             textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
+            if (paramName == "ticket") {
+                preDataMap.insert(paramName, hexToString(textEdit_data, value2));
+            }
         } else {
             //qDebug() << "paramName2";
             textEdit_data->append(addColorFieldHtml(getRetract() + "\"string\"") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
@@ -3546,20 +3597,20 @@ void thriftwidget::handleBinData() {
             ui->textEdit->append(dataTemp_2);
             ui->textEdit->append("------------------------------------------------------------------------------");
         }
-        if (dataList2[1] == "80010002") {
-            //结果
-            ui->label_req->show();
-            ui->label_req->setText("REPLY");
-            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
-        } else if (dataList2[1] == "80010003") {
-            //异常
-            ui->label_req->show();
-            ui->label_req->setText("EXCEPTION");
-            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
-        } else {
-            ui->label_req->hide();
-            ui->label_req->setText("");
-        }
+        // if (dataList2[1] == "80010002") {
+        //     //结果
+        //     ui->label_req->show();
+        //     ui->label_req->setText("REPLY");
+        //     ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+        // } else if (dataList2[1] == "80010003") {
+        //     //异常
+        //     ui->label_req->show();
+        //     ui->label_req->setText("EXCEPTION");
+        //     ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+        // } else {
+        //     ui->label_req->hide();
+        //     ui->label_req->setText("");
+        // }
 }
 
 void thriftwidget::handleHexData(QTextEdit * textEdit_data, QTextEdit * textEdit_data2, QString& data)
@@ -3614,9 +3665,19 @@ void thriftwidget::readPreData()
         QByteArray fileData = file.readAll();
         // 关闭文件
         file.close();
-        // 输出读取的文件内容
-        //qDebug() << "读取的文件内容:" << fileData;
-        QStringList preDataList = QString(fileData).split("\n");
+
+        QString encoding = detectEncoding(fileData);
+        QTextStream in;
+        if (encoding == "UTF-8") {
+            in.setCodec(QTextCodec::codecForName("UTF-8"));
+        } else if (encoding == "GBK") {
+            in.setCodec(QTextCodec::codecForName("GBK"));
+        }
+
+        // 将 QByteArray 转换为 QString
+        QString fileDataStr = in.codec()->toUnicode(fileData);
+        qDebug() << "读取的文件内容:" << fileDataStr;
+        QStringList preDataList = fileDataStr.split("\n");
         //qDebug() << "读取的文件内容:" << preDataList;
         for (int i = 0; i < preDataList.size(); i++) {
             int index = preDataList.at(i).indexOf(":");
@@ -3720,6 +3781,16 @@ QVector<int> thriftwidget::distributeRequests(int totalRequests, int numThreads)
     }
 
     return threadTasks;
+}
+
+QString thriftwidget::detectEncoding(const QByteArray &data) {
+    if (data.startsWith("\xEF\xBB\xBF")) {
+        return "UTF-8";
+    } else {
+        // 这里可以添加更多的检测逻辑
+        // 例如，检查一些常见的 GBK 字符
+        return "GBK";
+    }
 }
 
 void thriftwidget::buildChart1() {
@@ -4592,6 +4663,7 @@ void thriftwidget::on_toolButton_request_clicked()
         sendHttpRequest(sendData8, timer);
     }
     
+    delete timer;
     //qint64 elapsedMilliseconds = timer->elapsed();
     //ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
@@ -4723,6 +4795,9 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
            ui->comboBox_port->setCurrentIndex(i);
            break;
        }
+    }
+    if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
+        ui->comboBox_port->setCurrentIndex(1);
     }
     int index = current->text(0).indexOf(":");
     if (index == 0) {

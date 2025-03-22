@@ -233,7 +233,6 @@ class ItemWidget :public QObject, public QTreeWidgetItem
       void setParamValue_interior(thriftwidget * p, QString type_s);
       //处理map
       void setParamValue_interior_map(thriftwidget * p, QString type_s);
-
 signals:
       void send_buttonClicked(QTreeWidgetItem * item);
       void send_onTextChanged(QString data, QTreeWidgetItem * item);
@@ -593,6 +592,8 @@ public:
     //计算每个线程的工作数
 
     QVector<int> distributeRequests(int totalRequests, int numThreads);
+
+    QString  detectEncoding(const QByteArray &data);
 
     void buildChart1();
     void updateChart1(int value);

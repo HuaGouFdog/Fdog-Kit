@@ -41,6 +41,11 @@ struct ServerInfoStruct {
     QString load; //负载
 
     QString time;          //系统时间
+
+    QString progress1Cpu;
+    QString progress1Mem;
+    QString progress2Cpu;
+    QString progress2Mem;
 };
 
 struct SSHINFO {

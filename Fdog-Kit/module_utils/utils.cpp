@@ -281,7 +281,7 @@ void parsingJsonTextEdit::parsingJsonObject(QJsonObject &object,const int number
             QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
             if(jsonDocument.isNull())
             {
-                append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#54B54A;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
+                append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00b400;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
             }
             else if(jsonDocument.isObject())
             {
@@ -298,7 +298,7 @@ void parsingJsonTextEdit::parsingJsonObject(QJsonObject &object,const int number
         }
         else if(value.isDouble())
         {
-            append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#128BF1;'>%3</span>%4").arg(spacing).arg(it.key()).arg(value.toDouble()).arg(endingSymbol));
+            append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00a0ff;'>%3</span>%4").arg(spacing).arg(it.key()).arg(value.toDouble()).arg(endingSymbol));
         }
         else if(value.isBool())
         {
@@ -325,7 +325,7 @@ void parsingJsonTextEdit::parsingJsonObject(QJsonObject &object,const int number
         }
         else
         {
-            append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#128BF1;'>%3</span>%4").arg(spacing).arg(it.key()).arg(value.toInt()).arg(endingSymbol));
+            append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00a0ff;'>%3</span>%4").arg(spacing).arg(it.key()).arg(value.toInt()).arg(endingSymbol));
         }
         ++index;
     }
@@ -371,7 +371,7 @@ void parsingJsonTextEdit::parsingJsonArray(QJsonArray &array,const int numberOfL
             QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
             if(jsonDocument.isNull())
             {
-                append(QString("<span style='white-space:pre;color:#54B54A;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
+                append(QString("<span style='white-space:pre;color:#00b400;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
             }
             else if(jsonDocument.isObject())
             {
@@ -397,7 +397,7 @@ void parsingJsonTextEdit::parsingJsonArray(QJsonArray &array,const int numberOfL
         }
         else if(jsonValueType == QJsonValue::Double)
         {
-            append(QString("<span style='white-space:pre;color:#128BF1;'>%1%2</span>%3").arg(spacing).arg(ref.toDouble()).arg(endingSymbol));
+            append(QString("<span style='white-space:pre;color:#00a0ff;'>%1%2</span>%3").arg(spacing).arg(ref.toDouble()).arg(endingSymbol));
         }
         else if(jsonValueType == QJsonValue::Array)
         {
@@ -411,7 +411,7 @@ void parsingJsonTextEdit::parsingJsonArray(QJsonArray &array,const int numberOfL
         }
         else
         {
-            append(QString("<span style='white-space:pre;color:#128BF1;'>%1%2</span>%3").arg(spacing).arg(ref.toInt()).arg(endingSymbol));
+            append(QString("<span style='white-space:pre;color:#00a0ff;'>%1%2</span>%3").arg(spacing).arg(ref.toInt()).arg(endingSymbol));
         }
     }
     spacingBeforeBrackets.replace("[","]");
@@ -513,7 +513,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
                 QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
                 if(jsonDocument.isNull())
                 {
-                    textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#54B54A;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
+                    textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00b400;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
                 }
                 else if(jsonDocument.isObject())
                 {
@@ -529,7 +529,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
                 }
             } else {
                 str = str.replace("\"","\\\"");
-                textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#54B54A;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
+                textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00b400;'>\"%3\"</span>%4").arg(spacing).arg(it.key()).arg(str).arg(endingSymbol));
             }
             
 
@@ -549,7 +549,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
                 obj = obj.mid(0,obj.length()- 10);
             }
             qDebug() << "obj2 = " << obj;
-            textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#128BF1;'>%3</span>%4").arg(spacing).arg(it.key()).arg(obj).arg(endingSymbol));
+            textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00a0ff;'>%3</span>%4").arg(spacing).arg(it.key()).arg(obj).arg(endingSymbol));
         }
         else if(value.isBool())
         {
@@ -583,7 +583,7 @@ void utils_parsingJsonObject(QTextEdit * textEdit, QJsonObject &object, const in
         }
         else
         {
-            textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#128BF1;'>%3</span>%4").arg(spacing).arg(it.key()).arg(value.toInt()).arg(endingSymbol));
+            textEdit->append(QString("<span style='white-space:pre;color:#ffffff;'>%1\"%2\"</span>:<span style='color:#00a0ff;'>%3</span>%4").arg(spacing).arg(it.key()).arg(value.toInt()).arg(endingSymbol));
         }
         ++index;
     }
@@ -628,7 +628,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
             if (isSuper) {
                 QJsonDocument jsonDocument = QJsonDocument::fromJson(str.toUtf8());
                 if(jsonDocument.isNull()) {
-                    textEdit->append(QString("<span style='white-space:pre;color:#54B54A;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
+                    textEdit->append(QString("<span style='white-space:pre;color:#00b400;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
                 } else if(jsonDocument.isObject()) {
                     QJsonObject obj = jsonDocument.object();
                     utils_parsingJsonObject(textEdit,obj,nextLayers, isSuper);
@@ -638,7 +638,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
                 }
             } else {
                 str = str.replace("\"","\\\"");
-                textEdit->append(QString("<span style='white-space:pre;color:#54B54A;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
+                textEdit->append(QString("<span style='white-space:pre;color:#00b400;'>%1\"%2\"</span>%3").arg(spacing).arg(str).arg(endingSymbol));
             }
         }
         else if(jsonValueType == QJsonValue::Bool)
@@ -663,7 +663,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
                 obj = obj.mid(0, obj.length()- 10);
             }
             //qDebug() << "obj2 = " << obj;
-            textEdit->append(QString("<span style='white-space:pre;color:#128BF1;'>%1%2</span>%3").arg(spacing).arg(obj).arg(endingSymbol));
+            textEdit->append(QString("<span style='white-space:pre;color:#00a0ff;'>%1%2</span>%3").arg(spacing).arg(obj).arg(endingSymbol));
         }
         else if(jsonValueType == QJsonValue::Array)
         {
@@ -685,7 +685,7 @@ void utils_parsingJsonArray(QTextEdit * textEdit, QJsonArray &array,const int nu
         }
         else
         {
-            textEdit->append(QString("<span style='white-space:pre;color:#128BF1;'>%1%2</span>%3").arg(spacing).arg(ref.toInt()).arg(endingSymbol));
+            textEdit->append(QString("<span style='white-space:pre;color:#00a0ff;'>%1%2</span>%3").arg(spacing).arg(ref.toInt()).arg(endingSymbol));
         }
         ++index;
     }

@@ -2,7 +2,9 @@
 #define PREFABRICATEDATA_H
 
 #include <QWidget>
-
+#include <QTextCodec>
+#include <QDebug>
+#include <QByteArray>
 namespace Ui {
 class prefabricatedata;
 }
@@ -19,7 +21,7 @@ public:
     void openPreFile2();
     void printHex(const QByteArray &data);
     void writePreFile();
-
+    QString  detectEncoding(const QByteArray &data);
 private slots:
     void on_toolButton_recover_clicked();
 
