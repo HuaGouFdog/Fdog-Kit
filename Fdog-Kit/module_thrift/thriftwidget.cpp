@@ -625,6 +625,9 @@ void ItemWidget::setParamValue(thriftwidget * p, int sn, QString name, QString t
         //匹配预制数据
         if (preDataMap.contains(name) && preDataMap[name] != "${}") {
             lineEditParamValue->setText(preDataMap[name]);
+            // QTextCodec *codec = detectEncoding(preDataMapV[name].at(0));
+            // QString convertedText = codec->toUnicode(codec->fromUnicode(preDataMapV[name].at(0)).toUtf8());
+            // lineEditParamValue->setText(convertedText);
             if (typeSign == "optional") {
                 checkBox->setChecked(true);
             }
@@ -778,6 +781,27 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     }
 }
 
+// QTextCodec *ItemWidget::detectEncoding(const QString &str) {
+//     QByteArray byteArray = str.toUtf8();
+//     QTextCodec::ConverterState state;
+
+//     // 尝试用 UTF-8 解码
+//     QTextCodec *utf8Codec = QTextCodec::codecForName("UTF-8");
+//     utf8Codec->toUnicode(byteArray.constData(), byteArray.size(), &state);
+//     if (!state.invalidChars) {
+//         return utf8Codec;
+//     }
+
+//     // 如果 UTF-8 不匹配，尝试用 GBK 解码
+//     QTextCodec *gbkCodec = QTextCodec::codecForName("GBK");
+//     gbkCodec->toUnicode(byteArray.constData(), byteArray.size(), &state);
+//     if (!state.invalidChars) {
+//         return gbkCodec;
+//     }
+
+//     // 如果都无法匹配，默认返回 UTF-8
+//     return utf8Codec;
+// }
 
 thriftwidget::thriftwidget(QWidget *parent) :
     QWidget(parent),
@@ -3614,9 +3638,19 @@ void thriftwidget::readPreData()
         QByteArray fileData = file.readAll();
         // 关闭文件
         file.close();
-        // 输出读取的文件内容
-        //qDebug() << "读取的文件内容:" << fileData;
-        QStringList preDataList = QString(fileData).split("\n");
+
+        QString encoding = detectEncoding(fileData);
+        QTextStream in;
+        if (encoding == "UTF-8") {
+            in.setCodec(QTextCodec::codecForName("UTF-8"));
+        } else if (encoding == "GBK") {
+            in.setCodec(QTextCodec::codecForName("GBK"));
+        }
+
+        // 将 QByteArray 转换为 QString
+        QString fileDataStr = in.codec()->toUnicode(fileData);
+        qDebug() << "读取的文件内容:" << fileDataStr;
+        QStringList preDataList = fileDataStr.split("\n");
         //qDebug() << "读取的文件内容:" << preDataList;
         for (int i = 0; i < preDataList.size(); i++) {
             int index = preDataList.at(i).indexOf(":");
@@ -3720,6 +3754,16 @@ QVector<int> thriftwidget::distributeRequests(int totalRequests, int numThreads)
     }
 
     return threadTasks;
+}
+
+QString thriftwidget::detectEncoding(const QByteArray &data) {
+    if (data.startsWith("\xEF\xBB\xBF")) {
+        return "UTF-8";
+    } else {
+        // 这里可以添加更多的检测逻辑
+        // 例如，检查一些常见的 GBK 字符
+        return "GBK";
+    }
 }
 
 void thriftwidget::buildChart1() {
@@ -4723,6 +4767,9 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
            ui->comboBox_port->setCurrentIndex(i);
            break;
        }
+    }
+    if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
+        ui->comboBox_port->setCurrentIndex(1);
     }
     int index = current->text(0).indexOf(":");
     if (index == 0) {

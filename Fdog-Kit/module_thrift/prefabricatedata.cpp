@@ -2,6 +2,7 @@
 #include "prefabricatedata.h"
 #include "ui_prefabricatedata.h"
 #include <QFile>
+#include <QTextCodec>
 #include <QDebug>
 prefabricatedata::prefabricatedata(QWidget *parent) :
     QWidget(parent),
@@ -25,7 +26,18 @@ void prefabricatedata::openPreFile() {
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QByteArray fileData = file.readAll();
         file.close();
-        ui->textEdit->setText(QString(fileData));
+        
+        QString encoding = detectEncoding(fileData);
+        QTextStream in;
+        if (encoding == "UTF-8") {
+            in.setCodec(QTextCodec::codecForName("UTF-8"));
+        } else if (encoding == "GBK") {
+            in.setCodec(QTextCodec::codecForName("GBK"));
+        }
+
+        // 将 QByteArray 转换为 QString
+        QString fileDataStr = in.codec()->toUnicode(fileData);
+        ui->textEdit->setText(fileDataStr);
     } else {
         // 如果文件打开失败，则输出错误信息
         qDebug() << "打开文件失败!";
@@ -86,6 +98,16 @@ void prefabricatedata::writePreFile() {
     out << text;
     // 关闭文件
     file.close();
+}
+
+QString prefabricatedata::detectEncoding(const QByteArray &data) {
+    if (data.startsWith("\xEF\xBB\xBF")) {
+        return "UTF-8";
+    } else {
+        // 这里可以添加更多的检测逻辑
+        // 例如，检查一些常见的 GBK 字符
+        return "GBK";
+    }
 }
 
 void prefabricatedata::on_toolButton_recover_clicked()
