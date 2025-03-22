@@ -1403,6 +1403,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     // qDebug() << "转换后的字符串:" << QString(byteArray2);
 
     //writeQByteArrayToFile(byteArray2, "thriftConfig\\binTest.bin");
+    timer->start();
 
     QNetworkReply* reply = manager.post(request, byteArray2);
 
@@ -1418,8 +1419,13 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
         qDebug() << "请求成功";
         QByteArray responseData = reply->readAll();
         QString hexString = responseData.toHex();
+        qint64 elapsedMilliseconds = timer->elapsed();
         //qDebug() << "响应:" << hexString;
         handleHexData(ui->textEdit_data, ui->textEdit, hexString);
+        if (!isTestModle) {
+            qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
+            ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+        }
         ui->stackedWidget->setCurrentIndex(0);
         //解析数据
     }
@@ -2053,15 +2059,30 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_CALL]);
     } else if (type_data == "80010002") {
         //qDebug() << "消息类型 = " << "REPLY";
-        label_headers = label_headers + "消息类型:REPLY" + "   ";
+        //label_headers = label_headers + "消息类型:REPLY" + "    ";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_REPLY]);
+        //结果
+        ui->label_req->show();
+        ui->label_req->setText("REPLY");
+        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
     } else if (type_data == "80010003") {
         //qDebug() << "消息类型 = " << "EXCEPTION";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_EXCEPTION]);
+        //异常
+        ui->label_req->show();
+        ui->label_req->setText("EXCEPTION");
+        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
     } else if (type_data == "80010004") {
         //qDebug() << "消息类型 = " << "ONEWAY";
         temp = temp + addColorHtml(data.mid(0, 8), sourceColorMap[THRIFT_MESSAGE_TYPE_ONEWAY]);
+        ui->label_req->show();
+        ui->label_req->setText("ONEWAY");
+        ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+    } else {
+        ui->label_req->hide();
+        ui->label_req->setText("");
     }
+
     data = data.mid(8);
     //方法长度名
     QString func_len = data.mid(0, 8);
@@ -2077,7 +2098,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
     //qDebug() << "方法名 = " << hexToString(fun_name);
-    label_headers = label_headers + "接口名:" + hexToString(textEdit_data,fun_name) + "   ";
+    label_headers = label_headers + "接口名：" + hexToString(textEdit_data,fun_name) + "    ";
     data = data.mid(len);
     //流水号
     QString func_sn = data.mid(0, 8);
@@ -2096,7 +2117,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
         paramType = funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType;
     }
 
-    label_headers = label_headers + "入参类型:" + paramType +  "  返回值类型:" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
+    label_headers = label_headers + "入参类型：" + paramType +  "    返回值类型：" + funcParamOutMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType + "   ";
     ui->label_time->clear();
     ui->label_headers->setText(label_headers);
 
@@ -3570,20 +3591,20 @@ void thriftwidget::handleBinData() {
             ui->textEdit->append(dataTemp_2);
             ui->textEdit->append("------------------------------------------------------------------------------");
         }
-        if (dataList2[1] == "80010002") {
-            //结果
-            ui->label_req->show();
-            ui->label_req->setText("REPLY");
-            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
-        } else if (dataList2[1] == "80010003") {
-            //异常
-            ui->label_req->show();
-            ui->label_req->setText("EXCEPTION");
-            ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
-        } else {
-            ui->label_req->hide();
-            ui->label_req->setText("");
-        }
+        // if (dataList2[1] == "80010002") {
+        //     //结果
+        //     ui->label_req->show();
+        //     ui->label_req->setText("REPLY");
+        //     ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(27, 161, 58);padding-left:5px;padding-right:5px;");
+        // } else if (dataList2[1] == "80010003") {
+        //     //异常
+        //     ui->label_req->show();
+        //     ui->label_req->setText("EXCEPTION");
+        //     ui->label_req->setStyleSheet("color: rgb(255, 255, 255);background-color: rgb(181, 11, 11);padding-left:5px;padding-right:5px;");
+        // } else {
+        //     ui->label_req->hide();
+        //     ui->label_req->setText("");
+        // }
 }
 
 void thriftwidget::handleHexData(QTextEdit * textEdit_data, QTextEdit * textEdit_data2, QString& data)
@@ -4636,6 +4657,7 @@ void thriftwidget::on_toolButton_request_clicked()
         sendHttpRequest(sendData8, timer);
     }
     
+    delete timer;
     //qint64 elapsedMilliseconds = timer->elapsed();
     //ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
