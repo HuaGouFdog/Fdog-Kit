@@ -2460,6 +2460,9 @@ QString thriftwidget::handleI64(QTextEdit * textEdit_data, QString &str, QString
     } else if (paramName != "") {
         //qDebug() << "paramName1";
         textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName+ "\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
+        if (paramName == "sessionID") {
+            preDataMap.insert(paramName, hexToLongNumber(textEdit_data, value));
+        }
     } else {
         //qDebug() << "paramName2";
         textEdit_data->append(addColorFieldHtml(getRetract() + "\"i64\"") + " : " + addColorValueNumHtml(hexToLongNumber(textEdit_data, value)) + end);
@@ -2502,6 +2505,9 @@ QString thriftwidget::handleString(QTextEdit * textEdit_data, QString &str, QStr
         } else if (paramName != "") {
             //qDebug() << "paramName1";
             textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + paramName + "\"") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
+            if (paramName == "ticket") {
+                preDataMap.insert(paramName, hexToString(textEdit_data, value2));
+            }
         } else {
             //qDebug() << "paramName2";
             textEdit_data->append(addColorFieldHtml(getRetract() + "\"string\"") + " : " + addColorValueStrHtml("\"" + hexToString(textEdit_data, value2) + "\"") + end);
