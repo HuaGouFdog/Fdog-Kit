@@ -313,10 +313,10 @@ void ItemWidget::init()
                 height:16px;\
            }\
             QCheckBox::indicator::unchecked{\
-                image:url(:/lib/gouxuan2.png);\
+                image:url(:/module_thrift/images/light/check2-light.png);\
             }\
             QCheckBox::indicator::checked{\
-                image:url(:/lib/gouxuan.png);\
+                image:url(:/module_thrift/images/light/check1-light.png);\
             }");
 
     moveButton = new QToolButton();
@@ -702,7 +702,7 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
     lineEditParamValue->setText(type_s);
     ItemWidget* items = thriftwidget::createAndGetNode(p, this);
     items->lineEditParamValue->setText(type_s);
-    
+
     items->comboBoxBase->setCurrentText("struct");
     items->keyLabel->hide();
     items->valueLabel->hide();
@@ -720,7 +720,7 @@ void ItemWidget::setParamValue_interior(thriftwidget * p, QString type_s) {
     if (index_ != -1) {
         type_s = type_s.mid(index_ + 1);
     }
-    
+
     if (structParamMap.value(type_s).size() > 0) {
         QMap<int, structInfo> temp = structParamMap.value(type_s);
         for (const auto &key : temp.keys()) {
@@ -758,7 +758,7 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     items->lineEditParamValue->setPlaceholderText("key");
     items->lineEditParamSN->setText("1");
     items->checkBox->setChecked(true);
-    
+
     items->setExpanded(true);
     isAuto = true;
 
@@ -768,7 +768,7 @@ void ItemWidget::setParamValue_interior_map(thriftwidget * p, QString type_s) {
     if (index_ != -1) {
         type_s = type_s.mid(index_ + 1);
     }
-    
+
     if (structParamMap.value(type_s).size() > 0) {
         QMap<int, structInfo> temp = structParamMap.value(type_s);
         for (const auto &key : temp.keys()) {
@@ -822,7 +822,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     // 设置第三列的宽度为 150 像素
     ui->treeWidget->setColumnWidth(2, 350);
 
-
+    ui->treeWidget_api->setIndentation(20);
     // 计算第五列的宽度，使其占满剩余空间
     //int lastColumnWidth = ui->treeWidget->viewport()->width() - 420;
     //ui->treeWidget->setColumnWidth(3, lastColumnWidth);
@@ -903,6 +903,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //ui->widget_property->hide();
 
     ui->treeWidget_api->hide();
+
+    ui->toolButton_close->hide();
     //ui->widget_left->hide();
 
 //    ui->splitter_response->setStretchFactor(0,10);
@@ -975,7 +977,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     handleThriftFile(fileList);
     ui->treeWidget_api->show();
     setSupportStretch(this, true);
-    
+
     TreeWidgetFilter *filter = new TreeWidgetFilter(this);
     connect(filter,SIGNAL(send_updateMouseStyle()),this,SLOT(rece_updateMouseStyle()));
     ui->treeWidget->setMouseTracking(true);
@@ -1233,7 +1235,7 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
             receivedData.push_back(elem);
         }
         //qDebug() << "receivedData = " << receivedData;
-        
+
         if (isFirstRead) {
             isFirstRead = false;
             //获取数据长度
@@ -2111,7 +2113,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     QString paramType;
     if (type_data == "80010001") {
         for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
-            paramType = paramType + funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType + " "; 
+            paramType = paramType + funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType + " ";
         }
     } else if (type_data == "80010002"){
         paramType = funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(1).paramType;
@@ -2125,9 +2127,9 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     if (type_data == "80010001") {
         for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
             if (baseType.contains(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType)) {
-                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramName); 
+                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramName);
             } else {
-                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType); 
+                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType);
             }
         }
     }
@@ -2188,7 +2190,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
             } else if (value_type == "0c") {
                 //struct
                 //qDebug() << "进入struct";
-                
+
                 if (type_data == "80010001") {
                     temp = temp + handleStruct(textEdit_data,data, isEnd, paramTypeList[sum],
                         funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
@@ -2946,7 +2948,7 @@ QString thriftwidget::hexToString(QTextEdit * textEdit_data, QString &hex)
 }
 
 QString thriftwidget::hexToLongNumber(QTextEdit * textEdit_data, QString &hex)
-{   
+{
     //qDebug() << "hex = " << hex << " 对应数据" << strtoll(hex.toStdString().c_str(), nullptr, 16);
     return QString::number(strtoll(hex.toStdString().c_str(), nullptr, 16));
 }
@@ -3244,9 +3246,10 @@ QString thriftwidget::getServerInterface(QString &fileContent) {
             }
 
             // 创建一个QIcon对象并设置图标
-            QIcon icon1(":/lib/api.png"); // 设置您的图标路径
+            QIcon icon1(":/module_thrift/images/light/api-light.png"); // 设置您的图标路径
 
             QTreeWidgetItem *childItem1 = new QTreeWidgetItem(parentItem);
+            //childItem1->setRootIsDecorated(false);
             //添加函数接口
             childItem1->setText(0, funcName); //funcServerName
             childItem1->setIcon(0, icon1);
@@ -3391,7 +3394,7 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
         isok = false;
         return paramsMap_;
     }
-    
+
     while(data.contains(";")){
         data.replace(";", ",");
     }
@@ -3416,7 +3419,7 @@ QMap<int, paramInfo> thriftwidget::getFuncInParams(QString data, bool & isok)
                         qDebug() << "跳过";
                         continue;
                     }
-                    
+
                 }
                 //获取
                 int temp = 0;
@@ -3591,7 +3594,7 @@ void thriftwidget::handleBinData() {
                 } else {
                     utils_parsingJsonInfo(ui->textEdit_data, needToJsonData);
                 }
-                
+
             }
             ui->textEdit->append("染色数据(颜色信息可查看thrift协议报文说明):");
             ui->textEdit->append(dataTemp_2);
@@ -3630,7 +3633,7 @@ void thriftwidget::handleHexData(QTextEdit * textEdit_data, QTextEdit * textEdit
             dataTemp = "";
         }
     }
-    
+
     textEdit_data2->append("------------------------------------------------------------------------------");
     //对数据进行染色
     handleMessage(textEdit_data, data);
@@ -3658,7 +3661,7 @@ void thriftwidget::readPreData()
     QString fileName = "thriftConfig\\preData.txt";
     // 创建文件对象
     QFile file(fileName);
- 
+
     // 打开文件，并且以只读方式进行读取
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         // 读取文件内容
@@ -3689,7 +3692,7 @@ void thriftwidget::readPreData()
             } else {
                 preDataMap.insert(key, value);
             }
-            
+
             //qDebug() << "key = " << key << " value = " << value;
         }
     } else {
@@ -3704,7 +3707,7 @@ void thriftwidget::readPreDataVector(QString key, QString path)
     QString fileName = path;
     // 创建文件对象
     QFile file(fileName);
- 
+
     // 打开文件，并且以只读方式进行读取
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         // 读取文件内容
@@ -3755,7 +3758,7 @@ void thriftwidget::handleThriftFile(QStringList fileList) {
 QVector<int> thriftwidget::distributeRequests(int totalRequests, int numThreads)
 {
     QVector<int> threadTasks;
-    
+
     // 1. 计算平均值
     int averageTasks = totalRequests / numThreads;
 
@@ -3866,7 +3869,7 @@ void thriftwidget::buildChart1() {
 void thriftwidget::updateChart1(int value) {
     ui->label_cpu->setText("CPU使用率(" + QString::number(value) + "%)");
     data_cpu.append(value);
-    
+
     if (data_cpu.size() > maxPoints)
     data_cpu.remove(0);
 
@@ -3951,7 +3954,7 @@ void thriftwidget::buildChart2() {
 void thriftwidget::updateChart2(int value) {
     ui->label_mem->setText("内存使用率(" + QString::number(value) + "%)");
     data_mem.append(value);
-    
+
     if (data_mem.size() > maxPoints)
     data_mem.remove(0);
 
@@ -4035,7 +4038,7 @@ void thriftwidget::buildChart3() {
 void thriftwidget::updateChart3(int value) {
     ui->label_io->setText("磁盘使用率(" + QString::number(value) + "%)");
     data_io.append(value);
-    
+
     if (data_io.size() > maxPoints)
     data_io.remove(0);
 
@@ -4124,7 +4127,7 @@ void thriftwidget::buildChartP() {
 
 void thriftwidget::updateChartP(int value1, int value2) {
     data_p1.append(value1);
-    
+
     if (data_p1.size() > maxPointsP)
     data_p1.remove(0);
 
@@ -4409,7 +4412,7 @@ void thriftwidget::rece_currentIndexChanged(QString data, QTreeWidgetItem *item)
             //item2->lineEditParamValue->hide();
         }
     } else if (item_->comboBoxBase->currentText() == "struct" && isAddNode != true) {
-        
+
         //创建子节点
         item_->comboBoxKey->hide();
         item_->comboBoxValue->hide();
@@ -4662,7 +4665,7 @@ void thriftwidget::on_toolButton_request_clicked()
     } else if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
         sendHttpRequest(sendData8, timer);
     }
-    
+
     delete timer;
     //qint64 elapsedMilliseconds = timer->elapsed();
     //ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
@@ -4796,8 +4799,8 @@ void thriftwidget::on_treeWidget_api_currentItemChanged(QTreeWidgetItem *current
            break;
        }
     }
-    if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
-        ui->comboBox_port->setCurrentIndex(1);
+    if (ui->comboBox_transport->currentText() == THTTPSTransport_ || ui->comboBox_transport->currentText() == THTTPTransport_) {
+        ui->comboBox_port->setCurrentIndex(0);
     }
     int index = current->text(0).indexOf(":");
     if (index == 0) {
@@ -5118,7 +5121,7 @@ void TestRunnable::batchSendThriftRequest(QTcpSocket * clientSocket, QVector<uin
         qDebug() << "发送数据异常";
         return;
     }
-    clientSocket->flush(); 
+    clientSocket->flush();
 
     //记录写入耗时
     elapsedMillisecondsWrite = timer->elapsed();
@@ -5298,7 +5301,7 @@ void thriftwidget::rece_propertyTestDone(RequestResults * rr)
         bc = 5;
     } else if (rr->Results.size() > 5000) {
         bc = 10;
-    } 
+    }
     for(int64_t i=0; i< rr->Results.size(); i+=bc)
     {
         lineSeries2->append(i,rr->Results[i]);
@@ -5399,8 +5402,8 @@ void RequestResults::setCount(int value)
 void RequestResults::decrease(int value)
 {
     count = count - value;
-    qDebug() << "完成" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz") 
-                                    << "  thread ID:" << QThread::currentThreadId() 
+    qDebug() << "完成" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz")
+                                    << "  thread ID:" << QThread::currentThreadId()
                                     << "  count = " << count ;
 }
 
@@ -5575,7 +5578,7 @@ void thriftwidget::on_toolButton_capturePackage_clicked()
         QString username = cInfoStruct.userName;
         QString password = cInfoStruct.password;
 
-        QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, 2), Q_ARG(QString, host), Q_ARG(QString,port), 
+        QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, 2), Q_ARG(QString, host), Q_ARG(QString,port),
                                 Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(QString,"tcpdump --version 2>&1"));
         //确定tcpdump
         //开始抓包
@@ -5604,7 +5607,7 @@ void thriftwidget::rece_ssh_exec_init(bool isok)
     if (!isok) {
         ui->toolButton_5->setEnabled(true);
     }
-    
+
 }
 
 // 打印数据的十六进制格式
@@ -5678,7 +5681,7 @@ void thriftwidget::parseIPv4Header(const QByteArray &data, int &offset, quint8 &
     //qDebug() << "Protocol:" << protocol;
     //qDebug() << "Source IP:" << srcIP;
     //qDebug() << "Destination IP:" << dstIP;
-    
+
     offset += ipHeaderLen; // 移动偏移量到 TCP 头部
 }
 
@@ -5756,11 +5759,11 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     // 设置选择模式为单选
     ui->tableWidget_func->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    ui->tableWidget_func->setColumnWidth(0, 70);  
+    ui->tableWidget_func->setColumnWidth(0, 70);
     ui->tableWidget_func->setColumnWidth(1, 250);
     ui->tableWidget_func->setColumnWidth(2, 100);
-    ui->tableWidget_func->setColumnWidth(3, 200); 
-    ui->tableWidget_func->setColumnWidth(4, 200); 
+    ui->tableWidget_func->setColumnWidth(3, 200);
+    ui->tableWidget_func->setColumnWidth(4, 200);
     //ui->tableWidget_func->resizeColumnsToContents();  // 根据内容调整列宽
     //ui->tableWidget_func->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // 自动填充
     ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
@@ -5789,7 +5792,7 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
         TableEntry entry;
         int offset = 0;
         parseSLLHeader(packetData, offset);
-        
+
 
         quint8 protocol;
         int ipHeaderLen;
@@ -5830,7 +5833,7 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
             if (entry.info != "TCP") {
                 entry.info = entry.info + "  " + hexToString(nullptr,fun_name); + "  " + headers_data_length;
             }
-            
+
         }
         tableData.append(entry);
     }
@@ -5938,7 +5941,7 @@ void thriftwidget::on_tabWidget_2_currentChanged(int index)
     } else {
         ui->stackedWidget_2->setCurrentIndex(3);
     }
-    
+
 }
 
 
@@ -5992,12 +5995,12 @@ void thriftwidget::on_toolButton_5_clicked() {
         connect(sshExec,SIGNAL(send_init(bool)),this,
                 SLOT(rece_ssh_exec_init(bool)));
         threadExec->start();
-    
+
             QString host = cInfoStruct.host;
             QString port = cInfoStruct.port;
             QString username = cInfoStruct.userName;
             QString password = cInfoStruct.password;
-            QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, 1), Q_ARG(QString, host), Q_ARG(QString,port), 
+            QMetaObject::invokeMethod(sshExec,"init", Qt::QueuedConnection, Q_ARG(int, 1), Q_ARG(QString, host), Q_ARG(QString,port),
                                     Q_ARG(QString,username), Q_ARG(QString,password), Q_ARG(QString,""));
     }
 
@@ -6011,11 +6014,11 @@ void thriftwidget::on_toolButton_6_clicked() {
     connect(&process, &QProcess::readyReadStandardError, this, &thriftwidget::onReadyReadError);
     //组装命令
     QString command = "wsl ";
-    command = command + ui->lineEdit_scriptPath->text() + "/main" + " -s " + 
+    command = command + ui->lineEdit_scriptPath->text() + "/main" + " -s " +
                     ui->lineEdit_host_2->text() + ":" + ui->lineEdit_port_2->text() + "/" + ui->lineEdit_route_2->text() +
-                    " -p " + ui->lineEdit_password->text() + " -u " + ui->lineEdit_scriptPath->text() + 
+                    " -p " + ui->lineEdit_password->text() + " -u " + ui->lineEdit_scriptPath->text() +
                     "/account.txt" + " -n " + ui->lineEdit_loginNum->text();
-    
+
     if (ui->comboBox_type->currentIndex() == 0) {
         //登录
         command = command + " -t 2";
@@ -6066,9 +6069,9 @@ void thriftwidget::on_toolButton_6_clicked() {
         command = command + " -l 2";
     }
 
-    
+
     ui->plainTextEdit_5->appendPlainText("执行命令：" + command);
-    
+
     //"/mnt/e/ProjectA/avalanche/buildData/main -s 172.16.8.154:10669/ap -p 7c22a66ce0de9d5202a79ed522b737e8 -t 3 -u /mnt/e/ProjectA/avalanche/buildData/account.txt  -n 50";
     process.start(command); // 运行 WSL 命令
 }
@@ -6094,7 +6097,7 @@ void thriftwidget::onReadyReadError()
 
 void thriftwidget::on_toolButton_7_clicked()
 {
-    
+
     QProcess process;
     QString command = QString("wsl bash -c \"pgrep main\"");
 
@@ -6159,5 +6162,13 @@ void thriftwidget::on_toolButton_8_clicked()
     ui->widget_20->valueChanged(0);
     ui->label_46->setText("0.00, 0.00, 0.00");
     ui->toolButton_5->setEnabled(true);
+}
+
+
+void thriftwidget::on_comboBox_transport_currentTextChanged(const QString &arg1)
+{
+    if (arg1 == THTTPSTransport_ || arg1 == THTTPTransport_) {
+        ui->comboBox_port->setCurrentIndex(0);
+    }
 }
 

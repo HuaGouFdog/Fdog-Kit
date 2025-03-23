@@ -727,6 +727,8 @@ private slots:
 
     void on_toolButton_8_clicked();
 
+    void on_comboBox_transport_currentTextChanged(const QString &arg1);
+
 public:
     QVector<QString> dataList;
 private:
