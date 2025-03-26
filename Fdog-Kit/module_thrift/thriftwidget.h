@@ -25,229 +25,15 @@
 #include "module_ssh/sshsql.h"
 #include "module_ssh/sshhandle.h"
 #include "prefabricatedata.h"
-//请求类型
-#define THRIFT_CALL        "80010001"
-#define THRIFT_REPLY       "80010002"
-#define THRIFT_EXCEPTION   "80010003"
-#define THRIFT_ONEWAY      "80010004"
+#include "itemwidget.h"
+#include "variable.h"
 
-//字段类型编号两个字节
-#define THRIFT_BOOL_TYPE   2
-#define THRIFT_BYTE_TYPE   3
-#define THRIFT_I16_TYPE    6
-#define THRIFT_I32_TYPE    8
-#define THRIFT_I64_TYPE    10
-#define THRIFT_DOUBLE_TYPE 4
-#define THRIFT_STRING_TYPE 11
-#define THRIFT_STRUCT_TYPE 12
-#define THRIFT_MAP_TYPE    13
-#define THRIFT_SET_TYPE    14
-#define THRIFT_LIST_TYPE   15
-
-//字段类型占用长度  1字节数=2个长度
-#define THRIFT_BOOL_SIZE        2
-#define THRIFT_BYTE_SIZE        2
-#define THRIFT_I16_SIZE         4
-#define THRIFT_I32_SIZE         8
-#define THRIFT_I64_SIZE         16
-#define THRIFT_DOUBLE_SIZE      16
-#define THRIFT_STRING_SIZE      0
-#define THRIFT_STRUCT_SIZE      0
-#define THRIFT_MAP_SIZE         0
-#define THRIFT_SET_SIZE         0
-#define THRIFT_LIST_SIZE        0
-
-#define TFramedTransport_   "FRAMED"
-#define TBufferedTransport_ "BUFFERED"
-#define THTTPSTransport_    "HTTPS"
-#define THTTPTransport_     "HTTP"
-
-#define TBinaryProtocol_ "Binary"
-
-
-static QMap<QString, QString> preDataMap;
-
-static QMap<QString, QVector<QString>> preDataMapV;
-
-static QMap<QString, QString> mapReqType = {{"CALL", THRIFT_CALL}, {"ONEWAY", THRIFT_ONEWAY}};
-
-static QMap<QString, QString> ExceptionType = {{"1", "Unknown Method"}};
-
-
-static QMap<QString, int> mapType = {{"bool", THRIFT_BOOL_TYPE}, {"byte", THRIFT_BYTE_TYPE}, {"i16", THRIFT_I16_TYPE}, {"i32", THRIFT_I32_TYPE},
-                {"i64", THRIFT_I64_TYPE}, {"double", THRIFT_DOUBLE_TYPE}, {"string", THRIFT_STRING_TYPE}, {"struct", THRIFT_STRUCT_TYPE}, 
-                {"map", THRIFT_MAP_TYPE}, {"set", THRIFT_SET_TYPE}, {"list", THRIFT_LIST_TYPE}};
-
-static QMap<QString, int> mapSize = {{"bool", THRIFT_BOOL_SIZE}, {"byte", THRIFT_BYTE_SIZE}, {"i16", THRIFT_I16_SIZE}, {"i32", THRIFT_I32_SIZE},
-                {"i64", THRIFT_I64_SIZE}, {"double", THRIFT_DOUBLE_SIZE}, {"string", THRIFT_STRING_SIZE}, {"struct", THRIFT_STRUCT_SIZE}, 
-                {"map", THRIFT_MAP_SIZE}, {"set", THRIFT_SET_SIZE}, {"list", THRIFT_LIST_SIZE}};
-
-static QSet<QString> baseType = {"bool", "byte", "i16", "i32", "i64", "double", "string"};
-static QSet<QString> containerType = {"map", "set", "list"};
-
-struct paramInfo {
-    QString paramType; //参数类型
-    QString paramName; //参数名
-    QString typeSign;   //描述符 1 opt-in, req-out 默认 1 required 2 optional  这个是必opt-in, req-out
-};
-
-struct structInfo {
-    QString paramType;  //参数类型
-    QString paramName;  //参数名
-    QString typeSign;   //描述符 1 opt-in, req-out 默认 1 required 2 optional
-};
-
-//QMap<QString, paramInfo> paramsMap;
-
-static QMap<QString, QMap<int, paramInfo>> funcParamInMap;
-
-static QMap<QString, QMap<int, paramInfo>> funcParamOutMap;
-
-//第一个参数是结构体名，map里面string是序号
-static QMap<QString, QMap<int, structInfo>> structParamMap;
 
 namespace Ui {
 class thriftwidget;
 }
 
 class thriftwidget;
-
-class EnglishOnlyFilter : public QObject
-{
-    Q_OBJECT
-protected:
-    bool eventFilter(QObject *obj, QEvent *event) override
-    {
-        if (event->type() == QEvent::InputMethodQuery) {
-            QInputMethodQueryEvent *queryEvent = static_cast<QInputMethodQueryEvent*>(event);
-            if (queryEvent->queries() & Qt::ImEnabled) {
-                // 如果输入法激活，表示正在进行中文输入，则忽略此事件
-                return true;
-            }
-        } else if (event->type() == QEvent::KeyPress) {
-            QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-            QString text = keyEvent->text();
-            //qDebug() << "text =" << text;
-            // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
-            if (!text.isEmpty() && !(text >= "A" && text <= "Z") && !(text >= "a" && text <= "z")
-                    && !(text >= "0" && text <= "9") && !(keyEvent->key() == Qt::Key_Backspace)
-                    && !(text == "\u0001") && !(text == "\u0003") && !(text == "\u0016") && !(text == "\u001A")) {
-                return true; // 忽略非英文字符和数字
-            }
-        } else if (event->type() == QEvent::InputMethod) {
-            // 对于输入法事件，获取输入的文本
-            QInputMethodEvent *inputMethodEvent = static_cast<QInputMethodEvent*>(event);
-            QString text = inputMethodEvent->commitString();
-            // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
-            if (!text.isEmpty()) {
-                bool containsNonEnglishOrDigit = false;
-                for (const QChar &ch : text) {
-                    if (!(ch >= 'A' && ch <= 'Z') && !(ch >= 'a' && ch <= 'z')
-                            && !(ch >= '0' && ch <= '9')) {
-                        containsNonEnglishOrDigit = true;
-                        break;
-                    }
-                }
-                if (containsNonEnglishOrDigit) {
-                    return true; // 忽略非英文字符和数字
-                }
-            }
-        }
-        return QObject::eventFilter(obj, event);
-    }
-};
-
-class NoWheelQComboBox : public QComboBox { 
-public:
-    using QComboBox::QComboBox; 
-protected:
-    void wheelEvent(QWheelEvent* event) override { event->ignore(); }
-
-    void mousePressEvent(QMouseEvent *event) override {
-        // 获取下拉箭头的区域
-        QRect arrowRect = view()->geometry();  // 直接获取下拉列表区域
-        arrowRect.moveTopLeft(this->rect().topRight() - QPoint(arrowRect.width(), 0));
-
-        if (arrowRect.contains(event->pos())) {
-            // 只有点击箭头区域才会弹出
-            QComboBox::mousePressEvent(event);
-        } else {
-            event->ignore();  // 忽略点击，不弹出菜单
-        }
-    }
-};
-
-class ItemWidget :public QObject, public QTreeWidgetItem
- {
-     Q_OBJECT
- public:
-     explicit ItemWidget(QTreeWidget *parent);
-     explicit ItemWidget(QTreeWidgetItem *parent);
-     explicit ItemWidget();
-     void init();
-     void init2();
-     void init3();
-     ~ItemWidget();
-      NoWheelQComboBox* comboBoxBase;    //基础
-      NoWheelQComboBox* comboBoxKey;     //key
-      NoWheelQComboBox* comboBoxValue;   //value
-
-      
-      QLineEdit* lineEditParamSN;       //参数序号
-      QLineEdit* lineEditParamName;       //参数名
-      QLineEdit* lineEditParamValue;      //参数值
-      //QLineEdit* lineEditParamDescribe;   //参数描述
-
-      QToolButton* deleteButton;          //删除按钮
-      QToolButton* moveButton;            //删除按钮
-      QToolButton* addNode;               //添加元素
-      QToolButton* addColumnButton;       //添加列
-
-      QLabel * keyLabel;    //key元素
-      QLabel * valueLabel;  //value元素
-      QLabel * classLabel;  //类元素
-      QLabel * mastLabel;   //必选标记
-
-      QHBoxLayout* layoutParamSN;
-      QWidget* widgetParamSN;
-      QHBoxLayout* layoutParamName;
-      QWidget* widgetParamName;
-      QHBoxLayout* layoutParamType;
-      QWidget* widgetParamType;
-      QHBoxLayout* layoutParamValue;
-      QWidget* widgetParamValue;
-
-      QLabel* label;
-      QCheckBox* checkBox;
-
-      
-
-      void copyItem(thriftwidget * p, ItemWidget * item_p, ItemWidget * item_);
-
-      void setParamSN(int str);
-      void setParamName(QString str);
-      void setParamType(QString str);
-      void setParamValue(thriftwidget * p, int sn, QString name, QString type, QString typeSign);
-
-      //处理list set
-      void setParamValue_interior(thriftwidget * p, QString type_s);
-      //处理map
-      void setParamValue_interior_map(thriftwidget * p, QString type_s);
-signals:
-      void send_buttonClicked(QTreeWidgetItem * item);
-      void send_onTextChanged(QString data, QTreeWidgetItem * item);
-      void send_currentIndexChanged(QString data, QTreeWidgetItem * item);
-      void send_buttonClicked_add(QTreeWidgetItem * t1);
-      void send_buttonClicked_add_column(QTreeWidgetItem * t1);
- };
-
-enum ObjectType {
-	OBJECT_BASE = 1,
-	OBJECT_STRUCT,
-	OBJECT_LIST,
-	OBJECT_SET,
-    OBJECT_MAP,
-};
 
 class RequestResults {
     public:
@@ -297,88 +83,6 @@ class RequestResults {
     void setWaitTimeList(const int32_t value);
 };
 
-struct PcapFileHeader {
-    uint32_t magic;       // 文件标识
-    uint16_t versionMajor;
-    uint16_t versionMinor;
-    int32_t thisZone;
-    uint32_t sigFigs;
-    uint32_t snapLen;
-    uint32_t linkType;
-};
-
-// pcap 数据包头
-//struct PcapPacketHeader {
-//    uint32_t tsSec;      // 时间戳（秒）
-//    uint32_t tsUsec;     // 时间戳（微秒）
-//    uint32_t capLen;     // 捕获的数据包长度
-//    uint32_t origLen;    // 原始数据包长度
-//};
-
-// 以太网帧头部（最基本的帧，不包含 802.1Q VLAN）
-struct EthernetHeader {
-    uint8_t destMac[6]; // 目标 MAC
-    uint8_t srcMac[6];  // 源 MAC
-    uint16_t etherType; // 以太网类型（IPv4 = 0x0800）
-};
-
-// IPv4 头部
-struct IPv4Header {
-    uint8_t ihl : 4, version : 4;
-    uint8_t tos;
-    uint16_t totalLength;
-    uint16_t identification;
-    uint16_t flagsFragmentOffset;
-    uint8_t ttl;
-    uint8_t protocol; // TCP = 6
-    uint16_t headerChecksum;
-    uint32_t srcIP;
-    uint32_t destIP;
-};
-
-// TCP 头部
-struct TCPHeader {
-    uint16_t srcPort;
-    uint16_t destPort;
-    uint32_t seqNum;
-    uint32_t ackNum;
-    uint8_t dataOffset;
-    uint8_t flags;
-    uint16_t windowSize;
-    uint16_t checksum;
-    uint16_t urgentPointer;
-};
-
-#pragma pack(1)  // 避免结构体填充
-
-struct PcapHeader {
-    quint32 magic;
-    quint16 version_major;
-    quint16 version_minor;
-    quint32 thiszone;
-    quint32 sigfigs;
-    quint32 snaplen;
-    quint32 network;
-};
-
-struct PcapPacketHeader {
-    quint32 ts_sec;
-    quint32 ts_usec;
-    quint32 incl_len;
-    quint32 orig_len;
-};
-
-#pragma pack() 
-
-struct TableEntry {
-    int index;         // 序号
-    QString time;      // 时间
-    QString flag;      // 标志
-    QString request;   // 请求源
-    QString target;    // 目标源
-    QString info;      // 信息
-};
-
 class thriftwidget : public QWidget
 {
     Q_OBJECT
@@ -395,7 +99,101 @@ public:
     connnectInfoStruct cInfoStruct;
     QVector<connnectInfoStruct> cInfoStructList;
 
+    bool isAuto = true;
 
+    QSet<QString> baseType = {"bool", "byte", "i16", "i32", "i64", "double", "string"};
+    QSet<QString> containerType = {"map", "set", "list"};
+
+    QMap<QString, QMap<int, paramInfo>> funcParamInMap;
+
+    QMap<QString, QMap<int, paramInfo>> funcParamOutMap;
+    
+    //第一个参数是结构体名，map里面string是序号
+    QMap<QString, QMap<int, structInfo>> structParamMap;
+
+    QMap<QString, QString> preDataMap;
+
+    QMap<QString, QVector<QString>> preDataMapV;
+    
+    QMap<QString, QString> mapReqType = {{"CALL", THRIFT_CALL}, {"ONEWAY", THRIFT_ONEWAY}};
+    
+    QMap<QString, QString> ExceptionType = {{"1", "Unknown Method"}};
+    
+    
+    QMap<QString, int> mapType = {{"bool", THRIFT_BOOL_TYPE}, {"byte", THRIFT_BYTE_TYPE}, {"i16", THRIFT_I16_TYPE}, {"i32", THRIFT_I32_TYPE},
+                    {"i64", THRIFT_I64_TYPE}, {"double", THRIFT_DOUBLE_TYPE}, {"string", THRIFT_STRING_TYPE}, {"struct", THRIFT_STRUCT_TYPE}, 
+                    {"map", THRIFT_MAP_TYPE}, {"set", THRIFT_SET_TYPE}, {"list", THRIFT_LIST_TYPE}};
+    
+    QMap<QString, int> mapSize = {{"bool", THRIFT_BOOL_SIZE}, {"byte", THRIFT_BYTE_SIZE}, {"i16", THRIFT_I16_SIZE}, {"i32", THRIFT_I32_SIZE},
+                    {"i64", THRIFT_I64_SIZE}, {"double", THRIFT_DOUBLE_SIZE}, {"string", THRIFT_STRING_SIZE}, {"struct", THRIFT_STRUCT_SIZE}, 
+                    {"map", THRIFT_MAP_SIZE}, {"set", THRIFT_SET_SIZE}, {"list", THRIFT_LIST_SIZE}};
+
+    QVector<QString> dataList;
+    QVector<QString> dataList_m;
+    QString lastValue_;
+    QString last2Value_;
+    Ui::thriftwidget *ui;
+    bool isFirstRead = true;
+    int64_t needRead = 0;
+    QStringList dataSource;
+    QVector<uint32_t> receivedData;
+    bool isCreateNode = false;
+
+    //压测
+    int64_t count = 0;
+    qint64 elapsedMillisecondsAll = 0;
+    bool isTestModle = false; //是否压测模式 
+    QThreadPool threadpool;
+    QChartView *chartView = nullptr;
+    QChart *chart = nullptr;
+    prefabricatedata * preData;
+
+    int maxPoints = 50;
+    QChart *chart_cpu;
+    QChartView *chartView_cpu;
+    QLineSeries * series_cpu2;
+    QAreaSeries *areaSeries_cpu;
+    QValueAxis *axisX_cpu;
+    QValueAxis *axisY_cpu;
+    QVector<qreal> data_cpu;
+
+    QChart *chart_mem;
+    QChartView *chartView_mem;
+    QLineSeries * series_mem;
+    QAreaSeries *areaSeries_mem;
+    QValueAxis *axisX_mem;
+    QValueAxis *axisY_mem;
+    QVector<qreal> data_mem;
+
+    QChart *chart_io;
+    QChartView *chartView_io;
+    QLineSeries * series_io;
+    QAreaSeries *areaSeries_io;
+    QValueAxis *axisX_io;
+    QValueAxis *axisY_io;
+    QVector<qreal> data_io;
+
+    int maxPointsP = 50;
+    QChart *chart_p;
+    QChartView *chartView_p;
+    QLineSeries * series_p1;
+    QAreaSeries *areaSeries_p1;
+    QLineSeries * series_p2;
+    QAreaSeries *areaSeries_p2;
+    QLineSeries * series_p3;
+    QAreaSeries *areaSeries_p3;
+    QLineSeries * series_p4;
+    QAreaSeries *areaSeries_p4;
+    QValueAxis *axisX_p;
+    QValueAxis *axisY_p;
+    QVector<qreal> data_p1;
+    QVector<qreal> data_p2;
+    QVector<qreal> data_p3;
+    QVector<qreal> data_p4;
+
+    sshsql * db;
+    QThread * threadExec;
+    sshHandleExec * sshExec;
 
     explicit thriftwidget(QWidget *parent = 0);
     void ceateItem();
@@ -729,76 +527,7 @@ private slots:
 
     void on_comboBox_transport_currentTextChanged(const QString &arg1);
 
-public:
-    QVector<QString> dataList;
-private:
-
-    QVector<QString> dataList_m;
-    QString lastValue_;
-    QString last2Value_;
-    Ui::thriftwidget *ui;
-    bool isFirstRead = true;
-    int64_t needRead = 0;
-    QStringList dataSource;
-    QVector<uint32_t> receivedData;
-    bool isCreateNode = false;
-
-    //压测
-    int64_t count = 0;
-    qint64 elapsedMillisecondsAll = 0;
-    bool isTestModle = false; //是否压测模式 
-    QThreadPool threadpool;
-    QChartView *chartView = nullptr;
-    QChart *chart = nullptr;
-    prefabricatedata * preData;
-
-
-    int maxPoints = 50;
-    QChart *chart_cpu;
-    QChartView *chartView_cpu;
-    QLineSeries * series_cpu2;
-    QAreaSeries *areaSeries_cpu;
-    QValueAxis *axisX_cpu;
-    QValueAxis *axisY_cpu;
-    QVector<qreal> data_cpu;
-
-    QChart *chart_mem;
-    QChartView *chartView_mem;
-    QLineSeries * series_mem;
-    QAreaSeries *areaSeries_mem;
-    QValueAxis *axisX_mem;
-    QValueAxis *axisY_mem;
-    QVector<qreal> data_mem;
-
-    QChart *chart_io;
-    QChartView *chartView_io;
-    QLineSeries * series_io;
-    QAreaSeries *areaSeries_io;
-    QValueAxis *axisX_io;
-    QValueAxis *axisY_io;
-    QVector<qreal> data_io;
-
-    int maxPointsP = 50;
-    QChart *chart_p;
-    QChartView *chartView_p;
-    QLineSeries * series_p1;
-    QAreaSeries *areaSeries_p1;
-    QLineSeries * series_p2;
-    QAreaSeries *areaSeries_p2;
-    QLineSeries * series_p3;
-    QAreaSeries *areaSeries_p3;
-    QLineSeries * series_p4;
-    QAreaSeries *areaSeries_p4;
-    QValueAxis *axisX_p;
-    QValueAxis *axisY_p;
-    QVector<qreal> data_p1;
-    QVector<qreal> data_p2;
-    QVector<qreal> data_p3;
-    QVector<qreal> data_p4;
-
-    sshsql * db;
-    QThread * threadExec;
-    sshHandleExec * sshExec;
+    void on_toolButton_close_clicked();
 };
 
 Q_DECLARE_METATYPE(QVector<uint8_t>);
@@ -809,6 +538,25 @@ Q_DECLARE_METATYPE(RequestResults*);
 class TestRunnable : public QObject, public QRunnable {
     Q_OBJECT
 public:
+    QString host_;
+    int port_;
+    bool isok = false;
+    //QElapsedTimer * timer_;
+    RequestResults * rr_ = nullptr;
+    //QTcpSocket * clientSocket = nullptr;
+    //QVector<QTcpSocket *> clientSocketS;
+    QVector<uint32_t> receivedData;
+    int64_t count_ = 0;
+    int64_t totalRequests_ = 0;
+    int64_t needRead = 0;
+    QObject * obj_;
+    QVector<uint8_t> sendData_;
+    QVector<QVector<uint8_t>> sendDataS_;
+    bool isFirstRead = true;
+    qint64 elapsedMillisecondsAll = 0;
+    int connectTimeOut_ = 0;
+    int requestTimeOut_ = 0;
+
     TestRunnable(QObject * obj, QVector<uint8_t> sendData, RequestResults * rr, QString host, int port, int connectTimeOut, int requestTimeOut){
         obj_ = obj;
         sendData_ = sendData;
@@ -882,29 +630,54 @@ public:
         }
         rr_->mutex.unlock();
     }
-
-public:
-    QString host_;
-    int port_;
-    bool isok = false;
-    //QElapsedTimer * timer_;
-    RequestResults * rr_ = nullptr;
-    //QTcpSocket * clientSocket = nullptr;
-    //QVector<QTcpSocket *> clientSocketS;
-    QVector<uint32_t> receivedData;
-    int64_t count_ = 0;
-    int64_t totalRequests_ = 0;
-    int64_t needRead = 0;
-    QObject * obj_;
-    QVector<uint8_t> sendData_;
-    QVector<QVector<uint8_t>> sendDataS_;
-    bool isFirstRead = true;
-    qint64 elapsedMillisecondsAll = 0;
-    int connectTimeOut_ = 0;
-    int requestTimeOut_ = 0;
-
-
-    
 };
+
+
+class EnglishOnlyFilter : public QObject
+{
+    Q_OBJECT
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override
+    {
+        if (event->type() == QEvent::InputMethodQuery) {
+            QInputMethodQueryEvent *queryEvent = static_cast<QInputMethodQueryEvent*>(event);
+            if (queryEvent->queries() & Qt::ImEnabled) {
+                // 如果输入法激活，表示正在进行中文输入，则忽略此事件
+                return true;
+            }
+        } else if (event->type() == QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+            QString text = keyEvent->text();
+            //qDebug() << "text =" << text;
+            // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
+            if (!text.isEmpty() && !(text >= "A" && text <= "Z") && !(text >= "a" && text <= "z")
+                    && !(text >= "0" && text <= "9") && !(keyEvent->key() == Qt::Key_Backspace)
+                    && !(text == "\u0001") && !(text == "\u0003") && !(text == "\u0016") && !(text == "\u001A")) {
+                return true; // 忽略非英文字符和数字
+            }
+        } else if (event->type() == QEvent::InputMethod) {
+            // 对于输入法事件，获取输入的文本
+            QInputMethodEvent *inputMethodEvent = static_cast<QInputMethodEvent*>(event);
+            QString text = inputMethodEvent->commitString();
+            // 检查输入的文本是否为英文字符（A-Z、a-z）或数字（0-9）
+            if (!text.isEmpty()) {
+                bool containsNonEnglishOrDigit = false;
+                for (const QChar &ch : text) {
+                    if (!(ch >= 'A' && ch <= 'Z') && !(ch >= 'a' && ch <= 'z')
+                            && !(ch >= '0' && ch <= '9')) {
+                        containsNonEnglishOrDigit = true;
+                        break;
+                    }
+                }
+                if (containsNonEnglishOrDigit) {
+                    return true; // 忽略非英文字符和数字
+                }
+            }
+        }
+        return QObject::eventFilter(obj, event);
+    }
+};
+
+
 
 #endif // THRIFTWIDGET_H
