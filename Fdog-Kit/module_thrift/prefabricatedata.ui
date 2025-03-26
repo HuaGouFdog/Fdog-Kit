@@ -84,8 +84,8 @@ border-radius: 0px;</string>
         <property name="plainText">
          <string>预制数据规则：
 1. 通用格式：user:fdog（说明：所有user字段将被填充为fdog）
-2. 服务器格式：&amp;127.0.0.1.user:fdog（说明：所有请求127.0.0.1的user字段将被填充为fdog）
-3. 函数格式：@login.user:fdog1（说明：所有login接口的user字段将被填充为fdog1）
+2. 服务器格式：&amp;127.0.0.1#user:fdog（说明：所有请求127.0.0.1服务器的user字段将被填充为fdog）
+3. 函数格式：@login#user:fdog1（说明：所有login接口的user字段将被填充为fdog1）
 4. 批量模式：user:${thriftConfig\\account.txt} （使用account.txt内容作为填充，account.txt文件内容，一行一个value）</string>
         </property>
        </widget>
