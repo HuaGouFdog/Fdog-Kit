@@ -349,7 +349,7 @@ QString datahandle::processDataStatsAndColor(QString & head, QString & commond, 
     if (lastM != "" && lastM == "34") {
         //后面颜色全部为这个
         QString endStr = data.mid(pos2);
-        qDebug() << "最后需要34染色的数据为 = " << endStr;
+        //qDebug() << "最后需要34染色的数据为 = " << endStr;
     }
     //如果最后一串是颜色代码，则后面都应该是这个颜色
     // QRegExp regex2("(\\x001B\\[(1)m\\x001B\\[(34)m)");

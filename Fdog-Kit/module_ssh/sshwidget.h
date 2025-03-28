@@ -110,7 +110,7 @@ protected:
 
     void resizeEvent(QResizeEvent *event) override
     {
-        //qDebug() << "resizeEvent 被调用";
+        qDebug() << "resizeEvent 被调用";
         //QTextEdit::resizeEvent(event);
         emit send_resize_sign();
         QPlainTextEdit::resizeEvent(event);
@@ -249,6 +249,8 @@ public:
     explicit sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString sign, QWidget *parent = 0);
     ~sshwidget();
 
+    void resizeEvent(QResizeEvent *event) override;
+
     enum MoveMode {
         MoveAnchor,
         KeepAnchor
@@ -277,11 +279,11 @@ public:
     void movePositionDown(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     void movePositionDown_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
-    //向左移动
+    //向右移动
     void movePositionLeft(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     void movePositionLeft_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
-    //向右移动
+    //向左移动
     void movePositionRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     void movePositionRight_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);

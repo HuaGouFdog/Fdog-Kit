@@ -514,6 +514,21 @@ void sshHandleExec::getServerInfo()
     commond = "uname -p -i -o";
     QStringList dataList5 = commondExec(commond).split(" ");
     serverInfo.architecture = "系统架构 " + dataList5[0];
+
+    commond = "top -b -c -n 1 | grep -E 'minidood|VIRT' | grep -v grep  | tail -n +2";
+    QStringList dataList6 = commondExec(commond).split(" ");
+    dataList6.removeAll("");
+    //qDebug() << "top -b -c -n 1 | grep -E 'minidood|VIRT' | grep -v grep  | tail -n +2" << dataList6;
+    serverInfo.progress1Cpu = QString::number((int)dataList6[8].toDouble());
+    serverInfo.progress2Mem = QString::number((int)dataList6[9].toDouble());
+
+    commond = "top -b -c -n 1 | grep -E 'minidood|VIRT' | grep -v grep  | tail -n +2";
+    QStringList dataList7 = commondExec(commond).split(" ");
+    dataList7.removeAll("");
+    //qDebug() << "top -b -c -n 1 | grep -E 'mysqld|VIRT' | grep -v grep  | tail -n +2" << dataList7;
+    serverInfo.progress1Cpu = QString::number((int)dataList7[8].toDouble());
+    serverInfo.progress2Mem = QString::number((int)dataList7[9].toDouble());
+
     emit send_getServerInfo(serverInfo);
     return;
 }
