@@ -508,7 +508,7 @@ void sshwidget::sendUploadCommandData(QString local_file_path, QString remote_fi
 
 void sshwidget::setTerminalSize(int height, int width)
 {
-    //qDebug() << "设置当前终端高=" << height << " 宽=" << width;
+    qDebug() << "设置当前终端高=" << height << " 宽=" << width;
     if (m_sshhandle->channel_ssh == nullptr) {
         return;
     }
@@ -1409,18 +1409,18 @@ void sshwidget::rece_channel_readS(QStringList data)
 
             setCurrentRowPositionToZero();
             setCurrentRowPosition(1);
-
+            int buchang = 19;
             int cpos = getCurrentRowPositionByLocal();
-            movePositionDown(sshwidget::MoveAnchor, 23);
+            movePositionDown(sshwidget::MoveAnchor, buchang);
             int cpos2 = getCurrentRowPositionByLocal();
-
+            
             setCurrentRowPosition(cpos2 - cpos);
             //qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
-            if (cpos2 - cpos != 23 && cpos2 - cpos < 23) {
-                for (int i = cpos2 - cpos; i<23; i++) {
+            if (cpos2 - cpos != buchang && cpos2 - cpos < buchang) {
+                for (int i = cpos2 - cpos; i<buchang; i++) {
                     if (isBuffer) {
                         //sendData("        ");
-                        if (cpos2 - cpos < 23 - 1) {
+                        if (cpos2 - cpos < buchang - 1) {
                             sendData("\n");
                         }
                     } else {
@@ -1433,9 +1433,9 @@ void sshwidget::rece_channel_readS(QStringList data)
             // for(int i =0; i < 24 - b; i++) {
             //     sendData("\n");
             // }
-            qDebug() << "向上移动" << 23 << "行";
-            movePositionUp(sshwidget::MoveAnchor, 23);
-            setCurrentRowPosition(-23);
+            qDebug() << "向上移动" << buchang << "行";
+            movePositionUp(sshwidget::MoveAnchor, buchang);
+            setCurrentRowPosition(-buchang);
             continue;
         } else if (data[i] == "\u001B[L") {
             qDebug() << "遇到[L 向上移动";
@@ -2064,8 +2064,8 @@ void sshwidget::rece_resize_sign()
     QFontMetrics metrics(textEdit_s->font());
     int lineHeight = metrics.lineSpacing();
     int charWidth = metrics.averageCharWidth();
-    qDebug() << "字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
-    qDebug() << "视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
+    qDebug() << "rece_resize_sign 字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
+    qDebug() << "rece_resize_sign 视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
     // int s = viewportSize.height() % lineHeight;
     // if (s >= 0) {
     //     ui->widget_9->setFixedHeight(viewportSize.height() - s);
@@ -2109,7 +2109,7 @@ void sshwidget::rece_resize_sign()
 //        }
         //qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns;
         ui->label->setText(QString::number(visibleLines) +","+ QString::number(visibleColumns));
-        setTerminalSize(visibleLines, visibleColumns);
+        setTerminalSize(visibleLines - 2, visibleColumns);
         //qDebug() << "触发";
     //    textEdit_s->setLineWrapColumnOrWidth(viewportSize.width());
     //    ui->plainTextEdit->setLineWrapColumnOrWidth(viewportSize.width());

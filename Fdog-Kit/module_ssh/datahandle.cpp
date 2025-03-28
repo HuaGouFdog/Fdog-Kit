@@ -469,7 +469,7 @@ QString datahandle::processData(QString data)
 QStringList datahandle::processDataS(QString data)
 {   
     int sum = 0; //记录有多少连续的\b
-    qDebug() << "processDataS data = " << data;
+    //qDebug() << "processDataS data = " << data;
     QStringList dataS;
     //对内容进行分组
     while(1) {
