@@ -544,7 +544,7 @@ private:
     int m_visibleLines = 0;  //当前终端高
     int m_visibleColumns = 0; //当前终端宽
 
-
+    bool isfup = false; //强制更新
 };
 
 #endif // SSHWIDGET_H

@@ -2071,14 +2071,7 @@ void sshwidget::rece_pasteSelect_sgin()
     ui->plainTextEdit->setFocus();
 }
 
-void sshwidget::rece_resize_sign()
-{
-
-    
-    //qDebug() << "终端大小改变为" << textEdit_s->size();
-    // 获取标签的坐标和大小
-    //int x = textEdit_s->geometry().x();
-    //int y = textEdit_s->geometry().y();
+void sshwidget::rece_resize_sign() {
     int width = textEdit_s->geometry().width();
     //int height = textEdit_s->geometry().height();
     fwidget->move(width - fwidget->geometry().width() - 50, 0);
@@ -2097,62 +2090,22 @@ void sshwidget::rece_resize_sign()
     int charWidth = metrics.averageCharWidth();
     qDebug() << "rece_resize_sign 字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
     qDebug() << "rece_resize_sign 视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
-    // int s = viewportSize.height() % lineHeight;
-    // if (s >= 0) {
-    //     ui->widget_9->setFixedHeight(viewportSize.height() - s);
-    //     ui->widget_cache->setFixedHeight(s);
-    //     qDebug() << "widget_9 高 = " << viewportSize.height() - s << "  widget_cache 高 = " << s;
-    //     //ui->plainTextEdit->setFixedHeight(textEditHeight);
-    // }
-
-
-//    // 检查垂直滚动条的可见性
-    //bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();
-    // 显示垂直滚动条的可见性状态
-    //qDebug() << "Vertical Scrollbar Visible:" << isScrollBarVisible;
     // 计算可见行数和列数
     int visibleLines = viewportSize.height() / lineHeight;
     m_visibleLines = visibleLines;
     int visibleColumns = viewportSize.width() / charWidth - 5;
     m_visibleColumns = visibleColumns;
-    // 显示当前可显示的行数
-    // 输出行数和列数
-    //qDebug() << "Visible Line count:" << visibleLines;
-    //qDebug() << "Visible Column count:" << visibleColumns;
-
-    //如果宽在2范围则不触发
-//    if (visibleColumns != columnCount && columnCount - 5 < visibleColumns && visibleColumns < columnCount + 5) {
-//        return;
-//    }
-
-    if (columnCount != visibleColumns || lineCount != visibleLines) {
-        // 检查垂直滚动条的可见性 是否有滚动条可见导致的大小变化 屏蔽由该变化导致的刷新
-//        if (!isScrollBar) {
-//            isScrollBar = textEdit_s->verticalScrollBar()->isVisible();
-//            if (isScrollBar) {
-//                return;
-//            }
-//        } else {
-//            isScrollBar = textEdit_s->verticalScrollBar()->isHidden();
-//            if (!isScrollBar) {
-//                return;
-//            }
-//        }
-        //qDebug() << "终端大小被调用 visibleLines = " << visibleLines << " visibleColumns = " << visibleColumns;
+    if (columnCount != visibleColumns || lineCount != visibleLines || isfup) {
         ui->label->setText(QString::number(visibleLines) +","+ QString::number(visibleColumns));
         setTerminalSize(visibleLines - 2, visibleColumns);
-        //qDebug() << "触发";
-    //    textEdit_s->setLineWrapColumnOrWidth(viewportSize.width());
-    //    ui->plainTextEdit->setLineWrapColumnOrWidth(viewportSize.width());
        QPalette palette = ui->plainTextEdit->palette();
        palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
        ui->plainTextEdit->setPalette(palette);
-
-//        QPalette palette2 = ui->textEdit_6->palette();
-//        palette2.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
-//        ui->textEdit_6->setPalette(palette2);
         columnCount = visibleColumns;
         lineCount = visibleLines;
+        if (isfup) {
+            isfup = false;
+        }
     }
 }
 
@@ -2425,7 +2378,9 @@ void sshwidget::rece_ssh_init(bool isok)
     //更新状态图标
     //qDebug("发送更新图标状态");
     emit send_connection_success(this);
-
+    //更新终端size
+    isfup = true;
+    rece_resize_sign();
     //初始化完成调用
     QMetaObject::invokeMethod(m_sshhandle,"init_poll",Qt::QueuedConnection);
     //通知页面，连接成功，可以使用
