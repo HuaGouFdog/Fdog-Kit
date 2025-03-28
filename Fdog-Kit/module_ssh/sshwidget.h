@@ -279,11 +279,11 @@ public:
     void movePositionDown(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     void movePositionDown_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
-    //向左移动
+    //向右移动
     void movePositionLeft(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     void movePositionLeft_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
-    //向右移动
+    //向左移动
     void movePositionRight(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     void movePositionRight_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
