@@ -118,7 +118,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     textEdit_s->setStyleSheet("CustomPlainTextEdit{ \
                                 background-color: rgb(0, 41, 169, 0);\
                                 selection-background-color: rgb(50, 130, 190);\
-                                font: 12pt \"Cascadia Mono,OPPOSans B\";\
+                                font: 57 12pt \"Maple Mono NF CN Medium\";\
                                 border: none;\
                                     padding-top:0px;\
                                     padding-bottom:0px;\
@@ -171,6 +171,22 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
                                 QScrollBar::up-arrow:vertical {\
                                                         border:none;\
                                 }");
+
+    //设置默认行高
+    // QTextBlockFormat blockFormat;
+    // blockFormat.setLineHeight(50, QTextBlockFormat::FixedHeight);  // 设置固定行高 20 像素
+
+    // QTextCursor cursor_textEdit_s = textEdit_s->textCursor();
+    // cursor_textEdit_s.select(QTextCursor::Document);
+    // cursor_textEdit_s.mergeBlockFormat(blockFormat);
+    // textEdit_s->setTextCursor(cursor_textEdit_s);
+
+    // QTextCursor cursor_plainTextEdit = ui->plainTextEdit->textCursor();
+    // cursor_plainTextEdit.select(QTextCursor::Document);
+    // cursor_plainTextEdit.mergeBlockFormat(blockFormat);
+    // ui->plainTextEdit->setTextCursor(cursor_plainTextEdit);
+
+
 
     QString cc = "连接主机中...";
     ui->plainTextEdit->appendPlainText(cc);
@@ -424,6 +440,27 @@ sshwidget::~sshwidget()
         delete sshSftp;
     }
     delete ui;
+}
+
+void sshwidget::resizeEvent(QResizeEvent *event) {
+    qDebug() << "sshwidget resizeEvent 被调用";
+    // 获取文本编辑框的视口大小
+    QSize viewportSize = textEdit_s->viewport()->size();
+
+    // 获取字体的行高和字符宽度
+    QFontMetrics metrics(textEdit_s->font());
+    int lineHeight = metrics.lineSpacing();
+    int charWidth = metrics.averageCharWidth();
+    qDebug() << "字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
+    qDebug() << "视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
+    qDebug() << "widget_2 高 = " << ui->widget_2->geometry().height() << "  widget_toolbar 高 = " 
+                                                                    << ui->widget_toolbar->geometry().height();
+    int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
+    if (s >= 0) {
+        ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
+        ui->widget_cache->setFixedHeight(s);
+        qDebug() << "widget_10 高 = " << ui->widget_10->geometry().height() - s << "  widget_cache 高 = " << s;
+    }
 }
 
 QWidget * sshwidget::createCommand(QString name, QString data, bool isLineFeed) {
@@ -996,7 +1033,7 @@ void sshwidget::rece_channel_readS(QStringList data)
     data.removeAll("");  // 删除空字符串
     QElapsedTimer timer;
     timer.start();
-    //qDebug() << "rece_channel_readS data = " << data;
+    qDebug() << "rece_channel_readS data = " << data << "   isBuffer = " << isBuffer;
     //data.append("");
     int sum = 0;
     int sum2 = 0;
@@ -1194,7 +1231,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             } else {
                 //sendBuffData();
                 //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                qDebug() << "向下滚动移动一行";
+                qDebug() << "向下滚动移动一行 clearSPos = " << clearSPos;
                 movePositionDown(sshwidget::MoveAnchor, 1);
                 if (clearSPos > 0) {
                     clearSPos--;
@@ -2005,6 +2042,8 @@ void sshwidget::rece_pasteSelect_sgin()
 
 void sshwidget::rece_resize_sign()
 {
+
+    
     //qDebug() << "终端大小改变为" << textEdit_s->size();
     // 获取标签的坐标和大小
     //int x = textEdit_s->geometry().x();
@@ -2025,10 +2064,16 @@ void sshwidget::rece_resize_sign()
     QFontMetrics metrics(textEdit_s->font());
     int lineHeight = metrics.lineSpacing();
     int charWidth = metrics.averageCharWidth();
-    //qDebug() << "字体 高 = " << lineHeight;
-    //qDebug() << "字体 宽 = " << charWidth;
-    //qDebug() << "视图 高 = " << viewportSize.height();
-    //qDebug() << "视图 宽 = " << viewportSize.width();
+    qDebug() << "字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
+    qDebug() << "视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
+    // int s = viewportSize.height() % lineHeight;
+    // if (s >= 0) {
+    //     ui->widget_9->setFixedHeight(viewportSize.height() - s);
+    //     ui->widget_cache->setFixedHeight(s);
+    //     qDebug() << "widget_9 高 = " << viewportSize.height() - s << "  widget_cache 高 = " << s;
+    //     //ui->plainTextEdit->setFixedHeight(textEditHeight);
+    // }
+
 
 //    // 检查垂直滚动条的可见性
     //bool isScrollBarVisible = textEdit_s->verticalScrollBar()->isVisible();

@@ -1075,7 +1075,7 @@ QProgressBar:chunk{
                  <number>0</number>
                 </property>
                 <property name="rightMargin">
-                 <number>12</number>
+                 <number>0</number>
                 </property>
                 <property name="bottomMargin">
                  <number>0</number>
@@ -1108,8 +1108,8 @@ QProgressBar:chunk{
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1219</width>
-                     <height>349</height>
+                     <width>1231</width>
+                     <height>354</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1207,10 +1207,10 @@ QMenu::separator {
                        </property>
                        <property name="geometry">
                         <rect>
-                         <x>410</x>
+                         <x>200</x>
                          <y>30</y>
-                         <width>371</width>
-                         <height>91</height>
+                         <width>581</width>
+                         <height>201</height>
                         </rect>
                        </property>
                        <property name="sizePolicy">
@@ -1227,9 +1227,9 @@ QMenu::separator {
                        </property>
                        <property name="font">
                         <font>
-                         <family>Cascadia Mono,OPPOSans B</family>
+                         <family>Maple Mono NF CN Medium</family>
                          <pointsize>12</pointsize>
-                         <weight>50</weight>
+                         <weight>7</weight>
                          <italic>false</italic>
                          <bold>false</bold>
                          <stylestrategy>PreferAntialias</stylestrategy>
@@ -1238,7 +1238,8 @@ QMenu::separator {
                        <property name="styleSheet">
                         <string notr="true">QPlainTextEdit{
 	/*background-color: rgba(0, 41, 69, 0);*/
-	font: 12pt &quot;Cascadia Mono,OPPOSans B&quot;;
+    
+	font: 57 12pt &quot;Maple Mono NF CN Medium&quot;;
 	border: none;
 	padding-top:0px;
     padding-bottom:0px;
@@ -1386,6 +1387,13 @@ QScrollBar::up-arrow:vertical {
               </widget>
              </item>
              <item>
+              <widget class="QWidget" name="widget_cache" native="true">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 0, 0);</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QWidget" name="widget_toolbar" native="true">
                <property name="minimumSize">
                 <size>
@@ -1402,6 +1410,7 @@ QScrollBar::up-arrow:vertical {
                <property name="styleSheet">
                 <string notr="true">#widget_toolbar{
 /*background-color: rgb(30, 45, 54);*/
+	background-color: rgb(164, 216, 255);
 border-bottom:0px solid rgb(108, 117, 125, 65); 
 }
 </string>
