@@ -242,8 +242,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     textEdit_s->setLineWrapMode(QPlainTextEdit::WidgetWidth);
     ui->plainTextEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
 
-    ui->plainTextEdit->document ()->setMaximumBlockCount(10000);
-    textEdit_s->document ()->setMaximumBlockCount(10000);
+    ui->plainTextEdit->document ()->setMaximumBlockCount(1000);
+    textEdit_s->document ()->setMaximumBlockCount(1000);
 
 
    //初始化
@@ -738,13 +738,11 @@ void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 
     QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
-    //qDebug() << "选择删除 = " << cursor.selectedText();
     cursor.removeSelectedText();
     ui->plainTextEdit->setTextCursor(cursor);
 
     QTextCursor cursor2 = textEdit_s->textCursor();
     cursor2.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, n);
-    //qDebug() << "选择删除 = " << cursor2.selectedText();
     cursor2.removeSelectedText();
     textEdit_s->setTextCursor(cursor2);
 }
@@ -1038,6 +1036,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
             movePositionRemoveLeftSelect(sshwidget::MoveAnchor, 1);
             sendData(data[i]);
+            qDebug() << "向右移动一个光标，并打印" << data[i];
             //buffData = buffData + data[i];
             lastCommondS = "";
             continue;
@@ -1077,24 +1076,31 @@ void sshwidget::rece_channel_readS(QStringList data)
                     ////sendBuffData();
                     ////qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                     movePositionDown(sshwidget::MoveAnchor, 1);
+                    setCurrentRowPosition(1);
                     movePositionStartLine(sshwidget::MoveAnchor);
                     // 获取选定文本
-                    QString previousChar = movePositionLeftSelect(sshwidget::KeepAnchor, data[i].mid(4).length());
-                    isRightShiftChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
+                    // QString previousChar = movePositionLeftSelect(sshwidget::KeepAnchor, data[i].mid(4).length());
+                    // isRightShiftChinese = previousChar.contains(QRegExp("[\\x4e00-\\x9fa5]+"));
 
-                    if(isRightShiftChinese) {
-                        if (ChineseRightShiftSum!= 0) {
-                            movePositionLeft(sshwidget::MoveAnchor, data[i].mid(4).length());
-                            isRightShiftChinese = false;
-                            ChineseRightShiftSum = 0;
-                        } else {
-                            //记录
-                            isRightShiftChinese = true;
-                            ChineseRightShiftSum++;
-                        }
-                    } else {
-                        movePositionLeft(sshwidget::MoveAnchor, data[i].mid(4).length());
-                    }
+                    // if(isRightShiftChinese) {
+                    //     if (ChineseRightShiftSum!= 0) {
+                    //         movePositionLeft(sshwidget::MoveAnchor, data[i].mid(4).length());
+                    //         isRightShiftChinese = false;
+                    //         ChineseRightShiftSum = 0;
+                    //     } else {
+                    //         //记录
+                    //         isRightShiftChinese = true;
+                    //         ChineseRightShiftSum++;
+                    //     }
+                    // } else {
+                    //     movePositionLeft(sshwidget::MoveAnchor, data[i].mid(4).length());
+                    // }
+
+                    //判断后面有多少普通字符，直接输出 /n123 4 1
+                    movePositionRemoveLeftSelect(sshwidget::MoveAnchor, data[i].length() - 1);
+                    qDebug() << data << "向右移动光标(删除)" << data[i].length() - 1 << " 打印" << data[i].mid(1);
+                    sendData(data[i].mid(1));
+
                 }
             } else {
                 int pos = 0;
