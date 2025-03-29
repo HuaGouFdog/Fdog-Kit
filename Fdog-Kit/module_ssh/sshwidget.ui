@@ -1388,7 +1388,7 @@ QScrollBar::up-arrow:vertical {
              <item>
               <widget class="QWidget" name="widget_cache" native="true">
                <property name="styleSheet">
-                <string notr="true">background-color: rgba(85, 170, 0, 0);</string>
+                <string notr="true">background-color: rgba(85, 170, 0, 255);</string>
                </property>
               </widget>
              </item>
