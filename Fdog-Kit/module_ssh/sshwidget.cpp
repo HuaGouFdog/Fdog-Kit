@@ -1563,31 +1563,41 @@ void sshwidget::rece_channel_readS(QStringList data)
             movePositionRight(sshwidget::MoveAnchor, 1);
             continue;
         } else {
-            //qDebug() << "走到这里1 data[i] = " << data[i];
+            qDebug() << "走到这里1 data[i] = " << data[i];
+            //删除光标所在位置之后的 1 个字符（不会移动光标）剩余的字符会向左填充。
             QRegExp regExp("\\x001B\\[(\\d+)*P");
             int pos = 0;
             bool isa = false;
             while ((pos = regExp.indexIn(data[i], pos)) != -1) {
+                //
                 QString match = regExp.cap(1); //删除
-                //获取当前光标位置
-                //movePositionEndLine(sshwidget::MoveAnchor)
-                //sendBuffData();
-                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                //原位置
-                int pos1  = ui->plainTextEdit->textCursor().position();
-                int pos2  = textEdit_s->textCursor().position();
-                movePositionEndLine(sshwidget::MoveAnchor);
-                movePositionRemoveRight(sshwidget::KeepAnchor, match.toInt());
+                // //原始写法 原位置
+                // int pos1  = ui->plainTextEdit->textCursor().position();
+                // int pos2  = textEdit_s->textCursor().position();
+                // movePositionEndLine(sshwidget::MoveAnchor);
+                // movePositionRemoveRight(sshwidget::KeepAnchor, match.toInt());
 
-                QTextCursor cursor = ui->plainTextEdit->textCursor();
-                cursor.setPosition(pos1);
-                ui->plainTextEdit->setTextCursor(cursor);
-                QTextCursor cursor2 = textEdit_s->textCursor();
-                cursor2.setPosition(pos2);
-                textEdit_s->setTextCursor(cursor2);
-                sum = sum - match.toInt();
+                // QTextCursor cursor = ui->plainTextEdit->textCursor();
+                // cursor.setPosition(pos1);
+                // ui->plainTextEdit->setTextCursor(cursor);
+                // QTextCursor cursor2 = textEdit_s->textCursor();
+                // cursor2.setPosition(pos2);
+                // textEdit_s->setTextCursor(cursor2);
+                // sum = sum - match.toInt();
+                // data[i].replace(regExp.cap(0), "");
+                // isa = true;
+                // qDebug() << "走到这里2 data[i] = " << data[i];
+                //新的写法
+                //删除右边字符
+                movePositionRemoveLeftSelect(sshwidget::KeepAnchor, regExp.cap(1).toInt());
+                //获取当前光标到行尾的位置
+                QString SelectData = movePositionEndLineSelect(sshwidget::KeepAnchor, -1);
+                qDebug() << "移动到行尾共" << SelectData << " 长度" << SelectData.length();
+                //获取行尾的字符 获取行尾字符倒数第二
+                for (int i = SelectData.length(); i > 0; i--) {
+                    //QString
+                }
                 data[i].replace(regExp.cap(0), "");
-                isa = true;
             }
             pos = 0;
             QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
@@ -1813,7 +1823,10 @@ void sshwidget::rece_channel_readS(QStringList data)
 
                 qDebug() << "A准备打印" << data[i];
 
-
+                if (data[i] == "登出\n" && lastCommondS == "\u0004") {
+                    sendData("登出\n连接断开\n");
+                    continue;
+                }
 
                 if (data[i].contains("\n")) {
                     int position = data[i].indexOf("\n");
@@ -1845,6 +1858,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
                         }
                     }
+
                 } else {
 
                     // 计算光标当前位置到行尾的长度
@@ -1907,21 +1921,17 @@ void sshwidget::rece_channel_readS(QStringList data)
                         //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                         //sendBuffData();
                         //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                        QString previousChar2 = movePositionLeftSelect(sshwidget::KeepAnchor, 1);;
+                        QString previousChar2 = movePositionLeftSelect(sshwidget::KeepAnchor, 1);
                         movePositionRemoveLeftSelect(sshwidget::KeepAnchor, sum);
                     }
                 }
             } else {
-                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                ////sendBuffData();
-                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                if (isEnter && data[i].length()!= 0) {
-                    movePositionRemoveLeftSelect(sshwidget::KeepAnchor, data[i].length());
-                    isEnter = false;
-                }
-                qDebug() << "打印数据=" << data[i];
-                sendData(data[i]);
-                //buffData = buffData + data[i];
+                // if (isEnter && data[i].length()!= 0) {
+                //     movePositionRemoveLeftSelect(sshwidget::KeepAnchor, data[i].length());
+                //     isEnter = false;
+                // }
+                // qDebug() << "打印数据=" << data[i];
+                // sendData(data[i]);
             }
         }
     }
