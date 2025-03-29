@@ -1338,6 +1338,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             ZData = ui->plainTextEdit->toPlainText();
             //切换到备缓冲区
             isBuffer = true;
+            isFirstBuffer = true;
             continue;
         } else if (data[i] == "\u001B[?1049l") {
             qDebug()<< "关闭副缓冲区";
@@ -1345,6 +1346,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             isfirstR = false;
             isfirstR2  = false;
             isBuffer = false;
+            isFirstBuffer = false;
             currentLine = -1;
             setData(ZData);
             continue;
@@ -1408,36 +1410,84 @@ void sshwidget::rece_channel_readS(QStringList data)
             clearPos = i;
             lastCommondS = "clear";
             //qDebug() << "清屏时行数(终端内部) =" << getCurrentRowPosition() << " 当前行数 = " << getCurrentRowPositionByLocal();
+            int currentLine = 0;
+            if (isBuffer && !isFirstBuffer) {
+                //副缓冲区清屏，先把当前缓存区清空
+                //上次19.这次从第一行也移动19
+                //获取当前光标位置，移动到
+                int acurrentLine = getCurrentRowPosition();
+                int cpos2 = getCurrentRowPositionByLocal();
+                qDebug() << "准备对副缓冲区清屏 A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2;
+                movePositionUp(sshwidget::MoveAnchor, acurrentLine - 1);
+                qDebug() << "向移动" << acurrentLine - 1 << "行";
+                qDebug() << "副缓冲区移动完毕 A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2;
 
-            setCurrentRowPositionToZero();
-            setCurrentRowPosition(1);
-            int buchang = 19;
+                //从当前行算起，清除20行
+                for(int i = 0; i < 20; i++) {
+                    movePositionStartLine(sshwidget::MoveAnchor);
+                    //清除内容
+                    movePositionRemoveEndLineSelect(sshwidget::KeepAnchor, -1);
+                    int cpos_ = getCurrentRowPositionByLocal();
+                    movePositionDown(sshwidget::MoveAnchor, 1);
+                    int cpos2_ = getCurrentRowPositionByLocal();
+                    setCurrentRowPosition(cpos2_ - cpos_);
+                    int acurrentLine = getCurrentRowPosition();
+                    int cpos2 = getCurrentRowPositionByLocal();
+                    qDebug() << "光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2;
+                }
+                int acurrentLine11 = getCurrentRowPosition();
+                int cpos211 = getCurrentRowPositionByLocal();
+                currentLine = acurrentLine11;
+                qDebug() << "副缓冲区清除完毕 A当前光标所在行数(相对于终端内部)1 =" << acurrentLine11 << "  R当前行数 =" << cpos211;
+            } else {
+                setCurrentRowPositionToZero();
+                setCurrentRowPosition(1);
+                currentLine = getCurrentRowPosition();
+            }
+
+            // 获取文本编辑框的视口大小
+            QSize viewportSize = textEdit_s->viewport()->size();
+            // 获取字体的行高和字符宽度
+            QFontMetrics metrics(textEdit_s->font());
+            int lineHeight = metrics.lineSpacing();
+            int charWidth = metrics.averageCharWidth();
+            int visibleLines = viewportSize.height() / lineHeight;  //字体高度
+            int visibleColumns = viewportSize.width() / charWidth - 5;
+            int buchang = visibleLines - 2;
+            int buchang2 = buchang;
+            qDebug() << "清屏 向下移动" << buchang << "行";
+
+            if (buchang >= currentLine) {
+                buchang = buchang - currentLine;
+            }
+            qDebug() << "当前位于" << currentLine << "行" << " 修正后应移动" << buchang << "行";
+
             int cpos = getCurrentRowPositionByLocal();
             movePositionDown(sshwidget::MoveAnchor, buchang);
             int cpos2 = getCurrentRowPositionByLocal();
             
             setCurrentRowPosition(cpos2 - cpos);
-            //qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
+            qDebug() << "移动" << cpos2 - cpos  << "剩下使用换行符移动";
+            //setCurrentRowPosition(cpos3 - cpos2);
+            int acurrentLine1122 = getCurrentRowPosition();
+            int cpos23222 = getCurrentRowPositionByLocal();
+            qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine1122 << "  R当前行数 =" << cpos23222;
             if (cpos2 - cpos != buchang && cpos2 - cpos < buchang) {
                 for (int i = cpos2 - cpos; i<buchang; i++) {
-                    if (isBuffer) {
-                        //sendData("        ");
-                        if (cpos2 - cpos < buchang - 1) {
-                            sendData("\n");
-                        }
-                    } else {
-                        sendData("\n");
-                    }
+                    sendData("\n");
                 }
             }
+            int acurrentLine112 = getCurrentRowPosition();
+            int cpos2322 = getCurrentRowPositionByLocal();
+            qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine112 << "  R当前行数 =" << cpos2322;
 
-            //滚动条+25
-            // for(int i =0; i < 24 - b; i++) {
-            //     sendData("\n");
-            // }
             qDebug() << "清屏 向上移动" << buchang << "行";
             movePositionUp(sshwidget::MoveAnchor, buchang);
             setCurrentRowPosition(-buchang);
+            int acurrentLine = getCurrentRowPosition();
+            int cpos23 = getCurrentRowPositionByLocal();
+            qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos23;
+            isFirstBuffer = false;
             continue;
         } else if (data[i] == "\u001B[L") {
             qDebug() << "遇到[L 向上移动";
