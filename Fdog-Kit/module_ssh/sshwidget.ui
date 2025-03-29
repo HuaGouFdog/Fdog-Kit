@@ -1237,7 +1237,7 @@ QMenu::separator {
                        </property>
                        <property name="styleSheet">
                         <string notr="true">QPlainTextEdit{
-	background-color: rgba(0, 41, 69, 255);
+	background-color: rgba(0, 41, 69, 0);
 	font: 57 12pt &quot;Maple Mono NF CN Medium&quot;;
 	border: none;
 	padding-top:0px;
@@ -1388,7 +1388,7 @@ QScrollBar::up-arrow:vertical {
              <item>
               <widget class="QWidget" name="widget_cache" native="true">
                <property name="styleSheet">
-                <string notr="true">background-color: rgba(85, 170, 0, 255);</string>
+                <string notr="true">background-color: rgba(85, 170, 0, 0);</string>
                </property>
               </widget>
              </item>
@@ -1408,7 +1408,7 @@ QScrollBar::up-arrow:vertical {
                </property>
                <property name="styleSheet">
                 <string notr="true">#widget_toolbar{
-background-color: rgba(30, 45, 54, 200);
+background-color: rgba(30, 45, 54, 0);
 	/*background-color: rgb(164, 216, 255);*/
 border-bottom:0px solid rgb(108, 117, 125, 65); 
 }
@@ -1428,7 +1428,7 @@ border-bottom:0px solid rgb(108, 117, 125, 65);
                  <number>0</number>
                 </property>
                 <property name="bottomMargin">
-                 <number>10</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <spacer name="horizontalSpacer_2">
@@ -1817,6 +1817,9 @@ QToolButton:hover {
               </widget>
              </item>
             </layout>
+            <zorder>widget_cache</zorder>
+            <zorder>widget_10</zorder>
+            <zorder>widget_toolbar</zorder>
            </widget>
           </item>
          </layout>

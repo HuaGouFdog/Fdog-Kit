@@ -20,6 +20,10 @@
 #include "module_ssh/addcommondwidget.h"
 #include "module_utils/config.h"
 #include "module_utils/utils.h"
+
+
+
+
 class CustomPlainTextEdit : public QPlainTextEdit {
     Q_OBJECT
 public:
@@ -236,6 +240,24 @@ protected:
     }
 };
 
+class ResizeFilter : public QObject {
+    Q_OBJECT
+public:
+    ResizeFilter(QObject *parent = nullptr) : QObject(parent) {}
+
+signals:
+    void send_resize_sign();
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override {
+        if (event->type() == QEvent::Resize) {
+            QResizeEvent *resizeEvent = static_cast<QResizeEvent *>(event);
+            //qDebug() << "控件大小变化：" << resizeEvent->size();
+            emit send_resize_sign();
+        }
+        return QObject::eventFilter(obj, event);
+    }
+};
 
 namespace Ui {
 class sshwidget;
@@ -439,6 +461,7 @@ private slots:
 
 
     void on_toolButton_setting_clicked();
+
 
 private:
     Ui::sshwidget *ui;

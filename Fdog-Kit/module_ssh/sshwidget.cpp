@@ -77,6 +77,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     ui->splitter_2->setStretchFactor(1,1);
 
     ui->plainTextEdit->viewport()->setCursor(Qt::ArrowCursor);
+
+    ResizeFilter * filter = new ResizeFilter(this);
+    connect(filter,SIGNAL(send_resize_sign()),this, SLOT(rece_resize_sign()));
+    ui->widget_bottom->installEventFilter(filter);
     //表格自适应
     //ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
@@ -454,8 +458,8 @@ void sshwidget::resizeEvent(QResizeEvent *event) {
     //QPoint widgetBPos = textEdit_s->mapFromGlobal(widgetAPos); // 将控件a的全局坐标映射为控件b的局部坐标
     int width2 = ui->widget_2->geometry().width();
     int height2 = ui->widget_2->geometry().height();
-    hcwidget->move(width2/2 - 180, height2- 290);
-    qDebug() << "width2 = " << width2 << " height2 = " << height2;
+    hcwidget->move(width2/2 - 180, height2- 300);
+    //qDebug() << "width2 = " << width2 << " height2 = " << height2;
     //qDebug() << "widgetBPos.x()- 120 = " << widgetBPos.x()- 120 << " widgetBPos.y() - 260 = " << widgetBPos.y() - 260;
     // 获取文本编辑框的视口大小
     QSize viewportSize = textEdit_s->viewport()->size();
@@ -466,7 +470,7 @@ void sshwidget::resizeEvent(QResizeEvent *event) {
     int charWidth = metrics.averageCharWidth();
     //qDebug() << "字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
     //qDebug() << "视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
-    //qDebug() << "widget_2 高 = " << ui->widget_2->geometry().height() << "  widget_toolbar 高 = " << ui->widget_toolbar->geometry().height();
+    qDebug() << "widget_2 高 = " << ui->widget_2->geometry().height() << "  widget_toolbar 高 = " << ui->widget_toolbar->geometry().height();
     int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
     if (s >= 0) {
         ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
@@ -2138,15 +2142,10 @@ void sshwidget::rece_resize_sign() {
     //int height = textEdit_s->geometry().height();
     fwidget->move(width - fwidget->geometry().width() - 50, 5);
     dlwidget->move(width - dlwidget->geometry().width() - 20, 5);
-
-    // QPoint widgetAPos = ui->toolButton_history->mapToGlobal(QPoint(0, 0)); // 获取控件a在屏幕上的位置
-    // QPoint widgetBPos = textEdit_s->mapFromGlobal(widgetAPos); // 将控件a的全局坐标映射为控件b的局部坐标
-    // hcwidget->move(widgetBPos.x()- 120, widgetBPos.y() - 260);
-
     int width2 = ui->widget_2->geometry().width();
     int height2 = ui->widget_2->geometry().height();
-    hcwidget->move(width2/2 - 180, height2- 290);
-    qDebug() << "width2 = " << width2 << " height2 = " << height2;
+    hcwidget->move(width2/2 - 180, height2- 300);
+    //qDebug() << "width2 = " << width2 << " height2 = " << height2;
     // 获取文本编辑框的视口大小
     QSize viewportSize = textEdit_s->viewport()->size();
 
@@ -2154,6 +2153,21 @@ void sshwidget::rece_resize_sign() {
     QFontMetrics metrics(textEdit_s->font());
     int lineHeight = metrics.lineSpacing();
     int charWidth = metrics.averageCharWidth();
+    // int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
+    // if (s >= 0) {
+    //     ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
+    //     ui->widget_cache->setFixedHeight(s);
+    // }
+
+    ui->widget_10->setMinimumHeight(0);
+    ui->widget_10->setMaximumHeight(QWIDGETSIZE_MAX);
+    ui->widget_10->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+    ui->widget_cache->setMinimumHeight(0);
+    ui->widget_cache->setMaximumHeight(QWIDGETSIZE_MAX);
+    ui->widget_cache->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+
     //qDebug() << "rece_resize_sign 字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
     //qDebug() << "rece_resize_sign 视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();
     // 计算可见行数和列数
