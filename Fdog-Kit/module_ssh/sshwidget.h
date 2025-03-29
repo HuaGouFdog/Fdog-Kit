@@ -545,6 +545,7 @@ private:
     int m_visibleColumns = 0; //当前终端宽
 
     bool isfup = false; //强制更新
+    bool isFirstBuffer = false;
 };
 
 #endif // SSHWIDGET_H
