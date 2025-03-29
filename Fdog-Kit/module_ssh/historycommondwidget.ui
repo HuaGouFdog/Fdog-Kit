@@ -6,15 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>327</width>
-    <height>235</height>
+    <width>400</width>
+    <height>250</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>250</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>250</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: rgb(45, 45, 45);</string>
+   <string notr="true">#historycommondwidget{
+color: rgb(45, 45, 45);
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="leftMargin">
@@ -33,16 +47,24 @@
     <widget class="QWidget" name="widget_body" native="true">
      <property name="styleSheet">
       <string notr="true">#widget_body{
-background-color: rgb(255, 255, 255);
-/*padding:5px;*/
-border-radius:6px;
-	border: 2px solid;
-	border-color: rgba(126, 126, 126, 50);
+	background-color: rgb(255, 255, 255);
+border-radius:5px;
+border: 2px solid;
+border-color: rgba(126, 126, 126, 50);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>5</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
       <property name="rightMargin">
-       <number>9</number>
+       <number>5</number>
+      </property>
+      <property name="bottomMargin">
+       <number>5</number>
       </property>
       <item>
        <widget class="QListWidget" name="listWidget">
@@ -110,31 +132,6 @@ QScrollBar::up-arrow:vertical {
 
 </string>
         </property>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
         <item>
          <property name="text">
           <string>新建项目</string>
