@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
+    <width>350</width>
     <height>35</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>260</width>
+    <width>350</width>
     <height>35</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>260</width>
+    <width>350</width>
     <height>35</height>
    </size>
   </property>
@@ -97,15 +97,16 @@
         </property>
         <property name="styleSheet">
          <string notr="true">#widget_4{
-background-color: rgb(15, 37, 64);
-border: 0px solid rgba(255, 255, 255, 0);
-	color: rgb(255, 255, 255);
-border-radius: 8px;
-}
-
-</string>
+color: rgb(255, 255, 255);
+border: 1px solid rgba(197, 197, 197,50);
+background-color: rgba(255, 255, 255, 20);
+border-radius: 5px;
+color: rgb(255, 255, 255);
+padding-left:5px;
+padding-right:5px;
+}</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="20,1">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -131,7 +132,7 @@ border-radius: 8px;
            </property>
            <property name="maximumSize">
             <size>
-             <width>140</width>
+             <width>6018</width>
              <height>25</height>
             </size>
            </property>
@@ -168,7 +169,7 @@ color: rgb(255, 255, 255);</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>1555555</width>
+             <width>60</width>
              <height>25</height>
             </size>
            </property>
@@ -187,6 +188,9 @@ border: 1px solid rgba(255, 255, 255, 0);
            </property>
            <property name="text">
             <string>0/0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -229,7 +233,7 @@ QToolButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="lib.qrc">
+         <iconset resource="../lib.qrc">
           <normaloff>:/lib/down.png</normaloff>:/lib/down.png</iconset>
         </property>
         <property name="iconSize">
@@ -276,7 +280,7 @@ QToolButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="lib.qrc">
+         <iconset resource="../lib.qrc">
           <normaloff>:/lib/up.png</normaloff>:/lib/up.png</iconset>
         </property>
         <property name="iconSize">
@@ -320,7 +324,7 @@ QToolButton:hover {
 }</string>
         </property>
         <property name="icon">
-         <iconset resource="lib.qrc">
+         <iconset resource="../lib.qrc">
           <normaloff>:/lib/icon-close4.png</normaloff>:/lib/icon-close4.png</iconset>
         </property>
         <property name="iconSize">
@@ -337,7 +341,7 @@ QToolButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="lib.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>

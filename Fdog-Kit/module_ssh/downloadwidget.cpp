@@ -108,10 +108,10 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     progressBar = new QProgressBar();
     labelName = new QLabel();
     labelName->setMinimumHeight(20);
-    labelName->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(45, 45, 45);font: 9pt \"OPPOSans B\";");
+    labelName->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(30, 30, 30);font: 9pt \"OPPOSans B\";");
     labelIcon = new QLabel();
     labelData = new QLabel();
-    labelData->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(45, 45, 45);font: 9pt \"OPPOSans B\";");
+    labelData->setStyleSheet("background-color: rgba(255, 255, 255, 0);color: rgb(30, 30, 30);font: 9pt \"OPPOSans B\";");
     progressBar->setMaximumHeight(18);
     progressBar->setMaximumWidth(265);
     //progressBar->setFixedSize(280,25);
@@ -120,28 +120,27 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     progressBar->setValue(0);
     progressBar->setStyleSheet("QProgressBar {\
                                border: 1px solid;\
-                               border-color: rgb(91, 91, 91);\
+                               border-color: rgba(35, 39, 46, 200);\
                                border-radius: 0px; \
                                text-align: right; \
                                font: 9pt \"OPPOSans B\";\
-                               color: rgba(0, 0, 0, 200);\
+                               color:rgb(35, 39, 46);\
                            }\
                            QProgressBar:chunk{\
                                font: 9pt \"OPPOSans B\";\
                                border-radius:0px;\
                                text-align: right; \
-                               background-color: rgb(180, 220, 255);\
+                               background-color:rgb(48, 150, 245);\
                            }");
-
     labelName->setText(fileName);
     if (fileType == 1) {
         //上传
-        labelIcon->setStyleSheet("image: url(:/lib/peixu.png);");
+        labelIcon->setStyleSheet("image: url(:/lib/peixu.png);background-color: rgba(255, 255, 255, 0);");
     } else {
         //下载
-        labelIcon->setStyleSheet("image: url(:/lib/peixu2.png);");
+        labelIcon->setStyleSheet("image: url(:/lib/peixu2.png);background-color: rgba(255, 255, 255, 0);");
     }
-    labelIcon->setFixedSize(12,12);
+    labelIcon->setFixedSize(18,12);
     hLayout = new QHBoxLayout(); //水平
     hLayout->addWidget(labelIcon);
     hLayout->addItem(horizontalSpacer);
@@ -158,6 +157,7 @@ fileProgressWidget::fileProgressWidget(QString filePath, QString fileName, int f
     sLayout->addWidget(progressBar);
     sLayout->addWidget(widgetFileFata);
     widgetDatProgreessBarData->setLayout(sLayout);
+    widgetDatProgreessBarData->setStyleSheet("#widgetDatProgreessBarData{background-color: rgba(255, 255, 255, 0)}");
     vLayout = new QVBoxLayout(); //垂直
     vLayout->addWidget(labelName);
     vLayout->addWidget(widgetDatProgreessBarData);
