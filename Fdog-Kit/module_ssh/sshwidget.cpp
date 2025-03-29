@@ -786,6 +786,12 @@ QString sshwidget::movePositionRightSelect(sshwidget::MoveMode mode, int n)
     return cursor.selectedText();
 }
 
+QString sshwidget::movePositionRightSelect_s(sshwidget::MoveMode mode, int n) {
+    QTextCursor cursor = textEdit_s->textCursor();
+    cursor.movePosition(QTextCursor::Left, QTextCursor::KeepAnchor, n);
+    return cursor.selectedText();
+}
+
 void sshwidget::movePositionRemoveLeftSelect(sshwidget::MoveMode mode, int n)
 {
 
@@ -815,14 +821,6 @@ void sshwidget::movePositionRemoveRightSelect(sshwidget::MoveMode mode, int n)
 
 void sshwidget::movePositionRemoveEndLineSelect(sshwidget::MoveMode mode, int n)
 {
-    // QTextCursor cursor3 = ui->plainTextEdit->textCursor();
-    // cursor3.movePosition(QTextCursor::StartOfLine);
-    // cursor3.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
-    // QString currentLine = cursor3.selectedText();
-
-    // // 输出到控制台
-    // qDebug() << "当前光标所在行的内容：" << currentLine;
-
     QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     qDebug() << "选择删除 = " << cursor.selectedText();
@@ -1342,10 +1340,17 @@ void sshwidget::rece_channel_readS(QStringList data)
             }
             continue;
         } else if (data[i] == "\u001B[K") {
-            qDebug() << "删除光标后面的数据";
+            qDebug() << "删除光标后面的数据前";
             //sendBuffData();
             ////qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+            int acurrentLine1122 = getCurrentRowPosition();
+            int cpos23222 = getCurrentRowPositionByLocal();
+            qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine1122 << "  R当前行数 =" << cpos23222;
             movePositionRemoveEndLineSelect(sshwidget::KeepAnchor, -1);
+            qDebug() << "删除光标后面的数据后";
+            int acurrentLine11222 = getCurrentRowPosition();
+            int cpos232222 = getCurrentRowPositionByLocal();
+            qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine11222 << "  R当前行数 =" << cpos232222;
             sum = 0;
             continue;
         } else if (data[i] == "\u001B[?1049h") {
@@ -1423,8 +1428,8 @@ void sshwidget::rece_channel_readS(QStringList data)
             continue;
         } else if (data[i] == "\u001B[2J") {
             //清空终端屏幕
-            clearPos = i;
-            lastCommondS = "clear";
+            //clearPos = i;
+            //lastCommondS = "clear";
             //qDebug() << "清屏时行数(终端内部) =" << getCurrentRowPosition() << " 当前行数 = " << getCurrentRowPositionByLocal();
             int currentLine = 0;
             if (isBuffer && !isFirstBuffer) {
@@ -1558,31 +1563,41 @@ void sshwidget::rece_channel_readS(QStringList data)
             movePositionRight(sshwidget::MoveAnchor, 1);
             continue;
         } else {
-            //qDebug() << "走到这里1 data[i] = " << data[i];
+            qDebug() << "走到这里1 data[i] = " << data[i];
+            //删除光标所在位置之后的 1 个字符（不会移动光标）剩余的字符会向左填充。
             QRegExp regExp("\\x001B\\[(\\d+)*P");
             int pos = 0;
             bool isa = false;
             while ((pos = regExp.indexIn(data[i], pos)) != -1) {
+                //
                 QString match = regExp.cap(1); //删除
-                //获取当前光标位置
-                //movePositionEndLine(sshwidget::MoveAnchor)
-                //sendBuffData();
-                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                //原位置
-                int pos1  = ui->plainTextEdit->textCursor().position();
-                int pos2  = textEdit_s->textCursor().position();
-                movePositionEndLine(sshwidget::MoveAnchor);
-                movePositionRemoveRight(sshwidget::KeepAnchor, match.toInt());
+                // //原始写法 原位置
+                // int pos1  = ui->plainTextEdit->textCursor().position();
+                // int pos2  = textEdit_s->textCursor().position();
+                // movePositionEndLine(sshwidget::MoveAnchor);
+                // movePositionRemoveRight(sshwidget::KeepAnchor, match.toInt());
 
-                QTextCursor cursor = ui->plainTextEdit->textCursor();
-                cursor.setPosition(pos1);
-                ui->plainTextEdit->setTextCursor(cursor);
-                QTextCursor cursor2 = textEdit_s->textCursor();
-                cursor2.setPosition(pos2);
-                textEdit_s->setTextCursor(cursor2);
-                sum = sum - match.toInt();
+                // QTextCursor cursor = ui->plainTextEdit->textCursor();
+                // cursor.setPosition(pos1);
+                // ui->plainTextEdit->setTextCursor(cursor);
+                // QTextCursor cursor2 = textEdit_s->textCursor();
+                // cursor2.setPosition(pos2);
+                // textEdit_s->setTextCursor(cursor2);
+                // sum = sum - match.toInt();
+                // data[i].replace(regExp.cap(0), "");
+                // isa = true;
+                // qDebug() << "走到这里2 data[i] = " << data[i];
+                //新的写法
+                //删除右边字符
+                movePositionRemoveLeftSelect(sshwidget::KeepAnchor, regExp.cap(1).toInt());
+                //获取当前光标到行尾的位置
+                QString SelectData = movePositionEndLineSelect(sshwidget::KeepAnchor, -1);
+                qDebug() << "移动到行尾共" << SelectData << " 长度" << SelectData.length();
+                //获取行尾的字符 获取行尾字符倒数第二
+                for (int i = SelectData.length(); i > 0; i--) {
+                    //QString
+                }
                 data[i].replace(regExp.cap(0), "");
-                isa = true;
             }
             pos = 0;
             QRegExp regExp2("\\x001B\\[(\\d+);(\\d+)H");
@@ -1743,11 +1758,25 @@ void sshwidget::rece_channel_readS(QStringList data)
             pos = 0;
             QRegExp regExp5("\\x001B\\[(\\d+)G");
             while ((pos = regExp5.indexIn(data[i], pos)) != -1) {
+                //绝对定位
                 //qDebug() << "检测到G系列 =" << regExp5.cap(1);
                 //sendBuffData();
                 //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                 movePositionLeft(sshwidget::MoveAnchor, regExp5.cap(1).toInt()-1);
                 data[i].replace(regExp5.cap(0), "");
+                //break;
+            }
+
+            pos = 0;
+            QRegExp regExp7("\\x001B\\[(\\d+)D");
+            while ((pos = regExp7.indexIn(data[i], pos)) != -1) {
+                //qDebug() << "检测到D系列 =" << regExp7.cap(1);
+                //sendBuffData();
+                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+                // QString previousChar = movePositionRightSelect(sshwidget::KeepAnchor, regExp7.cap(1).toInt());
+                // qDebug() << "选中文本为" << previousChar;
+                movePositionRight(sshwidget::MoveAnchor, regExp7.cap(1).toInt());
+                data[i].replace(regExp7.cap(0), "");
                 //break;
             }
 
@@ -1792,9 +1821,12 @@ void sshwidget::rece_channel_readS(QStringList data)
                     continue;
                 }
 
-                //qDebug() << "A准备打印" << data[i];
+                qDebug() << "A准备打印" << data[i];
 
-
+                if (data[i] == "登出\n" && lastCommondS == "\u0004") {
+                    sendData("登出\n连接断开\n");
+                    continue;
+                }
 
                 if (data[i].contains("\n")) {
                     int position = data[i].indexOf("\n");
@@ -1826,6 +1858,7 @@ void sshwidget::rece_channel_readS(QStringList data)
 
                         }
                     }
+
                 } else {
 
                     // 计算光标当前位置到行尾的长度
@@ -1852,20 +1885,21 @@ void sshwidget::rece_channel_readS(QStringList data)
                         //记录输出长度
                         mode_2_length = data[i].length();
                     }
-                    if (clearPos + 1 == i && lastCommondS == "clear") {
-                        qDebug() << "lineCount = " << lineCount;
-                        int sum = lineCount - clearSPos;
-                        for(int i = 0; i < sum; i++) {
-                            qDebug() << "打印9";
-                            sendData("\n");
-                            //buffData = buffData + "<br>";
-                            clearSPos++;
-                        }
-                        //sendBuffData();
-                        //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                        movePositionUp(sshwidget::MoveAnchor, sum);
-                        movePositionEndLine(sshwidget::MoveAnchor);
-                    }
+                    //qDebug() << "1 lineCount = " << lineCount << " clearPos = " << clearPos << " i = " << i;
+                    // if (clearPos + 1 == i && lastCommondS == "clear") {
+                    //     qDebug() << "2 lineCount = " << lineCount << " clearPos = " << clearPos << " i = " << i;
+                    //     int sum = lineCount - clearSPos;
+                    //     for(int i = 0; i < sum; i++) {
+                    //         qDebug() << "打印9";
+                    //         sendData("\n");
+                    //         //buffData = buffData + "<br>";
+                    //         clearSPos++;
+                    //     }
+                    //     //sendBuffData();
+                    //     //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+                    //     movePositionUp(sshwidget::MoveAnchor, sum);
+                    //     movePositionEndLine(sshwidget::MoveAnchor);
+                    // }
                     //向上移动24行并移动到行末
 
                     if (backspaceSum > 0) {
@@ -1887,21 +1921,17 @@ void sshwidget::rece_channel_readS(QStringList data)
                         //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                         //sendBuffData();
                         //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                        QString previousChar2 = movePositionLeftSelect(sshwidget::KeepAnchor, 1);;
+                        QString previousChar2 = movePositionLeftSelect(sshwidget::KeepAnchor, 1);
                         movePositionRemoveLeftSelect(sshwidget::KeepAnchor, sum);
                     }
                 }
             } else {
-                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                ////sendBuffData();
-                //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                if (isEnter && data[i].length()!= 0) {
-                    movePositionRemoveLeftSelect(sshwidget::KeepAnchor, data[i].length());
-                    isEnter = false;
-                }
-                qDebug() << "打印数据=" << data[i];
-                sendData(data[i]);
-                //buffData = buffData + data[i];
+                // if (isEnter && data[i].length()!= 0) {
+                //     movePositionRemoveLeftSelect(sshwidget::KeepAnchor, data[i].length());
+                //     isEnter = false;
+                // }
+                // qDebug() << "打印数据=" << data[i];
+                // sendData(data[i]);
             }
         }
     }
@@ -2059,7 +2089,7 @@ void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize)
 
 void sshwidget::scrollBarValueChanged(int value)
 {
-    qDebug() << "滑动条值改变为1：" << value;
+    //qDebug() << "滑动条值改变为1：" << value;
     QScrollBar *scrollBar = ui->plainTextEdit->verticalScrollBar();
     scrollBar->setValue(value);
     ui->verticalScrollBar->setValue(value);
@@ -2149,16 +2179,6 @@ void sshwidget::rece_resize_sign() {
     // 获取文本编辑框的视口大小
     QSize viewportSize = textEdit_s->viewport()->size();
 
-    // 获取字体的行高和字符宽度
-    QFontMetrics metrics(textEdit_s->font());
-    int lineHeight = metrics.lineSpacing();
-    int charWidth = metrics.averageCharWidth();
-    // int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
-    // if (s >= 0) {
-    //     ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
-    //     ui->widget_cache->setFixedHeight(s);
-    // }
-
     ui->widget_10->setMinimumHeight(0);
     ui->widget_10->setMaximumHeight(QWIDGETSIZE_MAX);
     ui->widget_10->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -2167,6 +2187,15 @@ void sshwidget::rece_resize_sign() {
     ui->widget_cache->setMaximumHeight(QWIDGETSIZE_MAX);
     ui->widget_cache->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
+    // 获取字体的行高和字符宽度
+    QFontMetrics metrics(textEdit_s->font());
+    int lineHeight = metrics.lineSpacing();
+    int charWidth = metrics.averageCharWidth();
+    int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
+    if (s >= 0) {
+        ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
+        ui->widget_cache->setFixedHeight(s);
+    }
 
     //qDebug() << "rece_resize_sign 字体 高 = " << lineHeight << " 字体 宽 = " << charWidth;
     //qDebug() << "rece_resize_sign 视图 高 = " << viewportSize.height()  << "  视图 宽 = " << viewportSize.width();

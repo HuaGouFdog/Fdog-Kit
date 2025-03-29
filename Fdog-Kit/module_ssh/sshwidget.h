@@ -318,6 +318,8 @@ public:
     //选中文本
     QString movePositionRightSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
+    QString movePositionRightSelect_s(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
     QString movePositionLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     QString movePositionEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);

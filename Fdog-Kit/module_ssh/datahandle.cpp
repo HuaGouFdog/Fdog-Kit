@@ -815,13 +815,24 @@ QStringList datahandle::processDataS(QString data)
                     dataS.append(processDataS(data.mid(0, position)));
                     dataS.append(data.mid(position, match.length()));
                 }
-
-                //dataS.append(data.mid(0, match.length()));
-                //data = data.mid(position + match.length());
-                //qDebug() << "添加G" << match << " position = " << position;
                 data = data.mid(position + match.length());
                 pos = 0;
-                //break;
+            }
+            //qDebug() << "准备走 data = " << data;
+            QRegExp regExp7("\\x001B\\[(\\d+)D");
+            pos = 0;
+            while ((pos = regExp7.indexIn(data, pos)) != -1) {
+                //qDebug() << "匹配到\u001B[5D";
+                QString match = regExp7.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+                data = data.mid(position + match.length());
+                pos = 0;
             }
 
 
