@@ -1428,8 +1428,8 @@ void sshwidget::rece_channel_readS(QStringList data)
             continue;
         } else if (data[i] == "\u001B[2J") {
             //清空终端屏幕
-            clearPos = i;
-            lastCommondS = "clear";
+            //clearPos = i;
+            //lastCommondS = "clear";
             //qDebug() << "清屏时行数(终端内部) =" << getCurrentRowPosition() << " 当前行数 = " << getCurrentRowPositionByLocal();
             int currentLine = 0;
             if (isBuffer && !isFirstBuffer) {
@@ -1871,20 +1871,21 @@ void sshwidget::rece_channel_readS(QStringList data)
                         //记录输出长度
                         mode_2_length = data[i].length();
                     }
-                    if (clearPos + 1 == i && lastCommondS == "clear") {
-                        qDebug() << "lineCount = " << lineCount << " clearPos = " << clearPos;
-                        int sum = lineCount - clearSPos;
-                        for(int i = 0; i < sum; i++) {
-                            qDebug() << "打印9";
-                            sendData("\n");
-                            //buffData = buffData + "<br>";
-                            clearSPos++;
-                        }
-                        //sendBuffData();
-                        //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                        movePositionUp(sshwidget::MoveAnchor, sum);
-                        movePositionEndLine(sshwidget::MoveAnchor);
-                    }
+                    //qDebug() << "1 lineCount = " << lineCount << " clearPos = " << clearPos << " i = " << i;
+                    // if (clearPos + 1 == i && lastCommondS == "clear") {
+                    //     qDebug() << "2 lineCount = " << lineCount << " clearPos = " << clearPos << " i = " << i;
+                    //     int sum = lineCount - clearSPos;
+                    //     for(int i = 0; i < sum; i++) {
+                    //         qDebug() << "打印9";
+                    //         sendData("\n");
+                    //         //buffData = buffData + "<br>";
+                    //         clearSPos++;
+                    //     }
+                    //     //sendBuffData();
+                    //     //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
+                    //     movePositionUp(sshwidget::MoveAnchor, sum);
+                    //     movePositionEndLine(sshwidget::MoveAnchor);
+                    // }
                     //向上移动24行并移动到行末
 
                     if (backspaceSum > 0) {
