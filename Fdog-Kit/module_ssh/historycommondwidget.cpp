@@ -19,6 +19,11 @@ void historycommondwidget::addCommand(QString command)
     ui->listWidget->addItem(command);
 }
 
+void historycommondwidget::leaveEvent(QEvent *event) {
+    this->hide();  // 鼠标移出后隐藏控件
+    QWidget::leaveEvent(event);
+}
+
 void historycommondwidget::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
     qDebug() << "选中命令 = " << item->text();

@@ -682,6 +682,7 @@ QStringList datahandle::processDataS(QString data)
             data = data.mid(position + 3);
             //qDebug() << "添加k";
         } else if (data.contains("\u001B(B")) {
+            //切换回默认字符集
             int position = data.indexOf("\u001B(B");
             if (position == 0) {
                 dataS.append(data.mid(0, 3));
