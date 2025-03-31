@@ -362,7 +362,6 @@ thriftwidget::thriftwidget(QWidget *parent) :
             ui->comboBox_ssh->setCurrentText(cInfo.host);
         }
     }
-
 }
 
 QString thriftwidget::getCpuInfo(const QString &cmd)

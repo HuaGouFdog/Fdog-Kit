@@ -323,6 +323,8 @@ public:
     QString movePositionLeftSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
 
     QString movePositionEndLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
+
+    QString movePositionStartLineSelect(sshwidget::MoveMode mode = sshwidget::MoveAnchor, int n = 1);
     
     //获取选中文本
     QString getSelectText_s();
@@ -362,7 +364,7 @@ public:
 
     void appendData(QString data);
     void appendData_s(QString data);
-    QString m_sign;
+    
 signals:
     void send_toolButton_toolkit_sign();
     void send_connection_success(sshwidget *);
@@ -410,6 +412,8 @@ private slots:
     void rece_resize_sign();
 
     void rece_setting();
+
+    void rece_commond(QString command);
 
     void rece_searchTextChanged(const QString data);
 
@@ -464,6 +468,8 @@ private slots:
 
     void on_toolButton_setting_clicked();
 
+public:
+    QString m_sign;
 
 private:
     Ui::sshwidget *ui;
@@ -571,6 +577,10 @@ private:
 
     bool isfup = false; //强制更新
     bool isFirstBuffer = false;
+
+    QString command;  //记录回车前的输入
+
+    
 };
 
 #endif // SSHWIDGET_H

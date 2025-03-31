@@ -47,11 +47,14 @@ color: rgb(45, 45, 45);
     <widget class="QWidget" name="widget_body" native="true">
      <property name="styleSheet">
       <string notr="true">#widget_body{
-	background-color: rgb(255, 255, 255);
+border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgb(52, 56, 62);
 border-radius:5px;
-border: 2px solid;
-border-color: rgba(126, 126, 126, 50);
-}</string>
+/*border: 2px solid;
+border-color: rgba(126, 126, 126, 50);*/
+}
+
+</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">
@@ -71,7 +74,7 @@ border-color: rgba(126, 126, 126, 50);
         <property name="font">
          <font>
           <family>OPPOSans B</family>
-          <pointsize>10</pointsize>
+          <pointsize>11</pointsize>
           <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
@@ -79,9 +82,22 @@ border-color: rgba(126, 126, 126, 50);
          <string notr="true">#listWidget{
 border: 0px solid;
 border-color: rgba(126, 126, 126, 50);
-background-color: rgb(255, 255, 255);
-color: rgb(45, 45, 45);
+background-color: rgba(255, 255, 255,0);
+color: rgb(255, 255, 255);
 }
+
+#listWidget::item:hover {
+	outline: 0px;
+    color: rgb(255, 255, 255);
+	background-color: rgba(209, 209, 209, 20);
+}
+
+#listWidget::item:selected{
+	outline: 0px;
+    color: #45B2FF;
+	background-color: rgba(209, 209, 209, 20);
+}
+
 QScrollBar:vertical{
     width: 10px;
 	background-color: rgba(0, 41, 69, 0);
@@ -132,51 +148,6 @@ QScrollBar::up-arrow:vertical {
 
 </string>
         </property>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
        </widget>
       </item>
      </layout>

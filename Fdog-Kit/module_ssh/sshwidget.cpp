@@ -122,7 +122,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     textEdit_s->setStyleSheet("CustomPlainTextEdit{ \
                                 background-color: rgb(0, 41, 169, 0);\
                                 selection-background-color: rgb(50, 130, 190);\
-                                font: 57 12pt \"Maple Mono NF CN Medium\";\
+                                font: 57 12pt \"Maple Mono NL NF CN Medium\";\
                                 border: none;\
                                     padding-top:0px;\
                                     padding-bottom:0px;\
@@ -223,14 +223,13 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
         SLOT(rece_setting()));
 
     fwidget = new findwidget(textEdit_s);
-    connect(fwidget,SIGNAL(send_searchTextChanged(const QString)),this,
-        SLOT(rece_searchTextChanged(const QString)));
+    connect(fwidget,SIGNAL(send_searchTextChanged(const QString)),this, SLOT(rece_searchTextChanged(const QString)));
 
-    connect(this,SIGNAL(send_searchTextNumbers(int, int)),fwidget,
-        SLOT(rece_searchTextNumbers(int, int)));
+    connect(this,SIGNAL(send_searchTextNumbers(int, int)),fwidget, SLOT(rece_searchTextNumbers(int, int)));
 
     fwidget->hide();
     hcwidget = new historycommondwidget(textEdit_s);
+    connect(hcwidget,SIGNAL(send_commond(QString)),this, SLOT(rece_commond(QString)));
     hcwidget->hide();
 
     QStackedLayout * Layout = new QStackedLayout;
@@ -458,7 +457,7 @@ void sshwidget::resizeEvent(QResizeEvent *event) {
     //QPoint widgetBPos = textEdit_s->mapFromGlobal(widgetAPos); // 将控件a的全局坐标映射为控件b的局部坐标
     int width2 = ui->widget_2->geometry().width();
     int height2 = ui->widget_2->geometry().height();
-    hcwidget->move(width2/2 - 180, height2- 300);
+    hcwidget->move(width2/2 - 70, height2- 310);
     //qDebug() << "width2 = " << width2 << " height2 = " << height2;
     //qDebug() << "widgetBPos.x()- 120 = " << widgetBPos.x()- 120 << " widgetBPos.y() - 260 = " << widgetBPos.y() - 260;
     // 获取文本编辑框的视口大小
@@ -771,6 +770,12 @@ QString sshwidget::movePositionLeftSelect(sshwidget::MoveMode mode, int n)
 QString sshwidget::movePositionEndLineSelect(sshwidget::MoveMode mode, int n) {
     QTextCursor cursor = ui->plainTextEdit->textCursor();
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+    return cursor.selectedText();
+}
+
+QString sshwidget::movePositionStartLineSelect(sshwidget::MoveMode mode, int n) {
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
+    cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
     return cursor.selectedText();
 }
 
@@ -1967,6 +1972,26 @@ void sshwidget::rece_key_sign(QString key)
     if (key == "\r") {
         movePositionEndLine(sshwidget::MoveAnchor);
         backspaceSum = 0;
+        //新增历史命令
+        //获取当前光标行数据
+        QString SelectData = movePositionStartLineSelect(sshwidget::KeepAnchor, -1);
+        //QRegExp regExp7("\\x001B\\[(\\d+)D");
+        QRegularExpression re("(^(\\[.*?\\]# )\\s*(.*)$)");
+        QRegularExpressionMatch match = re.match(SelectData);
+        if (match.hasMatch()) {
+            QString prompt = match.captured(1);  // 获取提示符
+            QString command = match.captured(3); // 获取命令
+            qDebug() << "当前命令 = " << match.captured(0);
+            qDebug() << "当前命令 = " << match.captured(1);
+            qDebug() << "当前命令 = " << match.captured(2);
+            qDebug() << "当前命令 = " << match.captured(3);
+            if (!command.trimmed().isEmpty()) {
+                qDebug() << "当前命令处理完 = " << command;
+                hcwidget->addCommand(command);
+            }
+        } else {
+            qDebug() << "未匹配";
+        }
     }
     sendCommandData(key);
 }
@@ -2174,7 +2199,7 @@ void sshwidget::rece_resize_sign() {
     dlwidget->move(width - dlwidget->geometry().width() - 20, 5);
     int width2 = ui->widget_2->geometry().width();
     int height2 = ui->widget_2->geometry().height();
-    hcwidget->move(width2/2 - 180, height2- 300);
+    hcwidget->move(width2/2 - 70, height2- 310);
     //qDebug() << "width2 = " << width2 << " height2 = " << height2;
     // 获取文本编辑框的视口大小
     QSize viewportSize = textEdit_s->viewport()->size();
@@ -2221,6 +2246,12 @@ void sshwidget::rece_resize_sign() {
 void sshwidget::rece_setting() {
     //跳转到设置页面-终端
     emit send_windowsSetting();
+}
+
+void sshwidget::rece_commond(QString command) {
+    //执行命令
+    qDebug() << "执行命令" << command;
+    sendCommandData(command + "\n");
 }
 
 void sshwidget::rece_searchTextChanged(const QString data) {
