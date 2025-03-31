@@ -253,7 +253,7 @@ protected:
         if (event->type() == QEvent::Resize) {
             QResizeEvent *resizeEvent = static_cast<QResizeEvent *>(event);
             //qDebug() << "控件大小变化：" << resizeEvent->size();
-            emit send_resize_sign();
+            //emit send_resize_sign();
         }
         return QObject::eventFilter(obj, event);
     }

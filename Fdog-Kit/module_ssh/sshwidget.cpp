@@ -78,9 +78,9 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
 
     ui->plainTextEdit->viewport()->setCursor(Qt::ArrowCursor);
 
-    ResizeFilter * filter = new ResizeFilter(this);
-    connect(filter,SIGNAL(send_resize_sign()),this, SLOT(rece_resize_sign()));
-    ui->widget_bottom->installEventFilter(filter);
+    // ResizeFilter * filter = new ResizeFilter(this);
+    // connect(filter,SIGNAL(send_resize_sign()),this, SLOT(rece_resize_sign()));
+    // ui->widget_bottom->installEventFilter(filter);
     //表格自适应
     //ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
@@ -473,7 +473,7 @@ void sshwidget::resizeEvent(QResizeEvent *event) {
     qDebug() << "widget_2 高 = " << ui->widget_2->geometry().height() << "  widget_toolbar 高 = " << ui->widget_toolbar->geometry().height();
     int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
     if (s >= 0) {
-        ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
+        //ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
         ui->widget_cache->setFixedHeight(s);
         //qDebug() << "widget_10 高 = " << ui->widget_10->geometry().height() - s << "  widget_cache 高 = " << s;
     }
@@ -2193,7 +2193,7 @@ void sshwidget::rece_resize_sign() {
     int charWidth = metrics.averageCharWidth();
     int s = (ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) % lineHeight;
     if (s >= 0) {
-        ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
+        //ui->widget_10->setFixedHeight((ui->widget_2->geometry().height() - ui->widget_toolbar->geometry().height()) - s);
         ui->widget_cache->setFixedHeight(s);
     }
 
