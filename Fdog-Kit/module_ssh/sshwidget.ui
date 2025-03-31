@@ -33,7 +33,7 @@
     <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>10</number>
+    <number>0</number>
    </property>
    <item>
     <widget class="QWidget" name="widget" native="true">
@@ -1109,7 +1109,7 @@ QProgressBar:chunk{
                      <x>0</x>
                      <y>0</y>
                      <width>1231</width>
-                     <height>354</height>
+                     <height>360</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1227,7 +1227,7 @@ QMenu::separator {
                        </property>
                        <property name="font">
                         <font>
-                         <family>Maple Mono NF CN Medium</family>
+                         <family>Maple Mono NL NF CN Medium</family>
                          <pointsize>12</pointsize>
                          <weight>7</weight>
                          <italic>false</italic>
@@ -1238,7 +1238,7 @@ QMenu::separator {
                        <property name="styleSheet">
                         <string notr="true">QPlainTextEdit{
 	background-color: rgba(0, 41, 69, 0);
-	font: 57 12pt &quot;Maple Mono NF CN Medium&quot;;
+	font: 57 12pt &quot;Maple Mono NL NF CN Medium&quot;;
 	border: none;
 	padding-top:0px;
     padding-bottom:0px;
@@ -1388,7 +1388,7 @@ QScrollBar::up-arrow:vertical {
              <item>
               <widget class="QWidget" name="widget_cache" native="true">
                <property name="styleSheet">
-                <string notr="true">background-color: rgba(85, 170, 0, 255);</string>
+                <string notr="true">background-color: rgba(85, 170, 0, 0);</string>
                </property>
               </widget>
              </item>
@@ -1896,9 +1896,9 @@ QMenu::item:selected {
            <widget class="QWidget" name="widget_3" native="true">
             <property name="styleSheet">
              <string notr="true">#widget_3 {
-    border: 1px solid rgba(197, 197, 197,50);
+    border-top: 1px solid rgba(197, 197, 197,50);
     background-color: rgba(255, 255, 255, 20);
-    border-radius: 5px;
+    border-radius: 0px;
 }
 </string>
             </property>
@@ -2185,13 +2185,13 @@ QToolButton:hover {
            <widget class="QWidget" name="widget_4" native="true">
             <property name="minimumSize">
              <size>
-              <width>10</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>10</width>
+              <width>0</width>
               <height>16777215</height>
              </size>
             </property>
