@@ -4875,7 +4875,13 @@ void thriftwidget::on_toolButton_preData_clicked()
 {
     //预制数据管理
     preData = new prefabricatedata();
+    connect(preData,SIGNAL(send_reReadData()),this,SLOT(rece_reReadData()));    
     preData->show();
+}
+
+void thriftwidget::rece_reReadData() {
+    //重新读取预制数据
+    readPreData();
 }
 
 
