@@ -478,6 +478,8 @@ private slots:
 
     void on_toolButton_preData_clicked();
 
+    void rece_reReadData();
+
     void rece_updateMouseStyle();
 
     void on_toolButton_capturePackage_clicked();

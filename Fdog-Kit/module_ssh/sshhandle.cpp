@@ -356,7 +356,7 @@ void sshHandleExec::getServerInfo()
 
     commond = "hostname -I";
     QStringList dataList = commondExec(commond).split(" ");
-    serverInfo.ip = "IP " + dataList[0];
+    serverInfo.ip =dataList[0];
 
     commond = "top -n 1 -b | head -n 5";
     QStringList dataList2 = commondExec(commond).split("\n");
@@ -383,7 +383,7 @@ void sshHandleExec::getServerInfo()
     if (reUsers.indexIn(dataList2[0]) != -1) {
         QString users = reUsers.cap(1);
         //qDebug() << "当前用户数:" << users;
-        serverInfo.loginCount = "终端用户 " + reUsers.cap(1);
+        serverInfo.loginCount = reUsers.cap(1);
     } else {
         qDebug() << "未找到当前用户数.";
     }
@@ -513,7 +513,7 @@ void sshHandleExec::getServerInfo()
     //获取服务器信息
     commond = "uname -p -i -o";
     QStringList dataList5 = commondExec(commond).split(" ");
-    serverInfo.architecture = "系统架构 " + dataList5[0];
+    serverInfo.architecture = dataList5[0];
 
     commond = "top -b -c -n 1 | grep -E 'minidood|VIRT' | grep -v grep  | tail -n +2";
     QStringList dataList6 = commondExec(commond).split(" ");

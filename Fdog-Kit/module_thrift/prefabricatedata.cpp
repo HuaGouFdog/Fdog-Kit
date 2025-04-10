@@ -98,6 +98,7 @@ void prefabricatedata::writePreFile() {
     out << text;
     // 关闭文件
     file.close();
+    emit send_reReadData();
 }
 
 QString prefabricatedata::detectEncoding(const QByteArray &data) {

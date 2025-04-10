@@ -22,6 +22,9 @@ public:
     void printHex(const QByteArray &data);
     void writePreFile();
     QString  detectEncoding(const QByteArray &data);
+
+signals:
+    void send_reReadData();
 private slots:
     void on_toolButton_recover_clicked();
 

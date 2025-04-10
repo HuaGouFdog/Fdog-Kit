@@ -228,7 +228,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     connect(this,SIGNAL(send_searchTextNumbers(int, int)),fwidget, SLOT(rece_searchTextNumbers(int, int)));
 
     fwidget->hide();
-    hcwidget = new historycommondwidget(textEdit_s);
+    hcwidget = new historycommondwidget(this);
     connect(hcwidget,SIGNAL(send_commond(QString)),this, SLOT(rece_commond(QString)));
     hcwidget->hide();
 
@@ -314,6 +314,10 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
             SLOT(rece_createNewFile_sgin(QString,QString,int,int64_t)));
     threadSftp->start();
 
+
+    QAction *pacpFileAction = new QAction(tr("分析该pacp文件"), textEdit_s);
+    pacpFileAction->setShortcutContext(Qt::WidgetShortcut);
+
     QAction *findAction = new QAction(tr("查找     Ctrl+Shift+F"), textEdit_s);
     //findAction->setShortcut(QKeySequence::Copy);
     findAction->setShortcutContext(Qt::WidgetShortcut);
@@ -351,7 +355,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
    effect->setColor(QColor(50, 50, 50));       //设置阴影颜色，也可以setColor(QColor(220,220,220))
    effect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
    //contextMenu->setGraphicsEffect(effect);
-
+    
+    contextMenu->addAction(pacpFileAction);
     contextMenu->addAction(findAction);
     //contextMenu->addSeparator();
     contextMenu->addAction(copyAction);
@@ -377,6 +382,18 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
     {
         qDebug() << "点击";
+        //minic-txt-20250306-0023.pcap
+        //针对一些特殊后缀进行一些定制功能
+        QString copyData = textEdit_s->textCursor().selectedText();
+        copyData.replace(QChar(0xA0), ' ');
+        qDebug() << "当前选中" << copyData;
+        if (copyData.endsWith(".pcap", Qt::CaseInsensitive)) {
+            qDebug() << "选中的文本是 .pcap 文件";
+            pacpFileAction->setVisible(true);
+        } else {
+            pacpFileAction->setVisible(false);
+        }
+
         contextMenu->move(cursor().pos());
         contextMenu->show(); });
 
@@ -457,7 +474,7 @@ void sshwidget::resizeEvent(QResizeEvent *event) {
     //QPoint widgetBPos = textEdit_s->mapFromGlobal(widgetAPos); // 将控件a的全局坐标映射为控件b的局部坐标
     int width2 = ui->widget_2->geometry().width();
     int height2 = ui->widget_2->geometry().height();
-    hcwidget->move(width2/2 - 70, height2- 310);
+    hcwidget->move(width2/2 - 70, height2- 285);
     //qDebug() << "width2 = " << width2 << " height2 = " << height2;
     //qDebug() << "widgetBPos.x()- 120 = " << widgetBPos.x()- 120 << " widgetBPos.y() - 260 = " << widgetBPos.y() - 260;
     // 获取文本编辑框的视口大小
@@ -485,12 +502,12 @@ QWidget * sshwidget::createCommand(QString name, QString data, bool isLineFeed) 
     QToolButton * button_name = new QToolButton();
     button_name->setText(name);
     button_name->setObjectName(name);
-    button_name->setStyleSheet("background-color: rgba(200, 200, 200, 0);");
+    button_name->setStyleSheet("font: 10pt \"OPPOSans B\"; background-color: rgba(200, 200, 200, 0);");
     connect (button_name,SIGNAL(clicked()),this,SLOT(rece_clicked_run()));
 
     QToolButton * button = new QToolButton();
     button->setText(name);
-    button->setIcon(QIcon((":lib/setting.png")));
+    button->setIcon(QIcon((":/module_ssh/images/light/edit1-light.png")));
     button->setStyleSheet("background-color: rgba(200, 200, 200, 0);");
     connect (button,SIGNAL(clicked()),this,SLOT(rece_clicked_edit()));
 
@@ -1981,29 +1998,32 @@ void sshwidget::rece_key_sign(QString key)
         if (match.hasMatch()) {
             QString prompt = match.captured(1);  // 获取提示符
             QString command = match.captured(3); // 获取命令
-            qDebug() << "当前命令 = " << match.captured(0);
-            qDebug() << "当前命令 = " << match.captured(1);
-            qDebug() << "当前命令 = " << match.captured(2);
-            qDebug() << "当前命令 = " << match.captured(3);
+            //qDebug() << "当前命令 = " << match.captured(0);
+            //qDebug() << "当前命令 = " << match.captured(1);
+            //qDebug() << "当前命令 = " << match.captured(2);
+            //qDebug() << "当前命令 = " << match.captured(3);
             if (!command.trimmed().isEmpty()) {
-                qDebug() << "当前命令处理完 = " << command;
+                //qDebug() << "当前命令处理完 = " << command;
                 hcwidget->addCommand(command);
             }
         } else {
-            qDebug() << "未匹配";
+            //qDebug() << "未匹配";
         }
+    } else if (key == "\f") {
+        //ctrl + l 清屏
+        sendData("\n");
     }
     sendCommandData(key);
 }
 
 void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
 {
-    ui->label_ip->setText(serverInfo.ip);
-    ui->label_load->setText(serverInfo.load);
-    ui->label_runTime->setText(serverInfo.runTime);
-    ui->label_loginCount->setText(serverInfo.loginCount);
-    ui->label_architecture->setText(serverInfo.architecture);
-    ui->label_cpuInfo->setText(serverInfo.cpuInfo);
+    ui->label_ip->setText("IP：" + serverInfo.ip);
+    ui->label_load->setText("负载：" + serverInfo.load);
+    ui->label_runTime->setText("运行时长：" + serverInfo.runTime);
+    ui->label_loginCount->setText("终端连接数：" + serverInfo.loginCount);
+    ui->label_architecture->setText("系统架构：" + serverInfo.architecture);
+    ui->label_cpuInfo->setText("CPU核数/线程数：" + serverInfo.cpuInfo);
 
     ui->progressBar_mem->setFormat("%p%   " + serverInfo.memUse);
     ui->progressBar_swap->setFormat("%p%   " + serverInfo.swapUse);
@@ -2161,9 +2181,9 @@ void sshwidget::rece_copy_sgin()
     copyData.replace(QChar(0xA0), ' ');
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(copyData);
-    QTextCursor cursor = textEdit_s->textCursor();
+    //QTextCursor cursor = textEdit_s->textCursor();
     //cursor.clearSelection();
-    textEdit_s->setTextCursor(cursor);
+    //textEdit_s->setTextCursor(cursor);
     ui->plainTextEdit->setFocus();
 }
 
@@ -2199,7 +2219,7 @@ void sshwidget::rece_resize_sign() {
     dlwidget->move(width - dlwidget->geometry().width() - 20, 5);
     int width2 = ui->widget_2->geometry().width();
     int height2 = ui->widget_2->geometry().height();
-    hcwidget->move(width2/2 - 70, height2- 310);
+    hcwidget->move(width2/2 - 70, height2- 285);
     //qDebug() << "width2 = " << width2 << " height2 = " << height2;
     // 获取文本编辑框的视口大小
     QSize viewportSize = textEdit_s->viewport()->size();

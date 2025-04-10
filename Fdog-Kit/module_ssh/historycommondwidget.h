@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
+#include "QEvent"
 namespace Ui {
 class historycommondwidget;
 }
@@ -16,6 +17,8 @@ public:
     ~historycommondwidget();
 
     void addCommand(QString command);
+
+    void leaveEvent(QEvent *event);
 
 signals:
     void send_commond(QString command);
