@@ -11,8 +11,7 @@
 </div>
 
 <div align=center>
-  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.10.0%2BMSVC2015-passing-brightgreen">
-  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.15.2%2BMSVC2015-passing-brightgreen">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.12.12%2BMSVC2015-passing-brightgreen">
 
 </div>
 
