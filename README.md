@@ -30,7 +30,7 @@
 最新版本：V.0.7
 [Fdog-Kit安装包](https://github.com/HuaGouFdog/Fdog-Kit/releases/download/V1.0.7/FdogKitsetup.exe)
 
-目前仅支持windows，有问题，请提Issues。
+目前支持windows10, windows11，有问题，请提Issues。
 
 如果对您有帮助，帮忙点一个小小的star!
 
