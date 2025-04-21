@@ -626,6 +626,7 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
                 qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
                 if (!isTestModle) {
                     ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+                    ui->toolButton_close->hide();
                 }
                 return;
             }
@@ -652,6 +653,7 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
         qDebug() << "调用完毕, 响应时间：" << QString::number(elapsedMilliseconds) << "ms" << ", 当前时间：" << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
         if (!isTestModle) {
             ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+            ui->toolButton_close->hide();
         }
         return;
     });
@@ -770,6 +772,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
         if (!isTestModle) {
             qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
             ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
+            ui->toolButton_close->hide();
         }
         ui->stackedWidget->setCurrentIndex(0);
         //解析数据
@@ -4012,8 +4015,6 @@ void thriftwidget::on_toolButton_request_clicked()
     }
 
     delete timer;
-    //qint64 elapsedMilliseconds = timer->elapsed();
-    //ui->label_time->setText("响应时间：" + QString::number(elapsedMilliseconds) + "ms");
     return;
 }
 
