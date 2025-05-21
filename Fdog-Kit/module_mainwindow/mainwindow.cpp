@@ -443,6 +443,7 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
             if (!m_isMaxShow) {
                 setContentsMargins(0, 0, 0, 0);
                 this->setWindowState(Qt::WindowState::WindowMaximized);
+                //qDebug() << "设置边距为3 0";
                 m_isMaxShow = true;
             } else {
                 setContentsMargins(10, 10, 10, 10);
@@ -468,7 +469,7 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
                                 : globalPos;
 
             QPoint pos = mapFromGlobal(logicalPos);
-            qDebug() << "坐标 global:" << globalPos << ", logical:" << logicalPos << ", local:" << pos;
+            //qDebug() << "坐标 global:" << globalPos << ", logical:" << logicalPos << ", local:" << pos;
             if (pos.y() > 10 && ui->widget_title2->rect().contains(pos)) {
                 //实现窗口靠边停靠
                 *result = HTCAPTION;
@@ -481,15 +482,27 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
             if (::IsZoomed(msg->hwnd)) {
                 m_isMaxShow = true;
                 // 最大化时会超出屏幕，所以填充边框间距
-                RECT frame = { 0, 0, 0, 0 };
-                AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
-                frame.left = abs(frame.left);
-                frame.top = abs(frame.bottom);
-                this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+                if (this->devicePixelRatioF() > 1.0) {
+                    RECT frame = { 7, -7, -7, -7 };
+                    //先这样写，针对4k屏
+                    AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
+                    frame.left = abs(frame.left);
+                    frame.top = abs(frame.bottom);
+                    this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+                } else {
+                    RECT frame = { 0,0,0,0 };
+                    AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
+                    frame.left = abs(frame.left);
+                    frame.top = abs(frame.bottom);
+                    this->setContentsMargins(frame.left, frame.top, frame.right, frame.bottom);
+                }
+
+                //qDebug() << "设置边距为2 0";
             } else {
                 m_isMaxShow = false;
             }
             *result = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
+            qDebug() << "msg->wParam = " << msg->wParam << " msg->lParam = " << msg->lParam;
             return true;
         }
     }
@@ -1109,7 +1122,15 @@ void MainWindow::on_toolButton_min_clicked() {
 void MainWindow::on_toolButton_max_clicked() {
     if (!m_isMaxShow) {
         setContentsMargins(0, 0, 0, 0);
+        //qDebug() << "设置边距为0";
         this->setWindowState(Qt::WindowState::WindowMaximized);
+        QSize logicalSize = this->size();
+        qreal scale = this->devicePixelRatioF();
+        QSize physicalSize = logicalSize * scale;
+
+        qDebug() << "逻辑窗口大小:" << logicalSize;
+        qDebug() << "缩放比例:" << scale;
+        qDebug() << "物理窗口大小:" << physicalSize;
         m_isMaxShow = true;
     } else {
         setContentsMargins(10, 10, 10, 10);
