@@ -453,10 +453,22 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
         //最大化是填充屏幕
         case WM_NCHITTEST:
         {
-            qreal ratio = 1.0;
-            long x = GET_X_LPARAM(msg->lParam) / ratio;
-            long y = GET_Y_LPARAM(msg->lParam) / ratio;
-            QPoint pos = mapFromGlobal(QPoint(x, y));
+            // qreal ratio = 1.0;
+            // long x = GET_X_LPARAM(msg->lParam) / ratio;
+            // long y = GET_Y_LPARAM(msg->lParam) / ratio;
+            // QPoint pos = mapFromGlobal(QPoint(x, y));
+            // 原始坐标（物理像素）
+            const int x = GET_X_LPARAM(msg->lParam);
+            const int y = GET_Y_LPARAM(msg->lParam);
+            QPoint globalPos(x, y);
+
+            // 将物理像素转换为逻辑像素（考虑高 DPI 缩放）
+            QPoint logicalPos = this->devicePixelRatioF() > 1.0
+                                ? globalPos / this->devicePixelRatioF()
+                                : globalPos;
+
+            QPoint pos = mapFromGlobal(logicalPos);
+            qDebug() << "坐标 global:" << globalPos << ", logical:" << logicalPos << ", local:" << pos;
             if (pos.y() > 10 && ui->widget_title2->rect().contains(pos)) {
                 //实现窗口靠边停靠
                 *result = HTCAPTION;
@@ -835,6 +847,28 @@ bool MainWindow::isVersionGreater(const QString &version1, const QString &versio
 }
 
 void MainWindow::on_toolButton_side_home_clicked() {
+    if (m_twidget != NULL) {
+        m_twidget->hide();
+    }
+    if (m_zmanagewidget != NULL) {
+        m_zmanagewidget->hide();
+    } 
+    if (m_smanagewidget != NULL) {
+        m_smanagewidget->hide();
+    } 
+    if (m_qsswidget != NULL) {
+        m_qsswidget->hide();
+    } 
+    if (m_dbwidget != NULL) {
+        m_dbwidget->hide();
+    } 
+    if (m_tswidget != NULL) {
+        m_tswidget->hide();
+    } 
+    if (m_stwidget != NULL) {
+        m_stwidget->hide();
+    } 
+    
     ui->label_title->setText("");
     if(ui->stackedWidget->currentIndex() != 0) {
         ui->stackedWidget->setCurrentIndex(0);
@@ -853,7 +887,9 @@ void MainWindow::on_toolButton_side_home_clicked() {
 void MainWindow::on_toolButton_side_thrift_clicked() {
     ui->label_title->setText("thrift接口调用工具");
     if (m_twidget == NULL) {
+        qDebug() << "时间1 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
         m_twidget = new thriftwidget();
+        qDebug() << "时间2 " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
         m_twidget->setObjectName("m_twidget");
         ui->stackedWidget->addWidget(m_twidget);
         m_twidget->show();
@@ -861,7 +897,7 @@ void MainWindow::on_toolButton_side_thrift_clicked() {
         QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
         ui->stackedWidget->setGraphicsEffect(eff);
         QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
-        a->setDuration(50);
+        a->setDuration(100);
         a->setStartValue(0);
         a->setEndValue(1);
         a->setEasingCurve(QEasingCurve::InBack);
@@ -877,7 +913,7 @@ void MainWindow::on_toolButton_side_thrift_clicked() {
                     QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
                     ui->stackedWidget->setGraphicsEffect(eff);
                     QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
-                    a->setDuration(200);
+                    a->setDuration(100);
                     a->setStartValue(0);
                     a->setEndValue(1);
                     a->setEasingCurve(QEasingCurve::InBack);
