@@ -28,6 +28,10 @@ public:
     //新建连接
     void newDBWidget(connnectInfoStruct& cInfoStruct);
 
+signals:
+
+    void send_newCreateDatabase();
+
 private slots:
     void on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int column);
 
@@ -49,6 +53,8 @@ private slots:
     void rece_showField();
     void rece_deleteField();
 
+
+    void on_toolButton_newCreate_clicked();
 
 private:
     Ui::databasewidget *ui;

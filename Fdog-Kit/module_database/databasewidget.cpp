@@ -13,6 +13,7 @@
 #include <QLabel>
 #include <QPropertyAnimation>
 #include <QMenu>
+#include <QPlainTextEdit>
 databasewidget::databasewidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::databasewidget)
@@ -141,10 +142,10 @@ void databasewidget::newDBWidget(connnectInfoStruct &cInfoStruct)
     qDebug() << "触发6";
     database = QSqlDatabase::addDatabase("QMYSQL");
     database.setDatabaseName("IM_BADWORD");
-    // database.setHostName(cInfoStruct.host);
-    // database.setPort(cInfoStruct.port.toInt());
-    // database.setUserName(cInfoStruct.userName);
-    // database.setPassword(cInfoStruct.password);
+    database.setHostName(cInfoStruct.host);
+    database.setPort(cInfoStruct.port.toInt());
+    database.setUserName(cInfoStruct.userName);
+    database.setPassword(cInfoStruct.password);
 
 
 
@@ -196,7 +197,7 @@ void databasewidget::on_treeWidget_db_itemClicked(QTreeWidgetItem *item, int col
             while(sqlQuery.next())
             {
                 QTreeWidgetItem *parentItem = new QTreeWidgetItem(item);
-                QIcon icon2(":/module_database/images/dark/table.png");
+                QIcon icon2(":/module_database/images/dark/table7.png");
                 parentItem->setIcon(0, icon2);
                 parentItem->setText(0, sqlQuery.value(0).toString());
             }
@@ -406,7 +407,31 @@ void databasewidget::rece_deleteConnect()
 
 void databasewidget::rece_showCraeteTable()
 {
+    QTreeWidgetItem* selectedItem = ui->treeWidget_db->currentItem();
+    QString dataBaseName = selectedItem->parent()->text(0);
+    QString tableName = selectedItem->text(0);
+    QSqlQuery query(database);
+    QString sql = QString("USE `%1`").arg(dataBaseName);
+    query.exec(sql); 
+    sql = QString("SHOW CREATE TABLE `%1`").arg(tableName);
+    if (!query.exec(sql)) {
+        qDebug() << "查询失败：" << query.lastError().text();
+        return;
+    }
 
+    // 3. 解析结果
+    if (query.next()) {
+        QString createTableSQL = query.value(1).toString(); // 第 2 列是 CREATE TABLE 语句
+        qDebug() << "创建表 SQL 语句：" << createTableSQL;
+        //创建一个tab
+        QPlainTextEdit * textWidget = new QPlainTextEdit(createTableSQL);
+        textWidget->setStyleSheet("font: 10pt \"OPPOSans B\"; border: 0px solid rgba(197, 197, 197,50); background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);");
+        QSize iconSize(20, 20); // 设置图标的大小
+        ui->tabWidget->addTab(textWidget, QIcon(":/module_database/images/dark/sql.png").pixmap(iconSize), tableName);
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    } else {
+        qDebug() << "未找到表";
+    }
 }
 
 void databasewidget::rece_showTableData()
@@ -418,7 +443,7 @@ void databasewidget::rece_showTableData()
     QTableWidget * twidget = new QTableWidget();
     twidget->setStyleSheet(":/module_database/qss/tableWidget.qss");
     QSize iconSize(20, 20); // 设置图标的大小
-    ui->tabWidget->addTab(twidget, QIcon(":/module_database/images/dark/table.png").pixmap(iconSize),  "  " + tableName + "  ");
+    ui->tabWidget->addTab(twidget, QIcon(":/module_database/images/dark/table7.png").pixmap(iconSize), tableName);
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
     QSqlQuery sqlQuery2(database);
     QString cc = "BADWORD";
@@ -477,5 +502,11 @@ void databasewidget::rece_showField()
 void databasewidget::rece_deleteField()
 {
 
+}
+
+
+void databasewidget::on_toolButton_newCreate_clicked()
+{
+    emit send_newCreateDatabase(); //发送新建数据库信号
 }
 

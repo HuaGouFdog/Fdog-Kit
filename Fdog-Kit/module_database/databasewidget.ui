@@ -14,9 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#databasewidget{
-	background-color: rgb(33, 33, 33);
-}
+   <string notr="true">
 
 
 QMenu {
@@ -484,7 +482,7 @@ QScrollBar::up-arrow:vertical {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="styleSheet">
