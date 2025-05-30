@@ -1043,6 +1043,7 @@ void MainWindow::on_toolButton_side_mysql_clicked() {
     ui->label_title->setText("数据库工具");
     if (m_dbwidget == nullptr) {
         m_dbwidget = new databasewidget();
+        connect(m_dbwidget,SIGNAL(send_newCreateDatabase()),this,SLOT(rece_newCreateDatabase()));
         m_dbwidget->setObjectName("m_dbwidget");
         ui->stackedWidget->addWidget(m_dbwidget);
         m_dbwidget->show();
@@ -1058,6 +1059,14 @@ void MainWindow::on_toolButton_side_mysql_clicked() {
         }
     }
 
+}
+
+void MainWindow::rece_newCreateDatabase() {
+    int8_t connectType = 4;
+    m_ccwidget = new createconnect(connectType);
+    connect(m_ccwidget,SIGNAL(newCreate(connnectInfoStruct&)),this,SLOT(rece_newConnnect(connnectInfoStruct&)));
+    connect(m_ccwidget,SIGNAL(newSave(connnectInfoStruct&)),this,SLOT(rece_newSave(connnectInfoStruct&)));
+    m_ccwidget->show();
 }
 
 void MainWindow::on_toolButton_side_tool_clicked() {

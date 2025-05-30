@@ -161,6 +161,8 @@ private slots:
     void on_toolButton_side_qss_clicked();
     //数据库按钮信号
     void on_toolButton_side_mysql_clicked();
+    //数据库新建窗口信号
+    void rece_newCreateDatabase();
     //工具按钮信号
     void on_toolButton_side_tool_clicked();
     //主题按钮信号
