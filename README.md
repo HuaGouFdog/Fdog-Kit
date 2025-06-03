@@ -8,12 +8,9 @@
 <div align=center>
 <img alt="GitHub Created At" src="https://img.shields.io/github/created-at/HuaGouFdog/Fdog-Kit">
 <img alt="GitHub License" src="https://img.shields.io/github/license/huagouFdog/fdog-kit">
+<img alt="Static Badge" src="https://img.shields.io/badge/Qt5.12.12%2BMSVC2015-passing-brightgreen">
 </div>
 
-<div align=center>
-  <img alt="Static Badge" src="https://img.shields.io/badge/Qt5.12.12%2BMSVC2015-passing-brightgreen">
-
-</div>
 
 <div align=center>
   <img alt="GitHub Release" src="https://img.shields.io/github/v/release/HuaGouFdog/Fdog-Kit">
