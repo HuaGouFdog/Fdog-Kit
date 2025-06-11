@@ -104,7 +104,7 @@ private:
     QString m_newVersionData;         //新版本更新内容
     QString m_newVersiondownLoad;     //新版本下载地址
 
-    QToolButton * m_unfoldButton = nullptr; //侧边栏折叠按钮
+    //QToolButton * m_unfoldButton = nullptr; //侧边栏折叠按钮
     QPropertyAnimation * m_propertyAnimation = nullptr; //侧边栏动画关
     QPropertyAnimation * m_propertyAnimation2 = nullptr; //侧边栏动画开
 
@@ -208,6 +208,8 @@ private slots:
     void on_animationValueChanged(const QVariant &value);
     void on_toolButton_clicked();
     void updateTime();
+    void on_toolButton_fold_2_clicked();
+    //void on_toolButton_2_clicked();
 };
 
 #endif // MAINWINDOW_H
