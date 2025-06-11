@@ -61,43 +61,43 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::MainWindow(config * m_confInfo, QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    ui->label_side_icon_2->hide();
+    ui->toolButton_fold_2->hide();
 
-    m_unfoldButton = new QToolButton(this);
-    m_unfoldButton->setStyleSheet("QToolButton {\
-                     color: rgb(217, 236, 237);\
-                     background-color: rgba(255, 60, 128, 0);\
-                     border: none;\
-                 }\
-                 QToolButton::menu-indicator { \
-                     image: None;\
-                 }\
-                 QToolButton:hover {\
-                     color: rgb(197, 197, 197);\
-                     border: none;\
-                 }");
-    m_unfoldButton->setIcon(QIcon(":/module_mainwindow/images/light/unfold-light.png"));
-    m_unfoldButton->setGeometry(4, this->height()/2, 25, 100);
-    m_unfoldButton->setIconSize(QSize(50, 50));
-    m_unfoldButton->hide();
-    connect(m_unfoldButton, &QPushButton::clicked, this, [=]() {
-        qDebug() << "展开前 ui->widget_side->width() = " << ui->widget_side->width();
-        ui->label_side_icon_2->hide();
-        m_unfoldButton->hide();
-        // m_propertyAnimation2 = new QPropertyAnimation(ui->widget_side,"geometry");
-        // m_propertyAnimation2->setEasingCurve(QEasingCurve::InCubic);
-        // m_propertyAnimation2->setDuration(300);
-        // m_propertyAnimation2->setStartValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),0,ui->widget_side->height()));
-        // m_propertyAnimation2->setEndValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),50,ui->widget_side->height()));
-        // connect(m_propertyAnimation2, SIGNAL(finished()), this, SLOT(whenAnimationFinish3()));
-        // qDebug() << "setFixedWidth ui->widget_side->height() = " << ui->widget_side->height();
-        // qDebug() << "setFixedWidth ui->widget_side->width() = " << ui->widget_side->width();
-        ui->widget_side->show();
-        qDebug() << "ui->widget_side->height() = " << ui->widget_side->height();
-        qDebug() << "ui->widget_side->width() = " << ui->widget_side->width();
-        qDebug() << "显示边框";
-        //m_propertyAnimation2->start(QAbstractAnimation::DeleteWhenStopped);
-    });
+    // m_unfoldButton = new QToolButton(this);
+    // m_unfoldButton->setStyleSheet("QToolButton {\
+    //                  color: rgb(217, 236, 237);\
+    //                  background-color: rgba(255, 60, 128, 0);\
+    //                  border: none;\
+    //              }\
+    //              QToolButton::menu-indicator { \
+    //                  image: None;\
+    //              }\
+    //              QToolButton:hover {\
+    //                  color: rgb(197, 197, 197);\
+    //                  border: none;\
+    //              }");
+    // m_unfoldButton->setIcon(QIcon(":/module_mainwindow/images/light/unfold-light.png"));
+    // m_unfoldButton->setGeometry(4, this->height()/2, 25, 100);
+    // m_unfoldButton->setIconSize(QSize(50, 50));
+    // m_unfoldButton->hide();
+    // connect(m_unfoldButton, &QPushButton::clicked, this, [=]() {
+    //     qDebug() << "展开前 ui->widget_side->width() = " << ui->widget_side->width();
+    //     ui->label_side_icon_2->hide();
+    //     m_unfoldButton->hide();
+    //     // m_propertyAnimation2 = new QPropertyAnimation(ui->widget_side,"geometry");
+    //     // m_propertyAnimation2->setEasingCurve(QEasingCurve::InCubic);
+    //     // m_propertyAnimation2->setDuration(300);
+    //     // m_propertyAnimation2->setStartValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),0,ui->widget_side->height()));
+    //     // m_propertyAnimation2->setEndValue(QRect(ui->widget_side->geometry().x(),ui->widget_side->geometry().y(),50,ui->widget_side->height()));
+    //     // connect(m_propertyAnimation2, SIGNAL(finished()), this, SLOT(whenAnimationFinish3()));
+    //     // qDebug() << "setFixedWidth ui->widget_side->height() = " << ui->widget_side->height();
+    //     // qDebug() << "setFixedWidth ui->widget_side->width() = " << ui->widget_side->width();
+    //     ui->widget_side->show();
+    //     qDebug() << "ui->widget_side->height() = " << ui->widget_side->height();
+    //     qDebug() << "ui->widget_side->width() = " << ui->widget_side->width();
+    //     qDebug() << "显示边框";
+    //     //m_propertyAnimation2->start(QAbstractAnimation::DeleteWhenStopped);
+    // });
 
     //main.cpp传进来的m_confInfo
     this->m_confInfo = m_confInfo;
@@ -454,10 +454,6 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
         //最大化是填充屏幕
         case WM_NCHITTEST:
         {
-            // qreal ratio = 1.0;
-            // long x = GET_X_LPARAM(msg->lParam) / ratio;
-            // long y = GET_Y_LPARAM(msg->lParam) / ratio;
-            // QPoint pos = mapFromGlobal(QPoint(x, y));
             // 原始坐标（物理像素）
             const int x = GET_X_LPARAM(msg->lParam);
             const int y = GET_Y_LPARAM(msg->lParam);
@@ -470,7 +466,7 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
 
             QPoint pos = mapFromGlobal(logicalPos);
             //qDebug() << "坐标 global:" << globalPos << ", logical:" << logicalPos << ", local:" << pos;
-            if (pos.y() > 10 && ui->widget_title2->rect().contains(pos)) {
+            if (pos.y() > 10 && ui->widget_title2->rect().contains(pos) && !ui->toolButton_fold_2->rect().contains(pos)) {
                 //实现窗口靠边停靠
                 *result = HTCAPTION;
                 return true;
@@ -502,7 +498,7 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
                 m_isMaxShow = false;
             }
             *result = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
-            qDebug() << "msg->wParam = " << msg->wParam << " msg->lParam = " << msg->lParam;
+            //qDebug() << "msg->wParam = " << msg->wParam << " msg->lParam = " << msg->lParam;
             return true;
         }
     }
@@ -1172,14 +1168,13 @@ void MainWindow::whenAnimationFinish() {
 }
 
 void MainWindow::whenAnimationFinish2() {
-    qDebug() << "whenAnimationFinish2完成";
     //ui->widget_side->setFixedWidth(0);
     ui->widget_side->hide();
     QEventLoop loop;
     QTimer::singleShot(20, &loop, &QEventLoop::quit);
     loop.exec();
-    ui->label_side_icon_2->show();
-    m_unfoldButton->show();
+    ui->toolButton_fold_2->show();
+    //m_unfoldButton->show();
 }
 
 void MainWindow::whenAnimationFinish3() {
@@ -1354,3 +1349,12 @@ void MainWindow::updateTime()
     ui->label->setText(formattedTime);
 }
 
+
+void MainWindow::on_toolButton_fold_2_clicked()
+{
+    ui->toolButton_fold_2->hide();
+    QEventLoop loop;
+    QTimer::singleShot(20, &loop, &QEventLoop::quit);
+    loop.exec();
+    ui->widget_side->show();
+}

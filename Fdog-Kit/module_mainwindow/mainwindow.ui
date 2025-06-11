@@ -236,44 +236,6 @@ QToolButton:hover {
         <number>5</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_side_icon">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/lib/icon9.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_12">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>10</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
         <widget class="QToolButton" name="toolButton_fold">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -315,13 +277,13 @@ QToolButton:hover {
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/module_mainwindow/images/light/zhedie2-light.png</normaloff>:/module_mainwindow/images/light/zhedie2-light.png</iconset>
+          <iconset resource="../lib.qrc">
+           <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>18</width>
-           <height>18</height>
+           <width>30</width>
+           <height>30</height>
           </size>
          </property>
         </widget>
@@ -1064,6 +1026,35 @@ border-radius: 2px;
            <number>0</number>
           </property>
           <item>
+           <widget class="QToolButton" name="toolButton_fold_2">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../lib.qrc">
+              <normaloff>:/lib/icon9.png</normaloff>:/lib/icon9.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QWidget" name="widget" native="true">
             <property name="minimumSize">
              <size>
@@ -1093,28 +1084,6 @@ border-radius: 2px;
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QLabel" name="label_side_icon_2">
-               <property name="minimumSize">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">image: url(:/lib/icon9.png);</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
              <item>
               <spacer name="horizontalSpacer_3">
                <property name="orientation">
@@ -2282,8 +2251,8 @@ QToolButton:hover {
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../lib.qrc"/>
   <include location="../images.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>
