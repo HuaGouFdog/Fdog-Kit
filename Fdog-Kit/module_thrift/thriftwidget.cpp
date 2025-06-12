@@ -712,9 +712,11 @@ void thriftwidget::sendThriftRequest(QVector<uint8_t> dataArray, QElapsedTimer* 
 
 void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *timer)
 {
+    qDebug() << "发送数据0";
     QNetworkAccessManager manager;
-
+    qDebug() << "发送数据00";
     qDebug() << manager.supportedSchemes();
+    qDebug() << "发送数据000";
     ui->stackedWidget->setCurrentIndex(1);
     QString port_str = ui->comboBox_port->currentText();
     int index_s = port_str.indexOf("(");
@@ -726,7 +728,7 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     QString urlData = "https://";
 
     QUrl url(urlData + ui->lineEdit_host->text() + ":" + QString::number(port) + ui->lineEdit_route->text());
-
+    qDebug() << "发送数据0000";
     bool bSupp = QSslSocket::supportsSsl();
     auto buildVersion = QSslSocket::sslLibraryBuildVersionString();
     QString version = QSslSocket::sslLibraryVersionString();
@@ -751,13 +753,13 @@ void thriftwidget::sendHttpRequest(QVector<uint8_t> dataArray, QElapsedTimer *ti
     hexString = hexString.mid(8);
     QByteArray byteArray2 = QByteArray::fromHex(hexString.toUtf8());
     timer->start();
-
+    qDebug() << "发送数据1";
     QNetworkReply* reply = manager.post(request, byteArray2);
-
+    qDebug() << "发送数据2";
     QEventLoop loop;
     QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
-
+    qDebug() << "发送数据3";
     // 检查错误
     if (reply->error() != QNetworkReply::NoError) {
         qDebug() << "请求失败:" << reply->errorString();
@@ -3940,7 +3942,6 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->toolButton_inportpcap->hide();
         ui->toolButton_save->hide();
         ui->toolButton_request->hide();
-        ui->toolButton_propertyTest->hide();
     } else if (index == 2) {
         //抓包分析
         //ui->widget_property->show();
@@ -4006,11 +4007,13 @@ void thriftwidget::on_toolButton_request_clicked()
     retractNum = 0;
 
     ui->label_time->setText("");
+    qDebug() << "开始请求";
 
     //判断传输协议
     if (ui->comboBox_transport->currentText() == TFramedTransport_) {
         sendThriftRequest(sendData8, timer);
     } else if (ui->comboBox_transport->currentText() == THTTPSTransport_) {
+        qDebug() << "开始请求2";
         sendHttpRequest(sendData8, timer);
     }
 
@@ -4988,19 +4991,28 @@ void thriftwidget::printHex(const QByteArray &data, int number) {
 
 
 void thriftwidget::parseSLLHeader(const QByteArray &data, int &offset) {
-    if (data.size() < 16) return;
-    //& 0xFF 是将 data[1] 的低 8 位保留下来。0xFF 是一个掩码，它的二进制形式是 11111111，表示只保留 data[1] 的低 8 位
-    //(data[0] << 8) | (data[1] & 0xFF) 的作用是将 data[0] 和 data[1] 这两个字节合并成一个 16 位的整数。
+     if (data.size() < 16) return;
+//    //& 0xFF 是将 data[1] 的低 8 位保留下来。0xFF 是一个掩码，它的二进制形式是 11111111，表示只保留 data[1] 的低 8 位
+//    //(data[0] << 8) | (data[1] & 0xFF) 的作用是将 data[0] 和 data[1] 这两个字节合并成一个 16 位的整数。
+
     quint16 packetType = (data[0] << 8) | (data[1] & 0xFF);
     quint16 protocolType = (data[14] << 8) | (data[15] & 0xFF);
-    offset = 16; // SLL 头部占 16 字节
-
-    //0000   00 00 03 04 00 06 00 00 00 00 00 00 00 00 08 00
-
-
-    //qDebug() << "\n--- SLL 头部 ---";
-    //qDebug() << "Packet Type:" << packetType;
-    //qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
+    offset = 16; // SLL V1 头部占 16 字节  SLL V2 头部占 16 字节
+    qDebug() << "\n--- SLL 头部 ---";
+    qDebug() << "Packet Type:" << packetType;
+    qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
+    if (packetType == 2048) {
+        quint16 protocolType = (data[0] << 8) | (data[1] & 0xFF);
+        quint32 interfaceIndex = (data[2] << 24) | ((data[3] & 0xFF) << 16) | ((data[4] & 0xFF) << 8) | (data[5] & 0xFF);
+        quint16 linkAddrType = (data[6] << 8) | (data[7] & 0xFF);
+        quint16 linkAddrLen = (data[8] << 8) | (data[9] & 0xFF);
+        offset = 20; // 最小 SLL v2 头长度为 20，后续可能还有地址等
+        qDebug() << "\n--- SLL v2 头部 ---";
+        qDebug() << "Protocol Type:" << QString("0x%1").arg(protocolType, 4, 16, QChar('0'));
+        qDebug() << "Interface Index:" << interfaceIndex;
+        qDebug() << "Link-layer Address Type:" << linkAddrType;
+        qDebug() << "Link-layer Address Length:" << linkAddrLen;
+    }
 }
 
 void thriftwidget::parseIPv4Header(const QByteArray &data, int &offset, quint8 &protocol, int &ipHeaderLen, TableEntry& entry) {
@@ -5028,11 +5040,11 @@ void thriftwidget::parseIPv4Header(const QByteArray &data, int &offset, quint8 &
     //0010   7f 00 00 02
     entry.request = srcIP;
     entry.target = dstIP;
-    //qDebug() << "\n--- IPv4 头部 ---";
-    //qDebug() << "Version:" << version;
-    //qDebug() << "Protocol:" << protocol;
-    //qDebug() << "Source IP:" << srcIP;
-    //qDebug() << "Destination IP:" << dstIP;
+    qDebug() << "\n--- IPv4 头部 ---";
+    qDebug() << "Version:" << version;
+    qDebug() << "Protocol:" << protocol;
+    qDebug() << "Source IP:" << srcIP;
+    qDebug() << "Destination IP:" << dstIP;
 
     offset += ipHeaderLen; // 移动偏移量到 TCP 头部
 }
@@ -5053,9 +5065,9 @@ QString thriftwidget::parseTCPHeader(const QByteArray &data, int &offset, int nu
     entry.request = entry.request + ":" + QString::number(srcPort);
     entry.target = entry.target + ":" + QString::number(dstPort);
 
-    //qDebug() << "\n--- TCP 头部 ---";
-    //qDebug() << "Source Port:" << srcPort;
-    //qDebug() << "Destination Port:" << dstPort;
+    qDebug() << "\n--- TCP 头部 ---";
+    qDebug() << "Source Port:" << srcPort;
+    qDebug() << "Destination Port:" << dstPort;
 
     // 解析并输出各个 TCP Flag
     QString a;
@@ -5090,7 +5102,7 @@ QString thriftwidget::parseTCPHeader(const QByteArray &data, int &offset, int nu
 
     QString line = "-------------------------";
     ui->plainTextEdit_4->appendPlainText(line + QString::number(number) + line);
-    //qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
+    qDebug() << "TCP Data:" << data.mid(offset + tcpHeaderLen).toHex(' ');
     printHex(data.mid(offset + tcpHeaderLen), number);
     ui->plainTextEdit_4->appendPlainText("--------------------------------------------------");
     offset += tcpHeaderLen; // 移动到 TCP 数据部分
@@ -5121,7 +5133,8 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
 
-    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250219-1441.pcap";  // 你的 pcap 文件
+    QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250612-1634.pcap";  // 你的 pcap 文件
+    //QString filePath = "C:/Users/张旭/Desktop/fsdownload/ap-20250612-1620.pcap";  // 你的 pcap 文件
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -5400,6 +5413,8 @@ void thriftwidget::on_toolButton_6_clicked() {
             //1000
             command = command + " -g 1000";
         }
+    } else if (ui->comboBox_type->currentIndex() == 4) {
+        command = command + " -t 5";
     }
 
     if (ui->comboBox_nullRequest->currentIndex() == 0) {

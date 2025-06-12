@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1400</width>
-    <height>824</height>
+    <width>1626</width>
+    <height>914</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -2247,7 +2247,7 @@ QToolButton:hover {
                            </size>
                           </property>
                           <property name="currentIndex">
-                           <number>2</number>
+                           <number>0</number>
                           </property>
                           <item>
                            <property name="text">
@@ -2267,6 +2267,11 @@ QToolButton:hover {
                           <item>
                            <property name="text">
                             <string>群聊</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>获取群信息</string>
                            </property>
                           </item>
                          </widget>
@@ -3303,13 +3308,13 @@ padding-right:10px;
             </property>
             <property name="minimumSize">
              <size>
-              <width>150</width>
+              <width>200</width>
               <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>150</width>
+              <width>200</width>
               <height>30</height>
              </size>
             </property>
@@ -3939,13 +3944,13 @@ QToolButton:hover {
             </property>
             <property name="minimumSize">
              <size>
-              <width>150</width>
+              <width>200</width>
               <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>150</width>
+              <width>200</width>
               <height>30</height>
              </size>
             </property>
@@ -4662,7 +4667,7 @@ QToolButton:hover {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page_2">
           <property name="styleSheet">
@@ -4989,13 +4994,13 @@ border: 0px solid rgba(212, 212, 212, 50);</string>
                            <property name="minimumSize">
                             <size>
                              <width>85</width>
-                             <height>25</height>
+                             <height>28</height>
                             </size>
                            </property>
                            <property name="maximumSize">
                             <size>
                              <width>85</width>
-                             <height>40</height>
+                             <height>28</height>
                             </size>
                            </property>
                            <property name="font">
@@ -5050,7 +5055,7 @@ QToolButton:hover {
                            <property name="maximumSize">
                             <size>
                              <width>90</width>
-                             <height>35</height>
+                             <height>28</height>
                             </size>
                            </property>
                            <property name="font">
@@ -5377,7 +5382,7 @@ border-radius: 2px;
                             <bool>false</bool>
                            </property>
                            <attribute name="headerVisible">
-                            <bool>true</bool>
+                            <bool>false</bool>
                            </attribute>
                            <attribute name="headerMinimumSectionSize">
                             <number>20</number>
@@ -9530,6 +9535,12 @@ QScrollBar::up-arrow:vertical {
           </layout>
          </widget>
          <widget class="QWidget" name="page_6">
+          <property name="styleSheet">
+           <string notr="true">#page_6{
+background-color: rgba(0, 0, 0,0);
+color: rgb(255, 255, 255);
+}</string>
+          </property>
           <layout class="QHBoxLayout" name="horizontalLayout_17">
            <property name="leftMargin">
             <number>0</number>
@@ -9555,7 +9566,10 @@ QScrollBar::up-arrow:vertical {
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_26">
+              <layout class="QVBoxLayout" name="verticalLayout_41">
+               <property name="spacing">
+                <number>0</number>
+               </property>
                <property name="leftMargin">
                 <number>0</number>
                </property>
@@ -9565,29 +9579,255 @@ QScrollBar::up-arrow:vertical {
                <property name="rightMargin">
                 <number>0</number>
                </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
-                <widget class="QSplitter" name="splitter_6">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                <widget class="QWidget" name="widget_27" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>30</height>
+                  </size>
                  </property>
-                 <property name="handleWidth">
-                  <number>0</number>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
                  </property>
-                 <widget class="QTableWidget" name="tableWidget_func">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                    <horstretch>5</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_25">
+                  <property name="leftMargin">
+                   <number>10</number>
                   </property>
-                  <property name="font">
-                   <font>
-                    <family>OPPOSans B</family>
-                    <pointsize>10</pointsize>
-                   </font>
+                  <property name="topMargin">
+                   <number>0</number>
                   </property>
-                  <property name="styleSheet">
-                   <string notr="true">QTableWidget::item:hover{
+                  <property name="rightMargin">
+                   <number>10</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="label_11">
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#ced4da;</string>
+                    </property>
+                    <property name="text">
+                     <string>显示类型</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_show_source_5">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>REPLY类型</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_show_source_2">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>ONEWAY类型</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_show_source_3">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>CALL类型</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_show_source_4">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>显示握手数据</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_50">
+                    <property name="font">
+                     <font>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_find_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>28</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>5999</width>
+                      <height>28</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans</family>
+                      <pointsize>10</pointsize>
+                      <stylestrategy>PreferAntialias</stylestrategy>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit{
+color: rgb(231, 238, 244);
+border-radius: 14px;
+background-color: rgb(25, 25, 25, 155);
+border: 0px solid rgba(255, 255, 255, 0);
+border-radius: 5px;
+padding-left:10px;
+padding-right:10px;
+}</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>搜索接口</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_25" native="true">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_42">
+                  <item>
+                   <widget class="QTableWidget" name="tableWidget_func">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>5</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>OPPOSans B</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QTableWidget::item:hover{
 	background-color:rgba(92,188,227,0)
 }
 QTableWidget::item:selected{
@@ -9612,134 +9852,136 @@ QTableWidget{
 	background-color: rgba(255, 255, 255, 0);
 	color: rgb(255, 255, 255);
 }</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>序号</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>时间</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>标志</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>请求源</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>目标源</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>信息</string>
-                   </property>
-                  </column>
-                 </widget>
-                 <widget class="QPlainTextEdit" name="plainTextEdit_4">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                    <horstretch>1</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>500</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Cascadia Code SemiBold</family>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">#plainTextEdit_4{
-	border: 1px solid rgba(197, 197, 197,50);
-	background-color: rgba(255, 255, 255, 20);
-	border-radius: 5px;
-	color: rgb(255, 255, 255);
-}</string>
-                  </property>
-                  <property name="plainText">
-                   <string/>
-                  </property>
-                 </widget>
+                    </property>
+                    <property name="editTriggers">
+                     <set>QAbstractItemView::NoEditTriggers</set>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string>序号</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>时间</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>标志</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>请求源</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>目标源</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>信息</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
              </widget>
              <widget class="QWidget" name="widget_16" native="true">
-              <layout class="QHBoxLayout" name="horizontalLayout_25">
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_26">
                <item>
-                <widget class="QSplitter" name="splitter_7">
+                <widget class="QTextEdit" name="textEdit_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Cascadia Code SemiBold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#textEdit_2{
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="textEdit_3">
+                 <property name="font">
+                  <font>
+                   <family>Cascadia Code SemiBold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#textEdit_3{
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPlainTextEdit" name="plainTextEdit_4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>500</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Cascadia Code SemiBold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#plainTextEdit_4{
+	border: 1px solid rgba(197, 197, 197,50);
+	background-color: rgba(255, 255, 255, 20);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+}</string>
+                 </property>
+                 <property name="plainText">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_10">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
-                 <property name="handleWidth">
-                  <number>0</number>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
                  </property>
-                 <widget class="QTextEdit" name="textEdit_2">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                    <horstretch>1</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Cascadia Code SemiBold</family>
-                    <pointsize>11</pointsize>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">#textEdit_2{
-	border: 1px solid rgba(197, 197, 197,50);
-	background-color: rgba(255, 255, 255, 20);
-	border-radius: 5px;
-	color: rgb(255, 255, 255);
-}</string>
-                  </property>
-                 </widget>
-                 <widget class="QTextEdit" name="textEdit_3">
-                  <property name="font">
-                   <font>
-                    <family>Cascadia Code SemiBold</family>
-                    <pointsize>11</pointsize>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">#textEdit_3{
-	border: 1px solid rgba(197, 197, 197,50);
-	background-color: rgba(255, 255, 255, 20);
-	border-radius: 5px;
-	color: rgb(255, 255, 255);
-}</string>
-                  </property>
-                 </widget>
-                </widget>
+                </spacer>
                </item>
               </layout>
              </widget>
@@ -11339,8 +11581,8 @@ QToolButton:hover {
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../lib.qrc"/>
   <include location="../images.qrc"/>
+  <include location="../lib.qrc"/>
  </resources>
  <connections/>
 </ui>
