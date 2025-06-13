@@ -170,7 +170,7 @@ thriftwidget::thriftwidget(QWidget *parent) :
     ui(new Ui::thriftwidget)
 {
     ui->setupUi(this);
-
+    this->setAcceptDrops(true);
     qRegisterMetaType<ServerInfoStruct>("ServerInfoStruct&");
     //ui->treeWidget->setStyle(QStyleFactory::create("windows"));
     // 设置树的列数（如果需要多列）
@@ -193,6 +193,25 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
     // 设置所有列的大小调整模式为 Interactive
     header->setSectionResizeMode(QHeaderView::Interactive);
+
+
+    ui->tableWidget_func->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->tableWidget_func->verticalHeader()->setHidden(true);
+
+    // 设置选择行为为整行选中
+    ui->tableWidget_func->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    // 设置选择模式为单选
+    ui->tableWidget_func->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->tableWidget_func->setColumnWidth(0, 70);
+    ui->tableWidget_func->setColumnWidth(1, 250);
+    ui->tableWidget_func->setColumnWidth(2, 100);
+    ui->tableWidget_func->setColumnWidth(3, 200);
+    ui->tableWidget_func->setColumnWidth(4, 200);
+    //ui->tableWidget_func->resizeColumnsToContents();  // 根据内容调整列宽
+    //ui->tableWidget_func->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // 自动填充
+    ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
     // 设置默认的列高度为 30 像素
     //header->setDefaultSectionSize(200);
@@ -364,8 +383,11 @@ thriftwidget::thriftwidget(QWidget *parent) :
     }
 }
 
-QString thriftwidget::getCpuInfo(const QString &cmd)
-{
+thriftwidget::~thriftwidget() {
+    delete ui;
+}
+
+QString thriftwidget::getCpuInfo(const QString &cmd) {
     QProcess p;        //启动外部程序
     p.start(cmd);      //一体式启动，不分离，主程序退出则启动程序退出,使用close关闭
     //p.startDetached(cmd)  //分离式启动，主程序退出后，外部程序继续运行
@@ -390,13 +412,11 @@ QString thriftwidget::getCpuInfo(const QString &cmd)
     return result;
 }
 
-QString thriftwidget::getType(int index)
-{
+QString thriftwidget::getType(int index) {
     return "";
 }
 
-QString thriftwidget::getType(QString data)
-{
+QString thriftwidget::getType(QString data) {
     if (data == "i32") {
 
     } else if (data == "i64") {
@@ -405,14 +425,25 @@ QString thriftwidget::getType(QString data)
     return "";
 }
 
-QString thriftwidget::getValue(QString data)
-{
+QString thriftwidget::getValue(QString data) {
     return "";
 }
 
-thriftwidget::~thriftwidget()
-{
-    delete ui;
+
+void thriftwidget::dragEnterEvent(QDragEnterEvent*event) { //文件拖拽到窗体内，触发
+    qDebug() << "收到数据";
+
+    if(event->mimeData()->hasFormat("text/uri-list")) {
+        event->acceptProposedAction(); //事件数据中存在路径，方向事件
+    } else {
+        event->ignore();
+    }
+
+}
+void thriftwidget::dropEvent(QDropEvent *event){  //文件拖拽到窗体内，释放，触发
+    QList<QUrl> urls = event->mimeData()->urls();
+    QString fileName = urls.first().toLocalFile();
+    readPcapFile(fileName);
 }
 
 uint32_t thriftwidget::string2Uint32(QString data)
@@ -5114,25 +5145,6 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
 {
     qDebug() <<"加载文件";
     ui->stackedWidget_2->setCurrentIndex(2);
-    ui->tableWidget_func->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
-    ui->tableWidget_func->verticalHeader()->setHidden(true);
-
-    // 设置选择行为为整行选中
-    ui->tableWidget_func->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-    // 设置选择模式为单选
-    ui->tableWidget_func->setSelectionMode(QAbstractItemView::SingleSelection);
-
-    ui->tableWidget_func->setColumnWidth(0, 70);
-    ui->tableWidget_func->setColumnWidth(1, 250);
-    ui->tableWidget_func->setColumnWidth(2, 100);
-    ui->tableWidget_func->setColumnWidth(3, 200);
-    ui->tableWidget_func->setColumnWidth(4, 200);
-    //ui->tableWidget_func->resizeColumnsToContents();  // 根据内容调整列宽
-    //ui->tableWidget_func->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // 自动填充
-    ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
-
-
     QFileDialog dialog;
 
     // 设置文件过滤器
@@ -5156,7 +5168,11 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     }
     QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250612-1634.pcap";  // 你的 pcap 文件
     //QString filePath = "C:/Users/张旭/Desktop/fsdownload/ap-20250612-1620.pcap";  // 你的 pcap 文件
-    QFile file(fileList[0]);
+    readPcapFile(fileList[0]);
+}
+
+void thriftwidget::readPcapFile(QString fileName) {
+    QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "无法打开 pcap 文件:" << file.errorString();
@@ -5239,44 +5255,6 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
         ui->tableWidget_func->setItem(i, 5, new QTableWidgetItem(tableData[i].info));
     }
 
-/*
-    // 读取 pcap 全局头
-    PcapFileHeader fileHeader;
-    if (file.read(reinterpret_cast<char*>(&fileHeader), sizeof(PcapFileHeader)) != sizeof(PcapFileHeader)) {
-        qDebug() << "读取 pcap 头部失败";
-        return;
-    }
-    qDebug() << "成功打开 pcap 文件:" << filePath;
-    qDebug() << "文件标识: 0x" << QString::number(fileHeader.magic, 16);
-    qDebug() << "版本: " << fileHeader.versionMajor << "." << fileHeader.versionMinor;
-    qDebug() << "最大捕获长度: " << fileHeader.snapLen << " 字节";
-    qDebug() << "链路类型: " << fileHeader.linkType;
-    // 读取并显示数据包
-    int packetCount = 0;
-    while (!file.atEnd()) {
-        PcapPacketHeader packetHeader;
-        if (file.read(reinterpret_cast<char*>(&packetHeader), sizeof(PcapPacketHeader)) != sizeof(PcapPacketHeader)) {
-            qDebug() << "读取数据包头失败";
-            break;
-        }
-
-        QByteArray packetData = file.read(packetHeader.capLen);
-        if (packetData.size() != static_cast<int>(packetHeader.capLen)) {
-            qDebug() << "读取数据包内容失败";
-            break;
-        }
-
-
-        QString dataPack = "数据包 " + QString::number(++packetCount) + "，时间戳: " + formattedTime
-                  + "." + QString::number(packetHeader.tsUsec) + "，长度: " + QString::number(packetHeader.capLen) + " 字节";
-
-        ui->listWidget_func->addItem(dataPack);
-        ui->plainTextEdit_4->appendPlainText(dataPack);
-
-        printHex(packetData); // 以十六进制输出数据包内容
-        ui->plainTextEdit_4->appendPlainText("--------------------------------------------------------------------------------------------------");
-    }
-*/
     qDebug() << "文件读取完成！";
     file.close();
 }
