@@ -317,8 +317,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
     //ui->splitter_5->setStretchFactor(1,1);
     ui->toolButton_returnTest->hide();
     ui->toolButton_propertyTest->hide();
-    ui->toolButton_capturePackage->hide();
-    ui->toolButton_inportpcap->hide();
+    //ui->toolButton_capturePackage->hide();
+    //ui->toolButton_inportpcap->hide();
 
     buildChart1();
     buildChart2();
@@ -3922,8 +3922,8 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->tabWidget_test->hide();
         ui->toolButton_propertyTest->hide();
         ui->stackedWidget_2->setCurrentIndex(0);
-        ui->toolButton_capturePackage->hide();
-        ui->toolButton_inportpcap->hide();
+        //ui->toolButton_capturePackage->hide();
+        //ui->toolButton_inportpcap->hide();
         ui->toolButton_save->show();
         ui->toolButton_request->show();
     } else if (index == 1) {
@@ -3938,8 +3938,8 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
             ui->stackedWidget_2->setCurrentIndex(3);
         }
         ui->stackedWidget_mode->setCurrentIndex(1);
-        ui->toolButton_capturePackage->hide();
-        ui->toolButton_inportpcap->hide();
+        //ui->toolButton_capturePackage->hide();
+        //ui->toolButton_inportpcap->hide();
         ui->toolButton_save->hide();
         ui->toolButton_request->hide();
     } else if (index == 2) {
@@ -3950,8 +3950,8 @@ void thriftwidget::on_comboBox_testType_currentIndexChanged(int index)
         ui->toolButton_propertyTest->show();
         ui->stackedWidget_mode->setCurrentIndex(1);
         ui->stackedWidget_2->setCurrentIndex(2);
-        ui->toolButton_capturePackage->show();
-        ui->toolButton_inportpcap->show();
+        //ui->toolButton_capturePackage->show();
+        //ui->toolButton_inportpcap->show();
         ui->toolButton_save->hide();
         ui->toolButton_request->hide();
         ui->toolButton_propertyTest->hide();
@@ -5133,9 +5133,30 @@ void thriftwidget::on_toolButton_inportpcap_clicked()
     ui->tableWidget_func->horizontalHeader()->setStretchLastSection(true); // 让最后一列占满剩余空间
 
 
+    QFileDialog dialog;
+
+    // 设置文件过滤器
+    dialog.setNameFilter("Pcap Files (*.pcap)");
+
+    // 设置只能选择文件
+    dialog.setFileMode(QFileDialog::ExistingFile);
+
+    dialog.setDirectory("C:/Users/张旭/Desktop/fsdownload");
+
+    QStringList fileList;
+    // 打开文件对话框
+    if (dialog.exec()) {
+        // 获取所选文件的路径
+        fileList = dialog.selectedFiles();
+    }
+
+    //QString filePath;
+    if (fileList.size() == 0) {
+        return;
+    }
     QString filePath = "C:/Users/张旭/Desktop/fsdownload/minic-20250612-1634.pcap";  // 你的 pcap 文件
     //QString filePath = "C:/Users/张旭/Desktop/fsdownload/ap-20250612-1620.pcap";  // 你的 pcap 文件
-    QFile file(filePath);
+    QFile file(fileList[0]);
 
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "无法打开 pcap 文件:" << file.errorString();
