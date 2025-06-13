@@ -195,14 +195,20 @@ public:
     QThread * threadExec;
     sshHandleExec * sshExec;
 
+
+
     explicit thriftwidget(QWidget *parent = 0);
+    ~thriftwidget();
     void ceateItem();
     QString getCpuInfo(const QString &cmd);
     QString getType(int index);
     QString getType(QString data);
     QString getValue(QString data);
-    ~thriftwidget();
+    
 
+
+    void dragEnterEvent(QDragEnterEvent*event); //文件拖拽到窗体内，触发
+    void dropEvent(QDropEvent *event); //文件拖拽到窗体内，释放，触发
     
 
     uint32_t string2Uint32(QString data);  //将四字节字符串转为需要发送的uint32
@@ -491,6 +497,8 @@ private slots:
     void printHex(const QByteArray &data, int number);
 
     void on_toolButton_inportpcap_clicked();
+
+    void readPcapFile(QString fileName);
 
     void on_tableWidget_func_itemClicked(QTableWidgetItem *item);
 
