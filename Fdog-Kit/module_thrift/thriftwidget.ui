@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1626</width>
+    <width>1398</width>
     <height>914</height>
    </rect>
   </property>
@@ -9445,7 +9445,7 @@ color: rgb(255, 255, 255);
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_41">
                <property name="spacing">
-                <number>0</number>
+                <number>6</number>
                </property>
                <property name="leftMargin">
                 <number>0</number>
@@ -9519,7 +9519,7 @@ color: rgb(255, 255, 255);
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBox_show_source_5">
+                   <widget class="QCheckBox" name="checkBox_show_source_reply">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -9566,7 +9566,7 @@ color: rgb(255, 255, 255);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBox_show_source_2">
+                   <widget class="QCheckBox" name="checkBox_show_source_oneway">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -9613,7 +9613,7 @@ color: rgb(255, 255, 255);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBox_show_source_3">
+                   <widget class="QCheckBox" name="checkBox_show_source_call">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -9660,7 +9660,7 @@ color: rgb(255, 255, 255);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBox_show_source_4">
+                   <widget class="QCheckBox" name="checkBox_show_source_tcp">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -9678,7 +9678,7 @@ color: rgb(255, 255, 255);
                      <string notr="true">color: rgb(255, 255, 255);</string>
                     </property>
                     <property name="text">
-                     <string>显示握手数据</string>
+                     <string>TCP握手</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -9939,7 +9939,7 @@ QTableWidget::item:selected{
 
 
 QHeaderView {
-	height:25px;
+	height:28px;
 	color:white;
 	background-color: rgba(255, 255, 255, 20);
 	border-left:0px solid gray; 
@@ -9949,7 +9949,7 @@ QHeaderView {
 }
 
 QHeaderView::section {
-	height:25px;
+	height:28px;
 	color:white;
 	background-color: rgba(255, 255, 255, 20);
 	border-left:0px solid gray; 
@@ -9977,7 +9977,7 @@ QTableWidget{
                      <set>QAbstractItemView::NoEditTriggers</set>
                     </property>
                     <attribute name="horizontalHeaderVisible">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </attribute>
                     <column>
                      <property name="text">
@@ -10123,8 +10123,119 @@ QTableWidget{
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">background-color: rgba(255, 255, 255, 40);</string>
+                     <string notr="true">#widget_30{
+background-color: rgba(255, 255, 255, 40);
+}</string>
                     </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_31">
+                     <property name="leftMargin">
+                      <number>10</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>10</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QCheckBox" name="checkBox_show_json_2">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>36</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>OPPOSans B</family>
+                         <pointsize>10</pointsize>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
+                       <property name="toolTip">
+                        <string>若显示json解析错误，请取消勾选后再试  注意：JSON不支持int64,勾选标准格式化后大于15位需要注意是否丢失精度</string>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QToolTip {
+color: rgb(255, 255, 255);
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>格式化为标准JSON</string>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_10">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeType">
+                        <enum>QSizePolicy::Fixed</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>10</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QCheckBox" name="checkBox_super_2">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>39</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>OPPOSans B</family>
+                         <pointsize>10</pointsize>
+                         <stylestrategy>PreferAntialias</stylestrategy>
+                        </font>
+                       </property>
+                       <property name="toolTip">
+                        <string>字符串类型的数据中包含json数据，尝试对其格式化</string>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QToolTip {
+color: rgb(255, 255, 255);
+background-color: rgb(108, 117, 125, 65);
+border-radius: 2px;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>超级模式</string>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_16">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                   <item>

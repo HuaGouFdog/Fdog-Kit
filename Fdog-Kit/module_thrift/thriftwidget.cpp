@@ -5179,8 +5179,8 @@ void thriftwidget::readPcapFile(QString fileName) {
         qDebug() << "无法打开 pcap 文件:" << file.errorString();
         return;
     }
-
-    qDebug() <<"加载文件2";
+    pcapFile = fileName;
+    qDebug() <<"加载文件" << fileName;
     PcapHeader pcapHeader;
     file.read(reinterpret_cast<char*>(&pcapHeader), sizeof(PcapHeader));
 
@@ -5258,6 +5258,28 @@ void thriftwidget::readPcapFile(QString fileName) {
 
     qDebug() << "文件读取完成！";
     file.close();
+}
+
+void thriftwidget::filterTable(QTableWidget* tableWidget, const QString& filterText, int column, bool isShow) {
+    for (int row = 0; row < tableWidget->rowCount(); ++row) {
+        QTableWidgetItem* item = tableWidget->item(row, column);
+        if (item && item->text().contains(filterText, Qt::CaseInsensitive)) {
+            if (isShow) {
+                tableWidget->setRowHidden(row, false); // 显示
+                qDebug() << item->text() << "显示" <<isShow;
+            } else {
+                tableWidget->setRowHidden(row, true); // 隐藏
+                qDebug() << item->text() << "隐藏" << isShow;
+            }
+        }
+//                && !isShow) {
+//            tableWidget->setRowHidden(row, true); // 隐藏
+//            qDebug() << item->text() << "隐藏" << isShow;
+//        } else if (item && item->text().contains(filterText, Qt::CaseInsensitive) && isShow) {
+//            tableWidget->setRowHidden(row, false); // 显示
+//            qDebug() << item->text() << "显示" <<isShow;
+//        }
+    }
 }
 
 void thriftwidget::on_tableWidget_func_itemClicked(QTableWidgetItem *item)
@@ -5544,5 +5566,29 @@ void thriftwidget::on_toolButton_close_clicked()
 {
     ui->label_time->setText("");
     ui->toolButton_close->hide();
+}
+
+
+void thriftwidget::on_checkBox_show_source_reply_clicked()
+{
+    filterTable(ui->tableWidget_func, "REPLY", 5, ui->checkBox_show_source_reply->isChecked()); // 对第5列进行过滤
+}
+
+
+void thriftwidget::on_checkBox_show_source_tcp_clicked()
+{
+    filterTable(ui->tableWidget_func, "TCP", 5, ui->checkBox_show_source_tcp->isChecked()); // 对第5列进行过滤
+}
+
+
+void thriftwidget::on_checkBox_show_source_call_clicked()
+{
+    filterTable(ui->tableWidget_func, "CALL", 5, ui->checkBox_show_source_call->isChecked()); // 对第5列进行过滤
+}
+
+
+void thriftwidget::on_checkBox_show_source_oneway_clicked()
+{
+    filterTable(ui->tableWidget_func, "ONEWAY", 5, ui->checkBox_show_source_oneway->isChecked()); // 对第5列进行过滤
 }
 

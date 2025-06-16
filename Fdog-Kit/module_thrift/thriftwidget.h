@@ -195,6 +195,7 @@ public:
     QThread * threadExec;
     sshHandleExec * sshExec;
 
+    QString pcapFile;
 
 
     explicit thriftwidget(QWidget *parent = 0);
@@ -500,6 +501,8 @@ private slots:
 
     void readPcapFile(QString fileName);
 
+    void filterTable(QTableWidget* tableWidget, const QString& filterText, int column, bool isShow);
+
     void on_tableWidget_func_itemClicked(QTableWidgetItem *item);
 
     void parseSLLHeader(const QByteArray &data, int &offset);
@@ -538,6 +541,10 @@ private slots:
     void on_comboBox_transport_currentTextChanged(const QString &arg1);
 
     void on_toolButton_close_clicked();
+    void on_checkBox_show_source_reply_clicked();
+    void on_checkBox_show_source_tcp_clicked();
+    void on_checkBox_show_source_call_clicked();
+    void on_checkBox_show_source_oneway_clicked();
 };
 
 Q_DECLARE_METATYPE(QVector<uint8_t>);
