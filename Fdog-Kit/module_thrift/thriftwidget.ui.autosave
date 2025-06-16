@@ -9939,7 +9939,7 @@ QTableWidget::item:selected{
 
 
 QHeaderView {
-	height:25px;
+	height:28px;
 	color:white;
 	background-color: rgba(255, 255, 255, 20);
 	border-left:0px solid gray; 
@@ -9949,7 +9949,7 @@ QHeaderView {
 }
 
 QHeaderView::section {
-	height:25px;
+	height:28px;
 	color:white;
 	background-color: rgba(255, 255, 255, 20);
 	border-left:0px solid gray; 
