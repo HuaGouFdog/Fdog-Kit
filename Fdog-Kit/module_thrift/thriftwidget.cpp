@@ -1469,7 +1469,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     //方法长度名
     QString func_len = data.mid(0, 8);
     QString headers_func_length = QString::number(strtol(func_len.toStdString().c_str(), nullptr, 16));
-    //qDebug() << "方法长度 = " << headers_func_length;
+    qDebug() << "方法长度 = " << headers_func_length;
     //label_headers = label_headers + "方法长度:" + headers_func_length + "   ";
     temp = temp + addColorHtml(func_len, sourceColorMap[THRIFT_FUNC_LENGTH]);
     bool ok;
@@ -1479,7 +1479,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     //方法名
     QString fun_name = data.mid(0, len);
     temp = temp + addColorHtml(fun_name, sourceColorMap[THRIFT_FUNC_NAME]);
-    //qDebug() << "方法名 = " << hexToString(fun_name);
+    qDebug() << "方法名 = " << fun_name;
     label_headers = label_headers + "接口名：" + hexToString(textEdit_data,fun_name) + "    ";
     data = data.mid(len);
     //流水号
@@ -1487,7 +1487,7 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
     temp = temp + addColorHtml(func_sn, sourceColorMap[THRIFT_SN]);
     data = data.mid(8);
     QString headers_data_sn = QString::number(strtol(func_sn.toStdString().c_str(), nullptr, 16));
-    //qDebug() << "流水号 = " << headers_data_sn;
+    qDebug() << "流水号 = " << headers_data_sn;
     //label_headers = label_headers + "流水号:" + headers_data_sn + "   ";
 
     QString paramType;
@@ -1505,19 +1505,26 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
 
     QStringList paramTypeList;
     if (type_data == "80010001") {
-        for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data,fun_name)).size(); i++) {
-            if (baseType.contains(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType)) {
-                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramName);
-            } else {
-                paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data,fun_name)).value(i + 1).paramType);
+        if (funcParamInMap.value(hexToString(textEdit_data, fun_name)).size() > 0) {
+            for(int i = 0; i < funcParamInMap.value(hexToString(textEdit_data, fun_name)).size(); i++) {
+                if (baseType.contains(funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(i + 1).paramType)) {
+                    qDebug() << "添加值1 " <<funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(i + 1).paramName;
+                    paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(i + 1).paramName);
+                } else {
+                    paramTypeList.push_back(funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(i + 1).paramType);
+                    qDebug() << "添加值2 " <<funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(i + 1).paramType;
+                }
             }
+        } else {
+            paramTypeList.push_back("");
+            qDebug() << "未匹配 添加空值";
         }
     }
     //数据
     //编号两位数  序号4位数 数据
     //data = temp + data;
     //for(int i = 0; i < = 500; i++) {
-    //qDebug() << "数据= " << data;
+    qDebug() << "数据= " << data;
     if (type_data == "80010001" || type_data == "80010002") {
         if (type_data == "80010001") {
             textEdit_data->append(addColorBracketsHtml(getRetract() + "{"));
@@ -1569,13 +1576,16 @@ void thriftwidget::handleMessage(QTextEdit * textEdit_data, QString &data)
                 temp = temp + handleString(textEdit_data,data, isEnd, paramTypeList[sum]);
             } else if (value_type == "0c") {
                 //struct
-                //qDebug() << "进入struct";
-
+                qDebug() << "进入struct 0" << paramTypeList[sum];
+                qDebug() << "进入struct 1" << funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName;
+                qDebug() << "进入struct 2" << funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType;
+                qDebug() << "进入struct 3" << funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName;
+                qDebug() << "进入struct 4";
                 if (type_data == "80010001") {
-                    temp = temp + handleStruct(textEdit_data,data, isEnd, paramTypeList[sum],
+                    temp = temp + handleStruct(textEdit_data, data, isEnd, paramTypeList[sum],
                         funcParamInMap.value(hexToString(textEdit_data, fun_name)).value(sum + 1).paramName);
                 } else {
-                    temp = temp + handleStruct(textEdit_data,data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
+                    temp = temp + handleStruct(textEdit_data, data, isEnd, funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramType,
                     funcParamOutMap.value(hexToString(textEdit_data, fun_name)).value(1).paramName);
                 }
                 //固定1
@@ -1918,7 +1928,7 @@ QString thriftwidget::handleStruct(QTextEdit * textEdit_data, QString &str, QStr
     } else {
         textEdit_data->append(addColorFieldHtml(getRetract() + "\"" + outParam + "\"")  + addColorBracketsHtml(":{"));
     }
-
+    qDebug() << " outParam = " << outParam;
     retractNum++;
     //读取编号 序号 数据
     QString temp = "";
@@ -1934,7 +1944,7 @@ QString thriftwidget::handleStruct(QTextEdit * textEdit_data, QString &str, QStr
         }
         QString value_type = str.mid(0, 2);
         str = str.mid(2);
-        //qDebug() << "value_type = " << value_type;
+        qDebug() << "value_type = " << value_type;
         if (value_type == "00") {
             // QString value_sn = str.mid(0, 4);
             // str = str.mid(4);
@@ -3018,13 +3028,15 @@ void thriftwidget::handleHexData(QTextEdit * textEdit_data, QTextEdit * textEdit
 
     textEdit_data2->append("------------------------------------------------------------------------------");
     //对数据进行染色
+    qDebug() << "handleHexData data = 1";
     handleMessage(textEdit_data, data);
+    qDebug() << "handleHexData data = 2";
     //json格式化
     //将数据更加细致格式化，如果勾选了的话
-    if (ui->checkBox_show_json->isChecked()) {
+    if (ui->checkBox_show_json_2->isChecked()) {
         QString needToJsonData = textEdit_data->toPlainText();
         textEdit_data->clear();
-        if (ui->checkBox_super->isChecked()) {
+        if (ui->checkBox_super_2->isChecked()) {
             utils_parsingJsonInfo(textEdit_data, needToJsonData, true);
         } else {
             utils_parsingJsonInfo(textEdit_data, needToJsonData);
