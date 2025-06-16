@@ -196,7 +196,8 @@ thriftwidget::thriftwidget(QWidget *parent) :
 
 
     ui->tableWidget_func->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
-    ui->tableWidget_func->verticalHeader()->setHidden(true);
+    ui->tableWidget_func->verticalHeader()->setHidden(false);
+    ui->treeWidget->setHeaderHidden(false);  // 显示表头
 
     // 设置选择行为为整行选中
     ui->tableWidget_func->setSelectionBehavior(QAbstractItemView::SelectRows);
