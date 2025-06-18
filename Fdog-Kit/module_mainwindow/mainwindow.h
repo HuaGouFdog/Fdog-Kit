@@ -184,6 +184,8 @@ private slots:
     //了解更多信号 跳转github
     void on_toolButton_more_clicked();
 
+
+
     //切换界面动画完成信号 移除GraphicsEffect
     void whenAnimationFinish();
     //切换界面动画完成信号 显示/隐藏侧边栏
@@ -198,6 +200,8 @@ private slots:
     void rece_newSave(connnectInfoStruct& cInfoStruct);
     //跳转至设置信号
     void rece_windowsSetting();
+    //跳转到thrift模块
+    void rece_analysePcapFile(QString fileName);
     //托盘菜单
     void rece_systemTrayMenu();
     //处理托盘图标事件

@@ -981,6 +981,7 @@ void MainWindow::on_toolButton_side_shell_clicked() {
         m_smanagewidget = new sshwidgetmanagewidget(m_confInfo);
         m_smanagewidget->setObjectName("m_smanagewidget");
         ui->stackedWidget->addWidget(m_smanagewidget);
+        connect(m_smanagewidget,SIGNAL(send_analysePcapFile(QString)),this,SLOT(rece_analysePcapFile(QString)));
         m_smanagewidget->show();
         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
         QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
@@ -1263,6 +1264,28 @@ void MainWindow::rece_windowsSetting() {
     on_toolButton_side_setting_clicked();
     //跳转到终端
     m_stwidget->getTerminalSetting();
+}
+
+void MainWindow::rece_analysePcapFile(QString fileName) {
+    qDebug() << "rece_analysePcapFile 接收数据=" << fileName;
+    //切换到thrift模块抓包界面，打开文件
+    if (m_twidget == NULL) {
+        m_twidget = new thriftwidget(m_confInfo);
+        m_twidget->setObjectName("m_twidget");
+        ui->stackedWidget->addWidget(m_twidget);
+        m_twidget->show();
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count()-1);
+    } else {
+        int widgetCount = ui->stackedWidget->count();
+        for (int i = 0; i < widgetCount; ++i) {
+            QWidget *widget = ui->stackedWidget->widget(i);
+            if (widget->objectName() == "m_twidget") {
+                ui->stackedWidget->setCurrentIndex(i);
+            }
+        }
+    }
+    m_twidget->comboBox_testType_ChangedIndex(2);
+    m_twidget->readPcapFile(fileName);
 }
 
 void MainWindow::rece_systemTrayMenu() {
