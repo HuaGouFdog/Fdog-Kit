@@ -307,8 +307,8 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     sshSftp = new sshHandleSftp();
     threadSftp = new QThread();
     sshSftp->moveToThread(threadSftp);
-    connect(sshSftp, SIGNAL(send_fileProgress_sgin(int64_t,int64_t)),this,
-            SLOT(rece_fileProgress_sgin(int64_t,int64_t)));
+    connect(sshSftp, SIGNAL(send_fileProgress_sgin(int64_t,int64_t, int)),this,
+            SLOT(rece_fileProgress_sgin(int64_t,int64_t, int)));
 
     connect(sshSftp, SIGNAL(send_createNewFile_sgin(QString,QString,int,int64_t)),this,
             SLOT(rece_createNewFile_sgin(QString,QString,int,int64_t)));
@@ -377,6 +377,7 @@ sshwidget::sshwidget(connnectInfoStruct& cInfoStruct, config * confInfo, QString
     connect (copyAction,SIGNAL(triggered()),this,SLOT(rece_copy_sgin()));
     connect (pasteAction,SIGNAL(triggered()),this,SLOT(rece_paste_sgin()));
     connect (pasteActionSelect,SIGNAL(triggered()),this,SLOT(rece_pasteSelect_sgin()));
+    connect (pacpFileAction,SIGNAL(triggered()),this,SLOT(rece_analysePcapFile_sgin()));
     connect (downloadAction,SIGNAL(triggered()),this,SLOT(rece_downloadFile_sgin()));
     connect (uploadAction,SIGNAL(triggered()),this,SLOT(on_toolButton_upload_clicked()));
     QObject::connect(textEdit_s, &QTextEdit::customContextMenuRequested, [=]()
@@ -564,7 +565,7 @@ void sshwidget::sendData(QString data)
     //     qDebug() << "更新当前行数 currentLineLocal = " << currentLine;
     // }
 
-    //qDebug() << "sendData 打印" << data;
+    qDebug() << "sendData 打印" << data;
 
     if (data == "") {
         return;
@@ -599,8 +600,8 @@ void sshwidget::sendData(QString data)
     // textEdit_s->setPalette(palette2);
     cursor_s.beginEditBlock();
     cursor.beginEditBlock();
-
-    
+    qDebug() << "当前光标前数据1 =" << movePositionStartLineSelect(sshwidget::KeepAnchor, -1);
+    qDebug() << "当前光标后数据1 =" << movePositionEndLineSelect(sshwidget::KeepAnchor, -1);
     cursor_s.insertText(data);
 
 
@@ -610,6 +611,8 @@ void sshwidget::sendData(QString data)
     cursor.endEditBlock();  
 
     setUpdatesEnabled(true);
+    qDebug() << "当前光标前数据1 =" << movePositionStartLineSelect(sshwidget::KeepAnchor, -1);
+    qDebug() << "当前光标后数据2 =" << movePositionEndLineSelect(sshwidget::KeepAnchor, -1);
 
     int cpos2 = getCurrentRowPositionByLocal();
 
@@ -658,7 +661,7 @@ void sshwidget::sendData2(QString data) {
     QPalette palette = ui->plainTextEdit->palette();
     palette.setColor(QPalette::Text, QColor(0, 0, 0, 0)); // 文字颜色设置为透明
     ui->plainTextEdit->setPalette(palette);
-    qDebug() << "sendData2 当前行数据 =" << movePositionEndLineSelect();
+    qDebug() << "sendData2 当前行数据 =" << movePositionEndLineSelect(sshwidget::KeepAnchor, -1);
 }
 
 void sshwidget::setData(QString data)
@@ -1148,10 +1151,12 @@ void sshwidget::rece_channel_readS(QStringList data)
             } else if (data[i].contains("\n")) {
                 int position = data[i].indexOf("\n");
                 if (position == 0) {
+                    int newlineCount = data[i].count("\n");
+                    //可能会出现多个\n
                     ////sendBuffData();
                     ////qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                    movePositionDown(sshwidget::MoveAnchor, 1);
-                    setCurrentRowPosition(1);
+                    movePositionDown(sshwidget::MoveAnchor, newlineCount);
+                    setCurrentRowPosition(newlineCount);
                     movePositionStartLine(sshwidget::MoveAnchor);
                     // 获取选定文本
                     // QString previousChar = movePositionLeftSelect(sshwidget::KeepAnchor, data[i].mid(4).length());
@@ -1175,6 +1180,8 @@ void sshwidget::rece_channel_readS(QStringList data)
                     movePositionRemoveLeftSelect(sshwidget::MoveAnchor, data[i].length() - 1);
                     qDebug() << data << "向右移动光标(删除)" << data[i].length() - 1 << " 打印" << data[i].mid(1);
                     sendData(data[i].mid(1));
+
+                    //如果是连续的\n
 
                 }
             } else {
@@ -1552,12 +1559,12 @@ void sshwidget::rece_channel_readS(QStringList data)
                         movePositionDown(sshwidget::MoveAnchor, 1);
                         setCurrentRowPosition(1);
                         movePositionStartLine(sshwidget::MoveAnchor);
-                        qDebug() << "打印数据";
+                        //qDebug() << "打印数据";
                         sendData(SelectData);
                         //buffData = buffData + SelectData;
                         //sendBuffData();
                         //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
-                        qDebug() << "删除光标后面的数据";
+                        //qDebug() << "删除光标后面的数据";
                         movePositionRemoveEndLineSelect(sshwidget::KeepAnchor, -1);
                         movePositionUp(sshwidget::MoveAnchor, 2);
                         setCurrentRowPosition(-2);
@@ -1585,7 +1592,7 @@ void sshwidget::rece_channel_readS(QStringList data)
             movePositionRight(sshwidget::MoveAnchor, 1);
             continue;
         } else {
-            qDebug() << "走到这里1 data[i] = " << data[i];
+            //qDebug() << "走到这里1 data[i] = " << data[i];
             //删除光标所在位置之后的 1 个字符（不会移动光标）剩余的字符会向左填充。
             QRegExp regExp("\\x001B\\[(\\d+)*P");
             int pos = 0;
@@ -1628,24 +1635,24 @@ void sshwidget::rece_channel_readS(QStringList data)
                 //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                 int acurrentLine = getCurrentRowPosition();
                 int cpos2 = getCurrentRowPositionByLocal();
-                qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2 << " data[i] = " << data[i];
+                //qDebug() << "A当前光标所在行数(相对于终端内部)1 =" << acurrentLine << "  R当前行数 =" << cpos2 << " data[i] = " << data[i];
 
                 int moveCount = regExp2.cap(1).toInt() - acurrentLine;
                 int columnCount = regExp2.cap(2).toInt() - 1;
                 
-                qDebug() << "moveCount = " << moveCount;
+                //qDebug() << "moveCount = " << moveCount;
                 int testEdit_s_c22 = getCurrentColumnPositionByLocal_s();
-                qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c22;
+                //qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c22;
                 //第一个参数是移动到第几行，第二个参数是第几位
                 if (moveCount > 0) {
 
-                    qDebug() << "移动" << moveCount << "行2";
+                    //qDebug() << "移动" << moveCount << "行2";
 
                     int cpos = getCurrentRowPositionByLocal();
                     movePositionDown(sshwidget::MoveAnchor, moveCount);
                     int cpos2 = getCurrentRowPositionByLocal();
                     setCurrentRowPosition(cpos2 - cpos);
-                    qDebug() << "向下移动" << cpos2 - cpos  << "剩下使用换行符移动";
+                    //qDebug() << "向下移动" << cpos2 - cpos  << "剩下使用换行符移动";
                     if (cpos2 - cpos != moveCount && cpos2 - cpos < moveCount) {
                         for (int i = cpos2 - cpos; i<moveCount; i++) {
                             if (isBuffer) {
@@ -1662,7 +1669,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                     //qDebug() << "A当前光标所在行数(相对于终端内部)2 =" << getCurrentRowPosition() << "  R当前行数 =" << getCurrentRowPositionByLocal();
 
                 } else if (moveCount < 0) {
-                    qDebug() << "向上移动" << moveCount << "行";
+                    //qDebug() << "向上移动" << moveCount << "行";
                     //sendBuffData();
                     //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                     // movePositionUp(sshwidget::MoveAnchor, -moveCount);
@@ -1674,14 +1681,14 @@ void sshwidget::rece_channel_readS(QStringList data)
                     movePositionStartLine(sshwidget::MoveAnchor);
                     int cpos2 = getCurrentRowPositionByLocal();
                     setCurrentRowPosition(cpos2 - cpos);
-                    qDebug() << "向上移动" << cpos2 - cpos;
+                    //qDebug() << "向上移动" << cpos2 - cpos;
                 } else {
                     //qDebug() << "不需要移动";
                 }
                 int testEdit_s_c = getCurrentColumnPositionByLocal_s();
-                qDebug() << "收到columnCount应位于" << columnCount;
-                qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c;
-                qDebug() << "移动" << testEdit_s_c - columnCount;
+                //qDebug() << "收到columnCount应位于" << columnCount;
+                //qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c;
+                //qDebug() << "移动" << testEdit_s_c - columnCount;
                 columnCount = testEdit_s_c - columnCount;
 
                 if (columnCount >= 0) {
@@ -1690,15 +1697,15 @@ void sshwidget::rece_channel_readS(QStringList data)
                     //qDebug() << "func" << Q_FUNC_INFO  << "line" << __LINE__ ;
                     //movePositionStartLine(sshwidget::MoveAnchor);
                     int length_ = getTolineLength();
-                    qDebug() << "移动到" << columnCount << "列" << " 当前行长度 " << length_;
+                    //qDebug() << "移动到" << columnCount << "列" << " 当前行长度 " << length_;
                     if (columnCount <= length_) {
                         //长度够直接移动
-                        qDebug() << "movePositionLeft" << columnCount;
+                        //qDebug() << "movePositionLeft" << columnCount;
                         movePositionRight(sshwidget::MoveAnchor, columnCount);
                     } else {
                         //如果长度不够直接移动，会移动到下一行,所以移动之前先补空格，权宜之计，后面会正整行生成空格
                         int diff = columnCount - length_;
-                        qDebug() << "补" << diff << "个空格";
+                        //qDebug() << "补" << diff << "个空格";
                         for(int i =0; i< diff; i++) {
                             sendData(" ");
                             //buffData = buffData + "&nbsp;";
@@ -1708,7 +1715,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                         movePositionStartLine(sshwidget::MoveAnchor);
                         movePositionLeft(sshwidget::MoveAnchor, columnCount);
                     }
-                    qDebug() << "当前光标到行尾部 距离" << length_;
+                    //qDebug() << "当前光标到行尾部 距离" << length_;
 
                     QTextCursor tc = ui->plainTextEdit->textCursor(); //当前光标
                     QTextLayout *lay = tc.block().layout();
@@ -1720,13 +1727,13 @@ void sshwidget::rece_channel_readS(QStringList data)
                     //这里要考虑如果移动大于现有字符
                     movePositionLeft(sshwidget::MoveAnchor, -columnCount);
                 } else {
-                    qDebug() << "不需要移动列";
+                    //qDebug() << "不需要移动列";
                 }
                 int acurrentLine2 = getCurrentRowPosition();
                 int cpos22 = getCurrentRowPositionByLocal();
-                qDebug() << "移动完成 当前光标所在行数(相对于终端内部)1 =" << acurrentLine2 << "  R当前行数 =" << cpos22;
+                //qDebug() << "移动完成 当前光标所在行数(相对于终端内部)1 =" << acurrentLine2 << "  R当前行数 =" << cpos22;
                 int testEdit_s_c2 = getCurrentColumnPositionByLocal_s();
-                qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c2;
+                //qDebug() << "testEdit_s_c 的位置位于 " << testEdit_s_c2;
 
                 data[i].replace(regExp2.cap(0), "");
             }
@@ -1851,6 +1858,7 @@ void sshwidget::rece_channel_readS(QStringList data)
                 }
 
                 if (data[i].contains("\n")) {
+                    qDebug() << "走到这里===";
                     int position = data[i].indexOf("\n");
                     if (position == -4) {
                         //dataS.append(data[i].mid(0, 3));
@@ -1969,7 +1977,7 @@ void sshwidget::rece_channel_readS(QStringList data)
     QScrollBar * scrollBar_textEdit_s_h = textEdit_s->horizontalScrollBar();
     scrollBar_textEdit_s_h->setValue(0);
     qint64 elapsedMilliseconds = timer.elapsed();
-    qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
+    //qDebug() << "响应时间：" + QString::number(elapsedMilliseconds) + "ms";
     ui->verticalScrollBar->setMinimum(ui->plainTextEdit->verticalScrollBar()->minimum());
     ui->verticalScrollBar->setSingleStep(ui->plainTextEdit->verticalScrollBar()->singleStep());
     ui->verticalScrollBar->setPageStep(ui->plainTextEdit->verticalScrollBar()->pageStep());
@@ -2034,10 +2042,17 @@ void sshwidget::rece_getServerInfo(ServerInfoStruct serverInfo)
 
 }
 
-void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize)
+void sshwidget::rece_fileProgress_sgin(int64_t sum, int64_t filesize, int status)
 {
     //dlwidget->updateFileProgress(sum, filesize);
     dlwidget->fwidget->rece_file_progress_sgin(sum, filesize);
+
+    if(sum == filesize && status == 1) {
+        //分析pcap文件
+        qDebug() << "当前需要分析pcap文件, 路径为" << "C:/Users/张旭/Desktop/fsdownload/" << dlwidget->fwidget->fileName;
+        //发送信号
+        emit send_analysePcapFile("C:/Users/张旭/Desktop/fsdownload/" + dlwidget->fwidget->fileName);
+    }
     //更新文件进度
     //    qDebug() << "sum =" << sum << " filesize = " << filesize;
     //    //计算大小
@@ -2496,6 +2511,21 @@ void sshwidget::on_toolButton_conectStats_clicked()
 
 }
 
+void sshwidget::rece_analysePcapFile_sgin(QString fileName) {
+    QString copyData = textEdit_s->textCursor().selectedText();
+    copyData.replace(QChar(0xA0), ' ');
+    if (ssh_path.contains("~")) {
+        ssh_path.replace("~","/root");
+    }
+
+    //调子线程执行
+    QString fileName2 = copyData;
+    QString remote_file_path = ssh_path + "/" + copyData;
+    QString local_file_path = "C:\\Users\\张旭\\Desktop\\fsdownload\\" + copyData;
+
+    QMetaObject::invokeMethod(sshSftp,"downloadFile", Qt::QueuedConnection, Q_ARG(QString, remote_file_path), Q_ARG(QString,local_file_path), Q_ARG(QString,fileName2), Q_ARG(int, 1));
+}
+
 void sshwidget::rece_downloadFile_sgin(QString fileName)
 {
     //下载文件
@@ -2510,7 +2540,7 @@ void sshwidget::rece_downloadFile_sgin(QString fileName)
     QString remote_file_path = ssh_path + "/" + copyData;
     QString local_file_path = "C:\\Users\\张旭\\Desktop\\fsdownload\\" + copyData;
 
-    QMetaObject::invokeMethod(sshSftp,"downloadFile", Qt::QueuedConnection, Q_ARG(QString, remote_file_path), Q_ARG(QString,local_file_path), Q_ARG(QString,fileName2));
+    QMetaObject::invokeMethod(sshSftp,"downloadFile", Qt::QueuedConnection, Q_ARG(QString, remote_file_path), Q_ARG(QString,local_file_path), Q_ARG(QString,fileName2), Q_ARG(int, 0));
 }
 
 void sshwidget::rece_ssh_init(bool isok)

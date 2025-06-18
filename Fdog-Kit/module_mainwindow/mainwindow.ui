@@ -9,14 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1140</width>
+    <height>721</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>600</width>
-    <height>600</height>
+    <height>700</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -1426,7 +1426,7 @@ QToolButton:hover {
                    <property name="sizeHint" stdset="0">
                     <size>
                      <width>20</width>
-                     <height>50</height>
+                     <height>30</height>
                     </size>
                    </property>
                   </spacer>
@@ -1436,13 +1436,13 @@ QToolButton:hover {
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>150</height>
+                     <height>170</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>150</height>
+                     <height>170</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -1472,13 +1472,13 @@ QToolButton:hover {
                       <property name="minimumSize">
                        <size>
                         <width>80</width>
-                        <height>80</height>
+                        <height>120</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
                         <width>16777215</width>
-                        <height>80</height>
+                        <height>120</height>
                        </size>
                       </property>
                       <property name="styleSheet">
@@ -1501,14 +1501,14 @@ QToolButton:hover {
                         <widget class="QLabel" name="widget_welcome_body_widget2_info_widget_icon">
                          <property name="minimumSize">
                           <size>
-                           <width>80</width>
-                           <height>80</height>
+                           <width>350</width>
+                           <height>120</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>250</width>
-                           <height>80</height>
+                           <width>350</width>
+                           <height>120</height>
                           </size>
                          </property>
                          <property name="font">
@@ -1519,7 +1519,7 @@ QToolButton:hover {
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">image: url(:/module_mainwindow/images/light/iconmain-light2.png);</string>
+                          <string notr="true">image: url(:/module_mainwindow/images/light/iconmain-light.png);</string>
                          </property>
                          <property name="text">
                           <string/>
@@ -1575,7 +1575,7 @@ QToolButton:hover {
                       <property name="sizeHint" stdset="0">
                        <size>
                         <width>20</width>
-                        <height>30</height>
+                        <height>50</height>
                        </size>
                       </property>
                      </spacer>

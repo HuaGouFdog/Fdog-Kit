@@ -20,9 +20,11 @@ public:
     QWidget * widgetf;  //容器
 private slots:
 
+
+public:
+    QString fileName; //下载文件名
 private:
     int id; //下载ID
-    QString fileName; //下载文件名
     int64_t sumSize;  //当前下载大小
     int64_t fileSize; //总大小
     bool status;      //下载状态

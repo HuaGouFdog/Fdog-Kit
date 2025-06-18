@@ -409,6 +409,10 @@ public:
     void buildChartP();
     void updateChartP(int value1, int value2);
 
+    void comboBox_testType_ChangedIndex(int index);
+
+    void readPcapFile(QString fileName);
+
 private slots:
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void read_data();
@@ -498,8 +502,6 @@ private slots:
     void printHex(const QByteArray &data, int number);
 
     void on_toolButton_inportpcap_clicked();
-
-    void readPcapFile(QString fileName);
 
     void filterTable(QTableWidget* tableWidget, const QString& filterText, int column, bool isShow);
 
