@@ -199,6 +199,7 @@ void fileProgressWidget::rece_file_progress_sgin(int64_t sumSize, int64_t fileSi
     if (sumSize == fileSize) {
         progressBar->setFormat("已完成 ");
     }
+    
 }
 
 void downloadwidget::on_toolButton_file_open_clicked()

@@ -68,6 +68,7 @@ void sshwidgetmanagewidget::newSSHWidget(connnectInfoStruct &cInfoStruct, config
     connect(sshWidget,SIGNAL(send_connection_success(sshwidget *)),this,SLOT(rece_connection_success(sshwidget *)));
     connect(sshWidget,SIGNAL(send_connection_fail(sshwidget *)),this,SLOT(rece_connection_fail(sshwidget *)));
     connect(sshWidget,SIGNAL(send_windowsSetting()),this,SLOT(rece_windowsSetting()));
+    connect(sshWidget,SIGNAL(send_analysePcapFile(QString)),this,SLOT(rece_analysePcapFile(QString)));
     sshWidgetList.push_back(sshWidget);
     ui->tabWidget->addTab(sshWidget, QIcon(":lib/yellow.svg").pixmap(iconSize), cInfoStruct.name);
     //插入数据
@@ -139,6 +140,10 @@ void sshwidgetmanagewidget::rece_connection_fail(sshwidget *sw)
 void sshwidgetmanagewidget::rece_windowsSetting()
 {
     //给主窗口发信号
+}
+
+void sshwidgetmanagewidget::rece_analysePcapFile(QString fileName) {
+    emit send_analysePcapFile(fileName);
 }
 
 void sshwidgetmanagewidget::on_tabWidget_customContextMenuRequested(const QPoint &pos)

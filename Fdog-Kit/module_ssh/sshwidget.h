@@ -372,6 +372,8 @@ signals:
     void send_toolButton_fullScreen_sign();
     void send_searchTextNumbers(int sn, int sum);
     void send_windowsSetting();
+    void send_analysePcapFile(QString fileName);
+    
 private slots:
     //void on_textEdit_cursorPositionChanged();
 
@@ -382,7 +384,7 @@ private slots:
 
     void rece_getServerInfo(ServerInfoStruct serverInfo);
 
-    void rece_fileProgress_sgin(int64_t sum, int64_t filesize);
+    void rece_fileProgress_sgin(int64_t sum, int64_t filesize, int status);
 
     //void on_pushButton_clicked();
 
@@ -443,6 +445,8 @@ private slots:
 
     void on_toolButton_conectStats_clicked();
 
+    void rece_analysePcapFile_sgin(QString fileName = "");
+    
     void rece_downloadFile_sgin(QString fileName = "");
 
     void rece_ssh_init(bool isok);

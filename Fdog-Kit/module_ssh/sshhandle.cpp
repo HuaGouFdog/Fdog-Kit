@@ -659,7 +659,7 @@ bool sshHandleSftp::uploadFile(QString local_file_path, QString remote_file_path
     return true;
 }
 
-bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_path, QString fileName)
+bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_path, QString fileName, int status)
 {
     session_sftp = NULL;
     session_sftp = libssh2_sftp_init(session_ssh_sftp);
@@ -725,13 +725,13 @@ bool sshHandleSftp::downloadFile(QString remote_file_path, QString local_file_pa
         //qDebug() << "nread = " << rc;
         fwrite(mem, rc, 1, local_file);
         sum = sum + rc;
-        emit send_fileProgress_sgin(sum, filesize);
+        emit send_fileProgress_sgin(sum, filesize, status);
         memset(mem, 0, sizeof(mem));
     }
 
     //qint64 elapsedTime = timer.elapsed(); // 获取经过的时间，单位为毫秒
     //qDebug() << "Elapsed Time:" << elapsedTime << "ms";
-    qDebug() << "下载完成";
+    qDebug() << "下载完成" << fileName;
     libssh2_sftp_close(handle_sftp);
     fclose(local_file);
     // 断开 SSH 连接和释放会话

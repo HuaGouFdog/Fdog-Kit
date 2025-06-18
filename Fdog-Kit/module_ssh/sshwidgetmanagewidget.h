@@ -30,6 +30,10 @@ public:
     QVector<sshwidget*> sshWidgetList;
     bool isShowToolKit = false; //是否显示工具栏
     config * confInfo; //这个应该同步更新
+
+signals:
+    void send_analysePcapFile(QString fileName);
+
 private slots:
     void rece_widget_welcome_body_widget2_newCreate_newTool_clicked();
 
@@ -40,6 +44,8 @@ private slots:
     void rece_connection_fail(sshwidget * sw);
 
     void rece_windowsSetting();
+
+    void rece_analysePcapFile(QString fileName);
 
     void on_tabWidget_customContextMenuRequested(const QPoint &pos);
 

@@ -836,6 +836,22 @@ QStringList datahandle::processDataS(QString data)
                 pos = 0;
             }
 
+            QRegExp regExp8("\\n");
+            pos = 0;
+            while ((pos = regExp8.indexIn(data, pos)) != -1) {
+                //qDebug() << "匹配到\u001B[5D";
+                QString match = regExp8.cap(0); // 获取完整的匹配项
+                int position = data.indexOf(match);
+                if (position == 0) {
+                    dataS.append(data.mid(0, match.length()));
+                } else {
+                    dataS.append(processDataS(data.mid(0, position)));
+                    dataS.append(data.mid(position, match.length()));
+                }
+                data = data.mid(position + match.length());
+                pos = 0;
+            }
+
 
 
             dataS.append(data);
