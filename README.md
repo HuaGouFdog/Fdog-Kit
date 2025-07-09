@@ -53,9 +53,9 @@
 ## zookeeper可视化工具
 目前支持连接信息缓存，同时连接多个zk，支持增删改查，节点实时更新，快速搜索，支持json数据格式化，节点url解码，编辑区等。
 
-| 欢迎页  | 使用界面  | 创建节点   |
-| ---- | ---- | ---- |
-| ![image](https://github.com/user-attachments/assets/959be931-188f-4a4d-9be8-b47e4c32899b) | ![image](https://github.com/user-attachments/assets/a627f32a-2865-49d7-b62b-7f7881c9954b) | ![image](https://github.com/user-attachments/assets/de161bd0-4635-4343-8260-40cdf1571e1e) |
+| 欢迎页  | 使用界面  |
+| ---- | ---- |
+| ![image](https://github.com/user-attachments/assets/1fdf00ef-00f3-4736-8412-f628e207e98d) | ![image](https://github.com/user-attachments/assets/cb5a64d6-7fa3-4ac6-948a-40fa2994408b) | 
 
 ----
 
@@ -73,6 +73,18 @@
 | 基础模式  | 压测模式  |
 | ---- | ---- | 
 |![image](https://github.com/user-attachments/assets/eb82f969-f62a-438c-9e29-bc6729cb25f2)|![image](https://github.com/user-attachments/assets/2212564d-c9e3-4f33-b0e6-7c4f98e94c7d)|
+|![image](https://github.com/user-attachments/assets/cbc6aac0-600e-41c8-a09d-46f8ae4423e5)|![image](https://github.com/user-attachments/assets/143c5fe9-ea09-4230-a236-e8b4a931f140)|
+
+----
+
+
+## 终端工具
+使用libssh2为底层编写的终端工具，由于需要对大量控制序列进行解析，目前还无法做到完整使用，仅实现基础命令的交互，虽然如此，但是一定比某些挂羊头的程序好，目前支持简单命令，显示服务器信息，上传，下载，历史命令，添加快捷命令等。
+
+| 历史连接  | 终端界面 |
+| ---- | ---- | 
+| ![image](https://github.com/user-attachments/assets/fee865e7-db2e-490a-9f54-46aab21bc495)| ![image](https://github.com/user-attachments/assets/f0e95d87-1bc7-4969-8762-dac7bc2d0b05)| 
+| ![image](https://github.com/user-attachments/assets/0da36ad2-3b7b-4a73-b333-751653a20720)| ![image](https://github.com/user-attachments/assets/655ade2f-d9ce-4854-ba15-5d2ad8d07c81)| 
 
 ----
 
@@ -81,24 +93,24 @@
 | ---- | 
 |![image](https://github.com/user-attachments/assets/bba22261-c5fa-4aa2-9fd6-5c6507db89aa)|
 
-----
+
+## 设置
+
+| 设置界面1 | 设置界面2 |
+| ---- |  ---- | 
+| ![image](https://github.com/user-attachments/assets/2144bf4a-05ea-4657-a716-3a653b270fd7)| ![image](https://github.com/user-attachments/assets/5e884309-b05f-412e-b921-6e909b0476b7)| 
 
 
-
-
-## 终端工具
-使用libssh2为底层编写的终端工具，由于需要对大量控制序列进行解析，目前还无法做到完整使用，仅实现基础命令的交互，虽然如此，但是一定比某些挂羊头的程序好，目前支持简单命令，显示服务器信息，上传，下载，历史命令，添加快捷命令等。
-
-| 历史连接  | 终端界面 |
-| ---- | ---- | 
-| ![image](https://github.com/user-attachments/assets/85caa23d-1a1a-4041-a44c-9f1620b8eaf9) | ![image](https://github.com/user-attachments/assets/29de9773-cbf9-43af-bcef-d92ff781fb1f)| 
 
 ----
 
 ## 其他界面
-| 初始化模块界面 | 综合连接界面 | 设置界面1 | 设置界面2 |
-| ---- | ---- | ---- |  ---- | 
-| ![image](https://github.com/user-attachments/assets/edc61a5c-fcaa-44bc-874f-696e28797761) |![image](https://github.com/user-attachments/assets/7ff1ca70-7e30-4be6-befb-c76d5459e501)| ![image](https://github.com/user-attachments/assets/2144bf4a-05ea-4657-a716-3a653b270fd7)| ![image](https://github.com/user-attachments/assets/5e884309-b05f-412e-b921-6e909b0476b7)| 
+| 初始化模块界面 | 综合连接界面 |
+| ---- | ---- |
+| ![image](https://github.com/user-attachments/assets/edc61a5c-fcaa-44bc-874f-696e28797761) |![image](https://github.com/user-attachments/assets/6d93ad86-b1b4-4d1a-89d0-5ce3d6e7cd80)|
+
+
+
 
 
 ----
